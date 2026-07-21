@@ -4,9 +4,8 @@
 from __future__ import annotations
 
 import argparse
-import sys
 
-from rag.config import DEFAULT_K, KNOWN_SCOPES
+from rag.config import DEFAULT_K, HERMES_SCOPE_ALIASES, KNOWN_SCOPES, resolve_scope
 from rag.query import answer
 
 
@@ -16,9 +15,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--scope",
-        choices=KNOWN_SCOPES,
         default=None,
-        help="Filter retrieval to one collection (e.g. me-c, sms, wiki)",
+        metavar="NAME",
+        help=(
+            "Collection filter, or Hermes alias "
+            f"(scopes: {', '.join(KNOWN_SCOPES)}; "
+            f"aliases: {', '.join(sorted(HERMES_SCOPE_ALIASES))})"
+        ),
     )
     parser.add_argument(
         "-k",
@@ -34,9 +37,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     question = " ".join(args.question).strip()
     if not question:
-        parser.error("provide a question, e.g. ask.py --scope me-c \"lube oil temperature\"")
+        parser.error('provide a question, e.g. ask.py --scope me-c "lube oil temperature"')
 
-    text, sources = answer(question, scope=args.scope, k=args.k)
+    try:
+        scope = resolve_scope(args.scope)
+    except ValueError as e:
+        parser.error(str(e))
+
+    text, sources = answer(question, scope=scope, k=args.k)
     print(text)
     if sources:
         print("\nSources:")

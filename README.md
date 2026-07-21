@@ -45,6 +45,14 @@ Text is NFKC-normalized on ingest **and** query. Chunking is intentionally **800
 
 Scopes: `me-c`, `sms`, `wiki`, `maker-manuals`, `regulatory`, `inspection`, `vessels`, `career`, `rules`, `other`.
 
+Hermes routing aliases (from `00_Hermes_RAG_Routing_Guide.md`) also work:
+
+```bash
+./venv/bin/python ask.py --scope sire_library "oil mist detection"
+./venv/bin/python ask.py --scope imo_library "fuel oil sampling MARPOL"
+./venv/bin/python ask.py --scope sms_library "bunkering procedure"
+```
+
 ## Eval gate
 
 ```bash

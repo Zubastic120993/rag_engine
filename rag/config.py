@@ -68,6 +68,39 @@ KNOWN_SCOPES = (
     "other",
 )
 
+# Aliases Hermes routing guide names → our collection scopes
+HERMES_SCOPE_ALIASES: dict[str, str] = {
+    "sms_library": "sms",
+    "imo_library": "regulatory",
+    "sire_library": "inspection",
+    "manual_library": "maker-manuals",
+    "manual_library_gaschem_europe": "vessels",
+    "manual_library_gaschem_africa": "vessels",
+    "ce_wiki": "wiki",
+    "wiki_library": "wiki",
+    "maker_manual": "maker-manuals",
+    "statutory": "regulatory",
+}
+
+
+def resolve_scope(name: str | None) -> str | None:
+    """Normalize a scope or Hermes library alias to a collection name."""
+    if not name:
+        return None
+    key = name.strip().lower().replace("-", "_")
+    if name in KNOWN_SCOPES:
+        return name
+    if key in HERMES_SCOPE_ALIASES:
+        return HERMES_SCOPE_ALIASES[key]
+    # allow underscore form of known scopes
+    for scope in KNOWN_SCOPES:
+        if scope.replace("-", "_") == key:
+            return scope
+    raise ValueError(
+        f"Unknown scope {name!r}. Use one of {KNOWN_SCOPES} or Hermes aliases "
+        f"{tuple(HERMES_SCOPE_ALIASES)}"
+    )
+
 # Substring hints checked after prefix map (path uppercased).
 INSPECTION_HINTS = ("SIRE", "OCIMF", "CDI", "/VIQ")
 REGULATORY_HINTS = (
