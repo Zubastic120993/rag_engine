@@ -12,11 +12,11 @@
     },
     {
       "id": "mec-positive-exhaust",
-      "question": "What is the recommended exhaust valve clearance for the ME-C engine?",
+      "question": "What is the max permissible exhaust valve burn-off for a 50ME-C engine type?",
       "scope": "me-c",
       "expect_refuse": false,
       "source_substr": ["ME-C", "G50ME", "data/G50"],
-      "notes": "Classic ME-C retrieval smoke test"
+      "notes": "Manuals list burn-off (mm), not cold valve clearance — match real corpus wording"
     },
     {
       "id": "sms-positive-procedure",
