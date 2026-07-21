@@ -160,16 +160,14 @@ def cmd_ask(argv: list[str]) -> int:
     if args.json:
         _print_json(result.to_json())
     else:
-        if result.status in ("ok", "partial_coverage"):
+        if result.status == "ok":
             print(result.answer or "")
-            if result.status == "partial_coverage" and result.missing_information:
-                print(f"\nMissing information: {result.missing_information}")
             if result.sources:
                 print("\nSources:")
                 for s in result.sources:
                     print(
                         f"  [{s.get('collection')}] {s.get('path')}  "
-                        f"p.{s.get('page')}  score={s.get('score')}"
+                        f"p.{s.get('page')}  distance={s.get('distance')}"
                     )
         else:
             print(
@@ -184,7 +182,7 @@ def cmd_ask(argv: list[str]) -> int:
         if result.status in ("no_coverage", "empty_question")
         else EXIT_OK
     )
-    keep_sources = result.status in ("ok", "partial_coverage")
+    keep_sources = result.status == "ok"
     log_ask_event(
         question=question,
         scope=resolved,

@@ -28,7 +28,7 @@ from rag_engine.config import (
     wiki_extensions,
 )
 from rag_engine.lock import ingest_lock
-from rag_engine.text import normalize_text
+from rag_engine.text import is_valid_pdf, normalize_text
 
 
 def _load_tracker() -> dict:
@@ -264,8 +264,17 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
         print(f"This run: stop after {max_new} NEW embeds")
 
     new_count = 0
+    invalid_pdfs = 0
     for i, (path, rel) in enumerate(docs, 1):
         try:
+            # A .pdf that does not start with %PDF is a fake (saved HTML,
+            # error page, truncated download). Skip it before the loader sees
+            # it — never index it, and count it for the doctor report.
+            if path.suffix.lower() == ".pdf" and not is_valid_pdf(path):
+                invalid_pdfs += 1
+                print(f"[{i}/{len(docs)}]    0 chunks  INVALID_PDF  {rel}")
+                continue
+
             digest = _file_sha256(path)
 
             if digest in tracker and not force:
@@ -292,7 +301,7 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
 
     print(
         f"Batch done. {len(tracker)} unique hashes → {persist_dir()} "
-        f"(new this run: {new_count})"
+        f"(new this run: {new_count}; invalid PDFs skipped: {invalid_pdfs})"
     )
     # Write the fingerprint only when embeddings actually changed (or on the
     # first run when none exists yet), so its mtime reflects the index build

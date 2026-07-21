@@ -30,7 +30,9 @@ EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_NO_COVERAGE = 2
 
-SCHEMA_VERSION = 2
+# v3: sources[].score renamed to sources[].distance (Chroma L2 distance,
+# lower = more relevant). v2: plain-text generation, no partial_coverage.
+SCHEMA_VERSION = 3
 
 DEFAULT_NO_COVERAGE_HINT = (
     "No supporting chunks were found in this scope. "
@@ -38,7 +40,7 @@ DEFAULT_NO_COVERAGE_HINT = (
     "use scope diagnostics rather than answering from model memory."
 )
 
-_STATUSES_WITH_SOURCES = frozenset({"ok", "partial_coverage"})
+_STATUSES_WITH_SOURCES = frozenset({"ok"})
 
 
 def ollama_timeout_s() -> float:
@@ -94,7 +96,7 @@ def _empty_timings(
 
 @dataclass
 class AskResult:
-    status: str  # ok | partial_coverage | no_coverage | empty_question | error
+    status: str  # ok | no_coverage | empty_question | error
     query: str
     requested_scope: str | None
     resolved_scope: str | None
@@ -102,7 +104,7 @@ class AskResult:
     sources: list[dict] = field(default_factory=list)
     hint: str | None = None
     error: str | None = None
-    coverage: str | None = None  # full | partial | none
+    coverage: str | None = None  # full | none (partial is no longer produced)
     missing_information: str | None = None
     timings: dict[str, float | None] = field(default_factory=_empty_timings)
     model: str | None = None
@@ -210,7 +212,7 @@ def retrieve(question: str, scope: str | None = None, k: int | None = None):
 def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
     sources: list[dict] = []
     seen: set[tuple] = set()
-    for doc, score in pairs:
+    for doc, distance in pairs:
         meta = doc.metadata or {}
         src = meta.get("source", "unknown")
         page = meta.get("page", "?")
@@ -224,7 +226,8 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
                 "path": src,
                 "page": page,
                 "collection": coll,
-                "score": float(score),
+                # Chroma L2 distance: lower = closer/more relevant.
+                "distance": float(distance),
             }
         )
     return sources
@@ -362,7 +365,7 @@ def answer(
     num_ctx: int | None = None,
     num_predict: int | None = None,
 ) -> AskResult:
-    """Grounded ask. Returns AskResult (ok | partial_coverage | no_coverage | …)."""
+    """Grounded ask. Returns AskResult (ok | no_coverage | empty_question | error)."""
     t0 = time.perf_counter()
     raw_q = question or ""
     q = normalize_text(raw_q)

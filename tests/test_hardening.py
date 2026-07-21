@@ -198,6 +198,23 @@ def test_should_skip_dir_prunes_tool_and_venv_paths():
     assert not should_skip_dir("/Users/x/CE_Library/90_CE_Wiki/Equipment")
 
 
+def test_is_valid_pdf_rejects_html_named_pdf(tmp_path):
+    from rag_engine.text import is_valid_pdf
+
+    # A saved HTML error page with a .pdf extension — exactly the failed
+    # download found in the corpus.
+    fake = tmp_path / "Autotreat_SDS_EN.pdf"
+    fake.write_bytes(b"\r\n\r\n<!DOCTYPE html>\n<html><body>Not found</body></html>")
+    assert is_valid_pdf(fake) is False
+
+    real = tmp_path / "real.pdf"
+    real.write_bytes(b"%PDF-1.7\n%\xe2\xe3\xcf\xd3\n1 0 obj\n")
+    assert is_valid_pdf(real) is True
+
+    missing = tmp_path / "nope.pdf"
+    assert is_valid_pdf(missing) is False
+
+
 def test_nfkc_query_same_as_ingest_and_idempotent():
     from rag_engine.text import normalize_text
 
@@ -219,7 +236,7 @@ def test_nfkc_query_same_as_ingest_and_idempotent():
 def test_json_contract_schema_version_and_scopes(scopes_yaml):
     from rag_engine.query import AskResult, SCHEMA_VERSION
 
-    assert SCHEMA_VERSION == 2
+    assert SCHEMA_VERSION == 3
 
     r = AskResult(
         status="ok",
@@ -228,7 +245,7 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
         resolved_scope="sms",
         answer="a",
         coverage="full",
-        sources=[{"path": "p", "page": 0, "collection": "sms", "score": 0.1}],
+        sources=[{"path": "p", "page": 0, "collection": "sms", "distance": 0.1}],
         timings={
             "scope_resolution": 0.001,
             "retrieval": 0.1,
@@ -248,21 +265,6 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
     assert j["timings"]["retrieval"] == 0.1
     assert j["model"] == "qwen2.5:3b"
 
-    partial = AskResult(
-        status="partial_coverage",
-        query="q",
-        requested_scope="sms_library",
-        resolved_scope="sms",
-        answer="partial answer",
-        coverage="partial",
-        missing_information="torque value missing",
-        sources=[{"path": "p2", "page": 2, "collection": "sms", "score": 0.3}],
-    )
-    jp = partial.to_json()
-    assert jp["status"] == "partial_coverage"
-    assert jp["sources"][0]["path"] == "p2"
-    assert jp["missing_information"] == "torque value missing"
-
     nc = AskResult(
         status="no_coverage",
         query="q",
@@ -270,7 +272,7 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
         resolved_scope="vessels",
         answer=None,
         coverage="none",
-        sources=[{"path": "should_clear", "page": 1, "collection": "vessels", "score": 0.2}],
+        sources=[{"path": "should_clear", "page": 1, "collection": "vessels", "distance": 0.2}],
         hint="hint",
     )
     j2 = nc.to_json()
