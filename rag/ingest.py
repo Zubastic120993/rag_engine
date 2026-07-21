@@ -260,6 +260,7 @@ def run_ingest(force: bool = False) -> None:
     print(f"Found {len(pdfs)} PDFs. Index: {PERSIST_DIR}")
     print(f"Chunking: size={CHUNK_SIZE} overlap={CHUNK_OVERLAP} (kept for this reindex)")
 
+    new_since_reopen = 0
     for i, (path, rel, from_data) in enumerate(pdfs, 1):
         try:
             digest = _file_sha256(path)
@@ -277,7 +278,19 @@ def run_ingest(force: bool = False) -> None:
                 db, tracker, path_to_hash, path, rel, from_data, digest, force
             )
             print(f"[{i}/{len(pdfs)}] {msg}")
-            gc.collect()
+            new_since_reopen += 1
+            # Re-open Chroma periodically to limit native memory growth / segfaults
+            if new_since_reopen >= 25:
+                del db
+                gc.collect()
+                db = Chroma(
+                    persist_directory=str(PERSIST_DIR),
+                    embedding_function=embeddings,
+                )
+                new_since_reopen = 0
+                print("  (reopened Chroma client)", flush=True)
+            else:
+                gc.collect()
         except Exception as e:
             print(f"[{i}/{len(pdfs)}] FAILED  {rel}: {e}")
             gc.collect()
