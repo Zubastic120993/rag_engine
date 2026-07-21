@@ -34,6 +34,22 @@ A silent degrade from *cited from library* to *recalled from training* is the fa
 
 On exit 2, `status` is `no_coverage` (or empty retrieval). Treat as final for that scope.
 
+Coverage gaps are appended to `$RAG_DB_PATH/ask_events.jsonl`. Review with:
+
+```bash
+rag-engine gaps
+```
+
+Unexpected exit-2s on topics you believe are in the library → missing document or wrong scope. Promote those questions into `eval/questions.json` when you confirm the cause.
+
+## After library PDFs change
+
+```bash
+rag-engine sync
+```
+
+(Same as `ingest` — hash no-op if unchanged. Prefer this over a schedule so a new manual cannot look like a coverage gap.)
+
 ## Scopes
 
 Prefer `rag-engine list-scopes --json` over hardcoding. Hermes routing aliases (`sire_library`, `imo_library`, `sms_library`, …) are accepted as `--scope` values via `scopes.yaml`.

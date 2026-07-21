@@ -15,6 +15,7 @@ from rag_engine.config import (
     persist_dir,
     resolve_scope,
 )
+from rag_engine.events import events_path, log_ask_event, read_events
 from rag_engine.query import EXIT_ERROR, EXIT_NO_COVERAGE, EXIT_OK, answer
 
 
@@ -118,9 +119,19 @@ def cmd_ask(argv: list[str]) -> int:
                     f"p.{s.get('page')}  score={s.get('score')}"
                 )
 
-    if status in ("no_coverage", "empty_question"):
-        return EXIT_NO_COVERAGE
-    return EXIT_OK
+    code = (
+        EXIT_NO_COVERAGE
+        if status in ("no_coverage", "empty_question")
+        else EXIT_OK
+    )
+    log_ask_event(
+        question=question,
+        scope=scope,
+        status=status,
+        exit_code=code,
+        sources=sources,
+    )
+    return code
 
 
 def cmd_paths() -> int:
@@ -129,6 +140,7 @@ def cmd_paths() -> int:
             {
                 "library_root": str(library_root()),
                 "db_path": str(persist_dir()),
+                "events_log": str(events_path()),
                 "scopes": known_scopes(),
                 "hermes_aliases": hermes_aliases(),
             },
@@ -138,13 +150,39 @@ def cmd_paths() -> int:
     return EXIT_OK
 
 
+def cmd_gaps(argv: list[str]) -> int:
+    """Show recent no_coverage asks — live eval trail."""
+    parser = argparse.ArgumentParser(prog="rag-engine gaps")
+    parser.add_argument("--limit", type=int, default=30)
+    parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Include all statuses, not only no_coverage",
+    )
+    args = parser.parse_args(argv)
+    status = None if args.all else "no_coverage"
+    rows = read_events(status=status, limit=args.limit)
+    if args.json:
+        print(json.dumps({"events": rows, "path": str(events_path())}, indent=2))
+    elif not rows:
+        print(f"No events yet ({events_path()})")
+    else:
+        print(f"Recent coverage gaps ({events_path()}):")
+        for r in rows:
+            scope = r.get("scope") or "(all)"
+            print(f"  {r.get('ts')}  [{scope}]  {r.get('question')}")
+    return EXIT_OK
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] in ("-h", "--help"):
         print(
-            "usage: rag-engine <ask|ingest|list-scopes|paths|backfill|eval> …\n"
+            "usage: rag-engine <ask|sync|ingest|gaps|list-scopes|paths|backfill|eval> …\n"
             "  ask [--scope NAME] [--json] QUESTION\n"
-            "  ingest [--force] [--max-new N]\n"
+            "  sync | ingest [--force] [--max-new N]   # after PDFs change\n"
+            "  gaps [--limit N] [--json]               # recent exit-2 / no_coverage\n"
             "  list-scopes [--json]\n"
             "  paths\n"
             "  backfill\n"
@@ -160,12 +198,15 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_list_scopes(as_json)
     if cmd == "paths":
         return cmd_paths()
-    if cmd == "ingest":
+    if cmd in ("ingest", "sync"):
+        # sync = habit alias: run after library PDFs change (hash no-op if unchanged)
         from rag_engine.ingest import main as ingest_main
 
         sys.argv = ["rag-engine-ingest", *rest]
         ingest_main()
         return EXIT_OK
+    if cmd == "gaps":
+        return cmd_gaps(rest)
     if cmd == "backfill":
         from rag_engine.backfill_collections import main as backfill_main
 

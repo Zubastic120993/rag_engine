@@ -44,6 +44,8 @@ Exit codes:
 
 ```bash
 rag-engine ingest                 # lock-protected, SHA-256 incremental
+rag-engine sync                   # same — run after PDFs change (not on a schedule)
+rag-engine gaps                   # recent exit-2 / no_coverage (live eval trail)
 rag-engine ingest --max-new 5     # crash-safe batches
 rag-engine backfill
 rag-engine eval
