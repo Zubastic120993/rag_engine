@@ -27,7 +27,13 @@ def scopes_yaml(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
             "embed_model_env": "RAG_EMBED_MODEL",
             "embed_model_default": "mxbai-embed-large",
             "llm_model_env": "RAG_LLM_MODEL",
-            "llm_model_default": "qwen3.5:9b",
+            "llm_model_default": "qwen2.5:3b",
+            "llm_fallback_model_env": "RAG_LLM_FALLBACK_MODEL",
+            "llm_fallback_model_default": "qwen3.5:9b",
+            "llm_num_ctx_env": "RAG_LLM_NUM_CTX",
+            "llm_num_ctx_default": 8192,
+            "llm_num_predict_env": "RAG_LLM_NUM_PREDICT",
+            "llm_num_predict_default": 1024,
             "chunk_size": 800,
             "chunk_overlap": 100,
             "default_k": 5,
@@ -177,6 +183,21 @@ def test_path_to_scope_deterministic(scopes_yaml):
         assert explain_path_assignment(path)["scope"] == expect
 
 
+def test_should_skip_dir_prunes_tool_and_venv_paths():
+    """The rag_engine repo now lives inside library_root (Tools/rag_engine/).
+    Its own source tree, and either of its two virtualenvs, must be pruned
+    from the ingest walk — never indexed as corpus content."""
+    from rag_engine.config import should_skip_dir
+
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/rag_engine")
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/venv/lib")
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/rag_env/lib")
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/.git/objects")
+    # Genuine corpus paths must not be pruned by the new entries.
+    assert not should_skip_dir("/Users/x/CE_Library/20_Vessels/Gaschem_Europe")
+    assert not should_skip_dir("/Users/x/CE_Library/90_CE_Wiki/Equipment")
+
+
 def test_nfkc_query_same_as_ingest_and_idempotent():
     from rag_engine.text import normalize_text
 
@@ -198,21 +219,49 @@ def test_nfkc_query_same_as_ingest_and_idempotent():
 def test_json_contract_schema_version_and_scopes(scopes_yaml):
     from rag_engine.query import AskResult, SCHEMA_VERSION
 
+    assert SCHEMA_VERSION == 2
+
     r = AskResult(
         status="ok",
         query="q",
         requested_scope="sms_library",
         resolved_scope="sms",
         answer="a",
+        coverage="full",
         sources=[{"path": "p", "page": 0, "collection": "sms", "score": 0.1}],
+        timings={
+            "scope_resolution": 0.001,
+            "retrieval": 0.1,
+            "generation": 1.2,
+            "total": 1.301,
+        },
+        model="qwen2.5:3b",
     )
     j = r.to_json()
     assert j["schema_version"] == SCHEMA_VERSION
     assert j["requested_scope"] == "sms_library"
     assert j["resolved_scope"] == "sms"
     assert j["status"] == "ok"
+    assert j["coverage"] == "full"
     assert j["answer"] == "a"
     assert j["sources"][0]["path"] == "p"
+    assert j["timings"]["retrieval"] == 0.1
+    assert j["model"] == "qwen2.5:3b"
+
+    partial = AskResult(
+        status="partial_coverage",
+        query="q",
+        requested_scope="sms_library",
+        resolved_scope="sms",
+        answer="partial answer",
+        coverage="partial",
+        missing_information="torque value missing",
+        sources=[{"path": "p2", "page": 2, "collection": "sms", "score": 0.3}],
+    )
+    jp = partial.to_json()
+    assert jp["status"] == "partial_coverage"
+    assert jp["sources"][0]["path"] == "p2"
+    assert jp["missing_information"] == "torque value missing"
 
     nc = AskResult(
         status="no_coverage",
@@ -220,19 +269,21 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
         requested_scope="vessels",
         resolved_scope="vessels",
         answer=None,
+        coverage="none",
         sources=[{"path": "should_clear", "page": 1, "collection": "vessels", "score": 0.2}],
         hint="hint",
     )
     j2 = nc.to_json()
     assert j2["answer"] is None
     assert j2["sources"] == []
+    assert j2["coverage"] == "none"
     assert j2["hint"]
 
 
 def test_cli_json_stdout_exactly_one_document(scopes_yaml, capsys):
     from rag_engine.cli import _print_json
 
-    _print_json({"schema_version": 1, "status": "ok"})
+    _print_json({"schema_version": 2, "status": "ok"})
     out = capsys.readouterr().out
     assert out.count("{") >= 1
     # exactly one JSON value
@@ -256,14 +307,24 @@ def test_no_coverage_does_not_expose_training_answer(scopes_yaml):
 
     with patch("rag_engine.query.retrieve_with_scores", return_value=[]):
         with patch("rag_engine.query._get_llm") as llm:
-            r = answer("anything", scope="vessels", requested_scope="manual_library_gaschem_europe")
+            r = answer(
+                "anything",
+                scope="vessels",
+                requested_scope="manual_library_gaschem_europe",
+                scope_resolution_s=0.002,
+            )
             llm.assert_not_called()
             assert r.status == "no_coverage"
+            assert r.coverage == "none"
             assert r.answer is None
             assert r.sources == []
             assert r.requested_scope == "manual_library_gaschem_europe"
             assert r.resolved_scope == "vessels"
             assert r.hint
+            assert "scope_resolution" in r.timings
+            assert r.timings["scope_resolution"] == 0.002
+            assert r.timings["generation"] is None
+            assert r.timings["total"] is not None
 
 
 def test_suggest_scopes_opt_in(scopes_yaml):
