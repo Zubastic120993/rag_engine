@@ -294,11 +294,17 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
         f"Batch done. {len(tracker)} unique hashes → {persist_dir()} "
         f"(new this run: {new_count})"
     )
+    # Write the fingerprint only when embeddings actually changed (or on the
+    # first run when none exists yet), so its mtime reflects the index build
+    # rather than every no-op sync.
     try:
-        from rag_engine.fingerprint import write_fingerprint
+        from rag_engine.fingerprint import fingerprint_path, write_fingerprint
 
-        fp = write_fingerprint()
-        print(f"Index fingerprint → {fp}")
+        if new_count > 0 or force or not fingerprint_path().exists():
+            fp = write_fingerprint()
+            print(f"Index fingerprint → {fp}")
+        else:
+            print("No new embeddings — index fingerprint left untouched.")
     except OSError as e:
         print(f"WARN: could not write index fingerprint: {e}")
     if max_new and new_count >= max_new:

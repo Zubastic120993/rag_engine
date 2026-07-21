@@ -1,8 +1,8 @@
-"""Unit tests for coverage states, timings, and generation controls."""
+"""Unit tests for plain-text generation, coverage states, timings, and the
+external --json contract."""
 
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -87,22 +87,17 @@ def test_resolve_answer_model(scopes_yaml):
     assert resolve_answer_model("custom:7b", use_fallback=True) == "custom:7b"
 
 
-def test_full_coverage(scopes_yaml):
+def test_plain_text_answer_is_ok(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    payload = {
-        "coverage": "full",
-        "answer": "Follow the FO procedure.",
-        "missing_information": None,
-    }
     with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response(json.dumps(payload)):
+        with _patch_llm_response("Follow the FO procedure before bunkering."):
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
 
     assert r.status == "ok"
     assert r.coverage == "full"
-    assert r.answer == "Follow the FO procedure."
+    assert r.answer == "Follow the FO procedure before bunkering."
     assert r.missing_information is None
     assert len(r.sources) == 1
     j = r.to_json()
@@ -111,152 +106,94 @@ def test_full_coverage(scopes_yaml):
     assert j["status"] == "ok"
 
 
-def test_partial_coverage_keeps_sources(scopes_yaml):
+def test_prompt_requests_plain_text_not_json(scopes_yaml):
+    from rag_engine.query import _build_prompt
+
+    prompt = _build_prompt("q?", "ctx", "sms")
+    assert "JSON" not in prompt.replace("no JSON", "")
+    assert "NOT_IN_CONTEXT" in prompt
+    assert "plain" in prompt.lower()
+
+
+def test_not_in_context_sentinel_is_no_coverage(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.38)]
-    payload = {
-        "coverage": "partial",
-        "answer": "Service Experience notes a cylinder issue.",
-        "missing_information": "Exact torque value not in retrieved pages.",
-    }
-    # Incomplete answers that mention uncertainty must NOT become no_coverage
+    pairs = [(_fake_doc(), 0.9)]
     with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response(json.dumps(payload)):
-            r = answer("cylinder wear?", scope="sms", scope_resolution_s=0.005)
+        with _patch_llm_response("NOT_IN_CONTEXT"):
+            r = answer("unrelated?", scope="sms")
 
-    assert r.status == "partial_coverage"
-    assert r.coverage == "partial"
-    assert "cylinder" in (r.answer or "").lower()
-    assert r.missing_information
-    assert r.sources and r.sources[0]["path"].endswith("a.pdf")
-    assert r.to_json()["sources"]
-
-
-def test_partial_does_not_flip_on_i_do_not_know_phrase(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.5)]
-    payload = {
-        "coverage": "partial",
-        "answer": "I do not know the exact serial, but the manual lists type ABC.",
-        "missing_information": "serial number",
-    }
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response(json.dumps(payload)):
-            r = answer("serial?", scope="sms")
-
-    assert r.status == "partial_coverage"
-    assert r.sources
+    assert r.status == "no_coverage"
+    assert r.coverage == "none"
+    assert r.answer is None
+    assert r.to_json()["sources"] == []
+    assert r.hint
 
 
-def test_partial_coverage_cannot_have_null_answer():
-    from rag_engine.query import normalize_coverage_payload
+def test_not_in_context_detection_is_first_line_only(scopes_yaml):
+    from rag_engine.query import model_declared_not_in_context
 
-    with pytest.raises(ValueError, match="partial coverage requires non-empty answer"):
-        normalize_coverage_payload(
-            {
-                "coverage": "partial",
-                "answer": None,
-                "missing_information": "wear limit",
-            }
-        )
-
-
-def test_liner_wear_partial_keeps_supported_answer(scopes_yaml):
-    from rag_engine.query import answer
-
-    content = (
-        "Service Experience: Liner and cylinder wear should be monitored during "
-        "overhaul. Replace the liner when scuffing or excessive ovality is observed; "
-        "inspect piston rings and groove clearance together with the cylinder liner."
+    assert model_declared_not_in_context("NOT_IN_CONTEXT")
+    assert model_declared_not_in_context("  NOT_IN_CONTEXT.")
+    assert model_declared_not_in_context("\n\nNOT_IN_CONTEXT\nextra prose")
+    # The sentinel buried in prose must NOT trigger no_coverage
+    assert not model_declared_not_in_context(
+        "The manual says NOT_IN_CONTEXT is a token."
     )
-    pairs = [(_fake_doc(content=content), 0.35)]
-    bad = {
-        "coverage": "partial",
-        "answer": None,
-        "missing_information": "wear limit",
-    }
-    good = {
-        "coverage": "partial",
-        "answer": (
-            "Service Experience advises monitoring liner and cylinder wear at "
-            "overhaul and replacing the liner when scuffing or excessive ovality "
-            "is observed."
-        ),
-        "missing_information": "Numeric wear limit not in retrieved pages.",
-    }
-    llm = MagicMock()
-    llm.invoke.side_effect = [json.dumps(bad), json.dumps(good)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm) as get_llm:
-            r = answer("liner wear limit?", scope="sms")
-
-    assert llm.invoke.call_count == 2
-    assert get_llm.call_count >= 1
-    assert r.status == "partial_coverage"
-    assert r.answer
-    assert "liner" in r.answer.lower() or "cylinder" in r.answer.lower()
-    assert r.missing_information
-    assert r.sources
+    assert not model_declared_not_in_context("An answer.\nNOT_IN_CONTEXT")
+    assert not model_declared_not_in_context("")
 
 
-def test_omd24_15ppm_not_unspecified(scopes_yaml):
-    from rag_engine.query import answer, normalize_coverage_payload
+def test_no_coverage_empty_retrieval_skips_llm(scopes_yaml):
+    from rag_engine.query import answer
 
-    contradictory = {
-        "coverage": "partial",
-        "answer": (
-            "The OMD-24 alarm activates when oil content in the water is above 15 ppm."
-        ),
-        "missing_information": "Exact alarm threshold not specified in the document.",
-    }
-    with pytest.raises(ValueError, match="internal contradiction"):
-        normalize_coverage_payload(contradictory)
-
-    content = (
-        "OMD-24 oil content monitor: the alarm activates / indicator changes when "
-        "oil content in the discharge water is above 15 ppm."
-    )
-    pairs = [(_fake_doc(content=content), 0.3)]
-    corrected = {
-        "coverage": "full",
-        "answer": (
-            "The OMD-24 alarm activates when oil content in the water is above 15 ppm."
-        ),
-        "missing_information": None,
-    }
-    llm = MagicMock()
-    llm.invoke.side_effect = [json.dumps(contradictory), json.dumps(corrected)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
-            r = answer("OMD-24 alarm threshold?", scope="sms")
-
-    assert r.status == "ok"
-    assert r.answer
-    assert "15" in r.answer and "ppm" in r.answer.lower()
-    assert "unspecified" not in r.answer.lower()
-    assert "not specified" not in r.answer.lower()
-    assert llm.invoke.call_count == 2
+    with patch("rag_engine.query.retrieve_with_scores", return_value=[]):
+        with patch("rag_engine.query._get_llm") as llm:
+            r = answer("missing doc", scope="sms")
+            llm.assert_not_called()
+    assert r.status == "no_coverage"
+    assert r.coverage == "none"
 
 
-def test_automatic_heavy_fallback_disabled_by_default(scopes_yaml):
-    """Primary + one fast-model repair fail; qwen3.5:9b must NOT be touched
-    unless --fallback (use_fallback=True) was explicitly passed."""
+def test_empty_model_response_is_error_not_partial(scopes_yaml):
+    """No salvage path: a broken generation is an honest error and never a
+    partial_coverage downgrade."""
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    primary_llm = MagicMock()
-    primary_llm.invoke.return_value = "not json at all"
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with _patch_llm_response(""):
+            r = answer("q", scope="sms")
+
+    assert r.status == "error"
+    assert r.error == "empty model response"
+    assert r.answer is None
+
+
+def test_single_generation_call_no_repair_loop(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [(_fake_doc(), 0.4)]
+    llm = MagicMock()
+    llm.invoke.return_value = ""  # unusable output
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with patch("rag_engine.query._get_llm", return_value=llm):
+            r = answer("q", scope="sms")
+
+    assert llm.invoke.call_count == 1
+    assert r.status == "error"
+
+
+def test_heavy_fallback_model_never_touched_by_default(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [(_fake_doc(), 0.4)]
     fallback_llm = MagicMock()
-    fallback_llm.invoke.return_value = json.dumps(
-        {"coverage": "full", "answer": "should never be reached", "missing_information": None}
-    )
+    fast_llm = MagicMock()
+    fast_llm.invoke.return_value = "An answer."
 
     def _get_llm(model, num_ctx, num_predict):
-        if model == "qwen3.5:9b":
-            return fallback_llm
-        return primary_llm
+        return fallback_llm if model == "qwen3.5:9b" else fast_llm
 
     with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
         with patch("rag_engine.query._get_llm", side_effect=_get_llm) as get_llm:
@@ -265,44 +202,18 @@ def test_automatic_heavy_fallback_disabled_by_default(scopes_yaml):
     models_requested = [c.args[0] for c in get_llm.call_args_list]
     assert "qwen3.5:9b" not in models_requested
     assert fallback_llm.invoke.call_count == 0
-    # primary attempt + exactly one fast-model repair attempt, no loop
-    assert primary_llm.invoke.call_count == 2
-    # generation degrades gracefully rather than losing the retrieved evidence
-    assert r.status == "partial_coverage"
-    assert r.sources
-    assert r.model != "qwen3.5:9b"
+    assert r.status == "ok"
+    assert r.model == "qwen2.5:3b"
 
 
-def test_no_recursive_retry_loop(scopes_yaml):
-    """Exactly two generation calls total when everything fails — never more."""
+def test_explicit_heavy_fallback_routes_primary(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    llm = MagicMock()
-    llm.invoke.return_value = ""  # empty response, every call
-
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
-            r = answer("q", scope="sms")
-
-    assert llm.invoke.call_count == 2
-    assert r.status in ("partial_coverage", "error")
-
-
-def test_explicit_heavy_fallback_enabled(scopes_yaml):
-    """use_fallback=True routes the primary attempt itself to the heavy model."""
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    valid = {
-        "coverage": "full",
-        "answer": "Answer from the explicitly requested heavy model.",
-        "missing_information": None,
-    }
     heavy_llm = MagicMock()
-    heavy_llm.invoke.return_value = json.dumps(valid)
+    heavy_llm.invoke.return_value = "Answer from the heavy model."
     fast_llm = MagicMock()
-    fast_llm.invoke.return_value = json.dumps(valid)
+    fast_llm.invoke.return_value = "Answer from the fast model."
 
     def _get_llm(model, num_ctx, num_predict):
         return heavy_llm if model == "qwen3.5:9b" else fast_llm
@@ -314,160 +225,15 @@ def test_explicit_heavy_fallback_enabled(scopes_yaml):
     assert r.status == "ok"
     assert r.model == "qwen3.5:9b"
     assert heavy_llm.invoke.call_count == 1
-    assert fast_llm.invoke.call_count == 0  # primary succeeded, no repair needed
+    assert fast_llm.invoke.call_count == 0
     assert r.timings["generation_repair"] is None
     assert r.timings["generation_fallback"] is None
 
 
-def test_empty_primary_response_repaired_by_fast_model(scopes_yaml):
+def test_generation_timeout_is_error(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    good = {
-        "coverage": "full",
-        "answer": "Recovered by the repair attempt.",
-        "missing_information": None,
-    }
-    llm = MagicMock()
-    llm.invoke.side_effect = ["", json.dumps(good)]  # empty primary, valid repair
-
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
-            r = answer("q", scope="sms")
-
-    assert llm.invoke.call_count == 2
-    assert r.status == "ok"
-    assert r.answer == "Recovered by the repair attempt."
-    assert r.timings["generation_primary"] is not None
-    assert r.timings["generation_repair"] is not None
-
-
-def test_empty_repair_response_salvaged(scopes_yaml):
-    """Primary empty, repair also empty -> deterministic salvage, not error."""
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    llm = MagicMock()
-    llm.invoke.side_effect = ["", ""]
-
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
-            r = answer("q", scope="sms")
-
-    assert llm.invoke.call_count == 2
-    assert r.status == "partial_coverage"
-    assert r.answer
-    assert "fuel oil" in r.answer.lower()
-    assert r.missing_information
-    assert r.sources
-
-
-def test_repair_timeout_still_salvages(scopes_yaml):
-    """A repair attempt that times out is treated like any other failed
-    attempt: no crash, no hang, graceful degradation to partial_coverage."""
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    llm = MagicMock()
-    call_count = {"n": 0}
-
-    def _invoke(prompt):
-        call_count["n"] += 1
-        if call_count["n"] == 1:
-            return "not json"  # primary: malformed
-        raise TimeoutError("Ollama call timed out after 8.0s (RAG_OLLAMA_GEN_TIMEOUT)")
-
-    llm.invoke.side_effect = _invoke
-
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
-            r = answer("q", scope="sms")
-
-    assert call_count["n"] == 2
-    assert r.status == "partial_coverage"
-    assert r.answer
-    assert r.sources
-    assert r.timings["generation_repair"] is not None
-
-
-def test_no_coverage_from_model(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.9)]
-    payload = {
-        "coverage": "none",
-        "answer": None,
-        "missing_information": "Not in these chunks.",
-    }
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response(json.dumps(payload)):
-            r = answer("unrelated?", scope="sms")
-
-    assert r.status == "no_coverage"
-    assert r.coverage == "none"
-    assert r.answer is None
-    assert r.to_json()["sources"] == []
-
-
-def test_no_coverage_empty_retrieval(scopes_yaml):
-    from rag_engine.query import answer
-
-    with patch("rag_engine.query.retrieve_with_scores", return_value=[]):
-        with patch("rag_engine.query._get_llm") as llm:
-            r = answer("missing doc", scope="sms")
-            llm.assert_not_called()
-    assert r.status == "no_coverage"
-    assert r.coverage == "none"
-
-
-def test_malformed_model_json_salvaged_as_partial_coverage(scopes_yaml):
-    """Primary and the one repair attempt both return non-JSON. Retrieval
-    already succeeded, so this must degrade to a sourced partial_coverage
-    answer rather than discarding the evidence behind status=error."""
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response("not json at all"):
-            r = answer("q", scope="sms")
-
-    assert r.status == "partial_coverage"
-    assert r.coverage == "partial"
-    assert r.answer
-    assert r.sources
-    assert r.missing_information
-    assert "malformed" in r.missing_information.lower() or "unavailable" in r.missing_information.lower()
-    assert r.timings["retrieval"] is not None
-    assert r.timings["generation"] is not None
-    assert r.timings["generation_primary"] is not None
-    assert r.timings["generation_repair"] is not None
-    assert r.timings["total"] is not None
-
-
-def test_generation_completely_unsalvageable_returns_error(scopes_yaml):
-    """If salvage genuinely produces nothing (context has no usable
-    sentences), status=error is still the honest answer — no fake content."""
-    from rag_engine.query import answer
-
-    tiny = _fake_doc(content="x")  # too short for any sentence to qualify
-    pairs = [(tiny, 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response("not json at all"):
-            r = answer("q", scope="sms")
-
-    assert r.status == "error"
-    assert r.error
-    assert r.timings["generation"] is not None
-
-
-def test_generation_timeout(scopes_yaml):
-    """Every generation attempt times out (e.g. a hung Ollama call). With
-    evidence retrieved, this degrades to partial_coverage — it must not hang
-    and must not silently throw away the retrieved sources."""
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-
     with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
         with patch("rag_engine.query._get_llm", return_value=MagicMock()):
             with patch(
@@ -478,9 +244,8 @@ def test_generation_timeout(scopes_yaml):
             ):
                 r = answer("q", scope="sms", scope_resolution_s=0.001)
 
-    assert r.status == "partial_coverage"
-    assert r.answer
-    assert r.sources
+    assert r.status == "error"
+    assert "timed out" in (r.error or "").lower()
     assert r.timings["retrieval"] is not None
     assert r.timings["generation"] is not None
     assert r.timings["total"] is not None
@@ -488,8 +253,6 @@ def test_generation_timeout(scopes_yaml):
 
 
 def test_retrieval_timeout_is_still_a_hard_error(scopes_yaml):
-    """Distinct from generation timeout: if retrieval itself fails, there is
-    no evidence to salvage from, so status=error is correct."""
     from rag_engine.query import answer
 
     with patch(
@@ -502,13 +265,24 @@ def test_retrieval_timeout_is_still_a_hard_error(scopes_yaml):
     assert "timed out" in (r.error or "").lower()
 
 
+def test_fenced_answer_is_unwrapped(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [(_fake_doc(), 0.4)]
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with _patch_llm_response("```\nThe procedure requires two checks.\n```"):
+            r = answer("q", scope="sms")
+
+    assert r.status == "ok"
+    assert r.answer == "The procedure requires two checks."
+
+
 def test_timing_fields_present(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    payload = {"coverage": "full", "answer": "yes", "missing_information": None}
     with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with _patch_llm_response(json.dumps(payload)):
+        with _patch_llm_response("yes"):
             r = answer("q", scope="sms", scope_resolution_s=0.012)
 
     t = r.timings
@@ -524,8 +298,8 @@ def test_timing_fields_present(scopes_yaml):
     assert t["scope_resolution"] == 0.012
     assert isinstance(t["retrieval"], float)
     assert isinstance(t["generation_primary"], float)
-    assert t["generation_repair"] is None  # primary succeeded, no repair call
-    assert t["generation_fallback"] is None  # fallback never invoked
+    assert t["generation_repair"] is None  # no repair pass exists any more
+    assert t["generation_fallback"] is None  # no chained fallback exists any more
     assert isinstance(t["generation"], float)
     assert isinstance(t["total"], float)
     # rounded to 3 decimals
@@ -535,71 +309,87 @@ def test_timing_fields_present(scopes_yaml):
     assert j["timings"] == t
 
 
-def test_parse_and_normalize_helpers():
-    from rag_engine.query import normalize_coverage_payload, parse_model_json
+# ---------------------------------------------------------------------------
+# External --json contract: same fields, same schema_version, same exit codes.
+# ---------------------------------------------------------------------------
 
-    raw = '```json\n{"coverage": "PARTIAL", "answer": "a", "missing_information": "b"}\n```'
-    parsed = parse_model_json(raw)
-    norm = normalize_coverage_payload(parsed)
-    assert norm["coverage"] == "partial"
-    assert norm["status"] == "partial_coverage"
-    assert norm["answer"] == "a"
-    assert norm["missing_information"] == "b"
+CONTRACT_KEYS = {
+    "schema_version",
+    "status",
+    "query",
+    "requested_scope",
+    "resolved_scope",
+    "coverage",
+    "answer",
+    "missing_information",
+    "sources",
+    "timings",
+    "model",
+    "scope",  # legacy convenience field
+}
+
+TIMING_KEYS = {
+    "scope_resolution",
+    "retrieval",
+    "generation_primary",
+    "generation_repair",
+    "generation_fallback",
+    "generation",
+    "total",
+}
 
 
-def test_liner_wear_query_returns_nonempty_supported_partial_answer(scopes_yaml):
-    """The exact reported failing query. Generation is fully broken (every
-    attempt malformed), but retrieval succeeded — must return a non-empty,
-    sourced partial_coverage answer, never status=error, and never hang."""
+def test_json_contract_ok_payload(scopes_yaml):
+    from rag_engine.query import SCHEMA_VERSION, answer
+
+    pairs = [(_fake_doc(), 0.4)]
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with _patch_llm_response("An answer."):
+            j = answer("q", scope="sms").to_json()
+
+    assert set(j) == CONTRACT_KEYS
+    assert j["schema_version"] == SCHEMA_VERSION == 2
+    assert set(j["timings"]) == TIMING_KEYS
+    assert isinstance(j["sources"], list)
+    src = j["sources"][0]
+    assert set(src) == {"path", "page", "collection", "score"}
+
+
+def test_json_contract_no_coverage_payload(scopes_yaml):
     from rag_engine.query import answer
 
-    content = (
-        "Service Experience 2014: cylinder liner wear should be trended at "
-        "every overhaul. Where measured wear exceeds 0.1 mm per 1000 running "
-        "hours, inspect for scuffing, cold corrosion and abnormal ovality, "
-        "and consider revised cylinder lubrication feed rate before the next "
-        "scheduled overhaul."
-    )
-    pairs = [(_fake_doc(content=content), 0.35)]
-    llm = MagicMock()
-    llm.invoke.return_value = "not json at all"
-
+    pairs = [(_fake_doc(), 0.9)]
     with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
-            r = answer(
-                "Service Experience 2014 cylinder liner wear exceeds 0.1 "
-                "mm/1000 running hours recommended actions",
-                scope="sms",
-            )
+        with _patch_llm_response("NOT_IN_CONTEXT"):
+            j = answer("q", scope="sms").to_json()
 
-    assert llm.invoke.call_count == 2  # primary + one repair, no loop
-    assert r.status == "partial_coverage"
-    assert r.answer
-    assert "liner" in r.answer.lower() or "cylinder" in r.answer.lower()
-    assert r.missing_information
-    assert r.sources
-    assert r.timings["total"] is not None
+    # hint is additive on no_coverage — everything else identical
+    assert set(j) == CONTRACT_KEYS | {"hint"}
+    assert j["schema_version"] == 2
+    assert j["status"] == "no_coverage"
+    assert j["sources"] == []
+    assert j["answer"] is None
 
 
-def test_deterministic_salvage_answer_pulls_sentences_from_context():
-    from rag_engine.query import deterministic_salvage_answer
+def test_json_contract_error_payload(scopes_yaml):
+    from rag_engine.query import answer
 
-    parts = [
-        "[source=a.pdf page=1 collection=sms]\n"
-        "First relevant sentence about the procedure. Second sentence here.",
-        "[source=b.pdf page=2 collection=sms]\nA third sentence from another chunk.",
-    ]
-    out = deterministic_salvage_answer(parts, max_sentences=2)
-    assert out
-    assert "First relevant sentence" in out
-    assert out.count(".") <= 3  # roughly two sentences, not the whole context
+    pairs = [(_fake_doc(), 0.4)]
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with _patch_llm_response(""):
+            j = answer("q", scope="sms").to_json()
+
+    assert set(j) == CONTRACT_KEYS | {"error"}
+    assert j["status"] == "error"
+    assert j["error"]
 
 
-def test_deterministic_salvage_answer_empty_on_no_usable_text():
-    from rag_engine.query import deterministic_salvage_answer
+def test_exit_codes_unchanged():
+    from rag_engine.query import EXIT_ERROR, EXIT_NO_COVERAGE, EXIT_OK
 
-    assert deterministic_salvage_answer([]) == ""
-    assert deterministic_salvage_answer(["[source=a page=1 collection=x]\nx"]) == ""
+    assert EXIT_OK == 0
+    assert EXIT_ERROR == 1
+    assert EXIT_NO_COVERAGE == 2
 
 
 def test_ollama_gen_timeout_default_and_override(monkeypatch):
