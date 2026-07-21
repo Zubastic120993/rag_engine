@@ -5,7 +5,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
-from langchain_openai import OpenAIEmbeddings
 
 # =====================================================
 # ⚙️ Basic setup
@@ -19,31 +18,12 @@ data_folder = "data"
 persist_dir = "engine_db"
 
 # =====================================================
-# 🔍 Internet check
+# 🧠 Embeddings (Ollama only)
 # =====================================================
-def check_internet(host="8.8.8.8", port=53, timeout=2):
-    try:
-        socket.setdefaulttimeout(timeout)
-        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
-        return True
-    except socket.error:
-        return False
-
-
-# =====================================================
-# 🧠 Choose embedding mode
-# =====================================================
-if check_internet():
-    print("🌐 Internet detected — using OpenAI embeddings (fast & large context).")
-    embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
-    chunk_size = 2000
-    chunk_overlap = 150
-else:
-    print("🧠 Offline mode — using local Ollama embeddings.")
-    embeddings = OllamaEmbeddings(model="mxbai-embed-large")
-    chunk_size = 600
-    chunk_overlap = 80
-
+print("🧠 Using local Ollama embeddings (mxbai-embed-large, 1024-d).")
+embeddings = OllamaEmbeddings(model="mxbai-embed-large")
+chunk_size = 800
+chunk_overlap = 100
 print(f"🪶 Chunk size: {chunk_size}, overlap: {chunk_overlap}")
 
 # =====================================================
@@ -89,12 +69,9 @@ print(f"🧩 Split into {len(valid_chunks)} clean chunks.")
 # =====================================================
 # 🧠 Build / update Chroma database
 # =====================================================
-print("⚙️ Adding new documents to Chroma database...")
-db = Chroma(
-    persist_directory=persist_dir,
-    embedding_function=embeddings,
-)
+print("⚙️ Adding documents to local Chroma database...")
+db = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
 db.add_documents(valid_chunks)
 
 print(f"✅ Successfully added {len(valid_chunks)} chunks to '{persist_dir}'")
-print("🔗 Metadata (file + page) successfully embedded — ready for search.")
+print("🔗 Metadata (file + page) successfully embedded — ready for offline RAG.")

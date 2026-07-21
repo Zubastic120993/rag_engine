@@ -3,9 +3,13 @@ __pycache__/
 venv/
 rag_env/
 engine_db/
+engine_db_openai/
+models/
 .env
 .DS_Store
 .idea/
 __MACOSX/
 
 data/
+*.log
+voice_chat_log.txt

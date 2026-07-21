@@ -63,5 +63,5 @@ def ask_question(query: str):
 # ▶️ Example
 # ==============================================================
 if __name__ == "__main__":
-    query = "What is the recommended exhaust valve clearance for ME-C engine?"
+    query = "what is the temperature of lube oil?"
     ask_question(query)
