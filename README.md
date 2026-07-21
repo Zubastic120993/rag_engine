@@ -21,7 +21,7 @@ ollama pull qwen3.5:9b
 Store: `~/CE_Library/.rag_db` (sibling of library folders, not under `99_Rules/`).
 
 ```bash
-# Incremental / resume-safe (SHA-256 keyed)
+# Incremental / resume-safe (SHA-256 keyed) — PDFs + 90_CE_Wiki/*.md
 ./venv/bin/python -m rag.ingest
 
 # Long rebuild in crash-safe batches
@@ -32,6 +32,18 @@ Store: `~/CE_Library/.rag_db` (sibling of library folders, not under `99_Rules/`
 ```
 
 Text is NFKC-normalized on ingest **and** query. Chunking is intentionally **800 / 100** for the current index.
+
+## Push / publish
+
+This repo’s **remote is public**. Do not push licensed manuals or the vector store.
+
+Before any push:
+
+```bash
+git ls-files | grep -iE '\.pdf$|\.rag_db|embedded\.json|chroma|\.sqlite3$'
+```
+
+That must print nothing. Prefer a **private** remote if the project stays personal. `data/`, `*.pdf`, `.rag_db/`, and `embedded.json` are gitignored.
 
 ## Ask
 

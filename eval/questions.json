@@ -1,6 +1,6 @@
 {
   "description": "Scoped RAG eval — positives, not-in-library, and out-of-scope negatives.",
-  "notes": "Run after reindex + collection backfill. expect_refuse=true means answer must not invent a confident factual claim.",
+  "notes": "12/12 on a self-authored set is a merge gate, not retrieval quality. Append real failure cases from day-to-day work so the set grows from production misses (also the evidence for revisiting chunking).",
   "cases": [
     {
       "id": "mec-positive-lube",

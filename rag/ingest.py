@@ -11,7 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader
+from langchain_core.documents import Document
 from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -96,16 +97,25 @@ def os_walk_filtered(root: Path):
         yield dirpath, dirnames, filenames
 
 
-def _iter_pdfs() -> list[tuple[Path, str, bool]]:
-    """Return list of (abspath, source_rel, from_project_data)."""
+def _iter_docs() -> list[tuple[Path, str, bool]]:
+    """Return list of (abspath, source_rel, from_project_data).
+
+    PDFs across the library + project data/; markdown under 90_CE_Wiki/ (CE Wiki).
+    """
     found: list[tuple[Path, str, bool]] = []
 
     if LIBRARY_ROOT.is_dir():
         for dirpath, _, files in os_walk_filtered(LIBRARY_ROOT):
             for name in files:
-                if name.lower().endswith(".pdf"):
-                    path = Path(dirpath) / name
-                    rel = str(path.relative_to(LIBRARY_ROOT)).replace("\\", "/")
+                lower = name.lower()
+                path = Path(dirpath) / name
+                rel = str(path.relative_to(LIBRARY_ROOT)).replace("\\", "/")
+                if lower.endswith(".pdf"):
+                    found.append((path, rel, False))
+                elif lower.endswith(".md") and rel.startswith("90_CE_Wiki/"):
+                    # Skip backup/noise sidecars
+                    if ".backup" in lower or rel.endswith(".md.backup"):
+                        continue
                     found.append((path, rel, False))
 
     if DATA_ROOT.is_dir():
@@ -116,14 +126,27 @@ def _iter_pdfs() -> list[tuple[Path, str, bool]]:
     return found
 
 
+def _load_documents(path: Path) -> list[Document]:
+    suffix = path.suffix.lower()
+    if suffix == ".pdf":
+        return PyPDFLoader(str(path)).load()
+    if suffix == ".md":
+        # TextLoader preserves unicode; we NFKC in _clean_chunks
+        docs = TextLoader(str(path), encoding="utf-8").load()
+        for d in docs:
+            d.metadata["page"] = 1
+        return docs
+    raise ValueError(f"unsupported file type: {path}")
+
+
 def _embed_chunks(
     db: Chroma,
     path: Path,
     source_rel: str,
     from_project_data: bool,
 ) -> tuple[list[str], str, int]:
-    """Load PDF, embed, return (chunk_ids, collection, n_chunks)."""
-    docs = PyPDFLoader(str(path)).load()
+    """Load file, embed, return (chunk_ids, collection, n_chunks)."""
+    docs = _load_documents(path)
     collection = collection_from_relpath(source_rel, from_project_data=from_project_data)
     for d in docs:
         d.metadata["source"] = source_rel
@@ -142,7 +165,6 @@ def _embed_chunks(
         if isinstance(added, list):
             ids.extend(added)
         else:
-            # Older langchain may return None; fall back to query by source
             got = db.get(where={"source": source_rel})
             ids = list(got.get("ids") or [])
     return ids, collection, len(valid)
@@ -256,8 +278,8 @@ def run_ingest(force: bool = False, max_new: int | None = None) -> None:
     embeddings = OllamaEmbeddings(model=EMBED_MODEL)
     db = Chroma(persist_directory=str(PERSIST_DIR), embedding_function=embeddings)
 
-    pdfs = _iter_pdfs()
-    print(f"Found {len(pdfs)} PDFs. Index: {PERSIST_DIR}")
+    pdfs = _iter_docs()
+    print(f"Found {len(pdfs)} docs (PDF + wiki .md). Index: {PERSIST_DIR}")
     print(f"Chunking: size={CHUNK_SIZE} overlap={CHUNK_OVERLAP} (kept for this reindex)")
     if max_new:
         print(f"This run: stop after {max_new} NEW embeds")

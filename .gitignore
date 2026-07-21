@@ -10,7 +10,15 @@ models/
 .idea/
 __MACOSX/
 
+# Local corpus and vector store — never publish (Everllence/MAN manuals are licensed)
 data/
+*.pdf
+*.PDF
+**/.rag_db/
+**/embedded.json
+**/chroma.sqlite3
+*.sqlite3
+
 *.log
 voice_chat_log.txt
 eval/last_results.json
