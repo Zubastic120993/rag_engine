@@ -245,7 +245,7 @@ def _ingest_new_hash(
     return f"{n:4d} chunks  [{collection}]  NEW  {source_rel}"
 
 
-def run_ingest(force: bool = False) -> None:
+def run_ingest(force: bool = False, max_new: int | None = None) -> None:
     PERSIST_DIR.mkdir(parents=True, exist_ok=True)
     tracker = _load_tracker()
     if tracker and any(isinstance(v, bool) for v in tracker.values()):
@@ -259,8 +259,10 @@ def run_ingest(force: bool = False) -> None:
     pdfs = _iter_pdfs()
     print(f"Found {len(pdfs)} PDFs. Index: {PERSIST_DIR}")
     print(f"Chunking: size={CHUNK_SIZE} overlap={CHUNK_OVERLAP} (kept for this reindex)")
+    if max_new:
+        print(f"This run: stop after {max_new} NEW embeds")
 
-    new_since_reopen = 0
+    new_count = 0
     for i, (path, rel, from_data) in enumerate(pdfs, 1):
         try:
             digest = _file_sha256(path)
@@ -278,24 +280,22 @@ def run_ingest(force: bool = False) -> None:
                 db, tracker, path_to_hash, path, rel, from_data, digest, force
             )
             print(f"[{i}/{len(pdfs)}] {msg}")
-            new_since_reopen += 1
-            # Re-open Chroma periodically to limit native memory growth / segfaults
-            if new_since_reopen >= 25:
-                del db
-                gc.collect()
-                db = Chroma(
-                    persist_directory=str(PERSIST_DIR),
-                    embedding_function=embeddings,
-                )
-                new_since_reopen = 0
-                print("  (reopened Chroma client)", flush=True)
-            else:
-                gc.collect()
+            new_count += 1
+            gc.collect()
+            if max_new and new_count >= max_new:
+                print(f"Reached max-new={max_new}; exiting for clean resume.")
+                break
         except Exception as e:
             print(f"[{i}/{len(pdfs)}] FAILED  {rel}: {e}")
             gc.collect()
 
-    print(f"Done. {len(tracker)} unique content hashes → {PERSIST_DIR}")
+    pending = 0
+    # cheap pending estimate: paths not yet in tracker by hash would need another pass
+    print(f"Batch done. {len(tracker)} unique hashes → {PERSIST_DIR} (new this run: {new_count})")
+    if max_new and new_count >= max_new:
+        print("MORE")  # signal for reindex_loop
+    else:
+        print(f"Done. {len(tracker)} unique content hashes → {PERSIST_DIR}")
 
 
 def main() -> None:
@@ -305,8 +305,14 @@ def main() -> None:
         action="store_true",
         help="Re-embed even when content hash is already in the tracker",
     )
+    parser.add_argument(
+        "--max-new",
+        type=int,
+        default=None,
+        help="Embed at most N new files then exit (crash-safe batching)",
+    )
     args = parser.parse_args()
-    run_ingest(force=args.force)
+    run_ingest(force=args.force, max_new=args.max_new)
 
 
 if __name__ == "__main__":
