@@ -183,6 +183,21 @@ def test_path_to_scope_deterministic(scopes_yaml):
         assert explain_path_assignment(path)["scope"] == expect
 
 
+def test_should_skip_dir_prunes_tool_and_venv_paths():
+    """The rag_engine repo now lives inside library_root (Tools/rag_engine/).
+    Its own source tree, and either of its two virtualenvs, must be pruned
+    from the ingest walk — never indexed as corpus content."""
+    from rag_engine.config import should_skip_dir
+
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/rag_engine")
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/venv/lib")
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/rag_env/lib")
+    assert should_skip_dir("/Users/x/CE_Library/Tools/rag_engine/.git/objects")
+    # Genuine corpus paths must not be pruned by the new entries.
+    assert not should_skip_dir("/Users/x/CE_Library/20_Vessels/Gaschem_Europe")
+    assert not should_skip_dir("/Users/x/CE_Library/90_CE_Wiki/Equipment")
+
+
 def test_nfkc_query_same_as_ingest_and_idempotent():
     from rag_engine.text import normalize_text
 

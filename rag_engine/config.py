@@ -24,6 +24,10 @@ SKIP_DIR_PARTS = (
     "_Inbox",
     "_Backup",
     "/Graph",
+    "Tools",
+    "venv",
+    "rag_env",
+    ".git",
 )
 
 
