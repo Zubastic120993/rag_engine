@@ -1,15 +1,29 @@
+---
+name: rag-engine
+description: "Use when querying the local CE_Library scoped Chroma RAG (maker manuals, SMS, SIRE, IMO, wiki, ME-C). Call rag-engine ask --json; treat exit 2 / no_coverage as terminal — never fall back to training knowledge."
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+metadata:
+  hermes:
+    tags: [rag, chroma, ce-library, retrieval, maritime, scoped, hermes]
+    related_skills: [manual-rag-builder, sire-question-retrieval, procedure-writer-chief-engineer, document-library-organizer, rag-library-path-governance]
+---
+
 # rag-engine (Hermes)
 
 Call the local scoped RAG tool. Corpus is the client library (`CE_LIBRARY_ROOT`), not this repo.
+
+Install into Hermes: copy this file to `~/.hermes/skills/documents/rag-engine/SKILL.md` (or symlink). Ensure `rag-engine` is on PATH (e.g. `~/.local/bin/rag-engine` → project `venv/bin/rag-engine`).
 
 ## Commands
 
 ```bash
 rag-engine list-scopes --json
 rag-engine ask --scope <scope_or_hermes_alias> --json "<question>"
+rag-engine sync
+rag-engine gaps
 ```
-
-Install once: `pip install -e /path/to/rag_engine` (or ensure `rag-engine` is on PATH).
 
 ## Exit codes (mandatory)
 
