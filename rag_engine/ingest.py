@@ -294,6 +294,13 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
         f"Batch done. {len(tracker)} unique hashes → {persist_dir()} "
         f"(new this run: {new_count})"
     )
+    try:
+        from rag_engine.fingerprint import write_fingerprint
+
+        fp = write_fingerprint()
+        print(f"Index fingerprint → {fp}")
+    except OSError as e:
+        print(f"WARN: could not write index fingerprint: {e}")
     if max_new and new_count >= max_new:
         print("MORE")
     else:

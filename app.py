@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Thin Gradio UI over rag_engine.query.answer."""
+"""Thin Gradio UI over rag_engine.query.answer with safe PDF citations."""
 
 from __future__ import annotations
 
 import gradio as gr
 
-from rag_engine.config import default_k, known_scopes
+from rag_engine.config import default_k, known_scopes, library_root
+from rag_engine.pdf_links import source_open_markdown
 from rag_engine.query import answer
 
 SCOPE_CHOICES = ["(all)"] + list(known_scopes())
@@ -13,16 +14,30 @@ SCOPE_CHOICES = ["(all)"] + list(known_scopes())
 
 def _run(question: str, scope_label: str, k: int):
     scope = None if not scope_label or scope_label == "(all)" else scope_label
-    text, sources, status = answer(question, scope=scope, k=int(k))
-    if sources:
-        lines = [
-            f"- [{s['collection']}] {s['path']} — page {s['page']} (score={s.get('score')})"
-            for s in sources
-        ]
+    result = answer(question, scope=scope, k=int(k), requested_scope=scope_label if scope else None)
+    if result.status == "ok" and result.sources:
+        lines = []
+        for s in result.sources:
+            link = source_open_markdown(str(s.get("path") or ""), s.get("page"), root=library_root())
+            lines.append(
+                f"- [{s.get('collection')}] {link} — stored_page={s.get('page')} "
+                f"(score={s.get('score')})"
+            )
         sources_md = "\n".join(lines)
+        sources_md += (
+            "\n\n_PDF `#page=N` works in Chrome/Firefox built-in viewers; "
+            "Safari’s viewer is unreliable._"
+        )
+    elif result.hint:
+        sources_md = f"_{result.hint}_"
     else:
         sources_md = "_No sources._"
-    return text, sources_md, status
+    text = result.answer or (
+        "I do not know — not specified in the retrieved documents."
+        if result.status == "no_coverage"
+        else (result.error or "")
+    )
+    return text, sources_md, result.status
 
 
 def build_app() -> gr.Blocks:
@@ -30,7 +45,8 @@ def build_app() -> gr.Blocks:
         gr.Markdown(
             "## rag-engine\n"
             "Local scoped RAG over the client library (`CE_LIBRARY_ROOT`). "
-            "Use **scope** to filter collections."
+            "Use **scope** to filter collections. Cited PDFs open via a safe "
+            "local file route with `#page=N` (1-based viewer page)."
         )
         question = gr.Textbox(label="Question", lines=2)
         with gr.Row():
@@ -46,4 +62,10 @@ def build_app() -> gr.Blocks:
 
 
 if __name__ == "__main__":
-    build_app().launch(server_name="127.0.0.1", server_port=7861, share=False)
+    # allowed_paths restricts Gradio file serving to the library root
+    build_app().launch(
+        server_name="127.0.0.1",
+        server_port=7861,
+        share=False,
+        allowed_paths=[str(library_root())],
+    )

@@ -24,6 +24,10 @@ SKIP_DIR_PARTS = (
     "_Inbox",
     "_Backup",
     "/Graph",
+    "Tools",
+    "venv",
+    "rag_env",
+    ".git",
 )
 
 
@@ -67,8 +71,51 @@ def embed_model() -> str:
 
 
 def llm_model() -> str:
+    """Fast default answer model (overridable via RAG_LLM_MODEL)."""
     d = load_registry()["defaults"]
     return os.environ.get(d["llm_model_env"], d["llm_model_default"])
+
+
+def llm_fallback_model() -> str:
+    """Optional heavier synthesis model (RAG_LLM_FALLBACK_MODEL)."""
+    d = load_registry()["defaults"]
+    env_key = d.get("llm_fallback_model_env", "RAG_LLM_FALLBACK_MODEL")
+    default = d.get("llm_fallback_model_default", "qwen3.5:9b")
+    return os.environ.get(env_key, default)
+
+
+def heavy_fallback_enabled_by_default() -> bool:
+    """Explicit opt-in for the heavy fallback model without passing --fallback
+    on every call. Off unless RAG_ENABLE_HEAVY_FALLBACK (or the configured
+    env key) is set to a truthy value. This is the only way besides CLI
+    --fallback to enable it — it is never enabled implicitly by a failed
+    generation."""
+    d = load_registry()["defaults"]
+    env_key = d.get("enable_heavy_fallback_env", "RAG_ENABLE_HEAVY_FALLBACK")
+    raw = os.environ.get(env_key, "")
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def llm_num_ctx() -> int | None:
+    """Context window size for generation; None leaves Ollama default."""
+    d = load_registry()["defaults"]
+    env_key = d.get("llm_num_ctx_env", "RAG_LLM_NUM_CTX")
+    raw = os.environ.get(env_key)
+    if raw is not None and str(raw).strip() != "":
+        return int(raw)
+    val = d.get("llm_num_ctx_default")
+    return int(val) if val is not None else None
+
+
+def llm_num_predict() -> int | None:
+    """Max output tokens for generation; None leaves Ollama default."""
+    d = load_registry()["defaults"]
+    env_key = d.get("llm_num_predict_env", "RAG_LLM_NUM_PREDICT")
+    raw = os.environ.get(env_key)
+    if raw is not None and str(raw).strip() != "":
+        return int(raw)
+    val = d.get("llm_num_predict_default")
+    return int(val) if val is not None else None
 
 
 def chunk_size() -> int:
@@ -128,47 +175,10 @@ def resolve_scope(name: str | None) -> str | None:
 
 
 def collection_from_relpath(rel: str) -> str:
-    """Map a relative source path to a collection using scopes.yaml.
+    """Map a relative source path to a collection using scopes.yaml."""
+    from rag_engine.scope_rules import explain_path_assignment
 
-    Order matters:
-    1. Exclusive folder prefixes (wiki, sms, inspection, …) — so a wiki note
-       that mentions SIRE stays ``wiki``, not ``inspection``.
-    2. Narrow path_hints (especially ``me-c``) before catch-all prefixes —
-       ME-C manuals live under Engine_Knowledge alongside other manuals.
-    3. Catch-all prefixes (``maker-manuals``, ``career``).
-    """
-    norm = rel.replace("\\", "/")
-    upper = norm.upper()
-    reg = load_registry()
-    scopes: dict[str, Any] = reg["scopes"]
-    prefix_order = list(reg.get("prefix_order") or list(scopes.keys()))
-    catch_all = {"maker-manuals", "career", "other"}
-
-    def _prefix_hit(scope_name: str) -> bool:
-        meta = scopes.get(scope_name) or {}
-        return any(norm.startswith(p) for p in (meta.get("path_prefixes") or []))
-
-    def _hint_hit(scope_name: str) -> bool:
-        meta = scopes.get(scope_name) or {}
-        return any(h.upper() in upper for h in (meta.get("path_hints") or []))
-
-    for scope_name in prefix_order:
-        if scope_name in catch_all:
-            continue
-        if _prefix_hit(scope_name):
-            return scope_name
-
-    for hint_scope in ("me-c", "inspection", "regulatory", "maker-manuals"):
-        if _hint_hit(hint_scope):
-            return hint_scope
-
-    for scope_name in prefix_order:
-        if scope_name not in catch_all:
-            continue
-        if _prefix_hit(scope_name):
-            return scope_name
-
-    return "other"
+    return explain_path_assignment(rel)["scope"]
 
 
 def wiki_extensions() -> set[str]:

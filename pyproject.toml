@@ -30,8 +30,15 @@ dependencies = [
 [project.scripts]
 rag-engine = "rag_engine.cli:main"
 
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
 [tool.setuptools.packages.find]
 include = ["rag_engine*"]
 
 [tool.setuptools.package-data]
 rag_engine = ["scopes.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
