@@ -22,3 +22,6 @@ data/
 *.log
 voice_chat_log.txt
 eval/last_results.json
+
+*.egg-info/
+

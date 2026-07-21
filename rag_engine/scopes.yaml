@@ -1,0 +1,80 @@
+# Scope registry — single contract for ingest + Hermes routing.
+# ask.py --list-scopes / rag-engine list-scopes reads this file.
+
+defaults:
+  library_root_env: CE_LIBRARY_ROOT
+  library_root_default: "~/CE_Library"
+  db_path_env: RAG_DB_PATH
+  # If unset, defaults to <library_root>/.rag_db
+  db_path_default: null
+  embed_model_env: RAG_EMBED_MODEL
+  embed_model_default: mxbai-embed-large
+  llm_model_env: RAG_LLM_MODEL
+  llm_model_default: qwen3.5:9b
+  chunk_size: 800
+  chunk_overlap: 100
+  default_k: 5
+
+scopes:
+  me-c:
+    description: MAN/Everllence ME-C engine manuals (G50ME-C etc.)
+    hermes_aliases: []
+    path_prefixes: []
+    path_hints: ["ME-C", "G50ME", "ME-C9", "MEC"]
+  sms:
+    description: Company SMS / IMM procedures
+    hermes_aliases: [sms_library]
+    path_prefixes: ["10_Company/"]
+  wiki:
+    description: CE Wiki approved working notes (markdown)
+    hermes_aliases: [ce_wiki, wiki_library]
+    path_prefixes: ["90_CE_Wiki/"]
+    include_extensions: [".md"]
+  maker-manuals:
+    description: Equipment maker manuals / SDS (non ME-C)
+    hermes_aliases: [manual_library, maker_manual]
+    path_prefixes:
+      - "00_Career/03_Engine_Knowledge/"
+      - "00_Career/07_SDS_Datasheets/"
+    path_hints: ["/MANUAL", "/MANUALS/", "INSTRUCTION_MANUAL", "OPERATION_MANUAL"]
+  regulatory:
+    description: IMO / MARPOL / SOLAS / class / statutory
+    hermes_aliases: [imo_library, statutory]
+    path_prefixes:
+      - "00_Career/02_Statutory/"
+      - "00_Career/01_Class_Rules/"
+    path_hints: ["MARPOL", "SOLAS", "/IMO/", "MEPC", "MSC.1", "CLASSNK", "FLAG_STATE"]
+  inspection:
+    description: SIRE / CDI / OCIMF inspection guidance
+    hermes_aliases: [sire_library]
+    path_prefixes: ["00_Career/02_Statutory/SIRE_OCIMF/"]
+    path_hints: ["SIRE", "OCIMF", "CDI", "/VIQ"]
+  vessels:
+    description: Vessel-specific manuals and records
+    hermes_aliases:
+      - manual_library_gaschem_europe
+      - manual_library_gaschem_africa
+    path_prefixes: ["20_Vessels/"]
+  career:
+    description: Career / personal CE materials (fallback under 00_Career)
+    hermes_aliases: []
+    path_prefixes: ["00_Career/"]
+  rules:
+    description: Local rules / OCR review under 99_Rules
+    hermes_aliases: []
+    path_prefixes: ["99_Rules/"]
+  other:
+    description: Unclassified documents
+    hermes_aliases: []
+    path_prefixes: []
+
+# First-match order for path_prefixes (most specific first)
+prefix_order:
+  - wiki
+  - sms
+  - inspection
+  - regulatory
+  - maker-manuals
+  - career
+  - vessels
+  - rules

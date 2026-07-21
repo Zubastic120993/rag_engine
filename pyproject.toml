@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-engine"
+version = "0.1.0"
+description = "Local scoped RAG tool over a client CE document library"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "langchain==0.3.14",
+  "langchain-community==0.3.14",
+  "langchain-ollama==0.2.1",
+  "langchain-chroma==0.1.4",
+  "langchain-text-splitters==0.3.4",
+  "chromadb==0.5.23",
+  "ollama==0.3.1",
+  "tenacity==9.0.0",
+  "numpy>=1.26.0",
+  "gradio==5.43.1",
+  "pypdf==6.0.0",
+  "pydantic==2.9.2",
+  "python-dotenv==1.0.1",
+  "requests==2.32.3",
+  "tqdm==4.66.5",
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+rag-engine = "rag_engine.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["rag_engine*"]
+
+[tool.setuptools.package-data]
+rag_engine = ["scopes.yaml"]

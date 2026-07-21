@@ -1,86 +1,62 @@
-# Local scoped RAG (CE manuals)
+# rag-engine
 
-Offline RAG over `~/CE_Library` plus this repo’s `data/` PDFs. One Chroma index, Hermes-style `collection` scopes, shared `answer()` for CLI and Gradio.
+Local **tool** for scoped RAG over a client document library (not a corpus repo).
+The library lives outside this project (`CE_LIBRARY_ROOT`); this package is code only.
 
-## Requirements
-
-- Python 3.12+ venv (`./venv`)
-- [Ollama](https://ollama.com) with:
-  - `mxbai-embed-large` (embeddings)
-  - chat model (default `qwen3.5:9b`, override with `RAG_LLM_MODEL`)
+## Install
 
 ```bash
 python -m venv venv
-./venv/bin/pip install -r requirements.txt
-ollama pull mxbai-embed-large
-ollama pull qwen3.5:9b
+./venv/bin/pip install -e .
+# Ollama: mxbai-embed-large + a chat model (default qwen3.5:9b)
 ```
 
-## Index
+## Config (env)
 
-Store: `~/CE_Library/.rag_db` (sibling of library folders, not under `99_Rules/`).
+| Variable | Default | Meaning |
+|----------|---------|---------|
+| `CE_LIBRARY_ROOT` | `~/CE_Library` | Client document tree |
+| `RAG_DB_PATH` | `$CE_LIBRARY_ROOT/.rag_db` | Chroma index |
+| `RAG_EMBED_MODEL` | `mxbai-embed-large` | Embeddings |
+| `RAG_LLM_MODEL` | `qwen3.5:9b` | Chat model |
+
+Scopes (Hermes contract) live in [`rag_engine/scopes.yaml`](rag_engine/scopes.yaml) — single registry for ingest + CLI.
+
+## CLI (Hermes interface)
 
 ```bash
-# Incremental / resume-safe (SHA-256 keyed) — PDFs + 90_CE_Wiki/*.md
-./venv/bin/python -m rag.ingest
+rag-engine list-scopes --json
+rag-engine paths
 
-# Long rebuild in crash-safe batches
-./venv/bin/python -m rag.reindex_loop
+rag-engine ask --scope me-c --json "max exhaust valve burn-off for 50ME-C"
+# → {"answer":"...","sources":[{"path":...,"page":...,"score":...}],"scope":"me-c","status":"ok"|"no_coverage"}
 
-# After changing collection mapping
-./venv/bin/python -m rag.backfill_collections
+rag-engine ask --scope sire_library "oil mist detection"   # Hermes alias OK
 ```
 
-Text is NFKC-normalized on ingest **and** query. Chunking is intentionally **800 / 100** for the current index.
+Exit codes:
 
-## Push / publish
+| Code | Meaning |
+|------|---------|
+| 0 | Answer returned (`status=ok`) |
+| 2 | No relevant coverage / model refuse (`status=no_coverage`) |
+| 1 | Tool error |
 
-This repo’s **remote is public**. Do not push licensed manuals or the vector store.
+```bash
+rag-engine ingest                 # lock-protected, SHA-256 incremental
+rag-engine ingest --max-new 5     # crash-safe batches
+rag-engine backfill
+rag-engine eval
+```
 
-Before any push:
+Gradio (optional): `python app.py` → http://127.0.0.1:7861
+
+## Push safety
+
+This repo must stay **code-only** (no PDFs, no `.rag_db`, no `embedded.json`). Before push:
 
 ```bash
 git ls-files | grep -iE '\.pdf$|\.rag_db|embedded\.json|chroma|\.sqlite3$'
 ```
 
-That must print nothing. Prefer a **private** remote if the project stays personal. `data/`, `*.pdf`, `.rag_db/`, and `embedded.json` are gitignored.
-
-## Ask
-
-```bash
-./venv/bin/python ask.py --scope me-c "max exhaust valve burn-off for 50ME-C"
-./venv/bin/python ask.py --scope sms "bunkering SMS requirements"
-./venv/bin/python ask.py "fuel oil sampling"          # whole corpus
-
-./venv/bin/python app.py   # Gradio on http://127.0.0.1:7861
-```
-
-Scopes: `me-c`, `sms`, `wiki`, `maker-manuals`, `regulatory`, `inspection`, `vessels`, `career`, `rules`, `other`.
-
-Hermes routing aliases (from `00_Hermes_RAG_Routing_Guide.md`) also work:
-
-```bash
-./venv/bin/python ask.py --scope sire_library "oil mist detection"
-./venv/bin/python ask.py --scope imo_library "fuel oil sampling MARPOL"
-./venv/bin/python ask.py --scope sms_library "bunkering procedure"
-```
-
-## Eval gate
-
-```bash
-./venv/bin/python -m rag.eval_run --retrieval-only
-./venv/bin/python -m rag.eval_run
-```
-
-Cases in `eval/questions.json` include not-in-library and out-of-scope negatives — the model must refuse, not invent.
-
-## Layout
-
-| Path | Role |
-|------|------|
-| `rag/config.py` | Paths, models, collection map |
-| `rag/text.py` | Shared NFKC normalize |
-| `rag/ingest.py` | Hash-keyed PDF ingest |
-| `rag/query.py` | `answer(question, scope=None)` |
-| `ask.py` / `app.py` | CLI / Gradio |
-| `eval/` | Eval questions + last results |
+Must print nothing.
