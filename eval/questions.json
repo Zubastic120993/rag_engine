@@ -1,0 +1,102 @@
+{
+  "description": "Scoped RAG eval — positives, not-in-library, and out-of-scope negatives.",
+  "notes": "Run after reindex + collection backfill. expect_refuse=true means answer must not invent a confident factual claim.",
+  "cases": [
+    {
+      "id": "mec-positive-lube",
+      "question": "What is the recommended lubricating oil temperature range for the G50ME-C engine?",
+      "scope": "me-c",
+      "expect_refuse": false,
+      "source_substr": ["ME-C", "G50ME", "data/G50"],
+      "notes": "Should cite ME-C / G50 material when present in index"
+    },
+    {
+      "id": "mec-positive-exhaust",
+      "question": "What is the recommended exhaust valve clearance for the ME-C engine?",
+      "scope": "me-c",
+      "expect_refuse": false,
+      "source_substr": ["ME-C", "G50ME", "data/G50"],
+      "notes": "Classic ME-C retrieval smoke test"
+    },
+    {
+      "id": "sms-positive-procedure",
+      "question": "What Company SMS requirements apply to bunkering?",
+      "scope": "sms",
+      "expect_refuse": false,
+      "source_substr": ["10_Company", "SMS", "Hartmann"],
+      "notes": "SMS scope should stay inside 10_Company"
+    },
+    {
+      "id": "inspection-positive-sire",
+      "question": "What does SIRE 2.0 ask about engine room oil mist detection?",
+      "scope": "inspection",
+      "expect_refuse": false,
+      "source_substr": ["SIRE", "OCIMF"],
+      "notes": "Requires SIRE/OCIMF docs ingested under inspection"
+    },
+    {
+      "id": "regulatory-positive-marpol",
+      "question": "What does MARPOL Annex VI say about fuel oil sampling?",
+      "scope": "regulatory",
+      "expect_refuse": false,
+      "source_substr": ["MARPOL", "MEPC", "Annex"],
+      "notes": "Statutory scope — not SMS wording"
+    },
+    {
+      "id": "maker-positive-manual",
+      "question": "How is the OWS operated according to the maker manual?",
+      "scope": "maker-manuals",
+      "expect_refuse": false,
+      "source_substr": [],
+      "notes": "Maker manuals scope; source path may vary — check refuse carefully"
+    },
+    {
+      "id": "negative-not-in-library-crew",
+      "question": "What is the exact crew list and cabin assignment for MV Fictional Horizon on 1 January 2099?",
+      "scope": null,
+      "expect_refuse": true,
+      "source_substr": [],
+      "notes": "Vessel-specific fiction — must not invent"
+    },
+    {
+      "id": "negative-not-in-library-part",
+      "question": "What is the spare part number for the ZX-9000 quantum turbocharger impeller used on Gaschem Europa?",
+      "scope": null,
+      "expect_refuse": true,
+      "source_substr": [],
+      "notes": "Invented part — must refuse"
+    },
+    {
+      "id": "negative-not-in-library-policy",
+      "question": "What is Hartmann's unofficial bonus policy for chief engineers in 2099?",
+      "scope": "sms",
+      "expect_refuse": true,
+      "source_substr": [],
+      "notes": "Not a real SMS topic"
+    },
+    {
+      "id": "negative-out-of-scope-mec-in-sms",
+      "question": "What is the recommended exhaust valve clearance for the G50ME-C engine?",
+      "scope": "sms",
+      "expect_refuse": true,
+      "source_substr": [],
+      "notes": "Answer exists in library but NOT in sms scope — must refuse, not pull ME-C"
+    },
+    {
+      "id": "negative-out-of-scope-sire-in-mec",
+      "question": "What does the SIRE 2.0 question library require for oil record book entries?",
+      "scope": "me-c",
+      "expect_refuse": true,
+      "source_substr": [],
+      "notes": "Inspection content queried under me-c — must refuse"
+    },
+    {
+      "id": "negative-out-of-scope-sms-in-wiki",
+      "question": "Quote the exact Company permit-to-work form number for hot work from the SMS.",
+      "scope": "wiki",
+      "expect_refuse": true,
+      "source_substr": [],
+      "notes": "SMS detail under wiki scope — refuse if not in wiki"
+    }
+  ]
+}

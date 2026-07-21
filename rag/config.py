@@ -15,17 +15,23 @@ os.environ.setdefault("POSTHOG_DISABLED", "true")
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 LIBRARY_ROOT = Path(os.path.expanduser("~/CE_Library")).resolve()
 DATA_ROOT = (PROJECT_ROOT / "data").resolve()
-PERSIST_DIR = (LIBRARY_ROOT / "99_Rules" / ".rag_db").resolve()
+
+# Sibling of content folders — not under 99_Rules/ (rebuild, do not relocate).
+PERSIST_DIR = (LIBRARY_ROOT / ".rag_db").resolve()
 TRACK_FILE = PERSIST_DIR / "embedded.json"
 
 EMBED_MODEL = os.environ.get("RAG_EMBED_MODEL", "mxbai-embed-large")
 # Override with RAG_LLM_MODEL if you pull a different chat model into Ollama.
 LLM_MODEL = os.environ.get("RAG_LLM_MODEL", "qwen3.5:9b")
+
+# Explicit decision for this week's free reindex: keep 800/100 unless eval says otherwise.
 CHUNK_SIZE = 800
 CHUNK_OVERLAP = 100
 DEFAULT_K = 5
 
-# Directory name fragments skipped while walking the library
+# Directory name fragments skipped while walking the library.
+# Keep ".rag_db" even though the store sits at LIBRARY_ROOT/.rag_db — insurance
+# if content is later reorganised above the DB.
 SKIP_DIR_PARTS = (
     ".rag_db",
     ".obsidian",
@@ -34,13 +40,18 @@ SKIP_DIR_PARTS = (
     "/Graph",
 )
 
-# First-match prefix map: relative path under LIBRARY_ROOT → collection
-# Order matters. Project data/ is handled separately as "me-c".
+# Hermes-aligned scopes (see 90_CE_Wiki/00_Hermes_RAG_Routing_Guide.md).
+# Path prefixes — first match wins (most specific first).
 COLLECTION_MAP: list[tuple[str, str]] = [
-    ("10_Company/", "sms"),
     ("90_CE_Wiki/", "wiki"),
-    ("20_Vessels/", "vessels"),
+    ("10_Company/", "sms"),
+    ("00_Career/02_Statutory/SIRE_OCIMF/", "inspection"),
+    ("00_Career/02_Statutory/", "regulatory"),
+    ("00_Career/01_Class_Rules/", "regulatory"),
+    ("00_Career/03_Engine_Knowledge/", "maker-manuals"),
+    ("00_Career/07_SDS_Datasheets/", "maker-manuals"),
     ("00_Career/", "career"),
+    ("20_Vessels/", "vessels"),
     ("99_Rules/", "rules"),
 ]
 
@@ -48,29 +59,57 @@ KNOWN_SCOPES = (
     "me-c",
     "sms",
     "wiki",
+    "maker-manuals",
+    "regulatory",
+    "inspection",
     "vessels",
     "career",
     "rules",
     "other",
 )
 
+# Substring hints checked after prefix map (path uppercased).
+INSPECTION_HINTS = ("SIRE", "OCIMF", "CDI", "/VIQ")
+REGULATORY_HINTS = (
+    "MARPOL",
+    "SOLAS",
+    "/IMO/",
+    "MEPC",
+    "MSC.1",
+    "CLASSNK",
+    "FLAG_STATE",
+)
 ME_C_HINTS = ("ME-C", "G50ME", "ME-C9", "MEC")
+MAKER_HINTS = ("/MANUAL", "/MANUALS/", "INSTRUCTION_MANUAL", "OPERATION_MANUAL")
 
 
 def collection_from_relpath(rel: str, *, from_project_data: bool = False) -> str:
-    """Map a relative source path to a collection scope name."""
+    """Map a relative source path to a Hermes-aligned collection scope."""
     if from_project_data:
         return "me-c"
 
     norm = rel.replace("\\", "/")
     upper = norm.upper()
+
     for hint in ME_C_HINTS:
         if hint.upper() in upper:
             return "me-c"
 
+    for hint in INSPECTION_HINTS:
+        if hint in upper:
+            return "inspection"
+
+    for hint in REGULATORY_HINTS:
+        if hint in upper:
+            return "regulatory"
+
     for prefix, name in COLLECTION_MAP:
-        if norm.startswith(prefix) or f"/{prefix}" in f"/{norm}":
+        if norm.startswith(prefix):
             return name
+
+    for hint in MAKER_HINTS:
+        if hint in upper:
+            return "maker-manuals"
 
     return "other"
 

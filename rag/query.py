@@ -9,6 +9,7 @@ from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
 
 from rag.config import DEFAULT_K, EMBED_MODEL, LLM_MODEL, PERSIST_DIR
+from rag.text import normalize_text
 
 
 @lru_cache(maxsize=1)
@@ -27,7 +28,8 @@ def retrieve(question: str, scope: str | None = None, k: int = DEFAULT_K):
     kwargs: dict[str, Any] = {"k": k}
     if scope:
         kwargs["filter"] = {"collection": scope}
-    return db.similarity_search(question, **kwargs)
+    # Normalize query the same way as stored chunks (µ → μ, ligatures, etc.)
+    return db.similarity_search(normalize_text(question), **kwargs)
 
 
 def answer(
@@ -36,7 +38,7 @@ def answer(
     k: int = DEFAULT_K,
 ) -> tuple[str, list[dict]]:
     """Return (answer_text, sources) for a question, optionally scoped."""
-    question = (question or "").strip()
+    question = normalize_text(question or "")
     if not question:
         return "Please provide a question.", []
 
@@ -65,7 +67,10 @@ def answer(
     scope_line = f"Search scope: {scope}\n" if scope else "Search scope: entire corpus\n"
     prompt = (
         "Answer the question using ONLY the context below. "
-        "If the context does not contain the answer, say you do not know.\n"
+        "If the context does not contain the answer, say exactly: "
+        "I do not know — not specified in the retrieved documents.\n"
+        "Do not invent values, part numbers, crew data, or procedures "
+        "from adjacent or unrelated manuals.\n"
         f"{scope_line}\n"
         f"Context:\n{context}\n\n"
         f"Question: {question}\n\nAnswer:"

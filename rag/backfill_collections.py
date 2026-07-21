@@ -1,4 +1,4 @@
-"""Stamp `collection` metadata on existing Chroma chunks (no re-embedding)."""
+"""One-shot backfill for an existing DB. Prefer a full rebuild at .rag_db after unicode fix."""
 
 from __future__ import annotations
 
@@ -8,21 +8,14 @@ from collections import Counter
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 
-from rag.config import (
-    EMBED_MODEL,
-    PERSIST_DIR,
-    collection_from_relpath,
-)
+from rag.config import EMBED_MODEL, LIBRARY_ROOT, PERSIST_DIR, collection_from_relpath
 
 
 def _collection_for_source(source: str) -> str:
-    # Existing index stores paths relative to LIBRARY_ROOT (or absolute).
-    # Project data files were not in this DB yet; treat ME-C hints specially.
     src = (source or "").replace("\\", "/")
+    if src.startswith("data/"):
+        return collection_from_relpath(src, from_project_data=True)
     if src.startswith("/") or (len(src) > 2 and src[1] == ":"):
-        # Absolute path — try to strip library root if present
-        from rag.config import LIBRARY_ROOT
-
         try:
             rel = str(__import__("pathlib").Path(src).resolve().relative_to(LIBRARY_ROOT))
         except ValueError:
@@ -75,6 +68,7 @@ def main() -> None:
     args = parser.parse_args()
 
     print(f"Backfilling collections in {PERSIST_DIR} (dry_run={args.dry_run})")
+    print("Note: prefer a full rebuild after the unicode/NFKC ingest change.")
     counts = backfill(batch_size=args.batch_size, dry_run=args.dry_run)
     total = sum(counts.values())
     print(f"Done. {total} chunks:")
