@@ -128,8 +128,9 @@ Examples:
 
 This section controls only the human-readable answer shown by Hermes. It does
 not change the `ce_rag_query` result or its structured fields. Returned data
-must continue to preserve fields such as path, page, collection, score, scope,
-status, exit code, and timings when present.
+must continue to preserve fields such as path, page, collection, distance
+(Chroma L2 distance; lower = more relevant), scope, status, exit code, and
+timings when present.
 
 ### Default response
 

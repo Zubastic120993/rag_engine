@@ -49,9 +49,9 @@ rag-engine ask --scope sire_library --json "oil mist detection"
 rag-engine ask --scope vessels --json --suggest-scopes "OWS-COM automatic stop"
 ```
 
-### JSON / exit-code contract (`schema_version: 1`)
+### JSON / exit-code contract (`schema_version: 3`)
 
-Every `--json` response includes `"schema_version": 1`. Stdout is **exactly one** JSON document; logs go to stderr.
+Every `--json` response includes `"schema_version": 3`. Stdout is **exactly one** JSON document; logs go to stderr.
 
 | Exit | `status` | Meaning |
 |------|----------|---------|
@@ -60,6 +60,10 @@ Every `--json` response includes `"schema_version": 1`. Stdout is **exactly one*
 | 1 | `error` | Tool/runtime/timeout error |
 
 Fields always include `query`, `requested_scope`, `resolved_scope`. On `no_coverage`, an optional `hint` may point at diagnostics; with `--suggest-scopes`, the hint may name **other** scopes only when real hits exist (exit code stays 2; `answer` stays null).
+
+Each entry in `sources` has `path`, `page`, `collection`, and `distance`. **`distance` is a Chroma L2 distance: lower means closer/more relevant** — it is not a similarity score. Results are returned nearest-first.
+
+Schema history: **v3** renamed `sources[].score` → `sources[].distance` (same value, clearer name). **v2** switched generation to plain text and dropped the `partial_coverage` status. The engine returns only `ok`, `no_coverage`, `error`, or `empty_question`.
 
 ### Ingest / gaps
 

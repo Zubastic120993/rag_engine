@@ -92,20 +92,30 @@ def run_case(case: dict, *, retrieval_only: bool) -> dict:
     result["scope_filter_ok"] = _scope_ok(ans_sources, scope)
     result["refused"] = _looks_like_refuse(text) or status == "no_coverage"
 
+    # Three-way outcome: ok | partial_coverage | fail. partial_coverage is
+    # reported distinctly — never collapsed into pass or fail.
     if status == "error":
-        result["pass"] = False
-        return result
-
-    if expect_refuse:
-        result["pass"] = result["refused"] and result["scope_filter_ok"]
+        outcome = "fail"
+    elif expect_refuse:
+        outcome = "ok" if (result["refused"] and result["scope_filter_ok"]) else "fail"
     else:
-        result["pass"] = (
+        answered_ok = (
             (not result["refused"])
             and result["scope_filter_ok"]
             and _sources_ok(ans_sources, substrs)
             and bool(ans_sources)
-            and status == "ok"
         )
+        if not answered_ok:
+            outcome = "fail"
+        elif status == "ok":
+            outcome = "ok"
+        elif status == "partial_coverage":
+            outcome = "partial_coverage"
+        else:
+            outcome = "fail"
+
+    result["outcome"] = outcome
+    result["pass"] = outcome == "ok"
     return result
 
 
@@ -126,15 +136,36 @@ def main(argv: list[str] | None = None) -> int:
         print(f"→ {case['id']} (scope={case.get('scope')}) …", flush=True)
         r = run_case(case, retrieval_only=args.retrieval_only)
         results.append(r)
-        mark = "PASS" if r["pass"] else "FAIL"
-        print(f"  {mark}  docs={r['n_docs']} refuse_expect={r['expect_refuse']}", flush=True)
+        if args.retrieval_only:
+            mark = "PASS" if r["pass"] else "FAIL"
+        else:
+            mark = r["outcome"]
+        print(
+            f"  {mark}  docs={r['n_docs']} refuse_expect={r['expect_refuse']}",
+            flush=True,
+        )
 
-    passed = sum(1 for r in results if r["pass"])
-    print(f"\n{passed}/{len(results)} passed")
     out = Path("eval/last_results.json")
     out.write_text(json.dumps(results, indent=2), encoding="utf-8")
+
+    if args.retrieval_only:
+        passed = sum(1 for r in results if r["pass"])
+        print(f"\n{passed}/{len(results)} passed")
+        print(f"Wrote {out}")
+        return 0 if passed == len(results) else 1
+
+    n_ok = sum(1 for r in results if r["outcome"] == "ok")
+    n_partial = sum(1 for r in results if r["outcome"] == "partial_coverage")
+    n_fail = sum(1 for r in results if r["outcome"] == "fail")
+    print("\nPer-question status:")
+    for r in results:
+        print(f"  {r['outcome']:16s}  {r['id']}")
+    print(
+        f"\nok={n_ok}  partial_coverage={n_partial}  fail={n_fail}  "
+        f"(total {len(results)})"
+    )
     print(f"Wrote {out}")
-    return 0 if passed == len(results) else 1
+    return 0 if n_fail == 0 else 1
 
 
 if __name__ == "__main__":

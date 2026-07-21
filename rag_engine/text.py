@@ -3,6 +3,23 @@
 from __future__ import annotations
 
 import unicodedata
+from pathlib import Path
+
+PDF_MAGIC = b"%PDF"
+
+
+def is_valid_pdf(path: Path) -> bool:
+    """True if the file begins with the %PDF magic bytes.
+
+    Guards against files with a .pdf extension that are actually saved HTML,
+    error pages, or truncated downloads — those must never reach the PDF
+    loader. Read errors count as invalid (the file is unusable either way).
+    """
+    try:
+        with Path(path).open("rb") as f:
+            return f.read(len(PDF_MAGIC)) == PDF_MAGIC
+    except OSError:
+        return False
 
 
 def normalize_text(text: str) -> str:

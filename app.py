@@ -21,7 +21,7 @@ def _run(question: str, scope_label: str, k: int):
             link = source_open_markdown(str(s.get("path") or ""), s.get("page"), root=library_root())
             lines.append(
                 f"- [{s.get('collection')}] {link} — stored_page={s.get('page')} "
-                f"(score={s.get('score')})"
+                f"(distance={s.get('distance')})"
             )
         sources_md = "\n".join(lines)
         sources_md += (

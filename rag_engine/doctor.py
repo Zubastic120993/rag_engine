@@ -24,6 +24,7 @@ from rag_engine.config import (
 )
 from rag_engine.fingerprint import compare_fingerprint, fingerprint_path
 from rag_engine.scope_rules import RegistryError, validate_registry
+from rag_engine.text import is_valid_pdf
 
 
 def _check(name: str, ok: bool, detail: str) -> dict[str, Any]:
@@ -227,10 +228,12 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
         )
     )
 
-    # coverage gap: PDFs/md under library not in tracker (sampled count)
+    # coverage gap: PDFs/md under library not in tracker (sampled count).
+    # invalid_pdf: files with a .pdf extension whose bytes are not a real PDF.
     tracked = set(paths)
     unindexed = 0
     scanned = 0
+    invalid_pdfs: list[str] = []
     try:
         for dirpath, dirnames, filenames in os.walk(root):
             # skip .rag_db etc
@@ -242,12 +245,16 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
             if "/.rag_db" in dirpath.replace("\\", "/"):
                 continue
             for fn in filenames:
-                if not fn.lower().endswith((".pdf", ".md")):
+                low = fn.lower()
+                if not low.endswith((".pdf", ".md")):
                     continue
                 scanned += 1
-                rel = str((Path(dirpath) / fn).relative_to(root)).replace("\\", "/")
+                full = Path(dirpath) / fn
+                rel = str(full.relative_to(root)).replace("\\", "/")
                 if rel not in tracked:
                     unindexed += 1
+                if low.endswith(".pdf") and not is_valid_pdf(full):
+                    invalid_pdfs.append(rel)
         checks.append(
             _check(
                 "coverage_gap",
@@ -255,8 +262,16 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
                 f"unindexed_files={unindexed} scanned={scanned}",
             )
         )
+        # Informational: a fake PDF is never indexed, but flag it so the
+        # corpus can be cleaned. ok=True keeps doctor PASS on its presence.
+        invalid_detail = (
+            f"invalid_pdf_files={len(invalid_pdfs)}"
+            + (f" e.g. {', '.join(invalid_pdfs[:3])}" if invalid_pdfs else "")
+        )
+        checks.append(_check("invalid_pdf", True, invalid_detail))
     except Exception as e:  # noqa: BLE001
         checks.append(_check("coverage_gap", False, str(e)))
+        checks.append(_check("invalid_pdf", False, str(e)))
 
     # git tracked corpus?
     try:
@@ -283,7 +298,7 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
         checks.append(_check("git_no_corpus", False, str(e)))
 
     failed = [c for c in checks if not c["ok"]]
-    # orphan_sources and coverage_gap are informational (ok=True always)
+    # orphan_sources, coverage_gap, invalid_pdf are informational (ok=True always)
     status = "PASS" if not failed else "FAIL"
     return {
         "status": status,
