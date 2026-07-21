@@ -5,9 +5,11 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 
 from rag_engine.config import (
     default_k,
+    heavy_fallback_enabled_by_default,
     hermes_aliases,
     known_scopes,
     library_root,
@@ -52,6 +54,28 @@ def cmd_ask(argv: list[str]) -> int:
         action="store_true",
         help="On no_coverage, name other scopes with verified hits (opt-in)",
     )
+    parser.add_argument(
+        "--model",
+        default=None,
+        help="Override answer model (default: scopes.yaml / RAG_LLM_MODEL)",
+    )
+    parser.add_argument(
+        "--fallback",
+        action="store_true",
+        help="Use llm_fallback_model (e.g. qwen3.5:9b) instead of fast default",
+    )
+    parser.add_argument(
+        "--num-ctx",
+        type=int,
+        default=None,
+        help="Ollama num_ctx for generation",
+    )
+    parser.add_argument(
+        "--num-predict",
+        type=int,
+        default=None,
+        help="Ollama num_predict (max output tokens)",
+    )
     parser.add_argument("question", nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
 
@@ -74,7 +98,9 @@ def cmd_ask(argv: list[str]) -> int:
         return EXIT_ERROR
 
     try:
+        t_scope = time.perf_counter()
         resolved = resolve_scope(args.scope)
+        scope_resolution_s = time.perf_counter() - t_scope
     except ValueError as e:
         result = AskResult(
             status="error",
@@ -90,6 +116,10 @@ def cmd_ask(argv: list[str]) -> int:
             print(str(e), file=sys.stderr)
         return EXIT_ERROR
 
+    # Heavy fallback is opt-in only: CLI --fallback OR an explicit
+    # config/env flag. Never enabled automatically by a failed generation.
+    use_fallback = args.fallback or heavy_fallback_enabled_by_default()
+
     try:
         result = answer(
             question,
@@ -97,6 +127,11 @@ def cmd_ask(argv: list[str]) -> int:
             k=args.k or default_k(),
             requested_scope=requested,
             suggest_scopes=args.suggest_scopes,
+            scope_resolution_s=scope_resolution_s,
+            model=args.model,
+            use_fallback=use_fallback,
+            num_ctx=args.num_ctx,
+            num_predict=args.num_predict,
         )
     except Exception as e:  # noqa: BLE001
         result = AskResult(
@@ -125,8 +160,10 @@ def cmd_ask(argv: list[str]) -> int:
     if args.json:
         _print_json(result.to_json())
     else:
-        if result.status == "ok":
+        if result.status in ("ok", "partial_coverage"):
             print(result.answer or "")
+            if result.status == "partial_coverage" and result.missing_information:
+                print(f"\nMissing information: {result.missing_information}")
             if result.sources:
                 print("\nSources:")
                 for s in result.sources:
@@ -147,12 +184,13 @@ def cmd_ask(argv: list[str]) -> int:
         if result.status in ("no_coverage", "empty_question")
         else EXIT_OK
     )
+    keep_sources = result.status in ("ok", "partial_coverage")
     log_ask_event(
         question=question,
         scope=resolved,
         status=result.status,
         exit_code=code,
-        sources=result.sources if result.status == "ok" else [],
+        sources=result.sources if keep_sources else [],
     )
     return code
 
@@ -292,7 +330,7 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "usage: rag-engine <ask|sync|ingest|gaps|doctor|explain-scope|"
             "explain-alias|scope-stats|list-scopes|paths|backfill|eval> …\n"
-            "  ask [--scope NAME] [--json] [--suggest-scopes] QUESTION\n"
+            "  ask [--scope NAME] [--json] [--suggest-scopes] [--model NAME] [--fallback] [--num-ctx N] [--num-predict N] QUESTION\n"
             "  sync | ingest [--force] [--max-new N]\n"
             "  gaps [--limit N] [--json]\n"
             "  doctor [--json] [--skip-ollama]\n"
