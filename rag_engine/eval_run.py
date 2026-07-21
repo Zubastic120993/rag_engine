@@ -81,12 +81,20 @@ def run_case(case: dict, *, retrieval_only: bool) -> dict:
             )
         return result
 
-    text, ans_sources, status = answer(q, scope=scope, k=5)
-    result["answer_preview"] = text[:400]
+    text_result = answer(q, scope=scope, k=5)
+    text = text_result.answer or ""
+    ans_sources = text_result.sources
+    status = text_result.status
+    result["answer_preview"] = (text or "")[:400]
     result["sources"] = ans_sources[:5]
     result["status"] = status
+    result["error"] = text_result.error
     result["scope_filter_ok"] = _scope_ok(ans_sources, scope)
     result["refused"] = _looks_like_refuse(text) or status == "no_coverage"
+
+    if status == "error":
+        result["pass"] = False
+        return result
 
     if expect_refuse:
         result["pass"] = result["refused"] and result["scope_filter_ok"]
@@ -96,6 +104,7 @@ def run_case(case: dict, *, retrieval_only: bool) -> dict:
             and result["scope_filter_ok"]
             and _sources_ok(ans_sources, substrs)
             and bool(ans_sources)
+            and status == "ok"
         )
     return result
 

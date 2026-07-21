@@ -1,0 +1,296 @@
+"""Read-only health checks for the local rag-engine installation."""
+
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+from pathlib import Path
+from typing import Any
+
+import requests
+import yaml
+
+from rag_engine.config import (
+    SCOPES_FILE,
+    embed_model,
+    hermes_aliases,
+    known_scopes,
+    library_root,
+    llm_model,
+    load_registry,
+    persist_dir,
+    track_file,
+)
+from rag_engine.fingerprint import compare_fingerprint, fingerprint_path
+from rag_engine.scope_rules import RegistryError, validate_registry
+
+
+def _check(name: str, ok: bool, detail: str) -> dict[str, Any]:
+    return {"name": name, "ok": ok, "detail": detail}
+
+
+def _ollama_tags() -> set[str]:
+    host = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434").rstrip("/")
+    r = requests.get(f"{host}/api/tags", timeout=5)
+    r.raise_for_status()
+    models = r.json().get("models") or []
+    names: set[str] = set()
+    for m in models:
+        n = m.get("name") or ""
+        names.add(n)
+        if ":" in n:
+            names.add(n.split(":", 1)[0])
+    return names
+
+
+def _tracker_paths() -> list[str]:
+    tf = track_file()
+    if not tf.exists():
+        return []
+    data = json.loads(tf.read_text(encoding="utf-8"))
+    paths: list[str] = []
+    for meta in data.values():
+        if isinstance(meta, dict):
+            for p in meta.get("paths") or []:
+                paths.append(str(p).replace("\\", "/"))
+    return paths
+
+
+def _chroma_source_collections() -> dict[str, set[str]]:
+    import chromadb
+
+    client = chromadb.PersistentClient(path=str(persist_dir()))
+    cols = client.list_collections()
+    if not cols:
+        return {}
+    col = client.get_collection(cols[0].name)
+    raw = col.get(include=["metadatas"])
+    by: dict[str, set[str]] = {}
+    for m in raw.get("metadatas") or []:
+        if not m:
+            continue
+        c = str(m.get("collection") or "other")
+        s = str(m.get("source") or "").replace("\\", "/")
+        by.setdefault(c, set()).add(s)
+    return by
+
+
+def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
+    checks: list[dict[str, Any]] = []
+    root = library_root()
+    db = persist_dir()
+
+    checks.append(
+        _check("library_root_exists", root.is_dir(), str(root))
+    )
+    checks.append(_check("db_path_exists", db.is_dir(), str(db)))
+
+    try:
+        load_registry()
+        checks.append(_check("scopes_yaml_loads", True, str(SCOPES_FILE)))
+    except Exception as e:  # noqa: BLE001
+        checks.append(_check("scopes_yaml_loads", False, str(e)))
+
+    try:
+        validate_registry()
+        checks.append(_check("alias_registry_valid", True, "no duplicate/collision aliases"))
+    except RegistryError as e:
+        checks.append(_check("alias_registry_valid", False, str(e)))
+
+    # prefix dirs exist + have indexed docs
+    try:
+        by_coll = _chroma_source_collections()
+        reg = load_registry()
+        prefix_ok = True
+        details = []
+        for name, meta in (reg.get("scopes") or {}).items():
+            prefixes = list(meta.get("path_prefixes") or [])
+            if not prefixes:
+                continue
+            for pref in prefixes:
+                p = root / pref
+                exists = p.is_dir()
+                n_docs = len(by_coll.get(name, set()))
+                # inspection is under statutory; still require indexed docs for scope
+                if not exists:
+                    prefix_ok = False
+                    details.append(f"{name}:{pref} missing dir")
+                elif n_docs == 0:
+                    prefix_ok = False
+                    details.append(f"{name}:{pref} dir ok but 0 indexed docs in scope")
+                else:
+                    details.append(f"{name}:{pref} ok ({n_docs} docs)")
+        checks.append(
+            _check(
+                "scope_prefixes_indexed",
+                prefix_ok,
+                "; ".join(details) if details else "no prefixes",
+            )
+        )
+    except Exception as e:  # noqa: BLE001
+        checks.append(_check("scope_prefixes_indexed", False, str(e)))
+
+    if skip_ollama:
+        checks.append(_check("ollama_reachable", True, "skipped"))
+        checks.append(_check("embed_model_available", True, "skipped"))
+        checks.append(_check("chat_model_available", True, "skipped"))
+    else:
+        try:
+            tags = _ollama_tags()
+            checks.append(_check("ollama_reachable", True, f"{len(tags)} models"))
+            em = embed_model()
+            ok_e = em in tags or em.split(":")[0] in tags
+            checks.append(_check("embed_model_available", ok_e, em))
+            lm = llm_model()
+            ok_l = lm in tags or lm.split(":")[0] in tags
+            checks.append(_check("chat_model_available", ok_l, lm))
+        except Exception as e:  # noqa: BLE001
+            checks.append(_check("ollama_reachable", False, str(e)))
+            checks.append(_check("embed_model_available", False, "ollama unreachable"))
+            checks.append(_check("chat_model_available", False, "ollama unreachable"))
+
+    fp = compare_fingerprint()
+    # Missing fingerprint is FAIL (cannot detect embed drift)
+    checks.append(
+        _check(
+            "index_fingerprint",
+            fp["match"],
+            fp["message"] + (f" path={fingerprint_path()}" if not fp["match"] else ""),
+        )
+    )
+
+    try:
+        import chromadb
+
+        client = chromadb.PersistentClient(path=str(db))
+        cols = client.list_collections()
+        checks.append(
+            _check("chroma_open", bool(cols), f"collections={[c.name for c in cols]}")
+        )
+    except Exception as e:  # noqa: BLE001
+        checks.append(_check("chroma_open", False, str(e)))
+
+    tf = track_file()
+    try:
+        if tf.exists():
+            json.loads(tf.read_text(encoding="utf-8"))
+            checks.append(_check("tracker_readable", True, str(tf)))
+        else:
+            checks.append(_check("tracker_readable", False, f"missing {tf}"))
+    except Exception as e:  # noqa: BLE001
+        checks.append(_check("tracker_readable", False, str(e)))
+
+    paths = []
+    try:
+        paths = _tracker_paths()
+    except Exception:  # noqa: BLE001
+        paths = []
+
+    hermes_hits = [p for p in paths if "Hermes_Library" in p]
+    checks.append(
+        _check(
+            "no_hermes_library_paths",
+            len(hermes_hits) == 0,
+            f"count={len(hermes_hits)}",
+        )
+    )
+    legacy_db = [p for p in paths if "99_Rules/.rag_db" in p or "99_Rules\\.rag_db" in p]
+    checks.append(
+        _check(
+            "no_legacy_rules_rag_db_paths",
+            len(legacy_db) == 0,
+            f"count={len(legacy_db)}",
+        )
+    )
+
+    sample_ok = False
+    sample_detail = "no tracker paths"
+    for p in paths[:50]:
+        cand = root / p if not Path(p).is_absolute() else Path(p)
+        if cand.is_file():
+            sample_ok = True
+            sample_detail = str(cand)
+            break
+    checks.append(_check("sample_source_exists", sample_ok, sample_detail))
+
+    orphan = 0
+    for p in paths:
+        cand = root / p if not os.path.isabs(p) else Path(p)
+        if not cand.is_file():
+            orphan += 1
+    checks.append(
+        _check(
+            "orphan_sources",
+            True,  # informational — always ok but report count
+            f"missing_files={orphan} of {len(paths)} tracker paths",
+        )
+    )
+
+    # coverage gap: PDFs/md under library not in tracker (sampled count)
+    tracked = set(paths)
+    unindexed = 0
+    scanned = 0
+    try:
+        for dirpath, dirnames, filenames in os.walk(root):
+            # skip .rag_db etc
+            dirnames[:] = [
+                d
+                for d in dirnames
+                if d not in {".rag_db", ".obsidian", "_Inbox", "_Backup"}
+            ]
+            if "/.rag_db" in dirpath.replace("\\", "/"):
+                continue
+            for fn in filenames:
+                if not fn.lower().endswith((".pdf", ".md")):
+                    continue
+                scanned += 1
+                rel = str((Path(dirpath) / fn).relative_to(root)).replace("\\", "/")
+                if rel not in tracked:
+                    unindexed += 1
+        checks.append(
+            _check(
+                "coverage_gap",
+                True,
+                f"unindexed_files={unindexed} scanned={scanned}",
+            )
+        )
+    except Exception as e:  # noqa: BLE001
+        checks.append(_check("coverage_gap", False, str(e)))
+
+    # git tracked corpus?
+    try:
+        repo = Path(__file__).resolve().parents[1]
+        proc = subprocess.run(
+            ["git", "-C", str(repo), "ls-files"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        tracked_git = proc.stdout.splitlines()
+        bad = [
+            f
+            for f in tracked_git
+            if f.lower().endswith(".pdf")
+            or ".rag_db" in f
+            or f.endswith("embedded.json")
+            or f.endswith("chroma.sqlite3")
+        ]
+        checks.append(
+            _check("git_no_corpus", len(bad) == 0, f"bad_files={bad[:5]}")
+        )
+    except Exception as e:  # noqa: BLE001
+        checks.append(_check("git_no_corpus", False, str(e)))
+
+    failed = [c for c in checks if not c["ok"]]
+    # orphan_sources and coverage_gap are informational (ok=True always)
+    status = "PASS" if not failed else "FAIL"
+    return {
+        "status": status,
+        "checks": checks,
+        "fingerprint": fp,
+        "library_root": str(root),
+        "db_path": str(db),
+        "scopes": list(known_scopes()),
+        "aliases": hermes_aliases(),
+    }

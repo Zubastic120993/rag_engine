@@ -128,47 +128,10 @@ def resolve_scope(name: str | None) -> str | None:
 
 
 def collection_from_relpath(rel: str) -> str:
-    """Map a relative source path to a collection using scopes.yaml.
+    """Map a relative source path to a collection using scopes.yaml."""
+    from rag_engine.scope_rules import explain_path_assignment
 
-    Order matters:
-    1. Exclusive folder prefixes (wiki, sms, inspection, …) — so a wiki note
-       that mentions SIRE stays ``wiki``, not ``inspection``.
-    2. Narrow path_hints (especially ``me-c``) before catch-all prefixes —
-       ME-C manuals live under Engine_Knowledge alongside other manuals.
-    3. Catch-all prefixes (``maker-manuals``, ``career``).
-    """
-    norm = rel.replace("\\", "/")
-    upper = norm.upper()
-    reg = load_registry()
-    scopes: dict[str, Any] = reg["scopes"]
-    prefix_order = list(reg.get("prefix_order") or list(scopes.keys()))
-    catch_all = {"maker-manuals", "career", "other"}
-
-    def _prefix_hit(scope_name: str) -> bool:
-        meta = scopes.get(scope_name) or {}
-        return any(norm.startswith(p) for p in (meta.get("path_prefixes") or []))
-
-    def _hint_hit(scope_name: str) -> bool:
-        meta = scopes.get(scope_name) or {}
-        return any(h.upper() in upper for h in (meta.get("path_hints") or []))
-
-    for scope_name in prefix_order:
-        if scope_name in catch_all:
-            continue
-        if _prefix_hit(scope_name):
-            return scope_name
-
-    for hint_scope in ("me-c", "inspection", "regulatory", "maker-manuals"):
-        if _hint_hit(hint_scope):
-            return hint_scope
-
-    for scope_name in prefix_order:
-        if scope_name not in catch_all:
-            continue
-        if _prefix_hit(scope_name):
-            return scope_name
-
-    return "other"
+    return explain_path_assignment(rel)["scope"]
 
 
 def wiki_extensions() -> set[str]:
