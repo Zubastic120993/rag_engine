@@ -40,6 +40,26 @@ def cmd_list_scopes(as_json: bool) -> int:
     return EXIT_OK
 
 
+# Every option string this parser defines. nargs="+" already keeps these out
+# of `question` in normal use (quoted or not, before or after the question);
+# this is a defense-in-depth check in case a flag-shaped token still ends up
+# there (e.g. a literal "--scope" typed as an ordinary question word).
+_ASK_FLAG_TOKENS = frozenset(
+    {
+        "--scope",
+        "-k",
+        "--json",
+        "--suggest-scopes",
+        "--model",
+        "--fallback",
+        "--num-ctx",
+        "--num-predict",
+        "-h",
+        "--help",
+    }
+)
+
+
 def cmd_ask(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(prog="rag-engine ask")
     parser.add_argument("--scope", default=None, metavar="NAME")
@@ -76,8 +96,34 @@ def cmd_ask(argv: list[str]) -> int:
         default=None,
         help="Ollama num_predict (max output tokens)",
     )
-    parser.add_argument("question", nargs=argparse.REMAINDER)
+    # nargs="*" (not REMAINDER): argparse keeps recognizing --scope/--json/etc
+    # as real options no matter where they fall relative to the question,
+    # instead of silently vacuuming them into the question text once the
+    # first positional-looking token is seen. "*" (zero-or-more) rather than
+    # "+" (one-or-more) so a question-less invocation falls through to the
+    # existing "missing question" handling below instead of argparse's own
+    # SystemExit, which would bypass the --json error contract.
+    parser.add_argument("question", nargs="*")
     args = parser.parse_args(argv)
+
+    bad_tokens = [t for t in args.question if t in _ASK_FLAG_TOKENS]
+    if bad_tokens:
+        result = AskResult(
+            status="error",
+            query=" ".join(args.question),
+            requested_scope=args.scope,
+            resolved_scope=None,
+            answer=None,
+            error=(
+                f"question contains flag-like token(s) {bad_tokens}; "
+                "quote the question or move flags before it"
+            ),
+        )
+        if args.json:
+            _print_json(result.to_json())
+        else:
+            print(str(result.error), file=sys.stderr)
+        return EXIT_ERROR
 
     question = " ".join(args.question).strip()
     requested = args.scope

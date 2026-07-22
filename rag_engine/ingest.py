@@ -171,6 +171,7 @@ def _detach_path(tracker: dict, path_to_hash: dict[str, str], source_rel: str) -
 
 
 def _attach_path(
+    db: Chroma,
     tracker: dict,
     path_to_hash: dict[str, str],
     source_rel: str,
@@ -181,12 +182,48 @@ def _attach_path(
 
     meta = tracker[digest]
     paths = list(meta.get("paths") or [])
-    if source_rel not in paths:
+    changed = source_rel not in paths
+    if changed:
         paths.append(source_rel)
+
+    root = library_root()
+    live = [p for p in paths if (root / p).is_file()]
+    stale = [p for p in paths if p not in live]
+
+    label = "DEDUPE/RENAME"
+    if stale and live == [source_rel]:
+        # Exactly one live path remains and the rest are gone from disk —
+        # a rename/move, not a dedupe. Chroma's per-chunk metadata was
+        # written once at first embed and never updated since, so it still
+        # cites the stale path(s) forever unless rewritten here. Patch the
+        # existing chunk_ids in place — no delete, no re-embed.
+        chunk_ids = list(meta.get("chunk_ids") or [])
+        if chunk_ids:
+            collection = collection_from_relpath(source_rel)
+            db._collection.update(
+                ids=chunk_ids,
+                metadatas=[
+                    {"source": source_rel, "collection": collection}
+                    for _ in chunk_ids
+                ],
+            )
+            meta["collection"] = collection
+            paths = [source_rel]
+            label = "RENAME"
+        else:
+            # No chunk_ids recorded, so Chroma was never actually updated.
+            # Pruning the stale path here would let doctor report zero
+            # orphans while any real citations are still wrong — leave it
+            # in place and surface this every run instead of blending into
+            # a silent SKIP.
+            label = "RENAME (unrepaired: no chunk_ids — Chroma NOT updated)"
+        changed = True
+
+    if changed:
         meta["paths"] = paths
         path_to_hash[source_rel] = digest
         _save_tracker(tracker)
-        return f"   0 chunks  [{meta.get('collection', '?')}]  DEDUPE/RENAME  {source_rel}"
+        return f"   0 chunks  [{meta.get('collection', '?')}]  {label}  {source_rel}"
     path_to_hash[source_rel] = digest
     return f"   0 chunks  [{meta.get('collection', '?')}]  SKIP  {source_rel}"
 
@@ -278,7 +315,7 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
             digest = _file_sha256(path)
 
             if digest in tracker and not force:
-                msg = _attach_path(tracker, path_to_hash, rel, digest)
+                msg = _attach_path(db, tracker, path_to_hash, rel, digest)
                 print(f"[{i}/{len(docs)}] {msg}")
                 continue
 

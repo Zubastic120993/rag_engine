@@ -223,7 +223,7 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
     checks.append(
         _check(
             "orphan_sources",
-            True,  # informational — always ok but report count
+            orphan == 0,
             f"missing_files={orphan} of {len(paths)} tracker paths",
         )
     )
@@ -298,7 +298,8 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
         checks.append(_check("git_no_corpus", False, str(e)))
 
     failed = [c for c in checks if not c["ok"]]
-    # orphan_sources, coverage_gap, invalid_pdf are informational (ok=True always)
+    # coverage_gap, invalid_pdf are informational (ok=True always); orphan_sources
+    # fails when tracker paths point at files no longer on disk (stale metadata)
     status = "PASS" if not failed else "FAIL"
     return {
         "status": status,
