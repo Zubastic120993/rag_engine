@@ -17,6 +17,7 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from rag_engine.config import (
+    chroma_client_settings,
     chunk_overlap,
     chunk_size,
     collection_from_relpath,
@@ -292,7 +293,11 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
 
     path_to_hash = _path_index(tracker)
     embeddings = OllamaEmbeddings(model=embed_model())
-    db = Chroma(persist_directory=str(persist_dir()), embedding_function=embeddings)
+    db = Chroma(
+        persist_directory=str(persist_dir()),
+        embedding_function=embeddings,
+        client_settings=chroma_client_settings(),
+    )
 
     docs = _iter_docs()
     print(f"Found {len(docs)} docs under {library_root()}. Index: {persist_dir()}")

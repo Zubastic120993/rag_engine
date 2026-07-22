@@ -9,6 +9,7 @@ from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 
 from rag_engine.config import (
+    chroma_client_settings,
     collection_from_relpath,
     embed_model,
     library_root,
@@ -32,7 +33,11 @@ def _collection_for_source(source: str) -> str:
 
 def backfill(batch_size: int = 500, dry_run: bool = False) -> Counter:
     embeddings = OllamaEmbeddings(model=embed_model())
-    db = Chroma(persist_directory=str(persist_dir()), embedding_function=embeddings)
+    db = Chroma(
+        persist_directory=str(persist_dir()),
+        embedding_function=embeddings,
+        client_settings=chroma_client_settings(),
+    )
     raw = db.get(include=["metadatas"])
     ids = raw.get("ids") or []
     metas = raw.get("metadatas") or []

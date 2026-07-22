@@ -18,6 +18,18 @@ os.environ.setdefault("POSTHOG_DISABLED", "true")
 PACKAGE_ROOT = Path(__file__).resolve().parent
 SCOPES_FILE = PACKAGE_ROOT / "scopes.yaml"
 
+
+def chroma_client_settings():
+    """Shared Chroma Settings with telemetry off, for every call site that
+    opens a Chroma client/collection. requirements.txt pins posthog<6.0.0
+    so this flag is actually honored (posthog>=6.0.0 changed capture()'s
+    signature in a way chromadb 0.5.23 doesn't call it, which crashed every
+    chromadb call regardless of this setting — see the pin's comment)."""
+    import chromadb
+
+    return chromadb.config.Settings(anonymized_telemetry=False)
+
+
 SKIP_DIR_PARTS = (
     ".rag_db",
     ".obsidian",

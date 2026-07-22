@@ -13,6 +13,7 @@ import yaml
 
 from rag_engine.config import (
     SCOPES_FILE,
+    chroma_client_settings,
     embed_model,
     hermes_aliases,
     known_scopes,
@@ -61,7 +62,9 @@ def _tracker_paths() -> list[str]:
 def _chroma_source_collections() -> dict[str, set[str]]:
     import chromadb
 
-    client = chromadb.PersistentClient(path=str(persist_dir()))
+    client = chromadb.PersistentClient(
+        path=str(persist_dir()), settings=chroma_client_settings()
+    )
     cols = client.list_collections()
     if not cols:
         return {}
@@ -164,7 +167,9 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
     try:
         import chromadb
 
-        client = chromadb.PersistentClient(path=str(db))
+        client = chromadb.PersistentClient(
+            path=str(db), settings=chroma_client_settings()
+        )
         cols = client.list_collections()
         checks.append(
             _check("chroma_open", bool(cols), f"collections={[c.name for c in cols]}")

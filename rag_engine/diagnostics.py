@@ -7,7 +7,13 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
-from rag_engine.config import library_root, load_registry, persist_dir, track_file
+from rag_engine.config import (
+    chroma_client_settings,
+    library_root,
+    load_registry,
+    persist_dir,
+    track_file,
+)
 from rag_engine.scope_rules import explain_alias, explain_path_assignment
 
 
@@ -40,7 +46,9 @@ def _chroma_metas_readonly() -> list[dict]:
     """Open Chroma and read metadatas only (no embedding calls for get)."""
     import chromadb
 
-    client = chromadb.PersistentClient(path=str(persist_dir()))
+    client = chromadb.PersistentClient(
+        path=str(persist_dir()), settings=chroma_client_settings()
+    )
     cols = client.list_collections()
     if not cols:
         return []

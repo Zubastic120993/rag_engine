@@ -5,6 +5,14 @@ langchain-ollama==0.2.1
 langchain-chroma==0.1.4
 langchain-text-splitters==0.3.4
 chromadb==0.5.23
+# chromadb 0.5.23's telemetry client calls posthog the pre-6.0 way —
+# posthog.capture(distinct_id, event, properties), 3 positional args.
+# posthog 6.0.0 changed that signature to capture(event, **kwargs), which
+# makes every chromadb call crash-and-log ("Failed to send telemetry event
+# ...: capture() takes 1 positional argument but 3 were given"). Pin below
+# the break. Remove this pin once chromadb ships a release built against
+# posthog>=6.
+posthog<6.0.0
 ollama==0.3.1
 tenacity==9.0.0
 numpy>=1.26.0

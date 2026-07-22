@@ -14,6 +14,7 @@ from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
 
 from rag_engine.config import (
+    chroma_client_settings,
     default_k,
     embed_model,
     known_scopes,
@@ -139,6 +140,7 @@ def _get_db() -> Chroma:
     return Chroma(
         persist_directory=str(persist_dir()),
         embedding_function=embeddings,
+        client_settings=chroma_client_settings(),
     )
 
 
