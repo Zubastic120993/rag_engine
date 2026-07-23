@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import sys
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -57,6 +59,116 @@ def _tracker_paths() -> list[str]:
             for p in meta.get("paths") or []:
                 paths.append(str(p).replace("\\", "/"))
     return paths
+
+
+class _ProbeEmbeddings:
+    """Deterministic, dependency-free embedding stub for the persistence
+    probe below — no Ollama needed, and a fixed dimension so it never
+    collides with the real collection's real embedding vectors (it lives in
+    its own collection anyway)."""
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        return [[0.1] * 8 for _ in texts]
+
+    def embed_query(self, text: str) -> list[float]:
+        return [0.1] * 8
+
+
+_PROBE_COLLECTION = "rag_engine_doctor_probe"
+
+
+def _check_cross_process_persistence() -> dict[str, Any]:
+    """The only check in this file that would have caught the is_persistent
+    regression (chroma_client_settings() silently defaulting to an in-memory
+    backend): every other check here opens Chroma via chromadb.PersistentClient
+    directly, which forces is_persistent=True regardless of the Settings it's
+    given — so none of them ever exercised the vulnerable code path, which is
+    langchain_chroma.Chroma(client_settings=...) as used by ingest.py/query.py.
+
+    Write a probe document in a genuinely separate OS process (matching the
+    real ingest.py/query.py construction exactly), then read it back from
+    this process. A same-process check cannot catch this: the whole failure
+    mode is data that verifies fine within the process that wrote it and
+    vanishes the moment that process exits.
+
+    Runs entirely in its own tempfile.mkdtemp() directory, never in the real
+    persist_dir(). Doctor must be safe to run at any time, and a crash
+    mid-probe (subprocess timeout, an exception between write and cleanup)
+    must not leave debris in the live index. This also sidesteps a separate,
+    already-confirmed issue: Chroma.delete_collection() does not remove the
+    collection's on-disk HNSW segment directory, so cleanup here is just
+    deleting the whole temp directory afterward rather than trying to
+    reverse individual chromadb operations."""
+    import shutil
+    import tempfile
+
+    probe_dir = Path(tempfile.mkdtemp(prefix="rag_engine_doctor_probe_"))
+    probe_id = str(uuid.uuid4())
+    try:
+        write_script = (
+            "from langchain_chroma import Chroma\n"
+            "from langchain_core.documents import Document\n"
+            "from rag_engine.config import chroma_client_settings\n"
+            "from rag_engine.doctor import _ProbeEmbeddings, _PROBE_COLLECTION\n"
+            "db = Chroma(\n"
+            f"    persist_directory={str(probe_dir)!r},\n"
+            "    collection_name=_PROBE_COLLECTION,\n"
+            "    embedding_function=_ProbeEmbeddings(),\n"
+            "    client_settings=chroma_client_settings(),\n"
+            ")\n"
+            "db.add_documents(\n"
+            '    [Document(page_content="doctor persistence probe", metadata={"probe": True})],\n'
+            f"    ids=[{probe_id!r}],\n"
+            ")\n"
+        )
+        try:
+            proc = subprocess.run(
+                [sys.executable, "-c", write_script],
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+        except Exception as e:  # noqa: BLE001
+            return _check(
+                "cross_process_persistence",
+                False,
+                f"probe write subprocess errored: {e}",
+            )
+        if proc.returncode != 0:
+            return _check(
+                "cross_process_persistence",
+                False,
+                f"probe write subprocess failed: {proc.stderr.strip()[:300]}",
+            )
+
+        from langchain_chroma import Chroma
+
+        try:
+            db = Chroma(
+                persist_directory=str(probe_dir),
+                collection_name=_PROBE_COLLECTION,
+                embedding_function=_ProbeEmbeddings(),
+                client_settings=chroma_client_settings(),
+            )
+            got = db.get(ids=[probe_id])
+            found = probe_id in (got.get("ids") or [])
+        except Exception as e:  # noqa: BLE001
+            return _check("cross_process_persistence", False, f"probe read failed: {e}")
+    finally:
+        shutil.rmtree(probe_dir, ignore_errors=True)
+
+    if found:
+        return _check(
+            "cross_process_persistence",
+            True,
+            "probe written in a separate process was read back correctly",
+        )
+    return _check(
+        "cross_process_persistence",
+        False,
+        "probe written in a separate process was NOT visible here — "
+        "chroma_client_settings()/is_persistent regression",
+    )
 
 
 def _chroma_source_collections() -> dict[str, set[str]]:
@@ -176,6 +288,8 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
         )
     except Exception as e:  # noqa: BLE001
         checks.append(_check("chroma_open", False, str(e)))
+
+    checks.append(_check_cross_process_persistence())
 
     tf = track_file()
     try:

@@ -24,10 +24,26 @@ def chroma_client_settings():
     opens a Chroma client/collection. requirements.txt pins posthog<6.0.0
     so this flag is actually honored (posthog>=6.0.0 changed capture()'s
     signature in a way chromadb 0.5.23 doesn't call it, which crashed every
-    chromadb call regardless of this setting — see the pin's comment)."""
+    chromadb call regardless of this setting — see the pin's comment).
+
+    is_persistent=True is required here, not optional. chromadb.Settings
+    defaults it to False, which routes chromadb/db/impl/sqlite.py's SqliteDB
+    to an in-memory "file::memory:?cache=shared" connection instead of the
+    real persist_directory — silently, with no error. chromadb.PersistentClient()
+    forces is_persistent=True itself regardless of what's passed in, so
+    doctor.py/diagnostics.py (which call it directly) were never affected.
+    But langchain_chroma.Chroma(client_settings=...) does NOT force it — it
+    only copies persist_directory onto whatever Settings object it's given
+    and leaves is_persistent at the object's own default. Every call site
+    that passes chroma_client_settings() as client_settings to
+    langchain_chroma.Chroma (ingest.py, query.py, backfill_collections.py)
+    was therefore silently writing to and reading from a throwaway in-memory
+    database — one that verifies correctly within the same process (so
+    _verify_ids() never caught it) but vanishes the moment the process
+    exits, leaving the real on-disk index untouched and stale."""
     import chromadb
 
-    return chromadb.config.Settings(anonymized_telemetry=False)
+    return chromadb.config.Settings(anonymized_telemetry=False, is_persistent=True)
 
 
 SKIP_DIR_PARTS = (
