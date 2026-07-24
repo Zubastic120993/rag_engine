@@ -29,7 +29,7 @@ scopes:
     description: MAN/Everllence ME-C engine manuals (G50ME-C etc.)
     hermes_aliases: []
     path_prefixes: []
-    path_hints: ["ME-C", "G50ME", "ME-C9", "MEC"]
+    path_hints: ["ME-C", "G50ME"]
   sms:
     description: Company SMS / IMM procedures
     hermes_aliases: [sms_library]
