@@ -417,6 +417,48 @@ def test_doctor_skip_ollama_runs(scopes_yaml, tmp_path, monkeypatch):
     assert "index_fingerprint" in names
 
 
+def test_coverage_gap_walk_matches_ingest_walk(scopes_yaml, tmp_path):
+    """doctor.py's coverage_gap walk must agree with ingest.py's own walk on
+    what counts as a candidate file — they now share one code path
+    (os_walk_filtered()/should_skip_dir()) instead of doctor keeping a
+    separate, narrower, exact-name-only skip list that could drift out of
+    sync (as it did: it missed substring-matched dirs like a "_Backup_..."
+    folder, undercounting real coverage by 112 files in production)."""
+    from rag_engine.config import library_root
+    from rag_engine.doctor import run_doctor
+    from rag_engine.ingest import os_walk_filtered
+
+    root = library_root()
+    (root / "90_CE_Wiki").mkdir(parents=True, exist_ok=True)
+    (root / "90_CE_Wiki" / "real_note.md").write_text("content", encoding="utf-8")
+
+    # Substring-matched skip dir: NOT an exact "_Backup" name, so doctor's
+    # old hand-rolled skip list (checking `d not in {"_Backup", ...}`) would
+    # have walked straight into it; should_skip_dir() catches it.
+    backup_dir = root / "90_CE_Wiki" / "_Backup_before_something_20260101"
+    backup_dir.mkdir(parents=True)
+    (backup_dir / "old_note.md").write_text("stale", encoding="utf-8")
+
+    # Exact-name skip dir already covered before this fix.
+    (root / "Tools").mkdir()
+    (root / "Tools" / "vendored.md").write_text("vendor", encoding="utf-8")
+
+    expected_files = [
+        fn
+        for dirpath, _, filenames in os_walk_filtered(root)
+        for fn in filenames
+        if fn.lower().endswith((".pdf", ".md"))
+    ]
+    assert "real_note.md" in expected_files
+    assert "old_note.md" not in expected_files
+    assert "vendored.md" not in expected_files
+
+    report = run_doctor(skip_ollama=True)
+    cov = next(c for c in report["checks"] if c["name"] == "coverage_gap")
+    scanned = int(cov["detail"].split("scanned=")[1])
+    assert scanned == len(expected_files)
+
+
 def test_explain_alias(scopes_yaml):
     from rag_engine.scope_rules import explain_alias
 

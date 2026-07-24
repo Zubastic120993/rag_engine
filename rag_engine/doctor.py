@@ -26,6 +26,7 @@ from rag_engine.config import (
     track_file,
 )
 from rag_engine.fingerprint import compare_fingerprint, fingerprint_path
+from rag_engine.ingest import os_walk_filtered
 from rag_engine.scope_rules import RegistryError, validate_registry
 from rag_engine.text import is_valid_pdf
 
@@ -349,20 +350,16 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
 
     # coverage gap: PDFs/md under library not in tracker (sampled count).
     # invalid_pdf: files with a .pdf extension whose bytes are not a real PDF.
+    # Walks via os_walk_filtered()/should_skip_dir() — the exact same predicate
+    # ingest.py uses to decide what's a candidate — so this never flags a
+    # directory ingest itself would never have considered (see test_hardening's
+    # test_coverage_gap_walk_matches_ingest_walk for the guard against drift).
     tracked = set(paths)
     unindexed = 0
     scanned = 0
     invalid_pdfs: list[str] = []
     try:
-        for dirpath, dirnames, filenames in os.walk(root):
-            # skip .rag_db etc
-            dirnames[:] = [
-                d
-                for d in dirnames
-                if d not in {".rag_db", ".obsidian", "_Inbox", "_Backup"}
-            ]
-            if "/.rag_db" in dirpath.replace("\\", "/"):
-                continue
+        for dirpath, dirnames, filenames in os_walk_filtered(root):
             for fn in filenames:
                 low = fn.lower()
                 if not low.endswith((".pdf", ".md")):
