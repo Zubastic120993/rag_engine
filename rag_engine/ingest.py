@@ -32,6 +32,24 @@ from rag_engine.lock import ingest_lock
 from rag_engine.text import is_valid_pdf, normalize_text
 
 
+class ExtractionError(RuntimeError):
+    """The document loader raised while extracting text (encrypted, corrupt,
+    truncated, missing decoder dependency, ...). Distinct from a loader that
+    succeeds but yields zero usable chunks (see the "empty" extraction state
+    below) — this is counted separately (F-02)."""
+
+
+def extraction_state(meta: dict) -> str:
+    """Canonical reader for a tracker entry's extraction outcome.
+
+    Only entries written from F-02 onward carry this field. The 1,673 entries
+    that predate it have no key at all — absent must read as "unknown", never
+    as "ok": a missing field is not evidence the extraction succeeded, only
+    that it happened before this field existed.
+    """
+    return str(meta.get("extraction") or "unknown")
+
+
 def _load_tracker() -> dict:
     tf = track_file()
     if tf.exists():
@@ -131,7 +149,15 @@ def _embed_chunks(
     path: Path,
     source_rel: str,
 ) -> tuple[list[str], str, int]:
-    docs = _load_documents(path)
+    try:
+        docs = _load_documents(path)
+    except Exception as e:  # noqa: BLE001
+        # The loader raising (encrypted, corrupt, truncated, missing decoder
+        # dependency) is a different failure class from a loader that
+        # succeeds but yields no usable text — re-raised as a distinct type
+        # so the caller counts it separately instead of merging it into
+        # "empty extraction" (F-02).
+        raise ExtractionError(f"{type(e).__name__}: {e}") from e
     collection = collection_from_relpath(source_rel)
     for d in docs:
         d.metadata["source"] = source_rel
@@ -237,7 +263,7 @@ def _ingest_new_hash(
     source_rel: str,
     digest: str,
     force: bool,
-) -> str:
+) -> tuple[str, int]:
     old_digest = path_to_hash.get(source_rel)
     old_ids: list[str] = []
     sole_owner = False
@@ -273,10 +299,18 @@ def _ingest_new_hash(
         "chunk_ids": ids,
         "ingested_at": datetime.now(timezone.utc).isoformat(),
         "collection": collection,
+        # Explicit state, not inferred from chunk_ids elsewhere: "ok" or
+        # "empty" so a zero-chunk document is queryable as a known outcome
+        # instead of silently indistinguishable from "ingested fine" (F-02).
+        # Entries written before this field existed have no key at all —
+        # see extraction_state()'s docstring for why that must read as
+        # "unknown", not "ok".
+        "extraction": "ok" if n else "empty",
     }
     path_to_hash[source_rel] = digest
     _save_tracker(tracker)
-    return f"{n:4d} chunks  [{collection}]  NEW  {source_rel}"
+    label = "NEW" if n else "NEW (empty extraction)"
+    return f"{n:4d} chunks  [{collection}]  {label}  {source_rel}", n
 
 
 def run_ingest(force: bool = False, max_new: int | None = None) -> None:
@@ -307,6 +341,8 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
 
     new_count = 0
     invalid_pdfs = 0
+    zero_chunk_count = 0
+    extraction_errors = 0
     for i, (path, rel) in enumerate(docs, 1):
         try:
             # A .pdf that does not start with %PDF is a fake (saved HTML,
@@ -328,22 +364,33 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
                 print(f"[{i}/{len(docs)}]    0 chunks  SKIP  {rel}")
                 continue
 
-            msg = _ingest_new_hash(
+            msg, n = _ingest_new_hash(
                 db, tracker, path_to_hash, path, rel, digest, force
             )
             print(f"[{i}/{len(docs)}] {msg}")
             new_count += 1
+            if n == 0:
+                zero_chunk_count += 1
             gc.collect()
             if max_new and new_count >= max_new:
                 print(f"Reached max-new={max_new}; exiting for clean resume.")
                 break
+        except ExtractionError as e:
+            # The loader raised rather than returning empty — a different,
+            # separately-counted class from zero-chunk extraction (F-02). No
+            # tracker entry is written, so this file is retried next run,
+            # same as before this repair.
+            extraction_errors += 1
+            print(f"[{i}/{len(docs)}] EXTRACTION_ERROR  {rel}: {e}")
+            gc.collect()
         except Exception as e:
             print(f"[{i}/{len(docs)}] FAILED  {rel}: {e}")
             gc.collect()
 
     print(
         f"Batch done. {len(tracker)} unique hashes → {persist_dir()} "
-        f"(new this run: {new_count}; invalid PDFs skipped: {invalid_pdfs})"
+        f"(new this run: {new_count}; invalid PDFs skipped: {invalid_pdfs}; "
+        f"zero-chunk extraction: {zero_chunk_count}; extraction errors: {extraction_errors})"
     )
     # Write the fingerprint only when embeddings actually changed (or on the
     # first run when none exists yet), so its mtime reflects the index build
