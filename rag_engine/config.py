@@ -46,18 +46,43 @@ def chroma_client_settings():
     return chromadb.config.Settings(anonymized_telemetry=False, is_persistent=True)
 
 
-SKIP_DIR_PARTS = (
+# F-06: two match tiers, both case-insensitive and scoped to a single path
+# *component* (never a raw substring of the joined path string -- that let
+# "Tools" match anything containing "tools" anywhere, including across
+# unrelated path segments).
+#
+# EXACT tier: the component must equal the entry. These are fixed,
+# known directory names (repo/tool folders, hidden dirs, the audit vault
+# roots) with no legitimate reason to match a longer name that merely
+# contains them -- e.g. a real content folder should never be excluded
+# just because its name happens to contain the substring "venv".
+SKIP_DIR_PARTS_EXACT = (
     ".rag_db",
     ".obsidian",
     "_Inbox",
-    "_Backup",
-    "/Graph",
     "Tools",
     "venv",
     "rag_env",
     ".git",
     "30_Knowledge",
     "_retired",
+)
+
+# SUBSTRING tier: the component only needs to *contain* the entry.
+# Kept deliberately narrow to two entries whose current behaviour depends
+# on catching name variants, confirmed by the F-06 census (see
+# F06_skip_dir_case_sensitivity_20260727.md):
+#   - "_Backup": also needs to catch timestamped/prefixed snapshot dirs
+#     like "_Backup_before_equipment_index_update_20260719_162612" and
+#     "Tools_Backups" (redundant with the Tools entry, kept for clarity).
+#   - "Graph": also needs to catch "graphify-out" (a different tool's
+#     output folder), not just Obsidian's own "Graph" cache dir -- this
+#     replaces the old "/Graph" leading-slash hack, which relied on
+#     substring-of-the-whole-path semantics to fake component matching
+#     and still missed graphify-out's different casing.
+SKIP_DIR_PARTS_SUBSTRING = (
+    "_Backup",
+    "Graph",
 )
 
 
@@ -217,5 +242,25 @@ def wiki_extensions() -> set[str]:
 
 
 def should_skip_dir(dirpath: str) -> bool:
-    path = dirpath.replace("\\", "/")
-    return any(part in path for part in SKIP_DIR_PARTS)
+    """Case-insensitive, per-path-component match (F-06).
+
+    Case-sensitive substring-of-the-whole-path matching under- and
+    over-excluded at once: it missed "graphify-out" (different case from
+    the "/Graph" entry) while also silently matching any component that
+    merely *contained* an entry's text, anywhere in the joined path
+    string, not just as a distinct folder name. Splitting into components
+    first and matching each one individually (exact for fixed directory
+    names, substring only for the two entries that need it -- see the
+    tier comments above) fixes both without changing any currently-correct
+    exclusion.
+    """
+    parts = [p for p in dirpath.replace("\\", "/").split("/") if p]
+    exact = {e.lower() for e in SKIP_DIR_PARTS_EXACT}
+    substrings = [s.lower() for s in SKIP_DIR_PARTS_SUBSTRING]
+    for part in parts:
+        lower = part.lower()
+        if lower in exact:
+            return True
+        if any(s in lower for s in substrings):
+            return True
+    return False
