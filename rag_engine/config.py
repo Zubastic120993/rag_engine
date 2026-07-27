@@ -56,6 +56,8 @@ SKIP_DIR_PARTS = (
     "venv",
     "rag_env",
     ".git",
+    "30_Knowledge",
+    "_retired",
 )
 
 
