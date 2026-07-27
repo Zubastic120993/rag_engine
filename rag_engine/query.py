@@ -68,6 +68,15 @@ def suggest_score_max() -> float:
     return float(os.environ.get("RAG_SUGGEST_SCORE_MAX", "1.2"))
 
 
+def conservative_result_score_max() -> float:
+    """Stricter threshold for converting retrieval into source-preserving success.
+
+    This must be tighter than alternate-scope suggestion: preserving sources as
+    an `ok` result is stronger than merely hinting that another scope may help.
+    """
+    return float(os.environ.get("RAG_CONSERVATIVE_RESULT_SCORE_MAX", "0.7"))
+
+
 def _round_s(seconds: float | None) -> float | None:
     if seconds is None:
         return None
@@ -233,6 +242,60 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
             }
         )
     return sources
+
+
+_SOURCE_ONLY_PATTERNS = (
+    re.compile(r"\bfind the manual\b"),
+    re.compile(r"\bfind the document\b"),
+    re.compile(r"\blocate the document\b"),
+    re.compile(r"\bshow the source\b"),
+    re.compile(r"\bshow source details\b"),
+    re.compile(r"\breturn source details only\b"),
+    re.compile(r"\bsource details only\b"),
+    re.compile(r"\bsource only\b"),
+    re.compile(r"\bwhich document\b"),
+    re.compile(r"\bwhere is this manual\b"),
+)
+
+
+def is_source_only_query(question: str) -> bool:
+    """Narrow intent detector for document-locator / source-only queries."""
+    q = normalize_text(question or "").lower()
+    return any(p.search(q) for p in _SOURCE_ONLY_PATTERNS)
+
+
+def best_distance(pairs: list[tuple[Any, float]]) -> float | None:
+    if not pairs:
+        return None
+    return min(float(score) for _, score in pairs)
+
+
+def single_source_consensus(pairs: list[tuple[Any, float]], top_n: int = 3) -> bool:
+    """Top retrieved hits all point at the same concrete source path."""
+    top = pairs[: max(1, top_n)]
+    if not top:
+        return False
+    paths = [str((doc.metadata or {}).get("source", "")).strip() for doc, _ in top]
+    return bool(paths[0]) and len(set(paths)) == 1
+
+
+def retrieval_is_conservative_success(pairs: list[tuple[Any, float]]) -> bool:
+    """Strong enough retrieval evidence to preserve sources without detail claims."""
+    distance = best_distance(pairs)
+    if distance is None:
+        return False
+    return distance <= conservative_result_score_max() and single_source_consensus(
+        pairs, top_n=min(3, len(pairs))
+    )
+
+
+def build_source_only_answer(sources: list[dict], resolved: str | None) -> str | None:
+    """Deterministic source-only response built from retrieval metadata only."""
+    if not sources:
+        return None
+    if resolved:
+        return f"Relevant document found in scope {resolved}. See listed source pages."
+    return "Relevant document found. See listed source pages."
 
 
 def suggest_other_scopes(
@@ -451,6 +514,22 @@ def answer(
         )
 
     sources = _sources_from_pairs(pairs)
+    conservative_success = retrieval_is_conservative_success(pairs)
+
+    if is_source_only_query(q) and conservative_success:
+        return AskResult(
+            status="ok",
+            query=q,
+            requested_scope=req,
+            resolved_scope=resolved,
+            answer=build_source_only_answer(sources, resolved),
+            sources=sources,
+            coverage="full",
+            missing_information=None,
+            timings=_timings(retrieval=retrieval_s),
+            model=chosen_model,
+        )
+
     context_parts = []
     for doc, _score in pairs:
         meta = doc.metadata or {}
@@ -505,6 +584,26 @@ def answer(
     generation_s = time.perf_counter() - t_gen
 
     if model_declared_not_in_context(raw):
+        if conservative_success:
+            return AskResult(
+                status="ok",
+                query=q,
+                requested_scope=req,
+                resolved_scope=resolved,
+                answer=(
+                    "Relevant source found; answer generation could not extract "
+                    "the requested detail. See the listed sources."
+                ),
+                sources=sources,
+                coverage="full",
+                missing_information=None,
+                timings=_timings(
+                    retrieval=retrieval_s,
+                    generation_primary=generation_s,
+                    generation=generation_s,
+                ),
+                model=chosen_model,
+            )
         # Chunks were retrieved but do not answer the question.
         return AskResult(
             status="no_coverage",

@@ -130,6 +130,60 @@ def test_not_in_context_sentinel_is_no_coverage(scopes_yaml):
     assert r.hint
 
 
+def test_source_only_query_bypasses_llm_when_retrieval_is_strong(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [(_fake_doc(path="10_Company/manual.pdf", page=3), 0.4)]
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with patch("rag_engine.query._get_llm") as llm:
+            r = answer("return source details only for the manual", scope="sms")
+
+    llm.assert_not_called()
+    assert r.status == "ok"
+    assert r.coverage == "full"
+    assert r.answer == "Relevant document found in scope sms. See listed source pages."
+    assert len(r.sources) == 1
+    assert r.sources[0]["path"] == "10_Company/manual.pdf"
+
+
+def test_not_in_context_with_single_source_consensus_preserves_sources(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [
+        (_fake_doc(path="10_Company/manual.pdf", page=1), 0.4),
+        (_fake_doc(path="10_Company/manual.pdf", page=2), 0.5),
+        (_fake_doc(path="10_Company/manual.pdf", page=3), 0.6),
+    ]
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with _patch_llm_response("NOT_IN_CONTEXT"):
+            r = answer("What is the procedure detail?", scope="sms")
+
+    assert r.status == "ok"
+    assert r.coverage == "full"
+    assert (
+        r.answer
+        == "Relevant source found; answer generation could not extract the requested detail. See the listed sources."
+    )
+    assert len(r.sources) == 3
+
+
+def test_not_in_context_with_conflicting_sources_stays_no_coverage(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [
+        (_fake_doc(path="10_Company/manual_a.pdf", page=1), 0.4),
+        (_fake_doc(path="10_Company/manual_b.pdf", page=2), 0.5),
+        (_fake_doc(path="10_Company/manual_a.pdf", page=3), 0.6),
+    ]
+    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+        with _patch_llm_response("NOT_IN_CONTEXT"):
+            r = answer("What is the procedure detail?", scope="sms")
+
+    assert r.status == "no_coverage"
+    assert r.coverage == "none"
+    assert r.to_json()["sources"] == []
+
+
 def test_not_in_context_detection_is_first_line_only(scopes_yaml):
     from rag_engine.query import model_declared_not_in_context
 
