@@ -31,13 +31,17 @@ EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_NO_COVERAGE = 2
 
-# v4 (F-18): added retrieval_evidence + gate, both populated regardless of
-# status. Additive only -- every v3 field keeps its exact existing name,
-# meaning, and population rule (including sources[], still emptied on any
-# non-"ok" status). v3: sources[].score renamed to sources[].distance
-# (Chroma L2 distance, lower = more relevant). v2: plain-text generation,
-# no partial_coverage.
-SCHEMA_VERSION = 4
+# F-18 added retrieval_evidence + gate, both populated regardless of status.
+# No SCHEMA_VERSION bump: purely additive -- every v3 field keeps its exact
+# existing name, meaning, and population rule (including sources[], still
+# emptied on any non-"ok" status). A consumer that ignores unknown keys
+# needs no version signal for this kind of change. Reverted from v4 after
+# closeout found ~/.hermes/plugins/ce-rag's own test suite pinned a
+# schema_version fixture to 3 and broke on the bump -- its production
+# code path never reads schema_version at all (fails open, not a live
+# break), but the test regression was real. v3: sources[].score renamed
+# to sources[].distance. v2: plain-text generation, no partial_coverage.
+SCHEMA_VERSION = 3
 
 DEFAULT_NO_COVERAGE_HINT = (
     "No supporting chunks were found in this scope. "

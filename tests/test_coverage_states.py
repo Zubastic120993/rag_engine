@@ -101,7 +101,7 @@ def test_plain_text_answer_is_ok(scopes_yaml):
     assert r.missing_information is None
     assert len(r.sources) == 1
     j = r.to_json()
-    assert j["schema_version"] == 4
+    assert j["schema_version"] == 3
     assert j["sources"]
     assert j["status"] == "ok"
 
@@ -404,7 +404,7 @@ def test_json_contract_ok_payload(scopes_yaml):
             j = answer("q", scope="sms").to_json()
 
     assert set(j) == CONTRACT_KEYS
-    assert j["schema_version"] == SCHEMA_VERSION == 4
+    assert j["schema_version"] == SCHEMA_VERSION == 3
     assert set(j["timings"]) == TIMING_KEYS
     assert isinstance(j["sources"], list)
     src = j["sources"][0]
@@ -424,7 +424,7 @@ def test_json_contract_no_coverage_payload(scopes_yaml):
 
     # hint is additive on no_coverage — everything else identical
     assert set(j) == CONTRACT_KEYS | {"hint"}
-    assert j["schema_version"] == 4
+    assert j["schema_version"] == 3
     assert j["status"] == "no_coverage"
     assert j["sources"] == []
     assert j["answer"] is None
