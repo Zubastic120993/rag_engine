@@ -24,6 +24,14 @@ dependencies = [
   "numpy>=1.26.0",
   "gradio==5.43.1",
   "pypdf==6.0.0",
+  # pypdf only calls into cryptography for AES-encrypted PDFs (pypdf's own
+  # setup declares it as the optional "crypto"/"full" extra, not a required
+  # dependency) -- so a bare `pypdf==6.0.0` pin here was never sufficient to
+  # reproduce AES extraction. This project's ingest pipeline treats it as a
+  # first-class, required capability now (F-11): 32 currently-indexed
+  # documents, two of them F-16 confirmed-duplicate-pair members, depend on
+  # it. Pinned explicitly rather than left implicit.
+  "cryptography==49.0.0",
   "pydantic==2.9.2",
   "python-dotenv==1.0.1",
   "requests==2.32.3",

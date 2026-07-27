@@ -1,3 +1,11 @@
+# pyproject.toml's [project.dependencies] is the single source of truth for
+# direct dependencies -- this file is kept in sync with it by hand for
+# tooling that expects a bare requirements.txt (e.g. `pip install -r`), and
+# must never be edited to add a pin pyproject.toml doesn't also carry.
+# requirements-lock.txt (generated via `uv pip compile`, hashed, every
+# transitive dependency pinned) is the actual reproducibility mechanism --
+# see F-11 in the audit vault for why a direct-only pin wasn't sufficient.
+#
 # === Core AI + RAG Framework ===
 langchain==0.3.14
 langchain-community==0.3.14
@@ -23,6 +31,7 @@ gradio==5.43.1
 
 # === PDF Handling ===
 pypdf==6.0.0
+cryptography==49.0.0
 
 # === Utilities ===
 pydantic==2.9.2
