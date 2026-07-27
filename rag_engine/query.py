@@ -31,9 +31,13 @@ EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_NO_COVERAGE = 2
 
-# v3: sources[].score renamed to sources[].distance (Chroma L2 distance,
-# lower = more relevant). v2: plain-text generation, no partial_coverage.
-SCHEMA_VERSION = 3
+# v4 (F-18): added retrieval_evidence + gate, both populated regardless of
+# status. Additive only -- every v3 field keeps its exact existing name,
+# meaning, and population rule (including sources[], still emptied on any
+# non-"ok" status). v3: sources[].score renamed to sources[].distance
+# (Chroma L2 distance, lower = more relevant). v2: plain-text generation,
+# no partial_coverage.
+SCHEMA_VERSION = 4
 
 DEFAULT_NO_COVERAGE_HINT = (
     "No supporting chunks were found in this scope. "
@@ -133,6 +137,22 @@ class AskResult:
     missing_information: str | None = None
     timings: dict[str, float | None] = field(default_factory=_empty_timings)
     model: str | None = None
+    # F-18: what retrieval actually found, independent of `sources` and its
+    # status-gated emptying below. Always reflects retrieve_with_scores()'s
+    # real output -- [] only when retrieval genuinely found nothing (or
+    # never ran, e.g. empty_question / a retrieval-stage error), never
+    # emptied just because the final status ended up non-"ok". This is what
+    # tells "retrieval found nothing" apart from "retrieval found weak
+    # matches and the model declined" -- indistinguishable via `sources`
+    # alone before this field existed.
+    retrieval_evidence: list[dict] = field(default_factory=list)
+    # F-18: which internal gate produced a non-"ok" status. None for "ok"
+    # (nothing to explain) and left unset only where no gate exists yet to
+    # attribute a status to (there is currently no such case, but the type
+    # stays optional rather than assuming every future non-"ok" path names
+    # one). See the gate name -> meaning table in
+    # F18_cli_hides_retrieval_evidence_20260727.md.
+    gate: str | None = None
 
     def to_json(self) -> dict[str, Any]:
         keep_sources = self.status in _STATUSES_WITH_SOURCES
@@ -146,6 +166,8 @@ class AskResult:
             "answer": self.answer,
             "missing_information": self.missing_information,
             "sources": self.sources if keep_sources else [],
+            "retrieval_evidence": self.retrieval_evidence,
+            "gate": self.gate,
             "timings": self.timings or _empty_timings(),
             "model": self.model,
         }
@@ -491,6 +513,8 @@ def answer(
             hint=DEFAULT_NO_COVERAGE_HINT,
             timings=_timings(),
             model=chosen_model,
+            retrieval_evidence=[],
+            gate="empty_question",
         )
 
     retrieval_s: float | None = None
@@ -508,6 +532,8 @@ def answer(
             error=str(e),
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
+            retrieval_evidence=[],
+            gate="retrieval_timeout",
         )
     except Exception as e:  # noqa: BLE001
         return AskResult(
@@ -519,6 +545,8 @@ def answer(
             error=str(e),
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
+            retrieval_evidence=[],
+            gate="retrieval_error",
         )
 
     if not pairs:
@@ -533,6 +561,8 @@ def answer(
             hint=_no_coverage_hint(q, resolved, suggest_scopes),
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
+            retrieval_evidence=[],
+            gate="no_retrieval_results",
         )
 
     sources = _sources_from_pairs(pairs)
@@ -550,6 +580,8 @@ def answer(
             missing_information=None,
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
+            retrieval_evidence=sources,
+            gate=None,
         )
 
     context_parts = []
@@ -585,6 +617,8 @@ def answer(
                 generation=generation_s,
             ),
             model=chosen_model,
+            retrieval_evidence=sources,
+            gate="generation_timeout",
         )
     except Exception as e:  # noqa: BLE001
         generation_s = time.perf_counter() - t_gen
@@ -602,6 +636,8 @@ def answer(
                 generation=generation_s,
             ),
             model=chosen_model,
+            retrieval_evidence=sources,
+            gate="generation_error",
         )
     generation_s = time.perf_counter() - t_gen
 
@@ -625,8 +661,14 @@ def answer(
                     generation=generation_s,
                 ),
                 model=chosen_model,
+                retrieval_evidence=sources,
+                gate=None,
             )
-        # Chunks were retrieved but do not answer the question.
+        # Chunks were retrieved but do not answer the question. This is the
+        # ambiguous case F-18 exists for: `sources` empties per the status
+        # rule below, exactly like the zero-retrieval no_coverage above --
+        # `retrieval_evidence` + `gate="not_in_context_weak_evidence"` are
+        # what let a caller tell the two apart.
         return AskResult(
             status="no_coverage",
             query=q,
@@ -642,6 +684,8 @@ def answer(
                 generation=generation_s,
             ),
             model=chosen_model,
+            retrieval_evidence=sources,
+            gate="not_in_context_weak_evidence",
         )
 
     ans = clean_answer_text(raw)
@@ -660,6 +704,8 @@ def answer(
                 generation=generation_s,
             ),
             model=chosen_model,
+            retrieval_evidence=sources,
+            gate="empty_model_response",
         )
 
     return AskResult(
@@ -677,4 +723,6 @@ def answer(
             generation=generation_s,
         ),
         model=chosen_model,
+        retrieval_evidence=sources,
+        gate=None,
     )

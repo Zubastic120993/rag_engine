@@ -101,7 +101,7 @@ def test_plain_text_answer_is_ok(scopes_yaml):
     assert r.missing_information is None
     assert len(r.sources) == 1
     j = r.to_json()
-    assert j["schema_version"] == 3
+    assert j["schema_version"] == 4
     assert j["sources"]
     assert j["status"] == "ok"
 
@@ -377,6 +377,8 @@ CONTRACT_KEYS = {
     "answer",
     "missing_information",
     "sources",
+    "retrieval_evidence",  # F-18: additive, always populated
+    "gate",  # F-18: additive, non-None only on a non-"ok" status
     "timings",
     "model",
     "scope",  # legacy convenience field
@@ -402,11 +404,14 @@ def test_json_contract_ok_payload(scopes_yaml):
             j = answer("q", scope="sms").to_json()
 
     assert set(j) == CONTRACT_KEYS
-    assert j["schema_version"] == SCHEMA_VERSION == 3
+    assert j["schema_version"] == SCHEMA_VERSION == 4
     assert set(j["timings"]) == TIMING_KEYS
     assert isinstance(j["sources"], list)
     src = j["sources"][0]
     assert set(src) == {"path", "page", "collection", "distance"}
+    # F-18: "ok" is not a gated status — nothing to explain.
+    assert j["gate"] is None
+    assert j["retrieval_evidence"] == j["sources"]
 
 
 def test_json_contract_no_coverage_payload(scopes_yaml):
@@ -419,10 +424,17 @@ def test_json_contract_no_coverage_payload(scopes_yaml):
 
     # hint is additive on no_coverage — everything else identical
     assert set(j) == CONTRACT_KEYS | {"hint"}
-    assert j["schema_version"] == 3
+    assert j["schema_version"] == 4
     assert j["status"] == "no_coverage"
     assert j["sources"] == []
     assert j["answer"] is None
+    # F-18: this is exactly the case the finding was about — a chunk was
+    # retrieved (weak match, model declined) and `sources` still empties
+    # per the existing status rule, but `retrieval_evidence` now carries
+    # what was actually found, and `gate` names why.
+    assert j["retrieval_evidence"] != []
+    assert j["retrieval_evidence"][0]["path"] == "10_Company/a.pdf"
+    assert j["gate"] == "not_in_context_weak_evidence"
 
 
 def test_json_contract_error_payload(scopes_yaml):
@@ -436,6 +448,7 @@ def test_json_contract_error_payload(scopes_yaml):
     assert set(j) == CONTRACT_KEYS | {"error"}
     assert j["status"] == "error"
     assert j["error"]
+    assert j["gate"] == "empty_model_response"
 
 
 def test_exit_codes_unchanged():

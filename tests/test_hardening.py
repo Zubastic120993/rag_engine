@@ -236,7 +236,7 @@ def test_nfkc_query_same_as_ingest_and_idempotent():
 def test_json_contract_schema_version_and_scopes(scopes_yaml):
     from rag_engine.query import AskResult, SCHEMA_VERSION
 
-    assert SCHEMA_VERSION == 3
+    assert SCHEMA_VERSION == 4  # F-18: retrieval_evidence + gate added, additive
 
     r = AskResult(
         status="ok",
