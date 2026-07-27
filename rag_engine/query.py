@@ -77,6 +77,21 @@ def conservative_result_score_max() -> float:
     return float(os.environ.get("RAG_CONSERVATIVE_RESULT_SCORE_MAX", "0.7"))
 
 
+def retrieval_search_width() -> int:
+    """How many candidates to actually query Chroma for (F-17).
+
+    hnswlib's search_ef is fixed at index-construction time (10, this store's
+    default) and is never revisited per query; requesting n_results > ef forces
+    the underlying search to widen regardless (confirmed against installed
+    chromadb source, round 7). Recall@5 measured against exact brute-force
+    ground truth over the full corpus plateaus at this width (round 7 §3,
+    round 8). Querying at this width and truncating to the caller's k — done
+    in retrieve_with_scores, never here alone — is what actually changes
+    ranking quality; this constant only sets how wide that internal query is.
+    """
+    return int(os.environ.get("RAG_RETRIEVAL_SEARCH_WIDTH", "400"))
+
+
 def _round_s(seconds: float | None) -> float | None:
     if seconds is None:
         return None
@@ -205,15 +220,22 @@ def retrieve_with_scores(
 ) -> list[tuple[Any, float]]:
     db = _get_db()
     k = default_k() if k is None else k
+    # Query wide (F-17: hnswlib recall is width-bound, not just ef-bound — see
+    # retrieval_search_width()), but truncate to k before returning. Callers
+    # (answer()'s sources, LLM context, conservative-success check) must never
+    # see more than k candidates — only ranking quality should change, not
+    # how many chunks reach the context.
+    search_k = max(k, retrieval_search_width())
     q = normalize_text(question)
 
     def _call():
-        kwargs: dict[str, Any] = {"k": k}
+        kwargs: dict[str, Any] = {"k": search_k}
         if scope:
             kwargs["filter"] = {"collection": scope}
         return db.similarity_search_with_score(q, **kwargs)
 
-    return _run_with_timeout(_call)
+    results = _run_with_timeout(_call)
+    return results[:k]
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):
