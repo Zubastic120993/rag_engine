@@ -1,0 +1,6 @@
+[2026-07-28T11:40:08.058649Z] verified backup path: /Users/vladymyrzub/CE_Library/Tools/rag_engine/backups/rag_db_backup_20260728T112214Z
+[2026-07-28T11:40:08.058829Z] proposed restore path: /private/tmp/rag_engine_restore_test
+[2026-07-28T11:40:08.059158Z] resolved python executable: /Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python
+[2026-07-28T11:40:08.059229Z] PYTHONPATH value inside isolated runtime: ''
+[2026-07-28T11:40:08.059585Z] script sha256: 6be90f2b58af01be2b4acadb63d1f262fd6dc88e145c4ca14b8b2bc083fcc329  /private/tmp/rag_engine_restore_test/scripts/restore_validate.py
+[2026-07-28T11:40:21.618283Z] copy command: rsync -a /Users/vladymyrzub/CE_Library/Tools/rag_engine/backups/rag_db_backup_20260728T112214Z/data/ /private/tmp/rag_engine_restore_test/restored_db/

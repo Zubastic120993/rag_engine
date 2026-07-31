@@ -1,0 +1,8 @@
+[2026-07-31T06:59:15.677376Z] project root: /Users/vladymyrzub/CE_Library/Tools/rag_engine
+[2026-07-31T06:59:15.677753Z] production RAG path: /Users/vladymyrzub/CE_Library/.rag_db
+[2026-07-31T06:59:15.677816Z] temporary study root: /private/tmp/rag_metadata_architecture_study
+[2026-07-31T06:59:15.677860Z] resolved python executable: /Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python
+[2026-07-31T06:59:15.677950Z] PYTHONPATH value: ''
+[2026-07-31T06:59:20.702951Z] collection names: ['langchain']
+[2026-07-31T06:59:20.703079Z] chunk count: 108685
+[2026-07-31T06:59:20.703133Z] active-write result: wal=False shm=False ingest.lock=False

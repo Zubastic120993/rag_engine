@@ -1,0 +1,4 @@
+field_name,total_records,field_present_count,field_missing_count,completeness_pct,null_count,empty_string_count,distinct_count,representative_values,type_consistency,value_length_min,value_length_max,value_length_avg,malformed_count
+collection,108685,108685,0,100.0,0,0,9,me-c | me-c | me-c | me-c | me-c,"{""str"": 108685}",3,13,8.33,0
+page,108685,108685,0,100.0,0,0,2340,0 | 0 | 0 | 0 | 1,"{""int"": 108685}",,,,0
+source,108685,108685,0,100.0,0,0,1599,00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/DATA COLLECTI... | 00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/DATA COLLECTI... | 00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/DATA COLLECTI... | 00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/DATA COLLECTI... | 00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/DATA COLLECTI...,"{""str"": 108685}",20,222,78.11,0

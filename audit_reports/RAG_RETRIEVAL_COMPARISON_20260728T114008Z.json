@@ -1,0 +1,1481 @@
+{
+  "queries": [
+    {
+      "query_text": "CORR-SER-ICAF-MAN-002",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "c944fe15-ee37-4cea-b791-7065742c0b6e",
+        "41904b85-366a-4218-b209-10ab6d712ea3",
+        "d95b239d-f55c-47c3-88ca-403bb20e8fc6",
+        "3b005f9c-1d22-4b5e-aa7a-466a25743a6f",
+        "954b7ded-56e5-4352-9a69-8c9f114b81e3"
+      ],
+      "restored_source_paths": [
+        "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+        "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf",
+        "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/Manual ICAF 16209 YZJ2021-1391 JIANGSU YANGZI-MI V01-421930-5 (1).pdf",
+        "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+        "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf"
+      ],
+      "restored_page_metadata": [
+        2,
+        2,
+        11,
+        1,
+        54
+      ],
+      "production_top_k_ids": [
+        "c944fe15-ee37-4cea-b791-7065742c0b6e",
+        "41904b85-366a-4218-b209-10ab6d712ea3",
+        "d95b239d-f55c-47c3-88ca-403bb20e8fc6",
+        "3b005f9c-1d22-4b5e-aa7a-466a25743a6f",
+        "954b7ded-56e5-4352-9a69-8c9f114b81e3"
+      ],
+      "production_source_paths": [
+        "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+        "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf",
+        "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/Manual ICAF 16209 YZJ2021-1391 JIANGSU YANGZI-MI V01-421930-5 (1).pdf",
+        "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+        "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf"
+      ],
+      "production_page_metadata": [
+        2,
+        2,
+        11,
+        1,
+        54
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "c944fe15-ee37-4cea-b791-7065742c0b6e",
+          "source": "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+          "page": 2,
+          "collection": "vessels",
+          "distance": 0.44657468795776367,
+          "document_hash": "4326ceed0e10fa2bc2bec25a95960cfd91936fda6fc714f25feb6a74d6584c44",
+          "metadata_hash": "67e085114009b18bd4995a8063b3040357aa6aeb6bdf2e12afb1623cc4d3f312"
+        },
+        {
+          "id": "41904b85-366a-4218-b209-10ab6d712ea3",
+          "source": "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf",
+          "page": 2,
+          "collection": "maker-manuals",
+          "distance": 0.5688568353652954,
+          "document_hash": "42228dc049803e9f938f03a16222d527941c1284c37b6ce80d0c359ac16a12f2",
+          "metadata_hash": "4421f5bab8c82fd9af834898d0f12ceb270c017899a8723c082907b198bee699"
+        },
+        {
+          "id": "d95b239d-f55c-47c3-88ca-403bb20e8fc6",
+          "source": "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/Manual ICAF 16209 YZJ2021-1391 JIANGSU YANGZI-MI V01-421930-5 (1).pdf",
+          "page": 11,
+          "collection": "vessels",
+          "distance": 0.5801367163658142,
+          "document_hash": "1069b9c36307593e8b4f085ad87faa3f3e86fcbc64ab8c1540ff15a48c1f4183",
+          "metadata_hash": "0971f306cae7e8b89d43a6d1f673351feecb200be685504503362d8c395ffd1b"
+        },
+        {
+          "id": "3b005f9c-1d22-4b5e-aa7a-466a25743a6f",
+          "source": "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+          "page": 1,
+          "collection": "vessels",
+          "distance": 0.5908206701278687,
+          "document_hash": "99a8ef2d72e1fffbd8dd5fd22cc526237025468668b6cf813c118cc9626f80fa",
+          "metadata_hash": "da0c2f0917900d3f1c207e841b19265154498dcfbfc07dd01b648dac6468c6e2"
+        },
+        {
+          "id": "954b7ded-56e5-4352-9a69-8c9f114b81e3",
+          "source": "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf",
+          "page": 54,
+          "collection": "maker-manuals",
+          "distance": 0.6131619215011597,
+          "document_hash": "889aead3e0e1228e92ad960c2d06ce7342f993b4aa98d2149a15e5a9ac79568f",
+          "metadata_hash": "1eb8ceca33f84724e0e530c414a322eec6bb1adafc8ff6b0a5ac48749b96dd2e"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "c944fe15-ee37-4cea-b791-7065742c0b6e",
+          "source": "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+          "page": 2,
+          "collection": "vessels",
+          "distance": 0.44657468795776367,
+          "document_hash": "4326ceed0e10fa2bc2bec25a95960cfd91936fda6fc714f25feb6a74d6584c44",
+          "metadata_hash": "67e085114009b18bd4995a8063b3040357aa6aeb6bdf2e12afb1623cc4d3f312"
+        },
+        {
+          "id": "41904b85-366a-4218-b209-10ab6d712ea3",
+          "source": "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf",
+          "page": 2,
+          "collection": "maker-manuals",
+          "distance": 0.5688568353652954,
+          "document_hash": "42228dc049803e9f938f03a16222d527941c1284c37b6ce80d0c359ac16a12f2",
+          "metadata_hash": "4421f5bab8c82fd9af834898d0f12ceb270c017899a8723c082907b198bee699"
+        },
+        {
+          "id": "d95b239d-f55c-47c3-88ca-403bb20e8fc6",
+          "source": "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/Manual ICAF 16209 YZJ2021-1391 JIANGSU YANGZI-MI V01-421930-5 (1).pdf",
+          "page": 11,
+          "collection": "vessels",
+          "distance": 0.5801367163658142,
+          "document_hash": "1069b9c36307593e8b4f085ad87faa3f3e86fcbc64ab8c1540ff15a48c1f4183",
+          "metadata_hash": "0971f306cae7e8b89d43a6d1f673351feecb200be685504503362d8c395ffd1b"
+        },
+        {
+          "id": "3b005f9c-1d22-4b5e-aa7a-466a25743a6f",
+          "source": "20_Vessels/Gaschem_Europe/04_Tasks/DEF_ICAF/CORR-SER-ICAF-MAN-002.pdf",
+          "page": 1,
+          "collection": "vessels",
+          "distance": 0.5908206701278687,
+          "document_hash": "99a8ef2d72e1fffbd8dd5fd22cc526237025468668b6cf813c118cc9626f80fa",
+          "metadata_hash": "da0c2f0917900d3f1c207e841b19265154498dcfbfc07dd01b648dac6468c6e2"
+        },
+        {
+          "id": "954b7ded-56e5-4352-9a69-8c9f114b81e3",
+          "source": "00_Career/03_Engine_Knowledge/ICAF/CORR-SER-ICAF-MAN-001.pdf",
+          "page": 54,
+          "collection": "maker-manuals",
+          "distance": 0.6131619215011597,
+          "document_hash": "889aead3e0e1228e92ad960c2d06ce7342f993b4aa98d2149a15e5a9ac79568f",
+          "metadata_hash": "1eb8ceca33f84724e0e530c414a322eec6bb1adafc8ff6b0a5ac48749b96dd2e"
+        }
+      ],
+      "category": "exact identifier"
+    },
+    {
+      "query_text": "9012745 02_1",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "085ca519-cdb6-492a-9900-32106fa00bd3",
+        "9d750ad3-0f59-4c5f-a5cd-35a102690530",
+        "69710b1e-012f-40af-b3c5-04857a6489f0",
+        "f1387769-b4ef-40b0-83c6-89f1d9e47723",
+        "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f"
+      ],
+      "restored_source_paths": [
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Instruction_Book/VOLUME II.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf"
+      ],
+      "restored_page_metadata": [
+        1205,
+        131,
+        128,
+        397,
+        802
+      ],
+      "production_top_k_ids": [
+        "085ca519-cdb6-492a-9900-32106fa00bd3",
+        "9d750ad3-0f59-4c5f-a5cd-35a102690530",
+        "69710b1e-012f-40af-b3c5-04857a6489f0",
+        "f1387769-b4ef-40b0-83c6-89f1d9e47723",
+        "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f"
+      ],
+      "production_source_paths": [
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Instruction_Book/VOLUME II.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf"
+      ],
+      "production_page_metadata": [
+        1205,
+        131,
+        128,
+        397,
+        802
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "085ca519-cdb6-492a-9900-32106fa00bd3",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 1205,
+          "collection": "me-c",
+          "distance": 0.6652991771697998,
+          "document_hash": "cb91ed40621dd3a2a4d7e74ca5c6714f61b3c615716e09d3e22d1a27e2e7790b",
+          "metadata_hash": "aa7c7b34f8337c3d0e5eaf85ab06eacb700ceef56ab7e97db969d143315988ae"
+        },
+        {
+          "id": "9d750ad3-0f59-4c5f-a5cd-35a102690530",
+          "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+          "page": 131,
+          "collection": "maker-manuals",
+          "distance": 0.6847085356712341,
+          "document_hash": "a084945ef6b71011cab44a43147ec71e4af5535a5ffb56e5633f22cf21a0f8e2",
+          "metadata_hash": "550cb7a31494e47d7ada42dcdcd778e4e55dd1ee0968ff592ae679b9c1dd98d3"
+        },
+        {
+          "id": "69710b1e-012f-40af-b3c5-04857a6489f0",
+          "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+          "page": 128,
+          "collection": "maker-manuals",
+          "distance": 0.6865561008453369,
+          "document_hash": "2fa13e3bdc97d4448b05b0c720044b8fafec9176a6e9e7ac5c907a2f883d3ae4",
+          "metadata_hash": "1d6730b6c4aea2ba92ece966529f870282ea4aaa13fc845514f28fa6598015a3"
+        },
+        {
+          "id": "f1387769-b4ef-40b0-83c6-89f1d9e47723",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Instruction_Book/VOLUME II.pdf",
+          "page": 397,
+          "collection": "me-c",
+          "distance": 0.6876794695854187,
+          "document_hash": "d443b9d712be08a6496f07dd99770bfb98c6cfd05c7236267be44e694cb19c93",
+          "metadata_hash": "df63217be5b59400ab54df7a5a9cdacff3cf1db2bf6a2583f6617b62af632420"
+        },
+        {
+          "id": "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 802,
+          "collection": "me-c",
+          "distance": 0.6888629198074341,
+          "document_hash": "c2afcffd21218f3e8c8ec7984431b3698a120be54d7fe0ba4d8ef1669f1a91e0",
+          "metadata_hash": "5305a4373a5cdf02207f363d24ab118bcf9c3886747a20dfc96d67440845d572"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "085ca519-cdb6-492a-9900-32106fa00bd3",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 1205,
+          "collection": "me-c",
+          "distance": 0.6652991771697998,
+          "document_hash": "cb91ed40621dd3a2a4d7e74ca5c6714f61b3c615716e09d3e22d1a27e2e7790b",
+          "metadata_hash": "aa7c7b34f8337c3d0e5eaf85ab06eacb700ceef56ab7e97db969d143315988ae"
+        },
+        {
+          "id": "9d750ad3-0f59-4c5f-a5cd-35a102690530",
+          "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+          "page": 131,
+          "collection": "maker-manuals",
+          "distance": 0.6847085356712341,
+          "document_hash": "a084945ef6b71011cab44a43147ec71e4af5535a5ffb56e5633f22cf21a0f8e2",
+          "metadata_hash": "550cb7a31494e47d7ada42dcdcd778e4e55dd1ee0968ff592ae679b9c1dd98d3"
+        },
+        {
+          "id": "69710b1e-012f-40af-b3c5-04857a6489f0",
+          "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+          "page": 128,
+          "collection": "maker-manuals",
+          "distance": 0.6865561008453369,
+          "document_hash": "2fa13e3bdc97d4448b05b0c720044b8fafec9176a6e9e7ac5c907a2f883d3ae4",
+          "metadata_hash": "1d6730b6c4aea2ba92ece966529f870282ea4aaa13fc845514f28fa6598015a3"
+        },
+        {
+          "id": "f1387769-b4ef-40b0-83c6-89f1d9e47723",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Instruction_Book/VOLUME II.pdf",
+          "page": 397,
+          "collection": "me-c",
+          "distance": 0.6876794695854187,
+          "document_hash": "d443b9d712be08a6496f07dd99770bfb98c6cfd05c7236267be44e694cb19c93",
+          "metadata_hash": "df63217be5b59400ab54df7a5a9cdacff3cf1db2bf6a2583f6617b62af632420"
+        },
+        {
+          "id": "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 802,
+          "collection": "me-c",
+          "distance": 0.6888629198074341,
+          "document_hash": "c2afcffd21218f3e8c8ec7984431b3698a120be54d7fe0ba4d8ef1669f1a91e0",
+          "metadata_hash": "5305a4373a5cdf02207f363d24ab118bcf9c3886747a20dfc96d67440845d572"
+        }
+      ],
+      "category": "exact numeric"
+    },
+    {
+      "query_text": "Yanmar 6EY22(A)LWS",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "434076c9-8aaf-47c1-a09e-477ae3f64532",
+        "1c171eb1-6170-48c6-972f-11fe3f054185",
+        "19e8b21d-0853-4462-9e2e-e8676ec25698",
+        "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+        "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d"
+      ],
+      "restored_source_paths": [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf"
+      ],
+      "restored_page_metadata": [
+        2,
+        552,
+        72,
+        173,
+        0
+      ],
+      "production_top_k_ids": [
+        "434076c9-8aaf-47c1-a09e-477ae3f64532",
+        "1c171eb1-6170-48c6-972f-11fe3f054185",
+        "19e8b21d-0853-4462-9e2e-e8676ec25698",
+        "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+        "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d"
+      ],
+      "production_source_paths": [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf"
+      ],
+      "production_page_metadata": [
+        2,
+        552,
+        72,
+        173,
+        0
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "434076c9-8aaf-47c1-a09e-477ae3f64532",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 2,
+          "collection": "maker-manuals",
+          "distance": 0.6357784271240234,
+          "document_hash": "6dcbcee1ba7d885ea37d58dcee6f16692e28db576f15794469e29fe197365487",
+          "metadata_hash": "e135f3f27270750dc2eb1c43ef938d83f40dbfcef8d4ee64e1f19039a7917ac7"
+        },
+        {
+          "id": "1c171eb1-6170-48c6-972f-11fe3f054185",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 552,
+          "collection": "me-c",
+          "distance": 0.664013147354126,
+          "document_hash": "d5e8a66f8b179d3ca800741e0e5d42ed00e3fa133ebb460055dd2b432a166409",
+          "metadata_hash": "b9714d17a3e663ad27930fd90b71004d8b44448c44b9fab769d2b314c1105449"
+        },
+        {
+          "id": "19e8b21d-0853-4462-9e2e-e8676ec25698",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 72,
+          "collection": "maker-manuals",
+          "distance": 0.6738594174385071,
+          "document_hash": "578decacb405e1bb1d42ff3dc4217d2d0c3c1805647baaaf5d0b618cd59fb09c",
+          "metadata_hash": "cf29e39138dbbd405499457c05581dc1789c7fbc5571a6de73c12e4e8fbd8432"
+        },
+        {
+          "id": "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 173,
+          "collection": "maker-manuals",
+          "distance": 0.6815221309661865,
+          "document_hash": "b9a5da1acaa2217dca9f9e532b916ee0fca8c4e16f0dff0c87a2c1984bc3c8af",
+          "metadata_hash": "e33f5151d93eae7c7ba016eec91096a27cdf8551fdc0bca4ca66fb65e94aaa86"
+        },
+        {
+          "id": "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d",
+          "source": "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.68182772397995,
+          "document_hash": "cfb1732ccfb237adda688d4c861b40503c22f7fc131f4b744c294669f04456d1",
+          "metadata_hash": "aaedc3d0791440b7ef44ccbfef53239b3eeb773b1b6107d6e5f161c570a9b6bc"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "434076c9-8aaf-47c1-a09e-477ae3f64532",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 2,
+          "collection": "maker-manuals",
+          "distance": 0.6357784271240234,
+          "document_hash": "6dcbcee1ba7d885ea37d58dcee6f16692e28db576f15794469e29fe197365487",
+          "metadata_hash": "e135f3f27270750dc2eb1c43ef938d83f40dbfcef8d4ee64e1f19039a7917ac7"
+        },
+        {
+          "id": "1c171eb1-6170-48c6-972f-11fe3f054185",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 552,
+          "collection": "me-c",
+          "distance": 0.664013147354126,
+          "document_hash": "d5e8a66f8b179d3ca800741e0e5d42ed00e3fa133ebb460055dd2b432a166409",
+          "metadata_hash": "b9714d17a3e663ad27930fd90b71004d8b44448c44b9fab769d2b314c1105449"
+        },
+        {
+          "id": "19e8b21d-0853-4462-9e2e-e8676ec25698",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 72,
+          "collection": "maker-manuals",
+          "distance": 0.6738594174385071,
+          "document_hash": "578decacb405e1bb1d42ff3dc4217d2d0c3c1805647baaaf5d0b618cd59fb09c",
+          "metadata_hash": "cf29e39138dbbd405499457c05581dc1789c7fbc5571a6de73c12e4e8fbd8432"
+        },
+        {
+          "id": "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 173,
+          "collection": "maker-manuals",
+          "distance": 0.6815221309661865,
+          "document_hash": "b9a5da1acaa2217dca9f9e532b916ee0fca8c4e16f0dff0c87a2c1984bc3c8af",
+          "metadata_hash": "e33f5151d93eae7c7ba016eec91096a27cdf8551fdc0bca4ca66fb65e94aaa86"
+        },
+        {
+          "id": "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d",
+          "source": "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.68182772397995,
+          "document_hash": "cfb1732ccfb237adda688d4c861b40503c22f7fc131f4b744c294669f04456d1",
+          "metadata_hash": "aaedc3d0791440b7ef44ccbfef53239b3eeb773b1b6107d6e5f161c570a9b6bc"
+        }
+      ],
+      "category": "maker/model"
+    },
+    {
+      "query_text": "Gaschem Europe",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": "vessels",
+      "restored_top_k_ids": [
+        "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32",
+        "5a7c5284-6a0b-4d9a-acd9-4c464c7c515a",
+        "f5e78642-1055-4941-9d4a-aa84354dd4c2",
+        "e1cad4b5-2d45-4a09-9683-f795570567b3",
+        "f8cc1436-35b7-40f8-be6b-1e53ec0dd389"
+      ],
+      "restored_source_paths": [
+        "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf",
+        "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4024789_original.pdf",
+        "20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10_SEARCHABLE.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf"
+      ],
+      "restored_page_metadata": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "production_top_k_ids": [
+        "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32",
+        "5a7c5284-6a0b-4d9a-acd9-4c464c7c515a",
+        "f5e78642-1055-4941-9d4a-aa84354dd4c2",
+        "e1cad4b5-2d45-4a09-9683-f795570567b3",
+        "f8cc1436-35b7-40f8-be6b-1e53ec0dd389"
+      ],
+      "production_source_paths": [
+        "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf",
+        "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4024789_original.pdf",
+        "20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10_SEARCHABLE.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf"
+      ],
+      "production_page_metadata": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32",
+          "source": "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6235090494155884,
+          "document_hash": "e898623e424a3220d9228aadf5e887bf0158a47f310f1bbf019ced390d231cbb",
+          "metadata_hash": "9d4c4c5ac9ca28a205d3d0d3c7e1ae3a2e9394c1e1fa85c35eb1f7ab0f857ec8"
+        },
+        {
+          "id": "5a7c5284-6a0b-4d9a-acd9-4c464c7c515a",
+          "source": "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4024789_original.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6263682246208191,
+          "document_hash": "9556becaaf65b4473a0a37fde83105d5dd1419b8aa1713a615c54e573f188e4b",
+          "metadata_hash": "1c0ef201c65271e39297e4e543e8c175d438adcace4b299234723e00d158d045"
+        },
+        {
+          "id": "f5e78642-1055-4941-9d4a-aa84354dd4c2",
+          "source": "20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10_SEARCHABLE.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.7059018015861511,
+          "document_hash": "ce2262d2e272b9f6b000fa959704b397aec4692b0808de69f478dd911e78ac88",
+          "metadata_hash": "5588a2790ec0203c4dae9c45f09fb0280d55001582a7c06f074a00ab5083714b"
+        },
+        {
+          "id": "e1cad4b5-2d45-4a09-9683-f795570567b3",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.7145947813987732,
+          "document_hash": "3ee9fce09176c3f05c6b7947106ec4376941a1f8c249ec0462dee16ea8ae8964",
+          "metadata_hash": "29022ca9aeffbf188659e544c2400894437596e2a550df5705324a057bc98861"
+        },
+        {
+          "id": "f8cc1436-35b7-40f8-be6b-1e53ec0dd389",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.7226915955543518,
+          "document_hash": "1379efccf2a2996cacf6536af9d96391bd0981c97d7dceac27622c0be6eea47a",
+          "metadata_hash": "56b7f83b673db7d920112967325b738e22a9e0e6e6556a83510d4ffcb1425408"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32",
+          "source": "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6235090494155884,
+          "document_hash": "e898623e424a3220d9228aadf5e887bf0158a47f310f1bbf019ced390d231cbb",
+          "metadata_hash": "9d4c4c5ac9ca28a205d3d0d3c7e1ae3a2e9394c1e1fa85c35eb1f7ab0f857ec8"
+        },
+        {
+          "id": "5a7c5284-6a0b-4d9a-acd9-4c464c7c515a",
+          "source": "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4024789_original.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6263682246208191,
+          "document_hash": "9556becaaf65b4473a0a37fde83105d5dd1419b8aa1713a615c54e573f188e4b",
+          "metadata_hash": "1c0ef201c65271e39297e4e543e8c175d438adcace4b299234723e00d158d045"
+        },
+        {
+          "id": "f5e78642-1055-4941-9d4a-aa84354dd4c2",
+          "source": "20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10_SEARCHABLE.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.7059018015861511,
+          "document_hash": "ce2262d2e272b9f6b000fa959704b397aec4692b0808de69f478dd911e78ac88",
+          "metadata_hash": "5588a2790ec0203c4dae9c45f09fb0280d55001582a7c06f074a00ab5083714b"
+        },
+        {
+          "id": "e1cad4b5-2d45-4a09-9683-f795570567b3",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.7145947813987732,
+          "document_hash": "3ee9fce09176c3f05c6b7947106ec4376941a1f8c249ec0462dee16ea8ae8964",
+          "metadata_hash": "29022ca9aeffbf188659e544c2400894437596e2a550df5705324a057bc98861"
+        },
+        {
+          "id": "f8cc1436-35b7-40f8-be6b-1e53ec0dd389",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.7226915955543518,
+          "document_hash": "1379efccf2a2996cacf6536af9d96391bd0981c97d7dceac27622c0be6eea47a",
+          "metadata_hash": "56b7f83b673db7d920112967325b738e22a9e0e6e6556a83510d4ffcb1425408"
+        }
+      ],
+      "category": "vessel-specific"
+    },
+    {
+      "query_text": "service letter",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "fa5fc9fe-133e-41c4-9570-fcd31b50fe31",
+        "5b122040-f4e3-4a2d-bff3-4de576adbae9",
+        "9892a103-df6e-4d18-bbf2-c69987ceec6d",
+        "9adc9f92-0327-4800-a5fd-bfbf9e064267",
+        "1df56991-3d07-4047-b9db-5b626176cfdf"
+      ],
+      "restored_source_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2024-760.pdf",
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2018-660.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/VOL1_small.pdf",
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2021-717.pdf"
+      ],
+      "restored_page_metadata": [
+        1,
+        0,
+        31,
+        23,
+        0
+      ],
+      "production_top_k_ids": [
+        "fa5fc9fe-133e-41c4-9570-fcd31b50fe31",
+        "5b122040-f4e3-4a2d-bff3-4de576adbae9",
+        "9892a103-df6e-4d18-bbf2-c69987ceec6d",
+        "9adc9f92-0327-4800-a5fd-bfbf9e064267",
+        "1df56991-3d07-4047-b9db-5b626176cfdf"
+      ],
+      "production_source_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2024-760.pdf",
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2018-660.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/VOL1_small.pdf",
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2021-717.pdf"
+      ],
+      "production_page_metadata": [
+        1,
+        0,
+        31,
+        23,
+        0
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "fa5fc9fe-133e-41c4-9570-fcd31b50fe31",
+          "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2024-760.pdf",
+          "page": 1,
+          "collection": "maker-manuals",
+          "distance": 0.3990083932876587,
+          "document_hash": "63796784c781e41f47388ee331529eb3ed4e09b09735a5414b35d377780be09f",
+          "metadata_hash": "1b253513cb28566a87c96874544d5f1ea2b8ef592865ab1b2bf28b00f91f7fc9"
+        },
+        {
+          "id": "5b122040-f4e3-4a2d-bff3-4de576adbae9",
+          "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2018-660.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.47210994362831116,
+          "document_hash": "41b4b6347c15cd1688301f6fb051011d053aad59e461b674e740a61e6075e1fd",
+          "metadata_hash": "8e05417064782942d4dee4f0dafcaa9dfd7afe044397472aeabf6ba31f25ec54"
+        },
+        {
+          "id": "9892a103-df6e-4d18-bbf2-c69987ceec6d",
+          "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+          "page": 31,
+          "collection": "maker-manuals",
+          "distance": 0.4866997301578522,
+          "document_hash": "ca7e5c0099207f063abb4ad23871b1d1e624e7714aa4fba5681260e2db5f87bf",
+          "metadata_hash": "9ddfa5640139a5bb607ce1563b1d30b8a0dddacc7510818d41a0e9b9480a6c39"
+        },
+        {
+          "id": "9adc9f92-0327-4800-a5fd-bfbf9e064267",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/VOL1_small.pdf",
+          "page": 23,
+          "collection": "me-c",
+          "distance": 0.5011594295501709,
+          "document_hash": "627b29922d0bf623db7e3b5556659f56287ba6b8efc440d1fc5688eb5f97c1d1",
+          "metadata_hash": "5778ee52bc86939ba640d0c429a4229e71b084946faaf50aed71bb8d8fddc0f5"
+        },
+        {
+          "id": "1df56991-3d07-4047-b9db-5b626176cfdf",
+          "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2021-717.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.5111607313156128,
+          "document_hash": "6fc31126d7fe8c7437546e0503b01fedbb2c20a627fb298f67a03244ec40bc02",
+          "metadata_hash": "86c1a56c9b04932f7ed6c09fb5bc01e955b289db3c6205158e0471103bd83019"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "fa5fc9fe-133e-41c4-9570-fcd31b50fe31",
+          "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2024-760.pdf",
+          "page": 1,
+          "collection": "maker-manuals",
+          "distance": 0.3990083932876587,
+          "document_hash": "63796784c781e41f47388ee331529eb3ed4e09b09735a5414b35d377780be09f",
+          "metadata_hash": "1b253513cb28566a87c96874544d5f1ea2b8ef592865ab1b2bf28b00f91f7fc9"
+        },
+        {
+          "id": "5b122040-f4e3-4a2d-bff3-4de576adbae9",
+          "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2018-660.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.47210994362831116,
+          "document_hash": "41b4b6347c15cd1688301f6fb051011d053aad59e461b674e740a61e6075e1fd",
+          "metadata_hash": "8e05417064782942d4dee4f0dafcaa9dfd7afe044397472aeabf6ba31f25ec54"
+        },
+        {
+          "id": "9892a103-df6e-4d18-bbf2-c69987ceec6d",
+          "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+          "page": 31,
+          "collection": "maker-manuals",
+          "distance": 0.4866997301578522,
+          "document_hash": "ca7e5c0099207f063abb4ad23871b1d1e624e7714aa4fba5681260e2db5f87bf",
+          "metadata_hash": "9ddfa5640139a5bb607ce1563b1d30b8a0dddacc7510818d41a0e9b9480a6c39"
+        },
+        {
+          "id": "9adc9f92-0327-4800-a5fd-bfbf9e064267",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/VOL1_small.pdf",
+          "page": 23,
+          "collection": "me-c",
+          "distance": 0.5011594295501709,
+          "document_hash": "627b29922d0bf623db7e3b5556659f56287ba6b8efc440d1fc5688eb5f97c1d1",
+          "metadata_hash": "5778ee52bc86939ba640d0c429a4229e71b084946faaf50aed71bb8d8fddc0f5"
+        },
+        {
+          "id": "1df56991-3d07-4047-b9db-5b626176cfdf",
+          "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2021-717.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.5111607313156128,
+          "document_hash": "6fc31126d7fe8c7437546e0503b01fedbb2c20a627fb298f67a03244ec40bc02",
+          "metadata_hash": "86c1a56c9b04932f7ed6c09fb5bc01e955b289db3c6205158e0471103bd83019"
+        }
+      ],
+      "category": "service-letter"
+    },
+    {
+      "query_text": "Vision III Oil Mist Detection System page 6",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "7dd6e654-aec8-4d87-9708-8ab53120d0ff",
+        "1f6bbcce-3844-4770-b189-689c4d3f86f8",
+        "d2705997-08b9-49bb-80f9-1ef0fd716af9",
+        "43c773eb-2352-4995-baa1-99771ead61b1",
+        "8f49db88-678d-4214-af25-12a13e9daaf3"
+      ],
+      "restored_source_paths": [
+        "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+        "00_Career/02_Statutory/SIRE_OCIMF/SIRE_2_0/SIRE-2.0-Question-Library-Part-2-Chapters-8-to-12-Version-1.0-January-2022.pdf",
+        "10_Company/Hartmann/SMS_IMM/X.VIR-E001B.pdf"
+      ],
+      "restored_page_metadata": [
+        4,
+        319,
+        3,
+        526,
+        526
+      ],
+      "production_top_k_ids": [
+        "7dd6e654-aec8-4d87-9708-8ab53120d0ff",
+        "1f6bbcce-3844-4770-b189-689c4d3f86f8",
+        "d2705997-08b9-49bb-80f9-1ef0fd716af9",
+        "43c773eb-2352-4995-baa1-99771ead61b1",
+        "8f49db88-678d-4214-af25-12a13e9daaf3"
+      ],
+      "production_source_paths": [
+        "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+        "00_Career/02_Statutory/SIRE_OCIMF/SIRE_2_0/SIRE-2.0-Question-Library-Part-2-Chapters-8-to-12-Version-1.0-January-2022.pdf",
+        "10_Company/Hartmann/SMS_IMM/X.VIR-E001B.pdf"
+      ],
+      "production_page_metadata": [
+        4,
+        319,
+        3,
+        526,
+        526
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "7dd6e654-aec8-4d87-9708-8ab53120d0ff",
+          "source": "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "page": 4,
+          "collection": "regulatory",
+          "distance": 0.48264557123184204,
+          "document_hash": "45602396cda800e497dd832105f29515c46cf60f2e72f863efadfe5f18422695",
+          "metadata_hash": "e04fde3a95885782e1940bc44312acdd6e59b58f3aa6249828d8e0ee87f8984d"
+        },
+        {
+          "id": "1f6bbcce-3844-4770-b189-689c4d3f86f8",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 319,
+          "collection": "me-c",
+          "distance": 0.49511149525642395,
+          "document_hash": "72ad1a8c5aac40e2a18839e80d42b8c562f6fe536574f69b7dec0b6272913d78",
+          "metadata_hash": "861b30ad0611151ba97d46fb498da202122d82bb75587b3dbddccb267b99d9bd"
+        },
+        {
+          "id": "d2705997-08b9-49bb-80f9-1ef0fd716af9",
+          "source": "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "page": 3,
+          "collection": "regulatory",
+          "distance": 0.5192766189575195,
+          "document_hash": "50fbf774ed280c2fabdeac31f9db92a8685c700847324d0c5380a68756b778d1",
+          "metadata_hash": "2c2dc4dd17dc4b8b81679f07ed712ea54fa8af345694f54607a8ff0311ad0971"
+        },
+        {
+          "id": "43c773eb-2352-4995-baa1-99771ead61b1",
+          "source": "00_Career/02_Statutory/SIRE_OCIMF/SIRE_2_0/SIRE-2.0-Question-Library-Part-2-Chapters-8-to-12-Version-1.0-January-2022.pdf",
+          "page": 526,
+          "collection": "inspection",
+          "distance": 0.524202287197113,
+          "document_hash": "8fc7e568530070e65747952779bdd6c6085c8f0fd0d5993c12708b46f32b0c45",
+          "metadata_hash": "85e86c5b6610d6a960a8e5e538070a28110af78651c5d59f9d2b842d84cc6a4f"
+        },
+        {
+          "id": "8f49db88-678d-4214-af25-12a13e9daaf3",
+          "source": "10_Company/Hartmann/SMS_IMM/X.VIR-E001B.pdf",
+          "page": 526,
+          "collection": "sms",
+          "distance": 0.524202287197113,
+          "document_hash": "8fc7e568530070e65747952779bdd6c6085c8f0fd0d5993c12708b46f32b0c45",
+          "metadata_hash": "7e288ff9bd205e8f3f484799dd3e08efc71a91df7e87a968073cadcebefcb85d"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "7dd6e654-aec8-4d87-9708-8ab53120d0ff",
+          "source": "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "page": 4,
+          "collection": "regulatory",
+          "distance": 0.48264557123184204,
+          "document_hash": "45602396cda800e497dd832105f29515c46cf60f2e72f863efadfe5f18422695",
+          "metadata_hash": "e04fde3a95885782e1940bc44312acdd6e59b58f3aa6249828d8e0ee87f8984d"
+        },
+        {
+          "id": "1f6bbcce-3844-4770-b189-689c4d3f86f8",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 319,
+          "collection": "me-c",
+          "distance": 0.49511149525642395,
+          "document_hash": "72ad1a8c5aac40e2a18839e80d42b8c562f6fe536574f69b7dec0b6272913d78",
+          "metadata_hash": "861b30ad0611151ba97d46fb498da202122d82bb75587b3dbddccb267b99d9bd"
+        },
+        {
+          "id": "d2705997-08b9-49bb-80f9-1ef0fd716af9",
+          "source": "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "page": 3,
+          "collection": "regulatory",
+          "distance": 0.5192766189575195,
+          "document_hash": "50fbf774ed280c2fabdeac31f9db92a8685c700847324d0c5380a68756b778d1",
+          "metadata_hash": "2c2dc4dd17dc4b8b81679f07ed712ea54fa8af345694f54607a8ff0311ad0971"
+        },
+        {
+          "id": "43c773eb-2352-4995-baa1-99771ead61b1",
+          "source": "00_Career/02_Statutory/SIRE_OCIMF/SIRE_2_0/SIRE-2.0-Question-Library-Part-2-Chapters-8-to-12-Version-1.0-January-2022.pdf",
+          "page": 526,
+          "collection": "inspection",
+          "distance": 0.524202287197113,
+          "document_hash": "8fc7e568530070e65747952779bdd6c6085c8f0fd0d5993c12708b46f32b0c45",
+          "metadata_hash": "85e86c5b6610d6a960a8e5e538070a28110af78651c5d59f9d2b842d84cc6a4f"
+        },
+        {
+          "id": "8f49db88-678d-4214-af25-12a13e9daaf3",
+          "source": "10_Company/Hartmann/SMS_IMM/X.VIR-E001B.pdf",
+          "page": 526,
+          "collection": "sms",
+          "distance": 0.524202287197113,
+          "document_hash": "8fc7e568530070e65747952779bdd6c6085c8f0fd0d5993c12708b46f32b0c45",
+          "metadata_hash": "7e288ff9bd205e8f3f484799dd3e08efc71a91df7e87a968073cadcebefcb85d"
+        }
+      ],
+      "category": "page/citation"
+    },
+    {
+      "query_text": "ZXQ-VOID-QUERY-987654321",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "6695fc24-3489-4d97-8224-827db2f19a9a",
+        "ed072f7a-0e8c-4117-9f31-2d01502bd06b",
+        "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f",
+        "56cf4e75-880d-4a3a-a2a4-94c92ba550b5",
+        "9b8567fd-7dd5-405a-a092-4a66ebdaae2f"
+      ],
+      "restored_source_paths": [
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf"
+      ],
+      "restored_page_metadata": [
+        49,
+        755,
+        802,
+        177,
+        774
+      ],
+      "production_top_k_ids": [
+        "6695fc24-3489-4d97-8224-827db2f19a9a",
+        "ed072f7a-0e8c-4117-9f31-2d01502bd06b",
+        "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f",
+        "56cf4e75-880d-4a3a-a2a4-94c92ba550b5",
+        "9b8567fd-7dd5-405a-a092-4a66ebdaae2f"
+      ],
+      "production_source_paths": [
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf"
+      ],
+      "production_page_metadata": [
+        49,
+        755,
+        802,
+        177,
+        774
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "6695fc24-3489-4d97-8224-827db2f19a9a",
+          "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+          "page": 49,
+          "collection": "maker-manuals",
+          "distance": 0.5738308429718018,
+          "document_hash": "f8edd80e4f3cd429bdf4d8da725109fef993e799c75ede824bb87736ebb38c7c",
+          "metadata_hash": "8b83aa6345a2dda736dc5ed8113afe136ca5f3afe6d3e5cd3810fa6e1fd0a5be"
+        },
+        {
+          "id": "ed072f7a-0e8c-4117-9f31-2d01502bd06b",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 755,
+          "collection": "me-c",
+          "distance": 0.5904265642166138,
+          "document_hash": "72d088277b5cf21107c683bf2b20b8954972135a043993727b79714c9e247759",
+          "metadata_hash": "ad860157b992526856072b1a15389c4bc0ce71daf012e66ec1d645a25f498c53"
+        },
+        {
+          "id": "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 802,
+          "collection": "me-c",
+          "distance": 0.5943026542663574,
+          "document_hash": "c2afcffd21218f3e8c8ec7984431b3698a120be54d7fe0ba4d8ef1669f1a91e0",
+          "metadata_hash": "5305a4373a5cdf02207f363d24ab118bcf9c3886747a20dfc96d67440845d572"
+        },
+        {
+          "id": "56cf4e75-880d-4a3a-a2a4-94c92ba550b5",
+          "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+          "page": 177,
+          "collection": "maker-manuals",
+          "distance": 0.5980729460716248,
+          "document_hash": "381ad099123dafda5ffeaf33b31af2036451b8b0fd85a4c0a70ad2f333aa723a",
+          "metadata_hash": "c855e3ce5d4187e04f5801c32ed3db2906d3d9d78e44eeb2e2217443f72c46d6"
+        },
+        {
+          "id": "9b8567fd-7dd5-405a-a092-4a66ebdaae2f",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 774,
+          "collection": "me-c",
+          "distance": 0.6070173978805542,
+          "document_hash": "11381137fe3efbe152c1101163ca3036c0a24294da742203deda77755fbc47eb",
+          "metadata_hash": "b4acef6a410eac47c4d269cfbb2193687a4a22c360157de2ec0d1a80d64fe2a8"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "6695fc24-3489-4d97-8224-827db2f19a9a",
+          "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+          "page": 49,
+          "collection": "maker-manuals",
+          "distance": 0.5738308429718018,
+          "document_hash": "f8edd80e4f3cd429bdf4d8da725109fef993e799c75ede824bb87736ebb38c7c",
+          "metadata_hash": "8b83aa6345a2dda736dc5ed8113afe136ca5f3afe6d3e5cd3810fa6e1fd0a5be"
+        },
+        {
+          "id": "ed072f7a-0e8c-4117-9f31-2d01502bd06b",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 755,
+          "collection": "me-c",
+          "distance": 0.5904265642166138,
+          "document_hash": "72d088277b5cf21107c683bf2b20b8954972135a043993727b79714c9e247759",
+          "metadata_hash": "ad860157b992526856072b1a15389c4bc0ce71daf012e66ec1d645a25f498c53"
+        },
+        {
+          "id": "e2c6f312-8889-4f7c-8bf9-3df1ea881c8f",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 802,
+          "collection": "me-c",
+          "distance": 0.5943026542663574,
+          "document_hash": "c2afcffd21218f3e8c8ec7984431b3698a120be54d7fe0ba4d8ef1669f1a91e0",
+          "metadata_hash": "5305a4373a5cdf02207f363d24ab118bcf9c3886747a20dfc96d67440845d572"
+        },
+        {
+          "id": "56cf4e75-880d-4a3a-a2a4-94c92ba550b5",
+          "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+          "page": 177,
+          "collection": "maker-manuals",
+          "distance": 0.5980729460716248,
+          "document_hash": "381ad099123dafda5ffeaf33b31af2036451b8b0fd85a4c0a70ad2f333aa723a",
+          "metadata_hash": "c855e3ce5d4187e04f5801c32ed3db2906d3d9d78e44eeb2e2217443f72c46d6"
+        },
+        {
+          "id": "9b8567fd-7dd5-405a-a092-4a66ebdaae2f",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 774,
+          "collection": "me-c",
+          "distance": 0.6070173978805542,
+          "document_hash": "11381137fe3efbe152c1101163ca3036c0a24294da742203deda77755fbc47eb",
+          "metadata_hash": "b4acef6a410eac47c4d269cfbb2193687a4a22c360157de2ec0d1a80d64fe2a8"
+        }
+      ],
+      "category": "no-answer"
+    },
+    {
+      "query_text": "Gaschem Africa Gaschem Europe manual",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": "vessels",
+      "restored_top_k_ids": [
+        "e1cad4b5-2d45-4a09-9683-f795570567b3",
+        "f8cc1436-35b7-40f8-be6b-1e53ec0dd389",
+        "ac878c62-516e-4651-a696-bf58a9f19794",
+        "6caaa31e-e89c-40b1-a1b8-a880596d22d9",
+        "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32"
+      ],
+      "restored_source_paths": [
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency POwer Source -Emergency Batteries 02.08.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency Trips - Ventilation & FO-LO pumps 02.10.pdf",
+        "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf"
+      ],
+      "restored_page_metadata": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "production_top_k_ids": [
+        "e1cad4b5-2d45-4a09-9683-f795570567b3",
+        "f8cc1436-35b7-40f8-be6b-1e53ec0dd389",
+        "ac878c62-516e-4651-a696-bf58a9f19794",
+        "6caaa31e-e89c-40b1-a1b8-a880596d22d9",
+        "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32"
+      ],
+      "production_source_paths": [
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency POwer Source -Emergency Batteries 02.08.pdf",
+        "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency Trips - Ventilation & FO-LO pumps 02.10.pdf",
+        "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf"
+      ],
+      "production_page_metadata": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "e1cad4b5-2d45-4a09-9683-f795570567b3",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6443559527397156,
+          "document_hash": "3ee9fce09176c3f05c6b7947106ec4376941a1f8c249ec0462dee16ea8ae8964",
+          "metadata_hash": "29022ca9aeffbf188659e544c2400894437596e2a550df5705324a057bc98861"
+        },
+        {
+          "id": "f8cc1436-35b7-40f8-be6b-1e53ec0dd389",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6519668102264404,
+          "document_hash": "1379efccf2a2996cacf6536af9d96391bd0981c97d7dceac27622c0be6eea47a",
+          "metadata_hash": "56b7f83b673db7d920112967325b738e22a9e0e6e6556a83510d4ffcb1425408"
+        },
+        {
+          "id": "ac878c62-516e-4651-a696-bf58a9f19794",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency POwer Source -Emergency Batteries 02.08.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6648364663124084,
+          "document_hash": "92a7fe932798e6fe808b266d54f666ff730557a5bfb21819ea40a9bb4b89840b",
+          "metadata_hash": "60ce72c76214e2c2f8ae2c4ff18581a18539154ebf85d084962f06b489eb82d1"
+        },
+        {
+          "id": "6caaa31e-e89c-40b1-a1b8-a880596d22d9",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency Trips - Ventilation & FO-LO pumps 02.10.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6699285507202148,
+          "document_hash": "0174d14a4af785d44b5926ae83a8a2ae14ec2e1c0259b4bda6a777ae71a362a8",
+          "metadata_hash": "27b724614d4a1b06e26158128c403e4bd0bfa61c1a44e1a0e9e5e5e87f62c28a"
+        },
+        {
+          "id": "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32",
+          "source": "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6847531199455261,
+          "document_hash": "e898623e424a3220d9228aadf5e887bf0158a47f310f1bbf019ced390d231cbb",
+          "metadata_hash": "9d4c4c5ac9ca28a205d3d0d3c7e1ae3a2e9394c1e1fa85c35eb1f7ab0f857ec8"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "e1cad4b5-2d45-4a09-9683-f795570567b3",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Accomodation Fan 02.01.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6443559527397156,
+          "document_hash": "3ee9fce09176c3f05c6b7947106ec4376941a1f8c249ec0462dee16ea8ae8964",
+          "metadata_hash": "29022ca9aeffbf188659e544c2400894437596e2a550df5705324a057bc98861"
+        },
+        {
+          "id": "f8cc1436-35b7-40f8-be6b-1e53ec0dd389",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Fixed Gas Detection System 02.16.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6519668102264404,
+          "document_hash": "1379efccf2a2996cacf6536af9d96391bd0981c97d7dceac27622c0be6eea47a",
+          "metadata_hash": "56b7f83b673db7d920112967325b738e22a9e0e6e6556a83510d4ffcb1425408"
+        },
+        {
+          "id": "ac878c62-516e-4651-a696-bf58a9f19794",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency POwer Source -Emergency Batteries 02.08.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6648364663124084,
+          "document_hash": "92a7fe932798e6fe808b266d54f666ff730557a5bfb21819ea40a9bb4b89840b",
+          "metadata_hash": "60ce72c76214e2c2f8ae2c4ff18581a18539154ebf85d084962f06b489eb82d1"
+        },
+        {
+          "id": "6caaa31e-e89c-40b1-a1b8-a880596d22d9",
+          "source": "20_Vessels/Gaschem_Africa/05_PMS/Critical_Spares/Critical Spares/Emergency Trips - Ventilation & FO-LO pumps 02.10.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6699285507202148,
+          "document_hash": "0174d14a4af785d44b5926ae83a8a2ae14ec2e1c0259b4bda6a777ae71a362a8",
+          "metadata_hash": "27b724614d4a1b06e26158128c403e4bd0bfa61c1a44e1a0e9e5e5e87f62c28a"
+        },
+        {
+          "id": "c768c3aa-0b7d-4d06-9a58-9ffd9d117d32",
+          "source": "20_Vessels/Gaschem_Europe/02_Certificates/Calibration_Certificates/4027086_original.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.6847531199455261,
+          "document_hash": "e898623e424a3220d9228aadf5e887bf0158a47f310f1bbf019ced390d231cbb",
+          "metadata_hash": "9d4c4c5ac9ca28a205d3d0d3c7e1ae3a2e9394c1e1fa85c35eb1f7ab0f857ec8"
+        }
+      ],
+      "category": "ambiguous cross-vessel"
+    },
+    {
+      "query_text": "fuel conditioning module alarms and fault finding",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "9e648ac6-9f64-4619-8c3d-b156634acb32",
+        "c635640e-2608-47f8-b99f-18ff05cef482",
+        "3dafcd5f-2cb7-449d-b6b9-abd895809f98",
+        "10709711-f327-47ea-a863-df7628b87cfa",
+        "43c08eca-5d01-4f13-be67-36fe100ce1db"
+      ],
+      "restored_source_paths": [
+        "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_P615/50_586660_02_V6_Alarms P.pdf",
+        "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_S926/50_584614_02_v7 alarms and fault finding.pdf",
+        "20_Vessels/Gaschem_Europe/01_Manuals/09_Cargo_LFSS/Fuel_Conditioning_Module_FCM_1.5/1.5 S8 9013009 02_1 Alarms and Fault Finding.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf"
+      ],
+      "restored_page_metadata": [
+        0,
+        0,
+        0,
+        98,
+        292
+      ],
+      "production_top_k_ids": [
+        "9e648ac6-9f64-4619-8c3d-b156634acb32",
+        "c635640e-2608-47f8-b99f-18ff05cef482",
+        "3dafcd5f-2cb7-449d-b6b9-abd895809f98",
+        "10709711-f327-47ea-a863-df7628b87cfa",
+        "43c08eca-5d01-4f13-be67-36fe100ce1db"
+      ],
+      "production_source_paths": [
+        "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_P615/50_586660_02_V6_Alarms P.pdf",
+        "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_S926/50_584614_02_v7 alarms and fault finding.pdf",
+        "20_Vessels/Gaschem_Europe/01_Manuals/09_Cargo_LFSS/Fuel_Conditioning_Module_FCM_1.5/1.5 S8 9013009 02_1 Alarms and Fault Finding.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf"
+      ],
+      "production_page_metadata": [
+        0,
+        0,
+        0,
+        98,
+        292
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "9e648ac6-9f64-4619-8c3d-b156634acb32",
+          "source": "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_P615/50_586660_02_V6_Alarms P.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.42914843559265137,
+          "document_hash": "dae89742a79795db31ccf7f5a892c3111dafe591d1c3d970c9cc1b68527b7761",
+          "metadata_hash": "2c86aceb79511c9743e3e5e05a23a08dc71c4b325a70bac6c9181b8ccf9e7060"
+        },
+        {
+          "id": "c635640e-2608-47f8-b99f-18ff05cef482",
+          "source": "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_S926/50_584614_02_v7 alarms and fault finding.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.4296509623527527,
+          "document_hash": "141a5f0036f2ed62333aeb44df41d7a4d2e52cfa5961690fbbbcee00bc7ada91",
+          "metadata_hash": "c307f6ea36fb2cf1d05334b6b2dde838b172d4ce6709afc46da203f5e432cc96"
+        },
+        {
+          "id": "3dafcd5f-2cb7-449d-b6b9-abd895809f98",
+          "source": "20_Vessels/Gaschem_Europe/01_Manuals/09_Cargo_LFSS/Fuel_Conditioning_Module_FCM_1.5/1.5 S8 9013009 02_1 Alarms and Fault Finding.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.43532073497772217,
+          "document_hash": "0d9f08c40c4b83863b3c4b2196dc964d9b7f0e486ead074bef671bb48b5f7fc7",
+          "metadata_hash": "0171fff3d90eeb11332abd1fb736ab6d7f34377f69a176653f92290714156376"
+        },
+        {
+          "id": "10709711-f327-47ea-a863-df7628b87cfa",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf",
+          "page": 98,
+          "collection": "me-c",
+          "distance": 0.4903411269187927,
+          "document_hash": "661669b75d11fabae232d0778ffbeb1c16d3facf35c72ab43f125daf6d5be909",
+          "metadata_hash": "31e0b5735a18378bce0844668ac01269ab53e2cdcec0d62d0d96abcdd7fac6cd"
+        },
+        {
+          "id": "43c08eca-5d01-4f13-be67-36fe100ce1db",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf",
+          "page": 292,
+          "collection": "me-c",
+          "distance": 0.5060291886329651,
+          "document_hash": "406af07f2fac32ffaa79e2a396f12c107a849ba5d1064c6d15b5900202443bbd",
+          "metadata_hash": "0fe80294e58b3389755f4fe4c9007d97a4e12d337403be7d59544450c0c1b42f"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "9e648ac6-9f64-4619-8c3d-b156634acb32",
+          "source": "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_P615/50_586660_02_V6_Alarms P.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.42914843559265137,
+          "document_hash": "dae89742a79795db31ccf7f5a892c3111dafe591d1c3d970c9cc1b68527b7761",
+          "metadata_hash": "2c86aceb79511c9743e3e5e05a23a08dc71c4b325a70bac6c9181b8ccf9e7060"
+        },
+        {
+          "id": "c635640e-2608-47f8-b99f-18ff05cef482",
+          "source": "00_Career/03_Engine_Knowledge/Separator_AlfaLaval_S926/50_584614_02_v7 alarms and fault finding.pdf",
+          "page": 0,
+          "collection": "maker-manuals",
+          "distance": 0.4296509623527527,
+          "document_hash": "141a5f0036f2ed62333aeb44df41d7a4d2e52cfa5961690fbbbcee00bc7ada91",
+          "metadata_hash": "c307f6ea36fb2cf1d05334b6b2dde838b172d4ce6709afc46da203f5e432cc96"
+        },
+        {
+          "id": "3dafcd5f-2cb7-449d-b6b9-abd895809f98",
+          "source": "20_Vessels/Gaschem_Europe/01_Manuals/09_Cargo_LFSS/Fuel_Conditioning_Module_FCM_1.5/1.5 S8 9013009 02_1 Alarms and Fault Finding.pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.43532073497772217,
+          "document_hash": "0d9f08c40c4b83863b3c4b2196dc964d9b7f0e486ead074bef671bb48b5f7fc7",
+          "metadata_hash": "0171fff3d90eeb11332abd1fb736ab6d7f34377f69a176653f92290714156376"
+        },
+        {
+          "id": "10709711-f327-47ea-a863-df7628b87cfa",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf",
+          "page": 98,
+          "collection": "me-c",
+          "distance": 0.4903411269187927,
+          "document_hash": "661669b75d11fabae232d0778ffbeb1c16d3facf35c72ab43f125daf6d5be909",
+          "metadata_hash": "31e0b5735a18378bce0844668ac01269ab53e2cdcec0d62d0d96abcdd7fac6cd"
+        },
+        {
+          "id": "43c08eca-5d01-4f13-be67-36fe100ce1db",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/FORUM_Two_Stroke_Operation/AlarmsReference_1609_LGI.pdf",
+          "page": 292,
+          "collection": "me-c",
+          "distance": 0.5060291886329651,
+          "document_hash": "406af07f2fac32ffaa79e2a396f12c107a849ba5d1064c6d15b5900202443bbd",
+          "metadata_hash": "0fe80294e58b3389755f4fe4c9007d97a4e12d337403be7d59544450c0c1b42f"
+        }
+      ],
+      "category": "multi-term technical"
+    },
+    {
+      "query_text": "Yanmar 6EY22(A)LWS",
+      "retrieval_method": "chromadb.PersistentClient.get_collection('langchain').query(query_embeddings=..., include=['metadatas','documents','distances'])",
+      "scope": null,
+      "restored_top_k_ids": [
+        "434076c9-8aaf-47c1-a09e-477ae3f64532",
+        "1c171eb1-6170-48c6-972f-11fe3f054185",
+        "19e8b21d-0853-4462-9e2e-e8676ec25698",
+        "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+        "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d"
+      ],
+      "restored_source_paths": [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf"
+      ],
+      "restored_page_metadata": [
+        2,
+        552,
+        72,
+        173,
+        0
+      ],
+      "production_top_k_ids": [
+        "434076c9-8aaf-47c1-a09e-477ae3f64532",
+        "1c171eb1-6170-48c6-972f-11fe3f054185",
+        "19e8b21d-0853-4462-9e2e-e8676ec25698",
+        "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+        "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d"
+      ],
+      "production_source_paths": [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+        "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf"
+      ],
+      "production_page_metadata": [
+        2,
+        552,
+        72,
+        173,
+        0
+      ],
+      "order_matches": true,
+      "set_matches": true,
+      "score_differences": [],
+      "pass": true,
+      "production_rows": [
+        {
+          "id": "434076c9-8aaf-47c1-a09e-477ae3f64532",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 2,
+          "collection": "maker-manuals",
+          "distance": 0.6357784271240234,
+          "document_hash": "6dcbcee1ba7d885ea37d58dcee6f16692e28db576f15794469e29fe197365487",
+          "metadata_hash": "e135f3f27270750dc2eb1c43ef938d83f40dbfcef8d4ee64e1f19039a7917ac7"
+        },
+        {
+          "id": "1c171eb1-6170-48c6-972f-11fe3f054185",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 552,
+          "collection": "me-c",
+          "distance": 0.664013147354126,
+          "document_hash": "d5e8a66f8b179d3ca800741e0e5d42ed00e3fa133ebb460055dd2b432a166409",
+          "metadata_hash": "b9714d17a3e663ad27930fd90b71004d8b44448c44b9fab769d2b314c1105449"
+        },
+        {
+          "id": "19e8b21d-0853-4462-9e2e-e8676ec25698",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 72,
+          "collection": "maker-manuals",
+          "distance": 0.6738594174385071,
+          "document_hash": "578decacb405e1bb1d42ff3dc4217d2d0c3c1805647baaaf5d0b618cd59fb09c",
+          "metadata_hash": "cf29e39138dbbd405499457c05581dc1789c7fbc5571a6de73c12e4e8fbd8432"
+        },
+        {
+          "id": "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 173,
+          "collection": "maker-manuals",
+          "distance": 0.6815221309661865,
+          "document_hash": "b9a5da1acaa2217dca9f9e532b916ee0fca8c4e16f0dff0c87a2c1984bc3c8af",
+          "metadata_hash": "e33f5151d93eae7c7ba016eec91096a27cdf8551fdc0bca4ca66fb65e94aaa86"
+        },
+        {
+          "id": "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d",
+          "source": "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.68182772397995,
+          "document_hash": "cfb1732ccfb237adda688d4c861b40503c22f7fc131f4b744c294669f04456d1",
+          "metadata_hash": "aaedc3d0791440b7ef44ccbfef53239b3eeb773b1b6107d6e5f161c570a9b6bc"
+        }
+      ],
+      "restored_rows": [
+        {
+          "id": "434076c9-8aaf-47c1-a09e-477ae3f64532",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 2,
+          "collection": "maker-manuals",
+          "distance": 0.6357784271240234,
+          "document_hash": "6dcbcee1ba7d885ea37d58dcee6f16692e28db576f15794469e29fe197365487",
+          "metadata_hash": "e135f3f27270750dc2eb1c43ef938d83f40dbfcef8d4ee64e1f19039a7917ac7"
+        },
+        {
+          "id": "1c171eb1-6170-48c6-972f-11fe3f054185",
+          "source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/FITTING and ACC.pdf",
+          "page": 552,
+          "collection": "me-c",
+          "distance": 0.664013147354126,
+          "document_hash": "d5e8a66f8b179d3ca800741e0e5d42ed00e3fa133ebb460055dd2b432a166409",
+          "metadata_hash": "b9714d17a3e663ad27930fd90b71004d8b44448c44b9fab769d2b314c1105449"
+        },
+        {
+          "id": "19e8b21d-0853-4462-9e2e-e8676ec25698",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 72,
+          "collection": "maker-manuals",
+          "distance": 0.6738594174385071,
+          "document_hash": "578decacb405e1bb1d42ff3dc4217d2d0c3c1805647baaaf5d0b618cd59fb09c",
+          "metadata_hash": "cf29e39138dbbd405499457c05581dc1789c7fbc5571a6de73c12e4e8fbd8432"
+        },
+        {
+          "id": "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+          "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0CH50-M00231_en.pdf",
+          "page": 173,
+          "collection": "maker-manuals",
+          "distance": 0.6815221309661865,
+          "document_hash": "b9a5da1acaa2217dca9f9e532b916ee0fca8c4e16f0dff0c87a2c1984bc3c8af",
+          "metadata_hash": "e33f5151d93eae7c7ba016eec91096a27cdf8551fdc0bca4ca66fb65e94aaa86"
+        },
+        {
+          "id": "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d",
+          "source": "20_Vessels/Gaschem_Europe/10_Reference/Different/Cooling Fan/(8000-1-00300)YWF.A4S-300B-5DⅠA00  A0-CN(EN)规格书(20241230).pdf",
+          "page": 0,
+          "collection": "vessels",
+          "distance": 0.68182772397995,
+          "document_hash": "cfb1732ccfb237adda688d4c861b40503c22f7fc131f4b744c294669f04456d1",
+          "metadata_hash": "aaedc3d0791440b7ef44ccbfef53239b3eeb773b1b6107d6e5f161c570a9b6bc"
+        }
+      ],
+      "category": "repeated determinism check"
+    }
+  ],
+  "restored_repeat_determinism": {
+    "ids_run1": [
+      "434076c9-8aaf-47c1-a09e-477ae3f64532",
+      "1c171eb1-6170-48c6-972f-11fe3f054185",
+      "19e8b21d-0853-4462-9e2e-e8676ec25698",
+      "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+      "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d"
+    ],
+    "ids_run2": [
+      "434076c9-8aaf-47c1-a09e-477ae3f64532",
+      "1c171eb1-6170-48c6-972f-11fe3f054185",
+      "19e8b21d-0853-4462-9e2e-e8676ec25698",
+      "23695c11-2a49-443e-92bb-5e7cead2ba5f",
+      "549bf4cb-4e26-4ddc-8637-ecc4aa2ebc7d"
+    ],
+    "match": true
+  }
+}
