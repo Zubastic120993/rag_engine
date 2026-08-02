@@ -62,6 +62,60 @@ def _tracker_paths() -> list[str]:
     return paths
 
 
+def _normalize_rel_source_path(source: str, root: Path) -> str | None:
+    src = str(source or "").strip().replace("\\", "/")
+    if not src:
+        return None
+    candidate = Path(src)
+    if candidate.is_absolute():
+        try:
+            return str(candidate.resolve().relative_to(root.resolve())).replace("\\", "/")
+        except ValueError:
+            return None
+    return src.lstrip("./")
+
+
+def _normalize_prefix(prefix: str) -> str:
+    pref = str(prefix or "").strip().replace("\\", "/").lstrip("./")
+    if pref and not pref.endswith("/"):
+        pref += "/"
+    return pref
+
+
+def _scope_prefixes_indexed_check(root: Path, reg: dict[str, Any], tracker_paths: list[str]) -> dict[str, Any]:
+    normalized_paths = {
+        rel
+        for rel in (
+            _normalize_rel_source_path(path, root) for path in tracker_paths
+        )
+        if rel
+    }
+    prefix_ok = True
+    details: list[str] = []
+    for name, meta in (reg.get("scopes") or {}).items():
+        prefixes = list(meta.get("path_prefixes") or [])
+        if not prefixes:
+            continue
+        for pref in prefixes:
+            p = root / pref
+            exists = p.is_dir()
+            norm_pref = _normalize_prefix(pref)
+            n_docs = sum(1 for rel in normalized_paths if rel.startswith(norm_pref))
+            if not exists:
+                prefix_ok = False
+                details.append(f"{name}:{pref} missing dir")
+            elif n_docs == 0:
+                prefix_ok = False
+                details.append(f"{name}:{pref} dir ok but 0 indexed docs for prefix")
+            else:
+                details.append(f"{name}:{pref} ok ({n_docs} docs)")
+    return _check(
+        "scope_prefixes_indexed",
+        prefix_ok,
+        "; ".join(details) if details else "no prefixes",
+    )
+
+
 class _ProbeEmbeddings:
     """Deterministic, dependency-free embedding stub for the persistence
     probe below — no Ollama needed, and a fixed dimension so it never
@@ -217,34 +271,9 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
 
     # prefix dirs exist + have indexed docs
     try:
-        by_coll = _chroma_source_collections()
         reg = load_registry()
-        prefix_ok = True
-        details = []
-        for name, meta in (reg.get("scopes") or {}).items():
-            prefixes = list(meta.get("path_prefixes") or [])
-            if not prefixes:
-                continue
-            for pref in prefixes:
-                p = root / pref
-                exists = p.is_dir()
-                n_docs = len(by_coll.get(name, set()))
-                # inspection is under statutory; still require indexed docs for scope
-                if not exists:
-                    prefix_ok = False
-                    details.append(f"{name}:{pref} missing dir")
-                elif n_docs == 0:
-                    prefix_ok = False
-                    details.append(f"{name}:{pref} dir ok but 0 indexed docs in scope")
-                else:
-                    details.append(f"{name}:{pref} ok ({n_docs} docs)")
-        checks.append(
-            _check(
-                "scope_prefixes_indexed",
-                prefix_ok,
-                "; ".join(details) if details else "no prefixes",
-            )
-        )
+        tracker_paths = _tracker_paths()
+        checks.append(_scope_prefixes_indexed_check(root, reg, tracker_paths))
     except Exception as e:  # noqa: BLE001
         checks.append(_check("scope_prefixes_indexed", False, str(e)))
 
