@@ -373,7 +373,7 @@ def main(argv: list[str] | None = None) -> int:
     if not argv or argv[0] in ("-h", "--help"):
         print(
             "usage: rag-engine <ask|sync|ingest|gaps|doctor|explain-scope|"
-            "explain-alias|scope-stats|list-scopes|paths|backfill|eval> …\n"
+            "explain-alias|scope-stats|reconcile-path|list-scopes|paths|backfill|eval> …\n"
             "  ask [--scope NAME] [--json] [--suggest-scopes] [--model NAME] [--fallback] [--num-ctx N] [--num-predict N] QUESTION\n"
             "  sync | ingest [--force] [--max-new N]\n"
             "  gaps [--limit N] [--json]\n"
@@ -381,6 +381,7 @@ def main(argv: list[str] | None = None) -> int:
             "  explain-scope PATH [--json]\n"
             "  explain-alias ALIAS [--json]\n"
             "  scope-stats [--json]\n"
+            "  reconcile-path --old-path REL --new-path REL --expected-sha256 HEX [--commit] [--json]\n"
             "  list-scopes [--json]\n"
             "  paths\n"
             "  backfill\n"
@@ -412,6 +413,10 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_explain_alias(rest)
     if cmd == "scope-stats":
         return cmd_scope_stats(rest)
+    if cmd == "reconcile-path":
+        from rag_engine.reconcile_path import cmd_reconcile_path
+
+        return cmd_reconcile_path(rest)
     if cmd == "backfill":
         from rag_engine.backfill_collections import main as backfill_main
 

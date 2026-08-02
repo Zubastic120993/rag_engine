@@ -37,6 +37,18 @@ These are **not** the same collection. A vessel alias never silently includes `m
 ## CLI
 
 ```bash
+./run_tests.sh -q
+```
+
+Supported isolated test wrapper:
+
+- sets `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`;
+- clears `PYTHONPATH`, `PYTHONHOME`, and `VIRTUAL_ENV` before invoking the
+  local `./venv/bin/python -m pytest`;
+- preserves normal pytest exit codes;
+- passes any extra pytest arguments through unchanged.
+
+```bash
 rag-engine list-scopes --json
 rag-engine paths
 rag-engine doctor [--json]          # read-only health check

@@ -7,6 +7,10 @@
 - stable-ID design approved;
 - controlled vocabularies approved;
 - human-review boundary approved;
+- production registry location policy approved;
+- registry population policy approved;
+- registry backup and restore policy approved;
+- retrieval integration boundary approved;
 - implementation and migration not yet executed.
 
 ## 2026-07-28

@@ -118,8 +118,14 @@ Note:
 - [x] Stable-ID policy approved
 - [x] Controlled vocabulary v1 approved
 - [x] Human-review boundary approved
+- [x] Production registry location policy approved
+- [x] Population policy approved
+- [x] Backup and restore policy approved
+- [x] Retrieval integration boundary approved
 - [ ] SQLite registry implementation
+- [ ] Production registry creation
 - [ ] Registry population
+- [ ] Registry-aware retrieval deployment
 - [ ] Chroma metadata migration
 - [ ] Controlled re-indexing
 - [ ] Obsidian projection
@@ -134,6 +140,10 @@ Design evidence references:
 - `RAG_OBSIDIAN_METADATA_BOUNDARY_V1.md`
 - `RAG_METADATA_IMPLEMENTATION_PLAN_V1.md`
 - `ADR_001_METADATA_REGISTRY_ARCHITECTURE.md`
+- `RAG_METADATA_REGISTRY_LOCATION_POLICY_V1.md`
+- `RAG_METADATA_REGISTRY_POPULATION_POLICY_V1.md`
+- `RAG_METADATA_REGISTRY_BACKUP_RESTORE_POLICY_V1.md`
+- `RAG_METADATA_RETRIEVAL_INTEGRATION_BOUNDARY_V1.md`
 
 ### M-02 Explicit orphan/deletion cleanup workflow
 - Objective: remove stale chunks when files disappear or are superseded.

@@ -15,6 +15,7 @@ from rag_engine.config import (
     library_root,
     persist_dir,
 )
+from rag_engine.lock import IngestLockError, ingest_lock
 
 
 def _collection_for_source(source: str) -> str:
@@ -32,44 +33,50 @@ def _collection_for_source(source: str) -> str:
 
 
 def backfill(batch_size: int = 500, dry_run: bool = False) -> Counter:
-    embeddings = OllamaEmbeddings(model=embed_model())
-    db = Chroma(
-        persist_directory=str(persist_dir()),
-        embedding_function=embeddings,
-        client_settings=chroma_client_settings(),
-    )
-    raw = db.get(include=["metadatas"])
-    ids = raw.get("ids") or []
-    metas = raw.get("metadatas") or []
+    def _run() -> Counter:
+        embeddings = OllamaEmbeddings(model=embed_model())
+        db = Chroma(
+            persist_directory=str(persist_dir()),
+            embedding_function=embeddings,
+            client_settings=chroma_client_settings(),
+        )
+        raw = db.get(include=["metadatas"])
+        ids = raw.get("ids") or []
+        metas = raw.get("metadatas") or []
 
-    counts: Counter = Counter()
-    pending_ids: list[str] = []
-    pending_metas: list[dict] = []
+        counts: Counter = Counter()
+        pending_ids: list[str] = []
+        pending_metas: list[dict] = []
 
-    def flush() -> None:
-        nonlocal pending_ids, pending_metas
-        if not pending_ids:
-            return
-        if not dry_run:
-            db._collection.update(ids=pending_ids, metadatas=pending_metas)
-        pending_ids, pending_metas = [], []
+        def flush() -> None:
+            nonlocal pending_ids, pending_metas
+            if not pending_ids:
+                return
+            if not dry_run:
+                db._collection.update(ids=pending_ids, metadatas=pending_metas)
+            pending_ids, pending_metas = [], []
 
-    for i, (doc_id, meta) in enumerate(zip(ids, metas)):
-        meta = dict(meta or {})
-        source = str(meta.get("source", ""))
-        collection = _collection_for_source(source)
-        counts[collection] += 1
-        if meta.get("collection") == collection:
-            continue
-        meta["collection"] = collection
-        pending_ids.append(doc_id)
-        pending_metas.append(meta)
-        if len(pending_ids) >= batch_size:
-            flush()
-            print(f"  updated {i + 1}/{len(ids)}…", flush=True)
+        for i, (doc_id, meta) in enumerate(zip(ids, metas)):
+            meta = dict(meta or {})
+            source = str(meta.get("source", ""))
+            collection = _collection_for_source(source)
+            counts[collection] += 1
+            if meta.get("collection") == collection:
+                continue
+            meta["collection"] = collection
+            pending_ids.append(doc_id)
+            pending_metas.append(meta)
+            if len(pending_ids) >= batch_size:
+                flush()
+                print(f"  updated {i + 1}/{len(ids)}…", flush=True)
 
-    flush()
-    return counts
+        flush()
+        return counts
+
+    if dry_run:
+        return _run()
+    with ingest_lock():
+        return _run()
 
 
 def main() -> None:
@@ -79,7 +86,10 @@ def main() -> None:
     args = parser.parse_args()
 
     print(f"Backfilling collections in {persist_dir()} (dry_run={args.dry_run})")
-    counts = backfill(batch_size=args.batch_size, dry_run=args.dry_run)
+    try:
+        counts = backfill(batch_size=args.batch_size, dry_run=args.dry_run)
+    except IngestLockError as exc:
+        raise SystemExit(str(exc)) from exc
     total = sum(counts.values())
     print(f"Done. {total} chunks:")
     for name, n in sorted(counts.items(), key=lambda x: (-x[1], x[0])):
