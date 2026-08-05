@@ -13,6 +13,7 @@ from typing import Any
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
 
+from rag_engine.authority import enrich_metadata
 from rag_engine.config import (
     chroma_client_settings,
     default_k,
@@ -23,6 +24,7 @@ from rag_engine.config import (
     llm_num_ctx,
     llm_num_predict,
     persist_dir,
+    retrieval_score_max,
 )
 from rag_engine.text import normalize_text
 
@@ -141,6 +143,8 @@ class AskResult:
     missing_information: str | None = None
     timings: dict[str, float | None] = field(default_factory=_empty_timings)
     model: str | None = None
+    best_distance: float | None = None
+    score_floor: float | None = None
     # F-18: what retrieval actually found, independent of `sources` and its
     # status-gated emptying below. Always reflects retrieve_with_scores()'s
     # real output -- [] only when retrieval genuinely found nothing (or
@@ -239,6 +243,71 @@ def _run_with_timeout(fn, timeout: float | None = None):
             ) from e
 
 
+def authority_preference_distance_window() -> float:
+    """Within this distance band, prefer the stronger authority source.
+
+    The score floor already discards weak hits entirely. Inside the surviving
+    set, authority should decide only when distances are close enough to be
+    materially comparable; it must not override a much closer hit just because
+    that hit comes from a lower-ranked source.
+    """
+    return 0.05
+
+
+def _candidate_sort_key(item: tuple[Any, float]) -> tuple[int, int, int, float, str, Any]:
+    doc, distance = item
+    meta = enrich_metadata(doc.metadata)
+    doc.metadata = meta
+    band = int(float(distance) / authority_preference_distance_window())
+    return (
+        band,
+        int(meta.get("authority_rank", 5)),
+        1 if bool(meta.get("machine_transcribed", False)) else 0,
+        float(distance),
+        str(meta.get("source", "")),
+        meta.get("page", "?"),
+    )
+
+
+def _apply_retrieval_controls(
+    pairs: list[tuple[Any, float]],
+    *,
+    k: int,
+) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    floor = retrieval_score_max()
+    best_raw_distance = best_distance(pairs)
+    gated = [(doc, float(distance)) for doc, distance in pairs if float(distance) <= floor]
+    ranked = sorted(gated, key=_candidate_sort_key)
+
+    deduped: list[tuple[Any, float]] = []
+    seen: set[tuple[str, Any, str]] = set()
+    for doc, distance in ranked:
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
+        key = (
+            str(meta.get("source", "")),
+            meta.get("page", "?"),
+            str(meta.get("collection", "other")),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append((doc, distance))
+
+    gate = None
+    if pairs and not deduped:
+        gate = "no_chunk_cleared_score_floor"
+    diagnostics = {
+        "score_floor": floor,
+        "best_raw_distance": best_raw_distance,
+        "raw_count": len(pairs),
+        "post_floor_count": len(gated),
+        "post_dedupe_count": len(deduped),
+        "gate": gate,
+    }
+    return deduped[:k], diagnostics
+
+
 def retrieve_with_scores(
     question: str,
     scope: str | None = None,
@@ -260,8 +329,29 @@ def retrieve_with_scores(
             kwargs["filter"] = {"collection": scope}
         return db.similarity_search_with_score(q, **kwargs)
 
-    results = _run_with_timeout(_call)
-    return results[:k]
+    raw_results = _run_with_timeout(_call)
+    results, _diagnostics = _apply_retrieval_controls(raw_results, k=k)
+    return results
+
+
+def retrieve_with_scores_and_diagnostics(
+    question: str,
+    scope: str | None = None,
+    k: int | None = None,
+) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    db = _get_db()
+    k = default_k() if k is None else k
+    search_k = max(k, retrieval_search_width())
+    q = normalize_text(question)
+
+    def _call():
+        kwargs: dict[str, Any] = {"k": search_k}
+        if scope:
+            kwargs["filter"] = {"collection": scope}
+        return db.similarity_search_with_score(q, **kwargs)
+
+    raw_results = _run_with_timeout(_call)
+    return _apply_retrieval_controls(raw_results, k=k)
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):
@@ -272,7 +362,8 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
     sources: list[dict] = []
     seen: set[tuple] = set()
     for doc, distance in pairs:
-        meta = doc.metadata or {}
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
         src = meta.get("source", "unknown")
         page = meta.get("page", "?")
         coll = meta.get("collection", "other")
@@ -287,6 +378,8 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
                 "collection": coll,
                 # Chroma L2 distance: lower = closer/more relevant.
                 "distance": float(distance),
+                "authority_rank": int(meta.get("authority_rank", 5)),
+                "machine_transcribed": bool(meta.get("machine_transcribed", False)),
             }
         )
     return sources
@@ -522,9 +615,10 @@ def answer(
         )
 
     retrieval_s: float | None = None
+    retrieval_diag: dict[str, Any] = {}
     try:
         t_ret = time.perf_counter()
-        pairs = retrieve_with_scores(q, scope=resolved, k=k)
+        pairs, retrieval_diag = retrieve_with_scores_and_diagnostics(q, scope=resolved, k=k)
         retrieval_s = time.perf_counter() - t_ret
     except TimeoutError as e:
         return AskResult(
@@ -565,8 +659,10 @@ def answer(
             hint=_no_coverage_hint(q, resolved, suggest_scopes),
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
+            best_distance=retrieval_diag.get("best_raw_distance"),
+            score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=[],
-            gate="no_retrieval_results",
+            gate=str(retrieval_diag.get("gate") or "no_retrieval_results"),
         )
 
     sources = _sources_from_pairs(pairs)
@@ -584,6 +680,8 @@ def answer(
             missing_information=None,
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
+            best_distance=retrieval_diag.get("best_raw_distance"),
+            score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=sources,
             gate=None,
         )

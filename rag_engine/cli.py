@@ -16,6 +16,7 @@ from rag_engine.config import (
     list_scopes,
     persist_dir,
     resolve_scope,
+    retrieval_score_max,
 )
 from rag_engine.events import events_path, log_ask_event, read_events
 from rag_engine.query import EXIT_ERROR, EXIT_NO_COVERAGE, EXIT_OK, AskResult, answer
@@ -58,6 +59,26 @@ _ASK_FLAG_TOKENS = frozenset(
         "--help",
     }
 )
+
+
+def _best_logged_distance(result: AskResult) -> float | None:
+    if result.best_distance is not None:
+        return float(result.best_distance)
+    evidence = result.retrieval_evidence or result.sources or []
+    distances: list[float] = []
+    for item in evidence:
+        raw = item.get("distance") if isinstance(item, dict) else None
+        if raw is None:
+            continue
+        try:
+            distances.append(float(raw))
+        except (TypeError, ValueError):
+            continue
+    return min(distances) if distances else None
+
+
+def _logged_score_floor(result: AskResult) -> float:
+    return float(result.score_floor) if result.score_floor is not None else retrieval_score_max()
 
 
 def cmd_ask(argv: list[str]) -> int:
@@ -200,6 +221,9 @@ def cmd_ask(argv: list[str]) -> int:
             status="error",
             exit_code=EXIT_ERROR,
             sources=[],
+            gate=result.gate,
+            best_distance=_best_logged_distance(result),
+            score_floor=_logged_score_floor(result),
         )
         return EXIT_ERROR
 
@@ -235,6 +259,9 @@ def cmd_ask(argv: list[str]) -> int:
         status=result.status,
         exit_code=code,
         sources=result.sources if keep_sources else [],
+        gate=result.gate,
+        best_distance=_best_logged_distance(result),
+        score_floor=_logged_score_floor(result),
     )
     return code
 

@@ -16,6 +16,7 @@ from langchain_core.documents import Document
 from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+from rag_engine.authority import enrich_metadata
 from rag_engine.config import (
     chroma_client_settings,
     chunk_overlap,
@@ -163,6 +164,7 @@ def _embed_chunks(
         d.metadata["source"] = source_rel
         d.metadata["page"] = d.metadata.get("page", "?")
         d.metadata["collection"] = collection
+        d.metadata = enrich_metadata(d.metadata)
 
     valid = _clean_chunks(docs)
     if not valid:

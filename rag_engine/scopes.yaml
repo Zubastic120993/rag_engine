@@ -20,6 +20,8 @@ defaults:
   llm_num_ctx_default: 8192
   llm_num_predict_env: RAG_LLM_NUM_PREDICT
   llm_num_predict_default: 1024
+  retrieval_score_max_env: RAG_RETRIEVAL_SCORE_MAX
+  retrieval_score_max_default: 0.38
   chunk_size: 800
   chunk_overlap: 100
   default_k: 5

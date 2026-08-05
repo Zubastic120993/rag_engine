@@ -84,6 +84,13 @@ def _patch_llm_response(text: str):
     return patch("rag_engine.query._get_llm", return_value=llm)
 
 
+def _patch_retrieval(pairs, gate=None):
+    diag = {"gate": gate}
+    if pairs:
+        diag["best_raw_distance"] = min(float(distance) for _doc, distance in pairs)
+    return patch("rag_engine.query.retrieve_with_scores_and_diagnostics", return_value=(pairs, diag))
+
+
 # v3 fields only -- the exact set that existed before this repair. Used to
 # prove the "ok" payload is byte-identical on every field that already
 # existed, field by field, not just "the new keys are additive".
@@ -112,7 +119,7 @@ def test_no_coverage_carries_populated_evidence(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(path="20_Vessels/x.pdf", collection="vessels"), 0.9)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("NOT_IN_CONTEXT"):
             r = answer("q", scope="vessels")
 
@@ -137,7 +144,7 @@ def test_true_zero_retrieval_has_empty_evidence_and_distinct_gate(scopes_yaml):
     makes the two no_coverage cases distinguishable now."""
     from rag_engine.query import answer
 
-    with patch("rag_engine.query.retrieve_with_scores", return_value=[]):
+    with _patch_retrieval([]):
         r = answer("q", scope="vessels")
 
     assert r.status == "no_coverage"
@@ -154,7 +161,7 @@ def test_ok_result_existing_fields_byte_identical(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("Follow the FO procedure before bunkering."):
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
 
@@ -166,7 +173,14 @@ def test_ok_result_existing_fields_byte_identical(scopes_yaml):
     assert v3_subset["answer"] == "Follow the FO procedure before bunkering."
     assert v3_subset["missing_information"] is None
     assert v3_subset["sources"] == [
-        {"path": "10_Company/a.pdf", "page": 1, "collection": "sms", "distance": 0.4}
+        {
+            "path": "10_Company/a.pdf",
+            "page": 1,
+            "collection": "sms",
+            "distance": 0.4,
+            "authority_rank": 2,
+            "machine_transcribed": False,
+        }
     ]
     assert v3_subset["model"] is not None
     assert v3_subset["scope"] == "sms"

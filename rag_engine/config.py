@@ -173,6 +173,14 @@ def llm_num_predict() -> int | None:
     return int(val) if val is not None else None
 
 
+def retrieval_score_max() -> float:
+    """Max Chroma L2 distance allowed to reach context/citations."""
+    d = load_registry()["defaults"]
+    env_key = d.get("retrieval_score_max_env", "RAG_RETRIEVAL_SCORE_MAX")
+    default = str(d.get("retrieval_score_max_default", 0.38))
+    return float(os.environ.get(env_key, default))
+
+
 def chunk_size() -> int:
     return int(load_registry()["defaults"]["chunk_size"])
 

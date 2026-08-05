@@ -21,6 +21,9 @@ def log_ask_event(
     status: str,
     exit_code: int,
     sources: list[dict] | None = None,
+    gate: str | None = None,
+    best_distance: float | None = None,
+    score_floor: float | None = None,
 ) -> None:
     """Best-effort append. Never raises into the ask path."""
     try:
@@ -33,6 +36,12 @@ def log_ask_event(
             "exit_code": exit_code,
             "n_sources": len(sources or []),
         }
+        if gate is not None:
+            row["gate"] = gate
+        if best_distance is not None:
+            row["best_distance"] = float(best_distance)
+        if score_floor is not None:
+            row["score_floor"] = float(score_floor)
         with events_path().open("a", encoding="utf-8") as f:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
     except OSError:

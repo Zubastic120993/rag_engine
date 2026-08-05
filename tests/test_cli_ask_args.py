@@ -91,3 +91,28 @@ def test_missing_question_still_handled_cleanly():
     code, captured = _run(["--scope", "wiki", "--json"])
     assert code == EXIT_ERROR
     assert captured == {}
+
+
+def test_cmd_ask_logs_gate_and_score_floor_for_no_coverage():
+    result = AskResult(
+        status="no_coverage",
+        query="q",
+        requested_scope="wiki",
+        resolved_scope="wiki",
+        answer=None,
+        sources=[],
+        retrieval_evidence=[{"path": "x.pdf", "page": 1, "collection": "wiki", "distance": 0.41}],
+        gate="no_chunk_cleared_score_floor",
+        coverage="none",
+    )
+    with patch.object(cli, "resolve_scope", return_value="wiki"), patch.object(
+        cli, "answer", return_value=result
+    ), patch.object(cli, "log_ask_event") as fake_log:
+        code = cli.cmd_ask(["--scope", "wiki", "--json", "missing detail"])
+
+    assert code == 2
+    fake_log.assert_called_once()
+    kwargs = fake_log.call_args.kwargs
+    assert kwargs["gate"] == "no_chunk_cleared_score_floor"
+    assert kwargs["score_floor"] is not None
+    assert kwargs["best_distance"] == 0.41

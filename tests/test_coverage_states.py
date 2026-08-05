@@ -79,6 +79,13 @@ def _patch_llm_response(text: str):
     return patch("rag_engine.query._get_llm", return_value=llm)
 
 
+def _patch_retrieval(pairs, gate=None):
+    diag = {"gate": gate}
+    if pairs:
+        diag["best_raw_distance"] = min(float(distance) for _doc, distance in pairs)
+    return patch("rag_engine.query.retrieve_with_scores_and_diagnostics", return_value=(pairs, diag))
+
+
 def test_resolve_answer_model(scopes_yaml):
     from rag_engine.query import resolve_answer_model
 
@@ -91,7 +98,7 @@ def test_plain_text_answer_is_ok(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("Follow the FO procedure before bunkering."):
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
 
@@ -119,7 +126,7 @@ def test_not_in_context_sentinel_is_no_coverage(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.9)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("NOT_IN_CONTEXT"):
             r = answer("unrelated?", scope="sms")
 
@@ -134,7 +141,7 @@ def test_source_only_query_bypasses_llm_when_retrieval_is_strong(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(path="10_Company/manual.pdf", page=3), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with patch("rag_engine.query._get_llm") as llm:
             r = answer("return source details only for the manual", scope="sms")
 
@@ -154,7 +161,7 @@ def test_not_in_context_with_single_source_consensus_preserves_sources(scopes_ya
         (_fake_doc(path="10_Company/manual.pdf", page=2), 0.5),
         (_fake_doc(path="10_Company/manual.pdf", page=3), 0.6),
     ]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("NOT_IN_CONTEXT"):
             r = answer("What is the procedure detail?", scope="sms")
 
@@ -175,7 +182,7 @@ def test_not_in_context_with_conflicting_sources_stays_no_coverage(scopes_yaml):
         (_fake_doc(path="10_Company/manual_b.pdf", page=2), 0.5),
         (_fake_doc(path="10_Company/manual_a.pdf", page=3), 0.6),
     ]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("NOT_IN_CONTEXT"):
             r = answer("What is the procedure detail?", scope="sms")
 
@@ -201,7 +208,7 @@ def test_not_in_context_detection_is_first_line_only(scopes_yaml):
 def test_no_coverage_empty_retrieval_skips_llm(scopes_yaml):
     from rag_engine.query import answer
 
-    with patch("rag_engine.query.retrieve_with_scores", return_value=[]):
+    with _patch_retrieval([]):
         with patch("rag_engine.query._get_llm") as llm:
             r = answer("missing doc", scope="sms")
             llm.assert_not_called()
@@ -215,7 +222,7 @@ def test_empty_model_response_is_error_not_partial(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response(""):
             r = answer("q", scope="sms")
 
@@ -230,7 +237,7 @@ def test_single_generation_call_no_repair_loop(scopes_yaml):
     pairs = [(_fake_doc(), 0.4)]
     llm = MagicMock()
     llm.invoke.return_value = ""  # unusable output
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with patch("rag_engine.query._get_llm", return_value=llm):
             r = answer("q", scope="sms")
 
@@ -249,7 +256,7 @@ def test_heavy_fallback_model_never_touched_by_default(scopes_yaml):
     def _get_llm(model, num_ctx, num_predict):
         return fallback_llm if model == "qwen3.5:9b" else fast_llm
 
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with patch("rag_engine.query._get_llm", side_effect=_get_llm) as get_llm:
             r = answer("q", scope="sms")  # use_fallback defaults False
 
@@ -272,7 +279,7 @@ def test_explicit_heavy_fallback_routes_primary(scopes_yaml):
     def _get_llm(model, num_ctx, num_predict):
         return heavy_llm if model == "qwen3.5:9b" else fast_llm
 
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with patch("rag_engine.query._get_llm", side_effect=_get_llm):
             r = answer("q", scope="sms", use_fallback=True)
 
@@ -288,7 +295,7 @@ def test_generation_timeout_is_error(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with patch("rag_engine.query._get_llm", return_value=MagicMock()):
             with patch(
                 "rag_engine.query._run_with_timeout",
@@ -310,7 +317,7 @@ def test_retrieval_timeout_is_still_a_hard_error(scopes_yaml):
     from rag_engine.query import answer
 
     with patch(
-        "rag_engine.query.retrieve_with_scores",
+        "rag_engine.query.retrieve_with_scores_and_diagnostics",
         side_effect=TimeoutError("Ollama call timed out after 300.0s (RAG_OLLAMA_TIMEOUT)"),
     ):
         r = answer("q", scope="sms")
@@ -323,7 +330,7 @@ def test_fenced_answer_is_unwrapped(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("```\nThe procedure requires two checks.\n```"):
             r = answer("q", scope="sms")
 
@@ -335,7 +342,7 @@ def test_timing_fields_present(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("yes"):
             r = answer("q", scope="sms", scope_resolution_s=0.012)
 
@@ -399,7 +406,7 @@ def test_json_contract_ok_payload(scopes_yaml):
     from rag_engine.query import SCHEMA_VERSION, answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("An answer."):
             j = answer("q", scope="sms").to_json()
 
@@ -408,7 +415,14 @@ def test_json_contract_ok_payload(scopes_yaml):
     assert set(j["timings"]) == TIMING_KEYS
     assert isinstance(j["sources"], list)
     src = j["sources"][0]
-    assert set(src) == {"path", "page", "collection", "distance"}
+    assert set(src) == {
+        "path",
+        "page",
+        "collection",
+        "distance",
+        "authority_rank",
+        "machine_transcribed",
+    }
     # F-18: "ok" is not a gated status — nothing to explain.
     assert j["gate"] is None
     assert j["retrieval_evidence"] == j["sources"]
@@ -418,7 +432,7 @@ def test_json_contract_no_coverage_payload(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.9)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response("NOT_IN_CONTEXT"):
             j = answer("q", scope="sms").to_json()
 
@@ -441,7 +455,7 @@ def test_json_contract_error_payload(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    with patch("rag_engine.query.retrieve_with_scores", return_value=pairs):
+    with _patch_retrieval(pairs):
         with _patch_llm_response(""):
             j = answer("q", scope="sms").to_json()
 
