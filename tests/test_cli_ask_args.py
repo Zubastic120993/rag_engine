@@ -116,30 +116,3 @@ def test_cmd_ask_logs_gate_and_score_floor_for_no_coverage():
     assert kwargs["gate"] == "no_chunk_cleared_score_floor"
     assert kwargs["score_floor"] is not None
     assert kwargs["best_distance"] == 0.41
-
-
-def test_cmd_ask_logs_user_facing_manual_library_scope():
-    result = AskResult(
-        status="ok",
-        query="q",
-        requested_scope="manual_library",
-        resolved_scope="manual_library",
-        answer="ok",
-        sources=[
-            {
-                "path": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3.pdf",
-                "page": 40,
-                "collection": "me-c",
-                "distance": 0.21,
-            }
-        ],
-        coverage="full",
-    )
-    with patch.object(cli, "resolve_scope", return_value="maker-manuals"), patch.object(
-        cli, "answer", return_value=result
-    ), patch.object(cli, "log_ask_event") as fake_log:
-        code = cli.cmd_ask(["--scope", "manual_library", "--json", "main engine manual"])
-
-    assert code == EXIT_OK
-    kwargs = fake_log.call_args.kwargs
-    assert kwargs["scope"] == "manual_library"

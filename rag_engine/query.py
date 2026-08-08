@@ -54,8 +54,6 @@ DEFAULT_NO_COVERAGE_HINT = (
 )
 
 _STATUSES_WITH_SOURCES = frozenset({"ok"})
-_UNIFIED_MANUAL_LIBRARY_SCOPE = "manual_library"
-_UNIFIED_MANUAL_LIBRARY_INTERNAL_SCOPES = ("maker-manuals", "me-c")
 
 
 def ollama_timeout_s() -> float:
@@ -357,142 +355,6 @@ def _dedupe_ranked_pairs(ranked: list[tuple[Any, float]]) -> list[tuple[Any, flo
     return deduped
 
 
-def _dedupe_ranked_pairs_manual_library_union(
-    ranked: list[tuple[Any, float]],
-) -> tuple[list[tuple[Any, float]], int]:
-    deduped: list[tuple[Any, float]] = []
-    seen: set[tuple[str, Any]] = set()
-    duplicate_drops = 0
-    for doc, distance in ranked:
-        meta = enrich_metadata(doc.metadata)
-        doc.metadata = meta
-        key = (
-            str(meta.get("source", "")),
-            meta.get("page", "?"),
-        )
-        if key in seen:
-            duplicate_drops += 1
-            continue
-        seen.add(key)
-        deduped.append((doc, distance))
-    return deduped, duplicate_drops
-
-
-def _run_similarity_search_with_score(
-    question: str,
-    *,
-    scope: str | None,
-    search_k: int,
-) -> list[tuple[Any, float]]:
-    db = _get_db()
-    q = normalize_text(question)
-
-    def _call():
-        kwargs: dict[str, Any] = {"k": search_k}
-        if scope:
-            kwargs["filter"] = {"collection": scope}
-        return db.similarity_search_with_score(q, **kwargs)
-
-    return _run_with_timeout(_call)
-
-
-def _retrieve_with_scores_and_diagnostics_single_scope(
-    question: str,
-    *,
-    scope: str | None,
-    k: int,
-) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
-    search_k = max(k, retrieval_search_width())
-    raw_results = _run_similarity_search_with_score(question, scope=scope, search_k=search_k)
-    return _apply_retrieval_controls(raw_results, scope=scope, k=k)
-
-
-def _retrieve_with_scores_and_diagnostics_manual_library_union(
-    question: str,
-    *,
-    k: int,
-) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
-    per_scope_results: dict[str, list[tuple[Any, float]]] = {}
-    per_scope_diagnostics: dict[str, dict[str, Any]] = {}
-    merged_pairs: list[tuple[Any, float]] = []
-    for internal_scope in _UNIFIED_MANUAL_LIBRARY_INTERNAL_SCOPES:
-        pairs, diagnostics = _retrieve_with_scores_and_diagnostics_single_scope(
-            question,
-            scope=internal_scope,
-            k=k,
-        )
-        per_scope_results[internal_scope] = pairs
-        per_scope_diagnostics[internal_scope] = diagnostics
-        merged_pairs.extend(pairs)
-
-    family_support, source_support = _support_maps(merged_pairs)
-    ranked = sorted(
-        merged_pairs,
-        key=lambda item: _candidate_sort_key(
-            item,
-            family_support=family_support,
-            source_support=source_support,
-        ),
-    )
-    deduped, duplicate_drops = _dedupe_ranked_pairs_manual_library_union(ranked)
-    raw_count = sum(int((diag or {}).get("raw_count", 0)) for diag in per_scope_diagnostics.values())
-    post_admissibility_count = sum(
-        int((diag or {}).get("post_admissibility_count", 0))
-        for diag in per_scope_diagnostics.values()
-    )
-    post_scope_count = sum(
-        int((diag or {}).get("post_scope_count", 0)) for diag in per_scope_diagnostics.values()
-    )
-    best_raw_distance = best_distance(merged_pairs)
-    gate = None
-    if raw_count and not post_admissibility_count:
-        gate = "broad_admissibility_failed"
-
-    diagnostics = {
-        "score_floor": retrieval_score_max(),
-        "best_raw_distance": best_raw_distance,
-        "raw_count": raw_count,
-        "post_admissibility_count": post_admissibility_count,
-        "post_scope_count": post_scope_count,
-        "post_rerank_count": len(ranked),
-        "post_dedupe_count": len(deduped),
-        "final_retained_count": 0,
-        "final_confidence_passed": False,
-        "gate": gate,
-        "internal_scopes_queried": list(_UNIFIED_MANUAL_LIBRARY_INTERNAL_SCOPES),
-        "internal_scope_counts": {
-            internal_scope: {
-                "retained_count": len(per_scope_results.get(internal_scope, [])),
-                "raw_count": int((per_scope_diagnostics.get(internal_scope) or {}).get("raw_count", 0)),
-                "post_admissibility_count": int(
-                    (per_scope_diagnostics.get(internal_scope) or {}).get(
-                        "post_admissibility_count", 0
-                    )
-                ),
-                "post_scope_count": int(
-                    (per_scope_diagnostics.get(internal_scope) or {}).get(
-                        "post_scope_count", 0
-                    )
-                ),
-            }
-            for internal_scope in _UNIFIED_MANUAL_LIBRARY_INTERNAL_SCOPES
-        },
-        "merged_candidate_count": len(merged_pairs),
-        "union_deduped_count": len(deduped),
-        "union_duplicate_drops": duplicate_drops,
-        "union_candidates": [
-            {
-                "requested_scope": _UNIFIED_MANUAL_LIBRARY_SCOPE,
-                "internal_collection": str(enrich_metadata(doc.metadata).get("collection", "other")),
-                "canonical_source": str(enrich_metadata(doc.metadata).get("source", "")),
-                "page": enrich_metadata(doc.metadata).get("page", "?"),
-            }
-            for doc, _distance in deduped[:k]
-        ],
-    }
-    return deduped[:k], diagnostics
-
-
 def _apply_final_confidence_gate(
     pairs: list[tuple[Any, float]],
     *,
@@ -607,8 +469,24 @@ def retrieve_with_scores(
     scope: str | None = None,
     k: int | None = None,
 ) -> list[tuple[Any, float]]:
+    db = _get_db()
     k = default_k() if k is None else k
-    results, _diagnostics = retrieve_with_scores_and_diagnostics(question, scope=scope, k=k)
+    # Query wide (F-17: hnswlib recall is width-bound, not just ef-bound — see
+    # retrieval_search_width()), but truncate to k before returning. Callers
+    # (answer()'s sources, LLM context, conservative-success check) must never
+    # see more than k candidates — only ranking quality should change, not
+    # how many chunks reach the context.
+    search_k = max(k, retrieval_search_width())
+    q = normalize_text(question)
+
+    def _call():
+        kwargs: dict[str, Any] = {"k": search_k}
+        if scope:
+            kwargs["filter"] = {"collection": scope}
+        return db.similarity_search_with_score(q, **kwargs)
+
+    raw_results = _run_with_timeout(_call)
+    results, _diagnostics = _apply_retrieval_controls(raw_results, scope=scope, k=k)
     return results
 
 
@@ -617,10 +495,19 @@ def retrieve_with_scores_and_diagnostics(
     scope: str | None = None,
     k: int | None = None,
 ) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    db = _get_db()
     k = default_k() if k is None else k
-    if scope == _UNIFIED_MANUAL_LIBRARY_SCOPE:
-        return _retrieve_with_scores_and_diagnostics_manual_library_union(question, k=k)
-    return _retrieve_with_scores_and_diagnostics_single_scope(question, scope=scope, k=k)
+    search_k = max(k, retrieval_search_width())
+    q = normalize_text(question)
+
+    def _call():
+        kwargs: dict[str, Any] = {"k": search_k}
+        if scope:
+            kwargs["filter"] = {"collection": scope}
+        return db.similarity_search_with_score(q, **kwargs)
+
+    raw_results = _run_with_timeout(_call)
+    return _apply_retrieval_controls(raw_results, scope=scope, k=k)
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):
@@ -845,11 +732,7 @@ def answer(
     raw_q = question or ""
     q = normalize_text(raw_q)
     req = requested_scope if requested_scope is not None else scope
-    resolved = (
-        _UNIFIED_MANUAL_LIBRARY_SCOPE
-        if (req or "").strip().lower().replace("-", "_") == _UNIFIED_MANUAL_LIBRARY_SCOPE
-        else scope
-    )
+    resolved = scope
     chosen_model = resolve_answer_model(model, use_fallback=use_fallback)
     ctx_size = llm_num_ctx() if num_ctx is None else num_ctx
     predict = llm_num_predict() if num_predict is None else num_predict
