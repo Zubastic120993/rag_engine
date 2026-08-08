@@ -39,12 +39,14 @@ def is_machine_transcribed_source(source: str | None) -> bool:
 
 
 def authority_rank_for_source(source: str | None) -> int:
-    src = _norm(source)
+    # Rank by canonical document authority, not by OCR provenance. OCR status is
+    # tracked separately via machine_transcribed/raw_source and must not demote
+    # an otherwise authoritative manual solely because the stored chunk came
+    # from an _OCR derivative.
+    src = canonical_source_path(source) or _norm(source)
     low = src.lower()
     if not low:
         return RANK_REFERENCE
-    if is_machine_transcribed_source(src):
-        return RANK_MACHINE
     if low.startswith("00_career/02_statutory/") or low.startswith("00_career/01_class_rules/"):
         return RANK_REGULATORY
     if low.startswith("10_company/"):
@@ -66,11 +68,12 @@ def authority_rank_for_source(source: str | None) -> int:
 
 def enrich_metadata(metadata: dict | None) -> dict:
     meta = dict(metadata or {})
-    raw_source = _norm(meta.get("source"))
+    source = _norm(meta.get("source"))
+    raw_source = _norm(meta.get("raw_source")) or source
     canonical = canonical_source_path(raw_source)
-    meta["source"] = canonical or raw_source
+    meta["source"] = canonical or source
     if raw_source and canonical and canonical != raw_source:
         meta["raw_source"] = raw_source
-    meta["authority_rank"] = authority_rank_for_source(raw_source)
+    meta["authority_rank"] = authority_rank_for_source(canonical or raw_source)
     meta["machine_transcribed"] = is_machine_transcribed_source(raw_source)
     return meta
