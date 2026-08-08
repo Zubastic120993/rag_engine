@@ -48,6 +48,13 @@ scopes:
       - "00_Career/03_Engine_Knowledge/"
       - "00_Career/07_SDS_Datasheets/"
     path_hints: ["/MANUAL", "/MANUALS/", "INSTRUCTION_MANUAL", "OPERATION_MANUAL"]
+    retrieval_allowed_path_prefixes:
+      - "00_Career/03_Engine_Knowledge/"
+    retrieval_excluded_document_types:
+      - service_letter
+      - training
+      - reference
+      - note
   regulatory:
     description: IMO / MARPOL / SOLAS / class / statutory
     hermes_aliases: [imo_library, statutory]

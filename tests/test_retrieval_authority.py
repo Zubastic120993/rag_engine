@@ -9,12 +9,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from rag_engine import query
+from rag_engine.config import load_registry
 
 
 class _FakeDoc:
     def __init__(self, source: str, page: int = 1, collection: str = "maker-manuals"):
         self.metadata = {"source": source, "page": page, "collection": collection}
         self.page_content = "chunk"
+
+
+def _clear_scope_registry_cache() -> None:
+    load_registry.cache_clear()
 
 
 def test_sources_report_original_pdf_and_machine_transcribed_for_ocr_hit():
@@ -49,6 +54,106 @@ def test_retrieve_with_scores_discards_hits_beyond_score_floor(monkeypatch):
     pairs = query.retrieve_with_scores("some question")
 
     assert pairs == []
+
+
+def test_maker_manuals_scope_excludes_service_literature(monkeypatch):
+    _clear_scope_registry_cache()
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2013-577.pdf"), 0.21),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/Manual_A.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 2)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 2)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", scope="maker-manuals", k=2)
+
+    assert len(pairs) == 1
+    assert pairs[0][0].metadata["source"].endswith("Manual_A.pdf")
+    assert pairs[0][0].metadata["document_type"] == "maker_manual"
+
+
+def test_maker_manuals_scope_excludes_training(monkeypatch):
+    _clear_scope_registry_cache()
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Training/guide.pdf"), 0.21),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/Manual_A.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 2)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 2)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", scope="maker-manuals", k=2)
+
+    assert len(pairs) == 1
+    assert pairs[0][0].metadata["source"].endswith("Manual_A.pdf")
+    assert pairs[0][0].metadata["document_type"] == "maker_manual"
+
+
+def test_maker_manuals_scope_excludes_sds_reference(monkeypatch):
+    _clear_scope_registry_cache()
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/07_SDS_Datasheets/02_Manuals/DECKMA_OMD-24_Series_Instruction_Manual_EN_R13_251028.pdf"), 0.21),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/Manual_A.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 2)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 2)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", scope="maker-manuals", k=2)
+
+    assert len(pairs) == 1
+    assert pairs[0][0].metadata["source"].endswith("Manual_A.pdf")
+    assert pairs[0][0].metadata["document_type"] == "maker_manual"
+
+
+def test_maker_manuals_scope_excludes_unrelated_reference_family(monkeypatch):
+    _clear_scope_registry_cache()
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/Param list.pdf"), 0.21),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/Manual_A.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 2)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 2)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", scope="maker-manuals", k=2)
+
+    assert len(pairs) == 1
+    assert pairs[0][0].metadata["source"].endswith("Manual_A.pdf")
+    assert pairs[0][0].metadata["document_type"] == "maker_manual"
+
+
+def test_scope_filter_negative_regression_unscoped_search_keeps_candidates(monkeypatch):
+    _clear_scope_registry_cache()
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Training/guide.pdf"), 0.21),
+        (_FakeDoc("00_Career/07_SDS_Datasheets/02_Manuals/DECKMA_OMD-24_Series_Instruction_Manual_EN_R13_251028.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 2)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 2)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", scope=None, k=2)
+
+    assert len(pairs) == 2
+    assert pairs[0][0].metadata["document_type"] == "training"
+    assert pairs[1][0].metadata["document_type"] == "reference"
 
 
 def test_retrieve_with_scores_prefers_higher_authority_rank(monkeypatch):

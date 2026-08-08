@@ -26,6 +26,7 @@ from rag_engine.config import (
     persist_dir,
     retrieval_score_max,
 )
+from rag_engine.scope_rules import scope_allows_candidate
 from rag_engine.text import normalize_text
 
 # Exit semantics for CLI / Hermes
@@ -280,11 +281,18 @@ def _candidate_sort_key(
 def _apply_retrieval_controls(
     pairs: list[tuple[Any, float]],
     *,
+    scope: str | None,
     k: int,
 ) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
     floor = retrieval_score_max()
     best_raw_distance = best_distance(pairs)
-    gated = [(doc, float(distance)) for doc, distance in pairs if float(distance) <= floor]
+    scope_filtered: list[tuple[Any, float]] = []
+    for doc, distance in pairs:
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
+        if scope_allows_candidate(scope, meta):
+            scope_filtered.append((doc, float(distance)))
+    gated = [(doc, float(distance)) for doc, distance in scope_filtered if float(distance) <= floor]
     family_support: dict[str, int] = {}
     for doc, _distance in gated:
         meta = enrich_metadata(doc.metadata)
@@ -316,6 +324,7 @@ def _apply_retrieval_controls(
         "score_floor": floor,
         "best_raw_distance": best_raw_distance,
         "raw_count": len(pairs),
+        "post_scope_count": len(scope_filtered),
         "post_floor_count": len(gated),
         "post_dedupe_count": len(deduped),
         "gate": gate,
@@ -345,7 +354,7 @@ def retrieve_with_scores(
         return db.similarity_search_with_score(q, **kwargs)
 
     raw_results = _run_with_timeout(_call)
-    results, _diagnostics = _apply_retrieval_controls(raw_results, k=k)
+    results, _diagnostics = _apply_retrieval_controls(raw_results, scope=scope, k=k)
     return results
 
 
@@ -366,7 +375,7 @@ def retrieve_with_scores_and_diagnostics(
         return db.similarity_search_with_score(q, **kwargs)
 
     raw_results = _run_with_timeout(_call)
-    return _apply_retrieval_controls(raw_results, k=k)
+    return _apply_retrieval_controls(raw_results, scope=scope, k=k)
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):

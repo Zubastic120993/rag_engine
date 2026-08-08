@@ -147,3 +147,24 @@ def explain_alias(alias: str) -> dict[str, Any]:
             ),
         }
     raise ValueError(f"Unknown alias or scope {alias!r}")
+
+
+def scope_allows_candidate(scope: str | None, metadata: dict[str, Any] | None) -> bool:
+    """Query-time scope-selection filter for already indexed candidates."""
+    if not scope:
+        return True
+    reg = load_registry()
+    meta = (reg.get("scopes") or {}).get(scope) or {}
+    candidate = metadata or {}
+    source = str(candidate.get("source") or "")
+    doc_type = str(candidate.get("document_type") or "")
+
+    allowed_prefixes = list(meta.get("retrieval_allowed_path_prefixes") or [])
+    if allowed_prefixes and not any(source.startswith(prefix) for prefix in allowed_prefixes):
+        return False
+
+    excluded_doc_types = set(meta.get("retrieval_excluded_document_types") or [])
+    if doc_type and doc_type in excluded_doc_types:
+        return False
+
+    return True
