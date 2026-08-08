@@ -385,6 +385,7 @@ CONTRACT_KEYS = {
     "missing_information",
     "sources",
     "retrieval_evidence",  # F-18: additive, always populated
+    "retrieval_diagnostics",
     "gate",  # F-18: additive, non-None only on a non-"ok" status
     "timings",
     "model",
@@ -423,9 +424,9 @@ def test_json_contract_ok_payload(scopes_yaml):
         "authority_rank",
         "machine_transcribed",
     }
-    # F-18: "ok" is not a gated status — nothing to explain.
-    assert j["gate"] is None
+    assert j["gate"] == "ok"
     assert j["retrieval_evidence"] == j["sources"]
+    assert j["retrieval_diagnostics"]["final_retained_count"] == len(j["sources"])
 
 
 def test_json_contract_no_coverage_payload(scopes_yaml):
@@ -448,7 +449,60 @@ def test_json_contract_no_coverage_payload(scopes_yaml):
     # what was actually found, and `gate` names why.
     assert j["retrieval_evidence"] != []
     assert j["retrieval_evidence"][0]["path"] == "10_Company/a.pdf"
-    assert j["gate"] == "not_in_context_weak_evidence"
+    assert j["gate"] == "refusal_or_weak_evidence"
+
+
+def test_answer_reports_no_retrieval_gate_with_zero_counts(scopes_yaml):
+    from rag_engine.query import answer
+
+    with _patch_retrieval([], gate="no_retrieval"):
+        with patch("rag_engine.query._get_llm") as llm:
+            r = answer("missing doc", scope="sms")
+            llm.assert_not_called()
+
+    assert r.status == "no_coverage"
+    assert r.gate == "no_retrieval"
+    assert r.retrieval_evidence == []
+    assert r.to_json()["retrieval_diagnostics"]["raw_count"] == 0
+
+
+def test_answer_reports_final_confidence_failed_with_retrieval_counts(scopes_yaml):
+    from rag_engine.query import answer
+
+    pairs = [
+        (
+            _fake_doc(
+                path="00_Career/03_Engine_Knowledge/Training/guide.pdf",
+                page=1,
+                collection="maker-manuals",
+            ),
+            0.52,
+        )
+    ]
+    diagnostics = {
+        "gate": "final_confidence_failed",
+        "score_floor": 0.38,
+        "best_raw_distance": 0.52,
+        "raw_count": 1,
+        "post_admissibility_count": 1,
+        "post_scope_count": 1,
+        "post_rerank_count": 1,
+        "post_dedupe_count": 1,
+        "final_retained_count": 0,
+        "final_confidence_passed": False,
+    }
+    with patch(
+        "rag_engine.query.retrieve_with_scores_and_diagnostics",
+        return_value=(pairs, diagnostics),
+    ):
+        with patch("rag_engine.query._get_llm") as llm:
+            r = answer("q", scope="sms")
+            llm.assert_not_called()
+
+    assert r.status == "no_coverage"
+    assert r.gate == "final_confidence_failed"
+    assert r.retrieval_evidence[0]["path"] == "00_Career/03_Engine_Knowledge/Training/guide.pdf"
+    assert r.to_json()["retrieval_diagnostics"]["post_dedupe_count"] == 1
 
 
 def test_json_contract_error_payload(scopes_yaml):

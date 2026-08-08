@@ -118,23 +118,23 @@ def test_no_coverage_carries_populated_evidence(scopes_yaml):
     found."""
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(path="20_Vessels/x.pdf", collection="vessels"), 0.9)]
+    pairs = [(_fake_doc(path="10_Company/a.pdf", collection="sms"), 0.9)]
     with _patch_retrieval(pairs):
         with _patch_llm_response("NOT_IN_CONTEXT"):
-            r = answer("q", scope="vessels")
+            r = answer("q", scope="sms")
 
     assert r.status == "no_coverage"
     assert r.sources == []
     assert r.retrieval_evidence != []
-    assert r.retrieval_evidence[0]["path"] == "20_Vessels/x.pdf"
-    assert r.retrieval_evidence[0]["collection"] == "vessels"
+    assert r.retrieval_evidence[0]["path"] == "10_Company/a.pdf"
+    assert r.retrieval_evidence[0]["collection"] == "sms"
     assert "distance" in r.retrieval_evidence[0]
-    assert r.gate == "not_in_context_weak_evidence"
+    assert r.gate == "refusal_or_weak_evidence"
 
     j = r.to_json()
     assert j["sources"] == []
     assert j["retrieval_evidence"] == r.retrieval_evidence
-    assert j["gate"] == "not_in_context_weak_evidence"
+    assert j["gate"] == "refusal_or_weak_evidence"
 
 
 def test_true_zero_retrieval_has_empty_evidence_and_distinct_gate(scopes_yaml):
@@ -150,7 +150,7 @@ def test_true_zero_retrieval_has_empty_evidence_and_distinct_gate(scopes_yaml):
     assert r.status == "no_coverage"
     assert r.sources == []
     assert r.retrieval_evidence == []
-    assert r.gate == "no_retrieval_results"
+    assert r.gate == "no_retrieval"
 
 
 def test_ok_result_existing_fields_byte_identical(scopes_yaml):
@@ -186,9 +186,9 @@ def test_ok_result_existing_fields_byte_identical(scopes_yaml):
     assert v3_subset["scope"] == "sms"
 
     # And the new fields are present alongside, not instead of, the old ones.
-    assert set(j) - set(V3_FIELDS) == {"retrieval_evidence", "gate"}
+    assert set(j) - set(V3_FIELDS) == {"retrieval_evidence", "retrieval_diagnostics", "gate"}
     assert j["retrieval_evidence"] == j["sources"]
-    assert j["gate"] is None
+    assert j["gate"] == "ok"
 
 
 def test_error_before_retrieval_has_empty_evidence(scopes_yaml):

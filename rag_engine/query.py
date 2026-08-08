@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import re
 import time
+from math import isfinite
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
 from dataclasses import dataclass, field
 from functools import lru_cache
@@ -155,6 +156,7 @@ class AskResult:
     # matches and the model declined" -- indistinguishable via `sources`
     # alone before this field existed.
     retrieval_evidence: list[dict] = field(default_factory=list)
+    retrieval_diagnostics: dict[str, Any] = field(default_factory=dict)
     # F-18: which internal gate produced a non-"ok" status. None for "ok"
     # (nothing to explain) and left unset only where no gate exists yet to
     # attribute a status to (there is currently no such case, but the type
@@ -176,6 +178,7 @@ class AskResult:
             "missing_information": self.missing_information,
             "sources": self.sources if keep_sources else [],
             "retrieval_evidence": self.retrieval_evidence,
+            "retrieval_diagnostics": self.retrieval_diagnostics,
             "gate": self.gate,
             "timings": self.timings or _empty_timings(),
             "model": self.model,
@@ -282,24 +285,47 @@ def _candidate_sort_key(
     )
 
 
-def _apply_retrieval_controls(
+def _empty_retrieval_diagnostics() -> dict[str, Any]:
+    return {
+        "score_floor": retrieval_score_max(),
+        "best_raw_distance": None,
+        "raw_count": 0,
+        "post_admissibility_count": 0,
+        "post_scope_count": 0,
+        "post_rerank_count": 0,
+        "post_dedupe_count": 0,
+        "final_retained_count": 0,
+        "final_confidence_passed": False,
+        "gate": None,
+    }
+
+
+def _is_broadly_admissible(doc: Any, distance: float) -> bool:
+    try:
+        value = float(distance)
+    except (TypeError, ValueError):
+        return False
+    if not isfinite(value):
+        return False
+    meta = enrich_metadata(getattr(doc, "metadata", {}) or {})
+    doc.metadata = meta
+    return bool(str(meta.get("source", "")).strip())
+
+
+def _apply_broad_admissibility(
     pairs: list[tuple[Any, float]],
-    *,
-    scope: str | None,
-    k: int,
-) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
-    floor = retrieval_score_max()
-    best_raw_distance = best_distance(pairs)
-    scope_filtered: list[tuple[Any, float]] = []
+) -> list[tuple[Any, float]]:
+    admissible: list[tuple[Any, float]] = []
     for doc, distance in pairs:
-        meta = enrich_metadata(doc.metadata)
-        doc.metadata = meta
-        if scope_allows_candidate(scope, meta):
-            scope_filtered.append((doc, float(distance)))
-    gated = [(doc, float(distance)) for doc, distance in scope_filtered if float(distance) <= floor]
+        if _is_broadly_admissible(doc, distance):
+            admissible.append((doc, float(distance)))
+    return admissible
+
+
+def _support_maps(pairs: list[tuple[Any, float]]) -> tuple[dict[str, int], dict[str, int]]:
     family_support: dict[str, int] = {}
     source_support: dict[str, int] = {}
-    for doc, _distance in gated:
+    for doc, _distance in pairs:
         meta = enrich_metadata(doc.metadata)
         doc.metadata = meta
         family = str(meta.get("authority_family", ""))
@@ -308,15 +334,10 @@ def _apply_retrieval_controls(
         source = str(meta.get("source", ""))
         if source:
             source_support[source] = source_support.get(source, 0) + 1
-    ranked = sorted(
-        gated,
-        key=lambda item: _candidate_sort_key(
-            item,
-            family_support=family_support,
-            source_support=source_support,
-        ),
-    )
+    return family_support, source_support
 
+
+def _dedupe_ranked_pairs(ranked: list[tuple[Any, float]]) -> list[tuple[Any, float]]:
     deduped: list[tuple[Any, float]] = []
     seen: set[tuple[str, Any, str]] = set()
     for doc, distance in ranked:
@@ -331,17 +352,113 @@ def _apply_retrieval_controls(
             continue
         seen.add(key)
         deduped.append((doc, distance))
+    return deduped
+
+
+def _apply_final_confidence_gate(
+    pairs: list[tuple[Any, float]],
+    *,
+    diagnostics: dict[str, Any],
+) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    diag = dict(diagnostics)
+    if not pairs:
+        diag["final_retained_count"] = 0
+        diag["final_confidence_passed"] = False
+        return [], diag
+
+    family_support, source_support = _support_maps(pairs)
+    top_doc, top_distance = pairs[0]
+    top_meta = enrich_metadata(top_doc.metadata)
+    top_doc.metadata = top_meta
+
+    top_source = str(top_meta.get("source", ""))
+    top_family = str(top_meta.get("authority_family", ""))
+    top_document_type = str(top_meta.get("document_type", ""))
+    top_canonical_authority_rank = int(
+        top_meta.get("canonical_authority_rank", top_meta.get("authority_rank", 5))
+    )
+    top_source_support = int(source_support.get(top_source, 0))
+    top_family_support = int(family_support.get(top_family, 0))
+    strong_distance = (
+        diag.get("best_raw_distance") is not None
+        and float(diag["best_raw_distance"]) <= float(diag.get("score_floor", retrieval_score_max()))
+    )
+    allowed_document_types = {"operation_manual", "spare_parts_catalogue", "maker_manual"}
+    top_is_authoritative = (
+        top_canonical_authority_rank <= 2
+        or (top_canonical_authority_rank <= 3 and top_document_type in allowed_document_types)
+    )
+    coherent_support = (
+        top_source_support >= 2
+        or top_family_support >= 2
+        or (len(pairs) >= 2 and single_source_consensus(pairs, top_n=min(3, len(pairs))))
+    )
+    final_pass = bool(
+        top_is_authoritative
+        and (strong_distance or coherent_support or top_canonical_authority_rank <= 2)
+    )
+
+    diag.update(
+        {
+            "top_distance": float(top_distance),
+            "top_source": top_source,
+            "top_authority_family": top_family,
+            "top_document_type": top_document_type,
+            "top_authority_rank": int(top_meta.get("authority_rank", 5)),
+            "top_canonical_authority_rank": top_canonical_authority_rank,
+            "top_source_support": top_source_support,
+            "top_family_support": top_family_support,
+            "strong_distance": strong_distance,
+            "coherent_support": coherent_support,
+            "final_confidence_passed": final_pass,
+            "final_retained_count": len(pairs) if final_pass else 0,
+        }
+    )
+    if not final_pass:
+        diag["gate"] = "final_confidence_failed"
+        return [], diag
+    return pairs, diag
+
+
+def _apply_retrieval_controls(
+    pairs: list[tuple[Any, float]],
+    *,
+    scope: str | None,
+    k: int,
+) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    floor = retrieval_score_max()
+    best_raw_distance = best_distance(pairs)
+    admissible = _apply_broad_admissibility(pairs)
+    scope_filtered: list[tuple[Any, float]] = []
+    for doc, distance in admissible:
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
+        if scope_allows_candidate(scope, meta):
+            scope_filtered.append((doc, float(distance)))
+    family_support, source_support = _support_maps(scope_filtered)
+    ranked = sorted(
+        scope_filtered,
+        key=lambda item: _candidate_sort_key(
+            item,
+            family_support=family_support,
+            source_support=source_support,
+        ),
+    )
+    deduped = _dedupe_ranked_pairs(ranked)
 
     gate = None
-    if pairs and not deduped:
-        gate = "no_chunk_cleared_score_floor"
+    if pairs and not admissible:
+        gate = "broad_admissibility_failed"
     diagnostics = {
         "score_floor": floor,
         "best_raw_distance": best_raw_distance,
         "raw_count": len(pairs),
+        "post_admissibility_count": len(admissible),
         "post_scope_count": len(scope_filtered),
-        "post_floor_count": len(gated),
+        "post_rerank_count": len(ranked),
         "post_dedupe_count": len(deduped),
+        "final_retained_count": 0,
+        "final_confidence_passed": False,
         "gate": gate,
     }
     return deduped[:k], diagnostics
@@ -650,6 +767,7 @@ def answer(
             timings=_timings(),
             model=chosen_model,
             retrieval_evidence=[],
+            retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="empty_question",
         )
 
@@ -659,6 +777,7 @@ def answer(
         t_ret = time.perf_counter()
         pairs, retrieval_diag = retrieve_with_scores_and_diagnostics(q, scope=resolved, k=k)
         retrieval_s = time.perf_counter() - t_ret
+        retrieval_diag = {**_empty_retrieval_diagnostics(), **(retrieval_diag or {})}
     except TimeoutError as e:
         return AskResult(
             status="error",
@@ -670,6 +789,7 @@ def answer(
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
             retrieval_evidence=[],
+            retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="retrieval_timeout",
         )
     except Exception as e:  # noqa: BLE001
@@ -683,10 +803,19 @@ def answer(
             timings=_timings(retrieval=retrieval_s),
             model=chosen_model,
             retrieval_evidence=[],
+            retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="retrieval_error",
         )
 
     if not pairs:
+        gate = str(retrieval_diag.get("gate") or "no_retrieval")
+        if gate == "broad_admissibility_failed":
+            resolved_gate = "broad_admissibility_failed"
+        elif retrieval_diag.get("raw_count"):
+            resolved_gate = "final_confidence_failed"
+        else:
+            resolved_gate = "no_retrieval"
+        retrieval_diag["gate"] = resolved_gate
         return AskResult(
             status="no_coverage",
             query=q,
@@ -701,7 +830,29 @@ def answer(
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=[],
-            gate=str(retrieval_diag.get("gate") or "no_retrieval_results"),
+            retrieval_diagnostics=retrieval_diag,
+            gate=resolved_gate,
+        )
+
+    retrieval_evidence = _sources_from_pairs(pairs)
+    pairs, retrieval_diag = _apply_final_confidence_gate(pairs, diagnostics=retrieval_diag)
+    if not pairs:
+        return AskResult(
+            status="no_coverage",
+            query=q,
+            requested_scope=req,
+            resolved_scope=resolved,
+            answer=None,
+            sources=[],
+            coverage="none",
+            hint=_no_coverage_hint(q, resolved, suggest_scopes),
+            timings=_timings(retrieval=retrieval_s),
+            model=chosen_model,
+            best_distance=retrieval_diag.get("best_raw_distance"),
+            score_floor=retrieval_diag.get("score_floor"),
+            retrieval_evidence=retrieval_evidence,
+            retrieval_diagnostics=retrieval_diag,
+            gate="final_confidence_failed",
         )
 
     sources = _sources_from_pairs(pairs)
@@ -722,7 +873,8 @@ def answer(
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=sources,
-            gate=None,
+            retrieval_diagnostics=retrieval_diag,
+            gate="ok",
         )
 
     context_parts = []
@@ -759,6 +911,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
+            retrieval_diagnostics=retrieval_diag,
             gate="generation_timeout",
         )
     except Exception as e:  # noqa: BLE001
@@ -778,6 +931,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
+            retrieval_diagnostics=retrieval_diag,
             gate="generation_error",
         )
     generation_s = time.perf_counter() - t_gen
@@ -803,7 +957,8 @@ def answer(
                 ),
                 model=chosen_model,
                 retrieval_evidence=sources,
-                gate=None,
+                retrieval_diagnostics=retrieval_diag,
+                gate="ok",
             )
         # Chunks were retrieved but do not answer the question. This is the
         # ambiguous case F-18 exists for: `sources` empties per the status
@@ -826,7 +981,8 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
-            gate="not_in_context_weak_evidence",
+            retrieval_diagnostics=retrieval_diag,
+            gate="refusal_or_weak_evidence",
         )
 
     ans = clean_answer_text(raw)
@@ -846,6 +1002,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
+            retrieval_diagnostics=retrieval_diag,
             gate="empty_model_response",
         )
 
@@ -865,5 +1022,6 @@ def answer(
         ),
         model=chosen_model,
         retrieval_evidence=sources,
-        gate=None,
+        retrieval_diagnostics=retrieval_diag,
+        gate="ok",
     )

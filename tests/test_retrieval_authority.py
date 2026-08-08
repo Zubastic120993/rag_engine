@@ -39,7 +39,7 @@ def test_sources_report_original_pdf_and_machine_transcribed_for_ocr_hit():
     ]
 
 
-def test_retrieve_with_scores_discards_hits_beyond_score_floor(monkeypatch):
+def test_retrieve_with_scores_keeps_hits_beyond_score_floor_for_reranking(monkeypatch):
     db = MagicMock()
     db.similarity_search_with_score.return_value = [
         (_FakeDoc("00_Career/03_Engine_Knowledge/Training/a.pdf"), 0.41),
@@ -53,7 +53,123 @@ def test_retrieve_with_scores_discards_hits_beyond_score_floor(monkeypatch):
 
     pairs = query.retrieve_with_scores("some question")
 
-    assert pairs == []
+    assert [distance for _doc, distance in pairs] == [0.41, 0.48]
+
+
+def test_retrieve_with_scores_and_diagnostics_preserves_prefloor_candidates(monkeypatch):
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (
+            _FakeDoc(
+                "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf",
+                page=10,
+            ),
+            0.559094,
+        ),
+        (
+            _FakeDoc(
+                "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10.pdf",
+                page=20,
+            ),
+            0.559508,
+        ),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.38)
+
+    pairs, diagnostics = query.retrieve_with_scores_and_diagnostics(
+        "some question", scope="maker-manuals", k=5
+    )
+
+    assert [round(distance, 6) for _doc, distance in pairs] == [0.559094, 0.559508]
+    assert diagnostics["raw_count"] == 2
+    assert diagnostics["post_admissibility_count"] == 2
+    assert diagnostics["post_scope_count"] == 2
+    assert diagnostics["post_rerank_count"] == 2
+    assert diagnostics["post_dedupe_count"] == 2
+    assert diagnostics["gate"] is None
+
+
+def test_final_confidence_gate_allows_supported_parallel_manual(monkeypatch):
+    pairs = [
+        (
+            _FakeDoc(
+                "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf",
+                page=20,
+            ),
+            0.448822,
+        ),
+        (
+            _FakeDoc(
+                "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf",
+                page=21,
+            ),
+            0.4489,
+        ),
+        (
+            _FakeDoc(
+                "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf",
+                page=10,
+            ),
+            0.44895,
+        ),
+    ]
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.38)
+
+    retained, diagnostics = query._apply_final_confidence_gate(
+        pairs,
+        diagnostics={
+            "score_floor": 0.38,
+            "best_raw_distance": 0.448182,
+            "raw_count": 3,
+            "post_admissibility_count": 3,
+            "post_scope_count": 3,
+            "post_rerank_count": 3,
+            "post_dedupe_count": 3,
+        },
+    )
+
+    assert len(retained) == 3
+    assert diagnostics["final_retained_count"] == 3
+    assert diagnostics["final_confidence_passed"] is True
+    assert diagnostics["top_source_support"] == 2
+    assert diagnostics["top_family_support"] == 3
+
+
+def test_final_confidence_gate_rejects_mixed_non_authority_candidates(monkeypatch):
+    pairs = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Training/guide.pdf", page=1), 0.455559),
+        (
+            _FakeDoc(
+                "00_Career/07_SDS_Datasheets/02_Manuals/DECKMA_OMD-24_Series_Instruction_Manual_EN_R13_251028.pdf",
+                page=2,
+            ),
+            0.470001,
+        ),
+    ]
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.38)
+
+    retained, diagnostics = query._apply_final_confidence_gate(
+        pairs,
+        diagnostics={
+            "score_floor": 0.38,
+            "best_raw_distance": 0.455559,
+            "raw_count": 2,
+            "post_admissibility_count": 2,
+            "post_scope_count": 2,
+            "post_rerank_count": 2,
+            "post_dedupe_count": 2,
+        },
+    )
+
+    assert retained == []
+    assert diagnostics["final_retained_count"] == 0
+    assert diagnostics["final_confidence_passed"] is False
+    assert diagnostics["top_document_type"] == "training"
+    assert diagnostics["top_canonical_authority_rank"] == 5
 
 
 def test_maker_manuals_scope_excludes_service_literature(monkeypatch):
@@ -391,15 +507,30 @@ def test_retrieve_with_scores_keeps_much_closer_hit_ahead_of_farther_authority(m
     assert pairs[1][0].metadata["authority_rank"] == 2
 
 
-def test_answer_reports_score_floor_gate_when_all_hits_are_too_far(monkeypatch):
+def test_answer_reports_final_confidence_gate_when_reranked_hits_are_insufficient(monkeypatch):
     monkeypatch.setattr(
         query,
         "retrieve_with_scores_and_diagnostics",
-        lambda *args, **kwargs: ([], {"gate": "no_chunk_cleared_score_floor", "score_floor": 0.38, "best_raw_distance": 0.41}),
+        lambda *args, **kwargs: (
+            [(_FakeDoc("00_Career/03_Engine_Knowledge/Training/guide.pdf"), 0.455559)],
+            {
+                "score_floor": 0.38,
+                "best_raw_distance": 0.455559,
+                "raw_count": 1,
+                "post_admissibility_count": 1,
+                "post_scope_count": 1,
+                "post_rerank_count": 1,
+                "post_dedupe_count": 1,
+                "final_retained_count": 0,
+                "gate": "final_confidence_failed",
+                "final_confidence_passed": False,
+            },
+        ),
     )
 
     r = query.answer("some question", scope="maker-manuals")
 
     assert r.status == "no_coverage"
-    assert r.gate == "no_chunk_cleared_score_floor"
+    assert r.gate == "final_confidence_failed"
+    assert r.retrieval_evidence[0]["path"].endswith("guide.pdf")
     assert r.to_json()["sources"] == []
