@@ -254,14 +254,22 @@ def authority_preference_distance_window() -> float:
     return 0.05
 
 
-def _candidate_sort_key(item: tuple[Any, float]) -> tuple[int, int, int, float, str, Any]:
+def _candidate_sort_key(
+    item: tuple[Any, float],
+    *,
+    family_support: dict[str, int] | None = None,
+) -> tuple[int, int, int, int, int, float, str, Any]:
     doc, distance = item
     meta = enrich_metadata(doc.metadata)
     doc.metadata = meta
     band = int(float(distance) / authority_preference_distance_window())
+    family = str(meta.get("authority_family", ""))
+    support = 0 if family_support is None else int(family_support.get(family, 0))
     return (
         band,
         int(meta.get("canonical_authority_rank", meta.get("authority_rank", 5))),
+        int(meta.get("document_type_rank", 5)),
+        -support,
         int(meta.get("authority_rank", 5)),
         float(distance),
         str(meta.get("source", "")),
@@ -277,7 +285,14 @@ def _apply_retrieval_controls(
     floor = retrieval_score_max()
     best_raw_distance = best_distance(pairs)
     gated = [(doc, float(distance)) for doc, distance in pairs if float(distance) <= floor]
-    ranked = sorted(gated, key=_candidate_sort_key)
+    family_support: dict[str, int] = {}
+    for doc, _distance in gated:
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
+        family = str(meta.get("authority_family", ""))
+        if family:
+            family_support[family] = family_support.get(family, 0) + 1
+    ranked = sorted(gated, key=lambda item: _candidate_sort_key(item, family_support=family_support))
 
     deduped: list[tuple[Any, float]] = []
     seen: set[tuple[str, Any, str]] = set()
