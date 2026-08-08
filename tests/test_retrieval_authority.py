@@ -534,3 +534,216 @@ def test_answer_reports_final_confidence_gate_when_reranked_hits_are_insufficien
     assert r.gate == "final_confidence_failed"
     assert r.retrieval_evidence[0]["path"].endswith("guide.pdf")
     assert r.to_json()["sources"] == []
+
+
+def test_manual_library_queries_both_internal_collections_and_merges(monkeypatch):
+    db = MagicMock()
+
+    def side_effect(_question, **kwargs):
+        coll = kwargs.get("filter", {}).get("collection")
+        if coll == "maker-manuals":
+            return [
+                (
+                    _FakeDoc(
+                        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10.pdf",
+                        page=22,
+                        collection="maker-manuals",
+                    ),
+                    0.24,
+                )
+            ]
+        if coll == "me-c":
+            return [
+                (
+                    _FakeDoc(
+                        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3.pdf",
+                        page=40,
+                        collection="me-c",
+                    ),
+                    0.21,
+                )
+            ]
+        raise AssertionError(f"unexpected collection filter: {kwargs}")
+
+    db.similarity_search_with_score.side_effect = side_effect
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+
+    pairs, diagnostics = query.retrieve_with_scores_and_diagnostics(
+        "tightening torque in the main engine manual",
+        scope="manual_library",
+        k=5,
+    )
+
+    assert {doc.metadata["collection"] for doc, _distance in pairs} == {"me-c", "maker-manuals"}
+    assert any(doc.metadata["source"].endswith("M 1.3.pdf") for doc, _distance in pairs)
+    assert diagnostics["internal_scopes_queried"] == ["maker-manuals", "me-c"]
+    assert diagnostics["internal_scope_counts"]["maker-manuals"]["retained_count"] == 1
+    assert diagnostics["internal_scope_counts"]["me-c"]["retained_count"] == 1
+    assert diagnostics["union_candidates"][0]["requested_scope"] == "manual_library"
+    assert {candidate["internal_collection"] for candidate in diagnostics["union_candidates"]} == {
+        "maker-manuals",
+        "me-c",
+    }
+    seen_filters = [call.kwargs["filter"]["collection"] for call in db.similarity_search_with_score.call_args_list]
+    assert seen_filters == ["maker-manuals", "me-c"]
+
+
+def test_manual_library_union_dedupes_same_canonical_source_page(monkeypatch):
+    db = MagicMock()
+
+    def side_effect(_question, **kwargs):
+        coll = kwargs.get("filter", {}).get("collection")
+        if coll == "maker-manuals":
+            return [
+                (
+                    _FakeDoc(
+                        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual.pdf",
+                        page=9,
+                        collection="maker-manuals",
+                    ),
+                    0.24,
+                )
+            ]
+        if coll == "me-c":
+            return [
+                (
+                    _FakeDoc(
+                        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual.pdf",
+                        page=9,
+                        collection="me-c",
+                    ),
+                    0.21,
+                )
+            ]
+        raise AssertionError(f"unexpected collection filter: {kwargs}")
+
+    db.similarity_search_with_score.side_effect = side_effect
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+
+    pairs, diagnostics = query.retrieve_with_scores_and_diagnostics(
+        "manual question",
+        scope="manual_library",
+        k=5,
+    )
+
+    assert len(pairs) == 1
+    assert pairs[0][0].metadata["collection"] == "me-c"
+    assert diagnostics["union_duplicate_drops"] == 1
+    assert diagnostics["union_deduped_count"] == 1
+
+
+def test_direct_internal_scopes_behave_unchanged_around_manual_library_union(monkeypatch):
+    db = MagicMock()
+
+    def side_effect(_question, **kwargs):
+        coll = kwargs.get("filter", {}).get("collection")
+        if coll == "maker-manuals":
+            return [
+                (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual.pdf", page=5, collection="maker-manuals"), 0.24)
+            ]
+        if coll == "me-c":
+            return [
+                (_FakeDoc("00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3.pdf", page=40, collection="me-c"), 0.21)
+            ]
+        raise AssertionError(f"unexpected collection filter: {kwargs}")
+
+    db.similarity_search_with_score.side_effect = side_effect
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+
+    maker_pairs = query.retrieve_with_scores("maker question", scope="maker-manuals", k=5)
+    me_c_pairs = query.retrieve_with_scores("me-c question", scope="me-c", k=5)
+
+    assert len(maker_pairs) == 1
+    assert maker_pairs[0][0].metadata["collection"] == "maker-manuals"
+    assert len(me_c_pairs) == 1
+    assert me_c_pairs[0][0].metadata["collection"] == "me-c"
+
+
+def test_answer_manual_library_preserves_requested_scope_and_collection_provenance(monkeypatch):
+    monkeypatch.setattr(
+        query,
+        "retrieve_with_scores_and_diagnostics",
+        lambda *args, **kwargs: (
+            [
+                (
+                    _FakeDoc(
+                        "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3.pdf",
+                        page=100,
+                        collection="me-c",
+                    ),
+                    0.21,
+                )
+            ],
+            {
+                "score_floor": 0.38,
+                "best_raw_distance": 0.21,
+                "raw_count": 1,
+                "post_admissibility_count": 1,
+                "post_scope_count": 1,
+                "post_rerank_count": 1,
+                "post_dedupe_count": 1,
+                "final_retained_count": 0,
+                "final_confidence_passed": False,
+                "internal_scopes_queried": ["maker-manuals", "me-c"],
+                "internal_scope_counts": {
+                    "maker-manuals": {"retained_count": 0, "raw_count": 0, "post_admissibility_count": 0, "post_scope_count": 0},
+                    "me-c": {"retained_count": 1, "raw_count": 1, "post_admissibility_count": 1, "post_scope_count": 1},
+                },
+                "union_candidates": [
+                    {
+                        "requested_scope": "manual_library",
+                        "internal_collection": "me-c",
+                        "canonical_source": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3.pdf",
+                        "page": 100,
+                    }
+                ],
+            },
+        ),
+    )
+    monkeypatch.setattr(query, "_invoke_llm", lambda *args, **kwargs: "Supported answer")
+
+    r = query.answer(
+        "Find the tightening torque in the main engine manual",
+        scope="maker-manuals",
+        requested_scope="manual_library",
+    )
+
+    assert r.status == "ok"
+    assert r.requested_scope == "manual_library"
+    assert r.resolved_scope == "manual_library"
+    assert r.sources[0]["collection"] == "me-c"
+    assert r.retrieval_diagnostics["union_candidates"][0]["internal_collection"] == "me-c"
+
+
+def test_manual_library_union_never_queries_third_collection(monkeypatch):
+    db = MagicMock()
+
+    def side_effect(_question, **kwargs):
+        coll = kwargs.get("filter", {}).get("collection")
+        assert coll in {"maker-manuals", "me-c"}
+        return []
+
+    db.similarity_search_with_score.side_effect = side_effect
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+
+    pairs, diagnostics = query.retrieve_with_scores_and_diagnostics(
+        "manual question",
+        scope="manual_library",
+        k=5,
+    )
+
+    assert pairs == []
+    assert diagnostics["internal_scopes_queried"] == ["maker-manuals", "me-c"]
+    assert len(db.similarity_search_with_score.call_args_list) == 2

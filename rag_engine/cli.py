@@ -217,7 +217,7 @@ def cmd_ask(argv: list[str]) -> int:
             print(f"error: {result.error}", file=sys.stderr)
         log_ask_event(
             question=question,
-            scope=resolved,
+            scope=result.resolved_scope,
             status="error",
             exit_code=EXIT_ERROR,
             sources=[],
@@ -255,7 +255,7 @@ def cmd_ask(argv: list[str]) -> int:
     keep_sources = result.status == "ok"
     log_ask_event(
         question=question,
-        scope=resolved,
+        scope=result.resolved_scope,
         status=result.status,
         exit_code=code,
         sources=result.sources if keep_sources else [],
