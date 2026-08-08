@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-import hashlib
 import os
 import re
 import time
-from collections import Counter
 from math import isfinite
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
 from dataclasses import dataclass, field
@@ -56,313 +54,6 @@ DEFAULT_NO_COVERAGE_HINT = (
 )
 
 _STATUSES_WITH_SOURCES = frozenset({"ok"})
-
-_GENERIC_WEAK_TERMS = frozenset(
-    {
-        "alarm",
-        "temperature",
-        "tank",
-        "bearing",
-        "torque",
-        "turbocharger",
-    }
-)
-
-_KNOWN_CLASS_ABBREVIATIONS = frozenset({"lr", "dnv", "dnv-gl", "ccs", "cr", "rina", "abs", "bv"})
-
-_LEXICAL_WORD_RE = re.compile(r"[a-z0-9][a-z0-9./:+\-]*")
-_SECTION_TOKEN_RE = re.compile(r"^\d+(?:\.\d+){1,3}$")
-_THREAD_TOKEN_RE = re.compile(r"^(?:m|ø|phi)?\d+(?:x\d+(?:\.\d+)?)?$", re.IGNORECASE)
-_MIXED_ALNUM_RE = re.compile(r"^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9./:+\-]+$")
-
-
-def _tokenize_lexical(text: str) -> list[str]:
-    norm = normalize_text(text or "").lower()
-    return [tok for tok in _LEXICAL_WORD_RE.findall(norm) if len(tok) >= 2]
-
-
-def _extract_heading_lines(text: str, *, max_lines: int = 3, max_chars: int = 120) -> list[str]:
-    lines: list[str] = []
-    for raw in normalize_text(text or "").splitlines():
-        line = raw.strip()
-        if not line:
-            continue
-        if len(line) <= max_chars:
-            lines.append(line)
-        if len(lines) >= max_lines:
-            break
-    return lines
-
-
-def _is_exact_technical_token(token: str) -> bool:
-    tok = (token or "").strip().lower()
-    if not tok:
-        return False
-    return bool(
-        tok in _KNOWN_CLASS_ABBREVIATIONS
-        or _SECTION_TOKEN_RE.match(tok)
-        or _THREAD_TOKEN_RE.match(tok)
-        or _MIXED_ALNUM_RE.match(tok)
-    )
-
-
-def _query_signals(question: str) -> dict[str, Any]:
-    normalized = normalize_text(question or "")
-    tokens = _tokenize_lexical(normalized)
-    technical_tokens = [tok for tok in tokens if _is_exact_technical_token(tok)]
-    generic_tokens = [tok for tok in tokens if tok in _GENERIC_WEAK_TERMS]
-    non_generic_tokens = [tok for tok in tokens if tok not in _GENERIC_WEAK_TERMS]
-    phrases: list[str] = []
-    phrase_source = [tok for tok in tokens if tok not in _GENERIC_WEAK_TERMS]
-    for size in range(2, min(5, len(phrase_source)) + 1):
-        for i in range(0, len(phrase_source) - size + 1):
-            phrase = " ".join(phrase_source[i : i + size]).strip()
-            if phrase:
-                phrases.append(phrase)
-    return {
-        "normalized": normalized,
-        "tokens": tokens,
-        "technical_tokens": list(dict.fromkeys(technical_tokens)),
-        "generic_tokens": list(dict.fromkeys(generic_tokens)),
-        "non_generic_tokens": list(dict.fromkeys(non_generic_tokens)),
-        "phrases": list(dict.fromkeys(phrases)),
-    }
-
-
-def _candidate_identity(doc: Any) -> tuple[str, Any, str, str]:
-    meta = enrich_metadata(getattr(doc, "metadata", {}) or {})
-    doc.metadata = meta
-    chunk_id = str(meta.get("chunk_id") or "").strip()
-    if chunk_id:
-        return ("chunk", chunk_id, "", "")
-    digest = hashlib.sha256(normalize_text(getattr(doc, "page_content", "") or "").encode("utf-8")).hexdigest()
-    return (
-        str(meta.get("source", "")),
-        meta.get("page", "?"),
-        str(meta.get("collection", "other")),
-        digest,
-    )
-
-
-@lru_cache(maxsize=1)
-def _lexical_cache() -> dict[str, Any]:
-    db = _get_db()
-
-    def _call():
-        return db.get(include=["documents", "metadatas"])
-
-    raw = _run_with_timeout(_call)
-    ids = list(raw.get("ids") or [])
-    documents = list(raw.get("documents") or [])
-    metadatas = list(raw.get("metadatas") or [])
-    records: dict[str, dict[str, Any]] = {}
-    postings: dict[str, set[str]] = {}
-    for idx, chunk_id in enumerate(ids):
-        meta = enrich_metadata(metadatas[idx] or {})
-        meta.setdefault("chunk_id", chunk_id)
-        content = normalize_text(documents[idx] or "")
-        tokens = set(_tokenize_lexical(content))
-        heading_lines = _extract_heading_lines(content)
-        heading_text = "\n".join(heading_lines).lower()
-        heading_tokens = set(_tokenize_lexical(" ".join(heading_lines)))
-        record = {
-            "id": chunk_id,
-            "metadata": meta,
-            "page_content": content,
-            "tokens": tokens,
-            "heading_text": heading_text,
-            "heading_tokens": heading_tokens,
-        }
-        records[chunk_id] = record
-        for token in tokens | heading_tokens:
-            postings.setdefault(token, set()).add(chunk_id)
-    return {"records": records, "postings": postings}
-
-
-def _lexical_retrieve(
-    question: str,
-    scope: str | None = None,
-    k: int | None = None,
-) -> list[tuple[Any, dict[str, Any]]]:
-    signals = _query_signals(question)
-    tokens = list(dict.fromkeys(signals["technical_tokens"] + signals["non_generic_tokens"]))
-    if not tokens:
-        return []
-    cache = _lexical_cache()
-    records = cache["records"]
-    postings = cache["postings"]
-    candidate_ids: set[str] = set()
-    for token in tokens:
-        candidate_ids.update(postings.get(token, set()))
-    if not candidate_ids:
-        return []
-
-    scored: list[tuple[Any, dict[str, Any]]] = []
-    for chunk_id in candidate_ids:
-        record = records.get(chunk_id)
-        if not record:
-            continue
-        doc = type("LexicalDoc", (), {})()
-        doc.metadata = dict(record["metadata"])
-        doc.page_content = record["page_content"]
-        doc.metadata["chunk_id"] = chunk_id
-        if scope:
-            meta = enrich_metadata(doc.metadata)
-            doc.metadata = meta
-            if not scope_allows_candidate(scope, meta):
-                continue
-        exact_hits = [tok for tok in signals["technical_tokens"] if tok in record["tokens"] or tok in record["heading_tokens"]]
-        phrase_hits = [phrase for phrase in signals["phrases"] if phrase and phrase in record["page_content"].lower()]
-        heading_match = any(tok in record["heading_tokens"] for tok in signals["technical_tokens"])
-        token_hits = [tok for tok in signals["non_generic_tokens"] if tok in record["tokens"]]
-        if not exact_hits and not phrase_hits and not heading_match and not token_hits:
-            continue
-        lexical_score = (
-            len(exact_hits) * 100
-            + len(phrase_hits) * 40
-            + (25 if heading_match else 0)
-            + len(token_hits) * 5
-        )
-        if lexical_score <= 0:
-            continue
-        scored.append(
-            (
-                doc,
-                {
-                    "lexical_score": lexical_score,
-                    "lexical_exact_hits": sorted(set(exact_hits)),
-                    "lexical_phrase_hits": sorted(set(phrase_hits)),
-                    "heading_match": heading_match,
-                },
-            )
-        )
-    scored.sort(
-        key=lambda item: (
-            -int(bool(item[1]["lexical_exact_hits"])),
-            -int(item[1]["heading_match"]),
-            -int(item[1]["lexical_score"]),
-            str(enrich_metadata(item[0].metadata).get("source", "")),
-            enrich_metadata(item[0].metadata).get("page", "?"),
-        )
-    )
-    limit = max((k or default_k()) * 20, 50)
-    return scored[:limit]
-
-
-def _merge_hybrid_candidates(
-    vector_pairs: list[tuple[Any, float]],
-    lexical_pairs: list[tuple[Any, dict[str, Any]]],
-) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
-    merged: dict[tuple[str, Any, str, str], dict[str, Any]] = {}
-    best_vector_distance = min((float(distance) for _doc, distance in vector_pairs), default=retrieval_score_max())
-
-    for doc, distance in vector_pairs:
-        meta = enrich_metadata(doc.metadata)
-        doc.metadata = meta
-        key = _candidate_identity(doc)
-        merged[key] = {
-            "doc": doc,
-            "vector_distance": float(distance),
-            "distance": float(distance),
-            "candidate_origin": "vector",
-            "lexical_score": None,
-            "lexical_exact_hits": [],
-            "lexical_phrase_hits": [],
-            "heading_match": False,
-        }
-
-    lexical_rank = 0
-    for doc, info in lexical_pairs:
-        meta = enrich_metadata(doc.metadata)
-        doc.metadata = meta
-        key = _candidate_identity(doc)
-        lexical_rank += 1
-        if key in merged:
-            row = merged[key]
-            row["candidate_origin"] = "both"
-            row["lexical_score"] = int(info.get("lexical_score") or 0)
-            row["lexical_exact_hits"] = list(info.get("lexical_exact_hits") or [])
-            row["lexical_phrase_hits"] = list(info.get("lexical_phrase_hits") or [])
-            row["heading_match"] = bool(info.get("heading_match", False))
-            row["doc"].metadata.update(
-                {
-                    "candidate_origin": "both",
-                    "vector_distance": row["vector_distance"],
-                    "lexical_score": row["lexical_score"],
-                    "lexical_exact_hits": row["lexical_exact_hits"],
-                    "lexical_phrase_hits": row["lexical_phrase_hits"],
-                    "heading_match": row["heading_match"],
-                }
-            )
-            continue
-        pseudo_distance = best_vector_distance + 0.0001 * lexical_rank
-        doc.metadata.update(
-            {
-                "candidate_origin": "lexical",
-                "vector_distance": None,
-                "lexical_score": int(info.get("lexical_score") or 0),
-                "lexical_exact_hits": list(info.get("lexical_exact_hits") or []),
-                "lexical_phrase_hits": list(info.get("lexical_phrase_hits") or []),
-                "heading_match": bool(info.get("heading_match", False)),
-            }
-        )
-        merged[key] = {
-            "doc": doc,
-            "vector_distance": None,
-            "distance": pseudo_distance,
-            "candidate_origin": "lexical",
-            "lexical_score": int(info.get("lexical_score") or 0),
-            "lexical_exact_hits": list(info.get("lexical_exact_hits") or []),
-            "lexical_phrase_hits": list(info.get("lexical_phrase_hits") or []),
-            "heading_match": bool(info.get("heading_match", False)),
-        }
-
-    def _hybrid_sort_key(row: dict[str, Any]) -> tuple[int, int, int, float, str, Any]:
-        meta = enrich_metadata(row["doc"].metadata)
-        row["doc"].metadata = meta
-        has_exact = bool(row["lexical_exact_hits"])
-        origin = str(row["candidate_origin"])
-        origin_priority = {
-            "both": 0,
-            "lexical": 1 if has_exact else 3,
-            "vector": 2,
-        }.get(origin, 4)
-        exact_flag = 0 if has_exact else 1
-        lexical_score = -int(row["lexical_score"] or 0)
-        distance = float(row["distance"])
-        return (
-            origin_priority,
-            exact_flag,
-            lexical_score,
-            distance,
-            str(meta.get("source", "")),
-            meta.get("page", "?"),
-        )
-
-    merged_rows = sorted(merged.values(), key=_hybrid_sort_key)
-    output: list[tuple[Any, float]] = []
-    origin_counts = Counter()
-    for row in merged_rows:
-        doc = row["doc"]
-        doc.metadata.update(
-            {
-                "candidate_origin": row["candidate_origin"],
-                "vector_distance": row["vector_distance"],
-                "lexical_score": row["lexical_score"],
-                "lexical_exact_hits": row["lexical_exact_hits"],
-                "lexical_phrase_hits": row["lexical_phrase_hits"],
-                "heading_match": row["heading_match"],
-            }
-        )
-        origin_counts[str(row["candidate_origin"])] += 1
-        output.append((doc, float(row["distance"])))
-    diagnostics = {
-        "vector_raw_count": len(vector_pairs),
-        "lexical_raw_count": len(lexical_pairs),
-        "merged_raw_count": len(output),
-        "candidate_origins": dict(origin_counts),
-    }
-    return output, diagnostics
 
 
 def ollama_timeout_s() -> float:
@@ -528,7 +219,6 @@ def _get_llm(
 def clear_caches() -> None:
     _get_db.cache_clear()
     _get_llm.cache_clear()
-    _lexical_cache.cache_clear()
 
 
 def resolve_answer_model(
@@ -600,16 +290,12 @@ def _empty_retrieval_diagnostics() -> dict[str, Any]:
         "score_floor": retrieval_score_max(),
         "best_raw_distance": None,
         "raw_count": 0,
-        "vector_raw_count": 0,
-        "lexical_raw_count": 0,
-        "merged_raw_count": 0,
         "post_admissibility_count": 0,
         "post_scope_count": 0,
         "post_rerank_count": 0,
         "post_dedupe_count": 0,
         "final_retained_count": 0,
         "final_confidence_passed": False,
-        "candidate_origins": {},
         "gate": None,
     }
 
@@ -739,7 +425,6 @@ def _apply_retrieval_controls(
     *,
     scope: str | None,
     k: int,
-    hybrid_diagnostics: dict[str, Any] | None = None,
 ) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
     floor = retrieval_score_max()
     best_raw_distance = best_distance(pairs)
@@ -768,16 +453,12 @@ def _apply_retrieval_controls(
         "score_floor": floor,
         "best_raw_distance": best_raw_distance,
         "raw_count": len(pairs),
-        "vector_raw_count": int((hybrid_diagnostics or {}).get("vector_raw_count", len(pairs))),
-        "lexical_raw_count": int((hybrid_diagnostics or {}).get("lexical_raw_count", 0)),
-        "merged_raw_count": int((hybrid_diagnostics or {}).get("merged_raw_count", len(pairs))),
         "post_admissibility_count": len(admissible),
         "post_scope_count": len(scope_filtered),
         "post_rerank_count": len(ranked),
         "post_dedupe_count": len(deduped),
         "final_retained_count": 0,
         "final_confidence_passed": False,
-        "candidate_origins": dict((hybrid_diagnostics or {}).get("candidate_origins", {})),
         "gate": gate,
     }
     return deduped[:k], diagnostics
@@ -804,10 +485,8 @@ def retrieve_with_scores(
             kwargs["filter"] = {"collection": scope}
         return db.similarity_search_with_score(q, **kwargs)
 
-    vector_results = _run_with_timeout(_call)
-    lexical_results = _lexical_retrieve(q, scope=scope, k=k)
-    raw_results, hybrid_diag = _merge_hybrid_candidates(vector_results, lexical_results)
-    results, _diagnostics = _apply_retrieval_controls(raw_results, scope=scope, k=k, hybrid_diagnostics=hybrid_diag)
+    raw_results = _run_with_timeout(_call)
+    results, _diagnostics = _apply_retrieval_controls(raw_results, scope=scope, k=k)
     return results
 
 
@@ -827,10 +506,8 @@ def retrieve_with_scores_and_diagnostics(
             kwargs["filter"] = {"collection": scope}
         return db.similarity_search_with_score(q, **kwargs)
 
-    vector_results = _run_with_timeout(_call)
-    lexical_results = _lexical_retrieve(q, scope=scope, k=k)
-    raw_results, hybrid_diag = _merge_hybrid_candidates(vector_results, lexical_results)
-    return _apply_retrieval_controls(raw_results, scope=scope, k=k, hybrid_diagnostics=hybrid_diag)
+    raw_results = _run_with_timeout(_call)
+    return _apply_retrieval_controls(raw_results, scope=scope, k=k)
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):
@@ -859,32 +536,6 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
                 "distance": float(distance),
                 "authority_rank": int(meta.get("authority_rank", 5)),
                 "machine_transcribed": bool(meta.get("machine_transcribed", False)),
-                **(
-                    {"candidate_origin": str(meta.get("candidate_origin"))}
-                    if meta.get("candidate_origin")
-                    else {}
-                ),
-                **(
-                    {"vector_distance": float(meta.get("vector_distance"))}
-                    if meta.get("vector_distance") is not None
-                    else {}
-                ),
-                **(
-                    {"lexical_score": int(meta.get("lexical_score"))}
-                    if meta.get("lexical_score") is not None
-                    else {}
-                ),
-                **(
-                    {"lexical_exact_hits": list(meta.get("lexical_exact_hits") or [])}
-                    if meta.get("lexical_exact_hits")
-                    else {}
-                ),
-                **(
-                    {"lexical_phrase_hits": list(meta.get("lexical_phrase_hits") or [])}
-                    if meta.get("lexical_phrase_hits")
-                    else {}
-                ),
-                **({"heading_match": True} if meta.get("heading_match") else {}),
             }
         )
     return sources
