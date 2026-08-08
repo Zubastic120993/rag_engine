@@ -28,7 +28,7 @@ def test_sources_report_original_pdf_and_machine_transcribed_for_ocr_hit():
             "page": 1,
             "collection": "maker-manuals",
             "distance": 0.25,
-            "authority_rank": 3,
+            "authority_rank": 7,
             "machine_transcribed": True,
         }
     ]
@@ -85,9 +85,48 @@ def test_retrieve_with_scores_prefers_ocr_manual_authority_over_reference_within
     pairs = query.retrieve_with_scores("some question", k=2)
 
     assert pairs[0][0].metadata["source"].endswith("manual.pdf")
-    assert pairs[0][0].metadata["authority_rank"] == 3
+    assert pairs[0][0].metadata["authority_rank"] == 7
+    assert pairs[0][0].metadata["canonical_authority_rank"] == 3
     assert pairs[0][0].metadata["machine_transcribed"] is True
     assert pairs[1][0].metadata["authority_rank"] == 5
+
+
+def test_retrieve_with_scores_preserves_raw_source_for_ocr_candidate(monkeypatch):
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual_OCR.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 1)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 1)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", k=1)
+
+    assert pairs[0][0].metadata["source"].endswith("manual.pdf")
+    assert pairs[0][0].metadata["raw_source"].endswith("manual_OCR.pdf")
+    assert pairs[0][0].metadata["machine_transcribed"] is True
+
+
+def test_retrieve_with_scores_prefers_text_native_over_ocr_for_same_document(monkeypatch):
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual_OCR.pdf"), 0.21),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual.pdf"), 0.24),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 2)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 2)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", k=2)
+
+    assert len(pairs) == 1
+    assert pairs[0][0].metadata["source"].endswith("manual.pdf")
+    assert pairs[0][0].metadata["authority_rank"] == 3
+    assert pairs[0][0].metadata["machine_transcribed"] is False
 
 
 def test_retrieve_with_scores_keeps_much_closer_hit_ahead_of_farther_authority(monkeypatch):

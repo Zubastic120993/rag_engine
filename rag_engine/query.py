@@ -254,13 +254,14 @@ def authority_preference_distance_window() -> float:
     return 0.05
 
 
-def _candidate_sort_key(item: tuple[Any, float]) -> tuple[int, int, float, str, Any]:
+def _candidate_sort_key(item: tuple[Any, float]) -> tuple[int, int, int, float, str, Any]:
     doc, distance = item
     meta = enrich_metadata(doc.metadata)
     doc.metadata = meta
     band = int(float(distance) / authority_preference_distance_window())
     return (
         band,
+        int(meta.get("canonical_authority_rank", meta.get("authority_rank", 5))),
         int(meta.get("authority_rank", 5)),
         float(distance),
         str(meta.get("source", "")),
