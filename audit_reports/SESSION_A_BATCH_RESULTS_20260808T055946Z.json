@@ -1,0 +1,498 @@
+{
+  "timestamp": "20260808T055946Z",
+  "pilot_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/Yanmar_6EY22ALW_Spare_Parts_List_YZJ2021-1391_Eng_03895-03898_OCR.pdf",
+  "remaining_count": 53,
+  "skipped": [
+    {
+      "original_name": "X.MLC-SDE010.pdf",
+      "dir": "10_Company/Hartmann/SMS_IMM",
+      "ocr_name": null,
+      "batch": 2,
+      "status": "skipped"
+    }
+  ],
+  "pre_total_embeddings": 108919,
+  "post_total_embeddings": 113190,
+  "delta_embeddings": 4271,
+  "pre_tracker_len": 1674,
+  "post_tracker_len": 1727,
+  "results": [
+    {
+      "original_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10.pdf",
+      "ocr_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10_OCR.pdf",
+      "batch": 1,
+      "status": "success",
+      "chunks_added": 919,
+      "digest": "492c48f636b43e05e287b6908f98265a4230ce9f2d07b5765270ded97255fd1b",
+      "message": " 919 chunks  [maker-manuals]  NEW  00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10_OCR.pdf"
+    },
+    {
+      "original_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf",
+      "ocr_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823_OCR.pdf",
+      "batch": 1,
+      "status": "success",
+      "chunks_added": 1009,
+      "digest": "c645db1062222da0a3af1b405333163cd2cbe7455c99d023c86b6df937674a49",
+      "message": "1009 chunks  [maker-manuals]  NEW  00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823_OCR.pdf"
+    },
+    {
+      "original_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf",
+      "ocr_rel": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0_OCR.pdf",
+      "batch": 1,
+      "status": "success",
+      "chunks_added": 985,
+      "digest": "7bb1f7003fe28c25d6e8bcff7d23dbe929ff56a920208129847810e76375f281",
+      "message": " 985 chunks  [maker-manuals]  NEW  00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0_OCR.pdf"
+    },
+    {
+      "original_rel": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3.pdf",
+      "ocr_rel": "00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3_OCR.pdf",
+      "batch": 1,
+      "status": "success",
+      "chunks_added": 607,
+      "digest": "ceb8ba348f48d85a986ea004cc5ac189045bcec733e7e173a443bb235242d6e8",
+      "message": " 607 chunks  [me-c]  NEW  00_Career/03_Engine_Knowledge/MAN_G50ME-C_LGIP/Manual/M 1.3_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Chain_blocks/Chain_blocks_Certificates.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Chain_blocks/Chain_blocks_Certificates_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "38f0c1656d2d4eec63a67ee40a888516f2b3c2ad3368c536e2b7c98605c29532",
+      "message": "   2 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Chain_blocks/Chain_blocks_Certificates_OCR.pdf"
+    },
+    {
+      "original_rel": "00_Career/03_Engine_Knowledge/Boiler/Components/06 油膜検出器 C-200 ｼｰｴﾙ  202007（英）.pdf",
+      "ocr_rel": "00_Career/03_Engine_Knowledge/Boiler/Components/06 油膜検出器 C-200 ｼｰｴﾙ  202007（英）_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 7,
+      "digest": "cd72cd86aa6338ca3373c9658301bc4d230e268cab1fddb2bbe08e319b998b01",
+      "message": "   7 chunks  [maker-manuals]  NEW  00_Career/03_Engine_Knowledge/Boiler/Components/06 油膜検出器 C-200 ｼｰｴﾙ  202007（英）_OCR.pdf"
+    },
+    {
+      "original_rel": "00_Career/07_SDS_Datasheets/UN_Produkte/Zertificate ISO 9001  2015 EN.pdf",
+      "ocr_rel": "00_Career/07_SDS_Datasheets/UN_Produkte/Zertificate ISO 9001  2015 EN_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "042a9e2191ffc33eabb235ba311b9d061b6b287c49fa130f69d9e490cc80cd2b",
+      "message": "   2 chunks  [maker-manuals]  NEW  00_Career/07_SDS_Datasheets/UN_Produkte/Zertificate ISO 9001  2015 EN_OCR.pdf"
+    },
+    {
+      "original_rel": "00_Career/07_SDS_Datasheets/UN_Produkte/Dosing Center D3/GL Zertifikat.pdf",
+      "ocr_rel": "00_Career/07_SDS_Datasheets/UN_Produkte/Dosing Center D3/GL Zertifikat_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 5,
+      "digest": "3f798baf289a550b8a43159537a2a44d3ad09ebee6adcca5b7847916195079ec",
+      "message": "   5 chunks  [maker-manuals]  NEW  00_Career/07_SDS_Datasheets/UN_Produkte/Dosing Center D3/GL Zertifikat_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 21,
+      "digest": "32575ce836da1bbe512b5532f9f5fe448d1949b04d0704e9c74e73b95b351fb5",
+      "message": "  21 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/07_Bunkering_Fuel/Fuel_Changeover_SOPs/HGC_OFFICIAL_ME_HFO_MGO_Changeover_Procedure_GC_Europe_2023-12-10_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.1_SD_RWO_CSB_30003771_20221202.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.1_SD_RWO_CSB_30003771_20221202_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "204350b57accc77ba6fef36d6b0dcf3a5c8ee54edf05bc6b81259b2631c0b523",
+      "message": "   2 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.1_SD_RWO_CSB_30003771_20221202_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.2_MD_RWO_CSB_30003771_20221202.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.2_MD_RWO_CSB_30003771_20221202_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 4,
+      "digest": "df1c71d6308e62f22dc5845b7f9d51c270c4a0ae15af46c2a351df20644c84af",
+      "message": "   4 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.2_MD_RWO_CSB_30003771_20221202_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.3_AF_RWO_CSB_30003771_20221202.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.3_AF_RWO_CSB_30003771_20221202_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "4949aa4f64d7c430315a023053f1577d891ab1b0f835a991ac24ae8513626337",
+      "message": "   2 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.12.3_AF_RWO_CSB_30003771_20221202_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.1_ISO_9001-2015_Certificate_RWO_SEE2104_EN.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.1_ISO_9001-2015_Certificate_RWO_SEE2104_EN_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "c27fc894fc11d4278c2908bc0441cdd6e208b7b3cb08c5040b203b26743a3545",
+      "message": "   2 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.1_ISO_9001-2015_Certificate_RWO_SEE2104_EN_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.2_Type Approval_30003771_CS-BIO.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.2_Type Approval_30003771_CS-BIO_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 9,
+      "digest": "42f9b7ea49529d291648622ee6f689dc11ed2bdc4ceb5f5784181a6f55ed7d4a",
+      "message": "   9 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.2_Type Approval_30003771_CS-BIO_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.3.1_EC_DoC_30003771_CS-BIO.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.3.1_EC_DoC_30003771_CS-BIO_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "2675eabb2bf596bb010f76630191d5a899fcee38b1a4ef225e9d5016b13895c3",
+      "message": "   3 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.3.1_EC_DoC_30003771_CS-BIO_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.3.2_Module B_340702-00_CS-BIO 2.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.3.2_Module B_340702-00_CS-BIO 2_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 11,
+      "digest": "e34b3260f84cb61c390166167f0ff9ea843c7406b7390d1476cd28d59f53b354",
+      "message": "  11 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.3.2_Module B_340702-00_CS-BIO 2_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.4_Modul D_Certificate_SEE21011.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.4_Modul D_Certificate_SEE21011_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 9,
+      "digest": "95648df4fc3d0bc63b23109ed8235247fcfca1336f671efa16e40f911763f316",
+      "message": "   9 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.4_Modul D_Certificate_SEE21011_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.6_Work Certificate_30003771_CS-BIO.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.6_Work Certificate_30003771_CS-BIO_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "ebd0648c27f630fb556230f660cddda8ecc9eb141de574212e5ef4dd26e8efd0",
+      "message": "   3 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/Sewage_Treatment_Plant_type_appr/1.6_Work Certificate_30003771_CS-BIO_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.1_SD_RWO_OWS_30003768_20221125.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.1_SD_RWO_OWS_30003768_20221125_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "f0daa787d95ec926d4f9d915091cc78a9d5b6f9ac30a58f14973dfd09c67cab6",
+      "message": "   2 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.1_SD_RWO_OWS_30003768_20221125_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.2_MD_RWO_OWS_30003768_20221125.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.2_MD_RWO_OWS_30003768_20221125_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 4,
+      "digest": "efcf6faba41a203677c2b641599ad8cc09fc81c3202283246e8646d5a4d602e9",
+      "message": "   4 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.2_MD_RWO_OWS_30003768_20221125_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.3_AF_RWO_OWS_30003768_20221125.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.3_AF_RWO_OWS_30003768_20221125_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "bf597af4372bc103ac8606f08cb606915e266642ed99ae545bd7ea4add9297b8",
+      "message": "   2 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.12.3_AF_RWO_OWS_30003768_20221125_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.2_Type Approval_30003768_OWS.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.2_Type Approval_30003768_OWS_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 9,
+      "digest": "7b143cc887dd8f669f43a26a77129499f2f91af418a237d0f444919e2717f176",
+      "message": "   9 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.2_Type Approval_30003768_OWS_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.3.1_EC_DoC_30003768_OWS.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.3.1_EC_DoC_30003768_OWS_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "fa8e06ca4d9419e8fb2397a103feee4a661facbe2d44db1ba6009560c8316191",
+      "message": "   3 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.3.1_EC_DoC_30003768_OWS_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.3.2_OWS-COM_05.00_EC.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.3.2_OWS-COM_05.00_EC_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 12,
+      "digest": "330910b3164ede6d096519d0e406b2a8673bf8ca2191e3341fb91fc6292cbb02",
+      "message": "  12 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.3.2_OWS-COM_05.00_EC_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.6_Work Certificate_30003768_OWS.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.6_Work Certificate_30003768_OWS_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "bf70f94816f611ddb025ef6bf21657f4fd01279d4d9e77ba5829feebf72dca12",
+      "message": "   3 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.6_Work Certificate_30003768_OWS_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.8.1_EC_Type_Modul B_OMD-24.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.8.1_EC_Type_Modul B_OMD-24_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 11,
+      "digest": "b3a8264e3f8439f946131262f49c89c0e66c8bc2eb666bdc585ded0054b93352",
+      "message": "  11 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.8.1_EC_Type_Modul B_OMD-24_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.8.2_EC_Quality Certificate Modul D SEE22035.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.8.2_EC_Quality Certificate Modul D SEE22035_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 9,
+      "digest": "e02823baf82de7062a74a6ae1c48bc9245279ba2c8364d2406876ae299e568f5",
+      "message": "   9 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.8.2_EC_Quality Certificate Modul D SEE22035_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/incinerator_type_appr/CCS-INC_IMO-TYPE APPROVAL-HSINC 18-NJ14T00225_02-06.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/incinerator_type_appr/CCS-INC_IMO-TYPE APPROVAL-HSINC 18-NJ14T00225_02-06_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "b33d63013b63fef1e87cf3eb1decd822b36d237aae77b4705d63317c13742754",
+      "message": "   3 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/incinerator_type_appr/CCS-INC_IMO-TYPE APPROVAL-HSINC 18-NJ14T00225_02-06_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A13-268258-0_A13-268259-2_Exh_Valve_Grinding_Machine.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A13-268258-0_A13-268259-2_Exh_Valve_Grinding_Machine_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 11,
+      "digest": "ed8a9b9a50e57d51a0709a77ea81f86235d01c3ae7362d51310b171987a495a7",
+      "message": "  11 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A13-268258-0_A13-268259-2_Exh_Valve_Grinding_Machine_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE003.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE003_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 93,
+      "digest": "b95c13654c7598c7f80d5652d8e935091aca4500572a7baad319386928dc3500",
+      "message": "  93 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE003_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE011.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE011_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 22,
+      "digest": "609209c3d07af6121e7aa68b076848ffaff8e9aee76180a847cf096c724ed1d5",
+      "message": "  22 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE011_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE020.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE020_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 26,
+      "digest": "9ab76b947a36b80cb790ab7e7da0efe982e3363cb1ba3f68429944b0538be0ec",
+      "message": "  26 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE020_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE021.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE021_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 18,
+      "digest": "8a9993efd5ac2dab6d16264a1ff810c179dafa56d36b4aebd059c1658211ac2b",
+      "message": "  18 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE021_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE022.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE022_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 30,
+      "digest": "52fd724b6c3adc6ba0e3878e590bd2d3b9bbae5c58efdc5f5a554ab1933ce9d8",
+      "message": "  30 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE022_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE023.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE023_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 24,
+      "digest": "a18f6f620ec48c907ad381df80be8585f5d83932f35ff9eb80a91b729e7439ff",
+      "message": "  24 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE023_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE024.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE024_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 37,
+      "digest": "0dbf723f074aab9393a52273cb59ab37949323b6eb2916ecafc8cc45f6649a8a",
+      "message": "  37 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE024_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE025.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE025_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 26,
+      "digest": "0c0a704109a053acdd8cec5f6dd47896ce172164e48bef2de9571e3bf264ec8e",
+      "message": "  26 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE025_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE031.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE031_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "75ed9e358d3ce7bb3cf1019b9ae98afd1df25d380e5c1926c34589bceb4195f3",
+      "message": "   3 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE031_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE033.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE033_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 3,
+      "digest": "4ef5690b7c1126c16eefdbb220774bc54f56f135fc77af0c0baa60abdc8e0722",
+      "message": "   3 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE033_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE034.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE034_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 4,
+      "digest": "07cee44d1613415ba6a5a5f4599876fd19f874d4c2d8be865742a15d7c83eaf3",
+      "message": "   4 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE034_OCR.pdf"
+    },
+    {
+      "original_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE035.pdf",
+      "ocr_rel": "10_Company/Hartmann/SMS_IMM/X.MLC-SDE035_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 2,
+      "digest": "3f54d314bcac5096ed4c9542940b0ca30b1e3906767387e5cb3348e801fc2399",
+      "message": "   2 chunks  [sms]  NEW  10_Company/Hartmann/SMS_IMM/X.MLC-SDE035_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A13-166014-3_Axial_Vibration_Monitor.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A13-166014-3_Axial_Vibration_Monitor_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 6,
+      "digest": "eee84817ecdaea19198c2cf5e1d03210044aa94a7348398a0191b52ad196ba15",
+      "message": "   6 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A13-166014-3_Axial_Vibration_Monitor_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A10-826239-4.0_A10-826240-3.0_GMS_Mark_6_Damper_Monitoring_System.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A10-826239-4.0_A10-826240-3.0_GMS_Mark_6_Damper_Monitoring_System_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 16,
+      "digest": "29200a6b4d7dda53134e33aa8b4bb0ced205fcb85fc5d7f265ddffc543f8a23b",
+      "message": "  16 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A10-826239-4.0_A10-826240-3.0_GMS_Mark_6_Damper_Monitoring_System_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A13-845801-2.0_Low_Pressure_Supply_Booster_Pump_Starter_Cabinet_7-10A.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A13-845801-2.0_Low_Pressure_Supply_Booster_Pump_Starter_Cabinet_7-10A_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 22,
+      "digest": "4b10fafeecc560dae872db388194ccdc032319777248912ab169857db95aff9b",
+      "message": "  22 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A13-845801-2.0_Low_Pressure_Supply_Booster_Pump_Starter_Cabinet_7-10A_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789794-6_Eletric_Connection_Diagram.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789794-6_Eletric_Connection_Diagram_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 85,
+      "digest": "9869ff56c082010d39aa4e59901e6041e517112c9f9f17d3f7e2e63ff8ee0154",
+      "message": "  85 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789794-6_Eletric_Connection_Diagram_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789796-0_Turbocharger_Tachometer_TCT50-ML_TC.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789796-0_Turbocharger_Tachometer_TCT50-ML_TC_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 18,
+      "digest": "f1729ab59c4593aaa5e65a954e911d186b8eb3726d5cff8c51912c2ee9ba91d5",
+      "message": "  18 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789796-0_Turbocharger_Tachometer_TCT50-ML_TC_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789806-5_Hydraulic_Pump_Motor_Starter.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789806-5_Hydraulic_Pump_Motor_Starter_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 21,
+      "digest": "7cffa283bd1532bb2e68b8c11195a6e5db174ee674e5823f36e46284acb705c1",
+      "message": "  21 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/A14-789806-5_Hydraulic_Pump_Motor_Starter_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/H20211009_No1_No2_Aux_Blower_and_Turning_Gear_Starter.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/H20211009_No1_No2_Aux_Blower_and_Turning_Gear_Starter_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 47,
+      "digest": "8632b52183a7651f2b2ae417c57ae28067715f3883b67ef4e5cb4f01854be44d",
+      "message": "  47 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/08_Electrical_Automation/H20211009_No1_No2_Aux_Blower_and_Turning_Gear_Starter_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789765-1.1_Turning_Gear_Motor_NRWT-2300.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789765-1.1_Turning_Gear_Motor_NRWT-2300_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 5,
+      "digest": "68f84e04a49eb67ca0e4f3d6340f9591b779608f5b075622a2a24d87a44f62c4",
+      "message": "   5 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789765-1.1_Turning_Gear_Motor_NRWT-2300_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789767-5.2_Aux_Blower_with_Motor.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789767-5.2_Aux_Blower_with_Motor_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 14,
+      "digest": "67f63c9136edc53305533cd5b5af67385437c803ec3b8f81d4b14e2311cacd0c",
+      "message": "  14 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789767-5.2_Aux_Blower_with_Motor_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789793-4_Pneumatic_Manoeuvring_System.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789793-4_Pneumatic_Manoeuvring_System_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 23,
+      "digest": "e38518e3cbf6d10bbc939ce61926f3a4bbacae78d5e2f8bf0da1e2b1cc18e6b2",
+      "message": "  23 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789793-4_Pneumatic_Manoeuvring_System_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789805-3_Cyl_Lub_Oil_Heating_Unit.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789805-3_Cyl_Lub_Oil_Heating_Unit_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 45,
+      "digest": "77f951906d47323438c5a4f10c318ef038ba0c39332d623e7eaed28901f8a5b3",
+      "message": "  45 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/01_Manuals/01_Main_Engine/A14-789805-3_Cyl_Lub_Oil_Heating_Unit_OCR.pdf"
+    },
+    {
+      "original_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.7_Type Approval_OMD_2016648.pdf",
+      "ocr_rel": "20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.7_Type Approval_OMD_2016648_OCR.pdf",
+      "batch": 2,
+      "status": "success",
+      "chunks_added": 10,
+      "digest": "7d99d90ec61b06765dea787916c575349972d72dacca755fd5f006bb1ef4081f",
+      "message": "  10 chunks  [vessels]  NEW  20_Vessels/Gaschem_Europe/02_Certificates/OWS+OMD-24_type_appr/1.7_Type Approval_OMD_2016648_OCR.pdf"
+    }
+  ]
+}
