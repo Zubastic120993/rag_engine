@@ -259,21 +259,25 @@ def _candidate_sort_key(
     item: tuple[Any, float],
     *,
     family_support: dict[str, int] | None = None,
-) -> tuple[int, int, int, int, int, float, str, Any]:
+    source_support: dict[str, int] | None = None,
+) -> tuple[int, int, int, int, int, int, float, str, Any]:
     doc, distance = item
     meta = enrich_metadata(doc.metadata)
     doc.metadata = meta
     band = int(float(distance) / authority_preference_distance_window())
     family = str(meta.get("authority_family", ""))
     support = 0 if family_support is None else int(family_support.get(family, 0))
+    source = str(meta.get("source", ""))
+    source_coherence = 0 if source_support is None else int(source_support.get(source, 0))
     return (
         band,
         int(meta.get("canonical_authority_rank", meta.get("authority_rank", 5))),
+        -source_coherence,
         int(meta.get("document_type_rank", 5)),
         -support,
         int(meta.get("authority_rank", 5)),
         float(distance),
-        str(meta.get("source", "")),
+        source,
         meta.get("page", "?"),
     )
 
@@ -294,13 +298,24 @@ def _apply_retrieval_controls(
             scope_filtered.append((doc, float(distance)))
     gated = [(doc, float(distance)) for doc, distance in scope_filtered if float(distance) <= floor]
     family_support: dict[str, int] = {}
+    source_support: dict[str, int] = {}
     for doc, _distance in gated:
         meta = enrich_metadata(doc.metadata)
         doc.metadata = meta
         family = str(meta.get("authority_family", ""))
         if family:
             family_support[family] = family_support.get(family, 0) + 1
-    ranked = sorted(gated, key=lambda item: _candidate_sort_key(item, family_support=family_support))
+        source = str(meta.get("source", ""))
+        if source:
+            source_support[source] = source_support.get(source, 0) + 1
+    ranked = sorted(
+        gated,
+        key=lambda item: _candidate_sort_key(
+            item,
+            family_support=family_support,
+            source_support=source_support,
+        ),
+    )
 
     deduped: list[tuple[Any, float]] = []
     seen: set[tuple[str, Any, str]] = set()

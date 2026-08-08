@@ -295,6 +295,65 @@ def test_retrieve_with_scores_prefers_supported_authority_family_within_same_typ
     assert pairs[2][0].metadata["authority_family"] == "OWS_RWO"
 
 
+def test_retrieve_with_scores_prefers_better_supported_parallel_manual_within_same_family(monkeypatch):
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf", page=10), 0.211),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf", page=20), 0.212),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf", page=21), 0.213),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf", page=22), 0.214),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf", page=11), 0.245),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", k=5)
+
+    assert pairs[0][0].metadata["source"].endswith("0ASCR-EN0054 Sep.2024-0.pdf")
+    assert pairs[0][0].metadata["authority_family"] == "Yanmar_6EY22"
+    unique_sources = []
+    for doc, _distance in pairs:
+        source = doc.metadata["source"]
+        if source not in unique_sources:
+            unique_sources.append(source)
+    assert unique_sources[:2] == [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf",
+    ]
+
+
+def test_retrieve_with_scores_keeps_closer_parallel_manual_ahead_across_bands(monkeypatch):
+    db = MagicMock()
+    db.similarity_search_with_score.return_value = [
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf", page=10), 0.219),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf", page=11), 0.239),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf", page=20), 0.251),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf", page=21), 0.252),
+        (_FakeDoc("00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf", page=22), 0.253),
+    ]
+    monkeypatch.setattr(query, "_get_db", lambda: db)
+    monkeypatch.setattr(query, "default_k", lambda: 5)
+    monkeypatch.setattr(query, "retrieval_search_width", lambda: 5)
+    monkeypatch.setattr(query, "_run_with_timeout", lambda fn, timeout=None: fn())
+    monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.30)
+
+    pairs = query.retrieve_with_scores("some question", k=5)
+
+    assert pairs[0][0].metadata["source"].endswith("0ASCR-EN0051_20210823.pdf")
+    unique_sources = []
+    for doc, _distance in pairs:
+        source = doc.metadata["source"]
+        if source not in unique_sources:
+            unique_sources.append(source)
+    assert unique_sources[:2] == [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_Y22SCR-(A)L_0ASCR-EN0051_20210823.pdf",
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/0ASCR-EN0054 Sep.2024-0.pdf",
+    ]
+
+
 def test_retrieve_with_scores_document_type_does_not_override_much_closer_hit(monkeypatch):
     db = MagicMock()
     db.similarity_search_with_score.return_value = [
