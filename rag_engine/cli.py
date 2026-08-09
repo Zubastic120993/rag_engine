@@ -249,7 +249,7 @@ def cmd_ask(argv: list[str]) -> int:
 
     code = (
         EXIT_NO_COVERAGE
-        if result.status in ("no_coverage", "empty_question")
+        if result.status in ("no_coverage", "clarification_required", "empty_question")
         else EXIT_OK
     )
     keep_sources = result.status == "ok"

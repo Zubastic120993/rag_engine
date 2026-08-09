@@ -133,7 +133,7 @@ def _empty_timings(
 
 @dataclass
 class AskResult:
-    status: str  # ok | no_coverage | empty_question | error
+    status: str  # ok | no_coverage | clarification_required | empty_question | error
     query: str
     requested_scope: str | None
     resolved_scope: str | None
@@ -714,11 +714,131 @@ def _no_coverage_hint(question: str, resolved: str | None, suggest_scopes: bool)
     return hint
 
 
+_TECHNICAL_QUERY_PATTERNS = (
+    re.compile(r"\btorque\b"),
+    re.compile(r"\bclearance\b"),
+    re.compile(r"\bsetpoint\b"),
+    re.compile(r"\blimit\b"),
+    re.compile(r"\btemperature\b"),
+    re.compile(r"\bpressure\b"),
+    re.compile(r"\bdimension\b"),
+    re.compile(r"\binterval\b"),
+    re.compile(r"\bquantity\b"),
+    re.compile(r"\bprocedure step\b"),
+    re.compile(r"\bsetting\b"),
+)
+
+_ALARM_QUERY_PATTERN = re.compile(r"\balarm\b|\bsetpoint\b")
+
+_EXPLICIT_SCOPE_PATTERNS: tuple[tuple[re.Pattern[str], str], ...] = (
+    (re.compile(r"\bm\s*1\.3\b|\bman\b|\bg50me\b|\bmain engine\b|\bturbocharger\b"), "me-c"),
+    (
+        re.compile(
+            r"\byanmar\b|\b6ey22\b|\by22scr\b|\bscr\b|\bauxiliary engine\b|\baux engine\b"
+        ),
+        "maker-manuals",
+    ),
+)
+
+_AMBIGUOUS_CONFIRMATION_PROMPTS: tuple[tuple[re.Pattern[str], str], ...] = (
+    (re.compile(r"^main engine$"), "Which main engine component do you mean?"),
+    (re.compile(r"^auxiliary engine$|^aux engine$"), "Which auxiliary engine component or system do you mean?"),
+)
+
+
+def _is_technical_query(question: str) -> bool:
+    return any(pattern.search(question) for pattern in _TECHNICAL_QUERY_PATTERNS)
+
+
+def _clarification_prompt(question: str) -> str:
+    if _ALARM_QUERY_PATTERN.search(question):
+        return "Which equipment or alarm system do you mean?"
+    return "Which equipment/component do you mean?"
+
+
+def _confirmation_prompt(confirmation_text: str) -> str:
+    normalized = normalize_text(confirmation_text).lower()
+    for pattern, prompt in _AMBIGUOUS_CONFIRMATION_PROMPTS:
+        if pattern.search(normalized):
+            return prompt
+    return "Which equipment/component do you mean?"
+
+
+def _inferred_scope_from_text(text: str, verified_context: dict[str, Any] | None = None) -> str | None:
+    normalized = normalize_text(text).lower()
+    for pattern, scope_name in _EXPLICIT_SCOPE_PATTERNS:
+        if pattern.search(normalized):
+            return scope_name
+    if verified_context and verified_context.get("scope"):
+        return str(verified_context["scope"])
+    return None
+
+
+def _question_is_sufficient(question: str, verified_context: dict[str, Any] | None = None) -> bool:
+    inferred_scope = _inferred_scope_from_text(question, verified_context)
+    if inferred_scope:
+        return True
+    if not verified_context:
+        return False
+    equipment = normalize_text(str(verified_context.get("equipment") or "")).lower()
+    normalized = normalize_text(question).lower()
+    if not equipment:
+        return False
+    component_terms = ["turbocharger", "bolt", "bolts", "valve", "injector", "pump", "filter"]
+    return any(term in equipment and term in normalized for term in component_terms)
+
+
+def _confirmation_is_sufficient(confirmation_text: str) -> bool:
+    normalized = normalize_text(confirmation_text).lower()
+    if not normalized:
+        return False
+    for pattern, _prompt in _AMBIGUOUS_CONFIRMATION_PROMPTS:
+        if pattern.search(normalized):
+            return False
+    return _inferred_scope_from_text(normalized) is not None
+
+
+def _clarification_result(
+    *,
+    query: str,
+    requested_scope: str | None,
+    resolved_scope: str | None,
+    prompt: str,
+    scope_resolution_s: float | None,
+    model: str | None,
+    technical_state: str,
+) -> AskResult:
+    diagnostics = _empty_retrieval_diagnostics()
+    diagnostics["gate"] = "clarification_required"
+    diagnostics["clarification"] = {
+        "technical_state": technical_state,
+        "prompt": prompt,
+        "fresh_retrieval_required": technical_state == "USER_CONFIRMATION",
+        "preconfirmation_reuse_allowed": False,
+    }
+    return AskResult(
+        status="clarification_required",
+        query=query,
+        requested_scope=requested_scope,
+        resolved_scope=resolved_scope,
+        answer=prompt,
+        sources=[],
+        coverage="none",
+        timings=_empty_timings(scope_resolution=scope_resolution_s),
+        model=model,
+        retrieval_evidence=[],
+        retrieval_diagnostics=diagnostics,
+        gate="clarification_required",
+    )
+
+
 def answer(
     question: str,
     scope: str | None = None,
     k: int | None = None,
     *,
+    confirmation_text: str | None = None,
+    verified_context: dict[str, Any] | None = None,
     requested_scope: str | None = None,
     suggest_scopes: bool = False,
     scope_resolution_s: float | None = None,
@@ -727,7 +847,7 @@ def answer(
     num_ctx: int | None = None,
     num_predict: int | None = None,
 ) -> AskResult:
-    """Grounded ask. Returns AskResult (ok | no_coverage | empty_question | error)."""
+    """Grounded ask. Returns AskResult (ok | no_coverage | clarification_required | empty_question | error)."""
     t0 = time.perf_counter()
     raw_q = question or ""
     q = normalize_text(raw_q)
@@ -771,13 +891,48 @@ def answer(
             gate="empty_question",
         )
 
+    active_query = q
+    if confirmation_text is not None:
+        confirmation = normalize_text(confirmation_text)
+        if not _confirmation_is_sufficient(confirmation):
+            return _clarification_result(
+                query=q,
+                requested_scope=req,
+                resolved_scope=resolved,
+                prompt=_confirmation_prompt(confirmation),
+                scope_resolution_s=scope_resolution_s,
+                model=chosen_model,
+                technical_state="USER_CONFIRMATION_STILL_AMBIGUOUS",
+            )
+        resolved = scope or _inferred_scope_from_text(confirmation, verified_context)
+        active_query = normalize_text(f"{confirmation}. {q}")
+    elif _is_technical_query(q) and not _question_is_sufficient(q, verified_context):
+        return _clarification_result(
+            query=q,
+            requested_scope=req,
+            resolved_scope=resolved,
+            prompt=_clarification_prompt(q),
+            scope_resolution_s=scope_resolution_s,
+            model=chosen_model,
+            technical_state="QUERY_UNDERSPECIFIED",
+        )
+    elif resolved is None:
+        resolved = _inferred_scope_from_text(q, verified_context)
+
     retrieval_s: float | None = None
     retrieval_diag: dict[str, Any] = {}
     try:
         t_ret = time.perf_counter()
-        pairs, retrieval_diag = retrieve_with_scores_and_diagnostics(q, scope=resolved, k=k)
+        pairs, retrieval_diag = retrieve_with_scores_and_diagnostics(active_query, scope=resolved, k=k)
         retrieval_s = time.perf_counter() - t_ret
         retrieval_diag = {**_empty_retrieval_diagnostics(), **(retrieval_diag or {})}
+        if confirmation_text is not None:
+            retrieval_diag["clarification"] = {
+                "technical_state": "USER_CONFIRMATION",
+                "confirmation_text": normalize_text(confirmation_text),
+                "fresh_retrieval_required": True,
+                "preconfirmation_reuse_allowed": False,
+            }
     except TimeoutError as e:
         return AskResult(
             status="error",
