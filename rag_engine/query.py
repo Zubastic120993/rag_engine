@@ -27,12 +27,6 @@ from rag_engine.config import (
     persist_dir,
     retrieval_score_max,
 )
-from rag_engine.context_router import (
-    SUPPORTED_SCOPES,
-    parse_question_evidence,
-    route_context,
-    route_with_discovery,
-)
 from rag_engine.scope_rules import scope_allows_candidate
 from rag_engine.text import normalize_text
 
@@ -720,121 +714,6 @@ def _no_coverage_hint(question: str, resolved: str | None, suggest_scopes: bool)
     return hint
 
 
-def _default_context_state() -> dict[str, Any]:
-    return {
-        "current_session_id": "default",
-        "current_turn_ref": "current-turn",
-        "context_state": "NO_CONTEXT",
-        "fields": [],
-    }
-
-
-def _authority_eligible_for_discovery(meta: dict[str, Any]) -> bool:
-    rank = int(meta.get("canonical_authority_rank", meta.get("authority_rank", 5)))
-    doc_type = str(meta.get("document_type", ""))
-    return rank <= 2 or (rank <= 3 and doc_type in {"operation_manual", "spare_parts_catalogue", "maker_manual"})
-
-
-def _materially_plausible_families_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict[str, Any]]:
-    families: dict[str, dict[str, Any]] = {}
-    for doc, distance in pairs:
-        meta = enrich_metadata(doc.metadata)
-        doc.metadata = meta
-        family = str(meta.get("authority_family", "")).strip()
-        scope = str(meta.get("collection", "")).strip()
-        if not family or scope not in SUPPORTED_SCOPES:
-            continue
-        if family not in families:
-            families[family] = {
-                "family": family,
-                "manual_family": str(meta.get("source", "")).split("/")[-1],
-                "implied_scope": scope,
-                "authority_eligible": False,
-                "survived_controls": True,
-                "value_plausible": True,
-                "best_distance": float(distance),
-            }
-        families[family]["authority_eligible"] = (
-            families[family]["authority_eligible"] or _authority_eligible_for_discovery(meta)
-        )
-        families[family]["best_distance"] = min(families[family]["best_distance"], float(distance))
-    plausible = [family for family in families.values() if family["authority_eligible"]]
-    plausible.sort(key=lambda item: (item["best_distance"], item["family"]))
-    for family in plausible:
-        family.pop("best_distance", None)
-    return plausible
-
-
-def _clarification_answer(plausible_families: list[dict[str, Any]], reason_code: str) -> str:
-    if reason_code == "CONFLICT":
-        return "I found conflicting active context for more than one equipment family. Which equipment do you mean?"
-    if plausible_families:
-        return "I found relevant information for more than one equipment family. Which equipment do you mean?"
-    return "Which manual or equipment family do you mean?"
-
-
-def _router_diag(
-    *,
-    route: dict[str, Any],
-    discovery_ran: bool,
-    plausible_families: list[dict[str, Any]],
-    clarification_issued: bool,
-    confirmation_applied: bool,
-    fresh_retrieval_ran: bool,
-    preconfirmation_candidate_reuse: bool,
-) -> dict[str, Any]:
-    return {
-        "route": route,
-        "discovery_ran": discovery_ran,
-        "plausible_families": plausible_families,
-        "clarification_issued": clarification_issued,
-        "confirmation_applied": confirmation_applied,
-        "fresh_retrieval_ran": fresh_retrieval_ran,
-        "preconfirmation_candidate_reuse": preconfirmation_candidate_reuse,
-    }
-
-
-def _with_router_diag(retrieval_diag: dict[str, Any], router_diag: dict[str, Any]) -> dict[str, Any]:
-    return {**(retrieval_diag or {}), "context_router": router_diag}
-
-
-def _clarification_result(
-    *,
-    q: str,
-    req: str | None,
-    chosen_model: str,
-    retrieval_s: float | None,
-    timings_fn,
-    retrieval_evidence: list[dict[str, Any]],
-    retrieval_diag: dict[str, Any],
-    router_diag: dict[str, Any],
-    answer_text: str,
-) -> AskResult:
-    return AskResult(
-        status="clarification_required",
-        query=q,
-        requested_scope=req,
-        resolved_scope=None,
-        answer=answer_text,
-        sources=[],
-        coverage="none",
-        hint=None,
-        timings=timings_fn(retrieval=retrieval_s),
-        model=chosen_model,
-        best_distance=retrieval_diag.get("best_raw_distance"),
-        score_floor=retrieval_diag.get("score_floor"),
-        retrieval_evidence=retrieval_evidence,
-        retrieval_diagnostics=_with_router_diag(retrieval_diag, router_diag),
-        gate="clarification_required",
-    )
-
-
-def _route_requires_discovery(route: dict[str, Any]) -> bool:
-    if route.get("decision") == "ROUTE":
-        return route.get("routing_mode") == "CONTEXT_VERIFIED"
-    return route.get("reason_code") in {"NO_CONTEXT", "STALE_CONTEXT"}
-
-
 def answer(
     question: str,
     scope: str | None = None,
@@ -847,9 +726,6 @@ def answer(
     use_fallback: bool = False,
     num_ctx: int | None = None,
     num_predict: int | None = None,
-    context_state: dict[str, Any] | None = None,
-    confirmation_object: dict[str, Any] | None = None,
-    clarification_suppressed: bool = False,
 ) -> AskResult:
     """Grounded ask. Returns AskResult (ok | no_coverage | empty_question | error)."""
     t0 = time.perf_counter()
@@ -860,8 +736,6 @@ def answer(
     chosen_model = resolve_answer_model(model, use_fallback=use_fallback)
     ctx_size = llm_num_ctx() if num_ctx is None else num_ctx
     predict = llm_num_predict() if num_predict is None else num_predict
-    effective_context = dict(context_state or _default_context_state())
-    question_evidence = parse_question_evidence(q)
 
     def _timings(
         retrieval: float | None = None,
@@ -899,188 +773,6 @@ def answer(
 
     retrieval_s: float | None = None
     retrieval_diag: dict[str, Any] = {}
-    discovery_ran = False
-    broad_evidence: list[dict[str, Any]] = []
-    plausible_families: list[dict[str, Any]] = []
-    confirmation_applied = confirmation_object is not None
-    fresh_retrieval_ran = False
-    preconfirmation_candidate_reuse = False
-
-    if resolved is None:
-        base_route = route_context(
-            question_evidence,
-            effective_context,
-            clarification_suppressed=clarification_suppressed,
-        )
-
-        if confirmation_object is not None:
-            route = route_with_discovery(
-                question_evidence,
-                effective_context,
-                confirmation_object=confirmation_object,
-                clarification_suppressed=clarification_suppressed,
-            )
-            resolved = route.get("selected_scope")
-            fresh_retrieval_ran = bool(route.get("constrained_retrieval_required"))
-        elif base_route.get("decision") == "ABSTAIN_CLARIFY" and base_route.get("reason_code") == "CONFLICT":
-            router_diag = _router_diag(
-                route=base_route,
-                discovery_ran=False,
-                plausible_families=[],
-                clarification_issued=True,
-                confirmation_applied=False,
-                fresh_retrieval_ran=False,
-                preconfirmation_candidate_reuse=False,
-            )
-            return _clarification_result(
-                q=q,
-                req=req,
-                chosen_model=chosen_model,
-                retrieval_s=None,
-                timings_fn=_timings,
-                retrieval_evidence=[],
-                retrieval_diag=_empty_retrieval_diagnostics(),
-                router_diag=router_diag,
-                answer_text=_clarification_answer([], str(base_route.get("reason_code"))),
-            )
-        elif _route_requires_discovery(base_route):
-            try:
-                t_ret = time.perf_counter()
-                discovery_pairs, retrieval_diag = retrieve_with_scores_and_diagnostics(q, scope=None, k=k)
-                retrieval_s = time.perf_counter() - t_ret
-                retrieval_diag = {**_empty_retrieval_diagnostics(), **(retrieval_diag or {})}
-            except TimeoutError as e:
-                return AskResult(
-                    status="error",
-                    query=q,
-                    requested_scope=req,
-                    resolved_scope=None,
-                    answer=None,
-                    error=str(e),
-                    timings=_timings(retrieval=retrieval_s),
-                    model=chosen_model,
-                    retrieval_evidence=[],
-                    retrieval_diagnostics=_empty_retrieval_diagnostics(),
-                    gate="retrieval_timeout",
-                )
-            except Exception as e:  # noqa: BLE001
-                return AskResult(
-                    status="error",
-                    query=q,
-                    requested_scope=req,
-                    resolved_scope=None,
-                    answer=None,
-                    error=str(e),
-                    timings=_timings(retrieval=retrieval_s),
-                    model=chosen_model,
-                    retrieval_evidence=[],
-                    retrieval_diagnostics=_empty_retrieval_diagnostics(),
-                    gate="retrieval_error",
-                )
-
-            discovery_ran = True
-            broad_evidence = _sources_from_pairs(discovery_pairs)
-            plausible_families = _materially_plausible_families_from_pairs(discovery_pairs)
-            discovery_state = {"materially_plausible_families": plausible_families}
-            route = route_with_discovery(
-                question_evidence,
-                effective_context,
-                discovery_state=discovery_state,
-                clarification_suppressed=clarification_suppressed,
-            )
-            if route.get("decision") == "CLARIFY_MULTI_FAMILY":
-                router_diag = _router_diag(
-                    route=route,
-                    discovery_ran=True,
-                    plausible_families=plausible_families,
-                    clarification_issued=True,
-                    confirmation_applied=False,
-                    fresh_retrieval_ran=False,
-                    preconfirmation_candidate_reuse=False,
-                )
-                return _clarification_result(
-                    q=q,
-                    req=req,
-                    chosen_model=chosen_model,
-                    retrieval_s=retrieval_s,
-                    timings_fn=_timings,
-                    retrieval_evidence=broad_evidence,
-                    retrieval_diag=retrieval_diag,
-                    router_diag=router_diag,
-                    answer_text=_clarification_answer(plausible_families, str(route.get("reason_code"))),
-                )
-            if route.get("decision") != "ROUTE" or route.get("selected_scope") not in SUPPORTED_SCOPES:
-                final_diag = _with_router_diag(
-                    retrieval_diag,
-                    _router_diag(
-                        route=route,
-                        discovery_ran=True,
-                        plausible_families=plausible_families,
-                        clarification_issued=False,
-                        confirmation_applied=False,
-                        fresh_retrieval_ran=False,
-                        preconfirmation_candidate_reuse=False,
-                    ),
-                )
-                return AskResult(
-                    status="no_coverage",
-                    query=q,
-                    requested_scope=req,
-                    resolved_scope=None,
-                    answer=None,
-                    sources=[],
-                    coverage="none",
-                    hint=_no_coverage_hint(q, None, suggest_scopes),
-                    timings=_timings(retrieval=retrieval_s),
-                    model=chosen_model,
-                    best_distance=retrieval_diag.get("best_raw_distance"),
-                    score_floor=retrieval_diag.get("score_floor"),
-                    retrieval_evidence=broad_evidence,
-                    retrieval_diagnostics=final_diag,
-                    gate="no_retrieval",
-                )
-            resolved = str(route.get("selected_scope"))
-            fresh_retrieval_ran = True
-        else:
-            route = base_route
-            if route.get("decision") == "ROUTE":
-                resolved = route.get("selected_scope")
-            elif route.get("decision") == "ABSTAIN_CLARIFY":
-                router_diag = _router_diag(
-                    route=route,
-                    discovery_ran=False,
-                    plausible_families=[],
-                    clarification_issued=True,
-                    confirmation_applied=False,
-                    fresh_retrieval_ran=False,
-                    preconfirmation_candidate_reuse=False,
-                )
-                return _clarification_result(
-                    q=q,
-                    req=req,
-                    chosen_model=chosen_model,
-                    retrieval_s=None,
-                    timings_fn=_timings,
-                    retrieval_evidence=[],
-                    retrieval_diag=_empty_retrieval_diagnostics(),
-                    router_diag=router_diag,
-                    answer_text=_clarification_answer([], str(route.get("reason_code"))),
-                )
-    else:
-        route = {
-            "decision": "ROUTE",
-            "selected_scope": resolved,
-            "routing_mode": "EXTERNAL_SCOPE",
-            "reason_code": "EXPLICIT_SCOPE",
-            "fields_used": ["active_scope"],
-            "provenance_used": ["CURRENT_TURN_EXPLICIT"],
-            "explicit_override": False,
-            "invalidated_fields": [],
-            "stale_fields": [],
-            "conflict_fields": [],
-            "clarification_prompt_class": None,
-        }
-
     try:
         t_ret = time.perf_counter()
         pairs, retrieval_diag = retrieve_with_scores_and_diagnostics(q, scope=resolved, k=k)
@@ -1119,8 +811,6 @@ def answer(
         gate = str(retrieval_diag.get("gate") or "no_retrieval")
         if gate == "broad_admissibility_failed":
             resolved_gate = "broad_admissibility_failed"
-        elif confirmation_applied:
-            resolved_gate = "authority_verification_failed"
         elif retrieval_diag.get("raw_count"):
             resolved_gate = "final_confidence_failed"
         else:
@@ -1140,18 +830,7 @@ def answer(
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=[],
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
+            retrieval_diagnostics=retrieval_diag,
             gate=resolved_gate,
         )
 
@@ -1172,19 +851,8 @@ def answer(
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=retrieval_evidence,
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
-            gate="authority_verification_failed" if confirmation_applied else "final_confidence_failed",
+            retrieval_diagnostics=retrieval_diag,
+            gate="final_confidence_failed",
         )
 
     sources = _sources_from_pairs(pairs)
@@ -1205,18 +873,7 @@ def answer(
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=sources,
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
+            retrieval_diagnostics=retrieval_diag,
             gate="ok",
         )
 
@@ -1254,18 +911,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
+            retrieval_diagnostics=retrieval_diag,
             gate="generation_timeout",
         )
     except Exception as e:  # noqa: BLE001
@@ -1285,18 +931,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
+            retrieval_diagnostics=retrieval_diag,
             gate="generation_error",
         )
     generation_s = time.perf_counter() - t_gen
@@ -1322,18 +957,7 @@ def answer(
                 ),
                 model=chosen_model,
                 retrieval_evidence=sources,
-                retrieval_diagnostics=_with_router_diag(
-                    retrieval_diag,
-                    _router_diag(
-                        route=route,
-                        discovery_ran=discovery_ran,
-                        plausible_families=plausible_families,
-                        clarification_issued=False,
-                        confirmation_applied=confirmation_applied,
-                        fresh_retrieval_ran=fresh_retrieval_ran,
-                        preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                    ),
-                ),
+                retrieval_diagnostics=retrieval_diag,
                 gate="ok",
             )
         # Chunks were retrieved but do not answer the question. This is the
@@ -1357,18 +981,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
+            retrieval_diagnostics=retrieval_diag,
             gate="refusal_or_weak_evidence",
         )
 
@@ -1389,18 +1002,7 @@ def answer(
             ),
             model=chosen_model,
             retrieval_evidence=sources,
-            retrieval_diagnostics=_with_router_diag(
-                retrieval_diag,
-                _router_diag(
-                    route=route,
-                    discovery_ran=discovery_ran,
-                    plausible_families=plausible_families,
-                    clarification_issued=False,
-                    confirmation_applied=confirmation_applied,
-                    fresh_retrieval_ran=fresh_retrieval_ran,
-                    preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-                ),
-            ),
+            retrieval_diagnostics=retrieval_diag,
             gate="empty_model_response",
         )
 
@@ -1420,17 +1022,6 @@ def answer(
         ),
         model=chosen_model,
         retrieval_evidence=sources,
-        retrieval_diagnostics=_with_router_diag(
-            retrieval_diag,
-            _router_diag(
-                route=route,
-                discovery_ran=discovery_ran,
-                plausible_families=plausible_families,
-                clarification_issued=False,
-                confirmation_applied=confirmation_applied,
-                fresh_retrieval_ran=fresh_retrieval_ran,
-                preconfirmation_candidate_reuse=preconfirmation_candidate_reuse,
-            ),
-        ),
+        retrieval_diagnostics=retrieval_diag,
         gate="ok",
     )
