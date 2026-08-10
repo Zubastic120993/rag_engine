@@ -104,9 +104,31 @@ rag-engine doctor
 
 Read-only: library/DB paths, scopes/aliases, prefix dirs + indexed docs, OpenAI generation readiness, Ollama embedding readiness, fingerprint match, Chroma open, tracker, stale `Hermes_Library` paths, orphan sources, coverage gap counts, git corpus hygiene. Does **not** reindex or write to Chroma.
 
-## Gradio PDF citations
+## AI Chief Engineer v1 Alpha (local UI)
 
-`python app.py` → http://127.0.0.1:7861
+Small Gradio shell for asking engineering questions without the terminal.
+The UI calls **`rag_engine.answer()` only** — it does not call OpenAI directly.
+Retrieval, clarification, generation, and citations stay inside the engine.
+
+```bash
+# from repo root, with venv active and OPENAI_API_KEY available
+# (optional local .env is loaded by app.py via python-dotenv; never commit keys)
+python app.py
+# → http://127.0.0.1:7861
+```
+
+Alpha screen:
+
+- question box + **Ask**
+- answer + status (`ok` / `clarification_required` / `no_coverage` / `error`)
+- sources panel (document name, viewer page, scope, path, open link + copy text)
+- clarification prompt + confirmation input + **Continue** (re-submits with `confirmation_text`)
+- health strip: rag_engine reachable, OpenAI key configured?, embedding backend available?
+- copy-answer control on the answer box
+
+No admin mutation / reindex controls in Alpha.
+
+Helpers live in `rag_engine/chief_ui.py`. Launch entrypoint remains `app.py`.
 
 Cited PDFs are clickable via a safe `/file=` route under `CE_LIBRARY_ROOT` only (symlink-resolved, case-insensitive prefix check on macOS). Stored pages are **0-based** (PyPDFLoader); links use `#page=N` with **1-based** viewer pages.
 
