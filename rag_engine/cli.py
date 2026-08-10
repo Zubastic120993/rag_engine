@@ -114,7 +114,10 @@ def cmd_ask(argv: list[str]) -> int:
     parser.add_argument(
         "--model",
         default=None,
-        help="Override answer model (default: scopes.yaml / RAG_LLM_MODEL)",
+        help=(
+            "Ignored (ORCH_104). Answer generation moved to Hermes; "
+            "kept for CLI compatibility."
+        ),
     )
     parser.add_argument(
         "--confirmation-text",
@@ -233,7 +236,19 @@ def cmd_ask(argv: list[str]) -> int:
         _print_json(result.to_json())
     else:
         if result.status == "ok":
-            print(result.answer or "")
+            if result.answer:
+                print(result.answer)
+            else:
+                print(
+                    "Retrieval package ready "
+                    f"({len(result.sources)} source(s)). "
+                    "Final answer generation is Hermes-owned."
+                )
+                if result.retrieval_context:
+                    preview = result.retrieval_context.strip()
+                    if len(preview) > 1200:
+                        preview = preview[:1200] + "\n…[truncated]"
+                    print("\nEvidence:\n" + preview)
             if result.sources:
                 print("\nSources:")
                 for s in result.sources:

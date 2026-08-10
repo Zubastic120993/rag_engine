@@ -1,4 +1,9 @@
-"""Shared retrieval + answer synthesis for CLI and Gradio."""
+"""Shared retrieval for CLI, Hermes plugin, and Gradio.
+
+ORCH_104: retrieval-only backend. Final natural-language answer generation
+is Hermes' responsibility. This module returns evidence packages
+(status / scopes / sources / chunks / clarification / diagnostics).
+"""
 
 from __future__ import annotations
 
@@ -9,6 +14,7 @@ from math import isfinite
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
 from dataclasses import dataclass, field
 from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
 from langchain_chroma import Chroma
@@ -24,8 +30,6 @@ from rag_engine.config import (
     persist_dir,
     retrieval_score_max,
 )
-from rag_engine.openai_generation import clear_caches as clear_generation_caches
-from rag_engine.openai_generation import invoke_openai_response
 from rag_engine.pdf_links import citation_page_fields, viewer_page
 from rag_engine.scope_rules import scope_allows_candidate
 from rag_engine.text import normalize_text
@@ -35,17 +39,12 @@ EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_NO_COVERAGE = 2
 
-# F-18 added retrieval_evidence + gate, both populated regardless of status.
-# No SCHEMA_VERSION bump: purely additive -- every v3 field keeps its exact
-# existing name, meaning, and population rule (including sources[], still
-# emptied on any non-"ok" status). A consumer that ignores unknown keys
-# needs no version signal for this kind of change. Reverted from v4 after
-# closeout found ~/.hermes/plugins/ce-rag's own test suite pinned a
-# schema_version fixture to 3 and broke on the bump -- its production
-# code path never reads schema_version at all (fails open, not a live
-# break), but the test regression was real. v3: sources[].score renamed
-# to sources[].distance. v2: plain-text generation, no partial_coverage.
-SCHEMA_VERSION = 3
+# v4 (ORCH_104): ask path is retrieval-only. Successful hits return an evidence
+# package (sources / retrieved_chunks / retrieval_context / …) with answer=null;
+# Hermes owns final NL generation. Clarification prompts still use `answer`.
+# v3: F-18 retrieval_evidence + gate (additive). sources[].score → distance.
+# v2: plain-text generation, no partial_coverage.
+SCHEMA_VERSION = 4
 
 DEFAULT_NO_COVERAGE_HINT = (
     "No supporting chunks were found in this scope. "
@@ -55,11 +54,14 @@ DEFAULT_NO_COVERAGE_HINT = (
 
 _STATUSES_WITH_SOURCES = frozenset({"ok"})
 
+# Hermes owns generation; engine never claims a chat/completion model.
+GENERATION_OWNER = "hermes"
+
 
 def ollama_timeout_s() -> float:
     # Default 300s: retrieval (embedding) calls under load exceed 120s and
     # must still surface as exit 1 rather than hang forever for Hermes.
-    # Retrieval only. OpenAI generation uses rag_engine.openai_generation.
+    # Embeddings only — no chat/completion provider in the ask path.
     return float(os.environ.get("RAG_OLLAMA_TIMEOUT", "300"))
 
 
@@ -125,13 +127,21 @@ class AskResult:
     query: str
     requested_scope: str | None
     resolved_scope: str | None
+    # Clarification prompts and rare deterministic source-only messages only.
+    # Successful retrieval leaves answer=None — Hermes generates the NL answer.
     answer: str | None = None
     sources: list[dict] = field(default_factory=list)
+    retrieved_chunks: list[dict] = field(default_factory=list)
+    retrieval_context: str | None = None
     hint: str | None = None
     error: str | None = None
-    coverage: str | None = None  # full | none (partial is no longer produced)
+    coverage: str | None = None  # retrieval package state only: full | none
+    # ``full`` means an admissible evidence package was assembled for Hermes.
+    # It does NOT mean answer completeness, factual completeness, or evidence
+    # sufficiency — Hermes must still judge whether chunks support the claim.
     missing_information: str | None = None
     timings: dict[str, float | None] = field(default_factory=_empty_timings)
+    # Always None on the retrieval-only ask path (Hermes selects the model).
     model: str | None = None
     best_distance: float | None = None
     score_floor: float | None = None
@@ -139,10 +149,7 @@ class AskResult:
     # status-gated emptying below. Always reflects retrieve_with_scores()'s
     # real output -- [] only when retrieval genuinely found nothing (or
     # never ran, e.g. empty_question / a retrieval-stage error), never
-    # emptied just because the final status ended up non-"ok". This is what
-    # tells "retrieval found nothing" apart from "retrieval found weak
-    # matches and the model declined" -- indistinguishable via `sources`
-    # alone before this field existed.
+    # emptied just because the final status ended up non-"ok".
     retrieval_evidence: list[dict] = field(default_factory=list)
     retrieval_diagnostics: dict[str, Any] = field(default_factory=dict)
     # F-18: which internal gate produced a non-"ok" status. None for "ok"
@@ -155,6 +162,23 @@ class AskResult:
 
     def to_json(self) -> dict[str, Any]:
         keep_sources = self.status in _STATUSES_WITH_SOURCES
+        sources = self.sources if keep_sources else []
+        chunks = self.retrieved_chunks if keep_sources else []
+        clarification = (self.retrieval_diagnostics or {}).get("clarification")
+        page_numbers: list[Any] = []
+        document_names: list[str] = []
+        seen_docs: set[str] = set()
+        for src in sources:
+            if not isinstance(src, dict):
+                continue
+            page = src.get("page")
+            if page is not None and page not in page_numbers:
+                page_numbers.append(page)
+            path = str(src.get("path") or "")
+            name = Path(path).name if path else ""
+            if name and name not in seen_docs:
+                seen_docs.add(name)
+                document_names.append(name)
         payload: dict[str, Any] = {
             "schema_version": SCHEMA_VERSION,
             "status": self.status,
@@ -164,7 +188,19 @@ class AskResult:
             "coverage": self.coverage,
             "answer": self.answer,
             "missing_information": self.missing_information,
-            "sources": self.sources if keep_sources else [],
+            "sources": sources,
+            "retrieved_chunks": chunks,
+            "retrieval_context": self.retrieval_context if keep_sources else None,
+            "page_numbers": page_numbers,
+            "document_names": document_names,
+            "clarification_state": clarification if isinstance(clarification, dict) else None,
+            "retrieval_metadata": {
+                "best_distance": self.best_distance,
+                "score_floor": self.score_floor,
+                "gate": self.gate,
+                "diagnostics": self.retrieval_diagnostics or {},
+            },
+            "generation_owner": GENERATION_OWNER,
             "retrieval_evidence": self.retrieval_evidence,
             "retrieval_diagnostics": self.retrieval_diagnostics,
             "gate": self.gate,
@@ -192,11 +228,10 @@ def _get_db() -> Chroma:
 
 def clear_caches() -> None:
     _get_db.cache_clear()
-    clear_generation_caches()
 
 
 def resolve_answer_model(model: str | None = None) -> str:
-    """Explicit model override, else configured default OpenAI model."""
+    """Legacy helper: configured default chat model name (unused by ask path)."""
     if model:
         return model
     return llm_model()
@@ -708,6 +743,49 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
     return sources
 
 
+def _chunks_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
+    """Build evidence chunks (citation metadata + text) for Hermes generation."""
+    chunks: list[dict] = []
+    for doc, distance in pairs:
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
+        src = meta.get("source", "unknown")
+        stored_page = meta.get("page", "?")
+        entry: dict[str, Any] = {
+            "path": src,
+            "collection": meta.get("collection", "other"),
+            "distance": float(distance),
+            "authority_rank": int(meta.get("authority_rank", 5)),
+            "machine_transcribed": bool(meta.get("machine_transcribed", False)),
+            "text": (doc.page_content or "").strip(),
+        }
+        fields = citation_page_fields(stored_page, source=str(src))
+        if fields:
+            entry["page"] = fields["page"]
+            entry["page_index"] = fields["page_index"]
+        else:
+            entry["page"] = stored_page
+        chunks.append(entry)
+    return chunks
+
+
+def _build_retrieval_context(pairs: list[tuple[Any, float]]) -> str:
+    """Plain-text evidence block Hermes (or a human CLI) can feed to a model."""
+    parts: list[str] = []
+    for doc, _score in pairs:
+        meta = enrich_metadata(doc.metadata)
+        doc.metadata = meta
+        src = meta.get("source")
+        stored = meta.get("page")
+        human = viewer_page(stored, source=str(src) if src is not None else None)
+        page_for_prompt = human if human is not None else stored
+        parts.append(
+            f"[source={src} page={page_for_prompt} "
+            f"collection={meta.get('collection')}]\n{(doc.page_content or '').strip()}"
+        )
+    return "\n\n".join(parts)
+
+
 _SOURCE_ONLY_PATTERNS = (
     re.compile(r"\bfind the manual\b"),
     re.compile(r"\bfind the document\b"),
@@ -829,6 +907,7 @@ def clean_answer_text(raw: str) -> str:
 
 
 def _build_prompt(question: str, context: str, resolved: str | None) -> str:
+    """Archived prompt builder (ORCH_104). Unused by the retrieval-only ask path."""
     scope_line = (
         f"Search scope: {resolved}\n" if resolved else "Search scope: entire corpus\n"
     )
@@ -859,8 +938,12 @@ def _invoke_generation(
     *,
     timeout: float | None = None,
 ) -> str:
-    result = invoke_openai_response(model, prompt, timeout=timeout)
-    return result.text.strip()
+    """Archived (ORCH_104). Ask path must not call a generation provider."""
+    raise RuntimeError(
+        "rag_engine ask path is retrieval-only (ORCH_104); "
+        "Hermes owns final answer generation "
+        f"(model={model!r}, timeout={timeout!r}, prompt_chars={len(prompt or '')})"
+    )
 
 
 def _no_coverage_hint(question: str, resolved: str | None, suggest_scopes: bool) -> str:
@@ -1008,13 +1091,19 @@ def answer(
     scope_resolution_s: float | None = None,
     model: str | None = None,
 ) -> AskResult:
-    """Grounded ask. Returns AskResult (ok | no_coverage | clarification_required | empty_question | error)."""
+    """Grounded retrieval. Returns AskResult evidence package (no NL generation).
+
+    Statuses: ok | no_coverage | clarification_required | empty_question | error.
+    On ``ok``, ``answer`` is null (Hermes generates). Clarification prompts still
+    use ``answer``. ``model`` is accepted for CLI compatibility and ignored.
+    """
     t0 = time.perf_counter()
     raw_q = question or ""
     q = normalize_text(raw_q)
     req = requested_scope if requested_scope is not None else scope
     resolved = scope
-    chosen_model = resolve_answer_model(model)
+    # Retrieval-only: do not resolve or claim a chat/completion model.
+    _ = model
 
     def _timings(
         retrieval: float | None = None,
@@ -1044,7 +1133,7 @@ def answer(
             coverage="none",
             hint=DEFAULT_NO_COVERAGE_HINT,
             timings=_timings(),
-            model=chosen_model,
+            model=None,
             retrieval_evidence=[],
             retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="empty_question",
@@ -1060,7 +1149,7 @@ def answer(
                 resolved_scope=resolved,
                 prompt=_confirmation_prompt(confirmation),
                 scope_resolution_s=scope_resolution_s,
-                model=chosen_model,
+                model=None,
                 technical_state="USER_CONFIRMATION_STILL_AMBIGUOUS",
             )
         resolved = scope or _inferred_scope_from_text(confirmation, verified_context)
@@ -1072,7 +1161,7 @@ def answer(
             resolved_scope=resolved,
             prompt=_clarification_prompt(q),
             scope_resolution_s=scope_resolution_s,
-            model=chosen_model,
+            model=None,
             technical_state="QUERY_UNDERSPECIFIED",
         )
     elif resolved is None:
@@ -1101,7 +1190,7 @@ def answer(
             answer=None,
             error=str(e),
             timings=_timings(retrieval=retrieval_s),
-            model=chosen_model,
+            model=None,
             retrieval_evidence=[],
             retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="retrieval_timeout",
@@ -1115,7 +1204,7 @@ def answer(
             answer=None,
             error=str(e),
             timings=_timings(retrieval=retrieval_s),
-            model=chosen_model,
+            model=None,
             retrieval_evidence=[],
             retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="retrieval_error",
@@ -1140,7 +1229,7 @@ def answer(
             coverage="none",
             hint=_no_coverage_hint(q, resolved, suggest_scopes),
             timings=_timings(retrieval=retrieval_s),
-            model=chosen_model,
+            model=None,
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=[],
@@ -1161,7 +1250,7 @@ def answer(
             coverage="none",
             hint=_no_coverage_hint(q, resolved, suggest_scopes),
             timings=_timings(retrieval=retrieval_s),
-            model=chosen_model,
+            model=None,
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=retrieval_evidence,
@@ -1170,8 +1259,11 @@ def answer(
         )
 
     sources = _sources_from_pairs(pairs)
+    chunks = _chunks_from_pairs(pairs)
+    context = _build_retrieval_context(pairs)
     conservative_success = retrieval_is_conservative_success(pairs)
 
+    # Deterministic source-locator response (metadata only — not LLM generation).
     if is_source_only_query(q) and conservative_success:
         return AskResult(
             status="ok",
@@ -1180,10 +1272,12 @@ def answer(
             resolved_scope=resolved,
             answer=build_source_only_answer(sources, resolved),
             sources=sources,
+            retrieved_chunks=chunks,
+            retrieval_context=context,
             coverage="full",
             missing_information=None,
             timings=_timings(retrieval=retrieval_s),
-            model=chosen_model,
+            model=None,
             best_distance=retrieval_diag.get("best_raw_distance"),
             score_floor=retrieval_diag.get("score_floor"),
             retrieval_evidence=sources,
@@ -1191,154 +1285,22 @@ def answer(
             gate="ok",
         )
 
-    context_parts = []
-    for doc, _score in pairs:
-        meta = doc.metadata or {}
-        src = meta.get("source")
-        stored = meta.get("page")
-        human = viewer_page(stored, source=str(src) if src is not None else None)
-        page_for_prompt = human if human is not None else stored
-        context_parts.append(
-            f"[source={src} page={page_for_prompt} "
-            f"collection={meta.get('collection')}]\n{doc.page_content.strip()}"
-        )
-    context = "\n\n".join(context_parts)
-
-    # Single plain-text generation attempt. The model's only structured duty
-    # is the NOT_IN_CONTEXT sentinel; every structured field in the payload
-    # comes from retrieval metadata the engine already holds. No repair pass,
-    # no salvage: a failed generation is an honest error, not partial_coverage.
-    prompt = _build_prompt(q, context, resolved)
-    t_gen = time.perf_counter()
-    try:
-        raw = _invoke_generation(chosen_model, prompt)
-    except TimeoutError as e:
-        generation_s = time.perf_counter() - t_gen
-        return AskResult(
-            status="error",
-            query=q,
-            requested_scope=req,
-            resolved_scope=resolved,
-            answer=None,
-            sources=sources,
-            error=str(e),
-            timings=_timings(
-                retrieval=retrieval_s,
-                generation_primary=generation_s,
-                generation=generation_s,
-            ),
-            model=chosen_model,
-            retrieval_evidence=sources,
-            retrieval_diagnostics=retrieval_diag,
-            gate="generation_timeout",
-        )
-    except Exception as e:  # noqa: BLE001
-        generation_s = time.perf_counter() - t_gen
-        return AskResult(
-            status="error",
-            query=q,
-            requested_scope=req,
-            resolved_scope=resolved,
-            answer=None,
-            sources=sources,
-            error=str(e),
-            timings=_timings(
-                retrieval=retrieval_s,
-                generation_primary=generation_s,
-                generation=generation_s,
-            ),
-            model=chosen_model,
-            retrieval_evidence=sources,
-            retrieval_diagnostics=retrieval_diag,
-            gate="generation_error",
-        )
-    generation_s = time.perf_counter() - t_gen
-
-    if model_declared_not_in_context(raw):
-        if conservative_success:
-            return AskResult(
-                status="ok",
-                query=q,
-                requested_scope=req,
-                resolved_scope=resolved,
-                answer=(
-                    "Relevant source found; answer generation could not extract "
-                    "the requested detail. See the listed sources."
-                ),
-                sources=sources,
-                coverage="full",
-                missing_information=None,
-                timings=_timings(
-                    retrieval=retrieval_s,
-                    generation_primary=generation_s,
-                    generation=generation_s,
-                ),
-                model=chosen_model,
-                retrieval_evidence=sources,
-                retrieval_diagnostics=retrieval_diag,
-                gate="ok",
-            )
-        # Chunks were retrieved but do not answer the question. This is the
-        # ambiguous case F-18 exists for: `sources` empties per the status
-        # rule below, exactly like the zero-retrieval no_coverage above --
-        # `retrieval_evidence` + `gate="not_in_context_weak_evidence"` are
-        # what let a caller tell the two apart.
-        return AskResult(
-            status="no_coverage",
-            query=q,
-            requested_scope=req,
-            resolved_scope=resolved,
-            answer=None,
-            sources=[],
-            coverage="none",
-            hint=_no_coverage_hint(q, resolved, suggest_scopes),
-            timings=_timings(
-                retrieval=retrieval_s,
-                generation_primary=generation_s,
-                generation=generation_s,
-            ),
-            model=chosen_model,
-            retrieval_evidence=sources,
-            retrieval_diagnostics=retrieval_diag,
-            gate="refusal_or_weak_evidence",
-        )
-
-    ans = clean_answer_text(raw)
-    if not ans:
-        return AskResult(
-            status="error",
-            query=q,
-            requested_scope=req,
-            resolved_scope=resolved,
-            answer=None,
-            sources=sources,
-            error="empty model response",
-            timings=_timings(
-                retrieval=retrieval_s,
-                generation_primary=generation_s,
-                generation=generation_s,
-            ),
-            model=chosen_model,
-            retrieval_evidence=sources,
-            retrieval_diagnostics=retrieval_diag,
-            gate="empty_model_response",
-        )
-
+    # Successful retrieval package — Hermes performs NL generation.
     return AskResult(
         status="ok",
         query=q,
         requested_scope=req,
         resolved_scope=resolved,
-        answer=ans,
+        answer=None,
         sources=sources,
+        retrieved_chunks=chunks,
+        retrieval_context=context,
         coverage="full",
         missing_information=None,
-        timings=_timings(
-            retrieval=retrieval_s,
-            generation_primary=generation_s,
-            generation=generation_s,
-        ),
-        model=chosen_model,
+        timings=_timings(retrieval=retrieval_s),
+        model=None,
+        best_distance=retrieval_diag.get("best_raw_distance"),
+        score_floor=retrieval_diag.get("score_floor"),
         retrieval_evidence=sources,
         retrieval_diagnostics=retrieval_diag,
         gate="ok",

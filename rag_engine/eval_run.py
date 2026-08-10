@@ -1,32 +1,18 @@
-"""Run scoped RAG eval cases (positives + refuse negatives)."""
+"""Run scoped RAG eval cases (retrieval-only under schema v4).
+
+Legacy NL answer-scoring without --retrieval-only is deprecated: rag_engine
+no longer generates answers (Hermes owns generation / refuse judgment).
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
-import re
 from pathlib import Path
 
-from rag_engine.query import answer, retrieve
+from rag_engine.query import retrieve
 
 EVAL_PATH = Path(__file__).resolve().parent.parent / "eval" / "questions.json"
-
-REFUSE_PATTERNS = [
-    r"\bi do not know\b",
-    r"\bi don't know\b",
-    r"\bdo not know\b",
-    r"\bdon't know\b",
-    r"\bnot (?:found|specified|available|in (?:the )?(?:context|documents|library|manuals))\b",
-    r"\bno (?:relevant|sufficient) (?:information|documents|context)\b",
-    r"\bcannot (?:determine|answer|find)\b",
-    r"\bto be confirmed\b",
-    r"\bnot specified\b",
-]
-
-
-def _looks_like_refuse(text: str) -> bool:
-    low = text.lower()
-    return any(re.search(p, low) for p in REFUSE_PATTERNS)
 
 
 def _sources_ok(sources: list[dict], substrs: list[str]) -> bool:
@@ -78,59 +64,40 @@ def run_case(case: dict, *, retrieval_only: bool) -> dict:
         "sources": sources[:5],
     }
 
-    if retrieval_only:
-        if expect_refuse:
-            result["pass"] = True
-            result["note"] = "retrieval-only: LLM refuse not checked"
-        else:
-            result["pass"] = (
-                bool(docs) and result["scope_filter_ok"] and result["source_hint_ok"]
-            )
-        return result
-
-    text_result = answer(q, scope=scope, k=5)
-    text = text_result.answer or ""
-    ans_sources = text_result.sources
-    status = text_result.status
-    result["answer_preview"] = (text or "")[:400]
-    result["sources"] = ans_sources[:5]
-    result["status"] = status
-    result["error"] = text_result.error
-    result["scope_filter_ok"] = _scope_ok(ans_sources, scope)
-    result["refused"] = _looks_like_refuse(text) or status == "no_coverage"
-
-    # Three-way outcome: ok | partial_coverage | fail. partial_coverage is
-    # reported distinctly — never collapsed into pass or fail.
-    if status == "error":
-        outcome = "fail"
-    elif expect_refuse:
-        outcome = "ok" if (result["refused"] and result["scope_filter_ok"]) else "fail"
-    else:
-        answered_ok = (
-            (not result["refused"])
-            and result["scope_filter_ok"]
-            and _sources_ok(ans_sources, substrs)
-            and bool(ans_sources)
+    if not retrieval_only:
+        raise SystemExit(
+            "eval_run: schema v4 retrieval-only mode — engine answer generation "
+            "is removed. Re-run with --retrieval-only (Hermes owns NL generation / "
+            "refuse judgment). The legacy answer-scoring path is deprecated."
         )
-        if not answered_ok:
-            outcome = "fail"
-        elif status == "ok":
-            outcome = "ok"
-        elif status == "partial_coverage":
-            outcome = "partial_coverage"
-        else:
-            outcome = "fail"
 
-    result["outcome"] = outcome
-    result["pass"] = outcome == "ok"
+    if expect_refuse:
+        result["pass"] = True
+        result["note"] = "retrieval-only: LLM refuse not checked"
+    else:
+        result["pass"] = (
+            bool(docs) and result["scope_filter_ok"] and result["source_hint_ok"]
+        )
     return result
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run local RAG eval set")
-    parser.add_argument("--retrieval-only", action="store_true")
+    parser.add_argument(
+        "--retrieval-only",
+        action="store_true",
+        help="Evaluate retrieval hits only (required under schema v4).",
+    )
     parser.add_argument("--ids", nargs="*", default=None)
     args = parser.parse_args(argv)
+
+    if not args.retrieval_only:
+        print(
+            "ERROR: schema v4 retrieval-only mode requires --retrieval-only. "
+            "Engine NL answer generation is removed; Hermes owns generation.",
+            flush=True,
+        )
+        return 2
 
     data = json.loads(EVAL_PATH.read_text(encoding="utf-8"))
     cases = data["cases"]
@@ -141,12 +108,9 @@ def main(argv: list[str] | None = None) -> int:
     results = []
     for case in cases:
         print(f"→ {case['id']} (scope={case.get('scope')}) …", flush=True)
-        r = run_case(case, retrieval_only=args.retrieval_only)
+        r = run_case(case, retrieval_only=True)
         results.append(r)
-        if args.retrieval_only:
-            mark = "PASS" if r["pass"] else "FAIL"
-        else:
-            mark = r["outcome"]
+        mark = "PASS" if r["pass"] else "FAIL"
         print(
             f"  {mark}  docs={r['n_docs']} refuse_expect={r['expect_refuse']}",
             flush=True,
@@ -155,24 +119,10 @@ def main(argv: list[str] | None = None) -> int:
     out = Path("eval/last_results.json")
     out.write_text(json.dumps(results, indent=2), encoding="utf-8")
 
-    if args.retrieval_only:
-        passed = sum(1 for r in results if r["pass"])
-        print(f"\n{passed}/{len(results)} passed")
-        print(f"Wrote {out}")
-        return 0 if passed == len(results) else 1
-
-    n_ok = sum(1 for r in results if r["outcome"] == "ok")
-    n_partial = sum(1 for r in results if r["outcome"] == "partial_coverage")
-    n_fail = sum(1 for r in results if r["outcome"] == "fail")
-    print("\nPer-question status:")
-    for r in results:
-        print(f"  {r['outcome']:16s}  {r['id']}")
-    print(
-        f"\nok={n_ok}  partial_coverage={n_partial}  fail={n_fail}  "
-        f"(total {len(results)})"
-    )
+    passed = sum(1 for r in results if r["pass"])
+    print(f"\n{passed}/{len(results)} passed")
     print(f"Wrote {out}")
-    return 0 if n_fail == 0 else 1
+    return 0 if passed == len(results) else 1
 
 
 if __name__ == "__main__":

@@ -288,19 +288,35 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
     openai_key_present = bool(os.environ.get(openai_key_var, "").strip())
     openai_sdk_available = find_spec("openai") is not None
     configured_model = llm_model().strip()
-    checks.append(_check("openai_sdk_available", openai_sdk_available, "openai"))
+    # ORCH_104: ask path is retrieval-only. OpenAI generation is unused;
+    # keep informational checks (ok=True) so doctor does not fail on missing
+    # chat-provider credentials. Hermes owns final answer generation.
+    checks.append(
+        _check(
+            "openai_sdk_available",
+            True,
+            f"informational={openai_sdk_available} (unused by ask path)",
+        )
+    )
     checks.append(
         _check(
             "openai_api_key_present",
-            openai_key_present,
-            openai_key_var,
+            True,
+            (
+                f"{openai_key_var} present"
+                if openai_key_present
+                else f"{openai_key_var} absent (unused by ask path; Hermes owns generation)"
+            ),
         )
     )
     checks.append(
         _check(
             "openai_generation_ready",
-            bool(configured_model) and openai_sdk_available and openai_key_present,
-            configured_model or "model not configured",
+            True,
+            (
+                "unused by ask path (ORCH_104); Hermes owns generation"
+                + (f"; archived module model={configured_model}" if configured_model else "")
+            ),
         )
     )
 

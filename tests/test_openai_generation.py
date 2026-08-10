@@ -117,5 +117,8 @@ def test_doctor_distinguishes_openai_generation_and_ollama_embeddings(
     assert checks["openai_sdk_available"]["ok"] is True
     assert checks["openai_api_key_present"]["ok"] is True
     assert checks["openai_generation_ready"]["ok"] is True
+    assert "Hermes" in checks["openai_generation_ready"]["detail"] or "unused" in checks[
+        "openai_generation_ready"
+    ]["detail"]
     assert checks["ollama_embedding_reachable"]["detail"] == "skipped"
     assert checks["embed_model_available"]["detail"] == "skipped"

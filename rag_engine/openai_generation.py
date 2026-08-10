@@ -1,4 +1,10 @@
-"""OpenAI Responses API answer generation with lazy SDK import."""
+"""OpenAI Responses API answer generation with lazy SDK import.
+
+ORCH_104: archived / unused by the production ask path.
+rag_engine is retrieval-only; Hermes owns final answer generation.
+This module is retained for rollback and unit tests — do not wire it
+back into query.answer() without an explicit operator decision.
+"""
 
 from __future__ import annotations
 

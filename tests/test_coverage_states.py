@@ -1,11 +1,10 @@
-"""Unit tests for plain-text generation, coverage states, timings, and the
-external --json contract."""
+"""Unit tests for retrieval-only ask path, coverage states, timings, and the
+external --json contract (ORCH_104)."""
 
 from __future__ import annotations
 
 import sys
 from pathlib import Path
-from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -74,10 +73,6 @@ def _fake_doc(
     return doc
 
 
-def _patch_llm_response(text: str):
-    return patch("rag_engine.query._invoke_generation", return_value=text)
-
-
 def _patch_retrieval(pairs, gate=None):
     diag = {"gate": gate}
     if pairs:
@@ -92,26 +87,59 @@ def test_resolve_answer_model(scopes_yaml):
     assert resolve_answer_model("custom:7b") == "custom:7b"
 
 
-def test_plain_text_answer_is_ok(scopes_yaml):
+def test_retrieval_ok_returns_package_without_nl_answer(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
     with _patch_retrieval(pairs):
-        with _patch_llm_response("Follow the FO procedure before bunkering."):
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
+            llm.assert_not_called()
 
     assert r.status == "ok"
     assert r.coverage == "full"
-    assert r.answer == "Follow the FO procedure before bunkering."
+    assert r.answer is None
+    assert r.model is None
     assert r.missing_information is None
     assert len(r.sources) == 1
+    assert len(r.retrieved_chunks) == 1
+    assert "fuel oil" in (r.retrieval_context or "")
     j = r.to_json()
-    assert j["schema_version"] == 3
+    assert j["schema_version"] == 4
     assert j["sources"]
     assert j["status"] == "ok"
+    assert j["answer"] is None
+    assert j["generation_owner"] == "hermes"
+    assert j["retrieved_chunks"][0]["text"]
+    assert j["document_names"] == ["a.pdf"]
+    assert j["page_numbers"] == [2]
+    assert j["timings"]["generation"] is None
+    # ORCH_106: coverage=full is retrieval-package state only — not answer completeness.
+    assert j["coverage"] == "full"
+    assert r.answer is None  # ok + full coverage still allows null answer
 
 
-def test_prompt_requests_plain_text_not_json(scopes_yaml):
+def test_coverage_full_is_retrieval_package_state_not_answer_completeness(scopes_yaml):
+    """coverage=full must not be interpreted as factual/answer completeness."""
+    from rag_engine.query import answer
+
+    # Non-clarifying query with admissible hits whose text does not contain
+    # the numeric/procedural fact a caller might ask Hermes to extract.
+    pairs = [(_fake_doc(content="General SMS housekeeping note with no pressure limit."), 0.3)]
+    with _patch_retrieval(pairs):
+        r = answer("fuel oil bunkering checklist?", scope="sms")
+
+    assert r.status == "ok"
+    assert r.coverage == "full"
+    assert r.answer is None
+    blob = " ".join(c.get("text", "") for c in r.to_json()["retrieved_chunks"]).lower()
+    assert "bar" not in blob and "setpoint" not in blob
+    j = r.to_json()
+    # Runtime proof: full coverage + null answer is a valid ok package.
+    assert j["coverage"] == "full" and j["answer"] is None and j["generation_owner"] == "hermes"
+
+
+def test_prompt_builder_archived_still_documents_not_in_context(scopes_yaml):
     from rag_engine.query import _build_prompt
 
     prompt = _build_prompt("q?", "ctx", "sms")
@@ -120,19 +148,18 @@ def test_prompt_requests_plain_text_not_json(scopes_yaml):
     assert "plain" in prompt.lower()
 
 
-def test_not_in_context_sentinel_is_no_coverage(scopes_yaml):
+def test_ask_path_never_calls_generation_even_with_strong_hits(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.9)]
+    pairs = [(_fake_doc(), 0.4)]
     with _patch_retrieval(pairs):
-        with _patch_llm_response("NOT_IN_CONTEXT"):
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("unrelated?", scope="sms")
+            llm.assert_not_called()
 
-    assert r.status == "no_coverage"
-    assert r.coverage == "none"
+    assert r.status == "ok"
     assert r.answer is None
-    assert r.to_json()["sources"] == []
-    assert r.hint
+    assert r.sources
 
 
 def test_source_only_query_bypasses_llm_when_retrieval_is_strong(scopes_yaml):
@@ -151,51 +178,12 @@ def test_source_only_query_bypasses_llm_when_retrieval_is_strong(scopes_yaml):
     assert r.sources[0]["path"] == "10_Company/manual.pdf"
 
 
-def test_not_in_context_with_single_source_consensus_preserves_sources(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [
-        (_fake_doc(path="10_Company/manual.pdf", page=1), 0.4),
-        (_fake_doc(path="10_Company/manual.pdf", page=2), 0.5),
-        (_fake_doc(path="10_Company/manual.pdf", page=3), 0.6),
-    ]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response("NOT_IN_CONTEXT"):
-            r = answer("What is the procedure detail?", scope="sms")
-
-    assert r.status == "ok"
-    assert r.coverage == "full"
-    assert (
-        r.answer
-        == "Relevant source found; answer generation could not extract the requested detail. See the listed sources."
-    )
-    assert len(r.sources) == 3
-
-
-def test_not_in_context_with_conflicting_sources_stays_no_coverage(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [
-        (_fake_doc(path="10_Company/manual_a.pdf", page=1), 0.4),
-        (_fake_doc(path="10_Company/manual_b.pdf", page=2), 0.5),
-        (_fake_doc(path="10_Company/manual_a.pdf", page=3), 0.6),
-    ]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response("NOT_IN_CONTEXT"):
-            r = answer("What is the procedure detail?", scope="sms")
-
-    assert r.status == "no_coverage"
-    assert r.coverage == "none"
-    assert r.to_json()["sources"] == []
-
-
 def test_not_in_context_detection_is_first_line_only(scopes_yaml):
     from rag_engine.query import model_declared_not_in_context
 
     assert model_declared_not_in_context("NOT_IN_CONTEXT")
     assert model_declared_not_in_context("  NOT_IN_CONTEXT.")
     assert model_declared_not_in_context("\n\nNOT_IN_CONTEXT\nextra prose")
-    # The sentinel buried in prose must NOT trigger no_coverage
     assert not model_declared_not_in_context(
         "The manual says NOT_IN_CONTEXT is a token."
     )
@@ -203,7 +191,7 @@ def test_not_in_context_detection_is_first_line_only(scopes_yaml):
     assert not model_declared_not_in_context("")
 
 
-def test_no_coverage_empty_retrieval_skips_llm(scopes_yaml):
+def test_no_coverage_empty_retrieval_skips_generation(scopes_yaml):
     from rag_engine.query import answer
 
     with _patch_retrieval([]):
@@ -214,63 +202,11 @@ def test_no_coverage_empty_retrieval_skips_llm(scopes_yaml):
     assert r.coverage == "none"
 
 
-def test_empty_model_response_is_error_not_partial(scopes_yaml):
-    """No salvage path: a broken generation is an honest error and never a
-    partial_coverage downgrade."""
-    from rag_engine.query import answer
+def test_invoke_generation_is_archived_and_raises(scopes_yaml):
+    from rag_engine.query import _invoke_generation
 
-    pairs = [(_fake_doc(), 0.4)]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response(""):
-            r = answer("q", scope="sms")
-
-    assert r.status == "error"
-    assert r.error == "empty model response"
-    assert r.answer is None
-
-
-def test_single_generation_call_no_repair_loop(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    with _patch_retrieval(pairs):
-        with patch("rag_engine.query._invoke_generation", return_value="") as generate:
-            r = answer("q", scope="sms")
-
-    generate.assert_called_once()
-    assert r.status == "error"
-
-
-def test_heavy_fallback_model_never_touched_by_default(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    with _patch_retrieval(pairs):
-        with patch("rag_engine.query._invoke_generation", return_value="An answer.") as generate:
-            r = answer("q", scope="sms")
-
-    generate.assert_called_once()
-    assert r.status == "ok"
-    assert r.model == "gpt-5.6-luna"
-
-
-def test_generation_timeout_is_error(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    with _patch_retrieval(pairs):
-        with patch(
-            "rag_engine.query._invoke_generation",
-            side_effect=TimeoutError("OpenAI generation timed out after 60.0s (RAG_OPENAI_TIMEOUT)"),
-        ):
-            r = answer("q", scope="sms", scope_resolution_s=0.001)
-
-    assert r.status == "error"
-    assert "timed out" in (r.error or "").lower()
-    assert r.timings["retrieval"] is not None
-    assert r.timings["generation"] is not None
-    assert r.timings["total"] is not None
-    assert r.timings["scope_resolution"] == 0.001
+    with pytest.raises(RuntimeError, match="retrieval-only"):
+        _invoke_generation("gpt-5.6-luna", "prompt")
 
 
 def test_retrieval_timeout_is_still_a_hard_error(scopes_yaml):
@@ -286,25 +222,12 @@ def test_retrieval_timeout_is_still_a_hard_error(scopes_yaml):
     assert "timed out" in (r.error or "").lower()
 
 
-def test_fenced_answer_is_unwrapped(scopes_yaml):
+def test_timing_fields_present_without_generation(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
     with _patch_retrieval(pairs):
-        with _patch_llm_response("```\nThe procedure requires two checks.\n```"):
-            r = answer("q", scope="sms")
-
-    assert r.status == "ok"
-    assert r.answer == "The procedure requires two checks."
-
-
-def test_timing_fields_present(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response("yes"):
-            r = answer("q", scope="sms", scope_resolution_s=0.012)
+        r = answer("q", scope="sms", scope_resolution_s=0.012)
 
     t = r.timings
     assert set(t) == {
@@ -318,21 +241,16 @@ def test_timing_fields_present(scopes_yaml):
     }
     assert t["scope_resolution"] == 0.012
     assert isinstance(t["retrieval"], float)
-    assert isinstance(t["generation_primary"], float)
-    assert t["generation_repair"] is None  # no repair pass exists any more
-    assert t["generation_fallback"] is None  # no chained fallback exists any more
-    assert isinstance(t["generation"], float)
+    assert t["generation_primary"] is None
+    assert t["generation_repair"] is None
+    assert t["generation_fallback"] is None
+    assert t["generation"] is None
     assert isinstance(t["total"], float)
-    # rounded to 3 decimals
     assert t["retrieval"] == round(t["retrieval"], 3)
     assert t["total"] == round(t["total"], 3)
     j = r.to_json()
     assert j["timings"] == t
 
-
-# ---------------------------------------------------------------------------
-# External --json contract: same fields, same schema_version, same exit codes.
-# ---------------------------------------------------------------------------
 
 CONTRACT_KEYS = {
     "schema_version",
@@ -344,12 +262,19 @@ CONTRACT_KEYS = {
     "answer",
     "missing_information",
     "sources",
-    "retrieval_evidence",  # F-18: additive, always populated
+    "retrieved_chunks",
+    "retrieval_context",
+    "page_numbers",
+    "document_names",
+    "clarification_state",
+    "retrieval_metadata",
+    "generation_owner",
+    "retrieval_evidence",
     "retrieval_diagnostics",
-    "gate",  # F-18: additive, non-None only on a non-"ok" status
+    "gate",
     "timings",
     "model",
-    "scope",  # legacy convenience field
+    "scope",
 }
 
 TIMING_KEYS = {
@@ -368,11 +293,10 @@ def test_json_contract_ok_payload(scopes_yaml):
 
     pairs = [(_fake_doc(), 0.4)]
     with _patch_retrieval(pairs):
-        with _patch_llm_response("An answer."):
-            j = answer("q", scope="sms").to_json()
+        j = answer("q", scope="sms").to_json()
 
     assert set(j) == CONTRACT_KEYS
-    assert j["schema_version"] == SCHEMA_VERSION == 3
+    assert j["schema_version"] == SCHEMA_VERSION == 4
     assert set(j["timings"]) == TIMING_KEYS
     assert isinstance(j["sources"], list)
     src = j["sources"][0]
@@ -387,30 +311,25 @@ def test_json_contract_ok_payload(scopes_yaml):
     }
     assert j["gate"] == "ok"
     assert j["retrieval_evidence"] == j["sources"]
+    assert j["answer"] is None
+    assert j["generation_owner"] == "hermes"
     assert j["retrieval_diagnostics"]["final_retained_count"] == len(j["sources"])
 
 
 def test_json_contract_no_coverage_payload(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.9)]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response("NOT_IN_CONTEXT"):
-            j = answer("q", scope="sms").to_json()
+    with _patch_retrieval([]):
+        j = answer("q", scope="sms").to_json()
 
-    # hint is additive on no_coverage — everything else identical
     assert set(j) == CONTRACT_KEYS | {"hint"}
-    assert j["schema_version"] == 3
+    assert j["schema_version"] == 4
     assert j["status"] == "no_coverage"
     assert j["sources"] == []
+    assert j["retrieved_chunks"] == []
     assert j["answer"] is None
-    # F-18: this is exactly the case the finding was about — a chunk was
-    # retrieved (weak match, model declined) and `sources` still empties
-    # per the existing status rule, but `retrieval_evidence` now carries
-    # what was actually found, and `gate` names why.
-    assert j["retrieval_evidence"] != []
-    assert j["retrieval_evidence"][0]["path"] == "10_Company/a.pdf"
-    assert j["gate"] == "refusal_or_weak_evidence"
+    assert j["retrieval_evidence"] == []
+    assert j["gate"] == "no_retrieval"
 
 
 def test_answer_reports_no_retrieval_gate_with_zero_counts(scopes_yaml):
@@ -469,15 +388,16 @@ def test_answer_reports_final_confidence_failed_with_retrieval_counts(scopes_yam
 def test_json_contract_error_payload(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.4)]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response(""):
-            j = answer("q", scope="sms").to_json()
+    with patch(
+        "rag_engine.query.retrieve_with_scores_and_diagnostics",
+        side_effect=RuntimeError("boom"),
+    ):
+        j = answer("q", scope="sms").to_json()
 
     assert set(j) == CONTRACT_KEYS | {"error"}
     assert j["status"] == "error"
     assert j["error"]
-    assert j["gate"] == "empty_model_response"
+    assert j["gate"] == "retrieval_error"
 
 
 def test_exit_codes_unchanged():
@@ -496,22 +416,3 @@ def test_openai_timeout_default_and_override(monkeypatch):
 
     monkeypatch.setenv("RAG_OPENAI_TIMEOUT", "3.5")
     assert openai_timeout_s() == 3.5
-
-
-def test_generation_call_uses_gen_timeout_not_retrieval_timeout(scopes_yaml, monkeypatch):
-    """Every generation call must use the tight generation timeout, not the
-    300s default reserved for retrieval."""
-    from rag_engine.query import _invoke_generation
-
-    seen = {}
-
-    def _fake_invoke(model, prompt, *, timeout=None):
-        seen["model"] = model
-        seen["timeout"] = timeout
-        return SimpleNamespace(text="ok")
-
-    with patch("rag_engine.query.invoke_openai_response", side_effect=_fake_invoke):
-        assert _invoke_generation("gpt-5.6-luna", "prompt") == "ok"
-
-    assert seen["model"] == "gpt-5.6-luna"
-    assert seen["timeout"] is None

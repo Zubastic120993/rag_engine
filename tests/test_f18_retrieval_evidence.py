@@ -1,10 +1,11 @@
 """F-18: `sources: []` was emitted on any non-"ok" status, making "retrieval
-found nothing" and "retrieval found weak matches and the model declined"
-indistinguishable from the JSON contract alone. Fixed additively:
-`retrieval_evidence` (always populated from what retrieval actually
-returned) and `gate` (which internal branch produced a non-"ok" status) are
-new fields; every existing field keeps its exact name, meaning, and
-population rule. See F18_cli_hides_retrieval_evidence_20260727.md."""
+found nothing" and "retrieval found weak matches" harder to distinguish.
+Fixed additively with `retrieval_evidence` + `gate`.
+
+ORCH_104: model-declined (`NOT_IN_CONTEXT`) no longer exists on the ask path.
+Weak evidence that fails the final confidence gate remains distinguishable
+from true zero-retrieval via `retrieval_evidence` + `gate`.
+"""
 
 from __future__ import annotations
 
@@ -78,10 +79,6 @@ def _fake_doc(path="10_Company/a.pdf", page=1, collection="sms", content="Releva
     return doc
 
 
-def _patch_llm_response(text: str):
-    return patch("rag_engine.query._invoke_generation", return_value=text)
-
-
 def _patch_retrieval(pairs, gate=None):
     diag = {"gate": gate}
     if pairs:
@@ -89,10 +86,7 @@ def _patch_retrieval(pairs, gate=None):
     return patch("rag_engine.query.retrieve_with_scores_and_diagnostics", return_value=(pairs, diag))
 
 
-# v3 fields only -- the exact set that existed before this repair. Used to
-# prove the "ok" payload is byte-identical on every field that already
-# existed, field by field, not just "the new keys are additive".
-V3_FIELDS = (
+CORE_FIELDS = (
     "schema_version",
     "status",
     "query",
@@ -108,38 +102,50 @@ V3_FIELDS = (
 )
 
 
-def test_no_coverage_carries_populated_evidence(scopes_yaml):
-    """The exact ambiguity F-18 was written about: a chunk was retrieved
-    (weak match), the model declined via NOT_IN_CONTEXT, and the final
-    status is no_coverage. `sources` still empties (existing rule,
-    unchanged) but `retrieval_evidence` must carry what was actually
-    found."""
+def test_final_confidence_failed_carries_populated_evidence(scopes_yaml):
+    """Weak retrieval that fails the confidence gate: sources empty, evidence kept."""
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(path="10_Company/a.pdf", collection="sms"), 0.9)]
-    with _patch_retrieval(pairs):
-        with _patch_llm_response("NOT_IN_CONTEXT"):
-            r = answer("q", scope="sms")
+    pairs = [
+        (
+            _fake_doc(
+                path="00_Career/03_Engine_Knowledge/Training/guide.pdf",
+                collection="maker-manuals",
+            ),
+            0.52,
+        )
+    ]
+    diagnostics = {
+        "gate": "final_confidence_failed",
+        "score_floor": 0.38,
+        "best_raw_distance": 0.52,
+        "raw_count": 1,
+        "post_admissibility_count": 1,
+        "post_scope_count": 1,
+        "post_rerank_count": 1,
+        "post_dedupe_count": 1,
+        "final_retained_count": 0,
+        "final_confidence_passed": False,
+    }
+    with patch(
+        "rag_engine.query.retrieve_with_scores_and_diagnostics",
+        return_value=(pairs, diagnostics),
+    ):
+        r = answer("q", scope="sms")
 
     assert r.status == "no_coverage"
     assert r.sources == []
     assert r.retrieval_evidence != []
-    assert r.retrieval_evidence[0]["path"] == "10_Company/a.pdf"
-    assert r.retrieval_evidence[0]["collection"] == "sms"
-    assert "distance" in r.retrieval_evidence[0]
-    assert r.gate == "refusal_or_weak_evidence"
+    assert r.retrieval_evidence[0]["path"] == "00_Career/03_Engine_Knowledge/Training/guide.pdf"
+    assert r.gate == "final_confidence_failed"
 
     j = r.to_json()
     assert j["sources"] == []
     assert j["retrieval_evidence"] == r.retrieval_evidence
-    assert j["gate"] == "refusal_or_weak_evidence"
+    assert j["gate"] == "final_confidence_failed"
 
 
 def test_true_zero_retrieval_has_empty_evidence_and_distinct_gate(scopes_yaml):
-    """The other half of the ambiguity: genuinely nothing retrieved. Same
-    status (no_coverage), same empty `sources`, but `retrieval_evidence`
-    stays empty too and `gate` names the different cause -- this is what
-    makes the two no_coverage cases distinguishable now."""
     from rag_engine.query import answer
 
     with _patch_retrieval([]):
@@ -151,26 +157,23 @@ def test_true_zero_retrieval_has_empty_evidence_and_distinct_gate(scopes_yaml):
     assert r.gate == "no_retrieval"
 
 
-def test_ok_result_existing_fields_byte_identical(scopes_yaml):
-    """Prove the additive claim directly: build the v3-only subset of the
-    payload and compare it against a hand-built expected dict using the
-    exact v3 shape -- not just "the keys are still there", but the actual
-    values are unchanged by this change."""
+def test_ok_result_core_fields_and_retrieval_package(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
     with _patch_retrieval(pairs):
-        with _patch_llm_response("Follow the FO procedure before bunkering."):
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
+            llm.assert_not_called()
 
     j = r.to_json()
-    v3_subset = {k: j[k] for k in V3_FIELDS}
+    core = {k: j[k] for k in CORE_FIELDS}
 
-    assert v3_subset["status"] == "ok"
-    assert v3_subset["coverage"] == "full"
-    assert v3_subset["answer"] == "Follow the FO procedure before bunkering."
-    assert v3_subset["missing_information"] is None
-    assert v3_subset["sources"] == [
+    assert core["status"] == "ok"
+    assert core["coverage"] == "full"
+    assert core["answer"] is None
+    assert core["missing_information"] is None
+    assert core["sources"] == [
         {
             "path": "10_Company/a.pdf",
             "page": 2,
@@ -181,18 +184,18 @@ def test_ok_result_existing_fields_byte_identical(scopes_yaml):
             "machine_transcribed": False,
         }
     ]
-    assert v3_subset["model"] is not None
-    assert v3_subset["scope"] == "sms"
+    assert core["model"] is None
+    assert core["scope"] == "sms"
+    assert core["schema_version"] == 4
 
-    # And the new fields are present alongside, not instead of, the old ones.
-    assert set(j) - set(V3_FIELDS) == {"retrieval_evidence", "retrieval_diagnostics", "gate"}
     assert j["retrieval_evidence"] == j["sources"]
     assert j["gate"] == "ok"
+    assert j["generation_owner"] == "hermes"
+    assert j["retrieved_chunks"]
+    assert j["retrieval_context"]
 
 
 def test_error_before_retrieval_has_empty_evidence(scopes_yaml):
-    """empty_question never reaches retrieval at all -- retrieval_evidence
-    must be empty, not None or omitted, and gate names the branch."""
     from rag_engine.query import answer
 
     r = answer("", scope="sms")

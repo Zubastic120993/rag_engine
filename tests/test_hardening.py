@@ -236,23 +236,25 @@ def test_nfkc_query_same_as_ingest_and_idempotent():
 def test_json_contract_schema_version_and_scopes(scopes_yaml):
     from rag_engine.query import AskResult, SCHEMA_VERSION
 
-    assert SCHEMA_VERSION == 3  # F-18: additive fields added, no version bump needed
+    assert SCHEMA_VERSION == 4  # ORCH_104: retrieval-only ask path
 
     r = AskResult(
         status="ok",
         query="q",
         requested_scope="sms_library",
         resolved_scope="sms",
-        answer="a",
+        answer=None,
         coverage="full",
         sources=[{"path": "p", "page": 0, "collection": "sms", "distance": 0.1}],
+        retrieved_chunks=[{"path": "p", "page": 0, "text": "chunk"}],
+        retrieval_context="[source=p page=0]\nchunk",
         timings={
             "scope_resolution": 0.001,
             "retrieval": 0.1,
-            "generation": 1.2,
-            "total": 1.301,
+            "generation": None,
+            "total": 0.101,
         },
-        model="gpt-5.6-luna",
+        model=None,
     )
     j = r.to_json()
     assert j["schema_version"] == SCHEMA_VERSION
@@ -260,10 +262,11 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
     assert j["resolved_scope"] == "sms"
     assert j["status"] == "ok"
     assert j["coverage"] == "full"
-    assert j["answer"] == "a"
+    assert j["answer"] is None
+    assert j["generation_owner"] == "hermes"
     assert j["sources"][0]["path"] == "p"
     assert j["timings"]["retrieval"] == 0.1
-    assert j["model"] == "gpt-5.6-luna"
+    assert j["model"] is None
 
     nc = AskResult(
         status="no_coverage",
@@ -278,6 +281,7 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
     j2 = nc.to_json()
     assert j2["answer"] is None
     assert j2["sources"] == []
+    assert j2["retrieved_chunks"] == []
     assert j2["coverage"] == "none"
     assert j2["hint"]
 

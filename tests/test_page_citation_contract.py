@@ -205,7 +205,7 @@ def test_cli_human_page_in_text_output(capsys, scopes_yaml):
     assert "p.39" not in out
 
 
-def test_llm_context_uses_human_page(scopes_yaml):
+def test_retrieval_context_uses_human_page(scopes_yaml):
     from rag_engine.query import answer
 
     doc = _FakeDoc(
@@ -213,11 +213,6 @@ def test_llm_context_uses_human_page(scopes_yaml):
         page=39,
         content="Exhaust valve spindle torque 2623.",
     )
-    captured = {}
-
-    def fake_invoke(model, prompt):
-        captured["prompt"] = prompt
-        return "Torque is specified in context."
 
     pairs = [(doc, 0.2)]
     diag = {
@@ -239,15 +234,17 @@ def test_llm_context_uses_human_page(scopes_yaml):
         "rag_engine.query._apply_final_confidence_gate",
         side_effect=lambda pairs, diagnostics=None: (pairs, diagnostics or diag),
     ), patch(
-        "rag_engine.query._invoke_generation", side_effect=fake_invoke
-    ), patch(
+        "rag_engine.query._invoke_generation"
+    ) as llm, patch(
         "rag_engine.query.retrieval_is_conservative_success", return_value=False
     ), patch(
         "rag_engine.query.is_source_only_query", return_value=False
     ):
         r = answer("M 1.3 exhaust valve torque?", scope="me-c")
+        llm.assert_not_called()
     assert r.status == "ok"
+    assert r.answer is None
     assert r.sources[0]["page"] == 40
     assert r.sources[0]["page_index"] == 39
-    assert "page=40" in captured["prompt"]
-    assert "page=39" not in captured["prompt"]
+    assert "page=40" in (r.retrieval_context or "")
+    assert "page=39" not in (r.retrieval_context or "")

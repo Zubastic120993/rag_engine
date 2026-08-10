@@ -69,10 +69,12 @@ def _result(**kwargs):
         "resolved_scope": "me-c",
         "answer": None,
         "sources": [],
+        "retrieved_chunks": [],
+        "retrieval_context": None,
         "hint": None,
         "error": None,
         "gate": None,
-        "model": "gpt-5.6-luna",
+        "model": None,
     }
     base.update(kwargs)
     return SimpleNamespace(**base)
@@ -95,6 +97,33 @@ def test_source_page_rendering(scopes_yaml):
     copy_text = format_sources_copy_text(sources)
     assert "M 1.3.pdf — p.40" in copy_text
     assert "scope=me-c" in copy_text
+
+
+def test_retrieval_only_ok_without_nl_answer(scopes_yaml):
+    from rag_engine.chief_ui import ask
+
+    fake = _result(
+        status="ok",
+        answer=None,
+        sources=[
+            {
+                "path": "manuals/M 1.3.pdf",
+                "page": 39,
+                "collection": "me-c",
+            }
+        ],
+        gate="ok",
+        retrieval_context="[source=manuals/M 1.3.pdf page=40]\nTorque 900 Nm.",
+        retrieved_chunks=[{"path": "manuals/M 1.3.pdf", "page": 40, "text": "Torque 900 Nm."}],
+    )
+    with patch("rag_engine.chief_ui.answer", return_value=fake) as mocked:
+        payload = ask("What is the M 1.3 exhaust valve torque?")
+    mocked.assert_called_once()
+    assert payload["status"] == "ok"
+    assert "Hermes-owned" in payload["answer"]
+    assert payload["generation_owner"] == "hermes"
+    assert "M 1.3.pdf — p.40" in payload["sources_md"]
+    assert payload["clarification_required"] is False
 
 
 def test_explicit_m13_question_renders_ok(scopes_yaml):
@@ -197,26 +226,24 @@ def test_no_coverage_case(scopes_yaml):
     assert "explain-scope" in payload["answer"]
 
 
-def test_missing_openai_key_message(scopes_yaml, monkeypatch: pytest.MonkeyPatch):
+def test_retrieval_error_message_surfaces(scopes_yaml):
     from rag_engine.chief_ui import ask, health_snapshot
 
-    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     fake = _result(
         status="error",
-        error="OPENAI_API_KEY is not set",
-        gate="generation_error",
+        error="Ollama call timed out after 300.0s (RAG_OLLAMA_TIMEOUT)",
+        gate="retrieval_timeout",
     )
     with patch("rag_engine.chief_ui.answer", return_value=fake):
         payload = ask("M 1.3 torque?")
     assert payload["status"] == "error"
-    assert payload["answer"] == "OpenAI API key not configured"
+    assert "timed out" in payload["answer"].lower()
 
     with patch("rag_engine.chief_ui._check_ollama_embed", return_value=(True, "ok")):
         snap = health_snapshot()
-    key_check = next(c for c in snap["checks"] if c["name"] == "openai_api_key_configured")
-    assert key_check["ok"] is False
-    assert "OpenAI API key not configured" in key_check["detail"]
-    assert "sk-" not in key_check["detail"]
+    names = {c["name"] for c in snap["checks"]}
+    assert "generation_owner" in names
+    assert "openai_api_key_configured" not in names
 
 
 def test_provider_error_surfaces_status(scopes_yaml):
@@ -225,7 +252,7 @@ def test_provider_error_surfaces_status(scopes_yaml):
     fake = _result(
         status="error",
         error="Rate limit exceeded",
-        gate="generation_error",
+        gate="retrieval_error",
     )
     with patch("rag_engine.chief_ui.answer", return_value=fake):
         payload = ask("M 1.3 torque?")
@@ -243,7 +270,7 @@ def test_invalid_api_key_error_is_sanitized(scopes_yaml):
             "'Incorrect API key provided: sk-proj-ABCDEFG1234567890. "
             "You can find your API key at ...'}}"
         ),
-        gate="generation_error",
+        gate="retrieval_error",
     )
     with patch("rag_engine.chief_ui.answer", return_value=fake):
         payload = ask("M 1.3 torque?")
@@ -255,16 +282,15 @@ def test_invalid_api_key_error_is_sanitized(scopes_yaml):
 def test_health_snapshot_flags(scopes_yaml, monkeypatch: pytest.MonkeyPatch):
     from rag_engine.chief_ui import format_health_markdown, health_snapshot
 
-    monkeypatch.setenv("OPENAI_API_KEY", "sk-test-not-real")
     with patch("rag_engine.chief_ui._check_ollama_embed", return_value=(True, "mxbai ok")):
         snap = health_snapshot()
     names = {c["name"]: c["ok"] for c in snap["checks"]}
     assert names["rag_engine_reachable"] is True
-    assert names["openai_api_key_configured"] is True
+    assert names["generation_owner"] is True
     assert names["embedding_backend_available"] is True
     md = format_health_markdown(snap)
     assert "rag_engine_reachable" in md
-    assert "sk-test" not in md
+    assert "hermes" in md.lower()
 
 
 def test_build_app_has_alpha_controls(scopes_yaml):

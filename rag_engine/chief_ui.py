@@ -1,7 +1,8 @@
 """AI Chief Engineer Alpha — presentation helpers over rag_engine.answer.
 
 The Gradio shell in app.py must call these helpers (or answer() itself).
-It must never call OpenAI directly.
+ORCH_104: rag_engine is retrieval-only; Alpha surfaces evidence packages.
+Final NL answer generation is Hermes-owned (not OpenAI-in-engine).
 """
 
 from __future__ import annotations
@@ -17,7 +18,6 @@ import requests
 from rag_engine.config import (
     embed_model,
     library_root,
-    openai_api_key_env,
     persist_dir,
 )
 from rag_engine.pdf_links import source_open_markdown, viewer_page
@@ -26,7 +26,10 @@ from rag_engine.query import AskResult, answer
 DISPLAY_STATUSES = ("ok", "clarification_required", "no_coverage", "error")
 
 _NO_COVERAGE_TEXT = "I do not know — not specified in the retrieved documents."
-_MISSING_KEY_MSG = "OpenAI API key not configured"
+_RETRIEVAL_ONLY_MSG = (
+    "Retrieval package ready. Final answer generation is Hermes-owned; "
+    "review sources below."
+)
 _API_KEY_RE = re.compile(r"sk-[A-Za-z0-9_\-*]+")
 
 
@@ -34,9 +37,7 @@ def _sanitize_display_text(text: str) -> str:
     """Never surface API key material in the Alpha UI."""
     cleaned = _API_KEY_RE.sub("[REDACTED]", text or "")
     if "Incorrect API key" in cleaned or "invalid_api_key" in cleaned:
-        return "OpenAI provider error: API key rejected (check OPENAI_API_KEY)."
-    if "Error code:" in cleaned and "openai" in cleaned.lower():
-        return f"OpenAI provider error: {_API_KEY_RE.sub('[REDACTED]', cleaned)}"
+        return "Provider error: API key rejected."
     return cleaned
 
 
@@ -125,7 +126,10 @@ def display_answer_text(result: AskResult) -> str:
     if status == "clarification_required":
         return (result.answer or "").strip() or "Which equipment/component do you mean?"
     if status == "ok":
-        return (result.answer or "").strip()
+        text = (result.answer or "").strip()
+        if text:
+            return text
+        return _RETRIEVAL_ONLY_MSG
     if status == "no_coverage":
         parts = [_NO_COVERAGE_TEXT]
         if result.hint:
@@ -134,10 +138,6 @@ def display_answer_text(result: AskResult) -> str:
     if status == "empty_question":
         return "Enter an engineering question first."
     err = (result.error or "").strip()
-    if "OPENAI_API_KEY is not set" in err or (
-        "OPENAI_API_KEY" in err and "not set" in err
-    ):
-        return _MISSING_KEY_MSG
     if err:
         return _sanitize_display_text(err)
     return _sanitize_display_text(result.answer or "Request failed.")
@@ -159,7 +159,7 @@ def ask(
     scope: str | None = None,
     k: int | None = None,
 ) -> dict[str, Any]:
-    """Call rag_engine.answer and shape a UI-friendly payload."""
+    """Call rag_engine.answer and shape a UI-friendly retrieval payload."""
     conf = None if confirmation_text is None else str(confirmation_text).strip()
     if conf == "":
         conf = None
@@ -180,6 +180,8 @@ def ask(
         "answer": display_answer_text(result),
         "sources_md": format_sources_markdown(sources),
         "sources_copy": format_sources_copy_text(sources),
+        "retrieval_context": result.retrieval_context if show_sources else None,
+        "retrieved_chunks": result.retrieved_chunks if show_sources else [],
         "clarification_required": clarification,
         "clarification_prompt": (result.answer or "").strip() if clarification else "",
         "pending_question": (question or "").strip() if clarification else "",
@@ -188,6 +190,7 @@ def ask(
         "gate": result.gate,
         "model": result.model,
         "resolved_scope": result.resolved_scope,
+        "generation_owner": "hermes",
     }
 
 
@@ -215,7 +218,7 @@ def _check_ollama_embed() -> tuple[bool, str]:
 
 
 def health_snapshot() -> dict[str, Any]:
-    """Lightweight Alpha health: engine reachability, OpenAI key, embeddings."""
+    """Lightweight Alpha health: engine reachability and embeddings."""
     checks: list[dict[str, Any]] = []
 
     try:
@@ -227,13 +230,11 @@ def health_snapshot() -> dict[str, Any]:
     except Exception as e:  # noqa: BLE001
         checks.append({"name": "rag_engine_reachable", "ok": False, "detail": str(e)})
 
-    key_var = openai_api_key_env()
-    key_present = bool(os.environ.get(key_var, "").strip())
     checks.append(
         {
-            "name": "openai_api_key_configured",
-            "ok": key_present,
-            "detail": key_var if key_present else f"{key_var} missing — {_MISSING_KEY_MSG}",
+            "name": "generation_owner",
+            "ok": True,
+            "detail": "hermes (rag_engine is retrieval-only; ORCH_104)",
         }
     )
 
