@@ -9,21 +9,28 @@ The library lives outside this project (`CE_LIBRARY_ROOT`); this package is code
 python -m venv venv
 ./venv/bin/pip install -e ".[dev]"
 # or: pip install -e . && pip install pytest
-# Ollama: mxbai-embed-large + a chat model (default qwen3.5:9b)
+# OpenAI generation: gpt-5.6-luna via Responses API (OPENAI_API_KEY required)
+# Ollama embeddings retained: mxbai-embed-large
 ```
 
 ## Config (env)
 
 | Variable | Default | Meaning |
 |----------|---------|---------|
+| `OPENAI_API_KEY` | required | OpenAI Responses API key for answer generation |
 | `CE_LIBRARY_ROOT` | `~/CE_Library` | Client document tree |
 | `RAG_DB_PATH` | `$CE_LIBRARY_ROOT/.rag_db` | Chroma index |
-| `RAG_EMBED_MODEL` | `mxbai-embed-large` | Embeddings |
-| `RAG_LLM_MODEL` | `qwen3.5:9b` | Chat model |
+| `RAG_EMBED_MODEL` | `mxbai-embed-large` | Ollama embedding model retained for retrieval |
+| `RAG_LLM_MODEL` | `gpt-5.6-luna` | OpenAI generation model |
+| `RAG_OPENAI_TIMEOUT` | `60` | Seconds before OpenAI generation fails |
 | `RAG_OLLAMA_TIMEOUT` | `300` | Seconds before ask fails with exit 1 |
 | `RAG_SUGGEST_SCORE_MAX` | `1.2` | Max Chroma distance for `--suggest-scopes` hits |
 
 Scopes live in [`rag_engine/scopes.yaml`](rag_engine/scopes.yaml) — single registry for ingest + CLI.
+
+Generation fallback: **none**.
+Normal answer generation uses OpenAI only.
+Ollama remains only where currently required for embeddings.
 
 ### `maker-manuals` vs `vessels`
 
@@ -95,7 +102,7 @@ Successful sync writes `index_fingerprint.json` beside the DB (embed model, chun
 rag-engine doctor
 ```
 
-Read-only: library/DB paths, scopes/aliases, prefix dirs + indexed docs, Ollama models, fingerprint match, Chroma open, tracker, stale `Hermes_Library` paths, orphan sources, coverage gap counts, git corpus hygiene. Does **not** reindex or write to Chroma.
+Read-only: library/DB paths, scopes/aliases, prefix dirs + indexed docs, OpenAI generation readiness, Ollama embedding readiness, fingerprint match, Chroma open, tracker, stale `Hermes_Library` paths, orphan sources, coverage gap counts, git corpus hygiene. Does **not** reindex or write to Chroma.
 
 ## Gradio PDF citations
 

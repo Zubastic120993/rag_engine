@@ -10,16 +10,8 @@ defaults:
   embed_model_env: RAG_EMBED_MODEL
   embed_model_default: mxbai-embed-large
   llm_model_env: RAG_LLM_MODEL
-  llm_model_default: qwen2.5:3b   # fast default
-  llm_fallback_model_env: RAG_LLM_FALLBACK_MODEL
-  llm_fallback_model_default: qwen3.5:9b
-  # Heavy fallback is opt-in only: CLI --fallback OR this flag. Never
-  # triggered automatically by a failed/malformed generation.
-  enable_heavy_fallback_env: RAG_ENABLE_HEAVY_FALLBACK
-  llm_num_ctx_env: RAG_LLM_NUM_CTX
-  llm_num_ctx_default: 8192
-  llm_num_predict_env: RAG_LLM_NUM_PREDICT
-  llm_num_predict_default: 1024
+  llm_model_default: gpt-5.6-luna
+  openai_api_key_env: OPENAI_API_KEY
   retrieval_score_max_env: RAG_RETRIEVAL_SCORE_MAX
   retrieval_score_max_default: 0.38
   chunk_size: 800

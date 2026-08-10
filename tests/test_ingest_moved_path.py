@@ -27,7 +27,7 @@ def scopes_yaml(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
             "embed_model_env": "RAG_EMBED_MODEL",
             "embed_model_default": "mxbai-embed-large",
             "llm_model_env": "RAG_LLM_MODEL",
-            "llm_model_default": "qwen2.5:3b",
+            "llm_model_default": "gpt-5.6-luna",
             "chunk_size": 800,
             "chunk_overlap": 100,
             "default_k": 5,

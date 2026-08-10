@@ -29,7 +29,7 @@ def reconcile_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
             "embed_model_env": "RAG_EMBED_MODEL",
             "embed_model_default": "mxbai-embed-large",
             "llm_model_env": "RAG_LLM_MODEL",
-            "llm_model_default": "qwen2.5:3b",
+            "llm_model_default": "gpt-5.6-luna",
             "llm_fallback_model_env": "RAG_LLM_FALLBACK_MODEL",
             "llm_fallback_model_default": "qwen3.5:9b",
             "llm_num_ctx_env": "RAG_LLM_NUM_CTX",

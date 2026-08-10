@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -25,7 +26,7 @@ def scopes_yaml(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
             "embed_model_env": "RAG_EMBED_MODEL",
             "embed_model_default": "mxbai-embed-large",
             "llm_model_env": "RAG_LLM_MODEL",
-            "llm_model_default": "qwen2.5:3b",
+            "llm_model_default": "gpt-5.6-luna",
             "llm_fallback_model_env": "RAG_LLM_FALLBACK_MODEL",
             "llm_fallback_model_default": "qwen3.5:9b",
             "llm_num_ctx_env": "RAG_LLM_NUM_CTX",
@@ -74,9 +75,7 @@ def _fake_doc(
 
 
 def _patch_llm_response(text: str):
-    llm = MagicMock()
-    llm.invoke.return_value = text
-    return patch("rag_engine.query._get_llm", return_value=llm)
+    return patch("rag_engine.query._invoke_generation", return_value=text)
 
 
 def _patch_retrieval(pairs, gate=None):
@@ -89,9 +88,8 @@ def _patch_retrieval(pairs, gate=None):
 def test_resolve_answer_model(scopes_yaml):
     from rag_engine.query import resolve_answer_model
 
-    assert resolve_answer_model() == "qwen2.5:3b"
-    assert resolve_answer_model(use_fallback=True) == "qwen3.5:9b"
-    assert resolve_answer_model("custom:7b", use_fallback=True) == "custom:7b"
+    assert resolve_answer_model() == "gpt-5.6-luna"
+    assert resolve_answer_model("custom:7b") == "custom:7b"
 
 
 def test_plain_text_answer_is_ok(scopes_yaml):
@@ -142,7 +140,7 @@ def test_source_only_query_bypasses_llm_when_retrieval_is_strong(scopes_yaml):
 
     pairs = [(_fake_doc(path="10_Company/manual.pdf", page=3), 0.4)]
     with _patch_retrieval(pairs):
-        with patch("rag_engine.query._get_llm") as llm:
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("return source details only for the manual", scope="sms")
 
     llm.assert_not_called()
@@ -209,7 +207,7 @@ def test_no_coverage_empty_retrieval_skips_llm(scopes_yaml):
     from rag_engine.query import answer
 
     with _patch_retrieval([]):
-        with patch("rag_engine.query._get_llm") as llm:
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("missing doc", scope="sms")
             llm.assert_not_called()
     assert r.status == "no_coverage"
@@ -235,13 +233,11 @@ def test_single_generation_call_no_repair_loop(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    llm = MagicMock()
-    llm.invoke.return_value = ""  # unusable output
     with _patch_retrieval(pairs):
-        with patch("rag_engine.query._get_llm", return_value=llm):
+        with patch("rag_engine.query._invoke_generation", return_value="") as generate:
             r = answer("q", scope="sms")
 
-    assert llm.invoke.call_count == 1
+    generate.assert_called_once()
     assert r.status == "error"
 
 
@@ -249,46 +245,13 @@ def test_heavy_fallback_model_never_touched_by_default(scopes_yaml):
     from rag_engine.query import answer
 
     pairs = [(_fake_doc(), 0.4)]
-    fallback_llm = MagicMock()
-    fast_llm = MagicMock()
-    fast_llm.invoke.return_value = "An answer."
-
-    def _get_llm(model, num_ctx, num_predict):
-        return fallback_llm if model == "qwen3.5:9b" else fast_llm
-
     with _patch_retrieval(pairs):
-        with patch("rag_engine.query._get_llm", side_effect=_get_llm) as get_llm:
-            r = answer("q", scope="sms")  # use_fallback defaults False
+        with patch("rag_engine.query._invoke_generation", return_value="An answer.") as generate:
+            r = answer("q", scope="sms")
 
-    models_requested = [c.args[0] for c in get_llm.call_args_list]
-    assert "qwen3.5:9b" not in models_requested
-    assert fallback_llm.invoke.call_count == 0
+    generate.assert_called_once()
     assert r.status == "ok"
-    assert r.model == "qwen2.5:3b"
-
-
-def test_explicit_heavy_fallback_routes_primary(scopes_yaml):
-    from rag_engine.query import answer
-
-    pairs = [(_fake_doc(), 0.4)]
-    heavy_llm = MagicMock()
-    heavy_llm.invoke.return_value = "Answer from the heavy model."
-    fast_llm = MagicMock()
-    fast_llm.invoke.return_value = "Answer from the fast model."
-
-    def _get_llm(model, num_ctx, num_predict):
-        return heavy_llm if model == "qwen3.5:9b" else fast_llm
-
-    with _patch_retrieval(pairs):
-        with patch("rag_engine.query._get_llm", side_effect=_get_llm):
-            r = answer("q", scope="sms", use_fallback=True)
-
-    assert r.status == "ok"
-    assert r.model == "qwen3.5:9b"
-    assert heavy_llm.invoke.call_count == 1
-    assert fast_llm.invoke.call_count == 0
-    assert r.timings["generation_repair"] is None
-    assert r.timings["generation_fallback"] is None
+    assert r.model == "gpt-5.6-luna"
 
 
 def test_generation_timeout_is_error(scopes_yaml):
@@ -296,14 +259,11 @@ def test_generation_timeout_is_error(scopes_yaml):
 
     pairs = [(_fake_doc(), 0.4)]
     with _patch_retrieval(pairs):
-        with patch("rag_engine.query._get_llm", return_value=MagicMock()):
-            with patch(
-                "rag_engine.query._run_with_timeout",
-                side_effect=TimeoutError(
-                    "Ollama call timed out after 8.0s (RAG_OLLAMA_GEN_TIMEOUT)"
-                ),
-            ):
-                r = answer("q", scope="sms", scope_resolution_s=0.001)
+        with patch(
+            "rag_engine.query._invoke_generation",
+            side_effect=TimeoutError("OpenAI generation timed out after 60.0s (RAG_OPENAI_TIMEOUT)"),
+        ):
+            r = answer("q", scope="sms", scope_resolution_s=0.001)
 
     assert r.status == "error"
     assert "timed out" in (r.error or "").lower()
@@ -456,7 +416,7 @@ def test_answer_reports_no_retrieval_gate_with_zero_counts(scopes_yaml):
     from rag_engine.query import answer
 
     with _patch_retrieval([], gate="no_retrieval"):
-        with patch("rag_engine.query._get_llm") as llm:
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("missing doc", scope="sms")
             llm.assert_not_called()
 
@@ -495,7 +455,7 @@ def test_answer_reports_final_confidence_failed_with_retrieval_counts(scopes_yam
         "rag_engine.query.retrieve_with_scores_and_diagnostics",
         return_value=(pairs, diagnostics),
     ):
-        with patch("rag_engine.query._get_llm") as llm:
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("q", scope="sms")
             llm.assert_not_called()
 
@@ -527,32 +487,30 @@ def test_exit_codes_unchanged():
     assert EXIT_NO_COVERAGE == 2
 
 
-def test_ollama_gen_timeout_default_and_override(monkeypatch):
-    from rag_engine.query import ollama_gen_timeout_s
+def test_openai_timeout_default_and_override(monkeypatch):
+    from rag_engine.openai_generation import openai_timeout_s
 
-    monkeypatch.delenv("RAG_OLLAMA_GEN_TIMEOUT", raising=False)
-    assert ollama_gen_timeout_s() == 8.0
+    monkeypatch.delenv("RAG_OPENAI_TIMEOUT", raising=False)
+    assert openai_timeout_s() == 60.0
 
-    monkeypatch.setenv("RAG_OLLAMA_GEN_TIMEOUT", "3.5")
-    assert ollama_gen_timeout_s() == 3.5
+    monkeypatch.setenv("RAG_OPENAI_TIMEOUT", "3.5")
+    assert openai_timeout_s() == 3.5
 
 
 def test_generation_call_uses_gen_timeout_not_retrieval_timeout(scopes_yaml, monkeypatch):
     """Every generation call must use the tight generation timeout, not the
     300s default reserved for retrieval."""
-    from rag_engine.query import _invoke_llm
+    from rag_engine.query import _invoke_generation
 
-    monkeypatch.setenv("RAG_OLLAMA_GEN_TIMEOUT", "8")
-    llm = MagicMock()
-    llm.invoke.return_value = "ok"
-    seen_timeout = {}
+    seen = {}
 
-    def _fake_run_with_timeout(fn, timeout=None):
-        seen_timeout["value"] = timeout
-        return fn()
+    def _fake_invoke(model, prompt, *, timeout=None):
+        seen["model"] = model
+        seen["timeout"] = timeout
+        return SimpleNamespace(text="ok")
 
-    with patch("rag_engine.query._get_llm", return_value=llm):
-        with patch("rag_engine.query._run_with_timeout", side_effect=_fake_run_with_timeout):
-            _invoke_llm("qwen2.5:3b", "prompt", None, None)
+    with patch("rag_engine.query.invoke_openai_response", side_effect=_fake_invoke):
+        assert _invoke_generation("gpt-5.6-luna", "prompt") == "ok"
 
-    assert seen_timeout["value"] == 8.0
+    assert seen["model"] == "gpt-5.6-luna"
+    assert seen["timeout"] is None

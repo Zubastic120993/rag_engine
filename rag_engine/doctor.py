@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 import uuid
+from importlib.util import find_spec
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,7 @@ from rag_engine.config import (
     library_root,
     llm_model,
     load_registry,
+    openai_api_key_env,
     persist_dir,
     track_file,
 )
@@ -177,11 +179,16 @@ def _check_cross_process_persistence() -> dict[str, Any]:
             ")\n"
         )
         try:
+            env = os.environ.copy()
+            env["PYTHONPATH"] = ""
+            env["PYTHONHOME"] = ""
+            env["VIRTUAL_ENV"] = ""
             proc = subprocess.run(
                 [sys.executable, "-c", write_script],
                 capture_output=True,
                 text=True,
                 timeout=30,
+                env=env,
             )
         except Exception as e:  # noqa: BLE001
             return _check(
@@ -277,24 +284,39 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
     except Exception as e:  # noqa: BLE001
         checks.append(_check("scope_prefixes_indexed", False, str(e)))
 
+    openai_key_var = openai_api_key_env()
+    openai_key_present = bool(os.environ.get(openai_key_var, "").strip())
+    openai_sdk_available = find_spec("openai") is not None
+    configured_model = llm_model().strip()
+    checks.append(_check("openai_sdk_available", openai_sdk_available, "openai"))
+    checks.append(
+        _check(
+            "openai_api_key_present",
+            openai_key_present,
+            openai_key_var,
+        )
+    )
+    checks.append(
+        _check(
+            "openai_generation_ready",
+            bool(configured_model) and openai_sdk_available and openai_key_present,
+            configured_model or "model not configured",
+        )
+    )
+
     if skip_ollama:
-        checks.append(_check("ollama_reachable", True, "skipped"))
+        checks.append(_check("ollama_embedding_reachable", True, "skipped"))
         checks.append(_check("embed_model_available", True, "skipped"))
-        checks.append(_check("chat_model_available", True, "skipped"))
     else:
         try:
             tags = _ollama_tags()
-            checks.append(_check("ollama_reachable", True, f"{len(tags)} models"))
+            checks.append(_check("ollama_embedding_reachable", True, f"{len(tags)} models"))
             em = embed_model()
             ok_e = em in tags or em.split(":")[0] in tags
             checks.append(_check("embed_model_available", ok_e, em))
-            lm = llm_model()
-            ok_l = lm in tags or lm.split(":")[0] in tags
-            checks.append(_check("chat_model_available", ok_l, lm))
         except Exception as e:  # noqa: BLE001
-            checks.append(_check("ollama_reachable", False, str(e)))
+            checks.append(_check("ollama_embedding_reachable", False, str(e)))
             checks.append(_check("embed_model_available", False, "ollama unreachable"))
-            checks.append(_check("chat_model_available", False, "ollama unreachable"))
 
     fp = compare_fingerprint()
     # Missing fingerprint is FAIL (cannot detect embed drift)

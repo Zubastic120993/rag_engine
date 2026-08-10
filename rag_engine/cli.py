@@ -6,10 +6,10 @@ import argparse
 import json
 import sys
 import time
+from typing import Any, TYPE_CHECKING
 
 from rag_engine.config import (
     default_k,
-    heavy_fallback_enabled_by_default,
     hermes_aliases,
     known_scopes,
     library_root,
@@ -19,7 +19,14 @@ from rag_engine.config import (
     retrieval_score_max,
 )
 from rag_engine.events import events_path, log_ask_event, read_events
-from rag_engine.query import EXIT_ERROR, EXIT_NO_COVERAGE, EXIT_OK, AskResult, answer
+
+if TYPE_CHECKING:
+    from rag_engine.query import AskResult
+
+
+EXIT_OK = 0
+EXIT_ERROR = 1
+EXIT_NO_COVERAGE = 2
 
 
 def _print_json(payload: dict) -> None:
@@ -27,6 +34,18 @@ def _print_json(payload: dict) -> None:
     sys.stdout.write(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
     sys.stdout.write("\n")
     sys.stdout.flush()
+
+
+def answer(*args, **kwargs):
+    from rag_engine.query import answer as _answer
+
+    return _answer(*args, **kwargs)
+
+
+def _ask_result_class():
+    from rag_engine.query import AskResult
+
+    return AskResult
 
 
 def cmd_list_scopes(as_json: bool) -> int:
@@ -52,16 +71,13 @@ _ASK_FLAG_TOKENS = frozenset(
         "--json",
         "--suggest-scopes",
         "--model",
-        "--fallback",
-        "--num-ctx",
-        "--num-predict",
         "-h",
         "--help",
     }
 )
 
 
-def _best_logged_distance(result: AskResult) -> float | None:
+def _best_logged_distance(result: Any) -> float | None:
     if result.best_distance is not None:
         return float(result.best_distance)
     evidence = result.retrieval_evidence or result.sources or []
@@ -100,23 +116,6 @@ def cmd_ask(argv: list[str]) -> int:
         default=None,
         help="Override answer model (default: scopes.yaml / RAG_LLM_MODEL)",
     )
-    parser.add_argument(
-        "--fallback",
-        action="store_true",
-        help="Use llm_fallback_model (e.g. qwen3.5:9b) instead of fast default",
-    )
-    parser.add_argument(
-        "--num-ctx",
-        type=int,
-        default=None,
-        help="Ollama num_ctx for generation",
-    )
-    parser.add_argument(
-        "--num-predict",
-        type=int,
-        default=None,
-        help="Ollama num_predict (max output tokens)",
-    )
     # nargs="*" (not REMAINDER): argparse keeps recognizing --scope/--json/etc
     # as real options no matter where they fall relative to the question,
     # instead of silently vacuuming them into the question text once the
@@ -129,6 +128,7 @@ def cmd_ask(argv: list[str]) -> int:
 
     bad_tokens = [t for t in args.question if t in _ASK_FLAG_TOKENS]
     if bad_tokens:
+        AskResult = _ask_result_class()
         result = AskResult(
             status="error",
             query=" ".join(args.question),
@@ -150,6 +150,7 @@ def cmd_ask(argv: list[str]) -> int:
     requested = args.scope
 
     if not question:
+        AskResult = _ask_result_class()
         result = AskResult(
             status="error",
             query="",
@@ -169,6 +170,7 @@ def cmd_ask(argv: list[str]) -> int:
         resolved = resolve_scope(args.scope)
         scope_resolution_s = time.perf_counter() - t_scope
     except ValueError as e:
+        AskResult = _ask_result_class()
         result = AskResult(
             status="error",
             query=question,
@@ -183,10 +185,6 @@ def cmd_ask(argv: list[str]) -> int:
             print(str(e), file=sys.stderr)
         return EXIT_ERROR
 
-    # Heavy fallback is opt-in only: CLI --fallback OR an explicit
-    # config/env flag. Never enabled automatically by a failed generation.
-    use_fallback = args.fallback or heavy_fallback_enabled_by_default()
-
     try:
         result = answer(
             question,
@@ -196,11 +194,9 @@ def cmd_ask(argv: list[str]) -> int:
             suggest_scopes=args.suggest_scopes,
             scope_resolution_s=scope_resolution_s,
             model=args.model,
-            use_fallback=use_fallback,
-            num_ctx=args.num_ctx,
-            num_predict=args.num_predict,
         )
     except Exception as e:  # noqa: BLE001
+        AskResult = _ask_result_class()
         result = AskResult(
             status="error",
             query=question,
@@ -401,7 +397,7 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "usage: rag-engine <ask|sync|ingest|gaps|doctor|explain-scope|"
             "explain-alias|scope-stats|reconcile-path|list-scopes|paths|backfill|eval> …\n"
-            "  ask [--scope NAME] [--json] [--suggest-scopes] [--model NAME] [--fallback] [--num-ctx N] [--num-predict N] QUESTION\n"
+            "  ask [--scope NAME] [--json] [--suggest-scopes] [--model NAME] QUESTION\n"
             "  sync | ingest [--force] [--max-new N]\n"
             "  gaps [--limit N] [--json]\n"
             "  doctor [--json] [--skip-ollama]\n"

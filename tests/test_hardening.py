@@ -27,7 +27,7 @@ def scopes_yaml(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
             "embed_model_env": "RAG_EMBED_MODEL",
             "embed_model_default": "mxbai-embed-large",
             "llm_model_env": "RAG_LLM_MODEL",
-            "llm_model_default": "qwen2.5:3b",
+            "llm_model_default": "gpt-5.6-luna",
             "llm_fallback_model_env": "RAG_LLM_FALLBACK_MODEL",
             "llm_fallback_model_default": "qwen3.5:9b",
             "llm_num_ctx_env": "RAG_LLM_NUM_CTX",
@@ -252,7 +252,7 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
             "generation": 1.2,
             "total": 1.301,
         },
-        model="qwen2.5:3b",
+        model="gpt-5.6-luna",
     )
     j = r.to_json()
     assert j["schema_version"] == SCHEMA_VERSION
@@ -263,7 +263,7 @@ def test_json_contract_schema_version_and_scopes(scopes_yaml):
     assert j["answer"] == "a"
     assert j["sources"][0]["path"] == "p"
     assert j["timings"]["retrieval"] == 0.1
-    assert j["model"] == "qwen2.5:3b"
+    assert j["model"] == "gpt-5.6-luna"
 
     nc = AskResult(
         status="no_coverage",
@@ -307,8 +307,8 @@ def test_no_coverage_does_not_expose_training_answer(scopes_yaml):
     """When retrieval empty, answer is null — no LLM call."""
     from rag_engine.query import answer
 
-    with patch("rag_engine.query.retrieve_with_scores", return_value=[]):
-        with patch("rag_engine.query._get_llm") as llm:
+    with patch("rag_engine.query.retrieve_with_scores_and_diagnostics", return_value=([], {})):
+        with patch("rag_engine.query._invoke_generation") as llm:
             r = answer(
                 "anything",
                 scope="vessels",

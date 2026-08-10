@@ -12,7 +12,7 @@ from functools import lru_cache
 from typing import Any
 
 from langchain_chroma import Chroma
-from langchain_ollama import OllamaEmbeddings, OllamaLLM
+from langchain_ollama import OllamaEmbeddings
 
 from rag_engine.authority import enrich_metadata
 from rag_engine.config import (
@@ -20,13 +20,12 @@ from rag_engine.config import (
     default_k,
     embed_model,
     known_scopes,
-    llm_fallback_model,
     llm_model,
-    llm_num_ctx,
-    llm_num_predict,
     persist_dir,
     retrieval_score_max,
 )
+from rag_engine.openai_generation import clear_caches as clear_generation_caches
+from rag_engine.openai_generation import invoke_openai_response
 from rag_engine.scope_rules import scope_allows_candidate
 from rag_engine.text import normalize_text
 
@@ -59,20 +58,8 @@ _STATUSES_WITH_SOURCES = frozenset({"ok"})
 def ollama_timeout_s() -> float:
     # Default 300s: retrieval (embedding) calls under load exceed 120s and
     # must still surface as exit 1 rather than hang forever for Hermes.
-    # NOT used for generation — see ollama_gen_timeout_s().
+    # Retrieval only. OpenAI generation uses rag_engine.openai_generation.
     return float(os.environ.get("RAG_OLLAMA_TIMEOUT", "300"))
-
-
-def ollama_gen_timeout_s() -> float:
-    """Hard per-call cap for every generation attempt (primary/repair/fallback).
-
-    Deliberately tight and independent of RAG_OLLAMA_TIMEOUT: a malformed or
-    stalled generation must fail fast enough that the repair step and the
-    deterministic salvage path still return well inside a human-tolerable
-    budget, instead of the 300s retrieval timeout being hit two or three
-    times in a chain.
-    """
-    return float(os.environ.get("RAG_OLLAMA_GEN_TIMEOUT", "8"))
 
 
 def suggest_score_max() -> float:
@@ -202,35 +189,15 @@ def _get_db() -> Chroma:
     )
 
 
-@lru_cache(maxsize=8)
-def _get_llm(
-    model: str,
-    num_ctx: int | None,
-    num_predict: int | None,
-) -> OllamaLLM:
-    kwargs: dict[str, Any] = {"model": model, "temperature": 0}
-    if num_ctx is not None:
-        kwargs["num_ctx"] = num_ctx
-    if num_predict is not None:
-        kwargs["num_predict"] = num_predict
-    return OllamaLLM(**kwargs)
-
-
 def clear_caches() -> None:
     _get_db.cache_clear()
-    _get_llm.cache_clear()
+    clear_generation_caches()
 
 
-def resolve_answer_model(
-    model: str | None = None,
-    *,
-    use_fallback: bool = False,
-) -> str:
-    """Explicit model > fallback model > configured default."""
+def resolve_answer_model(model: str | None = None) -> str:
+    """Explicit model override, else configured default OpenAI model."""
     if model:
         return model
-    if use_fallback:
-        return llm_fallback_model()
     return llm_model()
 
 
@@ -686,17 +653,14 @@ def _build_prompt(question: str, context: str, resolved: str | None) -> str:
     )
 
 
-def _invoke_llm(
+def _invoke_generation(
     model: str,
     prompt: str,
-    num_ctx: int | None,
-    num_predict: int | None,
     *,
     timeout: float | None = None,
 ) -> str:
-    llm = _get_llm(model, num_ctx, num_predict)
-    t = ollama_gen_timeout_s() if timeout is None else timeout
-    return str(_run_with_timeout(lambda: llm.invoke(prompt), timeout=t)).strip()
+    result = invoke_openai_response(model, prompt, timeout=timeout)
+    return result.text.strip()
 
 
 def _no_coverage_hint(question: str, resolved: str | None, suggest_scopes: bool) -> str:
@@ -843,9 +807,6 @@ def answer(
     suggest_scopes: bool = False,
     scope_resolution_s: float | None = None,
     model: str | None = None,
-    use_fallback: bool = False,
-    num_ctx: int | None = None,
-    num_predict: int | None = None,
 ) -> AskResult:
     """Grounded ask. Returns AskResult (ok | no_coverage | clarification_required | empty_question | error)."""
     t0 = time.perf_counter()
@@ -853,9 +814,7 @@ def answer(
     q = normalize_text(raw_q)
     req = requested_scope if requested_scope is not None else scope
     resolved = scope
-    chosen_model = resolve_answer_model(model, use_fallback=use_fallback)
-    ctx_size = llm_num_ctx() if num_ctx is None else num_ctx
-    predict = llm_num_predict() if num_predict is None else num_predict
+    chosen_model = resolve_answer_model(model)
 
     def _timings(
         retrieval: float | None = None,
@@ -1048,7 +1007,7 @@ def answer(
     prompt = _build_prompt(q, context, resolved)
     t_gen = time.perf_counter()
     try:
-        raw = _invoke_llm(chosen_model, prompt, ctx_size, predict)
+        raw = _invoke_generation(chosen_model, prompt)
     except TimeoutError as e:
         generation_s = time.perf_counter() - t_gen
         return AskResult(

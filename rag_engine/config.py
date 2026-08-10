@@ -126,51 +126,15 @@ def embed_model() -> str:
 
 
 def llm_model() -> str:
-    """Fast default answer model (overridable via RAG_LLM_MODEL)."""
+    """Default OpenAI answer-generation model (overridable via RAG_LLM_MODEL)."""
     d = load_registry()["defaults"]
     return os.environ.get(d["llm_model_env"], d["llm_model_default"])
 
 
-def llm_fallback_model() -> str:
-    """Optional heavier synthesis model (RAG_LLM_FALLBACK_MODEL)."""
+def openai_api_key_env() -> str:
+    """Environment variable name used for OpenAI generation."""
     d = load_registry()["defaults"]
-    env_key = d.get("llm_fallback_model_env", "RAG_LLM_FALLBACK_MODEL")
-    default = d.get("llm_fallback_model_default", "qwen3.5:9b")
-    return os.environ.get(env_key, default)
-
-
-def heavy_fallback_enabled_by_default() -> bool:
-    """Explicit opt-in for the heavy fallback model without passing --fallback
-    on every call. Off unless RAG_ENABLE_HEAVY_FALLBACK (or the configured
-    env key) is set to a truthy value. This is the only way besides CLI
-    --fallback to enable it — it is never enabled implicitly by a failed
-    generation."""
-    d = load_registry()["defaults"]
-    env_key = d.get("enable_heavy_fallback_env", "RAG_ENABLE_HEAVY_FALLBACK")
-    raw = os.environ.get(env_key, "")
-    return raw.strip().lower() in {"1", "true", "yes", "on"}
-
-
-def llm_num_ctx() -> int | None:
-    """Context window size for generation; None leaves Ollama default."""
-    d = load_registry()["defaults"]
-    env_key = d.get("llm_num_ctx_env", "RAG_LLM_NUM_CTX")
-    raw = os.environ.get(env_key)
-    if raw is not None and str(raw).strip() != "":
-        return int(raw)
-    val = d.get("llm_num_ctx_default")
-    return int(val) if val is not None else None
-
-
-def llm_num_predict() -> int | None:
-    """Max output tokens for generation; None leaves Ollama default."""
-    d = load_registry()["defaults"]
-    env_key = d.get("llm_num_predict_env", "RAG_LLM_NUM_PREDICT")
-    raw = os.environ.get(env_key)
-    if raw is not None and str(raw).strip() != "":
-        return int(raw)
-    val = d.get("llm_num_predict_default")
-    return int(val) if val is not None else None
+    return str(d.get("openai_api_key_env", "OPENAI_API_KEY"))
 
 
 def retrieval_score_max() -> float:
