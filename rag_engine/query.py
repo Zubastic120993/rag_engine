@@ -225,12 +225,184 @@ def authority_preference_distance_window() -> float:
     return 0.05
 
 
+# Explicit manual / filename mentions in the user question (e.g. "In M 1.3, …").
+# Used only as a post-retrieval ranking signal — never invents coverage.
+_EXPLICIT_MANUAL_ID_RE = re.compile(r"\bM\s+\d+(?:\.\d+)+\b", re.IGNORECASE)
+_PDF_EXT_RE = re.compile(r"\.pdf\b", re.IGNORECASE)
+# Leading prose commonly glued onto a greedy ".pdf" walk-back; stripped after extract.
+_PDF_LEADING_STOPWORDS = frozenset(
+    {
+        "a",
+        "an",
+        "the",
+        "see",
+        "check",
+        "refer",
+        "to",
+        "from",
+        "in",
+        "on",
+        "of",
+        "according",
+        "please",
+        "open",
+        "read",
+        "use",
+        "using",
+        "with",
+        "for",
+        "and",
+        "or",
+        "as",
+        "per",
+        "by",
+        "at",
+        "is",
+        "are",
+        "this",
+        "that",
+        "document",
+        "file",
+        "named",
+        "called",
+        "into",
+        "about",
+        "review",
+        "chapter",
+        "compare",
+        "versus",
+        "vs",
+        "between",
+        "against",
+        "including",
+        "include",
+        "using",
+    }
+)
+_PDF_BODY_MAX = 80
+
+
+def _normalize_mention_key(value: str) -> str:
+    return re.sub(r"[\s_]+", "", value or "").lower()
+
+
+def _extract_pdf_filename_at(question: str, ext_start: int, ext_end: int) -> str | None:
+    """Walk left from a `.pdf` hit to recover a conservative filename token.
+
+    Walk includes alnum / ``._-`` / spaces. When a completed left-hand word is a
+    prose stopword, stop *before* including it so ``see Manual.pdf`` yields
+    ``Manual.pdf`` while ``Main Engine Manual.pdf`` keeps its spaces.
+    """
+    i = ext_start - 1
+    if i >= 0 and question[i] in "'\"":
+        i -= 1
+    body_chars: list[str] = []
+    current_word: list[str] = []
+
+    def _flush_word() -> bool:
+        """Return False if the completed word is a stopword (caller should halt)."""
+        if not current_word:
+            return True
+        # current_word holds characters collected right-to-left.
+        word = "".join(reversed(current_word))
+        if word.lower().strip(".,;:!?") in _PDF_LEADING_STOPWORDS:
+            current_word.clear()
+            return False
+        body_chars.extend(current_word)
+        current_word.clear()
+        return True
+
+    while i >= 0 and len(body_chars) + len(current_word) < _PDF_BODY_MAX:
+        ch = question[i]
+        if ch.isalnum() or ch in "._-":
+            current_word.append(ch)
+            i -= 1
+            continue
+        if ch == " ":
+            if not _flush_word():
+                break
+            if body_chars:
+                body_chars.append(" ")
+            i -= 1
+            continue
+        if ch in "'\"":
+            if not _flush_word():
+                break
+            i -= 1
+            continue
+        # Punctuation / other boundary.
+        _flush_word()
+        break
+    else:
+        # Exhausted left edge or max length without a hard break.
+        _flush_word()
+
+    body = "".join(reversed(body_chars)).strip()
+    body = re.sub(r"\s+", " ", body).strip(".,;:!? ")
+    if not body or not any(c.isalnum() for c in body):
+        return None
+    return f"{body}{question[ext_start:ext_end]}"
+
+
+def extract_explicit_document_mentions(question: str) -> tuple[str, ...]:
+    """Return distinct document mentions explicitly present in the question."""
+    if not question:
+        return ()
+    found: list[str] = []
+    seen: set[str] = set()
+    for match in _EXPLICIT_MANUAL_ID_RE.finditer(question):
+        token = re.sub(r"\s+", " ", match.group(0)).strip()
+        key = token.lower()
+        if key not in seen:
+            seen.add(key)
+            found.append(token)
+    for match in _PDF_EXT_RE.finditer(question):
+        token = _extract_pdf_filename_at(question, match.start(), match.end())
+        if not token:
+            continue
+        key = token.lower()
+        if key not in seen:
+            seen.add(key)
+            found.append(token)
+    return tuple(found)
+
+
+def source_matches_explicit_mention(source: str, mention: str) -> bool:
+    """True when a retrieved source basename exactly matches an explicit mention.
+
+    Uses normalized identity on basename/stem only — no bidirectional substring
+    matching (avoids M 1.3 → M.pdf / XM 1.3.pdf / M 1.30.pdf false boosts).
+    """
+    if not source or not mention:
+        return False
+    src = source.replace("\\", "/")
+    base = src.rsplit("/", 1)[-1]
+    mention_key = _normalize_mention_key(mention)
+    if not mention_key:
+        return False
+    base_key = _normalize_mention_key(base)
+    stem = base.rsplit(".", 1)[0] if "." in base else base
+    stem_key = _normalize_mention_key(stem)
+
+    if mention_key.endswith(".pdf"):
+        mention_stem = mention_key[: -len(".pdf")]
+        return base_key == mention_key or stem_key == mention_stem
+
+    # Non-PDF mention (e.g. "M 1.3"): exact stem identity, or basename == mention + ".pdf".
+    if stem_key == mention_key:
+        return True
+    if base_key == mention_key or base_key == f"{mention_key}.pdf":
+        return True
+    return False
+
+
 def _candidate_sort_key(
     item: tuple[Any, float],
     *,
     family_support: dict[str, int] | None = None,
     source_support: dict[str, int] | None = None,
-) -> tuple[int, int, int, int, int, int, float, str, Any]:
+    explicit_mentions: tuple[str, ...] = (),
+) -> tuple[int, int, int, int, int, int, int, float, str, Any]:
     doc, distance = item
     meta = enrich_metadata(doc.metadata)
     doc.metadata = meta
@@ -239,7 +411,13 @@ def _candidate_sort_key(
     support = 0 if family_support is None else int(family_support.get(family, 0))
     source = str(meta.get("source", ""))
     source_coherence = 0 if source_support is None else int(source_support.get(source, 0))
+    # 0 = explicit mention match (preferred); 1 = no match.
+    explicit_miss = 0 if (
+        explicit_mentions
+        and any(source_matches_explicit_mention(source, m) for m in explicit_mentions)
+    ) else 1
     return (
+        explicit_miss,
         band,
         int(meta.get("canonical_authority_rank", meta.get("authority_rank", 5))),
         -source_coherence,
@@ -392,6 +570,7 @@ def _apply_retrieval_controls(
     *,
     scope: str | None,
     k: int,
+    question: str | None = None,
 ) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
     floor = retrieval_score_max()
     best_raw_distance = best_distance(pairs)
@@ -403,12 +582,14 @@ def _apply_retrieval_controls(
         if scope_allows_candidate(scope, meta):
             scope_filtered.append((doc, float(distance)))
     family_support, source_support = _support_maps(scope_filtered)
+    explicit_mentions = extract_explicit_document_mentions(question or "")
     ranked = sorted(
         scope_filtered,
         key=lambda item: _candidate_sort_key(
             item,
             family_support=family_support,
             source_support=source_support,
+            explicit_mentions=explicit_mentions,
         ),
     )
     deduped = _dedupe_ranked_pairs(ranked)
@@ -427,6 +608,7 @@ def _apply_retrieval_controls(
         "final_retained_count": 0,
         "final_confidence_passed": False,
         "gate": gate,
+        "explicit_document_mentions": list(explicit_mentions),
     }
     return deduped[:k], diagnostics
 
@@ -453,7 +635,9 @@ def retrieve_with_scores(
         return db.similarity_search_with_score(q, **kwargs)
 
     raw_results = _run_with_timeout(_call)
-    results, _diagnostics = _apply_retrieval_controls(raw_results, scope=scope, k=k)
+    results, _diagnostics = _apply_retrieval_controls(
+        raw_results, scope=scope, k=k, question=q
+    )
     return results
 
 
@@ -474,7 +658,9 @@ def retrieve_with_scores_and_diagnostics(
         return db.similarity_search_with_score(q, **kwargs)
 
     raw_results = _run_with_timeout(_call)
-    return _apply_retrieval_controls(raw_results, scope=scope, k=k)
+    return _apply_retrieval_controls(
+        raw_results, scope=scope, k=k, question=q
+    )
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):
