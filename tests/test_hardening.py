@@ -355,6 +355,8 @@ def test_viewer_page_zero_based():
     assert viewer_page(0) == 1
     assert viewer_page(570) == 571
     assert viewer_page(None) is None
+    assert viewer_page(-1) is None
+    assert viewer_page("bad") is None
 
 
 def test_safe_pdf_url_and_traversal(tmp_path, monkeypatch):

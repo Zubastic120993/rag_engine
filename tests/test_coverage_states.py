@@ -379,6 +379,7 @@ def test_json_contract_ok_payload(scopes_yaml):
     assert set(src) == {
         "path",
         "page",
+        "page_index",
         "collection",
         "distance",
         "authority_rank",

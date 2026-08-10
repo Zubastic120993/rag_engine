@@ -47,14 +47,43 @@ def document_name(path: str | None) -> str:
     return Path(raw).name or raw
 
 
+def _stored_page_for_url(source: dict[str, Any]) -> Any:
+    """Page value to feed into viewer_page / PDF #page= helpers.
+
+    Prefer ``page_index`` (0-based) when present so a human ``page`` is never
+    double-incremented. Legacy sources without ``page_index`` still carry the
+    raw stored index in ``page``.
+    """
+    if "page_index" in source:
+        return source.get("page_index")
+    return source.get("page")
+
+
+def _human_citation_page(source: dict[str, Any]) -> int | None:
+    """1-based citation page for display; never double-convert."""
+    path = str(source.get("path") or "") or None
+    if "page_index" in source:
+        # Public boundary already normalized ``page``; trust it when parseable.
+        raw = source.get("page")
+        if raw is not None and raw != "?":
+            try:
+                n = int(raw)
+            except (TypeError, ValueError):
+                n = None
+            if n is not None and n >= 1:
+                return n
+        return viewer_page(source.get("page_index"), source=path)
+    # Legacy: ``page`` is still the stored 0-based index.
+    return viewer_page(source.get("page"), source=path)
+
+
 def format_source_line(source: dict[str, Any], *, index: int, root: Path | None = None) -> str:
     path = str(source.get("path") or "")
     name = document_name(path)
-    page = source.get("page")
-    vp = viewer_page(page)
+    vp = _human_citation_page(source)
     page_note = f"p.{vp}" if vp is not None else "p.?"
     scope = str(source.get("collection") or source.get("scope") or "unknown")
-    link = source_open_markdown(path, page, root=root)
+    link = source_open_markdown(path, _stored_page_for_url(source), root=root)
     return (
         f"{index}. {name} — {page_note}\n"
         f"   scope: `{scope}`\n"
@@ -84,7 +113,7 @@ def format_sources_copy_text(sources: list[dict[str, Any]] | None) -> str:
     for i, src in enumerate(sources, start=1):
         path = str(src.get("path") or "")
         name = document_name(path)
-        vp = viewer_page(src.get("page"))
+        vp = _human_citation_page(src)
         page_note = f"p.{vp}" if vp is not None else "p.?"
         scope = str(src.get("collection") or src.get("scope") or "unknown")
         lines.append(f"{i}. {name} — {page_note} | scope={scope} | path={path}")

@@ -30,7 +30,8 @@ def test_sources_report_original_pdf_and_machine_transcribed_for_ocr_hit():
     assert sources == [
         {
             "path": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/manual.pdf",
-            "page": 1,
+            "page": 2,
+            "page_index": 1,
             "collection": "maker-manuals",
             "distance": 0.25,
             "authority_rank": 7,

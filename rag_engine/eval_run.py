@@ -46,20 +46,27 @@ def _scope_ok(sources: list[dict], scope: str | None) -> bool:
 
 
 def run_case(case: dict, *, retrieval_only: bool) -> dict:
+    from rag_engine.pdf_links import citation_page_fields
+
     q = case["question"]
     scope = case.get("scope")
     expect_refuse = bool(case.get("expect_refuse"))
     substrs = case.get("source_substr") or []
 
     docs = retrieve(q, scope=scope, k=5)
-    sources = [
-        {
-            "path": d.metadata.get("source"),
-            "page": d.metadata.get("page"),
+    sources = []
+    for d in docs:
+        path = d.metadata.get("source")
+        stored = d.metadata.get("page")
+        fields = citation_page_fields(stored, source=str(path) if path else None)
+        entry = {
+            "path": path,
+            "page": fields.get("page", stored),
             "collection": d.metadata.get("collection"),
         }
-        for d in docs
-    ]
+        if "page_index" in fields:
+            entry["page_index"] = fields["page_index"]
+        sources.append(entry)
 
     result = {
         "id": case["id"],

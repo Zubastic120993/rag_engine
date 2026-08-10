@@ -26,6 +26,7 @@ from rag_engine.config import (
 )
 from rag_engine.openai_generation import clear_caches as clear_generation_caches
 from rag_engine.openai_generation import invoke_openai_response
+from rag_engine.pdf_links import citation_page_fields, viewer_page
 from rag_engine.scope_rules import scope_allows_candidate
 from rag_engine.text import normalize_text
 
@@ -668,29 +669,42 @@ def retrieve(question: str, scope: str | None = None, k: int | None = None):
 
 
 def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
+    """Build human-facing source citations from retrieval pairs.
+
+    Chroma / Document metadata ``page`` remains the internal 0-based
+    ``page_index`` for PDFs. Public source objects emit:
+    * ``page`` — 1-based human/viewer citation page
+    * ``page_index`` — internal stored index (when parseable)
+    """
     sources: list[dict] = []
     seen: set[tuple] = set()
     for doc, distance in pairs:
         meta = enrich_metadata(doc.metadata)
         doc.metadata = meta
         src = meta.get("source", "unknown")
-        page = meta.get("page", "?")
+        stored_page = meta.get("page", "?")
         coll = meta.get("collection", "other")
-        key = (src, page, coll)
+        # Dedupe on internal stored page so conversion cannot merge distinct sheets.
+        key = (src, stored_page, coll)
         if key in seen:
             continue
         seen.add(key)
-        sources.append(
-            {
-                "path": src,
-                "page": page,
-                "collection": coll,
-                # Chroma L2 distance: lower = closer/more relevant.
-                "distance": float(distance),
-                "authority_rank": int(meta.get("authority_rank", 5)),
-                "machine_transcribed": bool(meta.get("machine_transcribed", False)),
-            }
-        )
+        entry: dict[str, Any] = {
+            "path": src,
+            "collection": coll,
+            # Chroma L2 distance: lower = closer/more relevant.
+            "distance": float(distance),
+            "authority_rank": int(meta.get("authority_rank", 5)),
+            "machine_transcribed": bool(meta.get("machine_transcribed", False)),
+        }
+        fields = citation_page_fields(stored_page, source=str(src))
+        if fields:
+            entry["page"] = fields["page"]
+            entry["page_index"] = fields["page_index"]
+        else:
+            # Preserve opaque / missing values without inventing a page number.
+            entry["page"] = stored_page
+        sources.append(entry)
     return sources
 
 
@@ -1180,8 +1194,12 @@ def answer(
     context_parts = []
     for doc, _score in pairs:
         meta = doc.metadata or {}
+        src = meta.get("source")
+        stored = meta.get("page")
+        human = viewer_page(stored, source=str(src) if src is not None else None)
+        page_for_prompt = human if human is not None else stored
         context_parts.append(
-            f"[source={meta.get('source')} page={meta.get('page')} "
+            f"[source={src} page={page_for_prompt} "
             f"collection={meta.get('collection')}]\n{doc.page_content.strip()}"
         )
     context = "\n\n".join(context_parts)

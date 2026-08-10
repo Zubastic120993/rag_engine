@@ -173,7 +173,8 @@ def test_ok_result_existing_fields_byte_identical(scopes_yaml):
     assert v3_subset["sources"] == [
         {
             "path": "10_Company/a.pdf",
-            "page": 1,
+            "page": 2,
+            "page_index": 1,
             "collection": "sms",
             "distance": 0.4,
             "authority_rank": 2,
