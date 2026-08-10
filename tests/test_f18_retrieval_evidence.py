@@ -160,7 +160,7 @@ def test_true_zero_retrieval_has_empty_evidence_and_distinct_gate(scopes_yaml):
 def test_ok_result_core_fields_and_retrieval_package(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.4)]
+    pairs = [(_fake_doc(content="Relevant procedure text about fuel oil."), 0.30)]
     with _patch_retrieval(pairs):
         with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
@@ -179,7 +179,7 @@ def test_ok_result_core_fields_and_retrieval_package(scopes_yaml):
             "page": 2,
             "page_index": 1,
             "collection": "sms",
-            "distance": 0.4,
+            "distance": 0.30,
             "authority_rank": 2,
             "machine_transcribed": False,
         }

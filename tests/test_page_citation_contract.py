@@ -232,7 +232,10 @@ def test_retrieval_context_uses_human_page(scopes_yaml):
         return_value=(pairs, diag),
     ), patch(
         "rag_engine.query._apply_final_confidence_gate",
-        side_effect=lambda pairs, diagnostics=None: (pairs, diagnostics or diag),
+        side_effect=lambda pairs, diagnostics=None, question=None: (
+            pairs,
+            diagnostics or diag,
+        ),
     ), patch(
         "rag_engine.query._invoke_generation"
     ) as llm, patch(

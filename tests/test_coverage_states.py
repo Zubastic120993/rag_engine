@@ -151,10 +151,10 @@ def test_prompt_builder_archived_still_documents_not_in_context(scopes_yaml):
 def test_ask_path_never_calls_generation_even_with_strong_hits(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.4)]
+    pairs = [(_fake_doc(), 0.30)]
     with _patch_retrieval(pairs):
         with patch("rag_engine.query._invoke_generation") as llm:
-            r = answer("unrelated?", scope="sms")
+            r = answer("fuel oil bunkering checklist?", scope="sms")
             llm.assert_not_called()
 
     assert r.status == "ok"
@@ -165,7 +165,7 @@ def test_ask_path_never_calls_generation_even_with_strong_hits(scopes_yaml):
 def test_source_only_query_bypasses_llm_when_retrieval_is_strong(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(path="10_Company/manual.pdf", page=3), 0.4)]
+    pairs = [(_fake_doc(path="10_Company/manual.pdf", page=3), 0.30)]
     with _patch_retrieval(pairs):
         with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("return source details only for the manual", scope="sms")
@@ -291,9 +291,9 @@ TIMING_KEYS = {
 def test_json_contract_ok_payload(scopes_yaml):
     from rag_engine.query import SCHEMA_VERSION, answer
 
-    pairs = [(_fake_doc(), 0.4)]
+    pairs = [(_fake_doc(), 0.30)]
     with _patch_retrieval(pairs):
-        j = answer("q", scope="sms").to_json()
+        j = answer("fuel oil?", scope="sms").to_json()
 
     assert set(j) == CONTRACT_KEYS
     assert j["schema_version"] == SCHEMA_VERSION == 4

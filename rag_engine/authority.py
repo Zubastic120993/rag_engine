@@ -103,6 +103,53 @@ def authority_family_for_source(source: str | None) -> str:
     return parts[0] if parts else ""
 
 
+def authority_family_counts_for_confidence(
+    source: str | None,
+    family: str | None = None,
+) -> bool:
+    """Allowlist: whether family-only final-confidence coherence may apply.
+
+    Default is ineligible. Ranking still uses ``authority_family`` unchanged;
+    this gate only decides whether family co-occurrence can earn
+    ``coherent_support`` for final confidence.
+
+    Eligibility is derived from the source-path branch that produced the
+    family (not from the bare family string alone):
+
+    * ``00_Career/03_Engine_Knowledge/<Equipment>/...`` → family ``<Equipment>``
+      (e.g. ``Yanmar_6EY22``, ``OWS_RWO``), excluding service-letter archives
+      and forum dump folders
+    * ``00_Career/03_Engine_Knowledge/Training/<course>/...`` → ``Training/<course>``
+
+    Organizational buckets (vessel manuals, company SMS/Forms, SDS, wiki,
+    statutory ``00_Career`` fallback, etc.) are not allowlisted.
+    """
+    src = canonical_source_path(source) or _norm(source)
+    if not src:
+        return False
+    low = src.lower()
+    parts = PurePosixPath(src).parts
+    if not low.startswith("00_career/03_engine_knowledge/") or len(parts) < 3:
+        return False
+
+    derived = authority_family_for_source(src)
+    if not derived:
+        return False
+    if family is not None and _norm(family) != derived:
+        return False
+
+    head = parts[2]
+    if head == "Training":
+        return len(parts) >= 4 and derived.startswith("Training/")
+
+    head_low = head.lower()
+    if head_low.startswith("service_letters") or "service_letter" in low:
+        return False
+    if head_low.startswith("forum_") or "/forum_" in low:
+        return False
+    return derived == head
+
+
 def document_type_for_source(source: str | None) -> str:
     src = canonical_source_path(source) or _norm(source)
     low = src.lower()

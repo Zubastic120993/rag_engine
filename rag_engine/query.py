@@ -20,7 +20,10 @@ from typing import Any
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
 
-from rag_engine.authority import enrich_metadata
+from rag_engine.authority import (
+    authority_family_counts_for_confidence,
+    enrich_metadata,
+)
 from rag_engine.config import (
     chroma_client_settings,
     default_k,
@@ -536,11 +539,287 @@ def _dedupe_ranked_pairs(ranked: list[tuple[Any, float]]) -> list[tuple[Any, flo
     return deduped
 
 
+# Generic operational / UI vocabulary. Matching only these tokens must not
+# count as topical agreement (avoids coherent stop/auto/alarm false positives).
+_GENERIC_OPERATIONAL_TOKENS = frozenset(
+    {
+        "stop",
+        "start",
+        "starts",
+        "stopped",
+        "stopping",
+        "automatic",
+        "automatically",
+        "manual",
+        "manually",
+        "auto",
+        "operation",
+        "operating",
+        "operate",
+        "system",
+        "systems",
+        "mode",
+        "modes",
+        "alarm",
+        "alarms",
+        "emergency",
+        "overflow",
+        "discharge",
+        "pump",
+        "pumps",
+        "valve",
+        "valves",
+        "switch",
+        "switches",
+        "button",
+        "buttons",
+        "procedure",
+        "procedures",
+        "control",
+        "controls",
+        "controller",
+        "running",
+        "standby",
+        "feed",
+        "level",
+        "tank",
+        "flush",
+        "cycle",
+        "interval",
+        "activated",
+        "message",
+        "display",
+        "screen",
+        "hmi",
+        "note",
+        "caution",
+        "chapter",
+        "page",
+        "plant",
+        "what",
+        "which",
+        "when",
+        "where",
+        "how",
+        "does",
+        "from",
+        "with",
+        "that",
+        "this",
+        "into",
+        "only",
+        "also",
+        "than",
+        "then",
+        "over",
+        "under",
+        "after",
+        "before",
+        "during",
+        "about",
+        "describe",
+        "according",
+    }
+)
+
+# Ambiguous short tokens often produced by splitting model codes (e.g. COM).
+_AMBIGUOUS_SHORT_TOKENS = frozenset(
+    {
+        "com",
+        "man",
+        "eng",
+        "set",
+        "max",
+        "min",
+        "oil",
+        "air",
+        "gas",
+        "pdf",
+        "doc",
+        "rev",
+        "the",
+        "and",
+        "for",
+        "any",
+        "all",
+        "not",
+        "use",
+        "via",
+    }
+)
+
+
+# Unicode dashes that must fold to ASCII "-" before topical anchor matching.
+# NFKC alone does not normalize these (en/em dash, minus sign, etc.).
+_UNICODE_DASH_TO_ASCII = str.maketrans(
+    {
+        "\u2010": "-",  # HYPHEN
+        "\u2011": "-",  # NON-BREAKING HYPHEN
+        "\u2012": "-",  # FIGURE DASH
+        "\u2013": "-",  # EN DASH
+        "\u2014": "-",  # EM DASH
+        "\u2212": "-",  # MINUS SIGN
+    }
+)
+
+
+def _fold_unicode_dashes(text: str) -> str:
+    """Map common Unicode dash/minus glyphs to ASCII hyphen-minus."""
+    if not text:
+        return ""
+    return text.translate(_UNICODE_DASH_TO_ASCII)
+
+
+def _normalize_for_topical(text: str) -> str:
+    """Normalize text for topical anchor extraction and blob matching."""
+    return _fold_unicode_dashes(normalize_text(text or "")).lower()
+
+
+def _query_anchor_tokens(question: str) -> set[str]:
+    """Distinctive query tokens used for topical agreement checks.
+
+    Prefers hyphenated compounds and non-generic content tokens so coherent
+    families that only share stop/auto/alarm vocabulary cannot pass.
+    """
+    q = _normalize_for_topical(question or "")
+    if not q:
+        return set()
+    anchors: set[str] = set()
+    for match in re.finditer(r"[a-z0-9]+(?:-[a-z0-9]+)+", q):
+        compound = match.group(0)
+        anchors.add(compound)
+        for part in compound.split("-"):
+            if len(part) >= 4 and part not in _GENERIC_OPERATIONAL_TOKENS:
+                anchors.add(part)
+            elif (
+                len(part) == 3
+                and part.isalpha()
+                and part not in _GENERIC_OPERATIONAL_TOKENS
+                and part not in _AMBIGUOUS_SHORT_TOKENS
+            ):
+                anchors.add(part)
+    for match in re.finditer(r"[a-z0-9]{4,}", q):
+        token = match.group(0)
+        if token in _GENERIC_OPERATIONAL_TOKENS:
+            continue
+        anchors.add(token)
+    return anchors
+
+
+def _pair_topical_blob(doc: Any) -> str:
+    meta = getattr(doc, "metadata", None) or {}
+    source = str(meta.get("source", "") or "")
+    text = str(getattr(doc, "page_content", "") or "")
+    return _normalize_for_topical(f"{source}\n{text}")
+
+
+def _token_in_blob(token: str, blob: str) -> bool:
+    if not token or not blob:
+        return False
+    if "-" in token or any(ch.isdigit() for ch in token):
+        return token in blob
+    return re.search(rf"(?<![a-z0-9]){re.escape(token)}(?![a-z0-9])", blob) is not None
+
+
+def _query_topical_agreement(
+    question: str | None,
+    pairs: list[tuple[Any, float]],
+) -> bool:
+    """True when the given evidence subset shares distinctive query anchors.
+
+    Callers must pass the support subset for the active pass path (coherent
+    source/family/consensus, or top-authority support) — not the full retained
+    set — so an unrelated hitchhiker hit cannot lend topicality.
+    """
+    if not question or not pairs:
+        return False
+    anchors = _query_anchor_tokens(question)
+    if not anchors:
+        return False
+    for doc, _distance in pairs:
+        blob = _pair_topical_blob(doc)
+        if any(_token_in_blob(token, blob) for token in anchors):
+            return True
+    return False
+
+
+def _pair_source(doc: Any) -> str:
+    return str((getattr(doc, "metadata", None) or {}).get("source", "") or "")
+
+
+def _pair_family(doc: Any) -> str:
+    return str((getattr(doc, "metadata", None) or {}).get("authority_family", "") or "")
+
+
+def _family_coherence_eligible(
+    top_source: str,
+    top_family: str,
+    top_family_support: int,
+) -> bool:
+    """Family-only coherence requires allowlisted semantic family + support."""
+    return top_family_support >= 2 and authority_family_counts_for_confidence(
+        top_source, top_family
+    )
+
+
+def _coherent_support_pairs(
+    pairs: list[tuple[Any, float]],
+    *,
+    top_source: str,
+    top_family: str,
+    top_source_support: int,
+    top_family_support: int,
+) -> list[tuple[Any, float]]:
+    """Evidence subset that established coherent_support (source > family > consensus)."""
+    if top_source_support >= 2 and top_source:
+        return [(doc, dist) for doc, dist in pairs if _pair_source(doc) == top_source]
+    if _family_coherence_eligible(top_source, top_family, top_family_support):
+        return [(doc, dist) for doc, dist in pairs if _pair_family(doc) == top_family]
+    top_n = min(3, len(pairs))
+    if len(pairs) >= 2 and single_source_consensus(pairs, top_n=top_n):
+        return list(pairs[:top_n])
+    return []
+
+
+def _top_authority_support_pairs(
+    pairs: list[tuple[Any, float]],
+    *,
+    top_source: str,
+) -> list[tuple[Any, float]]:
+    """Top-authority evidence for the CAR <= 2 fallback (same source as top, else top hit)."""
+    if not pairs:
+        return []
+    if top_source:
+        same_source = [(doc, dist) for doc, dist in pairs if _pair_source(doc) == top_source]
+        if same_source:
+            return same_source
+    return [pairs[0]]
+
+
 def _apply_final_confidence_gate(
     pairs: list[tuple[Any, float]],
     *,
     diagnostics: dict[str, Any],
+    question: str | None = None,
 ) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    """Accept retrieval only when authority is paired with distance or topic.
+
+    Pass rule:
+      top_is_authoritative
+      AND (
+          strong_distance
+          OR (coherent_support AND topical_agreement_with_coherent_support)
+          OR (top_canonical_authority_rank <= 2
+              AND topical_agreement_with_top_authority_support)
+      )
+
+    coherent_support is earned by same-source support, allowlisted semantic
+    family support (maker/equipment and Training/<course> only), or
+    single-source consensus. Organizational buckets are not allowlisted.
+    Topical agreement is bound to the evidence subset for that pass path —
+    not the global retained set — so hitchhiker hits cannot invent coverage.
+    Strong-distance remains sufficient without topical anchors.
+    """
     diag = dict(diagnostics)
     if not pairs:
         diag["final_retained_count"] = 0
@@ -569,15 +848,49 @@ def _apply_final_confidence_gate(
         top_canonical_authority_rank <= 2
         or (top_canonical_authority_rank <= 3 and top_document_type in allowed_document_types)
     )
+    family_coherence_eligible = _family_coherence_eligible(
+        top_source, top_family, top_family_support
+    )
     coherent_support = (
         top_source_support >= 2
-        or top_family_support >= 2
+        or family_coherence_eligible
         or (len(pairs) >= 2 and single_source_consensus(pairs, top_n=min(3, len(pairs))))
     )
-    final_pass = bool(
-        top_is_authoritative
-        and (strong_distance or coherent_support or top_canonical_authority_rank <= 2)
+    coherent_pairs = (
+        _coherent_support_pairs(
+            pairs,
+            top_source=top_source,
+            top_family=top_family,
+            top_source_support=top_source_support,
+            top_family_support=top_family_support,
+        )
+        if coherent_support
+        else []
     )
+    top_authority_pairs = _top_authority_support_pairs(pairs, top_source=top_source)
+    topical_agreement_with_coherent_support = (
+        _query_topical_agreement(question, coherent_pairs) if coherent_support else False
+    )
+    topical_agreement_with_top_authority_support = _query_topical_agreement(
+        question, top_authority_pairs
+    )
+    # Bound topical signal used by non-strong pass paths (diagnostics alias).
+    topical_agreement = bool(
+        (coherent_support and topical_agreement_with_coherent_support)
+        or (
+            top_canonical_authority_rank <= 2
+            and topical_agreement_with_top_authority_support
+        )
+    )
+    support_signal = bool(
+        strong_distance
+        or (coherent_support and topical_agreement_with_coherent_support)
+        or (
+            top_canonical_authority_rank <= 2
+            and topical_agreement_with_top_authority_support
+        )
+    )
+    final_pass = bool(top_is_authoritative and support_signal)
 
     diag.update(
         {
@@ -589,8 +902,14 @@ def _apply_final_confidence_gate(
             "top_canonical_authority_rank": top_canonical_authority_rank,
             "top_source_support": top_source_support,
             "top_family_support": top_family_support,
+            "family_coherence_eligible": family_coherence_eligible,
             "strong_distance": strong_distance,
             "coherent_support": coherent_support,
+            "topical_agreement": topical_agreement,
+            "topical_agreement_with_coherent_support": topical_agreement_with_coherent_support,
+            "topical_agreement_with_top_authority_support": (
+                topical_agreement_with_top_authority_support
+            ),
             "final_confidence_passed": final_pass,
             "final_retained_count": len(pairs) if final_pass else 0,
         }
@@ -1238,7 +1557,11 @@ def answer(
         )
 
     retrieval_evidence = _sources_from_pairs(pairs)
-    pairs, retrieval_diag = _apply_final_confidence_gate(pairs, diagnostics=retrieval_diag)
+    pairs, retrieval_diag = _apply_final_confidence_gate(
+        pairs,
+        diagnostics=retrieval_diag,
+        question=q,
+    )
     if not pairs:
         return AskResult(
             status="no_coverage",

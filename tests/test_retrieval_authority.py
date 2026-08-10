@@ -9,6 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from rag_engine import query
+from rag_engine.authority import (
+    authority_family_counts_for_confidence,
+    authority_family_for_source,
+)
 from rag_engine.config import load_registry
 
 
@@ -20,6 +24,36 @@ class _FakeDoc:
 
 def _clear_scope_registry_cache() -> None:
     load_registry.cache_clear()
+
+
+def test_confidence_family_allowlist_is_source_path_derived():
+    vessel = "20_Vessels/Gaschem_Europe/01_Manuals/09_Cargo_LFSS/FCM/ops.pdf"
+    assert authority_family_for_source(vessel) == "20_Vessels/Gaschem_Europe/01_Manuals"
+    assert authority_family_counts_for_confidence(vessel) is False
+
+    sms = "10_Company/SMS/Procedures/generic.pdf"
+    assert authority_family_for_source(sms) == "SMS"
+    assert authority_family_counts_for_confidence(sms) is False
+    # Bare family string alone must not grant eligibility.
+    assert authority_family_counts_for_confidence(sms, "Yanmar_6EY22") is False
+
+    yanmar = "00_Career/03_Engine_Knowledge/Yanmar_6EY22/SCR/manual.pdf"
+    assert authority_family_for_source(yanmar) == "Yanmar_6EY22"
+    assert authority_family_counts_for_confidence(yanmar) is True
+    assert authority_family_counts_for_confidence(yanmar, "Yanmar_6EY22") is True
+
+    training = "00_Career/03_Engine_Knowledge/Training/SCR_Basics/lesson.pdf"
+    assert authority_family_for_source(training) == "Training/SCR_Basics"
+    assert authority_family_counts_for_confidence(training) is True
+
+    service = (
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2013-577.pdf"
+    )
+    assert authority_family_for_source(service) == "Service_Letters_MAN_Archive"
+    assert authority_family_counts_for_confidence(service) is False
+
+    unknown = "misc/unscoped/doc.pdf"
+    assert authority_family_counts_for_confidence(unknown) is False
 
 
 def test_sources_report_original_pdf_and_machine_transcribed_for_ocr_hit():
@@ -118,6 +152,9 @@ def test_final_confidence_gate_allows_supported_parallel_manual(monkeypatch):
             0.44895,
         ),
     ]
+    # Path-relevant content so moderate-distance coherent hits remain accepted.
+    for doc, _distance in pairs:
+        doc.page_content = "Yanmar SCR dosing valve inspection procedure"
     monkeypatch.setattr(query, "retrieval_score_max", lambda: 0.38)
 
     retained, diagnostics = query._apply_final_confidence_gate(
@@ -131,11 +168,13 @@ def test_final_confidence_gate_allows_supported_parallel_manual(monkeypatch):
             "post_rerank_count": 3,
             "post_dedupe_count": 3,
         },
+        question="Yanmar SCR dosing valve inspection",
     )
 
     assert len(retained) == 3
     assert diagnostics["final_retained_count"] == 3
     assert diagnostics["final_confidence_passed"] is True
+    assert diagnostics["topical_agreement"] is True
     assert diagnostics["top_source_support"] == 2
     assert diagnostics["top_family_support"] == 3
 
