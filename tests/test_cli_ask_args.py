@@ -37,6 +37,7 @@ def _run(argv, resolved_scope="wiki"):
     def fake_answer(question, **kwargs):
         captured["question"] = question
         captured["scope"] = kwargs.get("scope")
+        captured["confirmation_text"] = kwargs.get("confirmation_text")
         return _ok_result(kwargs.get("scope"))
 
     with patch.object(cli, "resolve_scope", return_value=resolved_scope), patch.object(
@@ -69,6 +70,22 @@ def test_scope_after_unquoted_multiword_question():
     assert code == EXIT_OK
     assert captured["scope"] == "wiki"
     assert captured["question"] == "which folder holds the manual"
+
+
+def test_confirmation_text_passed_through_to_answer():
+    code, captured = _run(
+        [
+            "--scope",
+            "wiki",
+            "--confirmation-text",
+            "MAN G50ME-C",
+            "What is the torque?",
+        ]
+    )
+    assert code == EXIT_OK
+    assert captured["scope"] == "wiki"
+    assert captured["question"] == "What is the torque?"
+    assert captured["confirmation_text"] == "MAN G50ME-C"
 
 
 def test_flag_token_in_question_position_is_rejected(capsys):

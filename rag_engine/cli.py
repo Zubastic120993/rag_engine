@@ -116,6 +116,11 @@ def cmd_ask(argv: list[str]) -> int:
         default=None,
         help="Override answer model (default: scopes.yaml / RAG_LLM_MODEL)",
     )
+    parser.add_argument(
+        "--confirmation-text",
+        default=None,
+        help="User clarification reply for a fresh constrained retrieval",
+    )
     # nargs="*" (not REMAINDER): argparse keeps recognizing --scope/--json/etc
     # as real options no matter where they fall relative to the question,
     # instead of silently vacuuming them into the question text once the
@@ -190,6 +195,7 @@ def cmd_ask(argv: list[str]) -> int:
             question,
             scope=resolved,
             k=args.k or default_k(),
+            confirmation_text=args.confirmation_text,
             requested_scope=requested,
             suggest_scopes=args.suggest_scopes,
             scope_resolution_s=scope_resolution_s,
