@@ -1,15 +1,11 @@
 """Additive chunk / vector-map tables for temp-registry testing (Phase 2).
 
-Registry package ``rag_engine.metadata_registry`` is NOT on ``main``. These
-DDL helpers are standalone and intended for temporary SQLite databases only.
+SUPERSEDED for Phase 3 authoritative schema by
+``rag_engine.metadata_registry`` (stable-id-v1 terminology:
+``documents.subject_id``, ``document_versions.document_id``).
 
-Terminology (Spec §4.1):
-  Phase-1 subject_id  ↔ registry documents.document_id
-  Phase-1 document_id ↔ registry document_versions.document_version_id
-
-Here ``chunks.document_id`` stores the Phase-1 ``document_id`` (``docrev:…``).
-FK to a full registry parent is intentionally soft until the registry scaffold
-is merged — production ``.rag_state`` must not be created by this module.
+These helpers remain for Phase 2 unit tests only. New work must use
+``metadata_registry``. Production ``.rag_state`` must not be created here.
 """
 
 from __future__ import annotations
@@ -38,7 +34,7 @@ CHUNKS_DDL = """
 CREATE TABLE IF NOT EXISTS chunks (
     chunk_id TEXT PRIMARY KEY NOT NULL,
     document_id TEXT NOT NULL,
-    -- Phase-1 document_id (docrev:…); synonym of registry document_version_id
+    -- Stores Phase-1 document_id (docrev:…). Not the Phase 3 metadata_registry schema.
     identity_scheme_version TEXT NOT NULL,
     chunking_fingerprint TEXT NOT NULL,
     chunk_ordinal INTEGER NOT NULL,
