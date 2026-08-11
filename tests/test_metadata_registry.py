@@ -66,7 +66,7 @@ def _fp() -> str:
 
 def test_schema_init_and_version(registry_db: Path) -> None:
     with open_registry(registry_db, readonly=True) as conn:
-        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 2
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 3
         assert foreign_keys_enabled(conn)
         for table in REQUIRED_TABLES:
             row = conn.execute(
@@ -397,6 +397,6 @@ print('RAG_STATE_EXISTS', prod.exists())
         check=False,
     )
     assert proc.returncode == 0, proc.stderr
-    assert "VERSION 2" in proc.stdout
+    assert "VERSION 3" in proc.stdout
     assert "FORBIDDEN \n" in proc.stdout or proc.stdout.strip().endswith("FORBIDDEN")
     assert "RAG_STATE_EXISTS False" in proc.stdout

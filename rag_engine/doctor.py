@@ -28,6 +28,7 @@ from rag_engine.config import (
     track_file,
 )
 from rag_engine.fingerprint import compare_fingerprint, fingerprint_path
+from rag_engine.index_compatibility.policy import doctor_fingerprint_report
 from rag_engine.ingest import os_walk_filtered
 from rag_engine.scope_rules import RegistryError, validate_registry
 from rag_engine.text import is_valid_pdf
@@ -344,6 +345,20 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
         )
     )
 
+    # Phase 6B embedding-fp-v1 diagnostics (read-only; never writes/repairs).
+    try:
+        fp_v1 = doctor_fingerprint_report(db)
+        checks.append(
+            _check(
+                "embedding_fp_v1",
+                fp_v1["ok"],
+                f"{fp_v1['severity']}/{fp_v1['state']}: {fp_v1['detail']}",
+            )
+        )
+    except Exception as e:  # noqa: BLE001
+        fp_v1 = {"ok": False, "severity": "FAIL", "state": "ERROR", "detail": str(e)}
+        checks.append(_check("embedding_fp_v1", False, str(e)))
+
     try:
         import chromadb
 
@@ -488,6 +503,7 @@ def run_doctor(*, skip_ollama: bool = False) -> dict[str, Any]:
         "status": status,
         "checks": checks,
         "fingerprint": fp,
+        "embedding_fp_v1": fp_v1,
         "library_root": str(root),
         "db_path": str(db),
         "scopes": list(known_scopes()),

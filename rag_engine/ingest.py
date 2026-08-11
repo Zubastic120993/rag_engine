@@ -29,6 +29,12 @@ from rag_engine.config import (
     track_file,
     wiki_extensions,
 )
+from rag_engine.index_compatibility import (
+    FingerprintError,
+    enforce_ingest_compatibility,
+    ensure_fingerprint_initialized_for_empty_index,
+)
+from rag_engine.index_compatibility.chroma_inspect import count_vectors_readonly
 from rag_engine.lock import ingest_lock
 from rag_engine.text import is_valid_pdf, normalize_text
 
@@ -328,15 +334,35 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
         tracker = {}
 
     path_to_hash = _path_index(tracker)
+    persist = persist_dir()
+
+    # Phase 6B: compatibility gate BEFORE digest skip / vector mutation.
+    # A matching embedded.json digest must never override incompatible or
+    # UNKNOWN_LEGACY index state. Empty new indexes may initialize authority.
+    vector_count = count_vectors_readonly(persist)
+    try:
+        compat = enforce_ingest_compatibility(persist, vector_count=vector_count)
+        if compat.state == "EMPTY_UNINITIALIZED":
+            compat = ensure_fingerprint_initialized_for_empty_index(
+                persist, vector_count=0
+            )
+        print(
+            f"Index compatibility: {compat.state} "
+            f"(vectors={compat.vector_count}; ifp={compat.runtime_index_fingerprint})"
+        )
+    except FingerprintError as e:
+        print(f"INGEST BLOCKED by embedding/index fingerprint gate: {e}")
+        raise
+
     embeddings = OllamaEmbeddings(model=embed_model())
     db = Chroma(
-        persist_directory=str(persist_dir()),
+        persist_directory=str(persist),
         embedding_function=embeddings,
         client_settings=chroma_client_settings(),
     )
 
     docs = _iter_docs()
-    print(f"Found {len(docs)} docs under {library_root()}. Index: {persist_dir()}")
+    print(f"Found {len(docs)} docs under {library_root()}. Index: {persist}")
     print(f"Chunking: size={chunk_size()} overlap={chunk_overlap()}")
     if max_new:
         print(f"This run: stop after {max_new} NEW embeds")
@@ -390,19 +416,19 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
             gc.collect()
 
     print(
-        f"Batch done. {len(tracker)} unique hashes → {persist_dir()} "
+        f"Batch done. {len(tracker)} unique hashes → {persist} "
         f"(new this run: {new_count}; invalid PDFs skipped: {invalid_pdfs}; "
         f"zero-chunk extraction: {zero_chunk_count}; extraction errors: {extraction_errors})"
     )
-    # Write the fingerprint only when embeddings actually changed (or on the
-    # first run when none exists yet), so its mtime reflects the index build
-    # rather than every no-op sync.
+    # Informational v0 sidecar only after successful compatible mutations.
+    # Never create fingerprint authority for UNKNOWN_LEGACY via this path
+    # (v1 authority is initialized only for proven-empty new indexes above).
     try:
-        from rag_engine.fingerprint import fingerprint_path, write_fingerprint
+        from rag_engine.fingerprint import write_fingerprint
 
-        if new_count > 0 or force or not fingerprint_path().exists():
+        if new_count > 0 or force:
             fp = write_fingerprint()
-            print(f"Index fingerprint → {fp}")
+            print(f"Index fingerprint (v0 informational) → {fp}")
         else:
             print("No new embeddings — index fingerprint left untouched.")
     except OSError as e:
@@ -410,7 +436,7 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
     if max_new and new_count >= max_new:
         print("MORE")
     else:
-        print(f"Done. {len(tracker)} unique content hashes → {persist_dir()}")
+        print(f"Done. {len(tracker)} unique content hashes → {persist}")
 
 
 def main() -> None:

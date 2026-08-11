@@ -33,6 +33,11 @@ from rag_engine.config import (
     persist_dir,
     retrieval_score_max,
 )
+from rag_engine.index_compatibility import (
+    FingerprintError,
+    enforce_retrieval_compatibility,
+)
+from rag_engine.index_compatibility.chroma_inspect import count_vectors_readonly
 from rag_engine.pdf_links import citation_page_fields, viewer_page
 from rag_engine.scope_rules import scope_allows_candidate
 from rag_engine.text import normalize_text
@@ -231,6 +236,24 @@ def _get_db() -> Chroma:
 
 def clear_caches() -> None:
     _get_db.cache_clear()
+
+
+def _fingerprint_retrieval_gate() -> dict[str, Any]:
+    """Enforce Phase 6A retrieval policy. Read-only; never writes fingerprint state.
+
+    Returns a diagnostics fragment. Raises FingerprintError when retrieval is blocked.
+    """
+    persist = persist_dir()
+    vector_count = count_vectors_readonly(persist)
+    result = enforce_retrieval_compatibility(persist, vector_count=vector_count)
+    return {
+        "index_fingerprint_state": result.state,
+        "index_fingerprint_degraded": bool(result.retrieval_degraded),
+        "index_fingerprint_reason": result.reason,
+        "index_fingerprint_runtime": result.runtime_index_fingerprint,
+        "index_fingerprint_stored": result.stored_index_fingerprint,
+        "index_fingerprint_vector_count": result.vector_count,
+    }
 
 
 def resolve_answer_model(model: str | None = None) -> str:
@@ -973,6 +996,7 @@ def retrieve_with_scores(
     scope: str | None = None,
     k: int | None = None,
 ) -> list[tuple[Any, float]]:
+    fp_diag = _fingerprint_retrieval_gate()
     db = _get_db()
     k = default_k() if k is None else k
     # Query wide (F-17: hnswlib recall is width-bound, not just ef-bound — see
@@ -993,6 +1017,7 @@ def retrieve_with_scores(
     results, _diagnostics = _apply_retrieval_controls(
         raw_results, scope=scope, k=k, question=q
     )
+    _ = fp_diag  # enforced above; detailed diagnostics via *_and_diagnostics
     return results
 
 
@@ -1001,6 +1026,7 @@ def retrieve_with_scores_and_diagnostics(
     scope: str | None = None,
     k: int | None = None,
 ) -> tuple[list[tuple[Any, float]], dict[str, Any]]:
+    fp_diag = _fingerprint_retrieval_gate()
     db = _get_db()
     k = default_k() if k is None else k
     search_k = max(k, retrieval_search_width())
@@ -1013,9 +1039,11 @@ def retrieve_with_scores_and_diagnostics(
         return db.similarity_search_with_score(q, **kwargs)
 
     raw_results = _run_with_timeout(_call)
-    return _apply_retrieval_controls(
+    pairs, diagnostics = _apply_retrieval_controls(
         raw_results, scope=scope, k=k, question=q
     )
+    diagnostics = {**(diagnostics or {}), **fp_diag}
+    return pairs, diagnostics
 
 
 def retrieve(question: str, scope: str | None = None, k: int | None = None):
@@ -1513,6 +1541,24 @@ def answer(
             retrieval_evidence=[],
             retrieval_diagnostics=_empty_retrieval_diagnostics(),
             gate="retrieval_timeout",
+        )
+    except FingerprintError as e:
+        return AskResult(
+            status="error",
+            query=q,
+            requested_scope=req,
+            resolved_scope=resolved,
+            answer=None,
+            error=str(e),
+            timings=_timings(retrieval=retrieval_s),
+            model=None,
+            retrieval_evidence=[],
+            retrieval_diagnostics={
+                **_empty_retrieval_diagnostics(),
+                "index_fingerprint_state": getattr(e, "details", {}).get("state"),
+                "index_fingerprint_reason": str(e),
+            },
+            gate="index_fingerprint",
         )
     except Exception as e:  # noqa: BLE001
         return AskResult(

@@ -19,7 +19,8 @@ from typing import Final
 
 # Fresh identity-aligned registry. Branch scaffold schema v1 was never production.
 # v2 adds Phase 5 revision lifecycle columns + event/relation tables.
-CURRENT_SCHEMA_VERSION: Final = 2
+# v3 adds Phase 6B index fingerprint authority table (embedding-fp-v1).
+CURRENT_SCHEMA_VERSION: Final = 3
 
 REQUIRED_TABLES: Final[tuple[str, ...]] = (
     "registry_schema_version",
@@ -30,6 +31,7 @@ REQUIRED_TABLES: Final[tuple[str, ...]] = (
     "chunk_vector_map",
     "document_lifecycle_events",
     "document_version_relations",
+    "index_fingerprints",
 )
 
 SCHEMA_SQL: Final[str] = """
@@ -188,4 +190,19 @@ CREATE INDEX IF NOT EXISTS idx_version_relations_source
     ON document_version_relations(source_document_id);
 CREATE INDEX IF NOT EXISTS idx_version_relations_target
     ON document_version_relations(target_document_id);
+"""
+
+# Additive SQL applied when upgrading an existing v2 registry to v3.
+SCHEMA_SQL_V3_UPGRADE: Final[str] = """
+CREATE TABLE IF NOT EXISTS index_fingerprints (
+    physical_collection_name TEXT PRIMARY KEY NOT NULL,
+    fingerprint_schema_version TEXT NOT NULL,
+    index_fingerprint TEXT NOT NULL,
+    embedding_fingerprint TEXT NOT NULL,
+    corpus_fingerprint TEXT NOT NULL,
+    payload_json TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_index_fingerprints_ifp
+    ON index_fingerprints(index_fingerprint);
 """

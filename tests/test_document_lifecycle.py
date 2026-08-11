@@ -441,7 +441,7 @@ def test_v1_to_v2_single_revision_becomes_active(tmp_path: Path) -> None:
 
     with open_registry(db) as conn:
         migrate_connection(conn)
-        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 2
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 3
         assert get_revision_status(conn, doc)["lifecycle_status"] == "ACTIVE"
         assert get_active_revision(conn, sid)["document_id"] == doc
         n_active = conn.execute(
@@ -491,7 +491,7 @@ def test_v1_to_v2_multi_revision_all_withdrawn_no_relations(tmp_path: Path) -> N
 
     with open_registry(db) as conn:
         migrate_connection(conn)
-        assert get_schema_version(conn) == 2
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 3
         statuses = {
             r["document_id"]: r["lifecycle_status"]
             for r in conn.execute(
@@ -671,7 +671,7 @@ def test_v1_to_v2_migration_preserves_data(tmp_path: Path) -> None:
 
     with open_registry(db) as conn:
         migrate_connection(conn)
-        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 2
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 3
         n = conn.execute("SELECT COUNT(*) AS c FROM document_versions").fetchone()["c"]
         assert n == 3
         multi_active = conn.execute(
@@ -693,7 +693,7 @@ def test_v1_to_v2_migration_preserves_data(tmp_path: Path) -> None:
             == 0
         )
         migrate_connection(conn)
-        assert get_schema_version(conn) == 2
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 3
         assert (
             conn.execute("SELECT COUNT(*) AS c FROM document_versions").fetchone()["c"]
             == 3

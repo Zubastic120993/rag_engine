@@ -19,6 +19,7 @@ from rag_engine.metadata_registry.schema import (
     REQUIRED_TABLES,
     SCHEMA_SQL,
     SCHEMA_SQL_V2_UPGRADE,
+    SCHEMA_SQL_V3_UPGRADE,
 )
 
 
@@ -147,9 +148,28 @@ def _apply_v2(conn: sqlite3.Connection) -> None:
     )
 
 
+def _apply_v3(conn: sqlite3.Connection) -> None:
+    """Phase 6B embedding-fp-v1 index fingerprint authority table."""
+    conn.executescript(SCHEMA_SQL_V3_UPGRADE)
+    conn.execute(
+        "INSERT OR IGNORE INTO registry_schema_version "
+        "(schema_version, applied_at, status, description, backward_compatible) "
+        "VALUES (?, ?, ?, ?, ?)",
+        (
+            3,
+            utc_now(),
+            "applied",
+            "Phase 6B index fingerprint authority "
+            "(index_fingerprints; embedding-fp-v1 envelope)",
+            1,
+        ),
+    )
+
+
 _MIGRATIONS: dict[int, Callable[[sqlite3.Connection], None]] = {
     1: _apply_v1,
     2: _apply_v2,
+    3: _apply_v3,
 }
 
 
