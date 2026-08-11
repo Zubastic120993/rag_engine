@@ -66,7 +66,7 @@ def _fp() -> str:
 
 def test_schema_init_and_version(registry_db: Path) -> None:
     with open_registry(registry_db, readonly=True) as conn:
-        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 1
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 2
         assert foreign_keys_enabled(conn)
         for table in REQUIRED_TABLES:
             row = conn.execute(
@@ -81,7 +81,7 @@ def test_repeated_initialization_safe(tmp_path: Path) -> None:
     initialize_registry(db)
     initialize_registry(db)
     with open_registry(db) as conn:
-        assert get_schema_version(conn) == 1
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION
         register_subject(conn, subject_id=subject_id_from_key("sms", "keep-me"))
         conn.commit()
     initialize_registry(db)
@@ -165,8 +165,13 @@ def test_document_version_invariant_and_family(registry_db: Path) -> None:
             register_document_version(
                 conn, document_id=doc_a, subject_id=sid, source_hash=ha
             )
+            # Second revision must be staged non-ACTIVE while A remains ACTIVE.
             register_document_version(
-                conn, document_id=doc_b, subject_id=sid, source_hash=hb
+                conn,
+                document_id=doc_b,
+                subject_id=sid,
+                source_hash=hb,
+                lifecycle_status="WITHDRAWN",
             )
             # idempotent same revision
             register_document_version(
@@ -392,6 +397,6 @@ print('RAG_STATE_EXISTS', prod.exists())
         check=False,
     )
     assert proc.returncode == 0, proc.stderr
-    assert "VERSION 1" in proc.stdout
+    assert "VERSION 2" in proc.stdout
     assert "FORBIDDEN \n" in proc.stdout or proc.stdout.strip().endswith("FORBIDDEN")
     assert "RAG_STATE_EXISTS False" in proc.stdout

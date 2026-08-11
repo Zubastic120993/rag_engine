@@ -136,8 +136,19 @@ def register_document_version(
     extractor_version: str | None = None,
     notes: str | None = None,
     created_at: str | None = None,
+    lifecycle_status: str | None = None,
 ) -> dict[str, Any]:
-    """Register an immutable revision. Enforces document_id == docrev: + source_hash."""
+    """Register an immutable revision. Enforces document_id == docrev: + source_hash.
+
+    Phase 5: ``lifecycle_status`` defaults to ACTIVE when the subject has no
+    ACTIVE revision. If an ACTIVE revision already exists, callers must pass an
+    explicit non-ACTIVE status (staging) and later call ``supersede_revision``.
+    """
+    from rag_engine.metadata_registry.lifecycle import (
+        DEFAULT_LIFECYCLE_STATUS,
+        resolve_initial_lifecycle_status,
+    )
+
     try:
         validate_document_id(document_id)
         validate_subject_id(subject_id)
@@ -188,29 +199,87 @@ def register_document_version(
             f"source_hash already bound to {other['document_id']!r}"
         )
 
+    # Detect whether Phase 5 columns exist (schema v2+).
+    cols = {
+        r[1] for r in conn.execute("PRAGMA table_info(document_versions)").fetchall()
+    }
+    has_lifecycle = "lifecycle_status" in cols
+
     ts = created_at or utc_now()
-    try:
+    if has_lifecycle:
+        status = resolve_initial_lifecycle_status(
+            conn, subject_id=subject_id, requested=lifecycle_status
+        )
+        try:
+            conn.execute(
+                "INSERT INTO document_versions ("
+                "document_id, subject_id, source_hash, identity_scheme_version, "
+                "content_hash, created_at, extractor, extractor_version, notes, "
+                "lifecycle_status, lifecycle_updated_at"
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    document_id,
+                    subject_id,
+                    source_hash,
+                    identity_scheme_version,
+                    content_hash,
+                    ts,
+                    extractor,
+                    extractor_version,
+                    notes,
+                    status,
+                    ts,
+                ),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise RegistryValidationError(
+                f"document_versions insert failed integrity check: {exc}"
+            ) from exc
+        # Initial creation event (append-only).
         conn.execute(
-            "INSERT INTO document_versions ("
-            "document_id, subject_id, source_hash, identity_scheme_version, "
-            "content_hash, created_at, extractor, extractor_version, notes"
+            "INSERT INTO document_lifecycle_events ("
+            "document_id, previous_state, new_state, relation_type, "
+            "related_document_id, reason, actor, source, created_at"
             ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 document_id,
-                subject_id,
-                source_hash,
-                identity_scheme_version,
-                content_hash,
+                None,
+                status,
+                None,
+                None,
+                "initial_registration",
+                None,
+                "register_document_version",
                 ts,
-                extractor,
-                extractor_version,
-                notes,
             ),
         )
-    except sqlite3.IntegrityError as exc:
-        raise RegistryValidationError(
-            f"document_versions insert failed integrity check: {exc}"
-        ) from exc
+    else:
+        if lifecycle_status is not None and lifecycle_status != DEFAULT_LIFECYCLE_STATUS:
+            raise RegistryValidationError(
+                "lifecycle_status requires schema v2; migrate the registry first"
+            )
+        try:
+            conn.execute(
+                "INSERT INTO document_versions ("
+                "document_id, subject_id, source_hash, identity_scheme_version, "
+                "content_hash, created_at, extractor, extractor_version, notes"
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    document_id,
+                    subject_id,
+                    source_hash,
+                    identity_scheme_version,
+                    content_hash,
+                    ts,
+                    extractor,
+                    extractor_version,
+                    notes,
+                ),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise RegistryValidationError(
+                f"document_versions insert failed integrity check: {exc}"
+            ) from exc
 
     row = conn.execute(
         "SELECT * FROM document_versions WHERE document_id = ?", (document_id,)

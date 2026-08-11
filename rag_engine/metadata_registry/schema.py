@@ -18,7 +18,8 @@ from __future__ import annotations
 from typing import Final
 
 # Fresh identity-aligned registry. Branch scaffold schema v1 was never production.
-CURRENT_SCHEMA_VERSION: Final = 1
+# v2 adds Phase 5 revision lifecycle columns + event/relation tables.
+CURRENT_SCHEMA_VERSION: Final = 2
 
 REQUIRED_TABLES: Final[tuple[str, ...]] = (
     "registry_schema_version",
@@ -27,6 +28,8 @@ REQUIRED_TABLES: Final[tuple[str, ...]] = (
     "source_files",
     "chunks",
     "chunk_vector_map",
+    "document_lifecycle_events",
+    "document_version_relations",
 )
 
 SCHEMA_SQL: Final[str] = """
@@ -125,4 +128,64 @@ CREATE TABLE IF NOT EXISTS chunk_vector_map (
 );
 CREATE INDEX IF NOT EXISTS idx_chunk_vector_map_chroma_id
     ON chunk_vector_map(chroma_embedding_id);
+"""
+
+# Additive SQL applied when upgrading an existing v1 registry to v2.
+# Unique ACTIVE index is created in _apply_v2 after multi-revision subjects
+# are conservatively set to WITHDRAWN (no invented succession).
+SCHEMA_SQL_V2_UPGRADE: Final[str] = """
+ALTER TABLE document_versions ADD COLUMN lifecycle_status TEXT NOT NULL DEFAULT 'ACTIVE';
+ALTER TABLE document_versions ADD COLUMN lifecycle_updated_at TEXT;
+
+CREATE INDEX IF NOT EXISTS idx_document_versions_lifecycle
+    ON document_versions(lifecycle_status);
+
+CREATE TABLE IF NOT EXISTS document_lifecycle_events (
+    event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    document_id TEXT NOT NULL,
+    previous_state TEXT,
+    new_state TEXT NOT NULL,
+    relation_type TEXT,
+    related_document_id TEXT,
+    reason TEXT,
+    actor TEXT,
+    source TEXT,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (document_id) REFERENCES document_versions(document_id) ON DELETE RESTRICT,
+    FOREIGN KEY (related_document_id) REFERENCES document_versions(document_id)
+        ON DELETE RESTRICT,
+    CHECK (
+        new_state IN (
+            'ACTIVE', 'SUPERSEDED', 'ARCHIVED', 'REPLACED', 'WITHDRAWN', 'DUPLICATE'
+        )
+    )
+);
+CREATE INDEX IF NOT EXISTS idx_lifecycle_events_document_id
+    ON document_lifecycle_events(document_id);
+CREATE INDEX IF NOT EXISTS idx_lifecycle_events_created_at
+    ON document_lifecycle_events(created_at);
+
+CREATE TABLE IF NOT EXISTS document_version_relations (
+    relation_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source_document_id TEXT NOT NULL,
+    target_document_id TEXT NOT NULL,
+    relation_type TEXT NOT NULL,
+    reason TEXT,
+    created_at TEXT NOT NULL,
+    actor TEXT,
+    source TEXT,
+    UNIQUE (source_document_id, target_document_id, relation_type),
+    FOREIGN KEY (source_document_id) REFERENCES document_versions(document_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (target_document_id) REFERENCES document_versions(document_id)
+        ON DELETE RESTRICT,
+    CHECK (
+        relation_type IN ('supersedes', 'replaces', 'duplicate_of')
+    ),
+    CHECK (source_document_id != target_document_id)
+);
+CREATE INDEX IF NOT EXISTS idx_version_relations_source
+    ON document_version_relations(source_document_id);
+CREATE INDEX IF NOT EXISTS idx_version_relations_target
+    ON document_version_relations(target_document_id);
 """

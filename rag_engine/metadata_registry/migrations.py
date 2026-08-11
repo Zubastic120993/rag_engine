@@ -6,7 +6,7 @@ import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
-from typing import Callable
+from typing import Callable, Final
 
 from rag_engine.metadata_registry.connection import open_registry, normalize_db_path
 from rag_engine.metadata_registry.exceptions import (
@@ -18,6 +18,7 @@ from rag_engine.metadata_registry.schema import (
     CURRENT_SCHEMA_VERSION,
     REQUIRED_TABLES,
     SCHEMA_SQL,
+    SCHEMA_SQL_V2_UPGRADE,
 )
 
 
@@ -65,7 +66,91 @@ def _apply_v1(conn: sqlite3.Connection) -> None:
     )
 
 
-_MIGRATIONS: dict[int, Callable[[sqlite3.Connection], None]] = {1: _apply_v1}
+# Migration audit markers (distinguishable from runtime lifecycle ops).
+MIGRATION_V2_SOURCE: Final = "schema_migration_v1_to_v2"
+MIGRATION_V2_MULTI_REASON: Final = "migration_v1_to_v2_multi_revision_current_unknown"
+
+
+def _apply_v2(conn: sqlite3.Connection) -> None:
+    """Phase 5 revision lifecycle — additive columns + event/relation tables.
+
+    Compatibility policy for pre-existing v1 rows (no lifecycle authority):
+
+    * subject with exactly one revision → leave/set ACTIVE (unambiguous)
+    * subject with multiple revisions → ALL revisions WITHDRAWN, zero ACTIVE,
+      zero inferred relations. WITHDRAWN here means "not declared operationally
+      current by migration", not that a historical withdrawal occurred.
+    """
+    conn.executescript(SCHEMA_SQL_V2_UPGRADE)
+    conn.execute(
+        "UPDATE document_versions "
+        "SET lifecycle_updated_at = created_at "
+        "WHERE lifecycle_updated_at IS NULL"
+    )
+    # ALTER DEFAULT leaves every row ACTIVE. Single-revision subjects stay ACTIVE.
+    # Multi-revision subjects: conservatively withdraw all — do not invent
+    # which revision is current or fabricate supersedes/replaces/duplicate_of.
+    subjects = conn.execute(
+        "SELECT subject_id FROM document_versions GROUP BY subject_id "
+        "HAVING COUNT(*) > 1"
+    ).fetchall()
+    ts = utc_now()
+    for row in subjects:
+        sid = row["subject_id"] if isinstance(row, sqlite3.Row) else row[0]
+        revs = conn.execute(
+            "SELECT document_id FROM document_versions WHERE subject_id = ?",
+            (sid,),
+        ).fetchall()
+        for rev in revs:
+            doc_id = rev["document_id"] if isinstance(rev, sqlite3.Row) else rev[0]
+            conn.execute(
+                "UPDATE document_versions "
+                "SET lifecycle_status = 'WITHDRAWN', lifecycle_updated_at = ? "
+                "WHERE document_id = ?",
+                (ts, doc_id),
+            )
+            # previous_state NULL: schema default ACTIVE is not historical truth.
+            conn.execute(
+                "INSERT INTO document_lifecycle_events ("
+                "document_id, previous_state, new_state, relation_type, "
+                "related_document_id, reason, actor, source, created_at"
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    doc_id,
+                    None,
+                    "WITHDRAWN",
+                    None,
+                    None,
+                    MIGRATION_V2_MULTI_REASON,
+                    None,
+                    MIGRATION_V2_SOURCE,
+                    ts,
+                ),
+            )
+
+    conn.execute(
+        "CREATE UNIQUE INDEX IF NOT EXISTS idx_document_versions_one_active_per_subject "
+        "ON document_versions(subject_id) WHERE lifecycle_status = 'ACTIVE'"
+    )
+    conn.execute(
+        "INSERT OR IGNORE INTO registry_schema_version "
+        "(schema_version, applied_at, status, description, backward_compatible) "
+        "VALUES (?, ?, ?, ?, ?)",
+        (
+            2,
+            utc_now(),
+            "applied",
+            "Phase 5 document revision lifecycle "
+            "(lifecycle_status, events, relations; at most one ACTIVE per subject)",
+            1,
+        ),
+    )
+
+
+_MIGRATIONS: dict[int, Callable[[sqlite3.Connection], None]] = {
+    1: _apply_v1,
+    2: _apply_v2,
+}
 
 
 def migrate_connection(

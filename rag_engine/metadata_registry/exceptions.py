@@ -49,3 +49,11 @@ class RegistryConflictError(RegistryError):
 
 class RegistryIntegrityError(RegistryError):
     """Raised when SQLite integrity/FK checks fail."""
+
+
+class LifecycleError(RegistryError):
+    """Base exception for Phase 5 document lifecycle errors."""
+
+
+class LifecycleTransitionError(LifecycleError):
+    """Raised when a lifecycle transition is not allowed."""
