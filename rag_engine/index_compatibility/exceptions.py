@@ -48,3 +48,27 @@ class FingerprintIncompatibleRetrievalError(FingerprintError):
 
 class IndexCompatibilityError(FingerprintError):
     """Generic index compatibility gate failure (ingest/append)."""
+
+
+class CertificationError(FingerprintError):
+    """Base class for legacy-index certification failures."""
+
+
+class CertificationEvidenceError(CertificationError):
+    """Evidence is missing, insufficient, or malformed for certification."""
+
+
+class CertificationTargetChangedError(CertificationError):
+    """Target index no longer matches the evidence manifest binding."""
+
+
+class CertificationConflictError(CertificationError):
+    """Certification would overwrite a conflicting authority/audit record."""
+
+
+class LegacyIndexNotCertifiableError(CertificationError):
+    """Evidence evaluation concluded the index is not certifiable."""
+
+
+class CertificationRequiresOperatorApprovalError(CertificationError):
+    """Mutation requested without explicit operator apply intent."""

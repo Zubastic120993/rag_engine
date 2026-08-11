@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 import time
+from pathlib import Path
 from typing import Any, TYPE_CHECKING
 
 from rag_engine.config import (
@@ -412,12 +413,152 @@ def cmd_doctor(argv: list[str]) -> int:
     return EXIT_OK if report["status"] == "PASS" else EXIT_ERROR
 
 
+def cmd_fingerprint(argv: list[str]) -> int:
+    """Operator-gated fingerprint / legacy-certification commands.
+
+    Dry-run is the default. This does not rebuild vectors. Current runtime
+    configuration alone is insufficient for certification.
+    """
+    parser = argparse.ArgumentParser(
+        prog="rag-engine fingerprint",
+        description=(
+            "Embedding/index fingerprint tools. "
+            "certify-legacy does not rebuild vectors. Dry-run is the default. "
+            "Certification requires historical evidence; current runtime "
+            "configuration alone is insufficient. Apply mode requires "
+            "explicit --apply and a non-empty --reason."
+        ),
+    )
+    sub = parser.add_subparsers(dest="fp_cmd", required=True)
+
+    p_cert = sub.add_parser(
+        "certify-legacy",
+        help=(
+            "Evaluate/apply UNKNOWN_LEGACY certification from an evidence "
+            "manifest. Default is dry-run (no writes)."
+        ),
+    )
+    p_cert.add_argument(
+        "--persist-dir",
+        required=True,
+        help="Explicit target persist directory (no production default).",
+    )
+    p_cert.add_argument(
+        "--manifest",
+        required=True,
+        help="Path to evidence manifest JSON (legacy-cert-manifest-v1).",
+    )
+    p_cert.add_argument(
+        "--reason",
+        default=None,
+        help="Operator reason (required for --apply; non-empty).",
+    )
+    p_cert.add_argument(
+        "--actor",
+        default=None,
+        help="Optional actor identity recorded in audit.",
+    )
+    p_cert.add_argument(
+        "--expected-vector-count",
+        type=int,
+        default=None,
+        help="Optional TOCTOU binding override for vector count.",
+    )
+    p_cert.add_argument(
+        "--expected-structural-fingerprint",
+        default=None,
+        help="Optional TOCTOU binding override for structural fingerprint.",
+    )
+    p_cert.add_argument(
+        "--apply",
+        action="store_true",
+        help="Explicit mutation flag. Without this flag, dry-run only.",
+    )
+    p_cert.add_argument("--json", action="store_true", help="Emit JSON report.")
+
+    p_inspect = sub.add_parser(
+        "inspect-legacy",
+        help="Read-only inspection of a persist dir (no writes).",
+    )
+    p_inspect.add_argument("--persist-dir", required=True)
+    p_inspect.add_argument("--json", action="store_true")
+
+    args = parser.parse_args(argv)
+
+    if args.fp_cmd == "inspect-legacy":
+        from rag_engine.index_compatibility.certification import inspect_legacy_target
+
+        report = inspect_legacy_target(args.persist_dir)
+        if args.json:
+            _print_json(report)
+        else:
+            target = report["target"]
+            compat = report["compatibility"]
+            print(f"persist: {target['persist_dir']}")
+            print(f"collection: {target['physical_collection_name']}")
+            print(f"vector_count: {target['vector_count']}")
+            print(f"structural_fingerprint: {target['structural_fingerprint']}")
+            print(f"compatibility: {compat.get('state')} — {compat.get('reason')}")
+            print(f"sidecar_v1_present: {report['sidecar_v1_present']}")
+        return EXIT_OK
+
+    if args.fp_cmd == "certify-legacy":
+        from rag_engine.index_compatibility.certification import certify_legacy_index
+        from rag_engine.index_compatibility.exceptions import CertificationError
+
+        manifest_path = Path(args.manifest)
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"manifest unreadable: {exc}", file=sys.stderr)
+            return EXIT_ERROR
+        try:
+            report = certify_legacy_index(
+                args.persist_dir,
+                evidence_manifest=manifest,
+                apply=bool(args.apply),
+                operator_reason=args.reason,
+                actor=args.actor,
+                expected_vector_count=args.expected_vector_count,
+                expected_structural_fingerprint=args.expected_structural_fingerprint,
+            )
+        except CertificationError as exc:
+            if args.json:
+                _print_json(
+                    {
+                        "status": "error",
+                        "error": str(exc),
+                        "details": getattr(exc, "details", {}),
+                    }
+                )
+            else:
+                print(f"certify-legacy failed: {exc}", file=sys.stderr)
+            return EXIT_ERROR
+        if args.json:
+            _print_json(report)
+        else:
+            print(f"mode: {report.get('mode')}")
+            print(f"applied: {report.get('applied')}")
+            print(f"idempotent_noop: {report.get('idempotent_noop')}")
+            if report.get("blocked"):
+                print(f"blocked: {report.get('block_reason')}")
+            elif report.get("would_apply"):
+                print("dry-run: would apply certification (no writes performed)")
+            decision = report.get("decision") or {}
+            if isinstance(decision, dict):
+                print(f"decision: {decision.get('decision')}")
+        return EXIT_OK
+
+    return EXIT_ERROR
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] in ("-h", "--help"):
         print(
             "usage: rag-engine <ask|sync|ingest|gaps|doctor|explain-scope|"
-            "explain-alias|scope-stats|reconcile-path|list-scopes|paths|backfill|eval> …\n"
+            "explain-alias|scope-stats|reconcile-path|list-scopes|paths|"
+            "backfill|eval|fingerprint> …\n"
             "  ask [--scope NAME] [--json] [--suggest-scopes] [--model NAME] QUESTION\n"
             "  sync | ingest [--force] [--max-new N]\n"
             "  gaps [--limit N] [--json]\n"
@@ -429,7 +570,12 @@ def main(argv: list[str] | None = None) -> int:
             "  list-scopes [--json]\n"
             "  paths\n"
             "  backfill\n"
-            "  eval [--retrieval-only]\n",
+            "  eval [--retrieval-only]\n"
+            "  fingerprint inspect-legacy --persist-dir DIR [--json]\n"
+            "  fingerprint certify-legacy --persist-dir DIR --manifest PATH "
+            "[--reason TEXT] [--apply] [--json]\n"
+            "    (dry-run default; does not rebuild vectors; runtime config alone "
+            "is insufficient)\n",
             file=sys.stderr,
         )
         return EXIT_OK
@@ -471,6 +617,8 @@ def main(argv: list[str] | None = None) -> int:
         from rag_engine.eval_run import main as eval_main
 
         return eval_main(rest)
+    if cmd == "fingerprint":
+        return cmd_fingerprint(rest)
     print(f"unknown command: {cmd}", file=sys.stderr)
     return EXIT_ERROR
 

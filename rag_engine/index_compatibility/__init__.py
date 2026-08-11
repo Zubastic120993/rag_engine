@@ -1,6 +1,7 @@
 """Phase 6B embedding / index fingerprint compatibility enforcement.
 
 Implements the frozen Phase 6A contract (embedding-fp-v1).
+Phase 6C adds operator-gated legacy certification (dry-run default).
 Does not certify or mutate production indexes on import.
 """
 
@@ -12,6 +13,19 @@ from rag_engine.index_compatibility.builders import (
     build_index_spec,
     build_runtime_contracts_from_config,
     stored_envelope_from_specs,
+)
+from rag_engine.index_compatibility.certification import (
+    DEC_CERTIFIABLE,
+    DEC_EVIDENCE_CONFLICT,
+    DEC_INSUFFICIENT_EVIDENCE,
+    DEC_MIXED_HISTORY_SUSPECTED,
+    DEC_NOT_CERTIFIABLE,
+    DEC_REBUILD_REQUIRED,
+    build_certification_manifest,
+    certify_legacy_index,
+    evaluate_certification,
+    inspect_legacy_target,
+    verify_target_unchanged,
 )
 from rag_engine.index_compatibility.compatibility import (
     CompatibilityResult,
@@ -30,6 +44,11 @@ from rag_engine.index_compatibility.constants import (
     SIDECAR_V1_NAME,
 )
 from rag_engine.index_compatibility.exceptions import (
+    CertificationConflictError,
+    CertificationError,
+    CertificationEvidenceError,
+    CertificationRequiresOperatorApprovalError,
+    CertificationTargetChangedError,
     FingerprintConfigurationError,
     FingerprintConflictError,
     FingerprintCorruptError,
@@ -40,6 +59,7 @@ from rag_engine.index_compatibility.exceptions import (
     FingerprintMissingError,
     FingerprintUnsupportedVersionError,
     IndexCompatibilityError,
+    LegacyIndexNotCertifiableError,
 )
 from rag_engine.index_compatibility.policy import (
     doctor_fingerprint_report,
@@ -70,8 +90,19 @@ __all__ = [
     "COMPAT_KNOWN_INCOMPATIBLE",
     "COMPAT_UNKNOWN_LEGACY",
     "COMPAT_UNSUPPORTED_SCHEMA",
+    "CertificationConflictError",
+    "CertificationError",
+    "CertificationEvidenceError",
+    "CertificationRequiresOperatorApprovalError",
+    "CertificationTargetChangedError",
     "CompatibilityResult",
     "CorpusFingerprintSpec",
+    "DEC_CERTIFIABLE",
+    "DEC_EVIDENCE_CONFLICT",
+    "DEC_INSUFFICIENT_EVIDENCE",
+    "DEC_MIXED_HISTORY_SUSPECTED",
+    "DEC_NOT_CERTIFIABLE",
+    "DEC_REBUILD_REQUIRED",
     "EmbeddingFingerprintSpec",
     "FINGERPRINT_SCHEMA_VERSION",
     "FingerprintConfigurationError",
@@ -85,21 +116,27 @@ __all__ = [
     "FingerprintUnsupportedVersionError",
     "IndexCompatibilityError",
     "IndexFingerprintSpec",
+    "LegacyIndexNotCertifiableError",
     "SIDECAR_V1_NAME",
     "StoredIndexFingerprint",
+    "build_certification_manifest",
     "build_corpus_spec",
     "build_embedding_spec",
     "build_index_spec",
     "build_runtime_contracts_from_config",
     "canonical_json",
+    "certify_legacy_index",
     "doctor_fingerprint_report",
     "enforce_ingest_compatibility",
     "enforce_retrieval_compatibility",
     "ensure_fingerprint_initialized_for_empty_index",
+    "evaluate_certification",
     "evaluate_compatibility",
     "initialize_fingerprint_state",
+    "inspect_legacy_target",
     "load_authoritative_state",
     "sidecar_v1_path",
     "stored_envelope_from_specs",
+    "verify_target_unchanged",
     "write_sidecar_v1",
 ]
