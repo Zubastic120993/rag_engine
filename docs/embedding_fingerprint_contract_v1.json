@@ -1,0 +1,78 @@
+{
+  "fingerprint_schema_version": "embedding-fp-v1",
+  "document": "docs/EMBEDDING_FINGERPRINT_CONTRACT_V1.md",
+  "status": "design_only_non_runtime",
+  "hash": {
+    "algorithm": "sha256",
+    "encoding": "lowercase_hex",
+    "canonical_json": {
+      "sort_keys": true,
+      "separators": [",", ":"],
+      "ensure_ascii": false,
+      "allow_nan": false
+    }
+  },
+  "embedding_contract_fields": [
+    "fingerprint_schema_version",
+    "embedding_provider",
+    "embedding_model",
+    "embedding_model_revision",
+    "embedding_dimension",
+    "embedding_normalization",
+    "embedding_mode",
+    "tokenizer_id",
+    "max_input_tokens"
+  ],
+  "corpus_contract_fields": [
+    "identity_scheme_version",
+    "chunk_size",
+    "chunk_overlap",
+    "separators",
+    "normalization",
+    "min_chunk_chars",
+    "max_chunk_chars",
+    "extractor",
+    "extractor_version",
+    "embedded_text_composition_version"
+  ],
+  "index_contract_fields": [
+    "fingerprint_schema_version",
+    "embedding_fingerprint",
+    "corpus_fingerprint",
+    "vector_store",
+    "distance_space",
+    "physical_collection_name",
+    "index_schema_notes"
+  ],
+  "excluded_from_fingerprint": [
+    "llm_model",
+    "absolute_paths",
+    "venv",
+    "username",
+    "hostname",
+    "cwd",
+    "pid",
+    "timestamps",
+    "batch_size",
+    "worker_count",
+    "logging_level"
+  ],
+  "legacy_default_without_proof": "UNKNOWN_LEGACY",
+  "ingest_append_policy": {
+    "KNOWN_COMPATIBLE": "allow",
+    "UNKNOWN_LEGACY": "forbid",
+    "KNOWN_INCOMPATIBLE": "forbid",
+    "CORRUPT": "forbid",
+    "CONFLICT": "forbid"
+  },
+  "retrieval_policy": {
+    "KNOWN_COMPATIBLE": "allow",
+    "UNKNOWN_LEGACY": "allow_degraded_explicit_status",
+    "KNOWN_INCOMPATIBLE": "block",
+    "CORRUPT": "block",
+    "CONFLICT": "block"
+  },
+  "authoritative_storage_target": "metadata_registry",
+  "mirrors": ["schema_versioned_sidecar", "optional_chroma_collection_metadata"],
+  "sidecar_v0_is_not_embedding_fp_v1": true
+}
