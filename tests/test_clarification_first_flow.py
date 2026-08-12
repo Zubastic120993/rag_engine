@@ -208,9 +208,61 @@ def test_vague_query_then_confirmation_runs_fresh_retrieval_without_preconfirmat
 
     assert first.status == "clarification_required"
     assert first_calls == []
+    first_clar = (first.retrieval_diagnostics or {}).get("clarification") or {}
+    assert first_clar["fresh_retrieval_required"] is True
+    assert first_clar["preconfirmation_reuse_allowed"] is False
+    assert first.to_json()["clarification_state"]["fresh_retrieval_required"] is True
+    assert first.to_json()["clarification_state"]["preconfirmation_reuse_allowed"] is False
     assert second.status == "ok"
     assert second.resolved_scope == "me-c"
     assert second_calls == ["me-c"]
+    second_clar = (second.retrieval_diagnostics or {}).get("clarification") or {}
+    assert second_clar["fresh_retrieval_required"] is True
+    assert second_clar["preconfirmation_reuse_allowed"] is False
+    assert second_clar["technical_state"] == "USER_CONFIRMATION"
+
+
+def test_clarification_required_diagnostics_encode_fresh_retrieval_lifecycle(scopes_yaml):
+    """ORCH_112: raw clarification diagnostics match the lifecycle contract."""
+    from rag_engine.query import answer
+
+    with patch(
+        "rag_engine.query.retrieve_with_scores_and_diagnostics",
+        side_effect=AssertionError("clarification must not retrieve"),
+    ):
+        result = answer("What is the torque?")
+
+    assert result.status == "clarification_required"
+    assert result.gate == "clarification_required"
+    clar = (result.retrieval_diagnostics or {}).get("clarification") or {}
+    assert clar["technical_state"] == "QUERY_UNDERSPECIFIED"
+    assert clar["fresh_retrieval_required"] is True
+    assert clar["preconfirmation_reuse_allowed"] is False
+    payload = result.to_json()
+    assert payload["status"] == "clarification_required"
+    assert payload["clarification_state"]["fresh_retrieval_required"] is True
+    assert payload["clarification_state"]["preconfirmation_reuse_allowed"] is False
+    assert (
+        payload["retrieval_diagnostics"]["clarification"]["fresh_retrieval_required"]
+        == payload["clarification_state"]["fresh_retrieval_required"]
+    )
+
+
+def test_still_ambiguous_confirmation_keeps_fresh_retrieval_lifecycle(scopes_yaml):
+    """ORCH_112: USER_CONFIRMATION_STILL_AMBIGUOUS also requires fresh retrieval."""
+    from rag_engine.query import answer
+
+    with patch(
+        "rag_engine.query.retrieve_with_scores_and_diagnostics",
+        side_effect=AssertionError("ambiguous confirmation must not retrieve"),
+    ):
+        result = answer("What is the torque?", confirmation_text="Main engine")
+
+    assert result.status == "clarification_required"
+    clar = (result.retrieval_diagnostics or {}).get("clarification") or {}
+    assert clar["technical_state"] == "USER_CONFIRMATION_STILL_AMBIGUOUS"
+    assert clar["fresh_retrieval_required"] is True
+    assert clar["preconfirmation_reuse_allowed"] is False
 
 
 def test_clarification_status_uses_no_coverage_exit_code_in_cli(scopes_yaml, capsys):

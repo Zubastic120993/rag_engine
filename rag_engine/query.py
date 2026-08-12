@@ -1404,10 +1404,14 @@ def _clarification_result(
 ) -> AskResult:
     diagnostics = _empty_retrieval_diagnostics()
     diagnostics["gate"] = "clarification_required"
+    # Lifecycle contract (schema v4 / Phase 11A): any clarification_required
+    # response means confirmation continuation must run a fresh constrained
+    # retrieval and must not reuse pre-confirmation evidence. technical_state
+    # already names the stage; do not conflate it with this invariant.
     diagnostics["clarification"] = {
         "technical_state": technical_state,
         "prompt": prompt,
-        "fresh_retrieval_required": technical_state == "USER_CONFIRMATION",
+        "fresh_retrieval_required": True,
         "preconfirmation_reuse_allowed": False,
     }
     return AskResult(
