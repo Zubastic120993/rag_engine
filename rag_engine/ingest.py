@@ -139,6 +139,16 @@ def _iter_docs() -> list[tuple[Path, str]]:
     return found
 
 
+def load_source_documents(path: Path) -> list[Document]:
+    """Public loader used by certified rebuild and legacy ingest."""
+    return _load_documents(path)
+
+
+def chunk_documents(docs):
+    """Public chunk filter used by certified rebuild and legacy ingest."""
+    return _clean_chunks(docs)
+
+
 def _load_documents(path: Path) -> list[Document]:
     suffix = path.suffix.lower()
     if suffix == ".pdf":

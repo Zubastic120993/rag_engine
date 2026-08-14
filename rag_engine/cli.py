@@ -552,13 +552,118 @@ def cmd_fingerprint(argv: list[str]) -> int:
     return EXIT_ERROR
 
 
+def cmd_generation(argv: list[str]) -> int:
+    """Certified new-generation tools. Never target production .rag_db by default."""
+    parser = argparse.ArgumentParser(
+        prog="rag-engine generation",
+        description=(
+            "Certified generation init/inspect/compare/build. "
+            "--persist-dir is required. There is no command that certifies "
+            "the current production .rag_db."
+        ),
+    )
+    sub = parser.add_subparsers(dest="gen_cmd", required=True)
+
+    p_init = sub.add_parser("init", help="Initialize empty certified generation (v1 + checkpoint).")
+    p_init.add_argument("--persist-dir", required=True, help="Explicit target persist directory.")
+    p_init.add_argument("--corpus-manifest", required=True)
+    p_init.add_argument("--registry-db", default=None)
+    p_init.add_argument("--json", action="store_true")
+
+    p_inspect = sub.add_parser("inspect", help="Read-only generation inspection.")
+    p_inspect.add_argument("--persist-dir", required=True)
+    p_inspect.add_argument("--registry-db", default=None)
+    p_inspect.add_argument("--json", action="store_true")
+
+    p_cmp = sub.add_parser("compare", help="Read-only structural old vs new compare.")
+    p_cmp.add_argument("--old-persist-dir", required=True)
+    p_cmp.add_argument("--new-persist-dir", required=True)
+    p_cmp.add_argument("--json", action="store_true")
+
+    p_val = sub.add_parser("validate-target", help="Refuse unsafe/legacy/omitted targets.")
+    p_val.add_argument("--persist-dir", required=True)
+    p_val.add_argument("--json", action="store_true")
+
+    p_build = sub.add_parser(
+        "build",
+        help="Certified rebuild into an explicit empty generation directory.",
+    )
+    p_build.add_argument("--persist-dir", required=True)
+    p_build.add_argument("--corpus-manifest", required=True)
+    p_build.add_argument("--registry-db", default=None)
+    p_build.add_argument("--json", action="store_true")
+
+    args = parser.parse_args(argv)
+    from rag_engine.certified_generation import (
+        CertifiedGenerationError,
+        ExplicitTargetRequiredError,
+        LegacyPathForbiddenError,
+        assert_safe_generation_path,
+        build_certified_generation,
+        compare_generations,
+        init_certified_generation,
+        inspect_generation,
+        require_explicit_persist_dir,
+    )
+
+    try:
+        if args.gen_cmd == "validate-target":
+            persist = require_explicit_persist_dir(args.persist_dir)
+            persist = assert_safe_generation_path(persist)
+            payload = {"ok": True, "persist_dir": str(persist), "legacy_forbidden": True}
+        elif args.gen_cmd == "init":
+            result = init_certified_generation(
+                persist_dir=args.persist_dir,
+                corpus_manifest=args.corpus_manifest,
+                registry_db=args.registry_db,
+            )
+            payload = {
+                "ok": True,
+                "persist_dir": result["persist_dir"],
+                "generation_id": result["generation_id"],
+                "checkpoint_state": result["checkpoint"]["state"],
+            }
+        elif args.gen_cmd == "inspect":
+            payload = inspect_generation(args.persist_dir, registry_db=args.registry_db)
+        elif args.gen_cmd == "compare":
+            payload = compare_generations(args.old_persist_dir, args.new_persist_dir)
+        elif args.gen_cmd == "build":
+            result = build_certified_generation(
+                persist_dir=args.persist_dir,
+                corpus_manifest=args.corpus_manifest,
+                registry_db=args.registry_db,
+            )
+            payload = {
+                "ok": True,
+                "persist_dir": result["persist_dir"],
+                "generation_id": result["generation_id"],
+                "checkpoint_state": result["checkpoint_state"],
+                "vector_count": result["vector_count"],
+                "accepted": False,
+            }
+        else:
+            return EXIT_ERROR
+    except (ExplicitTargetRequiredError, LegacyPathForbiddenError, CertifiedGenerationError) as exc:
+        print(str(exc), file=sys.stderr)
+        return EXIT_ERROR
+
+    if getattr(args, "json", False):
+        _print_json(payload)
+    else:
+        for key, value in payload.items():
+            if key in {"units", "manifest", "envelope", "old", "new"}:
+                continue
+            print(f"{key}: {value}")
+    return EXIT_OK
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] in ("-h", "--help"):
         print(
             "usage: rag-engine <ask|sync|ingest|gaps|doctor|explain-scope|"
             "explain-alias|scope-stats|reconcile-path|list-scopes|paths|"
-            "backfill|eval|fingerprint> …\n"
+            "backfill|eval|fingerprint|generation> …\n"
             "  ask [--scope NAME] [--json] [--suggest-scopes] [--model NAME] QUESTION\n"
             "  sync | ingest [--force] [--max-new N]\n"
             "  gaps [--limit N] [--json]\n"
@@ -575,7 +680,13 @@ def main(argv: list[str] | None = None) -> int:
             "  fingerprint certify-legacy --persist-dir DIR --manifest PATH "
             "[--reason TEXT] [--apply] [--json]\n"
             "    (dry-run default; does not rebuild vectors; runtime config alone "
-            "is insufficient)\n",
+            "is insufficient)\n"
+            "  generation init --persist-dir DIR --corpus-manifest PATH [--registry-db PATH] [--json]\n"
+            "  generation inspect --persist-dir DIR [--json]\n"
+            "  generation compare --old-persist-dir DIR --new-persist-dir DIR [--json]\n"
+            "  generation validate-target --persist-dir DIR [--json]\n"
+            "  generation build --persist-dir DIR --corpus-manifest PATH [--registry-db PATH] [--json]\n"
+            "    (--persist-dir required; refuses production .rag_db; does not certify legacy)\n",
             file=sys.stderr,
         )
         return EXIT_OK
@@ -619,6 +730,8 @@ def main(argv: list[str] | None = None) -> int:
         return eval_main(rest)
     if cmd == "fingerprint":
         return cmd_fingerprint(rest)
+    if cmd == "generation":
+        return cmd_generation(rest)
     print(f"unknown command: {cmd}", file=sys.stderr)
     return EXIT_ERROR
 

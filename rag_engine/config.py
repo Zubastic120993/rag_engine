@@ -58,6 +58,9 @@ def chroma_client_settings():
 # just because its name happens to contain the substring "venv".
 SKIP_DIR_PARTS_EXACT = (
     ".rag_db",
+    ".rag_db_generations",
+    ".rag_state",
+    ".intake_state",
     ".obsidian",
     "_Inbox",
     "Tools",

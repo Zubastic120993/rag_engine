@@ -43,17 +43,25 @@ def read_fingerprint() -> dict[str, Any] | None:
     return data if isinstance(data, dict) else None
 
 
-def write_fingerprint(extra: dict[str, Any] | None = None) -> Path:
-    """Persist live fingerprint. Call from ingest only — not from doctor."""
+def write_fingerprint_at(persist: Path, extra: dict[str, Any] | None = None) -> Path:
+    """Write a v0 compatibility snapshot beside an explicit persist dir.
+
+    Never a certification authority. Certified generations use embedding-fp-v1.
+    """
     payload = live_fingerprint()
     if extra:
         payload.update(extra)
-    path = fingerprint_path()
+    path = Path(persist) / FINGERPRINT_NAME
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     tmp.replace(path)
     return path
+
+
+def write_fingerprint(extra: dict[str, Any] | None = None) -> Path:
+    """Persist live fingerprint. Call from ingest only — not from doctor."""
+    return write_fingerprint_at(persist_dir(), extra)
 
 
 def compare_fingerprint(
