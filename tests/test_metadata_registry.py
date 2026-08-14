@@ -374,6 +374,9 @@ def test_import_boundary_subprocess() -> None:
     script = r"""
 import sys, os
 from pathlib import Path
+prod = Path('/Users/vladymyrzub/CE_Library/.rag_state')
+existed = prod.exists()
+mtime = prod.stat().st_mtime_ns if existed else None
 before = set(sys.modules)
 import rag_engine.metadata_registry as mr
 after = set(sys.modules)
@@ -381,9 +384,10 @@ loaded = sorted(after - before)
 forbidden = [n for n in loaded if any(x in n.lower() for x in ('chromadb','langchain','openai'))]
 print('VERSION', mr.CURRENT_SCHEMA_VERSION)
 print('FORBIDDEN', ','.join(forbidden))
-# ensure no .rag_state created under home CE library by import
-prod = Path('/Users/vladymyrzub/CE_Library/.rag_state')
-print('RAG_STATE_EXISTS', prod.exists())
+# POST_B6: .rag_state may already exist; import must not create or mutate it.
+print('IMPORT_CREATED_RAG_STATE', (not existed) and prod.exists())
+print('RAG_STATE_MTIME_UNCHANGED', (not existed and not prod.exists()) or (existed and prod.stat().st_mtime_ns == mtime))
+print('RAG_STATE_EXISTS_AFTER', prod.exists())
 """
     env = os.environ.copy()
     env.pop("PYTHONPATH", None)
@@ -399,4 +403,5 @@ print('RAG_STATE_EXISTS', prod.exists())
     assert proc.returncode == 0, proc.stderr
     assert "VERSION 3" in proc.stdout
     assert "FORBIDDEN \n" in proc.stdout or proc.stdout.strip().endswith("FORBIDDEN")
-    assert "RAG_STATE_EXISTS False" in proc.stdout
+    assert "IMPORT_CREATED_RAG_STATE False" in proc.stdout
+    assert "RAG_STATE_MTIME_UNCHANGED True" in proc.stdout

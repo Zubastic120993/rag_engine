@@ -588,6 +588,10 @@ def test_determinism_repeat(tmp_path: Path) -> None:
 def test_import_boundary_subprocess() -> None:
     script = r"""
 import sys
+from pathlib import Path
+prod = Path('/Users/vladymyrzub/CE_Library/.rag_state')
+existed = prod.exists()
+mtime = prod.stat().st_mtime_ns if existed else None
 before = set(sys.modules)
 import rag_engine.reconciliation as rec
 after = set(sys.modules)
@@ -595,8 +599,9 @@ loaded = sorted(after - before)
 forbidden = [n for n in loaded if any(x in n.lower() for x in ('chromadb','openai','langchain'))]
 print('IMPORTED_OK')
 print('FORBIDDEN', ','.join(forbidden))
-from pathlib import Path
-print('RAG_STATE', Path('/Users/vladymyrzub/CE_Library/.rag_state').exists())
+# POST_B6: .rag_state may already exist; import must not create or mutate it.
+print('IMPORT_CREATED_RAG_STATE', (not existed) and prod.exists())
+print('RAG_STATE_MTIME_UNCHANGED', (not existed and not prod.exists()) or (existed and prod.stat().st_mtime_ns == mtime))
 """
     env = os.environ.copy()
     env.pop("PYTHONPATH", None)
@@ -612,7 +617,8 @@ print('RAG_STATE', Path('/Users/vladymyrzub/CE_Library/.rag_state').exists())
     assert proc.returncode == 0, proc.stderr
     assert "IMPORTED_OK" in proc.stdout
     assert "FORBIDDEN \n" in proc.stdout or proc.stdout.strip().endswith("FORBIDDEN")
-    assert "RAG_STATE False" in proc.stdout
+    assert "IMPORT_CREATED_RAG_STATE False" in proc.stdout
+    assert "RAG_STATE_MTIME_UNCHANGED True" in proc.stdout
 
 
 def test_precedence_hash_over_metadata(tmp_path: Path) -> None:

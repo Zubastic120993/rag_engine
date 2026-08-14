@@ -1,6 +1,8 @@
 """B6I certified production target guards. Isolated tmp / path classification only.
 
-Never creates production ``.rag_db_generations`` or ``.rag_state``.
+POST_B6: production ``.rag_db_generations`` and ``.rag_state`` exist as legitimate
+B6 artifacts. Guards must classify paths without creating test children or mutating
+those directories. Do not assert global absence of post-B6 production state.
 """
 
 from __future__ import annotations
@@ -36,12 +38,33 @@ PROD_SIBLING = PRODUCTION_LIBRARY_ROOT / "raggen_TEST_123"
 PLANNED_B6_CHILD = (
     PRODUCTION_GENERATIONS_ROOT / "raggen_20260814T170712Z_698e0df44604"
 )
+ACCEPTED_B6_CHILD = (
+    PRODUCTION_GENERATIONS_ROOT / "raggen_20260814T182037Z_698e0df44604"
+)
 
 
 def _lib(tmp_path: Path) -> Path:
     lib = tmp_path / "library"
     lib.mkdir()
     return lib
+
+
+def _assert_post_b6_roots_present() -> None:
+    """Closed B6 facts: generations root + rag_state are legitimate production state."""
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
+    assert not PRODUCTION_GENERATIONS_ROOT.is_symlink()
+    assert PRODUCTION_RAG_STATE.is_dir()
+    assert not PRODUCTION_RAG_STATE.is_symlink()
+    assert ACCEPTED_B6_CHILD.is_dir()
+    assert (ACCEPTED_B6_CHILD / "index_embedding_fingerprint_v1.json").is_file()
+    assert PRODUCTION_REGISTRY_DB.is_file()
+    assert PRODUCTION_RAG_DB.is_dir()
+    assert not (PRODUCTION_RAG_DB / "index_embedding_fingerprint_v1.json").exists()
+
+
+def _assert_guard_did_not_create_test_child() -> None:
+    assert not PROD_CHILD.exists()
+    assert not PROD_SIBLING.exists()
 
 
 def test_explicit_persist_dir_still_required() -> None:
@@ -57,14 +80,16 @@ def test_allow_production_generation_child_without_creating() -> None:
     allowed = assert_certified_persist_dir(PROD_CHILD)
     assert allowed == PROD_CHILD.resolve()
     assert is_contained_generation_child(PROD_CHILD) is True
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
-    assert not PRODUCTION_RAG_STATE.exists()
+    _assert_post_b6_roots_present()
+    _assert_guard_did_not_create_test_child()
 
 
 def test_allow_planned_b6_generation_child_without_creating() -> None:
     allowed = assert_certified_persist_dir(PLANNED_B6_CHILD)
     assert allowed == PLANNED_B6_CHILD.resolve()
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    _assert_post_b6_roots_present()
+    # Path classification must not mkdir the stopped-B6 planned child.
+    assert not PLANNED_B6_CHILD.exists()
 
 
 def test_reject_production_generations_root() -> None:
@@ -73,7 +98,8 @@ def test_reject_production_generations_root() -> None:
     with pytest.raises(UnsafeGenerationPathError, match="root"):
         assert_not_production_generations_root(PRODUCTION_GENERATIONS_ROOT)
     assert is_contained_generation_child(PRODUCTION_GENERATIONS_ROOT) is False
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    # POST_B6: root exists but remains forbidden as persist-dir.
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
 
 
 def test_reject_production_rag_db() -> None:
@@ -129,14 +155,16 @@ def test_path_traversal_cannot_escape_to_rag_db() -> None:
     with pytest.raises(LegacyPathForbiddenError):
         assert_certified_persist_dir(escaped)
     assert is_contained_generation_child(escaped) is False
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
+    _assert_guard_did_not_create_test_child()
 
 
 def test_path_traversal_cannot_escape_to_corpus() -> None:
     escaped = PRODUCTION_GENERATIONS_ROOT / "raggen_TEST_123" / ".." / ".." / "00_Career"
     with pytest.raises(UnsafeGenerationPathError):
         assert_certified_persist_dir(escaped)
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
+    _assert_guard_did_not_create_test_child()
 
 
 def test_symlink_escape_to_rag_db_rejected(tmp_path: Path) -> None:
@@ -167,14 +195,19 @@ def test_allow_exact_governed_production_registry_without_creating() -> None:
     assert allowed == PRODUCTION_REGISTRY_DB.resolve()
     assert assert_temp_registry_path(PRODUCTION_REGISTRY_DB) == allowed
     assert is_governed_registry_shape(PRODUCTION_REGISTRY_DB) is True
-    assert not PRODUCTION_RAG_STATE.exists()
+    # POST_B6: production registry exists; classification must not mkdir test children.
+    assert PRODUCTION_RAG_STATE.is_dir()
+    assert PRODUCTION_REGISTRY_DB.is_file()
+    _assert_guard_did_not_create_test_child()
 
 
 def test_allow_fixture_governed_registry_shape(tmp_path: Path) -> None:
     lib = _lib(tmp_path)
     reg = lib / ".rag_state" / "metadata_registry" / "metadata_registry_v1.sqlite3"
     assert assert_certified_registry_path(reg) == reg.resolve()
-    assert not PRODUCTION_RAG_STATE.exists()
+    # Fixture classification must not mutate production .rag_state.
+    assert PRODUCTION_RAG_STATE.is_dir()
+    _assert_guard_did_not_create_test_child()
 
 
 def test_reject_registry_under_rag_db(tmp_path: Path) -> None:
@@ -252,9 +285,10 @@ def test_isolated_tmp_registry_non_governed_filename_allowed(tmp_path: Path) -> 
 def test_production_registry_only_when_explicitly_passed() -> None:
     from rag_engine.certified_generation.registry_bootstrap import bootstrap_registry_db
 
-    # Classification of the production target does not create it.
+    # Classification of the production target does not create test children.
     assert_certified_registry_path(PRODUCTION_REGISTRY_DB)
-    assert not PRODUCTION_RAG_STATE.exists()
+    assert PRODUCTION_RAG_STATE.is_dir()
+    _assert_guard_did_not_create_test_child()
     # bootstrap is not invoked here; callers must pass the path explicitly.
     assert bootstrap_registry_db.__code__.co_varnames[0] == "registry_db"
 
@@ -265,10 +299,16 @@ def test_import_does_not_mkdir_rag_state() -> None:
     import rag_engine.certified_generation as cg
     import rag_engine.certified_generation.registry_bootstrap as rb
 
+    # POST_B6: roots exist; reload must not create test children or remove roots.
+    state_mtime = PRODUCTION_RAG_STATE.stat().st_mtime_ns
+    gens_mtime = PRODUCTION_GENERATIONS_ROOT.stat().st_mtime_ns
     importlib.reload(cg)
     importlib.reload(rb)
-    assert not PRODUCTION_RAG_STATE.exists()
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    assert PRODUCTION_RAG_STATE.is_dir()
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
+    assert PRODUCTION_RAG_STATE.stat().st_mtime_ns == state_mtime
+    assert PRODUCTION_GENERATIONS_ROOT.stat().st_mtime_ns == gens_mtime
+    _assert_guard_did_not_create_test_child()
 
 
 def test_cli_validate_target_allows_generation_child() -> None:
@@ -276,7 +316,8 @@ def test_cli_validate_target_allows_generation_child() -> None:
 
     rc = cmd_generation(["validate-target", "--persist-dir", str(PROD_CHILD)])
     assert rc == EXIT_OK
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
+    _assert_guard_did_not_create_test_child()
 
 
 def test_cli_validate_target_rejects_generations_root() -> None:
@@ -284,7 +325,8 @@ def test_cli_validate_target_rejects_generations_root() -> None:
 
     rc = cmd_generation(["validate-target", "--persist-dir", str(PRODUCTION_GENERATIONS_ROOT)])
     assert rc == EXIT_ERROR
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
+    # POST_B6: root remains present; validate-target still rejects it as persist-dir.
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
 
 
 def test_cli_validate_target_rejects_production_rag_db() -> None:
@@ -356,8 +398,10 @@ def test_cli_validate_and_init_share_child_semantics(tmp_path: Path, monkeypatch
         utcstamp="20260814T172132Z",
     )
     assert Path(result["persist_dir"]) == child.resolve()
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
-    assert not PRODUCTION_RAG_STATE.exists()
+    assert PRODUCTION_GENERATIONS_ROOT.is_dir()
+    assert PRODUCTION_RAG_STATE.is_dir()
+    # Isolated init must not create the production test child path.
+    _assert_guard_did_not_create_test_child()
 
 
 def test_registry_bootstrap_apis_share_policy() -> None:
@@ -378,9 +422,16 @@ def test_registry_bootstrap_apis_share_policy() -> None:
     assert "assert_temp_registry_path" in src2
 
 
-def test_production_paths_still_absent_after_guard_calls() -> None:
+def test_production_paths_unchanged_by_guard_calls() -> None:
+    """POST_B6: production roots exist; guard classification must not mutate them."""
+    _assert_post_b6_roots_present()
+    gens_mtime = PRODUCTION_GENERATIONS_ROOT.stat().st_mtime_ns
+    state_mtime = PRODUCTION_RAG_STATE.stat().st_mtime_ns
+    reg_mtime = PRODUCTION_REGISTRY_DB.stat().st_mtime_ns
     assert_certified_persist_dir(PROD_CHILD)
     assert_certified_registry_path(PRODUCTION_REGISTRY_DB)
-    assert not PRODUCTION_GENERATIONS_ROOT.exists()
-    assert not PRODUCTION_RAG_STATE.exists()
+    _assert_guard_did_not_create_test_child()
+    assert PRODUCTION_GENERATIONS_ROOT.stat().st_mtime_ns == gens_mtime
+    assert PRODUCTION_RAG_STATE.stat().st_mtime_ns == state_mtime
+    assert PRODUCTION_REGISTRY_DB.stat().st_mtime_ns == reg_mtime
     assert not (PRODUCTION_RAG_DB / "index_embedding_fingerprint_v1.json").exists()

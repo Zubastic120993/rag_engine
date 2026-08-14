@@ -415,7 +415,12 @@ def test_registry_bootstrap_temp_only(isolated_env: Path) -> None:
         utcstamp="20260814T164622Z",
     )
     assert reg.is_file()
-    assert not Path("/Users/vladymyrzub/CE_Library/.rag_state").exists()
+    # POST_B6: production .rag_state may exist; bootstrap target must stay isolated.
+    prod_state = Path("/Users/vladymyrzub/CE_Library/.rag_state")
+    assert reg.resolve() != (
+        prod_state / "metadata_registry" / "metadata_registry_v1.sqlite3"
+    ).resolve()
+    assert isolated_env in reg.resolve().parents
     assert result["registry"]["counts"]["versions"] == 1
     from rag_engine.stable_identity.ids import subject_id_pending
     from rag_engine.metadata_registry import open_registry
