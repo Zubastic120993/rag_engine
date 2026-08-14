@@ -300,7 +300,7 @@ def test_json_contract_ok_payload(scopes_yaml):
     assert set(j["timings"]) == TIMING_KEYS
     assert isinstance(j["sources"], list)
     src = j["sources"][0]
-    assert set(src) == {
+    required_source_keys = {
         "path",
         "page",
         "page_index",
@@ -309,6 +309,22 @@ def test_json_contract_ok_payload(scopes_yaml):
         "authority_rank",
         "machine_transcribed",
     }
+    # Schema 4 optional provenance fields (B7) may be present or absent.
+    optional_provenance_keys = {
+        "document_id",
+        "source_hash",
+        "chunk_id",
+        "subject_id",
+        "subject_status",
+        "document_type",
+        "document_number",
+        "title",
+        "scope",
+        "alias_count",
+        "aliases",
+    }
+    assert required_source_keys <= set(src)
+    assert set(src) <= (required_source_keys | optional_provenance_keys)
     assert j["gate"] == "ok"
     assert j["retrieval_evidence"] == j["sources"]
     assert j["answer"] is None

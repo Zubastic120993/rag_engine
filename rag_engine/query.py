@@ -187,6 +187,20 @@ class AskResult:
             if name and name not in seen_docs:
                 seen_docs.add(name)
                 document_names.append(name)
+        retrieval_meta: dict[str, Any] = {
+            "best_distance": self.best_distance,
+            "score_floor": self.score_floor,
+            "gate": self.gate,
+            "diagnostics": self.retrieval_diagnostics or {},
+        }
+        diag = self.retrieval_diagnostics or {}
+        for key in (
+            "provenance_level",
+            "registry_enrichment_status",
+            "embedding_generation_id",
+        ):
+            if diag.get(key) is not None:
+                retrieval_meta[key] = diag[key]
         payload: dict[str, Any] = {
             "schema_version": SCHEMA_VERSION,
             "status": self.status,
@@ -202,12 +216,7 @@ class AskResult:
             "page_numbers": page_numbers,
             "document_names": document_names,
             "clarification_state": clarification if isinstance(clarification, dict) else None,
-            "retrieval_metadata": {
-                "best_distance": self.best_distance,
-                "score_floor": self.score_floor,
-                "gate": self.gate,
-                "diagnostics": self.retrieval_diagnostics or {},
-            },
+            "retrieval_metadata": retrieval_meta,
             "generation_owner": GENERATION_OWNER,
             "retrieval_evidence": self.retrieval_evidence,
             "retrieval_diagnostics": self.retrieval_diagnostics,
@@ -1050,14 +1059,35 @@ def retrieve(question: str, scope: str | None = None, k: int | None = None):
     return [doc for doc, _ in retrieve_with_scores(question, scope=scope, k=k)]
 
 
-def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
+def _provenance_bundle_for_pairs(pairs: list[tuple[Any, float]]):
+    """Load optional registry enrichment once per projection (fail-open)."""
+    from rag_engine.config import library_root
+    from rag_engine.metadata_registry.query_projection import load_provenance_bundle
+
+    return load_provenance_bundle(pairs, library_root=library_root())
+
+
+def _sources_from_pairs(
+    pairs: list[tuple[Any, float]],
+    *,
+    provenance: Any | None = None,
+) -> list[dict]:
     """Build human-facing source citations from retrieval pairs.
 
     Chroma / Document metadata ``page`` remains the internal 0-based
     ``page_index`` for PDFs. Public source objects emit:
     * ``page`` — 1-based human/viewer citation page
     * ``page_index`` — internal stored index (when parseable)
+
+    B7: optional certified provenance (document_id / source_hash / chunk_id)
+    and registry enrichment (subject/aliases/…) are projected when present.
+    Missing fields are omitted — never invented.
     """
+    from rag_engine.metadata_registry.query_projection import apply_provenance_to_entry
+
+    if provenance is None and pairs:
+        provenance = _provenance_bundle_for_pairs(pairs)
+
     sources: list[dict] = []
     seen: set[tuple] = set()
     for doc, distance in pairs:
@@ -1086,12 +1116,22 @@ def _sources_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
         else:
             # Preserve opaque / missing values without inventing a page number.
             entry["page"] = stored_page
+        apply_provenance_to_entry(entry, meta, provenance, include_chunk_id=True)
         sources.append(entry)
     return sources
 
 
-def _chunks_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
+def _chunks_from_pairs(
+    pairs: list[tuple[Any, float]],
+    *,
+    provenance: Any | None = None,
+) -> list[dict]:
     """Build evidence chunks (citation metadata + text) for Hermes generation."""
+    from rag_engine.metadata_registry.query_projection import apply_provenance_to_entry
+
+    if provenance is None and pairs:
+        provenance = _provenance_bundle_for_pairs(pairs)
+
     chunks: list[dict] = []
     for doc, distance in pairs:
         meta = enrich_metadata(doc.metadata)
@@ -1112,6 +1152,7 @@ def _chunks_from_pairs(pairs: list[tuple[Any, float]]) -> list[dict]:
             entry["page_index"] = fields["page_index"]
         else:
             entry["page"] = stored_page
+        apply_provenance_to_entry(entry, meta, provenance, include_chunk_id=True)
         chunks.append(entry)
     return chunks
 
@@ -1606,7 +1647,17 @@ def answer(
             gate=resolved_gate,
         )
 
-    retrieval_evidence = _sources_from_pairs(pairs)
+    # One registry batch for evidence + final sources/chunks (fail-open).
+    provenance = _provenance_bundle_for_pairs(pairs)
+    retrieval_diag = {
+        **(retrieval_diag or {}),
+        "provenance_level": provenance.provenance_level,
+        "registry_enrichment_status": provenance.registry_status,
+    }
+    if provenance.embedding_generation_id:
+        retrieval_diag["embedding_generation_id"] = provenance.embedding_generation_id
+
+    retrieval_evidence = _sources_from_pairs(pairs, provenance=provenance)
     pairs, retrieval_diag = _apply_final_confidence_gate(
         pairs,
         diagnostics=retrieval_diag,
@@ -1631,8 +1682,18 @@ def answer(
             gate="final_confidence_failed",
         )
 
-    sources = _sources_from_pairs(pairs)
-    chunks = _chunks_from_pairs(pairs)
+    # Re-bind enrichment to the post-gate pair set (same docs; avoids stale IDs).
+    provenance = _provenance_bundle_for_pairs(pairs)
+    retrieval_diag = {
+        **(retrieval_diag or {}),
+        "provenance_level": provenance.provenance_level,
+        "registry_enrichment_status": provenance.registry_status,
+    }
+    if provenance.embedding_generation_id:
+        retrieval_diag["embedding_generation_id"] = provenance.embedding_generation_id
+
+    sources = _sources_from_pairs(pairs, provenance=provenance)
+    chunks = _chunks_from_pairs(pairs, provenance=provenance)
     context = _build_retrieval_context(pairs)
     conservative_success = retrieval_is_conservative_success(pairs)
 
