@@ -1,7 +1,17 @@
 # RAG Stable Identifier Specification v1
 
+> **HISTORICAL / SUPERSEDED — NOT CURRENT IDENTITY AUTHORITY (Programme D / D1)**
+>
+> This document records the pre-`docrev:` UUID-oriented identifier design (revision 2026-07-31).
+>
+> It is retained for historical traceability only. **Do not** treat it as current production identity authority.
+>
+> Current stable identity authority: `docs/STABLE_IDENTITY_SPEC_V1.md` (and certified-generation implementation).
+>
+> Body below is intentionally unchanged.
+
 Revision date: 2026-07-31
-Status: Approved for v1 design
+Status: Approved for v1 design (historical)
 
 ## Purpose
 Define stable identifier formats and generation rules for registry and future governed Chroma metadata.

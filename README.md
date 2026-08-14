@@ -14,6 +14,16 @@ Hermes → ce_rag_query → rag_engine (retrieve evidence) → Hermes-selected m
 - Hermes owns natural-language generation and evidence-sufficiency judgment.
 - Engine-side OpenAI/Claude/Gemini chat generation is not used on the ask path.
 
+### Current production layout (post B6C / B7 — established facts only)
+
+| Role | Location | Notes |
+|------|----------|-------|
+| **LIVE** persist dir | Certified generation under `$CE_LIBRARY_ROOT/.rag_db_generations/…` | Selected at runtime by `RAG_DB_PATH` / `persist_dir()` (Hermes `.env` in production) |
+| **ROLLBACK** index | `$CE_LIBRARY_ROOT/.rag_db` | Legacy UUID-era index retained for rollback; not the sole live store |
+| **REGISTRY** | `$CE_LIBRARY_ROOT/.rag_state/metadata_registry/metadata_registry_v1.sqlite3` | Governed metadata state (separate from the vector persist dir) |
+
+Stable document/chunk IDs (`docrev:<sha256>`, `chunk:…`) live in the certified generation. Do not assume path == identity. Do not treat the Intake hash cache as RAG authority (live Intake cache: `.intake_state/cache/intake_hash_index.json`).
+
 ## Install
 
 ```bash
@@ -29,7 +39,7 @@ python -m venv venv
 | Variable | Default | Meaning |
 |----------|---------|---------|
 | `CE_LIBRARY_ROOT` | `~/CE_Library` | Client document tree |
-| `RAG_DB_PATH` | `$CE_LIBRARY_ROOT/.rag_db` | Chroma index |
+| `RAG_DB_PATH` | `$CE_LIBRARY_ROOT/.rag_db` | Chroma persist dir (default/rollback path; production Hermes may point at a certified generation) |
 | `RAG_EMBED_MODEL` | `mxbai-embed-large` | Ollama embedding model for retrieval |
 | `RAG_OLLAMA_TIMEOUT` | `300` | Seconds before ask fails with exit 1 |
 | `RAG_SUGGEST_SCORE_MAX` | `1.2` | Max Chroma distance for `--suggest-scopes` hits |

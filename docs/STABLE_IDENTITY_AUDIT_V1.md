@@ -1,5 +1,15 @@
 # STABLE IDENTITY AUDIT V1
 
+> **SUPERSEDED FOR CURRENT PRODUCTION IDENTITY AUTHORITY (Programme D / D1)**
+>
+> Historical design/audit document (Phase 1 P0, 2026-08-11). Conclusions below describe the system **as audited at that date** and are preserved as evidence.
+>
+> **Not** current production identity authority. Current production authority is `docs/STABLE_IDENTITY_SPEC_V1.md` plus the certified-generation implementation (B6C/B7).
+>
+> Current production uses `docrev:<sha256>` document IDs and stable `chunk:<…>` IDs in the live certified generation; registry state lives under `.rag_state/`; live persist dir is selected by `RAG_DB_PATH` (not necessarily `.rag_db`).
+>
+> Do not rewrite the historical body below as if those findings were wrong at the time.
+
 **Phase:** Phase 1 (P0) — Stable Document / Chunk Identity
 **Date:** 2026-08-11
 **Repository HEAD:** `84a178065a1f23ddf312f48fbe7775fd5e5f4711` (`main`)
@@ -7,6 +17,17 @@
 **Companion artifacts:**
 - `docs/STABLE_IDENTITY_SPEC_V1.md` (frozen contract)
 - `docs/STABLE_IDENTITY_PHASE2_PLAN.md` (bounded implementation plan)
+
+---
+
+## 0. Current-state pointer (D1 hygiene — do not treat as rewriting §1–§N)
+
+| Topic | Historical audit claim (2026-08-11) | Current production (post B6C/B7) |
+|-------|-------------------------------------|----------------------------------|
+| Live Chroma root | `.rag_db` | Certified generation via `RAG_DB_PATH`; `.rag_db` = rollback |
+| Registry | absent | `.rag_state/metadata_registry/metadata_registry_v1.sqlite3` |
+| Vector / chunk IDs | UUID4 | Stable `docrev:` / `chunk:` in certified generation; legacy UUID index retained for rollback |
+| `intake_hash_index.json` | listed as `.rag_db` sidecar | Live Intake cache: `.intake_state/cache/intake_hash_index.json` (retired under `.rag_db`; not RAG authority) |
 
 ---
 
@@ -67,7 +88,7 @@ Production file mtimes after this audit (unchanged by audit reads):
 | Governed `document_id` / `document_version_id` | docs + branch `identifiers.py` | UUID / uuid5 | Registry (not live) | Design only | Design intent: yes | **No** live | Scaffold not on `main` |
 | Governed `chunk_id` | docs only | Speculative deterministic | — | Design only | Design intent: yes | **No** | Branch identifiers lack `chunk_id` helper |
 | `content_hash` / text hash | docs; registry schema optional | Normalized text | Registry design | Design only | — | **No** in production | **NOT IMPLEMENTED** in live ingest |
-| `intake_hash_index.json` | `.rag_db` sidecar | File sha256 + size/mtime | Sidecar JSON | Intake tooling | Content-stable | Yes | **Not used by** `rag_engine/ingest.py` |
+| `intake_hash_index.json` | historically co-located under `.rag_db` (audit-time); **current live** = `.intake_state/cache/` (Programme C); retired `.rag_db` path ABSENT | File sha256 + size/mtime | Sidecar JSON | Intake tooling (not RAG authority) | Content-stable | Yes (at audit); path superseded | **Not used by** `rag_engine/ingest.py` |
 | Probe id | doctor persistence probe | Temporary | May leave residue | Probe only | N/A | 1 orphan embedding | Not business identity |
 
 ### Evidence map (code)
