@@ -598,18 +598,16 @@ def cmd_generation(argv: list[str]) -> int:
         CertifiedGenerationError,
         ExplicitTargetRequiredError,
         LegacyPathForbiddenError,
-        assert_safe_generation_path,
         build_certified_generation,
         compare_generations,
         init_certified_generation,
         inspect_generation,
-        require_explicit_persist_dir,
     )
+    from rag_engine.certified_generation.paths import assert_certified_persist_dir
 
     try:
         if args.gen_cmd == "validate-target":
-            persist = require_explicit_persist_dir(args.persist_dir)
-            persist = assert_safe_generation_path(persist)
+            persist = assert_certified_persist_dir(args.persist_dir)
             payload = {"ok": True, "persist_dir": str(persist), "legacy_forbidden": True}
         elif args.gen_cmd == "init":
             result = init_certified_generation(

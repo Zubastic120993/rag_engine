@@ -10,10 +10,8 @@ from rag_engine.certified_generation.exceptions import (
     LegacyPathForbiddenError,
 )
 from rag_engine.certified_generation.paths import (
-    assert_not_production_generations_root,
-    assert_safe_generation_path,
+    assert_certified_persist_dir,
     is_legacy_production_persist,
-    require_explicit_persist_dir,
 )
 from rag_engine.index_compatibility.chroma_inspect import count_vectors_readonly
 from rag_engine.index_compatibility.constants import (
@@ -109,9 +107,7 @@ def initialize_certified_v1(
 
     Refuses production ``.rag_db``. Resume of mismatched v1 fails closed.
     """
-    persist = require_explicit_persist_dir(persist_dir)
-    persist = assert_safe_generation_path(persist)
-    persist = assert_not_production_generations_root(persist)
+    persist = assert_certified_persist_dir(persist_dir)
     if is_legacy_production_persist(persist):
         raise LegacyPathForbiddenError("refusing v1 write to production .rag_db")
 

@@ -1,4 +1,8 @@
-"""Explicit-path registry bootstrap for a certified generation (never production)."""
+"""Explicit-path registry bootstrap for a certified generation.
+
+The governed production registry target is legal when explicitly passed.
+Import does not create ``.rag_state``.
+"""
 
 from __future__ import annotations
 
@@ -6,8 +10,7 @@ import json
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
-from rag_engine.certified_generation.exceptions import UnsafeGenerationPathError
-from rag_engine.certified_generation.paths import registry_path_is_production
+from rag_engine.certified_generation.paths import assert_certified_registry_path
 from rag_engine.metadata_registry import (
     initialize_registry,
     open_registry,
@@ -24,13 +27,15 @@ from rag_engine.index_compatibility.state import write_registry_fingerprint
 
 
 def assert_temp_registry_path(registry_db: str | Path) -> Path:
-    path = Path(registry_db).expanduser().resolve()
-    if registry_path_is_production(path):
-        raise UnsafeGenerationPathError(
-            "refusing production registry path",
-            details={"path": str(path)},
-        )
-    return path
+    """Certified registry path policy (name kept for callers).
+
+    Allows the governed production target
+    ``.rag_state/metadata_registry/metadata_registry_v1.sqlite3`` and isolated
+    tmp registries. Refuses ``.rag_db``, ``.intake_state``, generation dirs,
+    wrong ``.rag_state`` sub-trees, and source-library placements of the
+    governed filename.
+    """
+    return assert_certified_registry_path(registry_db)
 
 
 def bootstrap_registry_db(registry_db: str | Path) -> Path:

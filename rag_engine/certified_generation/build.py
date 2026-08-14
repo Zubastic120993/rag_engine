@@ -40,11 +40,7 @@ from rag_engine.certified_generation.metadata import (
     certified_chunk_id,
     certified_vector_metadata,
 )
-from rag_engine.certified_generation.paths import (
-    assert_not_production_generations_root,
-    assert_safe_generation_path,
-    require_explicit_persist_dir,
-)
+from rag_engine.certified_generation.paths import assert_certified_persist_dir
 from rag_engine.certified_generation.tracker import tracker_entry, write_tracker
 from rag_engine.certified_generation.v1 import initialize_certified_v1
 from rag_engine.config import chroma_client_settings, collection_from_relpath, embed_model
@@ -88,9 +84,7 @@ def init_certified_generation(
     ``persist_dir`` is required. Production ``.rag_db`` is refused.
     Resume of partial embedding writes is disabled by default.
     """
-    persist = require_explicit_persist_dir(persist_dir)
-    persist = assert_safe_generation_path(persist)
-    persist = assert_not_production_generations_root(persist)
+    persist = assert_certified_persist_dir(persist_dir)
 
     if isinstance(corpus_manifest, dict):
         manifest = corpus_manifest

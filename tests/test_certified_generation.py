@@ -406,7 +406,7 @@ def test_registry_bootstrap_temp_only(isolated_env: Path) -> None:
     _write_md(lib, "90_CE_Wiki/note.md", _long(90))
     manifest = _manifest_for(lib, ["90_CE_Wiki/note.md"])
     target = isolated_env / "gen_reg"
-    reg = isolated_env / "reg" / "metadata_registry_v1.sqlite3"
+    reg = isolated_env / ".rag_state" / "metadata_registry" / "metadata_registry_v1.sqlite3"
     result = build_certified_generation(
         persist_dir=target,
         corpus_manifest=manifest,
