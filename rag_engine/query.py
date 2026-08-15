@@ -680,6 +680,70 @@ _AMBIGUOUS_SHORT_TOKENS = frozenset(
     }
 )
 
+# Shared machinery / clerical vocabulary that co-occurs across unrelated manuals.
+# Matching only these (or only these plus generics) must not establish topical
+# agreement for the coherent-support / CAR paths — discriminating query concepts
+# (makers, model codes, named entities, hyphenated compounds, digit tokens) must
+# also be supported. Prevents coherent wrong-equipment / fictional-entity packages.
+_WEAK_TECHNICAL_TOKENS = frozenset(
+    {
+        "engine",
+        "engines",
+        "exhaust",
+        "grinding",
+        "ground",
+        "seat",
+        "seats",
+        "crew",
+        "list",
+        "lists",
+        "cabin",
+        "cabins",
+        "assignment",
+        "assignments",
+        "exact",
+        "number",
+        "numbers",
+        "spare",
+        "spares",
+        "part",
+        "parts",
+        "used",
+        "turbocharger",
+        "turbochargers",
+        "impeller",
+        "impellers",
+        "fuel",
+        "dual",
+        "temperature",
+        "causes",
+        "main",
+        "high",
+        "range",
+        "clearance",
+        "torque",
+        "overhaul",
+        "injector",
+        "injectors",
+        "calibration",
+        "bearing",
+        "bearings",
+        "check",
+        "checks",
+        "january",
+        "february",
+        "march",
+        "april",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+    }
+)
+
 
 # Unicode dashes that must fold to ASCII "-" before topical anchor matching.
 # NFKC alone does not normalize these (en/em dash, minus sign, etc.).
@@ -738,6 +802,33 @@ def _query_anchor_tokens(question: str) -> set[str]:
     return anchors
 
 
+def _is_discriminating_anchor(token: str) -> bool:
+    """True when a query anchor is specific enough to require evidence support.
+
+    Hyphenated compounds and digit-bearing tokens are always discriminating.
+    Other tokens are discriminating unless they are generic/weak technical words
+    that commonly co-occur across unrelated equipment manuals.
+    """
+    if not token:
+        return False
+    if token in _GENERIC_OPERATIONAL_TOKENS or token in _WEAK_TECHNICAL_TOKENS:
+        return False
+    if token in _AMBIGUOUS_SHORT_TOKENS:
+        return False
+    if "-" in token:
+        return True
+    if any(ch.isdigit() for ch in token):
+        return True
+    # Proper-noun / model / entity-like tokens (makers, named vessels, codes).
+    # Length >= 4 catches short document codes (SIRE, MEPC) while weak/generic
+    # sets suppress shared machinery vocabulary of the same length.
+    return len(token) >= 4
+
+
+def _discriminating_anchor_tokens(anchors: set[str]) -> set[str]:
+    return {token for token in anchors if _is_discriminating_anchor(token)}
+
+
 def _pair_topical_blob(doc: Any) -> str:
     meta = getattr(doc, "metadata", None) or {}
     source = str(meta.get("source", "") or "")
@@ -757,22 +848,60 @@ def _query_topical_agreement(
     question: str | None,
     pairs: list[tuple[Any, float]],
 ) -> bool:
-    """True when the given evidence subset shares distinctive query anchors.
+    """True when the given evidence subset supports discriminating query anchors.
 
     Callers must pass the support subset for the active pass path (coherent
     source/family/consensus, or top-authority support) — not the full retained
     set — so an unrelated hitchhiker hit cannot lend topicality.
+
+    B9I: coherent cross-chunk agreement on weak/shared machinery vocabulary
+    (engine/exhaust/crew/turbocharger/…) is not enough. When the query contains
+    discriminating anchors (makers, model codes, named entities, compounds,
+    digit tokens), at least one such anchor must appear in the evidence subset.
+    Queries with no discriminating anchors cannot earn topical agreement via the
+    coherent/CAR paths (strong_distance remains available separately).
     """
     if not question or not pairs:
         return False
     anchors = _query_anchor_tokens(question)
     if not anchors:
         return False
+    discriminating = _discriminating_anchor_tokens(anchors)
+    if not discriminating:
+        return False
     for doc, _distance in pairs:
         blob = _pair_topical_blob(doc)
-        if any(_token_in_blob(token, blob) for token in anchors):
+        if any(_token_in_blob(token, blob) for token in discriminating):
             return True
     return False
+
+
+def _query_admissibility_diagnostics(
+    question: str | None,
+    pairs: list[tuple[Any, float]],
+) -> dict[str, Any]:
+    """Internal diagnostics for query-evidence admissibility (not a public API)."""
+    anchors = sorted(_query_anchor_tokens(question or ""))
+    discriminating = sorted(_discriminating_anchor_tokens(set(anchors)))
+    matched: list[str] = []
+    matched_discriminating: list[str] = []
+    if question and pairs:
+        for doc, _distance in pairs:
+            blob = _pair_topical_blob(doc)
+            for token in anchors:
+                if _token_in_blob(token, blob):
+                    if token not in matched:
+                        matched.append(token)
+                    if token in discriminating and token not in matched_discriminating:
+                        matched_discriminating.append(token)
+    return {
+        "query_anchors": anchors,
+        "discriminating_anchors": discriminating,
+        "matched_anchors": matched,
+        "matched_discriminating_anchors": matched_discriminating,
+        "query_support_sufficient": bool(matched_discriminating),
+        "explicit_contradiction": False,
+    }
 
 
 def _pair_source(doc: Any) -> str:
@@ -850,6 +979,9 @@ def _apply_final_confidence_gate(
     single-source consensus. Organizational buckets are not allowlisted.
     Topical agreement is bound to the evidence subset for that pass path —
     not the global retained set — so hitchhiker hits cannot invent coverage.
+    B9I: topical agreement requires discriminating query-anchor support
+    (makers / model codes / named entities / compounds / digit tokens), not
+    merely shared weak machinery vocabulary across coherent wrong-family docs.
     Strong-distance remains sufficient without topical anchors.
     """
     diag = dict(diagnostics)
@@ -924,6 +1056,10 @@ def _apply_final_confidence_gate(
     )
     final_pass = bool(top_is_authoritative and support_signal)
 
+    # Diagnostics for the active topical subset (prefer coherent, else top-authority).
+    admissibility_pairs = coherent_pairs if coherent_pairs else top_authority_pairs
+    admissibility = _query_admissibility_diagnostics(question, admissibility_pairs)
+
     diag.update(
         {
             "top_distance": float(top_distance),
@@ -942,6 +1078,7 @@ def _apply_final_confidence_gate(
             "topical_agreement_with_top_authority_support": (
                 topical_agreement_with_top_authority_support
             ),
+            "query_admissibility": admissibility,
             "final_confidence_passed": final_pass,
             "final_retained_count": len(pairs) if final_pass else 0,
         }

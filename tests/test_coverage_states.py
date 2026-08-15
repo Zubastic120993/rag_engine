@@ -90,7 +90,9 @@ def test_resolve_answer_model(scopes_yaml):
 def test_retrieval_ok_returns_package_without_nl_answer(scopes_yaml):
     from rag_engine.query import answer
 
-    pairs = [(_fake_doc(), 0.4)]
+    # Strong-distance hit: ORCH_104 packaging (ok/full/answer=null) must not
+    # depend on weak topical vocabulary alone (B9I discriminating-anchor rule).
+    pairs = [(_fake_doc(), 0.30)]
     with _patch_retrieval(pairs):
         with patch("rag_engine.query._invoke_generation") as llm:
             r = answer("fuel oil?", scope="sms", scope_resolution_s=0.01)
