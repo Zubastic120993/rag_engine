@@ -24,6 +24,12 @@ from rag_engine.certified_generation.corpus import (
     verify_manifest_against_disk,
 )
 from rag_engine.certified_generation.exceptions import (
+    AppendConcurrencyError,
+    AppendGenerationGuardError,
+    AppendManifestError,
+    AppendRecoveryError,
+    AppendTargetError,
+    CertifiedAppendError,
     CertifiedGenerationError,
     CollisionGuardError,
     CorpusManifestError,
@@ -31,6 +37,7 @@ from rag_engine.certified_generation.exceptions import (
     EmptyGenerationGuardError,
     ExplicitTargetRequiredError,
     GenerationIdError,
+    LegacyIngestForbiddenError,
     LegacyPathForbiddenError,
     ModelGuardError,
     PartialBuildError,
@@ -58,6 +65,12 @@ from rag_engine.certified_generation.paths import (
 from rag_engine.certified_generation.v1 import initialize_certified_v1
 
 __all__ = [
+    "AppendConcurrencyError",
+    "AppendGenerationGuardError",
+    "AppendManifestError",
+    "AppendRecoveryError",
+    "AppendTargetError",
+    "CertifiedAppendError",
     "CertifiedGenerationError",
     "CollisionGuardError",
     "CorpusManifestError",
@@ -65,6 +78,7 @@ __all__ = [
     "EmptyGenerationGuardError",
     "ExplicitTargetRequiredError",
     "GenerationIdError",
+    "LegacyIngestForbiddenError",
     "LegacyPathForbiddenError",
     "ModelGuardError",
     "PRODUCTION_RAG_DB",
@@ -74,6 +88,8 @@ __all__ = [
     "STATE_BUILT_UNVALIDATED",
     "STATE_PREPARED",
     "UnsafeGenerationPathError",
+    "append_certified_sources",
+    "assert_legacy_ingest_allowed",
     "assert_not_legacy_production",
     "assert_safe_generation_path",
     "build_certified_generation",
@@ -86,18 +102,51 @@ __all__ = [
     "compare_generations",
     "dedup_by_document_id",
     "dirname_to_generation_id",
+    "dry_validate_certified_append",
     "generation_id_to_dirname",
     "init_certified_generation",
     "initialize_certified_v1",
     "inspect_generation",
+    "is_certified_generation_persist",
     "is_legacy_production_persist",
     "load_corpus_manifest",
     "make_generation_id",
     "parse_generation_id",
     "read_checkpoint",
     "require_explicit_persist_dir",
+    "validate_certified_append_target",
     "verify_manifest_against_disk",
 ]
+
+
+def append_certified_sources(*args, **kwargs):
+    from rag_engine.certified_generation.append import append_certified_sources as _append
+
+    return _append(*args, **kwargs)
+
+
+def dry_validate_certified_append(*args, **kwargs):
+    from rag_engine.certified_generation.append import dry_validate_certified_append as _dry
+
+    return _dry(*args, **kwargs)
+
+
+def validate_certified_append_target(*args, **kwargs):
+    from rag_engine.certified_generation.append import validate_certified_append_target as _val
+
+    return _val(*args, **kwargs)
+
+
+def assert_legacy_ingest_allowed(*args, **kwargs):
+    from rag_engine.certified_generation.append import assert_legacy_ingest_allowed as _a
+
+    return _a(*args, **kwargs)
+
+
+def is_certified_generation_persist(*args, **kwargs):
+    from rag_engine.certified_generation.append import is_certified_generation_persist as _i
+
+    return _i(*args, **kwargs)
 
 
 def init_certified_generation(*args, **kwargs):

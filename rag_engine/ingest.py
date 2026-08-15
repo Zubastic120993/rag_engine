@@ -346,6 +346,11 @@ def _run_ingest_locked(force: bool = False, max_new: int | None = None) -> None:
     path_to_hash = _path_index(tracker)
     persist = persist_dir()
 
+    # B8II: legacy ingest must not append UUID vectors into a certified generation.
+    from rag_engine.certified_generation.append import assert_legacy_ingest_allowed
+
+    assert_legacy_ingest_allowed(persist)
+
     # Phase 6B: compatibility gate BEFORE digest skip / vector mutation.
     # A matching embedded.json digest must never override incompatible or
     # UNKNOWN_LEGACY index state. Empty new indexes may initialize authority.

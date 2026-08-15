@@ -56,3 +56,31 @@ class PartialBuildError(CertifiedGenerationError):
 
 class CheckpointError(CertifiedGenerationError):
     """Checkpoint missing, corrupt, or illegally marked accepted."""
+
+
+class CertifiedAppendError(CertifiedGenerationError):
+    """Base class for certified incremental-append failures."""
+
+
+class AppendTargetError(CertifiedAppendError):
+    """Persist/registry target is not a valid certified append destination."""
+
+
+class AppendManifestError(CertifiedAppendError):
+    """Append manifest missing, malformed, drifted, or unauthorized."""
+
+
+class AppendGenerationGuardError(CertifiedAppendError):
+    """Generation contract / v1 / compatibility guard failed."""
+
+
+class AppendConcurrencyError(CertifiedAppendError):
+    """Another certified append holds the generation lock."""
+
+
+class AppendRecoveryError(CertifiedAppendError):
+    """Multi-store recovery could not restore a consistent prior state."""
+
+
+class LegacyIngestForbiddenError(CertifiedAppendError):
+    """Ordinary ingest refused against a certified generation."""

@@ -557,9 +557,10 @@ def cmd_generation(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(
         prog="rag-engine generation",
         description=(
-            "Certified generation init/inspect/compare/build. "
+            "Certified generation init/inspect/compare/build/append. "
             "--persist-dir is required. There is no command that certifies "
-            "the current production .rag_db."
+            "the current production .rag_db. Append requires an explicit "
+            "approved manifest and never defaults to legacy ingest."
         ),
     )
     sub = parser.add_subparsers(dest="gen_cmd", required=True)
@@ -593,6 +594,37 @@ def cmd_generation(argv: list[str]) -> int:
     p_build.add_argument("--registry-db", default=None)
     p_build.add_argument("--json", action="store_true")
 
+    p_append = sub.add_parser(
+        "append",
+        help=(
+            "Certified incremental append into an existing certified generation. "
+            "Requires explicit --persist-dir, --registry-db, and --manifest. "
+            "Does not default to production .rag_db."
+        ),
+    )
+    p_append.add_argument("--persist-dir", required=True)
+    p_append.add_argument("--registry-db", required=True)
+    p_append.add_argument("--manifest", required=True)
+    p_append.add_argument(
+        "--dry-validate",
+        action="store_true",
+        help="Non-mutating target/manifest validation only.",
+    )
+    p_append.add_argument("--json", action="store_true")
+
+    p_alias = sub.add_parser(
+        "add-alias",
+        help=(
+            "Alias-only certified append (same bytes, new path). "
+            "Uses the certified append path; does not re-embed."
+        ),
+    )
+    p_alias.add_argument("--persist-dir", required=True)
+    p_alias.add_argument("--registry-db", required=True)
+    p_alias.add_argument("--manifest", required=True)
+    p_alias.add_argument("--dry-validate", action="store_true")
+    p_alias.add_argument("--json", action="store_true")
+
     args = parser.parse_args(argv)
     from rag_engine.certified_generation import (
         CertifiedGenerationError,
@@ -603,6 +635,7 @@ def cmd_generation(argv: list[str]) -> int:
         init_certified_generation,
         inspect_generation,
     )
+    from rag_engine.certified_generation.append import append_certified_sources
     from rag_engine.certified_generation.paths import assert_certified_persist_dir
 
     try:
@@ -639,6 +672,14 @@ def cmd_generation(argv: list[str]) -> int:
                 "vector_count": result["vector_count"],
                 "accepted": False,
             }
+        elif args.gen_cmd in ("append", "add-alias"):
+            result = append_certified_sources(
+                persist_dir=args.persist_dir,
+                registry_db=args.registry_db,
+                manifest=args.manifest,
+                dry_validate=bool(args.dry_validate),
+            )
+            payload = result
         else:
             return EXIT_ERROR
     except (ExplicitTargetRequiredError, LegacyPathForbiddenError, CertifiedGenerationError) as exc:
