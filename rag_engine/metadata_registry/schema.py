@@ -20,7 +20,9 @@ from typing import Final
 # Fresh identity-aligned registry. Branch scaffold schema v1 was never production.
 # v2 adds Phase 5 revision lifecycle columns + event/relation tables.
 # v3 adds Phase 6B index fingerprint authority table (embedding-fp-v1).
-CURRENT_SCHEMA_VERSION: Final = 3
+# v4 adds Phase 7 append-only source_file_events audit table.
+# v5 adds Phase 8 source-file locator lifecycle events + current-state projection.
+CURRENT_SCHEMA_VERSION: Final = 5
 
 REQUIRED_TABLES: Final[tuple[str, ...]] = (
     "registry_schema_version",
@@ -32,6 +34,9 @@ REQUIRED_TABLES: Final[tuple[str, ...]] = (
     "document_lifecycle_events",
     "document_version_relations",
     "index_fingerprints",
+    "source_file_events",
+    "source_file_locator_lifecycle_events",
+    "source_file_locator_state",
 )
 
 SCHEMA_SQL: Final[str] = """
@@ -206,3 +211,163 @@ CREATE TABLE IF NOT EXISTS index_fingerprints (
 CREATE INDEX IF NOT EXISTS idx_index_fingerprints_ifp
     ON index_fingerprints(index_fingerprint);
 """
+
+# Additive SQL applied when upgrading an existing v3 registry to v4.
+SCHEMA_SQL_V4_UPGRADE: Final[str] = """
+CREATE TABLE IF NOT EXISTS source_file_events (
+    event_id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    source_file_id    TEXT    NOT NULL,
+    document_id       TEXT    NOT NULL,
+    event_type        TEXT    NOT NULL,
+    operation_id      TEXT,
+    approval_digest   TEXT,
+    related_event_id  INTEGER,
+    reason            TEXT,
+    actor             TEXT,
+    source            TEXT,
+    created_at        TEXT    NOT NULL,
+    FOREIGN KEY (source_file_id)   REFERENCES source_files(source_file_id)   ON DELETE RESTRICT,
+    FOREIGN KEY (document_id)      REFERENCES document_versions(document_id)  ON DELETE RESTRICT,
+    FOREIGN KEY (related_event_id) REFERENCES source_file_events(event_id)   ON DELETE RESTRICT,
+    CHECK (
+        event_type IN (
+            'SOURCE_FILE_REGISTERED',
+            'SOURCE_FILE_ALIAS_REGISTERED',
+            'SOURCE_FILE_COMPENSATION_REQUESTED'
+        )
+    )
+);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_events_source_file_id
+    ON source_file_events(source_file_id);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_events_created_at
+    ON source_file_events(created_at);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_events_related_event_id
+    ON source_file_events(related_event_id);
+
+CREATE UNIQUE INDEX IF NOT EXISTS
+    idx_source_file_events_approval_digest_unique
+ON source_file_events(approval_digest)
+WHERE approval_digest IS NOT NULL;
+"""
+
+V4_REQUIRED_INDEXES: Final[tuple[str, ...]] = (
+    "idx_source_file_events_source_file_id",
+    "idx_source_file_events_created_at",
+    "idx_source_file_events_related_event_id",
+    "idx_source_file_events_approval_digest_unique",
+)
+
+# Additive SQL applied when upgrading an existing v4 registry to v5.
+SCHEMA_SQL_V5_UPGRADE: Final[str] = """
+CREATE TABLE IF NOT EXISTS source_file_locator_lifecycle_events (
+    event_id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    source_file_id        TEXT    NOT NULL,
+    document_id           TEXT    NOT NULL,
+    event_type            TEXT    NOT NULL,
+    previous_state        TEXT,
+    new_state             TEXT    NOT NULL,
+    related_v4_event_id   INTEGER,
+    related_event_id      INTEGER,
+    operation_id          TEXT,
+    approval_digest       TEXT,
+    reason                TEXT,
+    actor                 TEXT,
+    source                TEXT,
+    created_at            TEXT    NOT NULL,
+    FOREIGN KEY (source_file_id)
+        REFERENCES source_files(source_file_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (document_id)
+        REFERENCES document_versions(document_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (related_v4_event_id)
+        REFERENCES source_file_events(event_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (related_event_id)
+        REFERENCES source_file_locator_lifecycle_events(event_id)
+        ON DELETE RESTRICT,
+    CHECK (
+        event_type IN (
+            'SOURCE_FILE_LOCATOR_INITIALIZED',
+            'SOURCE_FILE_COMPENSATION_COMPLETED',
+            'SOURCE_FILE_COMPENSATION_REJECTED',
+            'SOURCE_FILE_COMPENSATION_FAILED',
+            'SOURCE_FILE_LOCATOR_REACTIVATED',
+            'SOURCE_FILE_LOCATOR_MOVED'
+        )
+    ),
+    CHECK (
+        new_state IN (
+            'ACTIVE',
+            'COMPENSATION_PENDING',
+            'INACTIVE',
+            'COMPENSATION_REJECTED',
+            'COMPENSATION_FAILED'
+        )
+    ),
+    CHECK (
+        previous_state IS NULL OR previous_state IN (
+            'ACTIVE',
+            'COMPENSATION_PENDING',
+            'INACTIVE',
+            'COMPENSATION_REJECTED',
+            'COMPENSATION_FAILED'
+        )
+    )
+);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_locator_lifecycle_events_source_file_id
+    ON source_file_locator_lifecycle_events(source_file_id);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_locator_lifecycle_events_created_at
+    ON source_file_locator_lifecycle_events(created_at);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_locator_lifecycle_events_related_v4_event_id
+    ON source_file_locator_lifecycle_events(related_v4_event_id);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_locator_lifecycle_events_related_event_id
+    ON source_file_locator_lifecycle_events(related_event_id);
+
+CREATE TABLE IF NOT EXISTS source_file_locator_state (
+    source_file_id        TEXT PRIMARY KEY NOT NULL,
+    activity_state        TEXT NOT NULL,
+    state_updated_at      TEXT NOT NULL,
+    last_lifecycle_event_id INTEGER,
+    last_v4_event_id      INTEGER,
+    FOREIGN KEY (source_file_id)
+        REFERENCES source_files(source_file_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (last_lifecycle_event_id)
+        REFERENCES source_file_locator_lifecycle_events(event_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (last_v4_event_id)
+        REFERENCES source_file_events(event_id)
+        ON DELETE RESTRICT,
+    CHECK (
+        activity_state IN (
+            'ACTIVE',
+            'COMPENSATION_PENDING',
+            'INACTIVE',
+            'COMPENSATION_REJECTED',
+            'COMPENSATION_FAILED'
+        )
+    )
+);
+
+CREATE INDEX IF NOT EXISTS idx_source_file_locator_state_activity_state
+    ON source_file_locator_state(activity_state);
+"""
+
+V5_LIFECYCLE_EVENTS_TABLE: Final = "source_file_locator_lifecycle_events"
+V5_LOCATOR_STATE_TABLE: Final = "source_file_locator_state"
+
+V5_REQUIRED_INDEXES: Final[tuple[str, ...]] = (
+    "idx_source_file_locator_lifecycle_events_source_file_id",
+    "idx_source_file_locator_lifecycle_events_created_at",
+    "idx_source_file_locator_lifecycle_events_related_v4_event_id",
+    "idx_source_file_locator_lifecycle_events_related_event_id",
+    "idx_source_file_locator_state_activity_state",
+)

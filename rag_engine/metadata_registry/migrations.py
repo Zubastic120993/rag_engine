@@ -20,6 +20,12 @@ from rag_engine.metadata_registry.schema import (
     SCHEMA_SQL,
     SCHEMA_SQL_V2_UPGRADE,
     SCHEMA_SQL_V3_UPGRADE,
+    SCHEMA_SQL_V4_UPGRADE,
+    SCHEMA_SQL_V5_UPGRADE,
+    V4_REQUIRED_INDEXES,
+    V5_LIFECYCLE_EVENTS_TABLE,
+    V5_LOCATOR_STATE_TABLE,
+    V5_REQUIRED_INDEXES,
 )
 
 
@@ -166,10 +172,403 @@ def _apply_v3(conn: sqlite3.Connection) -> None:
     )
 
 
+V4_TABLE_NAME: Final = "source_file_events"
+MIGRATION_V4_DESCRIPTION: Final = (
+    "Phase 7 source file events audit table (append-only, alias/compensation evidence)"
+)
+
+
+def _v4_table_present(conn: sqlite3.Connection) -> bool:
+    row = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+        (V4_TABLE_NAME,),
+    ).fetchone()
+    return row is not None
+
+
+def _v4_index_present(conn: sqlite3.Connection, index_name: str) -> bool:
+    row = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='index' AND name=?",
+        (index_name,),
+    ).fetchone()
+    return row is not None
+
+
+def _v4_objects_complete(conn: sqlite3.Connection) -> bool:
+    if not _v4_table_present(conn):
+        return False
+    return all(_v4_index_present(conn, name) for name in V4_REQUIRED_INDEXES)
+
+
+def _v4_missing_indexes(conn: sqlite3.Connection) -> list[str]:
+    if not _v4_table_present(conn):
+        return list(V4_REQUIRED_INDEXES)
+    return [
+        name for name in V4_REQUIRED_INDEXES if not _v4_index_present(conn, name)
+    ]
+
+
+def _find_duplicate_approval_digests(conn: sqlite3.Connection) -> list[tuple[str, int]]:
+    if not _v4_table_present(conn):
+        return []
+    rows = conn.execute(
+        "SELECT approval_digest, COUNT(*) AS c "
+        "FROM source_file_events "
+        "WHERE approval_digest IS NOT NULL "
+        "GROUP BY approval_digest "
+        "HAVING c > 1"
+    ).fetchall()
+    return [
+        (
+            row["approval_digest"] if isinstance(row, sqlite3.Row) else row[0],
+            int(row["c"] if isinstance(row, sqlite3.Row) else row[1]),
+        )
+        for row in rows
+    ]
+
+
+def _assert_no_duplicate_approval_digests(conn: sqlite3.Connection) -> None:
+    duplicates = _find_duplicate_approval_digests(conn)
+    if not duplicates:
+        return
+    detail = ", ".join(f"{digest!r} x{count}" for digest, count in duplicates)
+    raise MigrationError(
+        "duplicate non-null approval_digest values block V4 unique index creation: "
+        f"{detail}"
+    )
+
+
+def _record_v4_schema_version(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        "INSERT OR IGNORE INTO registry_schema_version "
+        "(schema_version, applied_at, status, description, backward_compatible) "
+        "VALUES (?, ?, ?, ?, ?)",
+        (
+            4,
+            utc_now(),
+            "applied",
+            MIGRATION_V4_DESCRIPTION,
+            0,
+        ),
+    )
+
+
+def _verify_v4_postflight(conn: sqlite3.Connection) -> None:
+    """Mandatory post-flight verification after V4 DDL or repair."""
+    if not _v4_table_present(conn):
+        raise MigrationError(
+            "V4 post-flight verification failed: source_file_events table missing"
+        )
+    missing = _v4_missing_indexes(conn)
+    if missing:
+        raise MigrationError(
+            "V4 post-flight verification failed: missing indexes: "
+            + ", ".join(missing)
+        )
+    version = get_schema_version(conn)
+    if version < 4:
+        raise MigrationError(
+            f"V4 post-flight verification failed: schema version is {version}, expected 4"
+        )
+    if not foreign_keys_enabled(conn):
+        raise MigrationError(
+            "V4 post-flight verification failed: foreign keys are not enabled"
+        )
+
+
+def _apply_v4_ddl(conn: sqlite3.Connection) -> None:
+    """Idempotent V4 DDL. Fails closed on duplicate non-null approval digests."""
+    _assert_no_duplicate_approval_digests(conn)
+    try:
+        conn.executescript(SCHEMA_SQL_V4_UPGRADE)
+    except sqlite3.OperationalError as exc:
+        msg = str(exc).lower()
+        if "unique" in msg or "duplicate" in msg:
+            raise MigrationError(
+                "V4 migration failed: duplicate approval_digest blocks unique index "
+                f"creation: {exc}"
+            ) from exc
+        raise
+
+
+def _apply_v4(conn: sqlite3.Connection) -> None:
+    """Phase 7 source file events — additive DDL + version record."""
+    _apply_v4_ddl(conn)
+    _record_v4_schema_version(conn)
+    _verify_v4_postflight(conn)
+
+
+def _ensure_v4_complete(conn: sqlite3.Connection) -> None:
+    """Bounded idempotent repair for recoverable incomplete V4 object states.
+
+    Handles version-4 databases where the normal migration loop would return
+    early, and partial states where V4 objects exist without a version record.
+    Never mutates event data except inserting the missing schema-version record.
+    """
+    version = get_schema_version(conn)
+    complete = _v4_objects_complete(conn)
+    any_v4_object = _v4_table_present(conn) or any(
+        _v4_index_present(conn, name) for name in V4_REQUIRED_INDEXES
+    )
+
+    if version < 4 and not any_v4_object:
+        return
+
+    if version >= 4 and complete:
+        _verify_v4_postflight(conn)
+        return
+
+    _assert_no_duplicate_approval_digests(conn)
+
+    if not complete:
+        _apply_v4_ddl(conn)
+
+    if version < 4 and _v4_objects_complete(conn):
+        _record_v4_schema_version(conn)
+
+    _verify_v4_postflight(conn)
+
+
+def _verify_v4_baseline(conn: sqlite3.Connection) -> None:
+    """V5 precondition: complete V4 baseline must exist."""
+    version = get_schema_version(conn)
+    if version < 4:
+        raise MigrationError(
+            f"V5 requires schema version >= 4; current version is {version}"
+        )
+    _verify_v4_postflight(conn)
+
+
+def _v5_table_present(conn: sqlite3.Connection, name: str) -> bool:
+    row = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+        (name,),
+    ).fetchone()
+    return row is not None
+
+
+def _v5_index_present(conn: sqlite3.Connection, index_name: str) -> bool:
+    row = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='index' AND name=?",
+        (index_name,),
+    ).fetchone()
+    return row is not None
+
+
+def _v5_objects_complete(conn: sqlite3.Connection) -> bool:
+    if not _v5_table_present(conn, V5_LIFECYCLE_EVENTS_TABLE):
+        return False
+    if not _v5_table_present(conn, V5_LOCATOR_STATE_TABLE):
+        return False
+    return all(_v5_index_present(conn, name) for name in V5_REQUIRED_INDEXES)
+
+
+def _v5_missing_indexes(conn: sqlite3.Connection) -> list[str]:
+    missing: list[str] = []
+    if not _v5_table_present(conn, V5_LIFECYCLE_EVENTS_TABLE) or not _v5_table_present(
+        conn, V5_LOCATOR_STATE_TABLE
+    ):
+        return list(V5_REQUIRED_INDEXES)
+    for name in V5_REQUIRED_INDEXES:
+        if not _v5_index_present(conn, name):
+            missing.append(name)
+    return missing
+
+
+def _record_v5_schema_version(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        "INSERT OR IGNORE INTO registry_schema_version "
+        "(schema_version, applied_at, status, description, backward_compatible) "
+        "VALUES (?, ?, ?, ?, ?)",
+        (
+            5,
+            utc_now(),
+            "applied",
+            "Phase 8 source-file locator lifecycle (events + state projection)",
+            0,
+        ),
+    )
+
+
+def _backfill_v5_locator_state(conn: sqlite3.Connection) -> None:
+    from rag_engine.metadata_registry.locator_lifecycle import (
+        MIGRATION_V5_REASON,
+        MIGRATION_V5_SOURCE,
+        initialize_locator_lifecycle_state,
+    )
+
+    rows = conn.execute(
+        "SELECT source_file_id, document_id FROM source_files ORDER BY source_file_id"
+    ).fetchall()
+    for row in rows:
+        sf = row["source_file_id"]
+        doc = row["document_id"]
+        exists = conn.execute(
+            "SELECT 1 FROM source_file_locator_state WHERE source_file_id = ?",
+            (sf,),
+        ).fetchone()
+        if exists is not None:
+            continue
+        initialize_locator_lifecycle_state(
+            conn,
+            source_file_id=sf,
+            document_id=doc,
+            source=MIGRATION_V5_SOURCE,
+            reason=MIGRATION_V5_REASON,
+        )
+
+
+def _verify_v5_postflight(conn: sqlite3.Connection) -> None:
+    """Mandatory post-flight verification after V5 DDL, backfill, or repair."""
+    _verify_v4_baseline(conn)
+    if not _v5_table_present(conn, V5_LIFECYCLE_EVENTS_TABLE):
+        raise MigrationError(
+            "V5 post-flight verification failed: "
+            "source_file_locator_lifecycle_events table missing"
+        )
+    if not _v5_table_present(conn, V5_LOCATOR_STATE_TABLE):
+        raise MigrationError(
+            "V5 post-flight verification failed: source_file_locator_state table missing"
+        )
+    missing = _v5_missing_indexes(conn)
+    if missing:
+        raise MigrationError(
+            "V5 post-flight verification failed: missing indexes: "
+            + ", ".join(missing)
+        )
+    version = get_schema_version(conn)
+    if version < 5:
+        raise MigrationError(
+            f"V5 post-flight verification failed: schema version is {version}, expected 5"
+        )
+    if not foreign_keys_enabled(conn):
+        raise MigrationError(
+            "V5 post-flight verification failed: foreign keys are not enabled"
+        )
+
+    sf_count = conn.execute("SELECT COUNT(*) AS c FROM source_files").fetchone()["c"]
+    st_count = conn.execute(
+        "SELECT COUNT(*) AS c FROM source_file_locator_state"
+    ).fetchone()["c"]
+    if int(sf_count) != int(st_count):
+        raise MigrationError(
+            "V5 post-flight verification failed: source_files count "
+            f"{sf_count} != locator state count {st_count}"
+        )
+
+    invalid = conn.execute(
+        "SELECT source_file_id FROM source_file_locator_state "
+        "WHERE activity_state NOT IN ("
+        "'ACTIVE','COMPENSATION_PENDING','INACTIVE',"
+        "'COMPENSATION_REJECTED','COMPENSATION_FAILED'"
+        ")"
+    ).fetchall()
+    if invalid:
+        raise MigrationError(
+            "V5 post-flight verification failed: invalid activity_state rows present"
+        )
+
+    from rag_engine.metadata_registry.locator_lifecycle import (
+        LOCATOR_EVENT_INITIALIZED,
+        MIGRATION_V5_SOURCE,
+    )
+
+    per_locator = conn.execute(
+        "SELECT sf.source_file_id, "
+        "CASE WHEN s.source_file_id IS NULL THEN 0 ELSE 1 END AS state_rows, "
+        "COALESCE(b.baseline_count, 0) AS baseline_count "
+        "FROM source_files sf "
+        "LEFT JOIN source_file_locator_state s ON s.source_file_id = sf.source_file_id "
+        "LEFT JOIN ("
+        "  SELECT source_file_id, COUNT(*) AS baseline_count "
+        "  FROM source_file_locator_lifecycle_events "
+        "  WHERE event_type = ? AND source = ? "
+        "  GROUP BY source_file_id"
+        ") b ON b.source_file_id = sf.source_file_id "
+        "ORDER BY sf.source_file_id",
+        (LOCATOR_EVENT_INITIALIZED, MIGRATION_V5_SOURCE),
+    ).fetchall()
+
+    baseline_problems: list[str] = []
+    for row in per_locator:
+        sf_id = row["source_file_id"]
+        if int(row["state_rows"]) != 1:
+            baseline_problems.append(f"{sf_id!r}: missing locator state row")
+        baseline_count = int(row["baseline_count"])
+        if baseline_count == 0:
+            baseline_problems.append(
+                f"{sf_id!r}: zero migration-baseline INITIALIZED events"
+            )
+        elif baseline_count > 1:
+            baseline_problems.append(
+                f"{sf_id!r}: {baseline_count} migration-baseline INITIALIZED events "
+                "(expected 1)"
+            )
+
+    if baseline_problems:
+        raise MigrationError(
+            "V5 post-flight verification failed: per-locator migration baseline "
+            "coverage invalid: " + "; ".join(baseline_problems)
+        )
+
+
+def _apply_v5_ddl(conn: sqlite3.Connection) -> None:
+    conn.executescript(SCHEMA_SQL_V5_UPGRADE)
+
+
+def _apply_v5(conn: sqlite3.Connection) -> None:
+    """Phase 8 locator lifecycle — requires complete V4; additive DDL + backfill."""
+    _verify_v4_baseline(conn)
+    _apply_v5_ddl(conn)
+    _backfill_v5_locator_state(conn)
+    _record_v5_schema_version(conn)
+    _verify_v5_postflight(conn)
+
+
+def _ensure_v5_complete(conn: sqlite3.Connection) -> None:
+    """Bounded idempotent repair for incomplete V5 object/backfill states."""
+    version = get_schema_version(conn)
+    complete = _v5_objects_complete(conn)
+    any_v5 = (
+        _v5_table_present(conn, V5_LIFECYCLE_EVENTS_TABLE)
+        or _v5_table_present(conn, V5_LOCATOR_STATE_TABLE)
+        or any(_v5_index_present(conn, name) for name in V5_REQUIRED_INDEXES)
+    )
+
+    if version < 5 and not any_v5:
+        return
+
+    if version >= 5 and complete:
+        sf_count = conn.execute("SELECT COUNT(*) AS c FROM source_files").fetchone()["c"]
+        st_count = conn.execute(
+            "SELECT COUNT(*) AS c FROM source_file_locator_state"
+        ).fetchone()["c"]
+        if int(sf_count) == int(st_count):
+            try:
+                _verify_v5_postflight(conn)
+                return
+            except MigrationError:
+                pass
+
+    _verify_v4_baseline(conn)
+
+    if not complete:
+        _apply_v5_ddl(conn)
+
+    _backfill_v5_locator_state(conn)
+
+    if version < 5:
+        _record_v5_schema_version(conn)
+
+    _verify_v5_postflight(conn)
+
+
 _MIGRATIONS: dict[int, Callable[[sqlite3.Connection], None]] = {
     1: _apply_v1,
     2: _apply_v2,
     3: _apply_v3,
+    4: _apply_v4,
+    5: _apply_v5,
 }
 
 
@@ -189,6 +588,10 @@ def migrate_connection(
             f"{CURRENT_SCHEMA_VERSION}"
         )
     if current == target_version:
+        if target_version >= 5:
+            _ensure_v5_complete(conn)
+        elif target_version >= 4:
+            _ensure_v4_complete(conn)
         return current
 
     try:
@@ -202,6 +605,11 @@ def migrate_connection(
     except Exception:
         conn.rollback()
         raise
+
+    if target_version >= 5:
+        _ensure_v5_complete(conn)
+    elif target_version >= 4:
+        _ensure_v4_complete(conn)
 
     final = get_schema_version(conn)
     if final != target_version:

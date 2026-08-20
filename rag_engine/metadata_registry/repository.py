@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
@@ -11,6 +12,7 @@ from typing import Any, Iterator, Mapping
 from rag_engine.metadata_registry.connection import open_registry
 from rag_engine.metadata_registry.exceptions import (
     RegistryConflictError,
+    RegistryIntegrityError,
     RegistryValidationError,
 )
 from rag_engine.metadata_registry.migrations import utc_now
@@ -32,6 +34,203 @@ from rag_engine.stable_identity.constants import (
     MAPPING_STATUSES,
     MAPPING_STATUS_LEGACY_UUID,
 )
+
+# ---------------------------------------------------------------------------
+# V4 source_file_events vocabulary (closed; SOURCE_FILE_SEEN_AGAIN deferred)
+# ---------------------------------------------------------------------------
+
+SOURCE_FILE_EVENT_REGISTERED = "SOURCE_FILE_REGISTERED"
+SOURCE_FILE_EVENT_ALIAS_REGISTERED = "SOURCE_FILE_ALIAS_REGISTERED"
+SOURCE_FILE_EVENT_COMPENSATION_REQUESTED = "SOURCE_FILE_COMPENSATION_REQUESTED"
+
+SOURCE_FILE_EVENT_TYPES: frozenset[str] = frozenset(
+    {
+        SOURCE_FILE_EVENT_REGISTERED,
+        SOURCE_FILE_EVENT_ALIAS_REGISTERED,
+        SOURCE_FILE_EVENT_COMPENSATION_REQUESTED,
+    }
+)
+
+_REGISTRY_TIMESTAMP_RE = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$"
+)
+_CANONICAL_APPROVAL_DIGEST_RE = re.compile(r"^[0-9a-f]{64}$")
+
+
+def _validate_registry_timestamp(created_at: str) -> None:
+    if not _REGISTRY_TIMESTAMP_RE.match(created_at):
+        raise RegistryValidationError(
+            "created_at must be UTC ISO-8601 with Z suffix and second resolution"
+        )
+
+
+def _validate_canonical_approval_digest(approval_digest: str) -> str:
+    """Require exactly 64 lowercase hex chars; reject whitespace and normalization."""
+    if not isinstance(approval_digest, str):
+        raise RegistryValidationError(
+            "approval_digest must be a canonical SHA-256 hex digest "
+            "(64 lowercase hex characters)"
+        )
+    if approval_digest != approval_digest.strip():
+        raise RegistryValidationError(
+            "approval_digest must not contain leading or trailing whitespace"
+        )
+    if not _CANONICAL_APPROVAL_DIGEST_RE.fullmatch(approval_digest):
+        raise RegistryValidationError(
+            "approval_digest must be exactly 64 lowercase hexadecimal characters"
+        )
+    return approval_digest
+
+
+def append_source_file_event(
+    conn: sqlite3.Connection,
+    *,
+    source_file_id: str,
+    document_id: str,
+    event_type: str,
+    operation_id: str | None = None,
+    approval_digest: str | None = None,
+    related_event_id: int | None = None,
+    reason: str | None = None,
+    actor: str | None = None,
+    source: str | None = None,
+    created_at: str | None = None,
+) -> dict[str, Any]:
+    """Append one V4 source_file_events audit row (primitive only; no executor logic)."""
+    if event_type not in SOURCE_FILE_EVENT_TYPES:
+        raise RegistryValidationError(
+            f"event_type must be one of {sorted(SOURCE_FILE_EVENT_TYPES)}; "
+            f"got {event_type!r}"
+        )
+
+    try:
+        validate_document_id(document_id)
+    except IdentityValidationError as exc:
+        raise RegistryValidationError(str(exc)) from exc
+
+    ts = created_at or utc_now()
+    _validate_registry_timestamp(ts)
+
+    locator = conn.execute(
+        "SELECT source_file_id, document_id FROM source_files WHERE source_file_id = ?",
+        (source_file_id,),
+    ).fetchone()
+    if locator is None:
+        raise RegistryValidationError(
+            f"source_file_id {source_file_id!r} is not registered"
+        )
+    if locator["document_id"] != document_id:
+        raise RegistryValidationError(
+            f"document_id {document_id!r} does not match source_file "
+            f"{source_file_id!r} binding ({locator['document_id']!r})"
+        )
+
+    if event_type == SOURCE_FILE_EVENT_REGISTERED:
+        if approval_digest is not None:
+            raise RegistryValidationError(
+                "SOURCE_FILE_REGISTERED must use approval_digest=None"
+            )
+        canonical_digest = None
+    elif event_type in (
+        SOURCE_FILE_EVENT_ALIAS_REGISTERED,
+        SOURCE_FILE_EVENT_COMPENSATION_REQUESTED,
+    ):
+        if approval_digest is None:
+            raise RegistryValidationError(
+                f"{event_type} requires a canonical approval_digest"
+            )
+        canonical_digest = _validate_canonical_approval_digest(approval_digest)
+    else:
+        canonical_digest = None
+
+    if event_type == SOURCE_FILE_EVENT_COMPENSATION_REQUESTED:
+        if related_event_id is None:
+            raise RegistryValidationError(
+                "SOURCE_FILE_COMPENSATION_REQUESTED requires related_event_id"
+            )
+        related_row = conn.execute(
+            "SELECT event_id, source_file_id, document_id, event_type, approval_digest "
+            "FROM source_file_events WHERE event_id = ?",
+            (related_event_id,),
+        ).fetchone()
+        if related_row is None:
+            raise RegistryValidationError(
+                f"related_event_id {related_event_id} does not exist"
+            )
+        if related_row["source_file_id"] != source_file_id:
+            raise RegistryValidationError(
+                "related_event_id must reference an alias-registration event "
+                "for the same source_file_id"
+            )
+        if related_row["document_id"] != document_id:
+            raise RegistryValidationError(
+                "related_event_id must reference an alias-registration event "
+                "for the same document_id"
+            )
+        if related_row["event_type"] != SOURCE_FILE_EVENT_ALIAS_REGISTERED:
+            raise RegistryValidationError(
+                "related_event_id must reference a SOURCE_FILE_ALIAS_REGISTERED event"
+            )
+        related_digest = related_row["approval_digest"]
+        if related_digest is not None and canonical_digest == related_digest:
+            raise RegistryValidationError(
+                "SOURCE_FILE_COMPENSATION_REQUESTED must not reuse the related "
+                "registration approval_digest"
+            )
+    elif related_event_id is not None:
+        related_row = conn.execute(
+            "SELECT event_id FROM source_file_events WHERE event_id = ?",
+            (related_event_id,),
+        ).fetchone()
+        if related_row is None:
+            raise RegistryValidationError(
+                f"related_event_id {related_event_id} does not exist"
+            )
+
+    if canonical_digest is not None:
+        existing = conn.execute(
+            "SELECT event_id FROM source_file_events WHERE approval_digest = ?",
+            (canonical_digest,),
+        ).fetchone()
+        if existing is not None:
+            raise RegistryIntegrityError(
+                f"approval_digest already recorded for event_id {existing['event_id']}"
+            )
+
+    try:
+        cur = conn.execute(
+            "INSERT INTO source_file_events ("
+            "source_file_id, document_id, event_type, operation_id, "
+            "approval_digest, related_event_id, reason, actor, source, created_at"
+            ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                source_file_id,
+                document_id,
+                event_type,
+                operation_id,
+                canonical_digest,
+                related_event_id,
+                reason,
+                actor,
+                source,
+                ts,
+            ),
+        )
+    except sqlite3.IntegrityError as exc:
+        msg = str(exc).lower()
+        if "unique" in msg or "approval_digest" in msg:
+            raise RegistryIntegrityError(
+                f"approval_digest integrity violation: {exc}"
+            ) from exc
+        raise RegistryValidationError(
+            f"source_file_events insert failed integrity check: {exc}"
+        ) from exc
+
+    event_id = int(cur.lastrowid)
+    row = conn.execute(
+        "SELECT * FROM source_file_events WHERE event_id = ?", (event_id,)
+    ).fetchone()
+    return _row_to_dict(row)  # type: ignore[return-value]
 
 
 def make_source_file_id(*, document_id: str, relative_path: str) -> str:

@@ -670,7 +670,7 @@ def test_registry_schema_v3_has_index_fingerprints(tmp_path):
 
     db = initialize_registry(tmp_path / "reg.sqlite3")
     with open_registry(db, readonly=True) as conn:
-        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION == 3
+        assert get_schema_version(conn) == CURRENT_SCHEMA_VERSION
         row = conn.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='index_fingerprints'"
         ).fetchone()
