@@ -54,6 +54,8 @@ scopes:
       - "00_Career/02_Statutory/"
       - "00_Career/01_Class_Rules/"
     path_hints: ["MARPOL", "SOLAS", "/IMO/", "MEPC", "MSC.1", "CLASSNK", "FLAG_STATE"]
+    retrieval_excluded_document_types:
+      - note
   inspection:
     description: SIRE / CDI / OCIMF inspection guidance
     hermes_aliases: [sire_library]

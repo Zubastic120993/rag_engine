@@ -29,8 +29,15 @@ The protected production RAG components are the top-level contents of `.rag_db`,
 - `embedded.json`
 - `index_fingerprint.json`
 - `ask_events.jsonl`
-- `intake_hash_index.json`
 - related read-only manifest evidence when copied into a backup package
+
+**Not a RAG restore requirement:** `intake_hash_index.json` was an incidental
+Intake-owned duplicate-detection cache formerly co-located under `.rag_db`.
+It was retired from live production in Programme C phase C6. Active Intake
+cache authority is `~/CE_Library/.intake_state/cache/intake_hash_index.json`.
+Historical whole-directory backups of `.rag_db` may still contain the old
+file; that is incidental. RAG backup/restore must not depend on restoring
+the Intake hash cache for Chroma/`embedded.json`/fingerprint correctness.
 
 ## 6. Backup boundary
 The backup protects `.rag_db` only.

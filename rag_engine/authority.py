@@ -24,6 +24,14 @@ RANK_REFERENCE = 5
 RANK_NOTE = 6
 RANK_MACHINE = 7
 
+# Derived companion / working notes (filename stem suffixes). Checked before
+# path-based regulatory ranking so statutory-tree notes stay DOC_TYPE_NOTE.
+_DERIVED_NOTE_STEM_SUFFIXES = (
+    "_legal_context_note",
+    "_note",
+    "_summary",
+)
+
 
 def _norm(source: str | None) -> str:
     return str(source or "").strip().replace("\\", "/")
@@ -47,17 +55,30 @@ def is_machine_transcribed_source(source: str | None) -> bool:
     return bool(name) and name.endswith(OCR_SUFFIX)
 
 
+def _is_derived_companion_note(source: str | None) -> bool:
+    """True for generated companion files such as ``*_note.*`` / ``*_summary.*``."""
+    name = PurePosixPath(_norm(source)).name.lower()
+    if not name:
+        return False
+    # Classify against the logical PDF name when an OCR twin is present.
+    if name.endswith(OCR_SUFFIX):
+        name = name[: -len(OCR_SUFFIX)] + ".pdf"
+    stem = PurePosixPath(name).stem
+    return any(stem.endswith(suffix) for suffix in _DERIVED_NOTE_STEM_SUFFIXES)
+
+
 def _document_class_rank(source: str | None) -> int:
     src = _norm(source)
     low = src.lower()
     if not low:
         return RANK_REFERENCE
+    # Derived notes outrank path-based regulatory/company classification.
+    if _is_derived_companion_note(src) or low.startswith("90_ce_wiki/"):
+        return RANK_NOTE
     if low.startswith("00_career/02_statutory/") or low.startswith("00_career/01_class_rules/"):
         return RANK_REGULATORY
     if low.startswith("10_company/"):
         return RANK_COMPANY
-    if low.startswith("90_ce_wiki/"):
-        return RANK_NOTE
     if low.startswith("20_vessels/"):
         if "/01_manuals/" in low or "/10_reference/" in low:
             return RANK_MAKER
@@ -155,7 +176,9 @@ def document_type_for_source(source: str | None) -> str:
     low = src.lower()
     if not low:
         return DOC_TYPE_REFERENCE
-    if low.startswith("90_ce_wiki/"):
+    # Derived companion notes take precedence over path-based types (including
+    # statutory / class-rules trees) so they never act as primary authorities.
+    if _is_derived_companion_note(src) or low.startswith("90_ce_wiki/"):
         return DOC_TYPE_NOTE
     if "/service_letters_" in low or "/service_letter" in low:
         return DOC_TYPE_SERVICE_LETTER

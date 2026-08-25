@@ -1500,6 +1500,11 @@ _TECHNICAL_QUERY_PATTERNS = (
     re.compile(r"\bsetting\b"),
 )
 
+# Equipment/component clarification applies only to these scopes (or when
+# manual-family discovery is still unresolved). Explicit non-manual scopes
+# such as regulatory/sms must proceed to retrieval without this gate.
+_MANUAL_FAMILY_SCOPES = frozenset({"me-c", "maker-manuals"})
+
 _ALARM_QUERY_PATTERN = re.compile(r"\balarm\b|\bsetpoint\b")
 
 _EXPLICIT_SCOPE_PATTERNS: tuple[tuple[re.Pattern[str], str], ...] = (
@@ -1520,6 +1525,32 @@ _AMBIGUOUS_CONFIRMATION_PROMPTS: tuple[tuple[re.Pattern[str], str], ...] = (
 
 def _is_technical_query(question: str) -> bool:
     return any(pattern.search(question) for pattern in _TECHNICAL_QUERY_PATTERNS)
+
+
+def _is_manual_family_scope(scope: str | None) -> bool:
+    return bool(scope) and scope in _MANUAL_FAMILY_SCOPES
+
+
+def _should_apply_equipment_clarification(
+    requested_scope: str | None,
+    resolved_scope: str | None,
+) -> bool:
+    """Gate equipment sufficiency checks to manual-family routing only.
+
+    Returns True when:
+    - the effective scope is ``me-c`` / ``maker-manuals``, or
+    - both requested and resolved scopes are unset (manual-family discovery
+      still unresolved — preserve existing underspecified-torque behaviour).
+
+    Returns False when either scope is an explicit non-manual scope
+    (e.g. ``regulatory``, ``sms``, ``inspection``, ``career``, ``rules``,
+    ``other``, ``wiki``, ``vessels``).
+    """
+    for candidate in (requested_scope, resolved_scope):
+        if candidate is None:
+            continue
+        return _is_manual_family_scope(candidate)
+    return True
 
 
 def _clarification_prompt(question: str) -> str:
@@ -1669,21 +1700,32 @@ def answer(
         )
 
     active_query = q
+    apply_equipment_gate = _should_apply_equipment_clarification(req, resolved)
     if confirmation_text is not None:
         confirmation = normalize_text(confirmation_text)
-        if not _confirmation_is_sufficient(confirmation):
-            return _clarification_result(
-                query=q,
-                requested_scope=req,
-                resolved_scope=resolved,
-                prompt=_confirmation_prompt(confirmation),
-                scope_resolution_s=scope_resolution_s,
-                model=None,
-                technical_state="USER_CONFIRMATION_STILL_AMBIGUOUS",
-            )
-        resolved = scope or _inferred_scope_from_text(confirmation, verified_context)
-        active_query = normalize_text(f"{confirmation}. {q}")
-    elif _is_technical_query(q) and not _question_is_sufficient(q, verified_context):
+        if apply_equipment_gate:
+            if not _confirmation_is_sufficient(confirmation):
+                return _clarification_result(
+                    query=q,
+                    requested_scope=req,
+                    resolved_scope=resolved,
+                    prompt=_confirmation_prompt(confirmation),
+                    scope_resolution_s=scope_resolution_s,
+                    model=None,
+                    technical_state="USER_CONFIRMATION_STILL_AMBIGUOUS",
+                )
+            resolved = scope or _inferred_scope_from_text(confirmation, verified_context)
+            active_query = normalize_text(f"{confirmation}. {q}")
+        else:
+            # Explicit non-manual scope: preserve confirmation context and
+            # continue retrieval — never ask for equipment/component.
+            if confirmation:
+                active_query = normalize_text(f"{confirmation}. {q}")
+    elif (
+        apply_equipment_gate
+        and _is_technical_query(q)
+        and not _question_is_sufficient(q, verified_context)
+    ):
         return _clarification_result(
             query=q,
             requested_scope=req,
@@ -1694,7 +1736,13 @@ def answer(
             technical_state="QUERY_UNDERSPECIFIED",
         )
     elif resolved is None:
-        resolved = _inferred_scope_from_text(q, verified_context)
+        # Prefer an explicit non-manual requested scope over equipment-biased
+        # text inference (e.g. quantity/limit wording must not re-route away
+        # from regulatory).
+        if req is not None and not _is_manual_family_scope(req):
+            resolved = req
+        else:
+            resolved = _inferred_scope_from_text(q, verified_context)
 
     retrieval_s: float | None = None
     retrieval_diag: dict[str, Any] = {}
