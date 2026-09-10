@@ -1,0 +1,77 @@
+{
+  "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142830Z/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+  "files": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2731,
+      "sha256": "af5b56fd3bb19567217e8cad26e3d9bb862af1a36a26d044c91f481feb9f2c4f"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1453,
+      "sha256": "9c81452b5a6b2c5c1bbc73ae463fabc1b13255962bf360236df4d1b65bba6d65"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 23541,
+      "sha256": "ba9eac158bf92e27aeba62701ce4066cffc5c80d125f4089f5272d055ff28edf"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1209,
+      "sha256": "ba9840f40ec09794a9f9b33b98b99d54c9769b61b2c9b9aaee3c28baa8c70f3e"
+    },
+    {
+      "relpath": "disposable_package_copy.json",
+      "bytes": 277,
+      "sha256": "0f0f560f7471499f0cd21766d348c3d90293899fe0609910c2becaf5152f7f8a"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2598,
+      "sha256": "878b409f2b2f986a41e3cc690ef3a47f3bc0b5391016f50658b58b0942f21963"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4332,
+      "sha256": "b03819c3f4ae955b28a31ce39e21d8afa3492818a3fb99ed186993f8101ba7c8"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 54,
+      "sha256": "06abc439fc9885d796af087521765c3635d769b9c3874ffc70f80875c4b6cad3"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 9538,
+      "sha256": "7271d1f7e88ce9f689cd9d65e788b143b494f15e1caaf7ef1df219286fee6195"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6530,
+      "sha256": "efd11be8b16dcb5587812fbbcf23b5a7760051c28fefbc2dc7b8548f4968edbf"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 242,
+      "sha256": "e59f00bac4c183c90e664bbd28154cb91f95b4a6761bdb1d37ab30ded94cb434"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 150,
+      "sha256": "7d829b6d68e7d99c35ada3710d64fed718187fb851d843de9e655eb4e0644fe8"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ]
+}

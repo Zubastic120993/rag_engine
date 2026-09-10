@@ -1,0 +1,187 @@
+{
+  "case_id": "LC6-16-rerun-against-already-repaired-clone",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142620Z/cases/LC6-16-rerun-against-already-repaired-clone",
+  "durable_inventory": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2758,
+      "sha256": "b14ecb0a5052bf4940039108c395e947b52d9d8e9f5a0649682946619012d6b8"
+    },
+    {
+      "relpath": "apply_result.json",
+      "bytes": 53391,
+      "sha256": "2c31c6ec2ba7df8a7fb964030ff60363313df73acb77e2bd9523240565c35dfc"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1678,
+      "sha256": "412fbecabc2977b951d74165a163854caef4a222cd003db5e5cb857f028d5ce1"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 224820,
+      "sha256": "450244960fdbb18339a3b9c09305bbca44e51a81d91b0467d6620bf9b69a5527"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1197,
+      "sha256": "40a0dcdc32d76474d950cc868c5ee49e73e5bc3852b52c0cda7bf174dbd097cf"
+    },
+    {
+      "relpath": "dirty_clone_rerun.json",
+      "bytes": 186246,
+      "sha256": "1139a3a1a6bb3ccc5c0dd997e4a95a86ab24cb7d6f0e4f766750917d6f8d7f4c"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1993,
+      "sha256": "6bc79ec8e9dc6513def36a22b9f031f53dbc69e41ab86f39a140a3470413b9a0"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 329,
+      "sha256": "05075fee05ad196711c0be79fcaa7db3bff5750c0c52fb65575f72da8ce49813"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 9624,
+      "sha256": "07232e5e7ac900184b2181dfeaca24b1f5ad2e82c5a41620125874483a78568c"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6589,
+      "sha256": "78e08e1bf8d8ec209670c227e7dc78f2070cfa04bc74d947c39cb2b1ac88369d"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 249,
+      "sha256": "1ae21de2c7504a8cb13e227dd0b5263b96b9cd6f6469b5e3c4353e9a7eba181f"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 156,
+      "sha256": "4684f8fd0d93d608d3544d0f687661ab2f4223e897b122e4f6bced9a8cde8760"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "rollback_observed.json",
+      "bytes": 28857,
+      "sha256": "52cde4cf72e92d3ce384b9a4fc1d538027b6a794e5294840c741fec024c8b07f"
+    },
+    {
+      "relpath": "rollback_process.json",
+      "bytes": 19205,
+      "sha256": "0e99a35d7690aee76fe5059f4026a73afc51a60e671edd26e8e532fa9e3a5e0a"
+    },
+    {
+      "relpath": "rollback_result.json",
+      "bytes": 8654,
+      "sha256": "b5f70429a7b24c66a1ea2ea83c4654ca54d7e78f40e2ef99f51fe720cff6c500"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "dirty_clone_rerun.json",
+      "rollback_process.json",
+      "rollback_observed.json",
+      "apply_failure.json",
+      "apply_result.json",
+      "execution_log.jsonl",
+      "executor_input.json",
+      "rollback_result.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "dirty_clone_rerun.json",
+        "present": true
+      },
+      {
+        "file": "rollback_process.json",
+        "present": true
+      },
+      {
+        "file": "rollback_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_failure.json",
+        "present": true
+      },
+      {
+        "file": "apply_result.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      },
+      {
+        "file": "rollback_result.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "case_id": "LC6-02-failure-midway-deterministic-repoints",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T140406Z/cases/LC6-02-failure-midway-deterministic-repoints",
+  "files": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 3065,
+      "sha256": "d2ede964b5ac3b52220cbf50af080998fcf9fac5649df9b32812ab91db934dbe"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1711,
+      "sha256": "79a5a8e636449314685dd990e5f139db9ebb5bba8989913ef0f8748d6569bbf1"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 23910,
+      "sha256": "3abf0ac710e40b3cbf1a273b07f7656310cccd28043992e45c1d28d3291b620d"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1203,
+      "sha256": "5ad808ab26aeee5accbc046996831d2112d1d41e1bbeb0f0699dc4dd500d99d9"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2433,
+      "sha256": "e1634caed5df1ae2294ae213a94d64f26b97ee4cc6c9b0f3f5ad0430f80c27ec"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4038,
+      "sha256": "2368f4b8638da9528063450c07fd1df5100c01d77998db38273fc6ac9d88cdcd"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 192,
+      "sha256": "db1b6b384df977bdef819af8e06815f87d150599d1e4282b17009420eb57bad1"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 10655,
+      "sha256": "4cb6ebf272e40bd6ef918734f75cc7492d51836c890400aaee09a101b66b650c"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 7309,
+      "sha256": "8a37ba2bea5a58ff77ab9ab0296cbe2f89c2a05faced9b4e64aa8c150f362aa0"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 285,
+      "sha256": "3dccbacff56358430073561eea408b7f6874cce6d698535948d8fe56a1a16a51"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 145,
+      "sha256": "ebd92fe1bfee13c6099791a3871caba6a6b1e7f1524b26f18e8358fc0133ea5c"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ]
+}

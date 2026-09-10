@@ -1,0 +1,12 @@
+{
+  "status": "production_unchanged_after_lc5",
+  "active_generation_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+  "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+  "total_chunks": 125291,
+  "active_generation_selection": {
+    "mechanism": "task-designated production generation path remained unchanged; subprocess env overrides were cycle-local only",
+    "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "unchanged": true
+  }
+}

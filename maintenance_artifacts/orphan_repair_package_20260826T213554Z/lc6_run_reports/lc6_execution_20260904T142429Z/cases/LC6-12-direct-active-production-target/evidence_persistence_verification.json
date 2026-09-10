@@ -1,0 +1,77 @@
+{
+  "case_id": "LC6-12-direct-active-production-target",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_12_g8e9_lb8/case_12_direct_active_production_target/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_12_g8e9_lb8/case_12_direct_active_production_target/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142429Z/cases/LC6-12-direct-active-production-target",
+  "durable_inventory": [
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1316,
+      "sha256": "93ef40251e36f606bd1384e8f9f68c74e023865de474028c3751d60415f16dd7"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 3686,
+      "sha256": "1fa7f7627654ae162cbe65244db0aeaa999837b807d69a814d6ddc11899cf473"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1014,
+      "sha256": "bf3b0fa5bb13fa7900cef75236f9047b628fe397eede5de4d7dd83e0f6237c05"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "refusal_result.json",
+      "bytes": 435,
+      "sha256": "bef254a1581e3684dd2b413c81f899a5d26867bd365568a29a2126202be5e29d"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "refusal_result.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "refusal_result.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

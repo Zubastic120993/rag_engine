@@ -1,0 +1,9 @@
+{
+  "final_status": "LC6_EXTERNAL_BASELINE_MARKER_BINDING_FIX_APPLIED",
+  "file": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+  "before_harness_sha256": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33",
+  "after_harness_sha256": "285569d40ab0a3c9e952e0e3c5df828244db0142c705e7c0d5e42c2c7875a462",
+  "old_restored_baseline_marker_sha256": "7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9",
+  "new_external_baseline_marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+  "changed_binding_only": true
+}

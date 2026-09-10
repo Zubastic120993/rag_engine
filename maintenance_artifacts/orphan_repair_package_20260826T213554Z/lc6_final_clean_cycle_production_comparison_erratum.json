@@ -1,0 +1,259 @@
+{
+  "report_name": "lc6_final_clean_cycle_production_comparison_erratum",
+  "final_status": "LC6_FINAL_CLEAN_CYCLE_PASS_READY_FOR_PACKAGE_SEALING",
+  "created_utc": "2026-09-10T05:43:13Z",
+  "purpose": "Additive erratum for report-only production comparison schema mismatch; clean repair workflow was not rerun.",
+  "source_reports_recomputed_hashes": {
+    "lc6_final_clean_cycle_report.json": {
+      "expected_sha256": "78edefeba4fc190a80b77d1a21871be9a2b9b2cee8d793763543647eb592eab5",
+      "actual_sha256": "78edefeba4fc190a80b77d1a21871be9a2b9b2cee8d793763543647eb592eab5",
+      "match": true
+    },
+    "lc6_final_clean_cycle_inventory.json": {
+      "expected_sha256": "338b73129d5d0c9acf7f60053e209ef12ed0c3a045b9c0d1b56d5f7b40fd282a",
+      "actual_sha256": "338b73129d5d0c9acf7f60053e209ef12ed0c3a045b9c0d1b56d5f7b40fd282a",
+      "match": true
+    },
+    "lc6_final_clean_cycle_retrieval_controls_report.json": {
+      "expected_sha256": "dbea54176fe25728b8b297d8db925dd6c79ebd2d6e046b0ec782e3d7faa01a23",
+      "actual_sha256": "dbea54176fe25728b8b297d8db925dd6c79ebd2d6e046b0ec782e3d7faa01a23",
+      "match": true
+    },
+    "lc6_production_unchanged_after_final_clean_cycle.json": {
+      "expected_sha256": "96e652386e91aafed942303a2c8dc4d430190d27820bc903c1ebe8bff0a15d8b",
+      "actual_sha256": "96e652386e91aafed942303a2c8dc4d430190d27820bc903c1ebe8bff0a15d8b",
+      "match": true
+    }
+  },
+  "observed_comparison_defect": {
+    "before_hash_map_key": "file_hashes",
+    "after_hash_map_key": "hashes",
+    "before_optional_active_generation_hash": null,
+    "after_optional_active_generation_hash_present": false
+  },
+  "normalization_rules": [
+    "Use canonical top-level key canonical_hashes for both snapshots.",
+    "Accept either legacy file_hashes or hashes as input hash-map keys; map both to canonical_hashes.",
+    "Canonical hash keys are embedded.json, chroma.sqlite3, .rag_state, and active_generation.",
+    "For optional hash keys .rag_state and active_generation, absent and explicitly null are normalized to null.",
+    "No non-null hash value may be discarded; unknown non-null hash entries are preserved in extra_non_null_hashes and compared fail-closed.",
+    "All non-hash snapshot fields are compared directly using the same canonical field set.",
+    "Current production snapshot is supporting evidence only; authoritative comparison is same-run before vs same-run after from lc6_production_unchanged_after_final_clean_cycle.json."
+  ],
+  "canonical_same_run_before": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "extra_non_null_hashes": {}
+  },
+  "canonical_same_run_after": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "extra_non_null_hashes": {}
+  },
+  "same_run_authoritative_comparison": {
+    "hash_checks": {
+      "embedded.json": true,
+      "chroma.sqlite3": true,
+      ".rag_state": true,
+      "active_generation": true
+    },
+    "non_hash_checks": {
+      "production_library": true,
+      "active_generation_constant": true,
+      "active_generation_exists": true,
+      "legacy_rag_db_exists": true,
+      "legacy_rag_db_is_symlink": true,
+      "legacy_rag_db_realpath": true,
+      "rag_state_exists": true,
+      "rag_state_sha256": true,
+      "wal_exists": true,
+      "shm_exists": true,
+      "lock_exists": true
+    },
+    "extra_non_null_hashes_equal": true,
+    "all_hashes_equal": true,
+    "all_non_hash_fields_equal": true,
+    "all_equal": true
+  },
+  "explicit_proof": {
+    "embedded_hash_equality": {
+      "before": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "after": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "equal": true
+    },
+    "chroma_sqlite3_hash_equality": {
+      "before": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "after": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "equal": true
+    },
+    "rag_state_hash_equality": {
+      "before": null,
+      "after": null,
+      "equal": true
+    },
+    "active_generation_hash_optional_equality": {
+      "before": null,
+      "after": null,
+      "equal": true
+    },
+    "active_generation_path_and_selection_equality": {
+      "active_generation_constant_equal": true,
+      "legacy_rag_db_realpath_equal": true,
+      "rag_state_sha256_equal": true
+    },
+    "wal_shm_lock_equality": {
+      "wal_exists_before": false,
+      "wal_exists_after": false,
+      "wal_equal": true,
+      "shm_exists_before": false,
+      "shm_exists_after": false,
+      "shm_equal": true,
+      "lock_exists_before": false,
+      "lock_exists_after": false,
+      "lock_equal": true
+    },
+    "all_other_non_hash_fields_equal": true,
+    "non_hash_field_checks": {
+      "production_library": true,
+      "active_generation_constant": true,
+      "active_generation_exists": true,
+      "legacy_rag_db_exists": true,
+      "legacy_rag_db_is_symlink": true,
+      "legacy_rag_db_realpath": true,
+      "rag_state_exists": true,
+      "rag_state_sha256": true,
+      "wal_exists": true,
+      "shm_exists": true,
+      "lock_exists": true
+    }
+  },
+  "supporting_current_production_snapshot_read_only": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "extra_non_null_hashes": {}
+  },
+  "supporting_current_vs_same_run_after_comparison": {
+    "hash_checks": {
+      "embedded.json": true,
+      "chroma.sqlite3": true,
+      ".rag_state": true,
+      "active_generation": true
+    },
+    "non_hash_checks": {
+      "production_library": true,
+      "active_generation_constant": true,
+      "active_generation_exists": true,
+      "legacy_rag_db_exists": true,
+      "legacy_rag_db_is_symlink": true,
+      "legacy_rag_db_realpath": true,
+      "rag_state_exists": true,
+      "rag_state_sha256": true,
+      "wal_exists": true,
+      "shm_exists": true,
+      "lock_exists": true
+    },
+    "extra_non_null_hashes_equal": true,
+    "all_hashes_equal": true,
+    "all_non_hash_fields_equal": true,
+    "all_equal": true
+  },
+  "final_cycle_other_checks_passed": true,
+  "old_final_cycle_checks": {
+    "prerequisite_hashes_match": true,
+    "contract_reverified": true,
+    "external_baseline_revalidated": true,
+    "fresh_private_tmp_parent_used": true,
+    "normal_clean_no_failure_injection": true,
+    "production_not_mutation_target": true,
+    "executor_exit_zero": true,
+    "mutation_result_apply_ok": true,
+    "doctor_pass": true,
+    "retrieval_controls_pass": true,
+    "deterministic_affected_set_verified": true,
+    "final_chunk_count_125289": true,
+    "final_orphan_count_zero": true,
+    "final_collection_state_valid": true,
+    "no_unexpected_rows_paths_vectors_metadata_or_files_changed": true,
+    "no_wal_shm_lock_remaining": true,
+    "no_lingering_worker_or_executor": true,
+    "production_hashes_and_selection_unchanged": false,
+    "certified_external_baseline_unchanged": true
+  },
+  "normalized_final_cycle_checks": {
+    "prerequisite_hashes_match": true,
+    "contract_reverified": true,
+    "external_baseline_revalidated": true,
+    "fresh_private_tmp_parent_used": true,
+    "normal_clean_no_failure_injection": true,
+    "production_not_mutation_target": true,
+    "executor_exit_zero": true,
+    "mutation_result_apply_ok": true,
+    "doctor_pass": true,
+    "retrieval_controls_pass": true,
+    "deterministic_affected_set_verified": true,
+    "final_chunk_count_125289": true,
+    "final_orphan_count_zero": true,
+    "final_collection_state_valid": true,
+    "no_unexpected_rows_paths_vectors_metadata_or_files_changed": true,
+    "no_wal_shm_lock_remaining": true,
+    "no_lingering_worker_or_executor": true,
+    "production_hashes_and_selection_unchanged": true,
+    "certified_external_baseline_unchanged": true,
+    "production_comparison_normalized_from_same_run_evidence": true
+  },
+  "prohibitions_confirmed": {
+    "clean_repair_rerun": false,
+    "failure_injection_cases_run": false,
+    "production_modified": false,
+    "production_selection_modified": false,
+    "source_documents_modified": false,
+    "certified_baseline_modified": false,
+    "sha256sums_regenerated": false,
+    "package_sealed": false
+  }
+}

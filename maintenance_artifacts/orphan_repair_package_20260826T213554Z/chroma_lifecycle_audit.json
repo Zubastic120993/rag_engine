@@ -1,0 +1,180 @@
+{
+  "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+  "private_shutdown_calls_in_active_paths": 0,
+  "parent_process_chroma_clients_in_executor": false,
+  "worker_subprocess_boundary": true,
+  "refused_targets_verified": [
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+      "ok": true
+    }
+  ],
+  "smoke_summary": [
+    {
+      "sequence": 1,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-01",
+      "ok": true,
+      "worker_pids": [
+        76152,
+        76153,
+        76156
+      ]
+    },
+    {
+      "sequence": 2,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-02",
+      "ok": true,
+      "worker_pids": [
+        76158,
+        76159,
+        76161
+      ]
+    },
+    {
+      "sequence": 3,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-03",
+      "ok": true,
+      "worker_pids": [
+        76163,
+        76164,
+        76167
+      ]
+    },
+    {
+      "sequence": 4,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-04",
+      "ok": true,
+      "worker_pids": [
+        76169,
+        76170,
+        76172
+      ]
+    },
+    {
+      "sequence": 5,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-05",
+      "ok": true,
+      "worker_pids": [
+        76174,
+        76175,
+        76177
+      ]
+    },
+    {
+      "sequence": 6,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-06",
+      "ok": true,
+      "worker_pids": [
+        76179,
+        76180,
+        76182
+      ]
+    },
+    {
+      "sequence": 7,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-07",
+      "ok": true,
+      "worker_pids": [
+        76184,
+        76185,
+        76189
+      ]
+    },
+    {
+      "sequence": 8,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-08",
+      "ok": true,
+      "worker_pids": [
+        76192,
+        76193,
+        76196
+      ]
+    },
+    {
+      "sequence": 9,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-09",
+      "ok": true,
+      "worker_pids": [
+        76198,
+        76199,
+        76202
+      ]
+    },
+    {
+      "sequence": 10,
+      "inspect_before_rc": 0,
+      "update_rc": 0,
+      "inspect_after_rc": 0,
+      "observed_source_after": "seq-10",
+      "ok": true,
+      "worker_pids": [
+        76204,
+        76206,
+        76207
+      ]
+    }
+  ],
+  "reproduced_old_failure": {
+    "result": "update_failed",
+    "error_type": "RuntimeError",
+    "error": "Component not running",
+    "repr": "RuntimeError('Component not running')",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 41, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/api/models/Collection.py\", line 298, in update\n    self._client._update(\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/telemetry/opentelemetry/__init__.py\", line 150, in wrapper\n    return f(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/api/segment.py\", line 103, in wrapper\n    return self._rate_limit_enforcer.rate_limit(func)(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/rate_limit/simple_rate_limit/__init__.py\", line 23, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/api/segment.py\", line 491, in _update\n    self._producer.submit_embeddings(collection_id, records_to_submit)\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/telemetry/opentelemetry/__init__.py\", line 150, in wrapper\n    return f(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/db/mixins/embeddings_queue.py\", line 193, in submit_embeddings\n    raise RuntimeError(\"Component not running\")\nRuntimeError: Component not running\n"
+  },
+  "overall_conclusion": "Lifecycle-safe active paths now use one bounded subprocess per Chroma operation and refuse production or unmarked targets before any Chroma open."
+}

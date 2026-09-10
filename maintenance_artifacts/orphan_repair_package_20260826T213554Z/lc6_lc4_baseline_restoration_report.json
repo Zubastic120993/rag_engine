@@ -1,0 +1,83 @@
+{
+  "final_status": "LC4_BASELINE_RESTORED_AND_VERIFIED",
+  "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "new_baseline_parent": "/private/tmp/lc4_restored_baseline_goxd66q0",
+  "new_baseline_path": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+  "lock": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock",
+    "acquired_exclusive": true,
+    "released_after_copy": true
+  },
+  "source_before_lock": {
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "file_count": 19,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": ["langchain"],
+    "wal_shm_clear": true
+  },
+  "source_after_lock": {
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "file_count": 19,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": ["langchain"],
+    "wal_shm_clear": true
+  },
+  "source_after_release": {
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "file_count": 19,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": ["langchain"],
+    "wal_shm_clear": true
+  },
+  "clone_before_marker": {
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "file_count": 19,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": ["langchain"],
+    "wal_shm_clear": true
+  },
+  "clone_after_marker": {
+    "inventory_checksum_excluding_marker": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "file_count_excluding_marker": 19,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": ["langchain"],
+    "wal_shm_clear": true,
+    "no_active_process_using_clone": true
+  },
+  "marker": {
+    "clone_id": "lc4-raggen_lc4_baseline_restored_20260901T153049Z",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-01T15:30:52Z",
+    "purpose": "VERIFIED_DISPOSABLE_BASELINE",
+    "status": "VERIFIED_DISPOSABLE_BASELINE",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "source_core_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "expected_chunk_count": 125291,
+    "expected_orphan_count": 55,
+    "package_manifest_checksum": "3dabe40c9522ca497373205a937d659e91341a3faa1edfecb0864b84a2718f04",
+    "disposable": true,
+    "unpromoted": true,
+    "target_generation": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z"
+  },
+  "marker_sha256": "7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9",
+  "failed_clone_preserved": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation"
+}

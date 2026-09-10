@@ -1,0 +1,30 @@
+{
+  "case_id": "LC6-10-candidate-lock-contention",
+  "authoritative_reference": "LC6 specification section 5 case 10",
+  "injected_failure_point": "candidate-lock contention",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_10_candidate_lock_contention/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "valid disposable marker/schema/checksum",
+    "case-local lock holder established on candidate only",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py lock-contention harness -> orphan_repair_executor.py apply",
+  "expected_process_exit_result": "controlled lock refusal / IngestLockError",
+  "expected_fail_closed_behavior": "no unsafe concurrent mutation",
+  "expected_filesystem_state": "clone unchanged apart from allowed lockfile lifecycle",
+  "expected_chroma_state": "no mutation committed",
+  "expected_tracker_state": "unchanged",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "release candidate lock and confirm baseline unchanged",
+  "expected_residual_state_report": "lock contention evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "lock_refusal.json",
+    "execution_log.jsonl",
+    "inventory_proof.json"
+  ],
+  "cleanup_procedure": "remove disposable clone only after lock released and proof captured",
+  "post_cleanup_assertion": "no lingering lock on clone; production lock untouched",
+  "production_is_not_a_target": true
+}

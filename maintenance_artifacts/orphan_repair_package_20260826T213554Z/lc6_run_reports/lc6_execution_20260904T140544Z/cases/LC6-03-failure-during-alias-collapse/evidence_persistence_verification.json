@@ -1,0 +1,137 @@
+{
+  "case_id": "LC6-03-failure-during-alias-collapse",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_03_zka1gfkm/case_03_failure_during_alias_collapse/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_03_zka1gfkm/case_03_failure_during_alias_collapse/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T140544Z/cases/LC6-03-failure-during-alias-collapse",
+  "durable_inventory": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 3032,
+      "sha256": "eae5ddabb64081acbdae5bdc94473b6dc0bd5a2d2ee5c3df78302aebd5d1621a"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1508,
+      "sha256": "6db1d1e72fcb1209258d9acf6a2ca925436fddca7e752bc04d1c9749effc597e"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 13986,
+      "sha256": "68cab6ebc7e7255ef122f0365a499d4c6b137f6455a72b6948897ab82d9e3a38"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1155,
+      "sha256": "d116075c5e762f1fb8eb8c3277396bd7f448c2d02f84ac0c45b7d5e30764b9c1"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1496,
+      "sha256": "d66f308393f2e1688b151dc47afa229e0dde29508c389851a1b1ca5318eb976a"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 184,
+      "sha256": "1d0786c7064a72f325b499c12100cb301475e6954be73d36f9331e2788bf42ab"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 10532,
+      "sha256": "50607a31ec8543c938f4e6fd85afd55534562098fb1b2630ccfcf6ae23d1fc9f"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 7219,
+      "sha256": "679752305ec51e833fb26cdbda2b292d419aed9553194954df873efabd489a34"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 269,
+      "sha256": "12eda4c054f101b41a308a06dbeba23be217b75bf09471d3a360d82e6ab5d81a"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 129,
+      "sha256": "5746c6e439331b9b84e91a9d5ab092eac04c8317722301598c377b7649eb7c66"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "apply_failure.json",
+      "execution_log.jsonl",
+      "executor_input.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_failure.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

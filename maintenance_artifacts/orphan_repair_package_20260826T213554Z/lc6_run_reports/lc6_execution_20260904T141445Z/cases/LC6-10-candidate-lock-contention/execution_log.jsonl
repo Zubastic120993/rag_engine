@@ -1,0 +1,1 @@
+{"event": "executor_log_missing_before_lock_refusal", "source": "harness", "case_id": "LC6-10-candidate-lock-contention", "reason": "executor returned before emitting execution_log.jsonl on early candidate-lock refusal", "observed_status": "APPLY_REJECTED", "lock_refusal_detected": true}

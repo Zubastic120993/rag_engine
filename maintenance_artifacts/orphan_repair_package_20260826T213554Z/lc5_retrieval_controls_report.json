@@ -1,0 +1,170 @@
+{
+  "status": "LC5_PASS",
+  "cycles": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 42567,
+      "reopen_after_rollback_pid": 42594
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 42839,
+      "reopen_after_rollback_pid": 42867
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 43146,
+      "reopen_after_rollback_pid": 43178
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 43481,
+      "reopen_after_rollback_pid": 43510
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 43871,
+      "reopen_after_rollback_pid": 43900
+    }
+  ]
+}

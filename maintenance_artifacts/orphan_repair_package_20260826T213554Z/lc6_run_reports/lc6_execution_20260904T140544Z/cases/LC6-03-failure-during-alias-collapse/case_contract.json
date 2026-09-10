@@ -1,0 +1,30 @@
+{
+  "case_id": "LC6-03-failure-during-alias-collapse",
+  "authoritative_reference": "LC6 specification section 5 case 3",
+  "injected_failure_point": "failure during alias collapse",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_03_failure_during_alias_collapse/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "validated marker/schema/checksum",
+    "rollback snapshot captured",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py -> orphan_repair_executor.py apply --inject failure_during_alias_collapse",
+  "expected_process_exit_result": "APPLY_REJECTED during alias collapse",
+  "expected_fail_closed_behavior": "automatic complete rollback",
+  "expected_filesystem_state": "restored clone inventory equals baseline",
+  "expected_chroma_state": "restored baseline state with no orphan regression",
+  "expected_tracker_state": "restored baseline embedded.json",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "restore snapshot after all workers exit",
+  "expected_residual_state_report": "alias-collapse failure evidence + rollback evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "apply_failure.json",
+    "execution_log.jsonl",
+    "rollback_validation.json"
+  ],
+  "cleanup_procedure": "delete validated disposable artifacts only after proof",
+  "post_cleanup_assertion": "validated clone removed; production unchanged",
+  "production_is_not_a_target": true
+}

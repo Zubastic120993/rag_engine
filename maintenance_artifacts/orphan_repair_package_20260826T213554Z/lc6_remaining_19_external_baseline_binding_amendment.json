@@ -1,0 +1,63 @@
+{
+  "final_status": "LC6_REMAINING_19_EXTERNAL_BASELINE_BINDING_BLOCKED",
+  "base_plan_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_execution_plan.json",
+  "base_plan_sha256": "e612d28775fb2027eb2790382532f21684768fe8c294784b2a4d0d47f7caa75c",
+  "supersedes_amendment_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_durable_baseline_binding_amendment.json",
+  "expired_or_rejected_baselines": [
+    "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z"
+  ],
+  "candidate_external_baseline": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "candidate_external_marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+  "substitution_rule": {
+    "replace_only": "--baseline-dir value",
+    "new_value": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z"
+  },
+  "ordered_case_ids": [
+    "LC6-01-failure-before-first-mutation",
+    "LC6-02-failure-midway-deterministic-repoints",
+    "LC6-03-failure-during-alias-collapse",
+    "LC6-04-failure-immediately-before-c1210-retirement",
+    "LC6-05-failure-immediately-after-c1210-retirement",
+    "LC6-06-forced-doctor-failure",
+    "LC6-07-forced-retrieval-acceptance-failure",
+    "LC6-08-stale-tracker-store-baseline-hash",
+    "LC6-09-canonical-source-sha-mismatch",
+    "LC6-10-candidate-lock-contention",
+    "LC6-12-direct-active-production-target",
+    "LC6-13-legacy-rag-db-target",
+    "LC6-14-generations-root-target",
+    "LC6-15-ce-library-root-target",
+    "LC6-16-rerun-against-already-repaired-clone",
+    "LC6-17-invalid-or-missing-disposable-marker",
+    "LC6-18-malformed-or-checksum-invalid-manifest",
+    "LC6-19-unexpected-wal-shm-state",
+    "LC6-20-worker-timeout-or-malformed-output"
+  ],
+  "execution_constraints": {
+    "never_use_all": true,
+    "fresh_tmp_parent_per_case": true,
+    "fresh_disposable_copy_per_case": true,
+    "revalidate_external_baseline_before_every_case": true,
+    "never_mutate_external_baseline": true,
+    "stop_on_first_unexpected_state": true
+  },
+  "binding_validation": {
+    "command": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "--case-id",
+      "LC6-01-failure-before-first-mutation",
+      "--baseline-dir",
+      "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "--json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2655, in <module>\n    main()\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2573, in main\n    baseline_summary = build_runtime_baseline_summary(args, test_baseline, test_package_dir, bound_baseline)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2541, in build_runtime_baseline_summary\n    summary = baseline_revalidation_summary(bound_baseline, RESTORED_BASELINE_MARKER_SHA)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 348, in baseline_revalidation_summary\n    raise HarnessRefusal(f'baseline marker sha mismatch: {marker_sha} != {expected_marker_sha}')\nHarnessRefusal: baseline marker sha mismatch: e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1 != 7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9\n",
+    "json": null
+  },
+  "blockers": [
+    "Traceback (most recent call last):\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2655, in <module>\n    main()\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2573, in main\n    baseline_summary = build_runtime_baseline_summary(args, test_baseline, test_package_dir, bound_baseline)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2541, in build_runtime_baseline_summary\n    summary = baseline_revalidation_summary(bound_baseline, RESTORED_BASELINE_MARKER_SHA)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 348, in baseline_revalidation_summary\n    raise HarnessRefusal(f'baseline marker sha mismatch: {marker_sha} != {expected_marker_sha}')\nHarnessRefusal: baseline marker sha mismatch: e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1 != 7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9"
+  ]
+}

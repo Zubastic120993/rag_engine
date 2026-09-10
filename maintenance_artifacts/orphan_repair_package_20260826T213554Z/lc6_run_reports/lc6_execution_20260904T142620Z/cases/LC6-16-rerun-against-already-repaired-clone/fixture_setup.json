@@ -1,0 +1,5 @@
+{
+  "mechanic": "harness_fixture:dirty_clone_rerun_refusal",
+  "mutations": [],
+  "two_phase": "successful_apply_then_second_apply_refusal_on_dirty_clone"
+}

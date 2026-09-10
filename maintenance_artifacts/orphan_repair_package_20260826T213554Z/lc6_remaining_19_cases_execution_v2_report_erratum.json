@@ -1,0 +1,8 @@
+{
+  "status": "LC6_V2_EXECUTION_REPORT_HASH_ERRATUM",
+  "report_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_execution_v2_report.json",
+  "previously_reported_sha256": "249e9c8b627963f8d100198395198340a6c9e884126d371f58fa0adf7f243d6d",
+  "recomputed_complete_file_sha256": "941379291abb72d23d62b1ff7f8b1b824a58bb788ceab3029a23f85ca1697866",
+  "independently_observed_complete_file_sha256": "941379291abb72d23d62b1ff7f8b1b824a58bb788ceab3029a23f85ca1697866",
+  "conclusion": "reported aggregate_report_sha256 field was self-referential and not the complete-file hash"
+}

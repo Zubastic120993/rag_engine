@@ -1,0 +1,29 @@
+{
+  "case_id": "LC6-09-canonical-source-sha-mismatch",
+  "authoritative_reference": "LC6 specification section 5 case 9",
+  "injected_failure_point": "canonical-source SHA mismatch",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_09_canonical_source_sha_mismatch/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "isolated disposable package/manifest copy with intentionally wrong expected SHA only",
+    "original approved manifest unchanged",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py using disposable package copy -> orphan_repair_executor.py apply",
+  "expected_process_exit_result": "controlled refusal during canonical file SHA precondition",
+  "expected_fail_closed_behavior": "no mutation starts",
+  "expected_filesystem_state": "clone unchanged; original package unchanged",
+  "expected_chroma_state": "baseline state untouched",
+  "expected_tracker_state": "baseline tracker untouched",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "none required beyond refusal proof",
+  "expected_residual_state_report": "manifest-copy SHA mismatch evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "disposable_manifest.json",
+    "preflight_refusal.json"
+  ],
+  "cleanup_procedure": "delete validated disposable clone and disposable manifest copy",
+  "post_cleanup_assertion": "original manifest remains unchanged",
+  "production_is_not_a_target": true
+}

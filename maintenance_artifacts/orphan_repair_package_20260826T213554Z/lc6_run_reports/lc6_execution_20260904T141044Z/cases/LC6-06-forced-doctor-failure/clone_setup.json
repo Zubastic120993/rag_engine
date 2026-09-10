@@ -1,0 +1,18 @@
+{
+  "clone_path": "/private/tmp/lc6_case_06_vqsdvet5/case_06_forced_doctor_failure/clone",
+  "work_path": "/private/tmp/lc6_case_06_vqsdvet5/case_06_forced_doctor_failure/work",
+  "baseline_clone_source": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker": {
+    "clone_id": "lc6-LC6-06-forced-doctor-failure-3e5adbc5-0783-482a-a312-04b0b7f92f36",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T14:10:46Z",
+    "purpose": "LC6_LC6-06-forced-doctor-failure",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "target_generation": "/private/tmp/lc6_case_06_vqsdvet5/case_06_forced_doctor_failure/clone",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "validated_clone_id": "lc6-LC6-06-forced-doctor-failure-3e5adbc5-0783-482a-a312-04b0b7f92f36"
+}

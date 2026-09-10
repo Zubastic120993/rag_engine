@@ -1,0 +1,31 @@
+{
+  "case_id": "LC6-06-forced-doctor-failure",
+  "authoritative_reference": "LC6 specification section 5 case 6",
+  "injected_failure_point": "forced doctor failure",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_06_forced_doctor_failure/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "validated marker/schema/checksum",
+    "rollback snapshot captured",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py -> orphan_repair_executor.py apply --inject forced_doctor_failure",
+  "expected_process_exit_result": "APPLY_REJECTED during post-mutation validation",
+  "expected_fail_closed_behavior": "automatic rollback after validation failure",
+  "expected_filesystem_state": "restored baseline inventory",
+  "expected_chroma_state": "reopened cleanly after rollback; no Component not running",
+  "expected_tracker_state": "restored baseline tracker",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "restore snapshot and verify clean reopen",
+  "expected_residual_state_report": "doctor-failure evidence + rollback proof",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "apply_failure.json",
+    "execution_log.jsonl",
+    "rollback_validation.json",
+    "reopen_validation.json"
+  ],
+  "cleanup_procedure": "delete validated disposable artifacts",
+  "post_cleanup_assertion": "no lingering worker processes",
+  "production_is_not_a_target": true
+}

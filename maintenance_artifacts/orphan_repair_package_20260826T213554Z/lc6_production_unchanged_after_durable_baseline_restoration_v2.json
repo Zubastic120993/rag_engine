@@ -1,0 +1,80 @@
+{
+  "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "production_before": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "inventory_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "marker_exists": false,
+    "marker_sha256": null,
+    "activity": {
+      "all_ps_matches": [],
+      "external_ps_matches": [],
+      "all_open_write_processes": [],
+      "external_open_write_processes": [],
+      "self_lock_record": null
+    },
+    "problems": []
+  },
+  "production_after": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "inventory_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "marker_exists": false,
+    "marker_sha256": null,
+    "activity": {
+      "all_ps_matches": [],
+      "external_ps_matches": [],
+      "all_open_write_processes": [],
+      "external_open_write_processes": [],
+      "self_lock_record": null
+    },
+    "problems": []
+  },
+  "active_generation_before": {
+    "persist_dir_resolved": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "matches_expected_source_generation": true
+  },
+  "active_generation_after": {
+    "persist_dir_resolved": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "matches_expected_source_generation": true
+  },
+  "embedded_hash_unchanged": true,
+  "chroma_hash_unchanged": true,
+  "inventory_checksum_unchanged": true,
+  "active_generation_selection_unchanged": true,
+  "failed_lc6_case11_evidence_preserved_path": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation"
+}

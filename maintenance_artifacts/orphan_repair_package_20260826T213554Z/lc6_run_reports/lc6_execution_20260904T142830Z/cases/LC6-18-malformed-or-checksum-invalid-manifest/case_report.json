@@ -1,0 +1,512 @@
+{
+  "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+  "mechanic": "harness_fixture:invalid_manifest_refusal",
+  "dispatch_identity_chain": {
+    "cli_selected_case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+    "contract_case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+    "harness_mechanic": "harness_fixture:invalid_manifest_refusal",
+    "executor_action": null,
+    "worker_action": null,
+    "checkpoint_source": null,
+    "worker_pid": null,
+    "disposable_clone": "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/clone",
+    "run_id": null
+  },
+  "execution_metadata": {
+    "mode": "execute",
+    "validate_harness": false,
+    "actual_case_execution_performed": true,
+    "no_failure_injection_case_ran": false,
+    "no_production_action_occurred": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  },
+  "observed": {
+    "status": "APPLY_REJECTED",
+    "result": {
+      "status": "APPLY_REJECTED",
+      "inject": null,
+      "error": "manifest payload checksum mismatch",
+      "gen_hashes_after_rejection": {
+        ".orphan_repair_disposable_clone.json": "383223b920942136973e6e6dd17861d3c4d8ca3142a128a0631ce658cb4f48a3",
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+        "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+        "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb",
+        "ingest.lock": "358920aa19ddeb7cd1043c645c7efc57190f38effc8c3b6803cf94bd2dc5ea1a"
+      }
+    },
+    "process": {
+      "stage": "apply",
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/orphan_repair_executor.py",
+        "apply",
+        "--package-dir",
+        "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/work/package_copy",
+        "--gen-dir",
+        "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/clone",
+        "--work-dir",
+        "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/work"
+      ],
+      "pid": 90104,
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"APPLY_REJECTED\",\n  \"inject\": null,\n  \"error\": \"manifest payload checksum mismatch\",\n  \"gen_hashes_after_rejection\": {\n    \".orphan_repair_disposable_clone.json\": \"383223b920942136973e6e6dd17861d3c4d8ca3142a128a0631ce658cb4f48a3\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin\": \"556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/header.bin\": \"acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle\": \"6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/length.bin\": \"080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin\": \"bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a\",\n    \"ask_events.jsonl\": \"a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json\": \"dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json\": \"4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json\": \"774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json\": \"f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json\": \"8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json\": \"edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json\": \"f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json\": \"fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc\",\n    \"certified_generation_checkpoint.json\": \"5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362\",\n    \"chroma.sqlite3\": \"71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6\",\n    \"embedded.json\": \"c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33\",\n    \"index_embedding_fingerprint_v1.json\": \"763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996\",\n    \"index_fingerprint.json\": \"7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb\",\n    \"ingest.lock\": \"358920aa19ddeb7cd1043c645c7efc57190f38effc8c3b6803cf94bd2dc5ea1a\"\n  }\n}\n",
+      "stderr": "",
+      "timed_out": false,
+      "terminated": false,
+      "killed": false,
+      "timeout_message": null,
+      "duration_s": 1.252362,
+      "alive_after_wait": false,
+      "exited": true,
+      "json_payload": {
+        "status": "APPLY_REJECTED",
+        "inject": null,
+        "error": "manifest payload checksum mismatch",
+        "gen_hashes_after_rejection": {
+          ".orphan_repair_disposable_clone.json": "383223b920942136973e6e6dd17861d3c4d8ca3142a128a0631ce658cb4f48a3",
+          "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+          "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+          "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+          "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+          "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+          "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+          "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+          "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+          "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+          "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+          "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+          "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+          "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+          "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb",
+          "ingest.lock": "358920aa19ddeb7cd1043c645c7efc57190f38effc8c3b6803cf94bd2dc5ea1a"
+        }
+      },
+      "json_parse_error": null
+    },
+    "opened_chroma": false,
+    "production_action": false
+  },
+  "evaluation": {
+    "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+    "expected_process_exit_result": "controlled refusal during verify_manifest_and_scope()",
+    "observed_summary": "APPLY_REJECTED",
+    "expected_behavior_confirmed": true
+  },
+  "rollback": {
+    "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+    "child_pid": 90104,
+    "child_exited": true,
+    "child_alive_after_wait": false,
+    "timed_out": false,
+    "snapshot_exists": false,
+    "rollback_owner": "executor",
+    "rollback_invoked": false,
+    "rollback_allowed": false,
+    "rollback_blocked_reason": "executor-owned restoration after controlled worker failure",
+    "rollback_result": null
+  },
+  "production_hash_evidence": {
+    "before": {
+      "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "embedded": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+        "exists": true,
+        "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      "chroma_sqlite3": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+        "exists": true,
+        "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      "opened_chroma": false,
+      "capture_mode": "read-only file hash"
+    },
+    "after": {
+      "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "embedded": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+        "exists": true,
+        "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      "chroma_sqlite3": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+        "exists": true,
+        "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      "opened_chroma": false,
+      "capture_mode": "read-only file hash"
+    },
+    "match": true,
+    "opened_chroma": false,
+    "fail_closed_on_mismatch": false
+  },
+  "cleanup": {
+    "callbacks": [],
+    "clone_preserved": false,
+    "case_root_removed": true,
+    "durable_evidence_survived_cleanup": true,
+    "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142830Z/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+    "durable_evidence_verification": {
+      "required_files": [
+        "case_contract.json",
+        "case_report.json",
+        "evidence_inventory.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "fixture_setup.json",
+        "clone_setup.json",
+        "disposable_package_copy.json",
+        "executor_apply_process.json",
+        "executor_apply_observed.json"
+      ],
+      "checks": [
+        {
+          "file": "case_contract.json",
+          "present": true
+        },
+        {
+          "file": "case_report.json",
+          "present": true
+        },
+        {
+          "file": "evidence_inventory.json",
+          "present": true
+        },
+        {
+          "file": "production_hashes_before.json",
+          "present": true
+        },
+        {
+          "file": "production_hashes_after.json",
+          "present": true
+        },
+        {
+          "file": "fixture_setup.json",
+          "present": true
+        },
+        {
+          "file": "clone_setup.json",
+          "present": true
+        },
+        {
+          "file": "disposable_package_copy.json",
+          "present": true
+        },
+        {
+          "file": "executor_apply_process.json",
+          "present": true
+        },
+        {
+          "file": "executor_apply_observed.json",
+          "present": true
+        }
+      ],
+      "missing": [],
+      "ok": true
+    }
+  },
+  "no_production_action": true,
+  "evidence_persistence": {
+    "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+    "written_before_cleanup": true,
+    "local_case_report": "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/work/evidence/case_report.json",
+    "local_evidence_inventory": "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/work/evidence/evidence_inventory.json",
+    "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142830Z/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+    "durable_inventory": [
+      {
+        "relpath": "apply_failure.json",
+        "bytes": 2731,
+        "sha256": "af5b56fd3bb19567217e8cad26e3d9bb862af1a36a26d044c91f481feb9f2c4f"
+      },
+      {
+        "relpath": "case_contract.json",
+        "bytes": 1453,
+        "sha256": "9c81452b5a6b2c5c1bbc73ae463fabc1b13255962bf360236df4d1b65bba6d65"
+      },
+      {
+        "relpath": "case_report.json",
+        "bytes": 13050,
+        "sha256": "431403ccf28cf3f27e59af0146cb1e8e4b2145d53cafbd149c202143f7382ea2"
+      },
+      {
+        "relpath": "clone_setup.json",
+        "bytes": 1209,
+        "sha256": "ba9840f40ec09794a9f9b33b98b99d54c9769b61b2c9b9aaee3c28baa8c70f3e"
+      },
+      {
+        "relpath": "disposable_package_copy.json",
+        "bytes": 277,
+        "sha256": "0f0f560f7471499f0cd21766d348c3d90293899fe0609910c2becaf5152f7f8a"
+      },
+      {
+        "relpath": "evidence_inventory.json",
+        "bytes": 1678,
+        "sha256": "c0de7e55c9b5bd32582080092f98689b002d23bdca9704875047da9b72aa6442"
+      },
+      {
+        "relpath": "execution_log.jsonl",
+        "bytes": 54,
+        "sha256": "06abc439fc9885d796af087521765c3635d769b9c3874ffc70f80875c4b6cad3"
+      },
+      {
+        "relpath": "executor_apply_observed.json",
+        "bytes": 9538,
+        "sha256": "7271d1f7e88ce9f689cd9d65e788b143b494f15e1caaf7ef1df219286fee6195"
+      },
+      {
+        "relpath": "executor_apply_process.json",
+        "bytes": 6530,
+        "sha256": "efd11be8b16dcb5587812fbbcf23b5a7760051c28fefbc2dc7b8548f4968edbf"
+      },
+      {
+        "relpath": "executor_input.json",
+        "bytes": 242,
+        "sha256": "e59f00bac4c183c90e664bbd28154cb91f95b4a6761bdb1d37ab30ded94cb434"
+      },
+      {
+        "relpath": "fixture_setup.json",
+        "bytes": 150,
+        "sha256": "7d829b6d68e7d99c35ada3710d64fed718187fb851d843de9e655eb4e0644fe8"
+      },
+      {
+        "relpath": "production_hashes_after.json",
+        "bytes": 663,
+        "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+      },
+      {
+        "relpath": "production_hashes_before.json",
+        "bytes": 663,
+        "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+      }
+    ],
+    "verification": {
+      "required_files": [
+        "case_contract.json",
+        "case_report.json",
+        "evidence_inventory.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "fixture_setup.json",
+        "clone_setup.json",
+        "disposable_package_copy.json",
+        "executor_apply_process.json",
+        "executor_apply_observed.json",
+        "apply_failure.json",
+        "execution_log.jsonl",
+        "executor_input.json"
+      ],
+      "checks": [
+        {
+          "file": "case_contract.json",
+          "present": true
+        },
+        {
+          "file": "case_report.json",
+          "present": true
+        },
+        {
+          "file": "evidence_inventory.json",
+          "present": true
+        },
+        {
+          "file": "production_hashes_before.json",
+          "present": true
+        },
+        {
+          "file": "production_hashes_after.json",
+          "present": true
+        },
+        {
+          "file": "fixture_setup.json",
+          "present": true
+        },
+        {
+          "file": "clone_setup.json",
+          "present": true
+        },
+        {
+          "file": "disposable_package_copy.json",
+          "present": true
+        },
+        {
+          "file": "executor_apply_process.json",
+          "present": true
+        },
+        {
+          "file": "executor_apply_observed.json",
+          "present": true
+        },
+        {
+          "file": "apply_failure.json",
+          "present": true
+        },
+        {
+          "file": "execution_log.jsonl",
+          "present": true
+        },
+        {
+          "file": "executor_input.json",
+          "present": true
+        }
+      ],
+      "missing": [],
+      "ok": true
+    }
+  },
+  "durable_evidence": {
+    "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142830Z/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+    "inventory": [
+      {
+        "relpath": "apply_failure.json",
+        "bytes": 2731,
+        "sha256": "af5b56fd3bb19567217e8cad26e3d9bb862af1a36a26d044c91f481feb9f2c4f"
+      },
+      {
+        "relpath": "case_contract.json",
+        "bytes": 1453,
+        "sha256": "9c81452b5a6b2c5c1bbc73ae463fabc1b13255962bf360236df4d1b65bba6d65"
+      },
+      {
+        "relpath": "case_report.json",
+        "bytes": 19464,
+        "sha256": "128146627bd212d0f786a3a8cb306b92a331eb3fde4a1ffd5e276674f88554b2"
+      },
+      {
+        "relpath": "clone_setup.json",
+        "bytes": 1209,
+        "sha256": "ba9840f40ec09794a9f9b33b98b99d54c9769b61b2c9b9aaee3c28baa8c70f3e"
+      },
+      {
+        "relpath": "disposable_package_copy.json",
+        "bytes": 277,
+        "sha256": "0f0f560f7471499f0cd21766d348c3d90293899fe0609910c2becaf5152f7f8a"
+      },
+      {
+        "relpath": "evidence_inventory.json",
+        "bytes": 2598,
+        "sha256": "878b409f2b2f986a41e3cc690ef3a47f3bc0b5391016f50658b58b0942f21963"
+      },
+      {
+        "relpath": "evidence_persistence_verification.json",
+        "bytes": 4332,
+        "sha256": "b03819c3f4ae955b28a31ce39e21d8afa3492818a3fb99ed186993f8101ba7c8"
+      },
+      {
+        "relpath": "execution_log.jsonl",
+        "bytes": 54,
+        "sha256": "06abc439fc9885d796af087521765c3635d769b9c3874ffc70f80875c4b6cad3"
+      },
+      {
+        "relpath": "executor_apply_observed.json",
+        "bytes": 9538,
+        "sha256": "7271d1f7e88ce9f689cd9d65e788b143b494f15e1caaf7ef1df219286fee6195"
+      },
+      {
+        "relpath": "executor_apply_process.json",
+        "bytes": 6530,
+        "sha256": "efd11be8b16dcb5587812fbbcf23b5a7760051c28fefbc2dc7b8548f4968edbf"
+      },
+      {
+        "relpath": "executor_input.json",
+        "bytes": 242,
+        "sha256": "e59f00bac4c183c90e664bbd28154cb91f95b4a6761bdb1d37ab30ded94cb434"
+      },
+      {
+        "relpath": "fixture_setup.json",
+        "bytes": 150,
+        "sha256": "7d829b6d68e7d99c35ada3710d64fed718187fb851d843de9e655eb4e0644fe8"
+      },
+      {
+        "relpath": "production_hashes_after.json",
+        "bytes": 663,
+        "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+      },
+      {
+        "relpath": "production_hashes_before.json",
+        "bytes": 663,
+        "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+      }
+    ],
+    "verification": {
+      "required_files": [
+        "case_contract.json",
+        "case_report.json",
+        "evidence_inventory.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "fixture_setup.json",
+        "clone_setup.json",
+        "disposable_package_copy.json",
+        "executor_apply_process.json",
+        "executor_apply_observed.json"
+      ],
+      "checks": [
+        {
+          "file": "case_contract.json",
+          "present": true
+        },
+        {
+          "file": "case_report.json",
+          "present": true
+        },
+        {
+          "file": "evidence_inventory.json",
+          "present": true
+        },
+        {
+          "file": "production_hashes_before.json",
+          "present": true
+        },
+        {
+          "file": "production_hashes_after.json",
+          "present": true
+        },
+        {
+          "file": "fixture_setup.json",
+          "present": true
+        },
+        {
+          "file": "clone_setup.json",
+          "present": true
+        },
+        {
+          "file": "disposable_package_copy.json",
+          "present": true
+        },
+        {
+          "file": "executor_apply_process.json",
+          "present": true
+        },
+        {
+          "file": "executor_apply_observed.json",
+          "present": true
+        }
+      ],
+      "missing": [],
+      "ok": true
+    }
+  }
+}

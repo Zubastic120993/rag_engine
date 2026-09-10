@@ -1,0 +1,18 @@
+{
+  "clone_path": "/private/tmp/lc6_case_01_eps_6vd1/case_01_failure_before_first_mutation/clone",
+  "work_path": "/private/tmp/lc6_case_01_eps_6vd1/case_01_failure_before_first_mutation/work",
+  "baseline_clone_source": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker": {
+    "clone_id": "lc6-LC6-01-failure-before-first-mutation-6c0c0e1a-1dd0-4354-890d-27cf0aa33ba8",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T13:58:54Z",
+    "purpose": "LC6_LC6-01-failure-before-first-mutation",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "target_generation": "/private/tmp/lc6_case_01_eps_6vd1/case_01_failure_before_first_mutation/clone",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "validated_clone_id": "lc6-LC6-01-failure-before-first-mutation-6c0c0e1a-1dd0-4354-890d-27cf0aa33ba8"
+}

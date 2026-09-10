@@ -1,0 +1,29 @@
+{
+  "case_id": "LC6-19-unexpected-wal-shm-state",
+  "authoritative_reference": "LC6 specification section 5 case 19",
+  "injected_failure_point": "unexpected WAL/SHM state in a disposable clone",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_19_unexpected_wal_shm/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "case-local WAL/SHM fixture created only inside disposable clone",
+    "must fail before mutation proceeds",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py WAL/SHM precondition harness -> orphan_repair_executor.py apply",
+  "expected_process_exit_result": "controlled refusal due to WAL/SHM precondition",
+  "expected_fail_closed_behavior": "no mutation starts while WAL/SHM present",
+  "expected_filesystem_state": "clone unchanged except test WAL/SHM fixture",
+  "expected_chroma_state": "no mutation committed",
+  "expected_tracker_state": "unchanged",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "remove disposable fixture only after evidence capture",
+  "expected_residual_state_report": "WAL/SHM refusal evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "wal_shm_fixture_state.json",
+    "refusal_result.json"
+  ],
+  "cleanup_procedure": "delete disposable clone after evidence capture and refusal verification",
+  "post_cleanup_assertion": "no WAL/SHM residue remains in disposable area",
+  "production_is_not_a_target": true
+}

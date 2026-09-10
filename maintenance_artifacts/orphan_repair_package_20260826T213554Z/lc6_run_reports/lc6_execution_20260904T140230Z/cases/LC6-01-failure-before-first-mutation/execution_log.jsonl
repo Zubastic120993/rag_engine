@@ -1,0 +1,3 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-01-failure-before-first-mutation-b3256104-38c5-49ee-b0ac-b97c65b28b96"}
+{"event": "lock_released"}

@@ -1,0 +1,5 @@
+{
+  "mechanic": "harness_fixture:worker_timeout_or_malformed_output",
+  "mutations": [],
+  "runner_mode": "malformed_output"
+}

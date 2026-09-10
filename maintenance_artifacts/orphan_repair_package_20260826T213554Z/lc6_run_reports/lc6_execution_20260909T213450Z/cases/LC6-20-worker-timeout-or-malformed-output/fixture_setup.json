@@ -1,0 +1,7 @@
+{
+  "mechanic": "harness_fixture:worker_timeout_or_malformed_output",
+  "mutations": [],
+  "inject": "lc6_case20_malformed_worker_output",
+  "runner_mode": "deterministic_malformed_worker_output",
+  "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402"
+}

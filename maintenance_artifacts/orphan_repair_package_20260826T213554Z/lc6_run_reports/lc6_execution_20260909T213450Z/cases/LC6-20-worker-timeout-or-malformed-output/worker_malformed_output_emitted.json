@@ -1,0 +1,11 @@
+{
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402",
+  "clone_path": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/clone",
+  "worker_pid": 55171,
+  "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+  "worker_action": "apply_manifest_ops",
+  "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-17a5896e-d69f-4269-b12b-52a709125589",
+  "opened_chroma": false,
+  "malformed_output_emitted": true
+}

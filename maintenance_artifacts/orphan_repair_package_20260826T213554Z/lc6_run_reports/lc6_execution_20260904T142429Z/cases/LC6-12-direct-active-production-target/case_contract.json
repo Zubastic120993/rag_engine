@@ -1,0 +1,27 @@
+{
+  "case_id": "LC6-12-direct-active-production-target",
+  "authoritative_reference": "LC6 specification section 5 case 12",
+  "injected_failure_point": "direct active-production target",
+  "disposable_target_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "preconditions": [
+    "explicit refusal test only",
+    "must fail before Chroma open"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py -> chroma_worker.py inspect refusal test / executor preflight refusal test",
+  "expected_process_exit_result": "refused exit code before Chroma open",
+  "expected_fail_closed_behavior": "production path rejected immediately",
+  "expected_filesystem_state": "production unchanged",
+  "expected_chroma_state": "opened_chroma=false",
+  "expected_tracker_state": "unchanged",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "none; refusal only",
+  "expected_residual_state_report": "refusal evidence with opened_chroma=false",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "refusal_result.json",
+    "production_hashes_before_after.json"
+  ],
+  "cleanup_procedure": "no clone cleanup; refusal-only case",
+  "post_cleanup_assertion": "production hashes unchanged",
+  "production_is_not_a_target": true
+}

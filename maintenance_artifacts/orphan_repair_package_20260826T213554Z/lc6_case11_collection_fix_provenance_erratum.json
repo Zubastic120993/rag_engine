@@ -1,0 +1,11 @@
+{
+  "final_status": "LC6_CASE11_COLLECTION_FIX_PROVENANCE_ERRATUM_RECORDED",
+  "subject_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_collection_contamination_fix_report.json",
+  "subject_report_sha256": "7705d55e0e722ef8f70e712a0d0477a4e204e528a83140e9086176df918fb887",
+  "correction": {
+    "reported_before_hash_in_subject_report": "ab3e70bc256d7768c7c873a7089265e8e0195abd987d085728b1f1feeeb15bc0",
+    "last_independently_verified_pre_fix_harness_hash": "9d0c272e789c9e2f0e578114ebe2676465303d53747db41521735fb3edc3f42f",
+    "verdict": "subject report before-hash metadata should be read as stale provenance metadata; the independently verified pre-fix harness hash is 9d0c272e789c9e2f0e578114ebe2676465303d53747db41521735fb3edc3f42f"
+  },
+  "scope_note": "This erratum does not change the technical collection-contamination fix result; it corrects provenance metadata only."
+}

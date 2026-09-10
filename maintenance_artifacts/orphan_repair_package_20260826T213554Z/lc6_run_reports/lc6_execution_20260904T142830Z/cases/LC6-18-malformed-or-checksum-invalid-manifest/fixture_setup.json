@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:invalid_manifest_refusal",
+  "mutations": [
+    "manifest payload checksum replaced in disposable package copy"
+  ]
+}

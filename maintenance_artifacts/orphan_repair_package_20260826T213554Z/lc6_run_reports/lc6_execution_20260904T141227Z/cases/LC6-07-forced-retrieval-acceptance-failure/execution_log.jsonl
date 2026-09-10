@@ -1,0 +1,5 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-07-forced-retrieval-acceptance-failure-888b8bf7-2bc3-4fa2-a169-001bcd896c5d"}
+{"event": "mutation_worker_ok", "worker_pid": 85821}
+{"event": "restored_snapshot_after_failure"}
+{"event": "lock_released"}

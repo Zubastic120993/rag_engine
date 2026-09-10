@@ -1,0 +1,5 @@
+{
+  "mechanic": "executor_inject:forced_retrieval_failure",
+  "mutations": [],
+  "inject": "forced_retrieval_failure"
+}

@@ -1,0 +1,11 @@
+{
+  "clone_path": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+  "clone_inventory": {
+    "root": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+    "file_count": 19,
+    "rows_schema": ["path", "type", "bytes", "sha256"],
+    "checksum_excluding_marker": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a"
+  },
+  "marker_path": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z/.orphan_repair_disposable_clone.json",
+  "marker_sha256": "7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9"
+}

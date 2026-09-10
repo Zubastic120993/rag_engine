@@ -1,0 +1,12 @@
+{
+  "status": "CONTROLLED_REFUSAL_CONFIRMED",
+  "probe": {
+    "target": "/Users/vladymyrzub/CE_Library",
+    "status": "refused",
+    "opened_chroma": false,
+    "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+    "ok": true
+  },
+  "opened_chroma": false,
+  "production_action": false
+}

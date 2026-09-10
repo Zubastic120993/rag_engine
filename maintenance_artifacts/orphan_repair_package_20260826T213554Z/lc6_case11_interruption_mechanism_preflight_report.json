@@ -1,0 +1,1081 @@
+{
+  "final_status": "LC6_CASE11_MECHANISM_PREFLIGHT_PASS_READY_FOR_SINGLE_CASE_EXECUTION_APPROVAL",
+  "report_purpose": "LC6-11 interruption mechanism preflight validation only; no real injection and no production Chroma access",
+  "partial_change_recovery": {
+    "exact_textual_diff_from_v2_verified_hash": "unavailable_from_hash_alone",
+    "rationale": "The last V2-verified harness content is identified only by SHA-256 7c9f083f…; without the exact historical file body, an exact textual diff to the current preflight harness cannot be reconstructed from hashes alone.",
+    "current_harness_hash_before_this_continuation": "7bd99dec5471c53e70127ff1782f71ad754146f0c5707cffd7d21e0fdaa75e5d",
+    "recovered_current_change_areas_from_static_review": [
+      "case11-specific report constants and CLI flags",
+      "mock worker script with explicit mutation checkpoint",
+      "checkpoint/PID/path identity verification helpers",
+      "worker-exit-before-rollback gate",
+      "durable evidence persistence before cleanup",
+      "case11 preflight payload builder and report writer"
+    ]
+  },
+  "files_changed": {
+    "lc6_failure_injection.py": {
+      "before_sha256": "7bd99dec5471c53e70127ff1782f71ad754146f0c5707cffd7d21e0fdaa75e5d",
+      "after_sha256": "b201b6f50a6e0d72dac85157e10fcb7df95dea228f5950b96042d6cbf0b49268"
+    },
+    "lc6_case11_interruption_mechanism_preflight_report.json": {
+      "before_sha256": "not present before case11 preflight step",
+      "after_sha256": "whole-file hash must be checked externally after write"
+    },
+    "lc6_failure_injection_harness_validation_correction_v2_report.json": {
+      "before_sha256": "b1290014584fad941af98be28c49596cb7abd2581ac90297a049f9002b0f2746",
+      "after_sha256": "b1290014584fad941af98be28c49596cb7abd2581ac90297a049f9002b0f2746"
+    }
+  },
+  "checkpoint_and_worker_verification_design": {
+    "checkpoint_name": "mutation_in_progress",
+    "binds_case_id": true,
+    "binds_run_id": true,
+    "binds_clone_path": true,
+    "binds_expected_worker_pid": true,
+    "signal_target_verified_before_interrupt": true,
+    "production_target_verification_before_signal": true,
+    "uses_sleep_for_state_decision": false
+  },
+  "exact_tests_run_and_results": {
+    "compile_and_cli_checks": {
+      "ok": true,
+      "results": [
+        {
+          "name": "py_compile",
+          "cmd": [
+            "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+            "-m",
+            "py_compile",
+            "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "",
+          "ok": true
+        },
+        {
+          "name": "help",
+          "cmd": [
+            "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+            "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+            "--help"
+          ],
+          "exit_code": 0,
+          "stdout": "usage: lc6_failure_injection.py [-h] [--contract-file CONTRACT_FILE]\n                                [--case-id CASE_ID] [--all] [--execute]\n                                [--json] [--validate-harness]\n                                [--validate-case11-preflight]\n                                [--report-file REPORT_FILE]\n                                [--tmp-parent TMP_PARENT]\n\nLC6 failure-injection harness\n\noptions:\n  -h, --help            show this help message and exit\n  --contract-file CONTRACT_FILE\n  --case-id CASE_ID\n  --all\n  --execute\n  --json\n  --validate-harness    run non-mutating harness validations and write\n                        validation report\n  --validate-case11-preflight\n                        run non-mutating LC6-11 interruption mechanism\n                        preflight validation and write report\n  --report-file REPORT_FILE\n  --tmp-parent TMP_PARENT\n",
+          "stderr": "",
+          "ok": true
+        },
+        {
+          "name": "contract_validation",
+          "cmd": [
+            "internal",
+            "validate_contract"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "",
+          "ok": true
+        }
+      ]
+    },
+    "checkpoint_identity_path_pid_validation": {
+      "ok": true,
+      "durable_case_dir": "/private/tmp/lc6_case11_preflight_uuatzhc1/run_report/cases/LC6-11-interruption-during-mutation",
+      "report": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "status": "CASE11_PREFLIGHT_OK",
+        "run_id": "LC6-11-interruption-during-mutation-4a7bea708aac",
+        "worker_started": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-4a7bea708aac",
+          "clone_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7265,
+          "ppid": 7223,
+          "argv": [
+            "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight/case11_worker.py",
+            "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight",
+            "LC6-11-interruption-during-mutation",
+            "LC6-11-interruption-during-mutation-4a7bea708aac",
+            "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone"
+          ],
+          "script_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight/case11_worker.py"
+        },
+        "checkpoint": {
+          "status": "MUTATION_IN_PROGRESS",
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-4a7bea708aac",
+          "clone_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7265,
+          "expected_worker_pid": 7265,
+          "checkpoint_name": "mutation_in_progress",
+          "mutation_flag": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone/mutation_in_progress.flag",
+          "wal_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone/chroma.sqlite3-wal",
+          "shm_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone/chroma.sqlite3-shm",
+          "script_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight/case11_worker.py"
+        },
+        "expected_identity": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-4a7bea708aac",
+          "clone_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone",
+          "expected_worker_pid": 7265
+        },
+        "signal_record": {
+          "verified_identity": {
+            "worker_pid": 7265,
+            "case_id": "LC6-11-interruption-during-mutation",
+            "run_id": "LC6-11-interruption-during-mutation-4a7bea708aac",
+            "clone_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone",
+            "script_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight/case11_worker.py",
+            "ps_command": "/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python /private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight/case11_worker.py /private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/case11_preflight LC6-11-interruption-during-mutation LC6-11-interruption-during-mutation-4a7bea708aac /private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone",
+            "checkpoint_name": "mutation_in_progress",
+            "checkpoint_status": "MUTATION_IN_PROGRESS"
+          },
+          "signal_sent": "SIGTERM",
+          "target_pid": 7265,
+          "target_clone_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone"
+        },
+        "pre_signal_rollback_gate": {
+          "rollback_allowed": false,
+          "reason": "rollback forbidden while child remains alive"
+        },
+        "post_exit_rollback_gate": {
+          "rollback_allowed": true,
+          "reason": null
+        },
+        "signal_received": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-4a7bea708aac",
+          "clone_path": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7265,
+          "signal": 15,
+          "checkpoint_reached": true
+        },
+        "rollback_validation": {
+          "snapshot_checksum": "bb40e7c242ac31d19e6e0d407fc4bc260aa31644dabe10230e3d9b217e1254d0",
+          "restored_checksum": "bb40e7c242ac31d19e6e0d407fc4bc260aa31644dabe10230e3d9b217e1254d0",
+          "matches_verified_baseline_snapshot": true,
+          "wal_present_after_rollback": false,
+          "shm_present_after_rollback": false,
+          "lock_present_after_rollback": false,
+          "mutation_flag_present_after_rollback": false
+        },
+        "production_hash_evidence": {
+          "before": {
+            "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+            "embedded": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+              "exists": true,
+              "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+            },
+            "chroma_sqlite3": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+              "exists": true,
+              "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+            },
+            "opened_chroma": false,
+            "capture_mode": "read-only file hash"
+          },
+          "after": {
+            "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+            "embedded": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+              "exists": true,
+              "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+            },
+            "chroma_sqlite3": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+              "exists": true,
+              "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+            },
+            "opened_chroma": false,
+            "capture_mode": "read-only file hash"
+          },
+          "match": true,
+          "opened_chroma": false,
+          "fail_closed_on_mismatch": false
+        },
+        "remaining_unproven_item": "Real disposable execution against the actual executor/baseline is still required to prove the deterministic checkpoint integrates with the real LC6-11 mutation path before single-case execution approval.",
+        "no_production_action": true,
+        "evidence_persistence": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "written_before_cleanup": true,
+          "local_case_report": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/evidence/case_report.json",
+          "local_evidence_inventory": "/private/tmp/lc6_case11_preflight_uuatzhc1/cases/case_11_interruption_during_mutation/work/evidence/evidence_inventory.json",
+          "durable_case_dir": "/private/tmp/lc6_case11_preflight_uuatzhc1/run_report/cases/LC6-11-interruption-during-mutation",
+          "durable_inventory": [
+            {
+              "relpath": "case_contract.json",
+              "bytes": 1662,
+              "sha256": "5bc4b21a4c4fdb69c0dbae0399b0090c354924deb25ce058966a871752e6f3f7"
+            },
+            {
+              "relpath": "case_report.json",
+              "bytes": 6436,
+              "sha256": "177ba106d61854dfafbf5d306a3353b7411e67922643f903f3ef58cc572c3dbc"
+            },
+            {
+              "relpath": "checkpoint_design.json",
+              "bytes": 485,
+              "sha256": "f0c4f2c2ab2012cfe3c4fee56c6444cf42d07e0ded561a2b82bd7a990c7be2a2"
+            },
+            {
+              "relpath": "checkpoint_identity_validation.json",
+              "bytes": 2292,
+              "sha256": "08536c0faeaafa5372a122e3e09b0ca8b07fd90c3590832922ae74eda2c6c12d"
+            },
+            {
+              "relpath": "clone_setup.json",
+              "bytes": 1163,
+              "sha256": "b003b6f9ba0c5b269b049482ce879008bcdda91acf4f5b11d18e64971c0bae8a"
+            },
+            {
+              "relpath": "evidence_inventory.json",
+              "bytes": 1993,
+              "sha256": "87845ada10dd2050da9bbedaa988501141ef22695387d6b3136ac80703dce6b4"
+            },
+            {
+              "relpath": "execution_log.jsonl",
+              "bytes": 429,
+              "sha256": "4a0969be8e4f1c47540baf07a2973ade951c639cccbdac501c43ca15ff08bebf"
+            },
+            {
+              "relpath": "fixture_setup.json",
+              "bytes": 91,
+              "sha256": "79ffcd1bb1d4116a14c98e879248a214ffe91b9de3e2f4b068f4a56f315e47ff"
+            },
+            {
+              "relpath": "process_termination_log.json",
+              "bytes": 1772,
+              "sha256": "01b2a89517f7017c510caaba4abf7c2f11d7bb7c7e439f00f60a9159ce2f7bfd"
+            },
+            {
+              "relpath": "production_hashes_after.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "production_hashes_before.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "rollback_validation.json",
+              "bytes": 397,
+              "sha256": "23ced0145e5189e7fbb34775e8983415b529c8df61c71d7988eac57de7fe13c5"
+            },
+            {
+              "relpath": "worker_exit_codes.json",
+              "bytes": 130,
+              "sha256": "1d351123eb5adc6b9f66a4413445e339f54e69c90aaf02306a0b717235a90deb"
+            }
+          ],
+          "verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "checkpoint_identity_validation.json",
+              "process_termination_log.json",
+              "worker_exit_codes.json",
+              "rollback_validation.json",
+              "checkpoint_design.json",
+              "execution_log.jsonl"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "checkpoint_identity_validation.json",
+                "present": true
+              },
+              {
+                "file": "process_termination_log.json",
+                "present": true
+              },
+              {
+                "file": "worker_exit_codes.json",
+                "present": true
+              },
+              {
+                "file": "rollback_validation.json",
+                "present": true
+              },
+              {
+                "file": "checkpoint_design.json",
+                "present": true
+              },
+              {
+                "file": "execution_log.jsonl",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        },
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case11_preflight_uuatzhc1/run_report/cases/LC6-11-interruption-during-mutation",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "checkpoint_identity_validation.json",
+              "process_termination_log.json",
+              "worker_exit_codes.json",
+              "rollback_validation.json",
+              "checkpoint_design.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "checkpoint_identity_validation.json",
+                "present": true
+              },
+              {
+                "file": "process_termination_log.json",
+                "present": true
+              },
+              {
+                "file": "worker_exit_codes.json",
+                "present": true
+              },
+              {
+                "file": "rollback_validation.json",
+                "present": true
+              },
+              {
+                "file": "checkpoint_design.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        },
+        "durable_evidence": {
+          "durable_case_dir": "/private/tmp/lc6_case11_preflight_uuatzhc1/run_report/cases/LC6-11-interruption-during-mutation",
+          "inventory": [
+            {
+              "relpath": "case_contract.json",
+              "bytes": 1662,
+              "sha256": "5bc4b21a4c4fdb69c0dbae0399b0090c354924deb25ce058966a871752e6f3f7"
+            },
+            {
+              "relpath": "case_report.json",
+              "bytes": 12957,
+              "sha256": "16d26f7fe595bd76d431d69224f2366e55160007f5db8cd9d88f58c0c71f8f61"
+            },
+            {
+              "relpath": "checkpoint_design.json",
+              "bytes": 485,
+              "sha256": "f0c4f2c2ab2012cfe3c4fee56c6444cf42d07e0ded561a2b82bd7a990c7be2a2"
+            },
+            {
+              "relpath": "checkpoint_identity_validation.json",
+              "bytes": 2292,
+              "sha256": "08536c0faeaafa5372a122e3e09b0ca8b07fd90c3590832922ae74eda2c6c12d"
+            },
+            {
+              "relpath": "clone_setup.json",
+              "bytes": 1163,
+              "sha256": "b003b6f9ba0c5b269b049482ce879008bcdda91acf4f5b11d18e64971c0bae8a"
+            },
+            {
+              "relpath": "evidence_inventory.json",
+              "bytes": 2487,
+              "sha256": "c2fd64d49d10140eaf728d640e55bc9262efe918458cd09e36a4f1166bc10fb4"
+            },
+            {
+              "relpath": "evidence_persistence_verification.json",
+              "bytes": 4252,
+              "sha256": "2ae794ba9c8418e3ad58b5c6bff3518c8c295672502d1f4d515d65a003e03b6e"
+            },
+            {
+              "relpath": "execution_log.jsonl",
+              "bytes": 429,
+              "sha256": "4a0969be8e4f1c47540baf07a2973ade951c639cccbdac501c43ca15ff08bebf"
+            },
+            {
+              "relpath": "fixture_setup.json",
+              "bytes": 91,
+              "sha256": "79ffcd1bb1d4116a14c98e879248a214ffe91b9de3e2f4b068f4a56f315e47ff"
+            },
+            {
+              "relpath": "process_termination_log.json",
+              "bytes": 1772,
+              "sha256": "01b2a89517f7017c510caaba4abf7c2f11d7bb7c7e439f00f60a9159ce2f7bfd"
+            },
+            {
+              "relpath": "production_hashes_after.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "production_hashes_before.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "rollback_validation.json",
+              "bytes": 397,
+              "sha256": "23ced0145e5189e7fbb34775e8983415b529c8df61c71d7988eac57de7fe13c5"
+            },
+            {
+              "relpath": "worker_exit_codes.json",
+              "bytes": 130,
+              "sha256": "1d351123eb5adc6b9f66a4413445e339f54e69c90aaf02306a0b717235a90deb"
+            }
+          ],
+          "verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "checkpoint_identity_validation.json",
+              "process_termination_log.json",
+              "worker_exit_codes.json",
+              "rollback_validation.json",
+              "checkpoint_design.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "checkpoint_identity_validation.json",
+                "present": true
+              },
+              {
+                "file": "process_termination_log.json",
+                "present": true
+              },
+              {
+                "file": "worker_exit_codes.json",
+                "present": true
+              },
+              {
+                "file": "rollback_validation.json",
+                "present": true
+              },
+              {
+                "file": "checkpoint_design.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      "checkpoint_worker_verification_design": {
+        "checkpoint_name": "mutation_in_progress",
+        "binds_case_id": true,
+        "binds_run_id": true,
+        "binds_clone_path": true,
+        "binds_expected_worker_pid": true,
+        "signal_target_verified_before_interrupt": true,
+        "production_target_verification_before_signal": true,
+        "uses_sleep_for_state_decision": false
+      }
+    },
+    "wrong_pid_refusal_test": {
+      "ok": true,
+      "test": "wrong_pid",
+      "worker_started": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-0e7d073d",
+        "clone_path": "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/clone",
+        "worker_pid": 7269,
+        "ppid": 7223,
+        "argv": [
+          "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py",
+          "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/work/case11_identity_test",
+          "LC6-11-interruption-during-mutation",
+          "LC6-11-interruption-during-mutation-0e7d073d",
+          "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/clone"
+        ],
+        "script_path": "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py"
+      },
+      "expected_identity": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-0e7d073d",
+        "clone_path": "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/clone",
+        "expected_worker_pid": 7270
+      },
+      "refusal": {
+        "status": "IDENTITY_REFUSED",
+        "reason": "identity_mismatch",
+        "mismatches": [
+          "worker_pid"
+        ],
+        "expected": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-0e7d073d",
+          "clone_path": "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/clone",
+          "expected_worker_pid": 7270
+        },
+        "observed": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-0e7d073d",
+          "clone_path": "/private/tmp/lc6_case11_wrong_pid_xtq8obsu/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7269
+        }
+      },
+      "returncode": 91,
+      "stdout": "",
+      "stderr": ""
+    },
+    "wrong_path_refusal_test": {
+      "ok": true,
+      "test": "wrong_path",
+      "worker_started": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-2c317e99",
+        "clone_path": "/private/tmp/lc6_case11_wrong_path_sue48sp4/cases/case_11_interruption_during_mutation/clone",
+        "worker_pid": 7284,
+        "ppid": 7223,
+        "argv": [
+          "/private/tmp/lc6_case11_wrong_path_sue48sp4/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py",
+          "/private/tmp/lc6_case11_wrong_path_sue48sp4/cases/case_11_interruption_during_mutation/work/case11_identity_test",
+          "LC6-11-interruption-during-mutation",
+          "LC6-11-interruption-during-mutation-2c317e99",
+          "/private/tmp/lc6_case11_wrong_path_sue48sp4/cases/case_11_interruption_during_mutation/clone"
+        ],
+        "script_path": "/private/tmp/lc6_case11_wrong_path_sue48sp4/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py"
+      },
+      "expected_identity": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-2c317e99",
+        "clone_path": "/private/tmp/lc6_case11_wrong_path_sue48sp4/wrong_clone",
+        "expected_worker_pid": 7284
+      },
+      "refusal": {
+        "status": "IDENTITY_REFUSED",
+        "reason": "identity_mismatch",
+        "mismatches": [
+          "clone_path"
+        ],
+        "expected": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-2c317e99",
+          "clone_path": "/private/tmp/lc6_case11_wrong_path_sue48sp4/wrong_clone",
+          "expected_worker_pid": 7284
+        },
+        "observed": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-2c317e99",
+          "clone_path": "/private/tmp/lc6_case11_wrong_path_sue48sp4/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7284
+        }
+      },
+      "returncode": 91,
+      "stdout": "",
+      "stderr": ""
+    },
+    "wrong_case_id_refusal_test": {
+      "ok": true,
+      "test": "wrong_case_id",
+      "worker_started": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-8aa51ac4",
+        "clone_path": "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/clone",
+        "worker_pid": 7285,
+        "ppid": 7223,
+        "argv": [
+          "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py",
+          "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/work/case11_identity_test",
+          "LC6-11-interruption-during-mutation",
+          "LC6-11-interruption-during-mutation-8aa51ac4",
+          "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/clone"
+        ],
+        "script_path": "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py"
+      },
+      "expected_identity": {
+        "case_id": "LC6-99-wrong-case",
+        "run_id": "LC6-11-interruption-during-mutation-8aa51ac4",
+        "clone_path": "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/clone",
+        "expected_worker_pid": 7285
+      },
+      "refusal": {
+        "status": "IDENTITY_REFUSED",
+        "reason": "identity_mismatch",
+        "mismatches": [
+          "case_id"
+        ],
+        "expected": {
+          "case_id": "LC6-99-wrong-case",
+          "run_id": "LC6-11-interruption-during-mutation-8aa51ac4",
+          "clone_path": "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/clone",
+          "expected_worker_pid": 7285
+        },
+        "observed": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-8aa51ac4",
+          "clone_path": "/private/tmp/lc6_case11_wrong_case_id_5u3g61c3/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7285
+        }
+      },
+      "returncode": 91,
+      "stdout": "",
+      "stderr": ""
+    },
+    "wrong_run_id_refusal_test": {
+      "ok": true,
+      "test": "wrong_run_id",
+      "worker_started": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-b3b56073",
+        "clone_path": "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/clone",
+        "worker_pid": 7286,
+        "ppid": 7223,
+        "argv": [
+          "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py",
+          "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/work/case11_identity_test",
+          "LC6-11-interruption-during-mutation",
+          "LC6-11-interruption-during-mutation-b3b56073",
+          "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/clone"
+        ],
+        "script_path": "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/work/case11_identity_test/case11_worker.py"
+      },
+      "expected_identity": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-b3b56073-wrong",
+        "clone_path": "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/clone",
+        "expected_worker_pid": 7286
+      },
+      "refusal": {
+        "status": "IDENTITY_REFUSED",
+        "reason": "identity_mismatch",
+        "mismatches": [
+          "run_id"
+        ],
+        "expected": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-b3b56073-wrong",
+          "clone_path": "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/clone",
+          "expected_worker_pid": 7286
+        },
+        "observed": {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "run_id": "LC6-11-interruption-during-mutation-b3b56073",
+          "clone_path": "/private/tmp/lc6_case11_wrong_run_id_cywq8chf/cases/case_11_interruption_during_mutation/clone",
+          "worker_pid": 7286
+        }
+      },
+      "returncode": 91,
+      "stdout": "",
+      "stderr": ""
+    },
+    "stale_checkpoint_refusal_test": {
+      "ok": true,
+      "started": {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-9f6f2c09",
+        "clone_path": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/clone",
+        "worker_pid": 7287,
+        "ppid": 7223,
+        "argv": [
+          "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/work/case11_stale_checkpoint/case11_worker.py",
+          "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/work/case11_stale_checkpoint",
+          "LC6-11-interruption-during-mutation",
+          "LC6-11-interruption-during-mutation-9f6f2c09",
+          "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/clone"
+        ],
+        "script_path": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/work/case11_stale_checkpoint/case11_worker.py"
+      },
+      "checkpoint": {
+        "status": "MUTATION_IN_PROGRESS",
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-9f6f2c09",
+        "clone_path": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/clone",
+        "worker_pid": 7287,
+        "expected_worker_pid": 7287,
+        "checkpoint_name": "mutation_in_progress",
+        "mutation_flag": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/clone/mutation_in_progress.flag",
+        "wal_path": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/clone/chroma.sqlite3-wal",
+        "shm_path": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/clone/chroma.sqlite3-shm",
+        "script_path": "/private/tmp/lc6_case11_stale_checkpoint_ad7n5822/cases/case_11_interruption_during_mutation/work/case11_stale_checkpoint/case11_worker.py"
+      },
+      "error_type": "HarnessRefusal",
+      "error": "case11 identity run_id mismatch"
+    },
+    "production_path_refusal_test": {
+      "ok": true,
+      "error_type": "HarnessRefusal",
+      "error": "path escapes harness parent: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604 not under /private/tmp/lc6_case11_prod_path_f0mdnnx0",
+      "opened_chroma": false
+    },
+    "rollback_before_exit_refusal_test": {
+      "ok": true,
+      "pre_signal_gate": {
+        "rollback_allowed": false,
+        "reason": "rollback forbidden while child remains alive"
+      },
+      "post_exit_gate": {
+        "rollback_allowed": true,
+        "reason": null
+      }
+    },
+    "mocked_process_lifecycle_tests": {
+      "timeout_termination_before_rollback": {
+        "ok": true,
+        "process": {
+          "stage": "timeout_probe",
+          "cmd": [
+            "/usr/bin/python3",
+            "/private/tmp/lc6_timeout_d3tt1o_g/sleeper.py"
+          ],
+          "pid": 7289,
+          "returncode": -15,
+          "stdout": "started\nstarted\n",
+          "stderr": "",
+          "timed_out": true,
+          "terminated": true,
+          "killed": false,
+          "timeout_message": "Command '['/usr/bin/python3', '/private/tmp/lc6_timeout_d3tt1o_g/sleeper.py']' timed out after 1 seconds",
+          "duration_s": 1.007266,
+          "alive_after_wait": false,
+          "exited": true,
+          "json_payload": null,
+          "json_parse_error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        "decision": {
+          "child_pid": 7289,
+          "timed_out": true,
+          "terminated": true,
+          "killed": false,
+          "alive_after_wait": false,
+          "rollback_permitted_after_exit_only": true
+        }
+      },
+      "no_double_rollback": {
+        "ok": true,
+        "executor_owned_path": {
+          "case_id": "LC6-01-failure-before-first-mutation",
+          "child_pid": 91001,
+          "child_exited": true,
+          "child_alive_after_wait": false,
+          "timed_out": false,
+          "snapshot_exists": true,
+          "rollback_owner": "executor",
+          "rollback_invoked": false,
+          "rollback_allowed": false,
+          "rollback_blocked_reason": "executor-owned restoration after APPLY_REJECTED",
+          "rollback_result": null
+        },
+        "harness_owned_path": {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "child_pid": 91001,
+          "child_exited": true,
+          "child_alive_after_wait": false,
+          "timed_out": false,
+          "snapshot_exists": true,
+          "rollback_owner": "harness",
+          "rollback_invoked": true,
+          "rollback_allowed": true,
+          "rollback_blocked_reason": null,
+          "rollback_result": {
+            "status": "ROLLBACK_OK",
+            "result": {
+              "status": "ROLLBACK_OK"
+            },
+            "process": {
+              "stage": "rollback",
+              "cmd": [
+                "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+                "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/orphan_repair_executor.py",
+                "rollback",
+                "--gen-dir",
+                "/private/tmp/lc6_double_rollback_lrgbhc_9/harness_owned/case_20_worker_timeout_or_malformed_output/clone",
+                "--work-dir",
+                "/private/tmp/lc6_double_rollback_lrgbhc_9/harness_owned/case_20_worker_timeout_or_malformed_output/work"
+              ],
+              "pid": 91002,
+              "returncode": 0,
+              "stdout": "",
+              "stderr": "",
+              "timed_out": false,
+              "terminated": false,
+              "killed": false,
+              "timeout_message": null,
+              "duration_s": 0.01,
+              "alive_after_wait": false,
+              "exited": true,
+              "json_payload": {
+                "status": "ROLLBACK_OK"
+              },
+              "json_parse_error": null,
+              "mocked": true
+            },
+            "opened_chroma": false,
+            "production_action": false
+          }
+        },
+        "executor_owned_runner_counts": {
+          "LC6-01-failure-before-first-mutation::apply": 1
+        },
+        "harness_owned_runner_counts": {
+          "LC6-20-worker-timeout-or-malformed-output::apply": 1,
+          "LC6-20-worker-timeout-or-malformed-output::rollback": 1
+        }
+      }
+    },
+    "containment_validation": {
+      "parent": "/private/tmp/lc6_harness_validate_7g07g5so",
+      "inside_allowed": true,
+      "outside_escape_blocked": true,
+      "outside_escape_reason": "path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_7g07g5so",
+      "protected_target_checks": [
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library",
+          "blocked": true
+        }
+      ],
+      "all_protected_targets_blocked": true
+    },
+    "production_target_refusal_tests": [
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+        "ok": true
+      }
+    ]
+  },
+  "accepted_rejected_changes": {
+    "accepted": [
+      "explicit checkpoint-bound interruption design with case_id/run_id/clone_path/worker_pid identity binding",
+      "verified-child-only signalling before interruption",
+      "rollback gate that remains closed until worker exit is confirmed",
+      "durable evidence preservation before cleanup",
+      "production hash capture before and after the mocked interruption lifecycle"
+    ],
+    "rejected_or_unproven": [
+      "real disposable execution against the actual executor and actual disposable LC4 baseline remains unproven in this preflight step"
+    ],
+    "rationale": "Only non-mutating mocked/process-level validation was authorized in this step; real integration proof requires a separately approved single-case execution."
+  },
+  "remaining_unproven_item_requiring_actual_disposable_execution": "Real disposable execution against the actual executor/baseline is still required to prove the deterministic checkpoint integrates with the real LC6-11 mutation path before single-case execution approval.",
+  "referenced_file_external_hashes": {
+    "lc6_authoritative_failure_case_contract.json": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_authoritative_failure_case_contract.json",
+      "exists": true,
+      "sha256": "cdba735133ef3f87f05db0ed29788087fdbb2994f087340e28c609e47b4bcc5e",
+      "hash_note": null
+    },
+    "lc6_failure_injection_harness_validation_correction_v2_report.json": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection_harness_validation_correction_v2_report.json",
+      "exists": true,
+      "sha256": "b1290014584fad941af98be28c49596cb7abd2581ac90297a049f9002b0f2746",
+      "hash_note": null
+    },
+    "lc6_failure_injection.py": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "exists": true,
+      "sha256": "b201b6f50a6e0d72dac85157e10fcb7df95dea228f5950b96042d6cbf0b49268",
+      "hash_note": null
+    },
+    "lc6_case11_interruption_mechanism_preflight_report.json": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_interruption_mechanism_preflight_report.json",
+      "exists": true,
+      "sha256": null,
+      "hash_note": "whole-file hash must be computed externally after write"
+    }
+  },
+  "current_sha256sums_mismatches": [
+    {
+      "file": "lc5_five_cycle_rehearsal.py",
+      "expected_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050",
+      "status": "mismatch"
+    },
+    {
+      "file": "lc6_case11_interruption_mechanism_preflight_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "90d681be87fbd7fdfb3c58b8272d8b4a26b71bf1aa1aec7efe484f22b3958c3f",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection.py",
+      "expected_sha256": null,
+      "actual_sha256": "b201b6f50a6e0d72dac85157e10fcb7df95dea228f5950b96042d6cbf0b49268",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection_harness_validation_correction_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "b452bc2e7995857a347aa07e78b9991b882d6bd2852f3257169652b252e16d15",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection_harness_validation_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "0a4d0178fffb5da8d4a7e8e307c1cfec21f3b091cddb7675dea9914f039d57cc",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "orphan_repair_common.py",
+      "expected_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef",
+      "status": "mismatch"
+    }
+  ],
+  "execution_metadata": {
+    "mode": "mocked-validation",
+    "validate_harness": true,
+    "actual_case_execution_performed": false,
+    "no_failure_injection_case_ran": true,
+    "no_production_action_occurred": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  },
+  "case_matrix_blocker_consistency": {
+    "case_id": "LC6-11-interruption-during-mutation",
+    "mechanic": "harness_fixture:interruption_during_execution",
+    "contract_entry_matches_expected": true,
+    "mechanic_matches_expected": true,
+    "single_blocker_entry": [],
+    "ok": true
+  },
+  "confirmation": {
+    "no_actual_injection_ran": true,
+    "no_actual_failure_injection_case_ran": true,
+    "no_production_action_ran": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  },
+  "blockers": []
+}

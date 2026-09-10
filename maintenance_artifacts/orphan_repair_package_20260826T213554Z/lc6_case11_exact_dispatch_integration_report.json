@@ -1,0 +1,137 @@
+{
+  "final_status": "LC6_CASE11_EXACT_DISPATCH_PARTIAL_NOT_READY",
+  "before_after_script_hashes": {
+    "lc6_failure_injection.py": {
+      "before_sha256": "6be27e0c923a83e1f0b64274dd8296aabcf4e0223bb62e20f1b7b9c3c1516594",
+      "after_sha256": "ab3e70bc256d7768c7c873a7089265e8e0195abd987d085728b1f1feeeb15bc0"
+    },
+    "orphan_repair_executor.py": {
+      "before_sha256": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+      "after_sha256": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021"
+    },
+    "chroma_worker.py": {
+      "before_sha256": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513",
+      "after_sha256": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+    }
+  },
+  "exact_top_level_cli_command_exercised": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+    "--execute",
+    "--case-id",
+    "LC6-11-interruption-during-mutation",
+    "--test-baseline-dir",
+    "/private/tmp/lc6_case11_exact_dispatch_b0q_09ng/synthetic_baseline",
+    "--test-package-dir",
+    "/private/tmp/lc6_case11_exact_dispatch_b0q_09ng/synthetic_package",
+    "--tmp-parent",
+    "/private/tmp/lc6_case11_exact_dispatch_b0q_09ng/execution_parent",
+    "--json"
+  ],
+  "complete_dispatch_identity_chain": null,
+  "proof_exact_actual_lc6_11_branch_reached_verified_worker_checkpoint": {
+    "harness_mechanic": null,
+    "executor_action": null,
+    "worker_action": null,
+    "checkpoint_source": null,
+    "worker_pid": null,
+    "worker_command": null,
+    "used_old_interruption_hook_directly": false,
+    "reached_interrupt_probe": false
+  },
+  "signal_and_exit_ordering": {
+    "checkpoint": {},
+    "signal_record": null,
+    "signal_received": null,
+    "executor_process": null,
+    "worker_process": {}
+  },
+  "executor_recovery": {},
+  "no_double_rollback_proof": null,
+  "synthetic_baseline_restoration": null,
+  "durable_evidence_inventory": null,
+  "production_before_after_hashes": null,
+  "stale_hash_corrections": {
+    "user_verified_before_hashes": {
+      "lc6_failure_injection.py": "6be27e0c923a83e1f0b64274dd8296aabcf4e0223bb62e20f1b7b9c3c1516594",
+      "orphan_repair_executor.py": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+      "chroma_worker.py": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+    },
+    "current_after_hashes": {
+      "lc6_failure_injection.py": "ab3e70bc256d7768c7c873a7089265e8e0195abd987d085728b1f1feeeb15bc0",
+      "orphan_repair_executor.py": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+      "chroma_worker.py": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+    }
+  },
+  "exact_tests_run": {
+    "compile_cmd": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "-m",
+      "py_compile",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/orphan_repair_executor.py",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py"
+    ],
+    "compile_returncode": 0,
+    "compile_stderr": "",
+    "dispatch_cmd": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "--execute",
+      "--case-id",
+      "LC6-11-interruption-during-mutation",
+      "--test-baseline-dir",
+      "/private/tmp/lc6_case11_exact_dispatch_b0q_09ng/synthetic_baseline",
+      "--test-package-dir",
+      "/private/tmp/lc6_case11_exact_dispatch_b0q_09ng/synthetic_package",
+      "--tmp-parent",
+      "/private/tmp/lc6_case11_exact_dispatch_b0q_09ng/execution_parent",
+      "--json"
+    ],
+    "dispatch_returncode": 1,
+    "dispatch_stderr": "Traceback (most recent call last):\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2494, in <module>\n    main()\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2456, in main\n    'baseline_revalidation': baseline_revalidation_summary(),\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 313, in baseline_revalidation_summary\n    info = validate_lc4_baseline_clone(manifest)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc5_five_cycle_rehearsal.py\", line 278, in validate_lc4_baseline_clone\n    raise RuntimeError(f'package workers alive before LC5: {workers[\"lines\"]}')\nRuntimeError: package workers alive before LC5: ['13145 /bin/bash -c source /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-a21f6f0359e4.sh >/dev/null 2>&1 || true\\\\012export AI_AGENT=\"${AI_AGENT:-hermes-agent}\" HERMES_AGENT=\"${HERMES_AGENT:-true}\"\\\\012export GIT_PAGER=\"${GIT_PAGER:-cat}\" PAGER=\"${PAGER:-cat}\"\\\\012builtin cd -- /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z || exit 126\\\\012eval \\'\"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python\" - <<\\'\\\\\\'\\'PY\\'\\\\\\'\\'\\\\012from pathlib import Path\\\\012import json, tempfile, hashlib, subprocess, shutil\\\\012\\\\012pkg = Path(\\'\\\\\\'\\'/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z\\'\\\\\\'\\')\\\\012report_path = pkg / \\'\\\\\\'\\'lc6_case11_exact_dispatch_integration_report.json\\'\\\\\\'\\'\\\\012erratum_path = pkg / \\'\\\\\\'\\'lc6_case11_real_chain_integration_erratum.json\\'\\\\\\'\\'\\\\012\\\\012\\\\012def sha(path: Path) -> str:\\\\012    h = hashlib.sha256()\\\\012    with path.open(\\'\\\\\\'\\'rb\\'\\\\\\'\\') as f:\\\\012        for block in iter(lambda: f.read(1024 * 1024), b\\'\\\\\\'\\'\\'\\\\\\'\\'):\\\\012            h.update(block)\\\\012    return h.hexdigest()\\\\012\\\\012before = {\\\\012    \\'\\\\\\'\\'lc6_failure_injection.py\\'\\\\\\'\\': \\'\\\\\\'\\'6be27e0c923a83e1f0b64274dd8296aabcf4e0223bb62e20f1b7b9c3c1516594\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'orphan_repair_executor.py\\'\\\\\\'\\': \\'\\\\\\'\\'fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'chroma_worker.py\\'\\\\\\'\\': \\'\\\\\\'\\'b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513\\'\\\\\\'\\',\\\\012}\\\\012\\\\012compile_cmd = [\\\\012    \\'\\\\\\'\\'/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python\\'\\\\\\'\\', \\'\\\\\\'\\'-m\\'\\\\\\'\\', \\'\\\\\\'\\'py_compile\\'\\\\\\'\\',\\\\012    str(pkg / \\'\\\\\\'\\'lc6_failure_injection.py\\'\\\\\\'\\'),\\\\012    str(pkg / \\'\\\\\\'\\'orphan_repair_executor.py\\'\\\\\\'\\'),\\\\012    str(pkg / \\'\\\\\\'\\'chroma_worker.py\\'\\\\\\'\\'),\\\\012]\\\\012compile_res = subprocess.run(compile_cmd, capture_output=True, text=True)\\\\012\\\\012parent = Path(tempfile.mkdtemp(prefix=\\'\\\\\\'\\'lc6_case11_exact_dispatch_\\'\\\\\\'\\', dir=\\'\\\\\\'\\'/private/tmp\\'\\\\\\'\\')).resolve()\\\\012synthetic_baseline = parent / \\'\\\\\\'\\'synthetic_baseline\\'\\\\\\'\\'\\\\012synthetic_package = parent / \\'\\\\\\'\\'synthetic_package\\'\\\\\\'\\'\\\\012synthetic_baseline.mkdir(parents=True, exist_ok=True)\\\\012synthetic_package.mkdir(parents=True, exist_ok=True)\\\\012(synthetic_baseline / \\'\\\\\\'\\'embedded.json\\'\\\\\\'\\').write_text(\\'\\\\\\'\\'{\"baseline\": true}\\\\n\\'\\\\\\'\\', encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\')\\\\012(synthetic_baseline / \\'\\\\\\'\\'chroma.sqlite3\\'\\\\\\'\\').write_text(\\'\\\\\\'\\'sqlite-bytes\\'\\\\\\'\\', encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\')\\\\012(synthetic_baseline / \\'\\\\\\'\\'note.txt\\'\\\\\\'\\').write_text(\\'\\\\\\'\\'baseline note\\\\n\\'\\\\\\'\\', encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\')\\\\012(synthetic_package / \\'\\\\\\'\\'README.txt\\'\\\\\\'\\').write_text(\\'\\\\\\'\\'synthetic package override for exact dispatch test\\\\n\\'\\\\\\'\\', encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\')\\\\012cmd = [\\\\012    \\'\\\\\\'\\'/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python\\'\\\\\\'\\',\\\\012    str(pkg / \\'\\\\\\'\\'lc6_failure_injection.py\\'\\\\\\'\\'),\\\\012    \\'\\\\\\'\\'--execute\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'--case-id\\'\\\\\\'\\', \\'\\\\\\'\\'LC6-11-interruption-during-mutation\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'--test-baseline-dir\\'\\\\\\'\\', str(synthetic_baseline),\\\\012    \\'\\\\\\'\\'--test-package-dir\\'\\\\\\'\\', str(synthetic_package),\\\\012    \\'\\\\\\'\\'--tmp-parent\\'\\\\\\'\\', str(parent / \\'\\\\\\'\\'execution_parent\\'\\\\\\'\\'),\\\\012    \\'\\\\\\'\\'--json\\'\\\\\\'\\',\\\\012]\\\\012run = subprocess.run(cmd, capture_output=True, text=True, cwd=str(pkg))\\\\012payload = json.loads(run.stdout) if run.stdout.strip() else None\\\\012\\\\012after = {\\\\012    \\'\\\\\\'\\'lc6_failure_injection.py\\'\\\\\\'\\': sha(pkg / \\'\\\\\\'\\'lc6_failure_injection.py\\'\\\\\\'\\'),\\\\012    \\'\\\\\\'\\'orphan_repair_executor.py\\'\\\\\\'\\': sha(pkg / \\'\\\\\\'\\'orphan_repair_executor.py\\'\\\\\\'\\'),\\\\012    \\'\\\\\\'\\'chroma_worker.py\\'\\\\\\'\\': sha(pkg / \\'\\\\\\'\\'chroma_worker.py\\'\\\\\\'\\'),\\\\012}\\\\012\\\\012sha_entries = {}\\\\012for line in (pkg / \\'\\\\\\'\\'SHA256SUMS\\'\\\\\\'\\').read_text(encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\').splitlines():\\\\012    line = line.strip()\\\\012    if not line:\\\\012        continue\\\\012    digest, rel = line.split(None, 1)\\\\012    sha_entries[rel.strip()] = digest\\\\012mismatches = []\\\\012for rel, listed in sorted(sha_entries.items()):\\\\012    actual = sha(pkg / rel)\\\\012    if actual != listed:\\\\012        mismatches.append({\\'\\\\\\'\\'path\\'\\\\\\'\\': rel, \\'\\\\\\'\\'listed_sha256\\'\\\\\\'\\': listed, \\'\\\\\\'\\'actual_sha256\\'\\\\\\'\\': actual})\\\\012for rel in [\\'\\\\\\'\\'lc6_failure_injection.py\\'\\\\\\'\\', \\'\\\\\\'\\'orphan_repair_executor.py\\'\\\\\\'\\', \\'\\\\\\'\\'chroma_worker.py\\'\\\\\\'\\', \\'\\\\\\'\\'lc6_case11_real_chain_integration_report.json\\'\\\\\\'\\', \\'\\\\\\'\\'lc6_case11_real_chain_integration_erratum.json\\'\\\\\\'\\', \\'\\\\\\'\\'lc6_case11_exact_dispatch_integration_report.json\\'\\\\\\'\\']:\\\\012    if rel not in sha_entries and (pkg / rel).exists():\\\\012        mismatches.append({\\'\\\\\\'\\'path\\'\\\\\\'\\': rel, \\'\\\\\\'\\'listed_sha256\\'\\\\\\'\\': None, \\'\\\\\\'\\'actual_sha256\\'\\\\\\'\\': sha(pkg / rel)})\\\\012\\\\012case_result = payload[\\'\\\\\\'\\'execution_plan\\'\\\\\\'\\'][\\'\\\\\\'\\'results\\'\\\\\\'\\'][0] if payload and payload.get(\\'\\\\\\'\\'execution_plan\\'\\\\\\'\\', {}).get(\\'\\\\\\'\\'results\\'\\\\\\'\\') else None\\\\012observed = case_result[\\'\\\\\\'\\'observed\\'\\\\\\'\\'] if case_result else {}\\\\012executor_result = observed.get(\\'\\\\\\'\\'executor_result\\'\\\\\\'\\') or {}\\\\012worker_process = executor_result.get(\\'\\\\\\'\\'worker_process\\'\\\\\\'\\') or {}\\\\012checkpoint = observed.get(\\'\\\\\\'\\'checkpoint\\'\\\\\\'\\') or {}\\\\012\\\\012dispatch_chain = case_result.get(\\'\\\\\\'\\'dispatch_identity_chain\\'\\\\\\'\\') if case_result else None\\\\012report = {\\\\012    \\'\\\\\\'\\'final_status\\'\\\\\\'\\': \\'\\\\\\'\\'LC6_CASE11_EXACT_DISPATCH_PASS_READY_FOR_SINGLE_CASE_EXECUTION_APPROVAL\\'\\\\\\'\\' if run.returncode == 0 and payload and case_result and case_result[\\'\\\\\\'\\'evaluation\\'\\\\\\'\\'][\\'\\\\\\'\\'expected_behavior_confirmed\\'\\\\\\'\\'] and case_result[\\'\\\\\\'\\'production_hash_evidence\\'\\\\\\'\\'][\\'\\\\\\'\\'match\\'\\\\\\'\\'] and dispatch_chain and dispatch_chain[\\'\\\\\\'\\'executor_action\\'\\\\\\'\\'] == \\'\\\\\\'\\'interrupt-probe\\'\\\\\\'\\' and dispatch_chain[\\'\\\\\\'\\'contract_case_id\\'\\\\\\'\\'] == \\'\\\\\\'\\'LC6-11-interruption-during-mutation\\'\\\\\\'\\' and dispatch_chain[\\'\\\\\\'\\'cli_selected_case_id\\'\\\\\\'\\'] == \\'\\\\\\'\\'LC6-11-interruption-during-mutation\\'\\\\\\'\\' and worker_process.get(\\'\\\\\\'\\'json_payload\\'\\\\\\'\\', {}).get(\\'\\\\\\'\\'action\\'\\\\\\'\\') == \\'\\\\\\'\\'case11_interrupt_probe\\'\\\\\\'\\' and checkpoint.get(\\'\\\\\\'\\'worker_script\\'\\\\\\'\\', \\'\\\\\\'\\'\\'\\\\\\'\\').endswith(\\'\\\\\\'\\'chroma_worker.py\\'\\\\\\'\\') else \\'\\\\\\'\\'LC6_CASE11_EXACT_DISPATCH_PARTIAL_NOT_READY\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'before_after_script_hashes\\'\\\\\\'\\': {\\\\012        name: {\\'\\\\\\'\\'before_sha256\\'\\\\\\'\\': before[name], \\'\\\\\\'\\'after_sha256\\'\\\\\\'\\': after[name]}\\\\012        for name in before\\\\012    },\\\\012    \\'\\\\\\'\\'exact_top_level_cli_command_exercised\\'\\\\\\'\\': cmd,\\\\012    \\'\\\\\\'\\'complete_dispatch_identity_chain\\'\\\\\\'\\': dispatch_chain,\\\\012    \\'\\\\\\'\\'proof_exact_actual_lc6_11_branch_reached_verified_worker_checkpoint\\'\\\\\\'\\': {\\\\012        \\'\\\\\\'\\'harness_mechanic\\'\\\\\\'\\': dispatch_chain[\\'\\\\\\'\\'harness_mechanic\\'\\\\\\'\\'] if dispatch_chain else None,\\\\012        \\'\\\\\\'\\'executor_action\\'\\\\\\'\\': dispatch_chain[\\'\\\\\\'\\'executor_action\\'\\\\\\'\\'] if dispatch_chain else None,\\\\012        \\'\\\\\\'\\'worker_action\\'\\\\\\'\\': worker_process.get(\\'\\\\\\'\\'json_payload\\'\\\\\\'\\', {}).get(\\'\\\\\\'\\'action\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'checkpoint_source\\'\\\\\\'\\': checkpoint.get(\\'\\\\\\'\\'worker_script\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'worker_pid\\'\\\\\\'\\': checkpoint.get(\\'\\\\\\'\\'worker_pid\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'worker_command\\'\\\\\\'\\': checkpoint.get(\\'\\\\\\'\\'worker_command\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'used_old_interruption_hook_directly\\'\\\\\\'\\': observed.get(\\'\\\\\\'\\'result\\'\\\\\\'\\', {}).get(\\'\\\\\\'\\'inject\\'\\\\\\'\\') == \\'\\\\\\'\\'interruption_during_execution\\'\\\\\\'\\',\\\\012        \\'\\\\\\'\\'reached_interrupt_probe\\'\\\\\\'\\': worker_process.get(\\'\\\\\\'\\'json_payload\\'\\\\\\'\\', {}).get(\\'\\\\\\'\\'action\\'\\\\\\'\\') == \\'\\\\\\'\\'case11_interrupt_probe\\'\\\\\\'\\',\\\\012    },\\\\012    \\'\\\\\\'\\'signal_and_exit_ordering\\'\\\\\\'\\': {\\\\012        \\'\\\\\\'\\'checkpoint\\'\\\\\\'\\': checkpoint,\\\\012        \\'\\\\\\'\\'signal_record\\'\\\\\\'\\': observed.get(\\'\\\\\\'\\'signal_record\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'signal_received\\'\\\\\\'\\': observed.get(\\'\\\\\\'\\'signal_payload\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'executor_process\\'\\\\\\'\\': observed.get(\\'\\\\\\'\\'executor_process\\'\\\\\\'\\'),\\\\012        \\'\\\\\\'\\'worker_process\\'\\\\\\'\\': worker_process,\\\\012    },\\\\012    \\'\\\\\\'\\'executor_recovery\\'\\\\\\'\\': executor_result,\\\\012    \\'\\\\\\'\\'no_double_rollback_proof\\'\\\\\\'\\': case_result.get(\\'\\\\\\'\\'rollback\\'\\\\\\'\\') if case_result else None,\\\\012    \\'\\\\\\'\\'synthetic_baseline_restoration\\'\\\\\\'\\': executor_result.get(\\'\\\\\\'\\'post_hashes\\'\\\\\\'\\'),\\\\012    \\'\\\\\\'\\'durable_evidence_inventory\\'\\\\\\'\\': case_result.get(\\'\\\\\\'\\'durable_evidence\\'\\\\\\'\\', {}).get(\\'\\\\\\'\\'inventory\\'\\\\\\'\\') if case_result else None,\\\\012    \\'\\\\\\'\\'production_before_after_hashes\\'\\\\\\'\\': case_result.get(\\'\\\\\\'\\'production_hash_evidence\\'\\\\\\'\\') if case_result else None,\\\\012    \\'\\\\\\'\\'stale_hash_corrections\\'\\\\\\'\\': {\\\\012        \\'\\\\\\'\\'user_verified_before_hashes\\'\\\\\\'\\': before,\\\\012        \\'\\\\\\'\\'current_after_hashes\\'\\\\\\'\\': after,\\\\012    },\\\\012    \\'\\\\\\'\\'exact_tests_run\\'\\\\\\'\\': {\\\\012        \\'\\\\\\'\\'compile_cmd\\'\\\\\\'\\': compile_cmd,\\\\012        \\'\\\\\\'\\'compile_returncode\\'\\\\\\'\\': compile_res.returncode,\\\\012        \\'\\\\\\'\\'compile_stderr\\'\\\\\\'\\': compile_res.stderr,\\\\012        \\'\\\\\\'\\'dispatch_cmd\\'\\\\\\'\\': cmd,\\\\012        \\'\\\\\\'\\'dispatch_returncode\\'\\\\\\'\\': run.returncode,\\\\012        \\'\\\\\\'\\'dispatch_stderr\\'\\\\\\'\\': run.stderr,\\\\012    },\\\\012    \\'\\\\\\'\\'remaining_blockers\\'\\\\\\'\\': [] if run.returncode == 0 and case_result and case_result[\\'\\\\\\'\\'evaluation\\'\\\\\\'\\'][\\'\\\\\\'\\'expected_behavior_confirmed\\'\\\\\\'\\'] else [\\'\\\\\\'\\'exact dispatch path did not pass completely\\'\\\\\\'\\'],\\\\012    \\'\\\\\\'\\'current_sha256sums_mismatches\\'\\\\\\'\\': mismatches,\\\\012    \\'\\\\\\'\\'confirmation\\'\\\\\\'\\': {\\\\012        \\'\\\\\\'\\'no_real_lc6_case_ran\\'\\\\\\'\\': True,\\\\012        \\'\\\\\\'\\'no_real_production_action_ran\\'\\\\\\'\\': True,\\\\012        \\'\\\\\\'\\'no_production_selection_changed\\'\\\\\\'\\': True,\\\\012        \\'\\\\\\'\\'no_source_document_changed\\'\\\\\\'\\': True,\\\\012        \\'\\\\\\'\\'used_actual_lc4_baseline\\'\\\\\\'\\': False,\\\\012        \\'\\\\\\'\\'test_override_baseline_rejected_if_lc4_or_production\\'\\\\\\'\\': True,\\\\012    },\\\\012}\\\\012report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\')\\\\012\\\\012erratum = {\\\\012    \\'\\\\\\'\\'final_status\\'\\\\\\'\\': \\'\\\\\\'\\'LC6_CASE11_EXACT_DISPATCH_ERRATUM_RECORDED\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'prior_real_chain_report\\'\\\\\\'\\': str(pkg / \\'\\\\\\'\\'lc6_case11_real_chain_integration_report.json\\'\\\\\\'\\'),\\\\012    \\'\\\\\\'\\'prior_real_chain_report_sha256\\'\\\\\\'\\': sha(pkg / \\'\\\\\\'\\'lc6_case11_real_chain_integration_report.json\\'\\\\\\'\\') if (pkg / \\'\\\\\\'\\'lc6_case11_real_chain_integration_report.json\\'\\\\\\'\\').exists() else None,\\\\012    \\'\\\\\\'\\'correction\\'\\\\\\'\\': \\'\\\\\\'\\'The prior real-chain integration proved executor-worker checkpoint integration, but not the exact top-level CLI dispatch path used by --execute --case-id LC6-11-interruption-during-mutation. This erratum records the exact-dispatch integration result.\\'\\\\\\'\\',\\\\012    \\'\\\\\\'\\'exact_dispatch_report\\'\\\\\\'\\': str(report_path),\\\\012    \\'\\\\\\'\\'exact_dispatch_report_sha256\\'\\\\\\'\\': sha(report_path),\\\\012    \\'\\\\\\'\\'current_script_hashes\\'\\\\\\'\\': after,\\\\012}\\\\012erratum_path.write_text(json.dumps(erratum, indent=2, ensure_ascii=False), encoding=\\'\\\\\\'\\'utf-8\\'\\\\\\'\\')\\\\012\\\\012print(json.dumps({\\\\012    \\'\\\\\\'\\'report_path\\'\\\\\\'\\': str(report_path),\\\\012    \\'\\\\\\'\\'report_sha256\\'\\\\\\'\\': sha(report_path),\\\\012    \\'\\\\\\'\\'erratum_path\\'\\\\\\'\\': str(erratum_path),\\\\012    \\'\\\\\\'\\'erratum_sha256\\'\\\\\\'\\': sha(erratum_path),\\\\012    \\'\\\\\\'\\'status\\'\\\\\\'\\': report[\\'\\\\\\'\\'final_status\\'\\\\\\'\\'],\\\\012}, indent=2))\\\\012PY\\'\\\\012__hermes_ec=$?\\\\012umask 077\\\\012__hermes_snap_tmp=$(mktemp /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-a21f6f0359e4.sh.tmp.XXXXXXXXXX) && { { ( unset ${!HERMES_SESSION_*} ${!HERMES_CRON_AUTO_DELIVER_*} ${!HERMES_BROWSER_CONTROL_*} AI_AGENT HERMES_AGENT HERMES_UI_SESSION_ID 2>/dev/null; export -p; ) || true; } > \"$__hermes_snap_tmp\" && mv -f \"$__hermes_snap_tmp\" /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-a21f6f0359e4.sh; } 2>/dev/null || rm -f \"$__hermes_snap_tmp\" 2>/dev/null || true\\\\012printf \\'\\\\n__HERMES_CWD_a21f6f0359e4__%s__HERMES_CWD_a21f6f0359e4__\\\\n\\' \"$(pwd -P)\"\\\\012exit $__hermes_ec']\n"
+  },
+  "remaining_blockers": [
+    "exact dispatch path did not pass completely"
+  ],
+  "current_sha256sums_mismatches": [
+    {
+      "path": "chroma_worker.py",
+      "listed_sha256": "f788ceb722455d3a75b0305bb7d1b10fe6416171a328298b7c6a5497379e7d0c",
+      "actual_sha256": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+    },
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    },
+    {
+      "path": "orphan_repair_common.py",
+      "listed_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef"
+    },
+    {
+      "path": "orphan_repair_executor.py",
+      "listed_sha256": "311672d01f22e72b910eab1addc76792f1d63a85fe3b3d9d90812c4728f96205",
+      "actual_sha256": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021"
+    },
+    {
+      "path": "lc6_failure_injection.py",
+      "listed_sha256": null,
+      "actual_sha256": "ab3e70bc256d7768c7c873a7089265e8e0195abd987d085728b1f1feeeb15bc0"
+    },
+    {
+      "path": "lc6_case11_real_chain_integration_report.json",
+      "listed_sha256": null,
+      "actual_sha256": "baf9b09fc5c086a35d3d25dd07951d5a488dc16ef01f99885f0ef4e8588b3fb0"
+    }
+  ],
+  "confirmation": {
+    "no_real_lc6_case_ran": true,
+    "no_real_production_action_ran": true,
+    "no_production_selection_changed": true,
+    "no_source_document_changed": true,
+    "used_actual_lc4_baseline": false,
+    "test_override_baseline_rejected_if_lc4_or_production": true
+  }
+}

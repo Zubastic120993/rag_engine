@@ -1,0 +1,222 @@
+{
+  "status": "LC5_PASS",
+  "cycles": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "a6b4d50c3a1da7fb4eb48cf29be5d0dcdcb442be85891931fe532c0226120eb9"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "1a688a21cd187e33a7edeeaa332d3ab1d2dd70616357e6c197495e54b3d58097"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "f6b5d16c9bf70a8b53bcefdc4569a857ebe00aefef1a6010afd8c47b2bfff7fd"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "019e2543aab07493fe429932a0f704ec506f05ad31b3c8f4b5d234eec86da1cd"
+        }
+      ]
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "63fb5c07c74a065bf18071a0f55fa2dfb2f32990be95e4e57469395b73a0fafc"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "0ed4fe7e164256a5a5ae6e1b18884e7a922a278aca1d20423eca9734db81419e"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "22b0ed83212eb09321fc6db9cab8234303ec435517fee44afd19079b74067a17"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "e02e1192b2dacfbdd95dd692d5cc6686a7c18a9ead4f3bdfd9fcf33b9539af80"
+        }
+      ]
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "9611c347190d7102a0d288c8838fc9e8bacd103256394016efc6edd37e38c93c"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "821c5009b619e2c9a61bacc77d4ab6caa49fde65b326d3e447f9273a2e57b107"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "04ef1e29c34227a7b88ba71cca0a2e7fedbcb13f67c25e01ffdc0668d4b8ea3b"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "4404f561799d3100e1a23f89d203808d3584b10e56ca0bcc2d16848d65fb2661"
+        }
+      ]
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "ef7babf649296e9c79b74817097ce22f2f9bbde15b07193334dddbd00ae607d3"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "374c866f44f684a78073e072a9a04b7126874017d75a6d0e0cd2bd8a77042589"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "f6b5d16c9bf70a8b53bcefdc4569a857ebe00aefef1a6010afd8c47b2bfff7fd"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "0a613be60194e0739a2c1e8fdc4bbbd3ae6e313843fa59e1c129c539eb3b0964"
+        }
+      ]
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "c835f8d9dcefbf19f044628997f591749b46389965f25187fae27bd0efe5ace4"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "3d1ea6058c9bdc3f14203f9123f4f210009baaa09f61bd300da658668156e5fe"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "acd53d8805b9016db1b54597b838e9571402f679e270134097b9b8184b905591"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "237713815689bdb566728d59a3089232723fc55063da7319f028d241d5901b71"
+        }
+      ]
+    }
+  ],
+  "expected_after_apply": {
+    "chunks": 125289,
+    "orphan_paths": 0,
+    "me_c_delta": 444,
+    "maker_manuals_delta": -446,
+    "total_chunk_delta": -2
+  }
+}

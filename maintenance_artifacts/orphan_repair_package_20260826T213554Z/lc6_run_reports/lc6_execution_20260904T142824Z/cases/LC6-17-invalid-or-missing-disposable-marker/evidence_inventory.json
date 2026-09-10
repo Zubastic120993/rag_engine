@@ -1,0 +1,72 @@
+{
+  "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142824Z/cases/LC6-17-invalid-or-missing-disposable-marker",
+  "files": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2739,
+      "sha256": "a43d2b06e03da5ecb85d32f47a2d192ff3e32aacadfbb37a7e9f4653b3faee4b"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1364,
+      "sha256": "b465693fbedad60bb696c97df6451e5114626bee06942106d9c59f1274acd4b6"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 22772,
+      "sha256": "b45d28df6055958f8887e3e89e1631abdc5103ba11df21ccef2c6909f53009c4"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1197,
+      "sha256": "e376899798244e95b9826df88c7a20deeef11691e2466b18422e9c69a906e0bf"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2429,
+      "sha256": "8e633481ddfa28e3366504fb0102a7b32b541f188e44cea24352daa27aa927d1"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4032,
+      "sha256": "bbae649eb46df6f938f103569182ad623adeea06f0b916208b43460c96c33be8"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 54,
+      "sha256": "06abc439fc9885d796af087521765c3635d769b9c3874ffc70f80875c4b6cad3"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 9556,
+      "sha256": "778060b29dd710e5d54c009213d9353608e2e9d7885898c4008c0eed09fa823b"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6544,
+      "sha256": "797785ac17e15ad5c0e2a9d772f15cd06a1fa60c397443eed43227cd9b373414"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 249,
+      "sha256": "c2b04fc4e99dc35c5627e0fabb1cc313fa098b03a8b0a60fe941f44984f7685b"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 123,
+      "sha256": "c8a4db1a382f940bd705f015e4af29d7a75f7940d32ea15129e0fde072390cbf"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ]
+}

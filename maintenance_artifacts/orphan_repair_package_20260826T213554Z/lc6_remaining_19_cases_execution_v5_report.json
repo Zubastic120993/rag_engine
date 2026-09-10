@@ -1,0 +1,230 @@
+{
+  "final_status": "LC6_REMAINING_19_CASES_PASS_READY_FOR_FINAL_CLEAN_CYCLE",
+  "report_name": "lc6_remaining_19_cases_execution_v5_report",
+  "source_v4_aggregate": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_execution_v4_report.json",
+  "source_v4_sha256": "6175a6d6b7b86dc392f733899f4925c09ca6bca675e2e578cd0de6555d373880",
+  "existing_pass_reports_reused_count": 18,
+  "completed_cases": [
+    {
+      "case_id": "LC6-01-failure-before-first-mutation",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_01_execution_report.json",
+      "per_case_report_sha256": "cfa7accefb4257281a26bf7cfb683afe76d87b191c86d16a2ba34626c1837f76",
+      "tmp_parent": "/private/tmp/lc6_case_01_540gkh8x",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-02-failure-midway-deterministic-repoints",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_02_execution_report.json",
+      "per_case_report_sha256": "43d71722e0ef40eaf833fda3f3289932372919f6bc2fcb446f78019451d1b9c9",
+      "tmp_parent": "/private/tmp/lc6_case_02_mehlhgqg",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-03-failure-during-alias-collapse",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_03_execution_report.json",
+      "per_case_report_sha256": "689cf7189c3528ec2cec8ae8547a1e3b2afad1b9eee136752cce395e4553cc2c",
+      "tmp_parent": "/private/tmp/lc6_case_03_zka1gfkm",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_04_execution_report.json",
+      "per_case_report_sha256": "efa84fe3b54b2b471d1329827d6ef8fe157853b220a8062cf015a5676b691aee",
+      "tmp_parent": "/private/tmp/lc6_case_04_v4j_y725",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_05_execution_report.json",
+      "per_case_report_sha256": "9d20c1c1aed56badb297ab2c8168cc81f45add154a2d4e651f450446215c9623",
+      "tmp_parent": "/private/tmp/lc6_case_05_8h53lzm2",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-06-forced-doctor-failure",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_06_execution_report.json",
+      "per_case_report_sha256": "b81ac4df91a9be511eadc469bae98c460919ad7faa472c064d96bd206ce04963",
+      "tmp_parent": "/private/tmp/lc6_case_06_vqsdvet5",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_07_execution_report.json",
+      "per_case_report_sha256": "755d471fc0860f67c482e2576f1344cc87d17422ca5628d86ca9a4d97a4a49ef",
+      "tmp_parent": "/private/tmp/lc6_case_07_gusdhbxh",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_08_execution_report.json",
+      "per_case_report_sha256": "ca18a0ddf6f9a6545ebc1125509926ba2c4d234231237279eb9dff80cb0aa14c",
+      "tmp_parent": "/private/tmp/lc6_case_08_i7ivvg02",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-09-canonical-source-sha-mismatch",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_09_execution_report.json",
+      "per_case_report_sha256": "c1a1ea050280ccb7f9c8029633e58f96858f0fae3d1e4a1db52fdae74603db94",
+      "tmp_parent": "/private/tmp/lc6_case_09_yeuydq6d",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-10-candidate-lock-contention",
+      "result": "PASS",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_10_execution_report.json",
+      "per_case_report_sha256": "7cbad189c18548e8eae94e5fbb9a262e3d45894a96a79fb3e85a72347430a84a",
+      "tmp_parent": "/private/tmp/lc6_case_10_ynww6kya",
+      "reused_existing_pass_report": true
+    },
+    {
+      "case_id": "LC6-12-direct-active-production-target",
+      "result": "PASS",
+      "actual_outcome": "CONTROLLED_REFUSAL_CONFIRMED",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "recovery_owner": "none",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_12_execution_report.json",
+      "per_case_report_sha256": "7dd0b7d7bbe6e9b5dec922f346afe6d40ca48251c87edbaa82a759e19f8a190f",
+      "tmp_parent": "/private/tmp/lc6_case_12_te8x744k",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142604Z/cases/LC6-12-direct-active-production-target",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-13-legacy-rag-db-target",
+      "result": "PASS",
+      "actual_outcome": "CONTROLLED_REFUSAL_CONFIRMED",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "recovery_owner": "none",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_13_execution_report.json",
+      "per_case_report_sha256": "5d8dd8cd6543688c1905e8e9ef4fdb793f0279d0b98f598a500721fe980080bd",
+      "tmp_parent": "/private/tmp/lc6_case_13_oe0052c1",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142608Z/cases/LC6-13-legacy-rag-db-target",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-14-generations-root-target",
+      "result": "PASS",
+      "actual_outcome": "CONTROLLED_REFUSAL_CONFIRMED",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "recovery_owner": "none",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_14_execution_report.json",
+      "per_case_report_sha256": "3ab3db493de29e28f82d294923c79f5dd1854ed4f00d4c83d999b4157647349c",
+      "tmp_parent": "/private/tmp/lc6_case_14_qlodpmti",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142612Z/cases/LC6-14-generations-root-target",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-15-ce-library-root-target",
+      "result": "PASS",
+      "actual_outcome": "CONTROLLED_REFUSAL_CONFIRMED",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "recovery_owner": "none",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_15_execution_report.json",
+      "per_case_report_sha256": "1d02b7281a6380bf7e8bc703d983f277f93cd11aa3cf86ecb4043968e39a1bd7",
+      "tmp_parent": "/private/tmp/lc6_case_15_k39wmbol",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142616Z/cases/LC6-15-ce-library-root-target",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-16-rerun-against-already-repaired-clone",
+      "result": "PASS",
+      "actual_outcome": "CONTROLLED_REFUSAL_CONFIRMED",
+      "expected_outcome": "first apply ok then second-run refusal on dirty clone",
+      "recovery_owner": "harness",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_16_execution_report.json",
+      "per_case_report_sha256": "edad31e4f6684985b8f36d29e9cb2b60d102afc5a3666fcae4ffc14342f8c9b4",
+      "tmp_parent": "/private/tmp/lc6_case_16_ed5j3slb",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142620Z/cases/LC6-16-rerun-against-already-repaired-clone",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+      "result": "PASS",
+      "actual_outcome": "APPLY_REJECTED",
+      "expected_outcome": "marker refusal before Chroma open or before mutation",
+      "recovery_owner": "executor",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_17_execution_report.json",
+      "per_case_report_sha256": "d257e6a56f6e56c9c18345842f51598d6ec8d50b053a54c44a14bd4eedca1331",
+      "tmp_parent": "/private/tmp/lc6_case_17_vacvzi45",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142824Z/cases/LC6-17-invalid-or-missing-disposable-marker",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+      "result": "PASS",
+      "actual_outcome": "APPLY_REJECTED",
+      "expected_outcome": "manifest refusal before mutation",
+      "recovery_owner": "executor",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_18_execution_report.json",
+      "per_case_report_sha256": "1a8c1522b4bdad8f3f456870513b2e35118b868f8e950553f84054dcc4cdc7fe",
+      "tmp_parent": "/private/tmp/lc6_case_18_l5ku_43q",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142830Z/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-19-unexpected-wal-shm-state",
+      "result": "PASS",
+      "actual_outcome": "APPLY_REJECTED",
+      "expected_outcome": "WAL/SHM refusal before mutation",
+      "recovery_owner": "executor",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_19_execution_report.json",
+      "per_case_report_sha256": "e36c68d450e1d7cfc557bd68c14fd985a787c3b68b7b70e9caf63c5d2efad47e",
+      "tmp_parent": "/private/tmp/lc6_case_19_6mnhl12z",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142836Z/cases/LC6-19-unexpected-wal-shm-state",
+      "clone_preserved": false
+    },
+    {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "result": "PASS",
+      "actual_outcome": "APPLY_REJECTED",
+      "expected_outcome": "controlled failure on timeout or malformed output with containment",
+      "recovery_owner": "executor",
+      "per_case_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_20_execution_v2_report.json",
+      "per_case_report_sha256": "ef9961139fd5536a221e8b9777c804b40f6a1bc55768e9af77dc8e5b2fc7a13e",
+      "tmp_parent": "/private/tmp/lc6_case20_retry_visxn11o",
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260909T213450Z/cases/LC6-20-worker-timeout-or-malformed-output",
+      "clone_preserved": false
+    }
+  ],
+  "excluded_cases": [
+    "LC6-11-interruption-during-mutation"
+  ],
+  "rerun_scope": "LC6-20 only",
+  "no_other_cases_rerun": true,
+  "no_all_flag_used": true,
+  "lc6_20_v2_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_20_execution_v2_report.json",
+  "lc6_20_v2_report_sha256": "ef9961139fd5536a221e8b9777c804b40f6a1bc55768e9af77dc8e5b2fc7a13e",
+  "production_before": {
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "production_after": {
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "production_unchanged": true,
+  "final_clean_cycle_run": false,
+  "package_sealed": false,
+  "sha256sums_regenerated": false,
+  "blockers": []
+}

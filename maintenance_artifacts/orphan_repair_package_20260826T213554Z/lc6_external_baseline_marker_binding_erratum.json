@@ -1,0 +1,10 @@
+{
+  "status": "LC6_EXTERNAL_BASELINE_MARKER_BINDING_ERRATUM",
+  "file": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+  "stale_constant_before_fix": "7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9",
+  "replacement_constant_after_fix": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+  "reason": "The prior constant correctly protected the former /private/tmp restored baseline but became stale after governed relocation to the certified external baseline.",
+  "external_baseline": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "binding_amendment": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_external_baseline_binding_amendment.json",
+  "binding_amendment_sha256": "976944d82cc9f0adad9e8b7c7c3a146e5bb72865b3335698622b9165601d2e36"
+}

@@ -1,0 +1,756 @@
+{
+  "tmp_root": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n",
+  "baseline_db": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/baseline_db",
+  "baseline_marker": {
+    "clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-08-27T05:22:28Z",
+    "purpose": "lc3 lifecycle smoke baseline temp db",
+    "source_inventory_checksum": "c931ca7b0e4149c66ac6f28465cb3a326ad6946377197599b0baef68aac8b490",
+    "target_generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/baseline_db",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "baseline_hashes": {
+    ".orphan_repair_disposable_clone.json": "daa854ba03f0ea7d9d2e7b92b34ede1714fdaecf4a97fd7a5704caf2e1d2e802",
+    "chroma.sqlite3": "945ea5ab283538e6194d547f40ebf7a36957b909c1306e3483d77f1d6d350f28",
+    "e0e12fef-2b6f-44d5-a5bb-de5434bc02fb/data_level0.bin": "28682dcbfb8a9964fd970c80e8d3f5e33dc9f302b8ca91424737a69a6078fa64",
+    "e0e12fef-2b6f-44d5-a5bb-de5434bc02fb/header.bin": "2d6a98cd7a3365856f79a6820ca8ddb3c6b819f2f3eb7dc5a65ae6408fad2755",
+    "e0e12fef-2b6f-44d5-a5bb-de5434bc02fb/length.bin": "fc19b1997119425765295aeab72d76faa6927d4f83985d328c26f20468d6cc76",
+    "e0e12fef-2b6f-44d5-a5bb-de5434bc02fb/link_lists.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sequence_count": 10,
+  "sequences": [
+    {
+      "sequence": 1,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76152, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-01\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76152,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-01"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76153, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-01\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76153,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-01"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-01\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76156, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-01\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-01"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76156,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_01",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-01"
+        }
+      },
+      "expected_source_after": "seq-01",
+      "observed_source_after": "seq-01",
+      "ok": true
+    },
+    {
+      "sequence": 2,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76158, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-02\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76158,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-02"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76159, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-02\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76159,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-02"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-02\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76161, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-02\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-02"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76161,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_02",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-02"
+        }
+      },
+      "expected_source_after": "seq-02",
+      "observed_source_after": "seq-02",
+      "ok": true
+    },
+    {
+      "sequence": 3,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76163, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-03\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76163,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-03"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76164, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-03\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76164,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-03"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-03\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76167, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-03\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-03"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76167,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_03",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-03"
+        }
+      },
+      "expected_source_after": "seq-03",
+      "observed_source_after": "seq-03",
+      "ok": true
+    },
+    {
+      "sequence": 4,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76169, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-04\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76169,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-04"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76170, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-04\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76170,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-04"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-04\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76172, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-04\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-04"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76172,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_04",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-04"
+        }
+      },
+      "expected_source_after": "seq-04",
+      "observed_source_after": "seq-04",
+      "ok": true
+    },
+    {
+      "sequence": 5,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76174, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-05\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76174,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-05"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76175, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-05\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76175,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-05"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-05\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76177, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-05\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-05"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76177,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_05",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-05"
+        }
+      },
+      "expected_source_after": "seq-05",
+      "observed_source_after": "seq-05",
+      "ok": true
+    },
+    {
+      "sequence": 6,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76179, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-06\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76179,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-06"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76180, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-06\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76180,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-06"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-06\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76182, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-06\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-06"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76182,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_06",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-06"
+        }
+      },
+      "expected_source_after": "seq-06",
+      "observed_source_after": "seq-06",
+      "ok": true
+    },
+    {
+      "sequence": 7,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76184, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-07\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76184,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-07"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76185, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-07\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76185,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-07"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-07\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76189, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-07\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-07"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76189,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_07",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-07"
+        }
+      },
+      "expected_source_after": "seq-07",
+      "observed_source_after": "seq-07",
+      "ok": true
+    },
+    {
+      "sequence": 8,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76192, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-08\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76192,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-08"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76193, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-08\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76193,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-08"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-08\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76196, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-08\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-08"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76196,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_08",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-08"
+        }
+      },
+      "expected_source_after": "seq-08",
+      "observed_source_after": "seq-08",
+      "ok": true
+    },
+    {
+      "sequence": 9,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76198, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-09\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76198,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-09"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76199, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-09\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76199,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-09"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-09\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76202, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-09\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-09"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76202,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_09",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-09"
+        }
+      },
+      "expected_source_after": "seq-09",
+      "observed_source_after": "seq-09",
+      "ok": true
+    },
+    {
+      "sequence": 10,
+      "gen_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10",
+      "inspect_before": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"x\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76204, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-10\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "x"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76204,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-10"
+        }
+      },
+      "update": {
+        "action": "mutate_metadata",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"mutate_metadata\", \"opened_chroma\": true, \"collection_name\": \"test\", \"updated_ids\": [\"a\"], \"worker_pid\": 76206, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-10\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "mutate_metadata",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "updated_ids": [
+            "a"
+          ],
+          "worker_pid": 76206,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-10"
+        }
+      },
+      "inspect_after": {
+        "action": "inspect",
+        "returncode": 0,
+        "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"test\", \"payload\": {\"a\": {\"metadata\": {\"collection\": \"t\", \"source\": \"seq-10\"}, \"document\": \"alpha\"}}, \"worker_pid\": 76207, \"generation\": \"/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10\", \"marker_clone_id\": \"clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-10\"}\n",
+        "stderr": "",
+        "payload": {
+          "status": "ok",
+          "action": "inspect",
+          "opened_chroma": true,
+          "collection_name": "test",
+          "payload": {
+            "a": {
+              "metadata": {
+                "collection": "t",
+                "source": "seq-10"
+              },
+              "document": "alpha"
+            }
+          },
+          "worker_pid": 76207,
+          "generation": "/private/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/lc3_smoke_mbc9v18n/seq_10",
+          "marker_clone_id": "clone-3f45d329-a4c2-4675-ba72-8d15eb0cc1d5-seq-10"
+        }
+      },
+      "expected_source_after": "seq-10",
+      "observed_source_after": "seq-10",
+      "ok": true
+    }
+  ],
+  "overall_ok": true
+}

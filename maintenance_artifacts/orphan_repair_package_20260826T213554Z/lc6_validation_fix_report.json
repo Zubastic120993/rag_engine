@@ -1,0 +1,66 @@
+{
+  "final_status": "LC6_VALIDATION_FIX_PASS_READY_TO_RESTART_STEP_1",
+  "schema_contract_implemented": {
+    "schema_version": "inventory-row-v1",
+    "fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "regular_file_type_value": "file"
+  },
+  "legacy_marker_interpretation_rule": "Existing historical markers without an explicit source_inventory_schema are interpreted as legacy inventory-row-v1. Unknown schemas fail closed.",
+  "files_changed": [
+    {
+      "path": "orphan_repair_common.py",
+      "before_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "after_sha256": "e3c9fca0944d08ee3f13f06b95a6650d526ee35aa04403ee25778784d37386b0"
+    },
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "before_sha256": "864272d7f020ad3c980aa9e102b1936ffbda600ecbaa890ff06abb492859001d",
+      "after_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    }
+  ],
+  "computed_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "all_three_equal_expected": true,
+  "row_count": 19,
+  "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+  "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+  "chunk_count": 125291,
+  "orphan_count": 55,
+  "wal_shm_status": {
+    "wal_exists": false,
+    "shm_exists": false,
+    "clear": true
+  },
+  "baseline_validation_result": {
+    "passed": true,
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "expected_source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "marker_source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a"
+  },
+  "confirmation_no_lc5_cycles_or_lc6_injections_ran": true,
+  "sha256sums_readonly_mismatches": [
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    },
+    {
+      "path": "orphan_repair_common.py",
+      "listed_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "e3c9fca0944d08ee3f13f06b95a6650d526ee35aa04403ee25778784d37386b0"
+    }
+  ],
+  "lc6_restart_inherited_evidence_validation_allowed": true,
+  "validation_changes_required": [
+    "Keep inventory-row-v1 as the canonical row contract for checksum comparison.",
+    "Require baseline validation to compare computed, expected, and marker checksums under the same schema version.",
+    "Fail closed on unknown marker/source inventory schemas and prevent mixed-schema acceptance."
+  ]
+}

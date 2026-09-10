@@ -1,0 +1,12 @@
+{
+  "status": "SIGNAL_RECEIVED",
+  "signal": 15,
+  "case_id": "LC6-11-interruption-during-mutation",
+  "run_id": "LC6-11-interruption-during-mutation-8b34b54a111c",
+  "clone_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+  "worker_pid": 43685,
+  "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+  "worker_command": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-8b34b54a111c --state-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain",
+  "wait_completed": true,
+  "timestamp_monotonic": 2896887.564917791
+}

@@ -1,0 +1,82 @@
+{
+  "case_id": "LC6-10-candidate-lock-contention",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142423Z/cases/LC6-10-candidate-lock-contention",
+  "files": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2840,
+      "sha256": "3c76e0c21f92108fa3fd18c0f08a29b33dfecaa2ec24ba19acef1adde8113fdb"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1488,
+      "sha256": "ea8a9618ea64898b6f6470c2937ae3f65dc926d2fa3c3677c5bfe9929d330b98"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 24373,
+      "sha256": "88f31c9c37bda6677139d79ecdbb452a2d943f41281460f1c7502982156f1b2c"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1131,
+      "sha256": "ea39eb7ad01e42591592c918e1881eedf83a6827e3c3b6220568bf4529c9059a"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2720,
+      "sha256": "d3b8c2eb8a552cbec483ebef8655f1758d697b36602085bc8c4417593a247dc0"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4517,
+      "sha256": "03ec1b6aaa6ff321dd57f8142e203e005b5af6a18199795769aadab0f5edd54a"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 289,
+      "sha256": "cea8a863e5ed92396665924fe095e38fee24a7b03a9efc229702f7a11eee6a60"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 9848,
+      "sha256": "591ae39fef574581282cabd4bee8d65cc5edae97e3206ee5c3224f453d72401c"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6731,
+      "sha256": "f8f43312eb1885322b9e03315a3def8f4eb3a2a7250be20fa7ad9a84e0af104e"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 238,
+      "sha256": "37b35c203d77567ae6dc9b9c0d0334f7af3a95e3ffe1c72cf11e714c4a7ecce1"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 133,
+      "sha256": "82968cae59c6d2fea8dc24c0d535b888e44394ac7b93faf32418b60cc5044864"
+    },
+    {
+      "relpath": "inventory_proof.json",
+      "bytes": 190,
+      "sha256": "b099065c0c9c13b61d955f2ec876335411f2a7c7d135232de6ee98e4b6b6873a"
+    },
+    {
+      "relpath": "lock_refusal.json",
+      "bytes": 9848,
+      "sha256": "591ae39fef574581282cabd4bee8d65cc5edae97e3206ee5c3224f453d72401c"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ]
+}

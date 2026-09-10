@@ -1,0 +1,13 @@
+{
+  "final_status": "LC6_CASE11_EXACT_DISPATCH_ERRATUM_RECORDED",
+  "prior_real_chain_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_real_chain_integration_report.json",
+  "prior_real_chain_report_sha256": "baf9b09fc5c086a35d3d25dd07951d5a488dc16ef01f99885f0ef4e8588b3fb0",
+  "correction": "The prior real-chain integration proved executor-worker checkpoint integration, but not the exact top-level CLI dispatch path used by --execute --case-id LC6-11-interruption-during-mutation. This erratum records the exact-dispatch integration result.",
+  "exact_dispatch_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_exact_dispatch_integration_report.json",
+  "exact_dispatch_report_sha256": "cd8177da50b572b354e125d0d882ffdb4ee2daf9685eb00aff60be5a6dede5e0",
+  "current_script_hashes": {
+    "lc6_failure_injection.py": "ab3e70bc256d7768c7c873a7089265e8e0195abd987d085728b1f1feeeb15bc0",
+    "orphan_repair_executor.py": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+    "chroma_worker.py": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+  }
+}

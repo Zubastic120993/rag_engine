@@ -1,0 +1,216 @@
+{
+  "report_name": "lc6_production_unchanged_after_final_clean_cycle_v2",
+  "final_status": "LC6_FINAL_CLEAN_CYCLE_PASS_READY_FOR_PACKAGE_SEALING",
+  "source_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_production_unchanged_after_final_clean_cycle.json",
+  "source_report_sha256": "96e652386e91aafed942303a2c8dc4d430190d27820bc903c1ebe8bff0a15d8b",
+  "normalization_rules": [
+    "Use canonical top-level key canonical_hashes for both snapshots.",
+    "Accept either legacy file_hashes or hashes as input hash-map keys; map both to canonical_hashes.",
+    "Canonical hash keys are embedded.json, chroma.sqlite3, .rag_state, and active_generation.",
+    "For optional hash keys .rag_state and active_generation, absent and explicitly null are normalized to null.",
+    "No non-null hash value may be discarded; unknown non-null hash entries are preserved in extra_non_null_hashes and compared fail-closed.",
+    "All non-hash snapshot fields are compared directly using the same canonical field set.",
+    "Current production snapshot is supporting evidence only; authoritative comparison is same-run before vs same-run after from lc6_production_unchanged_after_final_clean_cycle.json."
+  ],
+  "authoritative_same_run_before_raw": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "file_hashes": {
+      "active_generation": null,
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "authoritative_same_run_after_raw": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "authoritative_same_run_before_canonical": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "extra_non_null_hashes": {}
+  },
+  "authoritative_same_run_after_canonical": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "extra_non_null_hashes": {}
+  },
+  "authoritative_same_run_comparison": {
+    "hash_checks": {
+      "embedded.json": true,
+      "chroma.sqlite3": true,
+      ".rag_state": true,
+      "active_generation": true
+    },
+    "non_hash_checks": {
+      "production_library": true,
+      "active_generation_constant": true,
+      "active_generation_exists": true,
+      "legacy_rag_db_exists": true,
+      "legacy_rag_db_is_symlink": true,
+      "legacy_rag_db_realpath": true,
+      "rag_state_exists": true,
+      "rag_state_sha256": true,
+      "wal_exists": true,
+      "shm_exists": true,
+      "lock_exists": true
+    },
+    "extra_non_null_hashes_equal": true,
+    "all_hashes_equal": true,
+    "all_non_hash_fields_equal": true,
+    "all_equal": true
+  },
+  "explicit_proof": {
+    "embedded_hash_equality": {
+      "before": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "after": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "equal": true
+    },
+    "chroma_sqlite3_hash_equality": {
+      "before": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "after": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "equal": true
+    },
+    "rag_state_hash_equality": {
+      "before": null,
+      "after": null,
+      "equal": true
+    },
+    "active_generation_hash_optional_equality": {
+      "before": null,
+      "after": null,
+      "equal": true
+    },
+    "active_generation_path_and_selection_equality": {
+      "active_generation_constant_equal": true,
+      "legacy_rag_db_realpath_equal": true,
+      "rag_state_sha256_equal": true
+    },
+    "wal_shm_lock_equality": {
+      "wal_exists_before": false,
+      "wal_exists_after": false,
+      "wal_equal": true,
+      "shm_exists_before": false,
+      "shm_exists_after": false,
+      "shm_equal": true,
+      "lock_exists_before": false,
+      "lock_exists_after": false,
+      "lock_equal": true
+    },
+    "all_other_non_hash_fields_equal": true,
+    "non_hash_field_checks": {
+      "production_library": true,
+      "active_generation_constant": true,
+      "active_generation_exists": true,
+      "legacy_rag_db_exists": true,
+      "legacy_rag_db_is_symlink": true,
+      "legacy_rag_db_realpath": true,
+      "rag_state_exists": true,
+      "rag_state_sha256": true,
+      "wal_exists": true,
+      "shm_exists": true,
+      "lock_exists": true
+    }
+  },
+  "supporting_current_production_snapshot_read_only": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "extra_non_null_hashes": {}
+  },
+  "supporting_current_snapshot_note": "Supporting evidence only; not used to replace same-run before/after authority.",
+  "supporting_current_vs_same_run_after_comparison": {
+    "hash_checks": {
+      "embedded.json": true,
+      "chroma.sqlite3": true,
+      ".rag_state": true,
+      "active_generation": true
+    },
+    "non_hash_checks": {
+      "production_library": true,
+      "active_generation_constant": true,
+      "active_generation_exists": true,
+      "legacy_rag_db_exists": true,
+      "legacy_rag_db_is_symlink": true,
+      "legacy_rag_db_realpath": true,
+      "rag_state_exists": true,
+      "rag_state_sha256": true,
+      "wal_exists": true,
+      "shm_exists": true,
+      "lock_exists": true
+    },
+    "extra_non_null_hashes_equal": true,
+    "all_hashes_equal": true,
+    "all_non_hash_fields_equal": true,
+    "all_equal": true
+  },
+  "production_unchanged_by_normalized_same_run_evidence": true
+}

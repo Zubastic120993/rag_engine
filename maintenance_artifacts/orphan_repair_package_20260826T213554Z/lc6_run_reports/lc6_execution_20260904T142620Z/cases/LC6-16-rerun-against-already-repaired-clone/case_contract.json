@@ -1,0 +1,29 @@
+{
+  "case_id": "LC6-16-rerun-against-already-repaired-clone",
+  "authoritative_reference": "LC6 specification section 5 case 16",
+  "injected_failure_point": "rerun against an already repaired clone",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_16_rerun_against_already_repaired_clone/clone",
+  "preconditions": [
+    "case design must create a clone that has already undergone successful apply once within disposable scope only",
+    "second run must treat same clone as forbidden dirty target",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py dirty-clone rerun guard harness",
+  "expected_process_exit_result": "controlled refusal before unsafe reuse",
+  "expected_fail_closed_behavior": "already-repaired clone is not reused as a clean baseline",
+  "expected_filesystem_state": "dirty clone preserved for case evidence; no cleanup until validated",
+  "expected_chroma_state": "no second mutation attempted on dirty clone",
+  "expected_tracker_state": "no second tracker rewrite attempted",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "preserve dirty clone until case result verified, then delete only if authorized by plan outcome",
+  "expected_residual_state_report": "rerun-refusal evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "first_apply_result.json",
+    "second_run_refusal.json",
+    "clone_state_inventory.json"
+  ],
+  "cleanup_procedure": "delete case artifacts only after refusal proof and no diagnostic preservation needed",
+  "post_cleanup_assertion": "no dirty clone reused later",
+  "production_is_not_a_target": true
+}

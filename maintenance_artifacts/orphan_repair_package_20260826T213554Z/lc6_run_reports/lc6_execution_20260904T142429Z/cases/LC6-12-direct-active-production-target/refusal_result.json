@@ -1,0 +1,12 @@
+{
+  "status": "CONTROLLED_REFUSAL_CONFIRMED",
+  "probe": {
+    "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "status": "refused",
+    "opened_chroma": false,
+    "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "ok": true
+  },
+  "opened_chroma": false,
+  "production_action": false
+}

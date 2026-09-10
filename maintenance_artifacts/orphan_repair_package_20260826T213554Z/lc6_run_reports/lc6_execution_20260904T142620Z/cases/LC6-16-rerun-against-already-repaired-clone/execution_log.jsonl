@@ -1,0 +1,7 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-16-rerun-against-already-repaired-clone-d50cf4ea-6d78-43b9-ac24-5129cb55bb90"}
+{"event": "mutation_worker_ok", "worker_pid": 90036}
+{"event": "success_validated"}
+{"event": "lock_released"}
+{"event": "lock_acquired"}
+{"event": "lock_released"}

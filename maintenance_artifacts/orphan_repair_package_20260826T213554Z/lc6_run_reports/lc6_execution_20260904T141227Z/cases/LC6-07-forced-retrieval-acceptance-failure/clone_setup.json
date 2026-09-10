@@ -1,0 +1,18 @@
+{
+  "clone_path": "/private/tmp/lc6_case_07_gusdhbxh/case_07_forced_retrieval_acceptance_failure/clone",
+  "work_path": "/private/tmp/lc6_case_07_gusdhbxh/case_07_forced_retrieval_acceptance_failure/work",
+  "baseline_clone_source": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker": {
+    "clone_id": "lc6-LC6-07-forced-retrieval-acceptance-failure-888b8bf7-2bc3-4fa2-a169-001bcd896c5d",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T14:12:28Z",
+    "purpose": "LC6_LC6-07-forced-retrieval-acceptance-failure",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "target_generation": "/private/tmp/lc6_case_07_gusdhbxh/case_07_forced_retrieval_acceptance_failure/clone",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "validated_clone_id": "lc6-LC6-07-forced-retrieval-acceptance-failure-888b8bf7-2bc3-4fa2-a169-001bcd896c5d"
+}

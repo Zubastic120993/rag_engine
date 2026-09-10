@@ -1,0 +1,44 @@
+{
+  "report_name": "lc6_production_unchanged_after_final_clean_cycle",
+  "production_before": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "file_hashes": {
+      "active_generation": null,
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "production_after": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "production_hashes_equal": false,
+  "production_selection_equal": true,
+  "production_full_state_equal": false,
+  "production_modified": true
+}

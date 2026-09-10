@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library",
+      "returncode": 3,
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+      "ok": true
+    }
+  ],
+  "overall_ok": true
+}

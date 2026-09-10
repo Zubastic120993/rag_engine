@@ -1,0 +1,3148 @@
+{
+  "final_status": "LC6_HARNESS_CORRECTION_PARTIAL_NOT_READY",
+  "report_purpose": "LC6 harness correction pass validation only; no actual failure-injection execution and no production Chroma access",
+  "changed_file_hashes": {
+    "lc6_failure_injection.py": {
+      "before_sha256": "3a6684cf6b4a60cb02c15313a9b38f483b9e7c4e7156dd43dfc73b1b96be416a",
+      "after_sha256": "dfa75fe55fe47c1c321c824ce71f1b4975f6974a44a76c7be6272601cdaaf7bd"
+    },
+    "lc6_failure_injection_harness_validation_correction_report.json": {
+      "before_sha256": "not present before correction pass",
+      "after_sha256": "self-referential; final file hash must be checked externally after write"
+    }
+  },
+  "external_file_hashes": {
+    "lc6_authoritative_failure_case_contract.json": "cdba735133ef3f87f05db0ed29788087fdbb2994f087340e28c609e47b4bcc5e",
+    "lc6_failure_injection.py": "dfa75fe55fe47c1c321c824ce71f1b4975f6974a44a76c7be6272601cdaaf7bd",
+    "lc6_failure_injection_plan.json": "fd5c99bf3fb68f3e4d85b08a4f3da787d537cbee2d16f8e45f945499bddb19a9"
+  },
+  "contract_summary": {
+    "case_count": 20,
+    "case_ids": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement",
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "schema_checks": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      }
+    ],
+    "duplicates": [],
+    "missing_mechanics": []
+  },
+  "hook_validation": {
+    "supported_hooks_expected": [
+      "failure_after_retirement",
+      "failure_before_first_mutation",
+      "failure_before_retirement",
+      "failure_during_alias_collapse",
+      "failure_halfway_through_deterministic",
+      "forced_doctor_failure",
+      "forced_retrieval_failure",
+      "interruption_during_execution"
+    ],
+    "checks": {
+      "failure_before_first_mutation": true,
+      "failure_halfway_through_deterministic": true,
+      "failure_during_alias_collapse": true,
+      "failure_before_retirement": true,
+      "failure_after_retirement": true,
+      "forced_doctor_failure": true,
+      "forced_retrieval_failure": true,
+      "interruption_during_execution": true
+    },
+    "all_supported_hooks_confirmed": true
+  },
+  "baseline_revalidation": {
+    "baseline_path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+    "marker_sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38",
+    "source_inventory_schema": "inventory-row-v1",
+    "row_count": 19,
+    "computed_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "expected_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "expected_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "orphan_count": 55,
+    "expected_orphan_count": 55,
+    "wal_shm_clear": true
+  },
+  "containment_validation": {
+    "parent": "/private/tmp/lc6_harness_validate_qffw53ed",
+    "inside_allowed": true,
+    "outside_escape_blocked": true,
+    "outside_escape_reason": "path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_qffw53ed",
+    "protected_target_checks": [
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library",
+        "blocked": true
+      }
+    ],
+    "all_protected_targets_blocked": true
+  },
+  "refusal_guard_validation": [
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+      "ok": true
+    }
+  ],
+  "dry_run_case_layout_validation": {
+    "ok": true,
+    "layouts": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_01_failure_before_first_mutation/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_01_failure_before_first_mutation/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_01_failure_before_first_mutation/work/evidence"
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_02_failure_midway_deterministic_repoints/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_02_failure_midway_deterministic_repoints/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_02_failure_midway_deterministic_repoints/work/evidence"
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_03_failure_during_alias_collapse/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_03_failure_during_alias_collapse/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_03_failure_during_alias_collapse/work/evidence"
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_04_failure_immediately_before_c1210_retirement/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_04_failure_immediately_before_c1210_retirement/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_04_failure_immediately_before_c1210_retirement/work/evidence"
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_05_failure_immediately_after_c1210_retirement/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_05_failure_immediately_after_c1210_retirement/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_05_failure_immediately_after_c1210_retirement/work/evidence"
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_06_forced_doctor_failure/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_06_forced_doctor_failure/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_06_forced_doctor_failure/work/evidence"
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_07_forced_retrieval_acceptance_failure/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_07_forced_retrieval_acceptance_failure/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_07_forced_retrieval_acceptance_failure/work/evidence"
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_08_stale_tracker_store_baseline_hash/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_08_stale_tracker_store_baseline_hash/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_08_stale_tracker_store_baseline_hash/work/evidence"
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_09_canonical_source_sha_mismatch/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_09_canonical_source_sha_mismatch/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_09_canonical_source_sha_mismatch/work/evidence"
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_10_candidate_lock_contention/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_10_candidate_lock_contention/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_10_candidate_lock_contention/work/evidence"
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_11_interruption_during_mutation/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_11_interruption_during_mutation/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_11_interruption_during_mutation/work/evidence"
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_12_direct_active_production_target/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_12_direct_active_production_target/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_12_direct_active_production_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_13_legacy_rag_db_target/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_13_legacy_rag_db_target/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_13_legacy_rag_db_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_14_generations_root_target/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_14_generations_root_target/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_14_generations_root_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_15_ce_library_root_target/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_15_ce_library_root_target/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_15_ce_library_root_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_16_rerun_against_already_repaired_clone/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_16_rerun_against_already_repaired_clone/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_16_rerun_against_already_repaired_clone/work/evidence"
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_17_invalid_or_missing_disposable_marker/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_17_invalid_or_missing_disposable_marker/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_17_invalid_or_missing_disposable_marker/work/evidence"
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_18_malformed_or_checksum_invalid_manifest/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_18_malformed_or_checksum_invalid_manifest/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_18_malformed_or_checksum_invalid_manifest/work/evidence"
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_19_unexpected_wal_shm_state/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_19_unexpected_wal_shm_state/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_19_unexpected_wal_shm_state/work/evidence"
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "clone": "/private/tmp/lc6_layout_0_2gp6sg/case_20_worker_timeout_or_malformed_output/clone",
+        "work": "/private/tmp/lc6_layout_0_2gp6sg/case_20_worker_timeout_or_malformed_output/work",
+        "evidence": "/private/tmp/lc6_layout_0_2gp6sg/case_20_worker_timeout_or_malformed_output/work/evidence"
+      }
+    ]
+  },
+  "failed_case_preservation_logic": {
+    "failed_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+    "started_before_stop": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement"
+    ],
+    "not_started_after_failure": [
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "preserved_failed_case": [
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "preserved_for_diagnosis": true
+      }
+    ],
+    "ok": true
+  },
+  "non_mutating_regression_validations": {
+    "evidence_survival_after_cleanup": {
+      "ok": true,
+      "case_root_removed": true,
+      "durable_case_dir_exists": true,
+      "required_evidence_survived": {
+        "required_files": [
+          "case_contract.json",
+          "case_report.json",
+          "evidence_inventory.json",
+          "production_hashes_before.json",
+          "production_hashes_after.json",
+          "fixture_setup.json",
+          "clone_setup.json",
+          "executor_apply_process.json",
+          "executor_apply_observed.json"
+        ],
+        "checks": [
+          {
+            "file": "case_contract.json",
+            "present": true
+          },
+          {
+            "file": "case_report.json",
+            "present": true
+          },
+          {
+            "file": "evidence_inventory.json",
+            "present": true
+          },
+          {
+            "file": "production_hashes_before.json",
+            "present": true
+          },
+          {
+            "file": "production_hashes_after.json",
+            "present": true
+          },
+          {
+            "file": "fixture_setup.json",
+            "present": true
+          },
+          {
+            "file": "clone_setup.json",
+            "present": true
+          },
+          {
+            "file": "executor_apply_process.json",
+            "present": true
+          },
+          {
+            "file": "executor_apply_observed.json",
+            "present": true
+          }
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "proof": {
+        "case_contract_json": true,
+        "fixture_setup_json": true,
+        "executor_output": true,
+        "production_hashes_before": true,
+        "production_hashes_after": true,
+        "case_report_json": true,
+        "evidence_inventory_json": true
+      }
+    },
+    "no_double_rollback": {
+      "ok": true,
+      "executor_owned_path": {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "child_pid": 91001,
+        "child_exited": true,
+        "child_alive_after_wait": false,
+        "timed_out": false,
+        "snapshot_exists": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "rollback_allowed": false,
+        "rollback_blocked_reason": "executor-owned restoration after APPLY_REJECTED",
+        "rollback_result": null
+      },
+      "harness_owned_path": {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "child_pid": 91001,
+        "child_exited": true,
+        "child_alive_after_wait": false,
+        "timed_out": false,
+        "snapshot_exists": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "rollback_allowed": true,
+        "rollback_blocked_reason": null,
+        "rollback_result": {
+          "status": "ROLLBACK_OK",
+          "result": {
+            "status": "ROLLBACK_OK"
+          },
+          "process": {
+            "stage": "rollback",
+            "cmd": [
+              "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+              "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/orphan_repair_executor.py",
+              "rollback",
+              "--gen-dir",
+              "/private/tmp/lc6_double_rollback_sjp3vf7z/harness_owned/case_20_worker_timeout_or_malformed_output/clone",
+              "--work-dir",
+              "/private/tmp/lc6_double_rollback_sjp3vf7z/harness_owned/case_20_worker_timeout_or_malformed_output/work"
+            ],
+            "pid": 91002,
+            "returncode": 0,
+            "stdout": "",
+            "stderr": "",
+            "timed_out": false,
+            "terminated": false,
+            "killed": false,
+            "timeout_message": null,
+            "duration_s": 0.01,
+            "alive_after_wait": false,
+            "exited": true,
+            "json_payload": {
+              "status": "ROLLBACK_OK"
+            },
+            "json_parse_error": null,
+            "mocked": true
+          },
+          "opened_chroma": false,
+          "production_action": false
+        }
+      },
+      "executor_owned_runner_counts": {
+        "LC6-01-failure-before-first-mutation::apply": 1
+      },
+      "harness_owned_runner_counts": {
+        "LC6-20-worker-timeout-or-malformed-output::apply": 1,
+        "LC6-20-worker-timeout-or-malformed-output::rollback": 1
+      }
+    },
+    "timeout_termination_before_rollback": {
+      "ok": true,
+      "process": {
+        "stage": "timeout_probe",
+        "cmd": [
+          "/usr/bin/python3",
+          "/private/tmp/lc6_timeout_sff5tf54/sleeper.py"
+        ],
+        "pid": 78179,
+        "returncode": -15,
+        "stdout": "started\nstarted\n",
+        "stderr": "",
+        "timed_out": true,
+        "terminated": true,
+        "killed": false,
+        "timeout_message": "Command '['/usr/bin/python3', '/private/tmp/lc6_timeout_sff5tf54/sleeper.py']' timed out after 1 seconds",
+        "duration_s": 1.009962,
+        "alive_after_wait": false,
+        "exited": true,
+        "json_payload": null,
+        "json_parse_error": "Expecting value: line 1 column 1 (char 0)"
+      },
+      "decision": {
+        "child_pid": 78179,
+        "timed_out": true,
+        "terminated": true,
+        "killed": false,
+        "alive_after_wait": false,
+        "rollback_permitted_after_exit_only": true
+      }
+    },
+    "truthful_execution_flags": {
+      "ok": true,
+      "dry_run": {
+        "mode": "dry-run",
+        "validate_harness": false,
+        "actual_case_execution_performed": false,
+        "no_failure_injection_case_ran": true,
+        "no_production_action_occurred": true,
+        "production_chroma_not_opened": true,
+        "final_clean_cycle_not_run": true,
+        "sha256sums_not_regenerated": true
+      },
+      "mocked_validation": {
+        "mode": "mocked-validation",
+        "validate_harness": true,
+        "actual_case_execution_performed": false,
+        "no_failure_injection_case_ran": true,
+        "no_production_action_occurred": true,
+        "production_chroma_not_opened": true,
+        "final_clean_cycle_not_run": true,
+        "sha256sums_not_regenerated": true
+      },
+      "execute_mode": {
+        "mode": "execute",
+        "validate_harness": false,
+        "actual_case_execution_performed": true,
+        "no_failure_injection_case_ran": false,
+        "no_production_action_occurred": true,
+        "production_chroma_not_opened": true,
+        "final_clean_cycle_not_run": true,
+        "sha256sums_not_regenerated": true
+      },
+      "sample_execution_summary": {
+        "mode": "execute",
+        "summary_written_to_file_required": true,
+        "case_ids": [
+          "LC6-01-failure-before-first-mutation"
+        ]
+      }
+    },
+    "durable_per_case_pre_post_hash_evidence": {
+      "ok": true,
+      "durable_case_dir": "/private/tmp/lc6_hash_evidence_rfm53xgb/run_report/cases/LC6-02-failure-midway-deterministic-repoints",
+      "before": {
+        "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "embedded": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+          "exists": true,
+          "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+        },
+        "chroma_sqlite3": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+          "exists": true,
+          "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+        },
+        "opened_chroma": false,
+        "capture_mode": "read-only file hash"
+      },
+      "after": {
+        "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "embedded": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+          "exists": true,
+          "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+        },
+        "chroma_sqlite3": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+          "exists": true,
+          "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+        },
+        "opened_chroma": false,
+        "capture_mode": "read-only file hash"
+      }
+    },
+    "stop_on_first_unexpected_result": {
+      "ok": true,
+      "sequence": {
+        "started_case_ids": [
+          "LC6-01-failure-before-first-mutation",
+          "LC6-02-failure-midway-deterministic-repoints",
+          "LC6-03-failure-during-alias-collapse",
+          "LC6-04-failure-immediately-before-c1210-retirement",
+          "LC6-05-failure-immediately-after-c1210-retirement"
+        ],
+        "stopped_on_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "not_started_case_ids": [
+          "LC6-06-forced-doctor-failure",
+          "LC6-07-forced-retrieval-acceptance-failure",
+          "LC6-08-stale-tracker-store-baseline-hash",
+          "LC6-09-canonical-source-sha-mismatch",
+          "LC6-10-candidate-lock-contention",
+          "LC6-11-interruption-during-mutation",
+          "LC6-12-direct-active-production-target",
+          "LC6-13-legacy-rag-db-target",
+          "LC6-14-generations-root-target",
+          "LC6-15-ce-library-root-target",
+          "LC6-16-rerun-against-already-repaired-clone",
+          "LC6-17-invalid-or-missing-disposable-marker",
+          "LC6-18-malformed-or-checksum-invalid-manifest",
+          "LC6-19-unexpected-wal-shm-state",
+          "LC6-20-worker-timeout-or-malformed-output"
+        ],
+        "preserved_failed_clone": "/private/tmp/lc6_mock_orch_vykkfqq2/cases/case_05_failure_immediately_after_c1210_retirement/clone",
+        "stop_on_first_unexpected_result_honored": true,
+        "results": [
+          {
+            "case_id": "LC6-01-failure-before-first-mutation",
+            "mechanic": "executor_inject:failure_before_first_mutation",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-01-failure-before-first-mutation",
+              "expected_process_exit_result": "APPLY_REJECTED / controlled failure before mutation",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-02-failure-midway-deterministic-repoints",
+            "mechanic": "executor_inject:failure_halfway_through_deterministic",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-02-failure-midway-deterministic-repoints",
+              "expected_process_exit_result": "APPLY_REJECTED after partial mutation attempt",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-03-failure-during-alias-collapse",
+            "mechanic": "executor_inject:failure_during_alias_collapse",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-03-failure-during-alias-collapse",
+              "expected_process_exit_result": "APPLY_REJECTED during alias collapse",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+            "mechanic": "executor_inject:failure_before_retirement",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+              "expected_process_exit_result": "APPLY_REJECTED before retirement delete",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+            "mechanic": "executor_inject:failure_after_retirement",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "UNEXPECTED_RESULT"
+            },
+            "evaluation": {
+              "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+              "expected_process_exit_result": "APPLY_REJECTED after retirement mutation",
+              "observed_summary": "UNEXPECTED_RESULT",
+              "expected_behavior_confirmed": false
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": true,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          }
+        ]
+      }
+    },
+    "failed_clone_preservation": {
+      "ok": true,
+      "sequence": {
+        "started_case_ids": [
+          "LC6-01-failure-before-first-mutation",
+          "LC6-02-failure-midway-deterministic-repoints",
+          "LC6-03-failure-during-alias-collapse",
+          "LC6-04-failure-immediately-before-c1210-retirement",
+          "LC6-05-failure-immediately-after-c1210-retirement"
+        ],
+        "stopped_on_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "not_started_case_ids": [
+          "LC6-06-forced-doctor-failure",
+          "LC6-07-forced-retrieval-acceptance-failure",
+          "LC6-08-stale-tracker-store-baseline-hash",
+          "LC6-09-canonical-source-sha-mismatch",
+          "LC6-10-candidate-lock-contention",
+          "LC6-11-interruption-during-mutation",
+          "LC6-12-direct-active-production-target",
+          "LC6-13-legacy-rag-db-target",
+          "LC6-14-generations-root-target",
+          "LC6-15-ce-library-root-target",
+          "LC6-16-rerun-against-already-repaired-clone",
+          "LC6-17-invalid-or-missing-disposable-marker",
+          "LC6-18-malformed-or-checksum-invalid-manifest",
+          "LC6-19-unexpected-wal-shm-state",
+          "LC6-20-worker-timeout-or-malformed-output"
+        ],
+        "preserved_failed_clone": "/private/tmp/lc6_mock_orch_vykkfqq2/cases/case_05_failure_immediately_after_c1210_retirement/clone",
+        "stop_on_first_unexpected_result_honored": true,
+        "results": [
+          {
+            "case_id": "LC6-01-failure-before-first-mutation",
+            "mechanic": "executor_inject:failure_before_first_mutation",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-01-failure-before-first-mutation",
+              "expected_process_exit_result": "APPLY_REJECTED / controlled failure before mutation",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-02-failure-midway-deterministic-repoints",
+            "mechanic": "executor_inject:failure_halfway_through_deterministic",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-02-failure-midway-deterministic-repoints",
+              "expected_process_exit_result": "APPLY_REJECTED after partial mutation attempt",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-03-failure-during-alias-collapse",
+            "mechanic": "executor_inject:failure_during_alias_collapse",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-03-failure-during-alias-collapse",
+              "expected_process_exit_result": "APPLY_REJECTED during alias collapse",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+            "mechanic": "executor_inject:failure_before_retirement",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "CONTROLLED_REFUSAL_CONFIRMED"
+            },
+            "evaluation": {
+              "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+              "expected_process_exit_result": "APPLY_REJECTED before retirement delete",
+              "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+              "expected_behavior_confirmed": true
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": false,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          },
+          {
+            "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+            "mechanic": "executor_inject:failure_after_retirement",
+            "execution_metadata": {
+              "mode": "mocked-validation",
+              "validate_harness": true,
+              "actual_case_execution_performed": false,
+              "no_failure_injection_case_ran": true,
+              "no_production_action_occurred": true,
+              "production_chroma_not_opened": true,
+              "final_clean_cycle_not_run": true,
+              "sha256sums_not_regenerated": true
+            },
+            "observed": {
+              "status": "UNEXPECTED_RESULT"
+            },
+            "evaluation": {
+              "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+              "expected_process_exit_result": "APPLY_REJECTED after retirement mutation",
+              "observed_summary": "UNEXPECTED_RESULT",
+              "expected_behavior_confirmed": false
+            },
+            "rollback": {
+              "rollback_owner": "none",
+              "rollback_invoked": false
+            },
+            "cleanup": {
+              "callbacks": [],
+              "clone_preserved": true,
+              "case_root_removed": false
+            },
+            "no_production_action": true
+          }
+        ]
+      }
+    },
+    "parent_directory_containment": {
+      "parent": "/private/tmp/lc6_harness_validate_bxchq9c5",
+      "inside_allowed": true,
+      "outside_escape_blocked": true,
+      "outside_escape_reason": "path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_bxchq9c5",
+      "protected_target_checks": [
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library",
+          "blocked": true
+        }
+      ],
+      "all_protected_targets_blocked": true
+    },
+    "protected_target_refusal_before_chroma_open": [
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+        "ok": true
+      }
+    ]
+  },
+  "implemented_vs_blocked_case_mechanics": [
+    {
+      "case_id": "LC6-01-failure-before-first-mutation",
+      "mechanic": "executor_inject:failure_before_first_mutation",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-02-failure-midway-deterministic-repoints",
+      "mechanic": "executor_inject:failure_halfway_through_deterministic",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-03-failure-during-alias-collapse",
+      "mechanic": "executor_inject:failure_during_alias_collapse",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+      "mechanic": "executor_inject:failure_before_retirement",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "mechanic": "executor_inject:failure_after_retirement",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-06-forced-doctor-failure",
+      "mechanic": "executor_inject:forced_doctor_failure",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+      "mechanic": "executor_inject:forced_retrieval_failure",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+      "mechanic": "harness_fixture:stale_tracker_store_baseline_hash",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-09-canonical-source-sha-mismatch",
+      "mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-10-candidate-lock-contention",
+      "mechanic": "harness_fixture:candidate_lock_contention",
+      "implemented_in_harness": false,
+      "mechanically_executable_after_operator_approval": false,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": false,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-11-interruption-during-mutation",
+      "mechanic": "harness_fixture:interruption_during_execution",
+      "implemented_in_harness": false,
+      "mechanically_executable_after_operator_approval": false,
+      "blocked_reason": "missing proven disposable mutation-worker interruption against real executor; only mocked timeout lifecycle available",
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-12-direct-active-production-target",
+      "mechanic": "refusal_only:active_production_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-13-legacy-rag-db-target",
+      "mechanic": "refusal_only:legacy_rag_db_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-14-generations-root-target",
+      "mechanic": "refusal_only:generations_root_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-15-ce-library-root-target",
+      "mechanic": "refusal_only:ce_library_root_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-16-rerun-against-already-repaired-clone",
+      "mechanic": "harness_fixture:dirty_clone_rerun_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+      "mechanic": "harness_fixture:invalid_or_missing_marker_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+      "mechanic": "harness_fixture:invalid_manifest_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-19-unexpected-wal-shm-state",
+      "mechanic": "harness_fixture:wal_shm_precondition_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    },
+    {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "mechanic": "harness_fixture:worker_timeout_or_malformed_output",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null,
+      "non_mutating_exercised": {
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "durable_evidence_ok": true,
+        "production_hash_match": true
+      }
+    }
+  ],
+  "case_validation_runs": {
+    "ok": true,
+    "results": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "mechanic": "executor_inject:failure_before_first_mutation",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-01-failure-before-first-mutation",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "mechanic": "executor_inject:failure_halfway_through_deterministic",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-02-failure-midway-deterministic-repoints",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "mechanic": "executor_inject:failure_during_alias_collapse",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-03-failure-during-alias-collapse",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "mechanic": "executor_inject:failure_before_retirement",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-04-failure-immediately-before-c1210-retirement",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "mechanic": "executor_inject:failure_after_retirement",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-05-failure-immediately-after-c1210-retirement",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "mechanic": "executor_inject:forced_doctor_failure",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-06-forced-doctor-failure",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "mechanic": "executor_inject:forced_retrieval_failure",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-07-forced-retrieval-acceptance-failure",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "mechanic": "harness_fixture:stale_tracker_store_baseline_hash",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-08-stale-tracker-store-baseline-hash",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-09-canonical-source-sha-mismatch",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "disposable_package_copy.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "disposable_package_copy.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "mechanic": "harness_fixture:candidate_lock_contention",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": false,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [
+            {
+              "status": "ok",
+              "callback": "release"
+            }
+          ],
+          "clone_preserved": true,
+          "case_root_removed": false,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-10-candidate-lock-contention",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "mechanic": "harness_fixture:interruption_during_execution",
+        "actual_mechanics_complete": false,
+        "blocked_reason": "missing proven disposable mutation-worker interruption against real executor; only mocked timeout lifecycle available",
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-11-interruption-during-mutation",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json",
+              "rollback_process.json",
+              "rollback_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              },
+              {
+                "file": "rollback_process.json",
+                "present": true
+              },
+              {
+                "file": "rollback_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "mechanic": "refusal_only:active_production_target",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": false,
+          "no_failure_injection_case_ran": true,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-12-direct-active-production-target",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "mechanic": "refusal_only:legacy_rag_db_target",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": false,
+          "no_failure_injection_case_ran": true,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-13-legacy-rag-db-target",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "mechanic": "refusal_only:generations_root_target",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": false,
+          "no_failure_injection_case_ran": true,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-14-generations-root-target",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "mechanic": "refusal_only:ce_library_root_target",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "none",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": false,
+          "no_failure_injection_case_ran": true,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-15-ce-library-root-target",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "mechanic": "harness_fixture:dirty_clone_rerun_refusal",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-16-rerun-against-already-repaired-clone",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json",
+              "dirty_clone_rerun.json",
+              "rollback_process.json",
+              "rollback_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              },
+              {
+                "file": "dirty_clone_rerun.json",
+                "present": true
+              },
+              {
+                "file": "rollback_process.json",
+                "present": true
+              },
+              {
+                "file": "rollback_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "mechanic": "harness_fixture:invalid_or_missing_marker_refusal",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-17-invalid-or-missing-disposable-marker",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "mechanic": "harness_fixture:invalid_manifest_refusal",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "disposable_package_copy.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "disposable_package_copy.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "mechanic": "harness_fixture:wal_shm_precondition_refusal",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "executor",
+        "rollback_invoked": false,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-19-unexpected-wal-shm-state",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "mechanic": "harness_fixture:worker_timeout_or_malformed_output",
+        "actual_mechanics_complete": true,
+        "blocked_reason": null,
+        "expected_behavior_confirmed": true,
+        "rollback_owner": "harness",
+        "rollback_invoked": true,
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": true,
+          "no_failure_injection_case_ran": false,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "durable_evidence_ok": true,
+        "production_hash_match": true,
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/private/tmp/lc6_case_validation_8i2_n7x_/run_report/cases/LC6-20-worker-timeout-or-malformed-output",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "fixture_setup.json",
+              "clone_setup.json",
+              "executor_apply_process.json",
+              "executor_apply_observed.json",
+              "rollback_process.json",
+              "rollback_observed.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "fixture_setup.json",
+                "present": true
+              },
+              {
+                "file": "clone_setup.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_process.json",
+                "present": true
+              },
+              {
+                "file": "executor_apply_observed.json",
+                "present": true
+              },
+              {
+                "file": "rollback_process.json",
+                "present": true
+              },
+              {
+                "file": "rollback_observed.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      }
+    ]
+  },
+  "current_sha256sums_mismatches": [
+    {
+      "file": "lc5_five_cycle_rehearsal.py",
+      "expected_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050",
+      "status": "mismatch"
+    },
+    {
+      "file": "lc6_failure_injection.py",
+      "expected_sha256": null,
+      "actual_sha256": "dfa75fe55fe47c1c321c824ce71f1b4975f6974a44a76c7be6272601cdaaf7bd",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection_harness_validation_correction_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "b6c592243879be481be60014e1d3678a979ea9cd9bd4f8f6020900f3db1c270e",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection_harness_validation_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "0a4d0178fffb5da8d4a7e8e307c1cfec21f3b091cddb7675dea9914f039d57cc",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "orphan_repair_common.py",
+      "expected_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef",
+      "status": "mismatch"
+    }
+  ],
+  "execution_metadata": {
+    "mode": "mocked-validation",
+    "validate_harness": true,
+    "actual_case_execution_performed": false,
+    "no_failure_injection_case_ran": true,
+    "no_production_action_occurred": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  },
+  "confirmation": {
+    "no_actual_injection_ran": true,
+    "no_actual_failure_injection_case_ran": true,
+    "no_production_action_ran": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  },
+  "blockers": [
+    "LC6-11-interruption-during-mutation: missing proven disposable mutation-worker interruption against real executor; only mocked timeout lifecycle available"
+  ]
+}

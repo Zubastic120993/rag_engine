@@ -1,0 +1,767 @@
+{
+  "generated_from_manifest_sha256": "6390a305a8ff0e645857c5177ef6e0bbd4c7e6a84235867f7220725a3c29910a",
+  "rows": [
+    {
+      "digest": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 38,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf"
+      ],
+      "live_old_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf"
+      ],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 4,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "10ace6f031047be484e9a506cd28174a2911dff957491d6151f14985f2b328e1",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 27,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "156980d1b3684ec23b1621d5bb6f3ba3a7074410e0b8f4fcf8fb3192228a48bc",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2020-705.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2020-705.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2020-705.pdf"
+      ],
+      "live_old_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2020-705.pdf"
+      ],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2020-705.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 6,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 29,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "1e63c0448e057fb98c72a3665cfdc772c84a0ff423a2a4d62b01c40379f0d1b2",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day4_E.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day4_E.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day4_E.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 33,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "25929d50fa6dcedc9cd2a11286e089d151b5116f3e2d19703c5278c63b2cd8e9",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 34,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "26d5116818bb540e2f9fc4efeaa6285c74d81ae4e3a551eaf8ee1e0add4677c5",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 5.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 5.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/Day 5.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 18,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "26fca070c5f7d95934699b5698daadd2d79479f556324607aa1e61d2181905ed",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5_E.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5_E.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day5_E.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 16,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "292c5d13a14140240605035c26b8cb0fd59a9fd5e1a94bf37fe82c41d6454dc3",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 12,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "2d2496dc156e15e73f347ee4ac3bd5a98d7c9ed1125fd425097a0ea1387e3883",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/2. HPS.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/2. HPS.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/2. HPS.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 43,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 27,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "3020dde3bbb0b0ff0f08300e79def28b9730ee977af1e24c3a13ae02aeb2bc08",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 13,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "3c58c62e9000f6b2be18e79307ad5835faa7700c752986c8ab0bb0847851ca72",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/2245-0100-0005.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Reference_2245_0100_0005/2245-0100-0005.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/2245-0100-0005.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Reference_2245_0100_0005/2245-0100-0005.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/Reference_2245_0100_0005/2245-0100-0005.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 112,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "40a5315a3d097d694c3c3f4a26cb6fa003465842edf53b89765fd8d635111e5c",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/06 DF engines liner lubrication.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_06_Liner_Lubrication/06 DF engines liner lubrication.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/06 DF engines liner lubrication.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_06_Liner_Lubrication/06 DF engines liner lubrication.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/06_Liner_Lubrication/06 DF engines liner lubrication.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 23,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "43fd674632d3a642825fee80c55520eb5e35a8d097a3b2173a15867091b8cc93",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5a_E.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5a_E.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day5a_E.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 50,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "4b5bffd53adde0ddda10f541fd536675ef9d258b3cac80fa0281acaf6f1325a5",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 15,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "5044e7909131aad396bca034b6f7adfc52d6221d847524deb1c48543285744b5",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 8,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "55d269e5d389155596f896ee1c26a392e26e6fa233b3249a63fea5c28bbe1a26",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 44,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "56996f6eb3cc6c9db8c1a67d84396b68ac42ac5733c9a50dae3a851caf9c1115",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME Pre-dual fuel std. operation Online timetable 1.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME Pre-dual fuel std. operation Online timetable 1.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/ME Pre-dual fuel std. operation Online timetable 1.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 8,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "58e5eef05d8369b3790902b2102ced84d0d95ed0976a5cc43cbab3ff5f16f52e",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 31,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "5ac85fb7b2789cbdff09b15d65e08aa94914d4da6be65c8887439ad62b658637",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 16,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "5b6500b9998f9036acde7449b469d731dc950cafff921921d6cd7e670c1ae80f",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 14,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "6a87b1a3c28a58a4ce3ae45838756d525c16073ea4887f7f4879cd9ae7993ddc",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 21,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "7666b3fadf041872674ecd6bff0730cabaa7a6257e044dceec39efe220b8b476",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 23,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "79ade07aa01cf109ac2a0564b377f2a8a9961b634e0ec460089bfe935c5c8b1d",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/2245-0100-0005.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/2245-0100-0005.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/2245-0100-0005.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 112,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "83453e225b9a15e893cf1496b4e4a93723bcdb2700336cd21d43ff90a1c7ec17",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/5a.Day 5a.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/5a.Day 5a.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/5a.Day 5a.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 50,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "8f4478b15150ecd3b89ba481950cbe2a54889522beb51892e87182fe5663026f",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/1.Day 1.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/1.Day 1.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/1.Day 1.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 44,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "95bce93dc438f9180cb73d0642134814822a32a5c0a04b103ba8ce253b96322b",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day1_E.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day1_E.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day1_E.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 39,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 34,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "9e2dac5c56dd17528bc4d16bde2edb29dabb1fec28d30c124e0111e6c69d0e23",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 3 (1).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 3 (1).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/Day 3 (1).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 35,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "9f300a51b476295a679e829e614a365104ea536747338db86211e4753980f610",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary system (Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary system (Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 23,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "aa49d2f3c3a54d56919eb32faf318fd523869ac99c48594abbdad63b63cdc2f3",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 11,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "ac73d03de3f51a0a674eb315e91c6e491fc1cf0c3ea21f888fade0abdfc5dad8",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/4.Day 4.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/4.Day 4.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/4.Day 4.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 34,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "b12430a0fdbf70ded957e781e0a796d984c0dc96020aa4fc054775459ff751e7",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/03 ME-GI Engine Operation(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/03 ME-GI Engine Operation(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 41,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "bb5aa7964c64195039a19a41edb5144aa7503420918c3b4c9461e9df205d5b1b",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07b ME-GI Mk.II Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07b ME-GI Mk.II Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 23,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "bcca261b8303f7342c55e094d6196c329c017fbee139e629b058ab1d1bf47e62",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day2_E.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day2_E.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day2_E.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 41,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "d98374a6e1e696bfcfb80dd72b0655c7f6296dc15e9fb07d100a209b2065154c",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day3_E.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day3_E.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day3_E.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "me-c",
+      "chunk_count": 33,
+      "change": true,
+      "reason_rule": "path_hint",
+      "reason_matched": "ME-C",
+      "legitimacy_note": "ME-C path-hint reclassification"
+    },
+    {
+      "digest": "e369ae3120e2aea1844a544691b19e04050aa584a2ca12425dc77d635f2e5106",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 11,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    },
+    {
+      "digest": "f3a6cbd39e5ab99a3fb357bea6b09ba16c837f67fed1e9469f38212812d53b49",
+      "old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07a ME-GI Mk.I Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf"
+      ],
+      "stale_old_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07a ME-GI Mk.I Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf"
+      ],
+      "live_old_paths": [],
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf",
+      "previous_collection": "maker-manuals",
+      "derived_collection": "maker-manuals",
+      "chunk_count": 23,
+      "change": false,
+      "reason_rule": "path_prefix",
+      "reason_matched": "00_Career/03_Engine_Knowledge/",
+      "legitimacy_note": "remains maker-manuals under 00_Career/03_Engine_Knowledge prefix"
+    }
+  ],
+  "summary": {
+    "deterministic_digest_count": 40,
+    "collection_change_digest_count": 13,
+    "collection_change_chunk_total": 444,
+    "maker_manuals_to_me_c_chunk_total": 444,
+    "maker_manuals_stays_chunk_total": 775,
+    "retirement_chunk_total": 2
+  }
+}

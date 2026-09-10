@@ -1,0 +1,2517 @@
+{
+  "report_name": "lc6_final_clean_cycle_inventory",
+  "tmp_parent": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz",
+  "clone": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone",
+  "baseline_revalidation": {
+    "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "checks": {
+      "exists": true,
+      "marker_valid": true,
+      "marker_sha256_match": true,
+      "embedded_hash_match": true,
+      "chroma_hash_match": true,
+      "chunk_count_125291": true,
+      "orphan_paths_55": true,
+      "one_langchain_collection": true,
+      "no_wal_shm_lock": true
+    },
+    "state": {
+      "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "exists": true,
+      "marker_exists": true,
+      "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "marker_validation": {
+        "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+        "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "creation_time_utc": "2026-09-04T13:50:24Z",
+        "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "source_inventory_schema": "inventory-row-v1",
+        "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+        "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+        "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "disposable": true,
+        "unpromoted": true,
+        "production_selection_prohibited": true,
+        "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target."
+      },
+      "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "tree_hashes_excluding_lock": {
+        ".orphan_repair_disposable_clone.json": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+        "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+        "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      },
+      "chunk_count": 125291,
+      "orphan_count": 55,
+      "orphan_paths": [
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/1.Day 1.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/2. HPS.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/4.Day 4.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/5a.Day 5a.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/2245-0100-0005.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2020-705.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 3 (1).pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 5.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/C1210 ME Pre-Dual Fuel standard operation online timetable.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day1_E.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day2_E.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day3_E.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day4_E.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5_E.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5a_E.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME Pre-dual fuel std. operation Online timetable 1.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_06_Liner_Lubrication/06 DF engines liner lubrication.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/03 ME-GI Engine Operation(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary system (Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/06 DF engines liner lubrication.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07a ME-GI Mk.I Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07b ME-GI Mk.II Components(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/2245-0100-0005.pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Reference_2245_0100_0005/2245-0100-0005.pdf"
+      ],
+      "collections": [
+        "langchain"
+      ],
+      "doctor": {
+        "status": "FAIL",
+        "checks": [
+          {
+            "name": "library_root_exists",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/CE_Library"
+          },
+          {
+            "name": "db_path_exists",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z"
+          },
+          {
+            "name": "scopes_yaml_loads",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml"
+          },
+          {
+            "name": "alias_registry_valid",
+            "ok": true,
+            "detail": "no duplicate/collision aliases"
+          },
+          {
+            "name": "scope_prefixes_indexed",
+            "ok": true,
+            "detail": "sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (501 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (810 docs); rules:99_Rules/ ok (5 docs)"
+          },
+          {
+            "name": "openai_sdk_available",
+            "ok": true,
+            "detail": "informational=True (unused by ask path)"
+          },
+          {
+            "name": "openai_api_key_present",
+            "ok": true,
+            "detail": "OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)"
+          },
+          {
+            "name": "openai_generation_ready",
+            "ok": true,
+            "detail": "unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna"
+          },
+          {
+            "name": "ollama_embedding_reachable",
+            "ok": true,
+            "detail": "12 models"
+          },
+          {
+            "name": "embed_model_available",
+            "ok": true,
+            "detail": "mxbai-embed-large"
+          },
+          {
+            "name": "index_fingerprint",
+            "ok": true,
+            "detail": "Index fingerprint matches live config"
+          },
+          {
+            "name": "embedding_fp_v1",
+            "ok": true,
+            "detail": "PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract"
+          },
+          {
+            "name": "chroma_open",
+            "ok": true,
+            "detail": "collections=['langchain']"
+          },
+          {
+            "name": "cross_process_persistence",
+            "ok": true,
+            "detail": "probe written in a separate process was read back correctly"
+          },
+          {
+            "name": "tracker_readable",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z/embedded.json"
+          },
+          {
+            "name": "no_hermes_library_paths",
+            "ok": true,
+            "detail": "count=0"
+          },
+          {
+            "name": "no_legacy_rules_rag_db_paths",
+            "ok": true,
+            "detail": "count=0"
+          },
+          {
+            "name": "sample_source_exists",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/CL00008-2023.pdf"
+          },
+          {
+            "name": "orphan_sources",
+            "ok": false,
+            "detail": "missing_files=55 of 1842 tracker paths"
+          },
+          {
+            "name": "coverage_gap",
+            "ok": true,
+            "detail": "unindexed_files=129 scanned=1916"
+          },
+          {
+            "name": "invalid_pdf",
+            "ok": true,
+            "detail": "invalid_pdf_files=0"
+          },
+          {
+            "name": "git_no_corpus",
+            "ok": true,
+            "detail": "bad_files=[]"
+          }
+        ],
+        "fingerprint": {
+          "status": "MATCH",
+          "match": true,
+          "diffs": [],
+          "llm_model_differs": false,
+          "stored": {
+            "embed_model": "mxbai-embed-large",
+            "chunk_size": 800,
+            "chunk_overlap": 100,
+            "normalization": "nfkc",
+            "llm_model": "gpt-5.6-luna"
+          },
+          "live": {
+            "embed_model": "mxbai-embed-large",
+            "llm_model": "gpt-5.6-luna",
+            "chunk_size": 800,
+            "chunk_overlap": 100,
+            "normalization": "nfkc"
+          },
+          "message": "Index fingerprint matches live config"
+        },
+        "embedding_fp_v1": {
+          "ok": true,
+          "severity": "PASS",
+          "state": "KNOWN_COMPATIBLE",
+          "detail": "stored index fingerprint matches runtime contract",
+          "compatibility": {
+            "state": "KNOWN_COMPATIBLE",
+            "reason": "stored index fingerprint matches runtime contract",
+            "runtime_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "stored_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "runtime_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+            "stored_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+            "runtime_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+            "stored_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+            "vector_count": 125291,
+            "authority_source": "sidecar_v1",
+            "ingest_allowed": true,
+            "retrieval_allowed": true,
+            "retrieval_degraded": false,
+            "evidence": {}
+          }
+        },
+        "library_root": "/Users/vladymyrzub/CE_Library",
+        "db_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "scopes": [
+          "me-c",
+          "sms",
+          "wiki",
+          "maker-manuals",
+          "regulatory",
+          "inspection",
+          "vessels",
+          "career",
+          "rules",
+          "other"
+        ],
+        "aliases": {
+          "sms_library": "sms",
+          "ce_wiki": "wiki",
+          "wiki_library": "wiki",
+          "manual_library": "maker-manuals",
+          "maker_manual": "maker-manuals",
+          "imo_library": "regulatory",
+          "statutory": "regulatory",
+          "sire_library": "inspection",
+          "manual_library_gaschem_europe": "vessels",
+          "manual_library_gaschem_africa": "vessels"
+        }
+      },
+      "scope_stats": {
+        "scopes": {
+          "me-c": {
+            "chunk_count": 30037,
+            "distinct_sources": 43,
+            "document_count": 43,
+            "path_prefixes": [],
+            "hermes_aliases": []
+          },
+          "sms": {
+            "chunk_count": 19002,
+            "distinct_sources": 613,
+            "document_count": 613,
+            "path_prefixes": [
+              "10_Company/"
+            ],
+            "hermes_aliases": [
+              "sms_library"
+            ]
+          },
+          "wiki": {
+            "chunk_count": 639,
+            "distinct_sources": 96,
+            "document_count": 96,
+            "path_prefixes": [
+              "90_CE_Wiki/"
+            ],
+            "hermes_aliases": [
+              "ce_wiki",
+              "wiki_library"
+            ]
+          },
+          "maker-manuals": {
+            "chunk_count": 36893,
+            "distinct_sources": 581,
+            "document_count": 581,
+            "path_prefixes": [
+              "00_Career/03_Engine_Knowledge/",
+              "00_Career/07_SDS_Datasheets/"
+            ],
+            "hermes_aliases": [
+              "manual_library",
+              "maker_manual"
+            ]
+          },
+          "regulatory": {
+            "chunk_count": 20793,
+            "distinct_sources": 141,
+            "document_count": 141,
+            "path_prefixes": [
+              "00_Career/02_Statutory/",
+              "00_Career/01_Class_Rules/"
+            ],
+            "hermes_aliases": [
+              "imo_library",
+              "statutory"
+            ]
+          },
+          "inspection": {
+            "chunk_count": 5098,
+            "distinct_sources": 2,
+            "document_count": 2,
+            "path_prefixes": [
+              "00_Career/02_Statutory/SIRE_OCIMF/"
+            ],
+            "hermes_aliases": [
+              "sire_library"
+            ]
+          },
+          "vessels": {
+            "chunk_count": 12561,
+            "distinct_sources": 197,
+            "document_count": 197,
+            "path_prefixes": [
+              "20_Vessels/"
+            ],
+            "hermes_aliases": [
+              "manual_library_gaschem_europe",
+              "manual_library_gaschem_africa"
+            ]
+          },
+          "career": {
+            "chunk_count": 219,
+            "distinct_sources": 4,
+            "document_count": 4,
+            "path_prefixes": [
+              "00_Career/"
+            ],
+            "hermes_aliases": []
+          },
+          "rules": {
+            "chunk_count": 49,
+            "distinct_sources": 3,
+            "document_count": 3,
+            "path_prefixes": [
+              "99_Rules/"
+            ],
+            "hermes_aliases": []
+          },
+          "other": {
+            "chunk_count": 0,
+            "distinct_sources": 0,
+            "document_count": 0,
+            "path_prefixes": [],
+            "hermes_aliases": []
+          }
+        },
+        "total_chunks": 125291
+      },
+      "table_counts": {
+        "collection_metadata": 0,
+        "collections": 1,
+        "databases": 1,
+        "embedding_fulltext_search": 125291,
+        "embedding_fulltext_search_config": 1,
+        "embedding_fulltext_search_content": 125291,
+        "embedding_fulltext_search_data": 55720,
+        "embedding_fulltext_search_docsize": 125291,
+        "embedding_fulltext_search_idx": 20425,
+        "embedding_metadata": 1378201,
+        "embeddings": 125291,
+        "embeddings_queue": 360,
+        "embeddings_queue_config": 1,
+        "maintenance_log": 0,
+        "max_seq_id": 2,
+        "migrations": 15,
+        "segment_metadata": 0,
+        "segments": 2,
+        "tenants": 1
+      },
+      "wal_exists": false,
+      "shm_exists": false,
+      "lock_exists": false,
+      "inventory_rows": [
+        {
+          "path": ".orphan_repair_disposable_clone.json",
+          "type": "file",
+          "bytes": 1207,
+          "sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "type": "file",
+          "bytes": 529500000,
+          "sha256": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "type": "file",
+          "bytes": 100,
+          "sha256": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "type": "file",
+          "bytes": 7856559,
+          "sha256": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "type": "file",
+          "bytes": 500000,
+          "sha256": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "type": "file",
+          "bytes": 1077252,
+          "sha256": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a"
+        },
+        {
+          "path": "ask_events.jsonl",
+          "type": "file",
+          "bytes": 49796,
+          "sha256": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+          "type": "file",
+          "bytes": 7428,
+          "sha256": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+          "type": "file",
+          "bytes": 6695138,
+          "sha256": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+          "type": "file",
+          "bytes": 55048,
+          "sha256": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+          "type": "file",
+          "bytes": 6698619,
+          "sha256": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+          "type": "file",
+          "bytes": 32786,
+          "sha256": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+          "type": "file",
+          "bytes": 6727252,
+          "sha256": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d"
+        },
+        {
+          "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+          "type": "file",
+          "bytes": 13162,
+          "sha256": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d"
+        },
+        {
+          "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+          "type": "file",
+          "bytes": 6729127,
+          "sha256": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc"
+        },
+        {
+          "path": "certified_generation_checkpoint.json",
+          "type": "file",
+          "bytes": 875,
+          "sha256": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362"
+        },
+        {
+          "path": "chroma.sqlite3",
+          "type": "file",
+          "bytes": 739770368,
+          "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+        },
+        {
+          "path": "embedded.json",
+          "type": "file",
+          "bytes": 6735834,
+          "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+        },
+        {
+          "path": "index_embedding_fingerprint_v1.json",
+          "type": "file",
+          "bytes": 1563,
+          "sha256": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996"
+        },
+        {
+          "path": "index_fingerprint.json",
+          "type": "file",
+          "bytes": 258,
+          "sha256": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+        }
+      ]
+    }
+  },
+  "clone_before": {
+    "path": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone",
+    "exists": true,
+    "disposable_marker_exists": false,
+    "disposable_marker_sha256": null,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "file_hashes_excluding_lock": {
+      ".orphan_repair_disposable_clone.json": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "chunk_count": 125291,
+    "orphan_count_by_tracker_paths": 55,
+    "orphan_paths": [
+      "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/1.Day 1.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/2. HPS.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/4.Day 4.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/5a.Day 5a.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/2245-0100-0005.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2020-705.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 3 (1).pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 5.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/C1210 ME Pre-Dual Fuel standard operation online timetable.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day1_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day2_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day3_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day4_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5a_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME Pre-dual fuel std. operation Online timetable 1.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_06_Liner_Lubrication/06 DF engines liner lubrication.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02a ME-GI Mk.I Concept(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI Mk.II Concept(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/02b ME-GI [Mk.II] concept(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/03 ME-GI Engine Operation(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary Systems(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/04 ME-GI Auxiliary system (Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/06 DF engines liner lubrication.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07a ME-GI Mk.I Components(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/07b ME-GI Mk.II Components(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/08 ME-GI Mk.II Leak Search(Mar 2026).pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/2245-0100-0005.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Reference_2245_0100_0005/2245-0100-0005.pdf"
+    ],
+    "collections": [
+      "langchain"
+    ],
+    "scope_stats": {
+      "scopes": {
+        "me-c": {
+          "chunk_count": 30037,
+          "distinct_sources": 43,
+          "document_count": 43,
+          "path_prefixes": [],
+          "hermes_aliases": []
+        },
+        "sms": {
+          "chunk_count": 19002,
+          "distinct_sources": 613,
+          "document_count": 613,
+          "path_prefixes": [
+            "10_Company/"
+          ],
+          "hermes_aliases": [
+            "sms_library"
+          ]
+        },
+        "wiki": {
+          "chunk_count": 639,
+          "distinct_sources": 96,
+          "document_count": 96,
+          "path_prefixes": [
+            "90_CE_Wiki/"
+          ],
+          "hermes_aliases": [
+            "ce_wiki",
+            "wiki_library"
+          ]
+        },
+        "maker-manuals": {
+          "chunk_count": 36893,
+          "distinct_sources": 581,
+          "document_count": 581,
+          "path_prefixes": [
+            "00_Career/03_Engine_Knowledge/",
+            "00_Career/07_SDS_Datasheets/"
+          ],
+          "hermes_aliases": [
+            "manual_library",
+            "maker_manual"
+          ]
+        },
+        "regulatory": {
+          "chunk_count": 20793,
+          "distinct_sources": 141,
+          "document_count": 141,
+          "path_prefixes": [
+            "00_Career/02_Statutory/",
+            "00_Career/01_Class_Rules/"
+          ],
+          "hermes_aliases": [
+            "imo_library",
+            "statutory"
+          ]
+        },
+        "inspection": {
+          "chunk_count": 5098,
+          "distinct_sources": 2,
+          "document_count": 2,
+          "path_prefixes": [
+            "00_Career/02_Statutory/SIRE_OCIMF/"
+          ],
+          "hermes_aliases": [
+            "sire_library"
+          ]
+        },
+        "vessels": {
+          "chunk_count": 12561,
+          "distinct_sources": 197,
+          "document_count": 197,
+          "path_prefixes": [
+            "20_Vessels/"
+          ],
+          "hermes_aliases": [
+            "manual_library_gaschem_europe",
+            "manual_library_gaschem_africa"
+          ]
+        },
+        "career": {
+          "chunk_count": 219,
+          "distinct_sources": 4,
+          "document_count": 4,
+          "path_prefixes": [
+            "00_Career/"
+          ],
+          "hermes_aliases": []
+        },
+        "rules": {
+          "chunk_count": 49,
+          "distinct_sources": 3,
+          "document_count": 3,
+          "path_prefixes": [
+            "99_Rules/"
+          ],
+          "hermes_aliases": []
+        },
+        "other": {
+          "chunk_count": 0,
+          "distinct_sources": 0,
+          "document_count": 0,
+          "path_prefixes": [],
+          "hermes_aliases": []
+        }
+      },
+      "total_chunks": 125291
+    },
+    "doctor": {
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "library_root_exists",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library"
+        },
+        {
+          "name": "db_path_exists",
+          "ok": true,
+          "detail": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone"
+        },
+        {
+          "name": "scopes_yaml_loads",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml"
+        },
+        {
+          "name": "alias_registry_valid",
+          "ok": true,
+          "detail": "no duplicate/collision aliases"
+        },
+        {
+          "name": "scope_prefixes_indexed",
+          "ok": true,
+          "detail": "sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (501 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (810 docs); rules:99_Rules/ ok (5 docs)"
+        },
+        {
+          "name": "openai_sdk_available",
+          "ok": true,
+          "detail": "informational=True (unused by ask path)"
+        },
+        {
+          "name": "openai_api_key_present",
+          "ok": true,
+          "detail": "OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)"
+        },
+        {
+          "name": "openai_generation_ready",
+          "ok": true,
+          "detail": "unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna"
+        },
+        {
+          "name": "ollama_embedding_reachable",
+          "ok": true,
+          "detail": "12 models"
+        },
+        {
+          "name": "embed_model_available",
+          "ok": true,
+          "detail": "mxbai-embed-large"
+        },
+        {
+          "name": "index_fingerprint",
+          "ok": true,
+          "detail": "Index fingerprint matches live config"
+        },
+        {
+          "name": "embedding_fp_v1",
+          "ok": true,
+          "detail": "PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract"
+        },
+        {
+          "name": "chroma_open",
+          "ok": true,
+          "detail": "collections=['langchain']"
+        },
+        {
+          "name": "cross_process_persistence",
+          "ok": true,
+          "detail": "probe written in a separate process was read back correctly"
+        },
+        {
+          "name": "tracker_readable",
+          "ok": true,
+          "detail": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone/embedded.json"
+        },
+        {
+          "name": "no_hermes_library_paths",
+          "ok": true,
+          "detail": "count=0"
+        },
+        {
+          "name": "no_legacy_rules_rag_db_paths",
+          "ok": true,
+          "detail": "count=0"
+        },
+        {
+          "name": "sample_source_exists",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/CL00008-2023.pdf"
+        },
+        {
+          "name": "orphan_sources",
+          "ok": false,
+          "detail": "missing_files=55 of 1842 tracker paths"
+        },
+        {
+          "name": "coverage_gap",
+          "ok": true,
+          "detail": "unindexed_files=129 scanned=1916"
+        },
+        {
+          "name": "invalid_pdf",
+          "ok": true,
+          "detail": "invalid_pdf_files=0"
+        },
+        {
+          "name": "git_no_corpus",
+          "ok": true,
+          "detail": "bad_files=[]"
+        }
+      ],
+      "fingerprint": {
+        "status": "MATCH",
+        "match": true,
+        "diffs": [],
+        "llm_model_differs": false,
+        "stored": {
+          "embed_model": "mxbai-embed-large",
+          "chunk_size": 800,
+          "chunk_overlap": 100,
+          "normalization": "nfkc",
+          "llm_model": "gpt-5.6-luna"
+        },
+        "live": {
+          "embed_model": "mxbai-embed-large",
+          "llm_model": "gpt-5.6-luna",
+          "chunk_size": 800,
+          "chunk_overlap": 100,
+          "normalization": "nfkc"
+        },
+        "message": "Index fingerprint matches live config"
+      },
+      "embedding_fp_v1": {
+        "ok": true,
+        "severity": "PASS",
+        "state": "KNOWN_COMPATIBLE",
+        "detail": "stored index fingerprint matches runtime contract",
+        "compatibility": {
+          "state": "KNOWN_COMPATIBLE",
+          "reason": "stored index fingerprint matches runtime contract",
+          "runtime_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+          "stored_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+          "runtime_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+          "stored_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+          "runtime_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+          "stored_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+          "vector_count": 125291,
+          "authority_source": "sidecar_v1",
+          "ingest_allowed": true,
+          "retrieval_allowed": true,
+          "retrieval_degraded": false,
+          "evidence": {}
+        }
+      },
+      "library_root": "/Users/vladymyrzub/CE_Library",
+      "db_path": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone",
+      "scopes": [
+        "me-c",
+        "sms",
+        "wiki",
+        "maker-manuals",
+        "regulatory",
+        "inspection",
+        "vessels",
+        "career",
+        "rules",
+        "other"
+      ],
+      "aliases": {
+        "sms_library": "sms",
+        "ce_wiki": "wiki",
+        "wiki_library": "wiki",
+        "manual_library": "maker-manuals",
+        "maker_manual": "maker-manuals",
+        "imo_library": "regulatory",
+        "statutory": "regulatory",
+        "sire_library": "inspection",
+        "manual_library_gaschem_europe": "vessels",
+        "manual_library_gaschem_africa": "vessels"
+      }
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "table_counts": {
+      "collection_metadata": 0,
+      "collections": 1,
+      "databases": 1,
+      "embedding_fulltext_search": 125291,
+      "embedding_fulltext_search_config": 1,
+      "embedding_fulltext_search_content": 125291,
+      "embedding_fulltext_search_data": 55720,
+      "embedding_fulltext_search_docsize": 125291,
+      "embedding_fulltext_search_idx": 20425,
+      "embedding_metadata": 1378201,
+      "embeddings": 125291,
+      "embeddings_queue": 360,
+      "embeddings_queue_config": 1,
+      "maintenance_log": 0,
+      "max_seq_id": 2,
+      "migrations": 15,
+      "segment_metadata": 0,
+      "segments": 2,
+      "tenants": 1
+    },
+    "inventory_rows": [
+      {
+        "path": ".orphan_repair_disposable_clone.json",
+        "type": "file",
+        "bytes": 1207,
+        "sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+        "type": "file",
+        "bytes": 529500000,
+        "sha256": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+        "type": "file",
+        "bytes": 100,
+        "sha256": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+        "type": "file",
+        "bytes": 7856559,
+        "sha256": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+        "type": "file",
+        "bytes": 500000,
+        "sha256": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+        "type": "file",
+        "bytes": 1077252,
+        "sha256": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a"
+      },
+      {
+        "path": "ask_events.jsonl",
+        "type": "file",
+        "bytes": 49796,
+        "sha256": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+        "type": "file",
+        "bytes": 7428,
+        "sha256": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+        "type": "file",
+        "bytes": 6695138,
+        "sha256": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+        "type": "file",
+        "bytes": 55048,
+        "sha256": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+        "type": "file",
+        "bytes": 6698619,
+        "sha256": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+        "type": "file",
+        "bytes": 32786,
+        "sha256": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+        "type": "file",
+        "bytes": 6727252,
+        "sha256": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d"
+      },
+      {
+        "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+        "type": "file",
+        "bytes": 13162,
+        "sha256": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d"
+      },
+      {
+        "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+        "type": "file",
+        "bytes": 6729127,
+        "sha256": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc"
+      },
+      {
+        "path": "certified_generation_checkpoint.json",
+        "type": "file",
+        "bytes": 875,
+        "sha256": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362"
+      },
+      {
+        "path": "chroma.sqlite3",
+        "type": "file",
+        "bytes": 739770368,
+        "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      {
+        "path": "embedded.json",
+        "type": "file",
+        "bytes": 6735834,
+        "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      {
+        "path": "index_embedding_fingerprint_v1.json",
+        "type": "file",
+        "bytes": 1563,
+        "sha256": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996"
+      },
+      {
+        "path": "index_fingerprint.json",
+        "type": "file",
+        "bytes": 258,
+        "sha256": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      }
+    ]
+  },
+  "clone_after": {
+    "path": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone",
+    "exists": true,
+    "marker_exists": true,
+    "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+    "marker_validation": {
+      "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+      "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "creation_time_utc": "2026-09-04T13:50:24Z",
+      "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+      "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+      "source_inventory_schema": "inventory-row-v1",
+      "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+      "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+      "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "disposable": true,
+      "unpromoted": true,
+      "production_selection_prohibited": true,
+      "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target."
+    },
+    "embedded_json_sha256": "055c496cb4337da9b8c5c609d20e88f82b43eb90fe785f43b50d8aacd252d38c",
+    "chroma_sqlite3_sha256": "b5e9457bdce5136fa260abc495359bd27de1512e465c1e16e087c0150a791b22",
+    "tree_hashes_excluding_lock": {
+      ".orphan_repair_disposable_clone.json": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "f104070b6fcd67a1edeb22095ae2c317b923e242807b06aac7252f0503916fd9",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "f3dc4d65d85bd5fbd75bce033c247b4b91bafb28b91a2425b2285278045551a1",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "887eecbea39440281018bcd3a1c3b1aeffdf301737297f8561b8864f2bb5b0c1",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "ea0dc606c9a5de87f3238c19b223eda8f984d2c6e08c4d35dfba1e64f13dbc18",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "b5e9457bdce5136fa260abc495359bd27de1512e465c1e16e087c0150a791b22",
+      "embedded.json": "055c496cb4337da9b8c5c609d20e88f82b43eb90fe785f43b50d8aacd252d38c",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "chunk_count": 125289,
+    "orphan_count": 0,
+    "orphan_paths": [],
+    "collections": [
+      "langchain"
+    ],
+    "doctor": {
+      "status": "PASS",
+      "checks": [
+        {
+          "name": "library_root_exists",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library"
+        },
+        {
+          "name": "db_path_exists",
+          "ok": true,
+          "detail": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone"
+        },
+        {
+          "name": "scopes_yaml_loads",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml"
+        },
+        {
+          "name": "alias_registry_valid",
+          "ok": true,
+          "detail": "no duplicate/collision aliases"
+        },
+        {
+          "name": "scope_prefixes_indexed",
+          "ok": true,
+          "detail": "sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (484 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (793 docs); rules:99_Rules/ ok (5 docs)"
+        },
+        {
+          "name": "openai_sdk_available",
+          "ok": true,
+          "detail": "informational=True (unused by ask path)"
+        },
+        {
+          "name": "openai_api_key_present",
+          "ok": true,
+          "detail": "OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)"
+        },
+        {
+          "name": "openai_generation_ready",
+          "ok": true,
+          "detail": "unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna"
+        },
+        {
+          "name": "ollama_embedding_reachable",
+          "ok": true,
+          "detail": "12 models"
+        },
+        {
+          "name": "embed_model_available",
+          "ok": true,
+          "detail": "mxbai-embed-large"
+        },
+        {
+          "name": "index_fingerprint",
+          "ok": true,
+          "detail": "Index fingerprint matches live config"
+        },
+        {
+          "name": "embedding_fp_v1",
+          "ok": true,
+          "detail": "PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract"
+        },
+        {
+          "name": "chroma_open",
+          "ok": true,
+          "detail": "collections=['langchain']"
+        },
+        {
+          "name": "cross_process_persistence",
+          "ok": true,
+          "detail": "probe written in a separate process was read back correctly"
+        },
+        {
+          "name": "tracker_readable",
+          "ok": true,
+          "detail": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone/embedded.json"
+        },
+        {
+          "name": "no_hermes_library_paths",
+          "ok": true,
+          "detail": "count=0"
+        },
+        {
+          "name": "no_legacy_rules_rag_db_paths",
+          "ok": true,
+          "detail": "count=0"
+        },
+        {
+          "name": "sample_source_exists",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf"
+        },
+        {
+          "name": "orphan_sources",
+          "ok": true,
+          "detail": "missing_files=0 of 1825 tracker paths"
+        },
+        {
+          "name": "coverage_gap",
+          "ok": true,
+          "detail": "unindexed_files=91 scanned=1916"
+        },
+        {
+          "name": "invalid_pdf",
+          "ok": true,
+          "detail": "invalid_pdf_files=0"
+        },
+        {
+          "name": "git_no_corpus",
+          "ok": true,
+          "detail": "bad_files=[]"
+        }
+      ],
+      "fingerprint": {
+        "status": "MATCH",
+        "match": true,
+        "diffs": [],
+        "llm_model_differs": false,
+        "stored": {
+          "embed_model": "mxbai-embed-large",
+          "chunk_size": 800,
+          "chunk_overlap": 100,
+          "normalization": "nfkc",
+          "llm_model": "gpt-5.6-luna"
+        },
+        "live": {
+          "embed_model": "mxbai-embed-large",
+          "llm_model": "gpt-5.6-luna",
+          "chunk_size": 800,
+          "chunk_overlap": 100,
+          "normalization": "nfkc"
+        },
+        "message": "Index fingerprint matches live config"
+      },
+      "embedding_fp_v1": {
+        "ok": true,
+        "severity": "PASS",
+        "state": "KNOWN_COMPATIBLE",
+        "detail": "stored index fingerprint matches runtime contract",
+        "compatibility": {
+          "state": "KNOWN_COMPATIBLE",
+          "reason": "stored index fingerprint matches runtime contract",
+          "runtime_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+          "stored_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+          "runtime_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+          "stored_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+          "runtime_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+          "stored_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+          "vector_count": 125289,
+          "authority_source": "sidecar_v1",
+          "ingest_allowed": true,
+          "retrieval_allowed": true,
+          "retrieval_degraded": false,
+          "evidence": {}
+        }
+      },
+      "library_root": "/Users/vladymyrzub/CE_Library",
+      "db_path": "/private/tmp/lc6_final_clean_cycle_jnhp8vgz/disposable_clean_cycle_clone",
+      "scopes": [
+        "me-c",
+        "sms",
+        "wiki",
+        "maker-manuals",
+        "regulatory",
+        "inspection",
+        "vessels",
+        "career",
+        "rules",
+        "other"
+      ],
+      "aliases": {
+        "sms_library": "sms",
+        "ce_wiki": "wiki",
+        "wiki_library": "wiki",
+        "manual_library": "maker-manuals",
+        "maker_manual": "maker-manuals",
+        "imo_library": "regulatory",
+        "statutory": "regulatory",
+        "sire_library": "inspection",
+        "manual_library_gaschem_europe": "vessels",
+        "manual_library_gaschem_africa": "vessels"
+      }
+    },
+    "scope_stats": {
+      "scopes": {
+        "me-c": {
+          "chunk_count": 30481,
+          "distinct_sources": 56,
+          "document_count": 56,
+          "path_prefixes": [],
+          "hermes_aliases": []
+        },
+        "sms": {
+          "chunk_count": 19002,
+          "distinct_sources": 613,
+          "document_count": 613,
+          "path_prefixes": [
+            "10_Company/"
+          ],
+          "hermes_aliases": [
+            "sms_library"
+          ]
+        },
+        "wiki": {
+          "chunk_count": 639,
+          "distinct_sources": 96,
+          "document_count": 96,
+          "path_prefixes": [
+            "90_CE_Wiki/"
+          ],
+          "hermes_aliases": [
+            "ce_wiki",
+            "wiki_library"
+          ]
+        },
+        "maker-manuals": {
+          "chunk_count": 36447,
+          "distinct_sources": 567,
+          "document_count": 567,
+          "path_prefixes": [
+            "00_Career/03_Engine_Knowledge/",
+            "00_Career/07_SDS_Datasheets/"
+          ],
+          "hermes_aliases": [
+            "manual_library",
+            "maker_manual"
+          ]
+        },
+        "regulatory": {
+          "chunk_count": 20793,
+          "distinct_sources": 141,
+          "document_count": 141,
+          "path_prefixes": [
+            "00_Career/02_Statutory/",
+            "00_Career/01_Class_Rules/"
+          ],
+          "hermes_aliases": [
+            "imo_library",
+            "statutory"
+          ]
+        },
+        "inspection": {
+          "chunk_count": 5098,
+          "distinct_sources": 2,
+          "document_count": 2,
+          "path_prefixes": [
+            "00_Career/02_Statutory/SIRE_OCIMF/"
+          ],
+          "hermes_aliases": [
+            "sire_library"
+          ]
+        },
+        "vessels": {
+          "chunk_count": 12561,
+          "distinct_sources": 197,
+          "document_count": 197,
+          "path_prefixes": [
+            "20_Vessels/"
+          ],
+          "hermes_aliases": [
+            "manual_library_gaschem_europe",
+            "manual_library_gaschem_africa"
+          ]
+        },
+        "career": {
+          "chunk_count": 219,
+          "distinct_sources": 4,
+          "document_count": 4,
+          "path_prefixes": [
+            "00_Career/"
+          ],
+          "hermes_aliases": []
+        },
+        "rules": {
+          "chunk_count": 49,
+          "distinct_sources": 3,
+          "document_count": 3,
+          "path_prefixes": [
+            "99_Rules/"
+          ],
+          "hermes_aliases": []
+        },
+        "other": {
+          "chunk_count": 0,
+          "distinct_sources": 0,
+          "document_count": 0,
+          "path_prefixes": [],
+          "hermes_aliases": []
+        }
+      },
+      "total_chunks": 125289
+    },
+    "table_counts": {
+      "collection_metadata": 0,
+      "collections": 1,
+      "databases": 1,
+      "embedding_fulltext_search": 125289,
+      "embedding_fulltext_search_config": 1,
+      "embedding_fulltext_search_content": 125289,
+      "embedding_fulltext_search_data": 55722,
+      "embedding_fulltext_search_docsize": 125289,
+      "embedding_fulltext_search_idx": 20427,
+      "embedding_metadata": 1378179,
+      "embeddings": 125289,
+      "embeddings_queue": 581,
+      "embeddings_queue_config": 1,
+      "maintenance_log": 0,
+      "max_seq_id": 2,
+      "migrations": 15,
+      "segment_metadata": 0,
+      "segments": 2,
+      "tenants": 1
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "inventory_rows": [
+      {
+        "path": ".orphan_repair_disposable_clone.json",
+        "type": "file",
+        "bytes": 1207,
+        "sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+        "type": "file",
+        "bytes": 530732676,
+        "sha256": "f104070b6fcd67a1edeb22095ae2c317b923e242807b06aac7252f0503916fd9"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+        "type": "file",
+        "bytes": 100,
+        "sha256": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+        "type": "file",
+        "bytes": 7875654,
+        "sha256": "f3dc4d65d85bd5fbd75bce033c247b4b91bafb28b91a2425b2285278045551a1"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+        "type": "file",
+        "bytes": 501164,
+        "sha256": "887eecbea39440281018bcd3a1c3b1aeffdf301737297f8561b8864f2bb5b0c1"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+        "type": "file",
+        "bytes": 1079912,
+        "sha256": "ea0dc606c9a5de87f3238c19b223eda8f984d2c6e08c4d35dfba1e64f13dbc18"
+      },
+      {
+        "path": "ask_events.jsonl",
+        "type": "file",
+        "bytes": 49796,
+        "sha256": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+        "type": "file",
+        "bytes": 7428,
+        "sha256": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+        "type": "file",
+        "bytes": 6695138,
+        "sha256": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+        "type": "file",
+        "bytes": 55048,
+        "sha256": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+        "type": "file",
+        "bytes": 6698619,
+        "sha256": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+        "type": "file",
+        "bytes": 32786,
+        "sha256": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b"
+      },
+      {
+        "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+        "type": "file",
+        "bytes": 6727252,
+        "sha256": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d"
+      },
+      {
+        "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+        "type": "file",
+        "bytes": 13162,
+        "sha256": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d"
+      },
+      {
+        "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+        "type": "file",
+        "bytes": 6729127,
+        "sha256": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc"
+      },
+      {
+        "path": "certified_generation_checkpoint.json",
+        "type": "file",
+        "bytes": 875,
+        "sha256": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362"
+      },
+      {
+        "path": "chroma.sqlite3",
+        "type": "file",
+        "bytes": 739770368,
+        "sha256": "b5e9457bdce5136fa260abc495359bd27de1512e465c1e16e087c0150a791b22"
+      },
+      {
+        "path": "embedded.json",
+        "type": "file",
+        "bytes": 6733154,
+        "sha256": "055c496cb4337da9b8c5c609d20e88f82b43eb90fe785f43b50d8aacd252d38c"
+      },
+      {
+        "path": "index_embedding_fingerprint_v1.json",
+        "type": "file",
+        "bytes": 1563,
+        "sha256": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996"
+      },
+      {
+        "path": "index_fingerprint.json",
+        "type": "file",
+        "bytes": 258,
+        "sha256": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      }
+    ]
+  },
+  "clone_hash_changes": [
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "after": "f104070b6fcd67a1edeb22095ae2c317b923e242807b06aac7252f0503916fd9"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "after": "f3dc4d65d85bd5fbd75bce033c247b4b91bafb28b91a2425b2285278045551a1"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "after": "887eecbea39440281018bcd3a1c3b1aeffdf301737297f8561b8864f2bb5b0c1"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "after": "ea0dc606c9a5de87f3238c19b223eda8f984d2c6e08c4d35dfba1e64f13dbc18"
+    },
+    {
+      "path": "chroma.sqlite3",
+      "before": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "after": "b5e9457bdce5136fa260abc495359bd27de1512e465c1e16e087c0150a791b22"
+    },
+    {
+      "path": "embedded.json",
+      "before": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "after": "055c496cb4337da9b8c5c609d20e88f82b43eb90fe785f43b50d8aacd252d38c"
+    }
+  ],
+  "change_classification": {
+    "expected_mutable_changes": [
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+        "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "after": "f104070b6fcd67a1edeb22095ae2c317b923e242807b06aac7252f0503916fd9"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+        "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+        "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "after": "f3dc4d65d85bd5fbd75bce033c247b4b91bafb28b91a2425b2285278045551a1"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+        "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "after": "887eecbea39440281018bcd3a1c3b1aeffdf301737297f8561b8864f2bb5b0c1"
+      },
+      {
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+        "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "after": "ea0dc606c9a5de87f3238c19b223eda8f984d2c6e08c4d35dfba1e64f13dbc18"
+      },
+      {
+        "path": "chroma.sqlite3",
+        "before": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "after": "b5e9457bdce5136fa260abc495359bd27de1512e465c1e16e087c0150a791b22"
+      },
+      {
+        "path": "embedded.json",
+        "before": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "after": "055c496cb4337da9b8c5c609d20e88f82b43eb90fe785f43b50d8aacd252d38c"
+      }
+    ],
+    "unexpected_changes": [],
+    "unexpected_count": 0
+  },
+  "manifest_counts": {
+    "deterministic_stale_path_occurrences": 54,
+    "total_orphan_path_occurrences": 55,
+    "deterministic_digests": 40,
+    "retirement_digests": 1,
+    "affected_digests_total": 41
+  },
+  "manifest_final_checks": {
+    "ok": true,
+    "affected_digest_count": 41,
+    "rows": [
+      {
+        "ok": true,
+        "digest": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+        ],
+        "chunk_count": 38,
+        "expected_chunk_count": 38
+      },
+      {
+        "ok": true,
+        "digest": "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923"
+        ],
+        "chunk_count": 4,
+        "expected_chunk_count": 4
+      },
+      {
+        "ok": true,
+        "digest": "10ace6f031047be484e9a506cd28174a2911dff957491d6151f14985f2b328e1",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkII_Concept/02b ME-GI Mk.II Concept(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "10ace6f031047be484e9a506cd28174a2911dff957491d6151f14985f2b328e1"
+        ],
+        "chunk_count": 27,
+        "expected_chunk_count": 27
+      },
+      {
+        "ok": true,
+        "digest": "156980d1b3684ec23b1621d5bb6f3ba3a7074410e0b8f4fcf8fb3192228a48bc",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2020-705.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2020-705.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "156980d1b3684ec23b1621d5bb6f3ba3a7074410e0b8f4fcf8fb3192228a48bc"
+        ],
+        "chunk_count": 6,
+        "expected_chunk_count": 6
+      },
+      {
+        "ok": true,
+        "digest": "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063"
+        ],
+        "chunk_count": 29,
+        "expected_chunk_count": 29
+      },
+      {
+        "ok": true,
+        "digest": "1e63c0448e057fb98c72a3665cfdc772c84a0ff423a2a4d62b01c40379f0d1b2",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day4_E.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day4_E.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "1e63c0448e057fb98c72a3665cfdc772c84a0ff423a2a4d62b01c40379f0d1b2"
+        ],
+        "chunk_count": 33,
+        "expected_chunk_count": 33
+      },
+      {
+        "ok": true,
+        "digest": "247b28a9ff07169473ddb7ac5f54dc61bfac046796bd7d0b36249fa36e166c90",
+        "op_type": "RETIRE_UNRECOVERABLE",
+        "retired": true,
+        "remaining_chunk_ids": []
+      },
+      {
+        "ok": true,
+        "digest": "25929d50fa6dcedc9cd2a11286e089d151b5116f3e2d19703c5278c63b2cd8e9",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/04_Auxiliary_Systems/04 ME-GI Auxiliary Systems(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "25929d50fa6dcedc9cd2a11286e089d151b5116f3e2d19703c5278c63b2cd8e9"
+        ],
+        "chunk_count": 34,
+        "expected_chunk_count": 34
+      },
+      {
+        "ok": true,
+        "digest": "26d5116818bb540e2f9fc4efeaa6285c74d81ae4e3a551eaf8ee1e0add4677c5",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/Day 5.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/Day 5.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "26d5116818bb540e2f9fc4efeaa6285c74d81ae4e3a551eaf8ee1e0add4677c5"
+        ],
+        "chunk_count": 18,
+        "expected_chunk_count": 18
+      },
+      {
+        "ok": true,
+        "digest": "26fca070c5f7d95934699b5698daadd2d79479f556324607aa1e61d2181905ed",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day5_E.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day5_E.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "26fca070c5f7d95934699b5698daadd2d79479f556324607aa1e61d2181905ed"
+        ],
+        "chunk_count": 16,
+        "expected_chunk_count": 16
+      },
+      {
+        "ok": true,
+        "digest": "292c5d13a14140240605035c26b8cb0fd59a9fd5e1a94bf37fe82c41d6454dc3",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "292c5d13a14140240605035c26b8cb0fd59a9fd5e1a94bf37fe82c41d6454dc3"
+        ],
+        "chunk_count": 12,
+        "expected_chunk_count": 12
+      },
+      {
+        "ok": true,
+        "digest": "2d2496dc156e15e73f347ee4ac3bd5a98d7c9ed1125fd425097a0ea1387e3883",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/2. HPS.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/2. HPS.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "2d2496dc156e15e73f347ee4ac3bd5a98d7c9ed1125fd425097a0ea1387e3883"
+        ],
+        "chunk_count": 43,
+        "expected_chunk_count": 43
+      },
+      {
+        "ok": true,
+        "digest": "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296"
+        ],
+        "chunk_count": 27,
+        "expected_chunk_count": 27
+      },
+      {
+        "ok": true,
+        "digest": "3020dde3bbb0b0ff0f08300e79def28b9730ee977af1e24c3a13ae02aeb2bc08",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "3020dde3bbb0b0ff0f08300e79def28b9730ee977af1e24c3a13ae02aeb2bc08"
+        ],
+        "chunk_count": 13,
+        "expected_chunk_count": 13
+      },
+      {
+        "ok": true,
+        "digest": "3c58c62e9000f6b2be18e79307ad5835faa7700c752986c8ab0bb0847851ca72",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/Reference_2245_0100_0005/2245-0100-0005.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/Reference_2245_0100_0005/2245-0100-0005.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "3c58c62e9000f6b2be18e79307ad5835faa7700c752986c8ab0bb0847851ca72"
+        ],
+        "chunk_count": 112,
+        "expected_chunk_count": 112
+      },
+      {
+        "ok": true,
+        "digest": "40a5315a3d097d694c3c3f4a26cb6fa003465842edf53b89765fd8d635111e5c",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/06_Liner_Lubrication/06 DF engines liner lubrication.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/06_Liner_Lubrication/06 DF engines liner lubrication.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "40a5315a3d097d694c3c3f4a26cb6fa003465842edf53b89765fd8d635111e5c"
+        ],
+        "chunk_count": 23,
+        "expected_chunk_count": 23
+      },
+      {
+        "ok": true,
+        "digest": "43fd674632d3a642825fee80c55520eb5e35a8d097a3b2173a15867091b8cc93",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day5a_E.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day5a_E.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "43fd674632d3a642825fee80c55520eb5e35a8d097a3b2173a15867091b8cc93"
+        ],
+        "chunk_count": 50,
+        "expected_chunk_count": 50
+      },
+      {
+        "ok": true,
+        "digest": "4b5bffd53adde0ddda10f541fd536675ef9d258b3cac80fa0281acaf6f1325a5",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "4b5bffd53adde0ddda10f541fd536675ef9d258b3cac80fa0281acaf6f1325a5"
+        ],
+        "chunk_count": 15,
+        "expected_chunk_count": 15
+      },
+      {
+        "ok": true,
+        "digest": "5044e7909131aad396bca034b6f7adfc52d6221d847524deb1c48543285744b5",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "5044e7909131aad396bca034b6f7adfc52d6221d847524deb1c48543285744b5"
+        ],
+        "chunk_count": 8,
+        "expected_chunk_count": 8
+      },
+      {
+        "ok": true,
+        "digest": "55d269e5d389155596f896ee1c26a392e26e6fa233b3249a63fea5c28bbe1a26",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/05_DF_ECS_Safety_Machine/05 ME-GI DF ECS(safety machine)(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "55d269e5d389155596f896ee1c26a392e26e6fa233b3249a63fea5c28bbe1a26"
+        ],
+        "chunk_count": 44,
+        "expected_chunk_count": 44
+      },
+      {
+        "ok": true,
+        "digest": "56996f6eb3cc6c9db8c1a67d84396b68ac42ac5733c9a50dae3a851caf9c1115",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/ME Pre-dual fuel std. operation Online timetable 1.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/ME Pre-dual fuel std. operation Online timetable 1.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "56996f6eb3cc6c9db8c1a67d84396b68ac42ac5733c9a50dae3a851caf9c1115"
+        ],
+        "chunk_count": 8,
+        "expected_chunk_count": 8
+      },
+      {
+        "ok": true,
+        "digest": "58e5eef05d8369b3790902b2102ced84d0d95ed0976a5cc43cbab3ff5f16f52e",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkI_Concept/02a ME-GI Mk.I Concept(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "58e5eef05d8369b3790902b2102ced84d0d95ed0976a5cc43cbab3ff5f16f52e"
+        ],
+        "chunk_count": 31,
+        "expected_chunk_count": 31
+      },
+      {
+        "ok": true,
+        "digest": "5ac85fb7b2789cbdff09b15d65e08aa94914d4da6be65c8887439ad62b658637",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "5ac85fb7b2789cbdff09b15d65e08aa94914d4da6be65c8887439ad62b658637"
+        ],
+        "chunk_count": 16,
+        "expected_chunk_count": 16
+      },
+      {
+        "ok": true,
+        "digest": "5b6500b9998f9036acde7449b469d731dc950cafff921921d6cd7e670c1ae80f",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "5b6500b9998f9036acde7449b469d731dc950cafff921921d6cd7e670c1ae80f"
+        ],
+        "chunk_count": 14,
+        "expected_chunk_count": 14
+      },
+      {
+        "ok": true,
+        "digest": "6a87b1a3c28a58a4ce3ae45838756d525c16073ea4887f7f4879cd9ae7993ddc",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/02_MkII_Concept/02b ME-GI [Mk.II] concept(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "6a87b1a3c28a58a4ce3ae45838756d525c16073ea4887f7f4879cd9ae7993ddc"
+        ],
+        "chunk_count": 21,
+        "expected_chunk_count": 21
+      },
+      {
+        "ok": true,
+        "digest": "7666b3fadf041872674ecd6bff0730cabaa7a6257e044dceec39efe220b8b476",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/05_DF_ECS_Safety_Machine/05 ME-GI DF-ECS(safety machine)(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "7666b3fadf041872674ecd6bff0730cabaa7a6257e044dceec39efe220b8b476"
+        ],
+        "chunk_count": 23,
+        "expected_chunk_count": 23
+      },
+      {
+        "ok": true,
+        "digest": "79ade07aa01cf109ac2a0564b377f2a8a9961b634e0ec460089bfe935c5c8b1d",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/2245-0100-0005.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/2245-0100-0005.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "79ade07aa01cf109ac2a0564b377f2a8a9961b634e0ec460089bfe935c5c8b1d"
+        ],
+        "chunk_count": 112,
+        "expected_chunk_count": 112
+      },
+      {
+        "ok": true,
+        "digest": "83453e225b9a15e893cf1496b4e4a93723bcdb2700336cd21d43ff90a1c7ec17",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/5a.Day 5a.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/5a.Day 5a.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "83453e225b9a15e893cf1496b4e4a93723bcdb2700336cd21d43ff90a1c7ec17"
+        ],
+        "chunk_count": 50,
+        "expected_chunk_count": 50
+      },
+      {
+        "ok": true,
+        "digest": "8f4478b15150ecd3b89ba481950cbe2a54889522beb51892e87182fe5663026f",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/1.Day 1.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/1.Day 1.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "8f4478b15150ecd3b89ba481950cbe2a54889522beb51892e87182fe5663026f"
+        ],
+        "chunk_count": 44,
+        "expected_chunk_count": 44
+      },
+      {
+        "ok": true,
+        "digest": "95bce93dc438f9180cb73d0642134814822a32a5c0a04b103ba8ce253b96322b",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day1_E.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day1_E.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "95bce93dc438f9180cb73d0642134814822a32a5c0a04b103ba8ce253b96322b"
+        ],
+        "chunk_count": 39,
+        "expected_chunk_count": 39
+      },
+      {
+        "ok": true,
+        "digest": "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88"
+        ],
+        "chunk_count": 34,
+        "expected_chunk_count": 34
+      },
+      {
+        "ok": true,
+        "digest": "9e2dac5c56dd17528bc4d16bde2edb29dabb1fec28d30c124e0111e6c69d0e23",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/Day 3 (1).pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/Day 3 (1).pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "9e2dac5c56dd17528bc4d16bde2edb29dabb1fec28d30c124e0111e6c69d0e23"
+        ],
+        "chunk_count": 35,
+        "expected_chunk_count": 35
+      },
+      {
+        "ok": true,
+        "digest": "9f300a51b476295a679e829e614a365104ea536747338db86211e4753980f610",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/04_Auxiliary_Systems/04 ME-GI Auxiliary system (Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "9f300a51b476295a679e829e614a365104ea536747338db86211e4753980f610"
+        ],
+        "chunk_count": 23,
+        "expected_chunk_count": 23
+      },
+      {
+        "ok": true,
+        "digest": "aa49d2f3c3a54d56919eb32faf318fd523869ac99c48594abbdad63b63cdc2f3",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/08_MkII_Leak_Search/08 ME-GI Mk.II Leak Search(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "aa49d2f3c3a54d56919eb32faf318fd523869ac99c48594abbdad63b63cdc2f3"
+        ],
+        "chunk_count": 11,
+        "expected_chunk_count": 11
+      },
+      {
+        "ok": true,
+        "digest": "ac73d03de3f51a0a674eb315e91c6e491fc1cf0c3ea21f888fade0abdfc5dad8",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/4.Day 4.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2025_09/4.Day 4.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "ac73d03de3f51a0a674eb315e91c6e491fc1cf0c3ea21f888fade0abdfc5dad8"
+        ],
+        "chunk_count": 34,
+        "expected_chunk_count": 34
+      },
+      {
+        "ok": true,
+        "digest": "b12430a0fdbf70ded957e781e0a796d984c0dc96020aa4fc054775459ff751e7",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/03_Engine_Operation/03 ME-GI Engine Operation(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "b12430a0fdbf70ded957e781e0a796d984c0dc96020aa4fc054775459ff751e7"
+        ],
+        "chunk_count": 41,
+        "expected_chunk_count": 41
+      },
+      {
+        "ok": true,
+        "digest": "bb5aa7964c64195039a19a41edb5144aa7503420918c3b4c9461e9df205d5b1b",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/07b_MkII_Components/07b ME-GI Mk.II Components(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "bb5aa7964c64195039a19a41edb5144aa7503420918c3b4c9461e9df205d5b1b"
+        ],
+        "chunk_count": 23,
+        "expected_chunk_count": 23
+      },
+      {
+        "ok": true,
+        "digest": "bcca261b8303f7342c55e094d6196c329c017fbee139e629b058ab1d1bf47e62",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day2_E.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day2_E.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "bcca261b8303f7342c55e094d6196c329c017fbee139e629b058ab1d1bf47e62"
+        ],
+        "chunk_count": 41,
+        "expected_chunk_count": 41
+      },
+      {
+        "ok": true,
+        "digest": "d98374a6e1e696bfcfb80dd72b0655c7f6296dc15e9fb07d100a209b2065154c",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day3_E.pdf"
+        ],
+        "tracker_collection": "me-c",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME-C_2026_02/Day3_E.pdf"
+        ],
+        "collections": [
+          "me-c"
+        ],
+        "source_hashes": [
+          "d98374a6e1e696bfcfb80dd72b0655c7f6296dc15e9fb07d100a209b2065154c"
+        ],
+        "chunk_count": 33,
+        "expected_chunk_count": 33
+      },
+      {
+        "ok": true,
+        "digest": "e369ae3120e2aea1844a544691b19e04050aa584a2ca12425dc77d635f2e5106",
+        "op_type": "REPOINT_SINGLE",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/1_Cat II 40 BN cylinder oil explained_LGIP Owners Forum_Dec 2022.pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "e369ae3120e2aea1844a544691b19e04050aa584a2ca12425dc77d635f2e5106"
+        ],
+        "chunk_count": 11,
+        "expected_chunk_count": 11
+      },
+      {
+        "ok": true,
+        "digest": "f3a6cbd39e5ab99a3fb357bea6b09ba16c837f67fed1e9469f38212812d53b49",
+        "op_type": "COLLAPSE_ALIAS_SET",
+        "tracker_paths": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf"
+        ],
+        "tracker_collection": "maker-manuals",
+        "sources": [
+          "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/07a_MkI_Components/07a ME-GI Mk.I Components(Mar 2026).pdf"
+        ],
+        "collections": [
+          "maker-manuals"
+        ],
+        "source_hashes": [
+          "f3a6cbd39e5ab99a3fb357bea6b09ba16c837f67fed1e9469f38212812d53b49"
+        ],
+        "chunk_count": 23,
+        "expected_chunk_count": 23
+      }
+    ],
+    "unexpected_rows": []
+  },
+  "apply_validation_non_sqlite_physical_changes": [
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "after": "f104070b6fcd67a1edeb22095ae2c317b923e242807b06aac7252f0503916fd9"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "after": "f3dc4d65d85bd5fbd75bce033c247b4b91bafb28b91a2425b2285278045551a1"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "after": "887eecbea39440281018bcd3a1c3b1aeffdf301737297f8561b8864f2bb5b0c1"
+    },
+    {
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "after": "ea0dc606c9a5de87f3238c19b223eda8f984d2c6e08c4d35dfba1e64f13dbc18"
+    }
+  ],
+  "expected_mutable_file_policy": "embedded.json, chroma.sqlite3, Chroma HNSW vector-index files, disposable marker, lock, and read-activity files are permitted mutable evidence for a successful clean repair; all other file changes are unexpected."
+}

@@ -1,0 +1,12 @@
+{
+  "status": "CONTROLLED_REFUSAL_CONFIRMED",
+  "probe": {
+    "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+    "status": "refused",
+    "opened_chroma": false,
+    "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+    "ok": true
+  },
+  "opened_chroma": false,
+  "production_action": false
+}

@@ -1,0 +1,48 @@
+{
+  "status": "LC4_PASS",
+  "resolved_production_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "active_generation_selection": {
+    "mechanism": "rag_engine persist_dir() with explicit task-set RAG_DB_PATH during lock/copy; default fallback is library_root/.rag_db",
+    "requested_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "resolved_persist_dir": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "matches_requested_generation": true
+  },
+  "lock": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock",
+    "acquired_at_utc": "2026-08-27T18:39:46Z",
+    "result": "acquired_and_released",
+    "belongs_to_production_generation": true
+  },
+  "wal_shm": {
+    "chroma.sqlite3-wal": false,
+    "chroma.sqlite3-shm": false,
+    "result": "clear"
+  },
+  "source_inventory_checksum_before": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "source_inventory_checksum_after": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "clone_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "inventory_match": true,
+  "source_stable_during_copy": true,
+  "file_count": 19,
+  "total_bytes": 1312451165,
+  "final_disposable_clone_path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+  "marker": {
+    "clone_id": "lc4-raggen_lc4_baseline_20260827T183948Z",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-08-27T18:39:48Z",
+    "purpose": "LC4_BASELINE_FOR_LC5",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "source_core_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "expected_chunk_count": 125291,
+    "expected_orphan_count": 55,
+    "package_manifest_checksum": "3dabe40c9522ca497373205a937d659e91341a3faa1edfecb0864b84a2718f04",
+    "status": "VERIFIED_DISPOSABLE_BASELINE",
+    "disposable": true,
+    "unpromoted": true,
+    "target_generation": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z"
+  },
+  "marker_sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38"
+}

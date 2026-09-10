@@ -1,0 +1,62 @@
+{
+  "final_status": "LC6_REMAINING_19_CASES_BLOCKED",
+  "plan_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_execution_plan.json",
+  "plan_sha256": "e612d28775fb2027eb2790382532f21684768fe8c294784b2a4d0d47f7caa75c",
+  "prerequisite_hashes": {
+    "lc6_failure_injection.py": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33",
+    "orphan_repair_executor.py": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945",
+    "chroma_worker.py": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584",
+    "lc6_case11_single_case_retry_v2_report.json": "ceeb577659cc22bbce1fa10cb667d0611956b715d5778589593df7c5ad5e2b3d"
+  },
+  "restored_baseline": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+  "ordered_case_ids": [
+    "LC6-01-failure-before-first-mutation",
+    "LC6-02-failure-midway-deterministic-repoints",
+    "LC6-03-failure-during-alias-collapse",
+    "LC6-04-failure-immediately-before-c1210-retirement",
+    "LC6-05-failure-immediately-after-c1210-retirement",
+    "LC6-06-forced-doctor-failure",
+    "LC6-07-forced-retrieval-acceptance-failure",
+    "LC6-08-stale-tracker-store-baseline-hash",
+    "LC6-09-canonical-source-sha-mismatch",
+    "LC6-10-candidate-lock-contention",
+    "LC6-12-direct-active-production-target",
+    "LC6-13-legacy-rag-db-target",
+    "LC6-14-generations-root-target",
+    "LC6-15-ce-library-root-target",
+    "LC6-16-rerun-against-already-repaired-clone",
+    "LC6-17-invalid-or-missing-disposable-marker",
+    "LC6-18-malformed-or-checksum-invalid-manifest",
+    "LC6-19-unexpected-wal-shm-state",
+    "LC6-20-worker-timeout-or-malformed-output"
+  ],
+  "completed_cases": [],
+  "cases_not_run": [
+    "LC6-01-failure-before-first-mutation",
+    "LC6-02-failure-midway-deterministic-repoints",
+    "LC6-03-failure-during-alias-collapse",
+    "LC6-04-failure-immediately-before-c1210-retirement",
+    "LC6-05-failure-immediately-after-c1210-retirement",
+    "LC6-06-forced-doctor-failure",
+    "LC6-07-forced-retrieval-acceptance-failure",
+    "LC6-08-stale-tracker-store-baseline-hash",
+    "LC6-09-canonical-source-sha-mismatch",
+    "LC6-10-candidate-lock-contention",
+    "LC6-12-direct-active-production-target",
+    "LC6-13-legacy-rag-db-target",
+    "LC6-14-generations-root-target",
+    "LC6-15-ce-library-root-target",
+    "LC6-16-rerun-against-already-repaired-clone",
+    "LC6-17-invalid-or-missing-disposable-marker",
+    "LC6-18-malformed-or-checksum-invalid-manifest",
+    "LC6-19-unexpected-wal-shm-state",
+    "LC6-20-worker-timeout-or-malformed-output"
+  ],
+  "per_case_reports": {},
+  "blockers": [
+    "baseline precheck failed before LC6-01-failure-before-first-mutation"
+  ],
+  "aggregate_report_sha256": "9570fdcaf30640ad88d4b8cbb548bbb9fec0fcbf7a0ad02c63c49f52a9f461af",
+  "last_completed_case": null,
+  "next_unexecuted_case": "LC6-01-failure-before-first-mutation"
+}

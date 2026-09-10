@@ -1,0 +1,45 @@
+{
+  "final_status": "LC6_REMAINING_19_CASES_BLOCKED",
+  "plan_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_execution_plan.json",
+  "plan_sha256": "e612d28775fb2027eb2790382532f21684768fe8c294784b2a4d0d47f7caa75c",
+  "external_binding_amendment_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_external_baseline_binding_amendment.json",
+  "external_binding_amendment_pending_sha256": "976944d82cc9f0adad9e8b7c7c3a146e5bb72865b3335698622b9165601d2e36",
+  "external_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "verified_input_hashes": {
+    "source_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+    "reconciliation_report_sha256": "091d5371e175c27a3355f1667ca36afa7559002586513307f57ee5a60d92f0b9",
+    "v3_restoration_report_sha256": "2c0a263768155bbed16a14dbd7a8863f5b100f672e8c08d2af427f2fdb29fd06",
+    "v3_inventory_sha256": "00d92745a64ba93eb3173dcb0668fceb4f6ae3b55c48f1f851c792f481633c7a",
+    "v3_production_report_sha256": "76052ffea4582cd395aa987235c1cfb85a8498c0a37f78801d81c7608a761a92"
+  },
+  "completed_cases": [],
+  "unexecuted_cases": [
+    "LC6-01-failure-before-first-mutation",
+    "LC6-02-failure-midway-deterministic-repoints",
+    "LC6-03-failure-during-alias-collapse",
+    "LC6-04-failure-immediately-before-c1210-retirement",
+    "LC6-05-failure-immediately-after-c1210-retirement",
+    "LC6-06-forced-doctor-failure",
+    "LC6-07-forced-retrieval-acceptance-failure",
+    "LC6-08-stale-tracker-store-baseline-hash",
+    "LC6-09-canonical-source-sha-mismatch",
+    "LC6-10-candidate-lock-contention",
+    "LC6-12-direct-active-production-target",
+    "LC6-13-legacy-rag-db-target",
+    "LC6-14-generations-root-target",
+    "LC6-15-ce-library-root-target",
+    "LC6-16-rerun-against-already-repaired-clone",
+    "LC6-17-invalid-or-missing-disposable-marker",
+    "LC6-18-malformed-or-checksum-invalid-manifest",
+    "LC6-19-unexpected-wal-shm-state",
+    "LC6-20-worker-timeout-or-malformed-output"
+  ],
+  "last_completed_case": null,
+  "next_unexecuted_case": "LC6-01-failure-before-first-mutation",
+  "per_case_reports": {},
+  "relocation_report_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_external_durable_baseline_relocation_report.json",
+  "production_unchanged_report_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_production_unchanged_after_external_baseline_relocation.json",
+  "blockers": [
+    "Traceback (most recent call last):\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2655, in <module>\n    main()\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2573, in main\n    baseline_summary = build_runtime_baseline_summary(args, test_baseline, test_package_dir, bound_baseline)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2541, in build_runtime_baseline_summary\n    summary = baseline_revalidation_summary(bound_baseline, RESTORED_BASELINE_MARKER_SHA)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 348, in baseline_revalidation_summary\n    raise HarnessRefusal(f'baseline marker sha mismatch: {marker_sha} != {expected_marker_sha}')\nHarnessRefusal: baseline marker sha mismatch: e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1 != 7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9"
+  ]
+}

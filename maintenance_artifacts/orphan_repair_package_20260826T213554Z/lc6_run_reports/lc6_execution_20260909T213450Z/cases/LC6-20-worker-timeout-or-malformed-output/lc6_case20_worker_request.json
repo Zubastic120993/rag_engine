@@ -1,0 +1,7 @@
+{
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402",
+  "clone_path": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/clone",
+  "state_dir": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/work/lc6_case20_malformed_worker_output",
+  "expected_worker_action": "apply_manifest_ops"
+}

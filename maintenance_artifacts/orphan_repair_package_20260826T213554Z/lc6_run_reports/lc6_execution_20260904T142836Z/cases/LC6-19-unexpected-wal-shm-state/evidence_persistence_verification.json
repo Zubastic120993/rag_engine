@@ -1,0 +1,137 @@
+{
+  "case_id": "LC6-19-unexpected-wal-shm-state",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_19_6mnhl12z/case_19_unexpected_wal_shm_state/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_19_6mnhl12z/case_19_unexpected_wal_shm_state/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142836Z/cases/LC6-19-unexpected-wal-shm-state",
+  "durable_inventory": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2946,
+      "sha256": "cd812962eeabecd188bf28fdac8bb23deabbe6d61772be9742b39a995f71a65e"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1495,
+      "sha256": "bbbf208d9343c03070dff0fe60deff9761735779e19d7f5cb1db5c11a65c284a"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 13623,
+      "sha256": "2f3b7bf84813a75c3d044b7582ba5c0a7d8281b7a49c00d093512dcabfac58bc"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1125,
+      "sha256": "a19440727795dda1ec5aaad3f8b5ef02e66614ba16ecf26ed7471f2d0b759475"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1486,
+      "sha256": "d009079d687086aeed4c4ff27ec8e1fd6bfb983f9f00e900af687e7741767115"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 54,
+      "sha256": "06abc439fc9885d796af087521765c3635d769b9c3874ffc70f80875c4b6cad3"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 10186,
+      "sha256": "d079aaefc74c363997d7f53e787e17456e17123b4dc23fb8c9a8cffa15c77824"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6955,
+      "sha256": "a489913cd6d3113425f72c7a5879bba595c16307348b6d8c45d92db699713347"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 237,
+      "sha256": "486d3dc064f6a7c8681cd49949258e3c6e095cdac5e044802bbaf0aa0d5bb4c4"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 134,
+      "sha256": "4e5da9ae38a7e24e1d17cf11f68e16915b7cafb704d02ac1b0f853c8ea69c899"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "apply_failure.json",
+      "execution_log.jsonl",
+      "executor_input.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_failure.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

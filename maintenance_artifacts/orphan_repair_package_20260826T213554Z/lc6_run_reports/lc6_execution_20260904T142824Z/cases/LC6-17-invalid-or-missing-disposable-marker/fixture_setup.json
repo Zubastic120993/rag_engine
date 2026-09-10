@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:invalid_or_missing_marker_refusal",
+  "mutations": [
+    "disposable marker removed"
+  ]
+}

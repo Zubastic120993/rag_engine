@@ -1,0 +1,5 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-06-forced-doctor-failure-3e5adbc5-0783-482a-a312-04b0b7f92f36"}
+{"event": "mutation_worker_ok", "worker_pid": 85473}
+{"event": "restored_snapshot_after_failure"}
+{"event": "lock_released"}

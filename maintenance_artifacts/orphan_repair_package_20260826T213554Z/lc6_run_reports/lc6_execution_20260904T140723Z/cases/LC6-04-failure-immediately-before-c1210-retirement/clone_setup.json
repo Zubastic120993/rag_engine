@@ -1,0 +1,18 @@
+{
+  "clone_path": "/private/tmp/lc6_case_04_v4j_y725/case_04_failure_immediately_before_c1210_retirement/clone",
+  "work_path": "/private/tmp/lc6_case_04_v4j_y725/case_04_failure_immediately_before_c1210_retirement/work",
+  "baseline_clone_source": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker": {
+    "clone_id": "lc6-LC6-04-failure-immediately-before-c1210-retirement-351f7579-7e79-4c89-a12a-149f48783eb8",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T14:07:24Z",
+    "purpose": "LC6_LC6-04-failure-immediately-before-c1210-retirement",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "target_generation": "/private/tmp/lc6_case_04_v4j_y725/case_04_failure_immediately_before_c1210_retirement/clone",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "validated_clone_id": "lc6-LC6-04-failure-immediately-before-c1210-retirement-351f7579-7e79-4c89-a12a-149f48783eb8"
+}

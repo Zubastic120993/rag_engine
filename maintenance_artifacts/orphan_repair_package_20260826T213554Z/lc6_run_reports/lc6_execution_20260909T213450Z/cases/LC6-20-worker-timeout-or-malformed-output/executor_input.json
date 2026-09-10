@@ -1,0 +1,7 @@
+{
+  "package_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+  "gen_dir": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/clone",
+  "inject": "lc6_case20_malformed_worker_output",
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402"
+}

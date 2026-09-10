@@ -1,0 +1,55 @@
+{
+  "python_version": "3.12.6 (v3.12.6:a4a2d2b0d85, Sep  6 2024, 16:08:03) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "chromadb_version": "0.5.23",
+  "db_dir": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/chroma_lifecycle_repro_izk5ie03/db",
+  "settings_repr": "Settings(environment='', chroma_api_impl='chromadb.api.segment.SegmentAPI', chroma_server_nofile=None, chroma_server_thread_pool_size=40, tenant_id='default', topic_namespace='default', chroma_server_host=None, chroma_server_headers=None, chroma_server_http_port=None, chroma_server_ssl_enabled=False, chroma_server_ssl_verify=None, chroma_server_api_default_path=<APIVersion.V2: '/api/v2'>, chroma_server_cors_allow_origins=[], is_persistent=True, persist_directory='./chroma', chroma_memory_limit_bytes=0, chroma_segment_cache_policy=None, allow_reset=False, chroma_auth_token_transport_header=None, chroma_client_auth_provider=None, chroma_client_auth_credentials=None, chroma_server_auth_ignore_paths={'APIVersion.V2': ['GET'], 'APIVersion.V2/heartbeat': ['GET'], 'APIVersion.V2/version': ['GET'], 'APIVersion.V1': ['GET'], 'APIVersion.V1/heartbeat': ['GET'], 'APIVersion.V1/version': ['GET']}, chroma_overwrite_singleton_tenant_database_access_from_auth=False, chroma_server_authn_provider=None, chroma_server_authn_credentials=None, chroma_server_authn_credentials_file=None, chroma_server_authz_provider=None, chroma_server_authz_config=None, chroma_server_authz_config_file=None, chroma_product_telemetry_impl='chromadb.telemetry.product.posthog.Posthog', chroma_telemetry_impl='chromadb.telemetry.product.posthog.Posthog', anonymized_telemetry=False, chroma_otel_collection_endpoint='', chroma_otel_service_name='chromadb', chroma_otel_collection_headers={}, chroma_otel_granularity=None, migrations='apply', migrations_hash_algorithm='md5', chroma_segment_directory_impl='chromadb.segment.impl.distributed.segment_directory.RendezvousHashSegmentDirectory', chroma_memberlist_provider_impl='chromadb.segment.impl.distributed.segment_directory.CustomResourceMemberlistProvider', worker_memberlist_name='query-service-memberlist', chroma_server_grpc_port=None, chroma_sysdb_impl='chromadb.db.impl.sqlite.SqliteDB', chroma_producer_impl='chromadb.db.impl.sqlite.SqliteDB', chroma_consumer_impl='chromadb.db.impl.sqlite.SqliteDB', chroma_segment_manager_impl='chromadb.segment.impl.manager.local.LocalSegmentManager', chroma_executor_impl='chromadb.execution.executor.local.LocalExecutor', chroma_quota_provider_impl=None, chroma_rate_limiting_provider_impl=None, chroma_quota_enforcer_impl='chromadb.quota.simple_quota_enforcer.SimpleQuotaEnforcer', chroma_rate_limit_enforcer_impl='chromadb.rate_limit.simple_rate_limit.SimpleRateLimitEnforcer', chroma_logservice_request_timeout_seconds=3, chroma_sysdb_request_timeout_seconds=3, chroma_query_request_timeout_seconds=60, chroma_db_impl=None, chroma_collection_assignment_policy_impl='chromadb.ingest.impl.simple_policy.SimpleAssignmentPolicy', chroma_coordinator_host='localhost', chroma_logservice_host='localhost', chroma_logservice_port=50052)",
+  "steps": [
+    "create PersistentClient on temp db",
+    "create collection and add one row",
+    "read row successfully",
+    "call private _system.stop()",
+    "construct new PersistentClient on same db path in same process",
+    "attempt update on same collection",
+    "record whether Component not running occurs",
+    "run read/update/read in separate subprocesses without private stop"
+  ],
+  "same_process_reopen_after_private_stop": {
+    "result": "update_failed",
+    "error_type": "RuntimeError",
+    "error": "Component not running",
+    "repr": "RuntimeError('Component not running')",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 41, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/api/models/Collection.py\", line 298, in update\n    self._client._update(\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/telemetry/opentelemetry/__init__.py\", line 150, in wrapper\n    return f(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/api/segment.py\", line 103, in wrapper\n    return self._rate_limit_enforcer.rate_limit(func)(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/rate_limit/simple_rate_limit/__init__.py\", line 23, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/api/segment.py\", line 491, in _update\n    self._producer.submit_embeddings(collection_id, records_to_submit)\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/telemetry/opentelemetry/__init__.py\", line 150, in wrapper\n    return f(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/lib/python3.12/site-packages/chromadb/db/mixins/embeddings_queue.py\", line 193, in submit_embeddings\n    raise RuntimeError(\"Component not running\")\nRuntimeError: Component not running\n"
+  },
+  "old_behavior_setup": {
+    "before": {
+      "ids": ["a"],
+      "embeddings": null,
+      "documents": ["alpha"],
+      "uris": null,
+      "data": null,
+      "metadatas": [{"collection": "t", "source": "x"}],
+      "included": ["documents", "metadatas"]
+    },
+    "private_stop_called": true
+  },
+  "subprocess_isolated_sequence": [
+    {
+      "action": "read",
+      "returncode": 0,
+      "stdout": "{\"ids\": [\"a\"], \"embeddings\": null, \"documents\": [\"alpha\"], \"uris\": null, \"data\": null, \"metadatas\": [{\"collection\": \"t\", \"source\": \"x\"}], \"included\": [\"documents\", \"metadatas\"]}",
+      "stderr": ""
+    },
+    {
+      "action": "update",
+      "returncode": 0,
+      "stdout": "{\"ok\": true}",
+      "stderr": ""
+    },
+    {
+      "action": "read",
+      "returncode": 0,
+      "stdout": "{\"ids\": [\"a\"], \"embeddings\": null, \"documents\": [\"alpha\"], \"uris\": null, \"data\": null, \"metadatas\": [{\"collection\": \"t\", \"source\": \"z\"}], \"included\": [\"documents\", \"metadatas\"]}",
+      "stderr": ""
+    }
+  ]
+}

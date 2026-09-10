@@ -1,0 +1,26 @@
+{
+  "status": "MUTATION_IN_PROGRESS",
+  "checkpoint_name": "mutation_in_progress",
+  "case_id": "LC6-11-interruption-during-mutation",
+  "run_id": "LC6-11-interruption-during-mutation-8b34b54a111c",
+  "clone_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+  "worker_pid": 43685,
+  "collection_name": "langchain",
+  "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+  "original_metadata": {
+    "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+    "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+    "collection": "maker-manuals",
+    "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+    "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+    "machine_transcribed": false,
+    "page": 0,
+    "page_index": 0,
+    "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+    "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+  },
+  "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+  "worker_command": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-8b34b54a111c --state-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain",
+  "timestamp_monotonic": 2896887.538532333,
+  "opened_chroma": true
+}

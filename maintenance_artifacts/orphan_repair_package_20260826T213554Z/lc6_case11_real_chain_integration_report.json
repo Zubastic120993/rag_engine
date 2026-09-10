@@ -1,0 +1,401 @@
+{
+  "final_status": "LC6_CASE11_REAL_CHAIN_INTEGRATION_PASS_READY_FOR_SINGLE_CASE_EXECUTION_APPROVAL",
+  "files_changed": {
+    "lc6_failure_injection.py": {
+      "before_sha256": "7bd99dec5471c53e70127ff1782f71ad754146f0c5707cffd7d21e0fdaa75e5d",
+      "after_sha256": "6be27e0c923a83e1f0b64274dd8296aabcf4e0223bb62e20f1b7b9c3c1516594"
+    },
+    "orphan_repair_executor.py": {
+      "before_sha256": "311672d01f22e72b910eab1addc76792f1d63a85fe3b3d9d90812c4728f96205",
+      "after_sha256": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021"
+    },
+    "chroma_worker.py": {
+      "before_sha256": "f788ceb722455d3a75b0305bb7d1b10fe6416171a328298b7c6a5497379e7d0c",
+      "after_sha256": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+    },
+    "lc6_case11_real_chain_integration_report.json": {
+      "before_sha256": null,
+      "after_sha256": "computed externally after write"
+    },
+    "lc6_case11_interruption_mechanism_preflight_erratum.json": {
+      "before_sha256": null,
+      "after_sha256": "computed externally after write"
+    }
+  },
+  "actual_process_chain_and_pids": {
+    "harness_pid": null,
+    "executor_pid": 80125,
+    "worker_pid": 80179
+  },
+  "proof_checkpoint_originated_from_chroma_worker.py": {
+    "checkpoint_worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+    "checkpoint_worker_command": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-511a318d781b --state-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain",
+    "signal_verified_identity": {
+      "worker_pid": 80179,
+      "case_id": "LC6-11-interruption-during-mutation",
+      "run_id": "LC6-11-interruption-during-mutation-511a318d781b",
+      "clone_path": "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone",
+      "script_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "ps_command": "/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-511a318d781b --state-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain",
+      "checkpoint_name": "mutation_in_progress",
+      "checkpoint_status": "MUTATION_IN_PROGRESS"
+    },
+    "script_name_matches": true,
+    "command_contains_chroma_worker": true
+  },
+  "signal_and_complete_exit_ordering": {
+    "checkpoint_before_signal": true,
+    "signal_record": {
+      "verified_identity": {
+        "worker_pid": 80179,
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-511a318d781b",
+        "clone_path": "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone",
+        "script_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+        "ps_command": "/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-511a318d781b --state-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain",
+        "checkpoint_name": "mutation_in_progress",
+        "checkpoint_status": "MUTATION_IN_PROGRESS"
+      },
+      "signal_sent": "SIGTERM",
+      "target_pid": 80179,
+      "target_clone_path": "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone"
+    },
+    "signal_received": {
+      "status": "SIGNAL_RECEIVED",
+      "signal": 15,
+      "case_id": "LC6-11-interruption-during-mutation",
+      "run_id": "LC6-11-interruption-during-mutation-511a318d781b",
+      "clone_path": "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone",
+      "worker_pid": 80179,
+      "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "worker_command": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-511a318d781b --state-dir /private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain",
+      "wait_completed": true,
+      "timestamp_monotonic": 2769792.097553958
+    },
+    "executor_exit": {
+      "pid": 80125,
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"INTERRUPT_PROBE_RECOVERED\",\n  \"case_id\": \"LC6-11-interruption-during-mutation\",\n  \"run_id\": \"LC6-11-interruption-during-mutation-511a318d781b\",\n  \"worker_process\": {\n    \"cmd\": [\n      \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python\",\n      \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py\",\n      \"case11_interrupt_probe\",\n      \"--gen-dir\",\n      \"/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone\",\n      \"--request-file\",\n      \"/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json\",\n      \"--case-id\",\n      \"LC6-11-interruption-during-mutation\",\n      \"--run-id\",\n      \"LC6-11-interruption-during-mutation-511a318d781b\",\n      \"--state-dir\",\n      \"/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain\"\n    ],\n    \"returncode\": 143,\n    \"stdout\": \"\",\n    \"stderr\": \"\",\n    \"json_payload\": null,\n    \"json_parse_error\": \"empty stdout\",\n    \"request_file\": \"/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json\"\n  },\n  \"checkpoint_path\": \"/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain/mutation_checkpoint.json\",\n  \"checkpoint_exists\": true,\n  \"signal_path\": \"/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain/signal_received.json\",\n  \"signal_exists\": true,\n  \"executor_recovery_performed\": true,\n  \"rollback_owner\": \"executor\",\n  \"pre_hashes\": {\n    \".orphan_repair_disposable_clone.json\": \"0ecd4f5ee8e25224af958b290991c1aef93f8af9299bfd2b3fe33e1bc806d8b3\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/data_level0.bin\": \"a888576697d4b350676dbee2ac509da60b846866550a54106e868a64306822fe\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/header.bin\": \"2d6a98cd7a3365856f79a6820ca8ddb3c6b819f2f3eb7dc5a65ae6408fad2755\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/length.bin\": \"fc19b1997119425765295aeab72d76faa6927d4f83985d328c26f20468d6cc76\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/link_lists.bin\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"chroma.sqlite3\": \"21f39703715d971cd36412269fd8af03c3164816f1ac685452031f2e61830972\"\n  },\n  \"post_hashes\": {\n    \".orphan_repair_disposable_clone.json\": \"0ecd4f5ee8e25224af958b290991c1aef93f8af9299bfd2b3fe33e1bc806d8b3\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/data_level0.bin\": \"a888576697d4b350676dbee2ac509da60b846866550a54106e868a64306822fe\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/header.bin\": \"2d6a98cd7a3365856f79a6820ca8ddb3c6b819f2f3eb7dc5a65ae6408fad2755\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/length.bin\": \"fc19b1997119425765295aeab72d76faa6927d4f83985d328c26f20468d6cc76\",\n    \"52979101-2767-405b-9274-665cf2f47fb2/link_lists.bin\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"chroma.sqlite3\": \"21f39703715d971cd36412269fd8af03c3164816f1ac685452031f2e61830972\"\n  }\n}\n",
+      "stderr": "",
+      "exited": true
+    },
+    "worker_exit_recorded_by_executor": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+        "case11_interrupt_probe",
+        "--gen-dir",
+        "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone",
+        "--request-file",
+        "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json",
+        "--case-id",
+        "LC6-11-interruption-during-mutation",
+        "--run-id",
+        "LC6-11-interruption-during-mutation-511a318d781b",
+        "--state-dir",
+        "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain"
+      ],
+      "returncode": 143,
+      "stdout": "",
+      "stderr": "",
+      "json_payload": null,
+      "json_parse_error": "empty stdout",
+      "request_file": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json"
+    }
+  },
+  "executor_recovery_result": {
+    "status": "INTERRUPT_PROBE_RECOVERED",
+    "case_id": "LC6-11-interruption-during-mutation",
+    "run_id": "LC6-11-interruption-during-mutation-511a318d781b",
+    "worker_process": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+        "case11_interrupt_probe",
+        "--gen-dir",
+        "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/clone",
+        "--request-file",
+        "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json",
+        "--case-id",
+        "LC6-11-interruption-during-mutation",
+        "--run-id",
+        "LC6-11-interruption-during-mutation-511a318d781b",
+        "--state-dir",
+        "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain"
+      ],
+      "returncode": 143,
+      "stdout": "",
+      "stderr": "",
+      "json_payload": null,
+      "json_parse_error": "empty stdout",
+      "request_file": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_b82ttmmo/case11_interrupt_probe.json"
+    },
+    "checkpoint_path": "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain/mutation_checkpoint.json",
+    "checkpoint_exists": true,
+    "signal_path": "/private/tmp/lc6_case11_real_chain_u9gbmc62/cases/case_11_interruption_during_mutation/work/case11_real_chain/signal_received.json",
+    "signal_exists": true,
+    "executor_recovery_performed": true,
+    "rollback_owner": "executor",
+    "pre_hashes": {
+      ".orphan_repair_disposable_clone.json": "0ecd4f5ee8e25224af958b290991c1aef93f8af9299bfd2b3fe33e1bc806d8b3",
+      "52979101-2767-405b-9274-665cf2f47fb2/data_level0.bin": "a888576697d4b350676dbee2ac509da60b846866550a54106e868a64306822fe",
+      "52979101-2767-405b-9274-665cf2f47fb2/header.bin": "2d6a98cd7a3365856f79a6820ca8ddb3c6b819f2f3eb7dc5a65ae6408fad2755",
+      "52979101-2767-405b-9274-665cf2f47fb2/length.bin": "fc19b1997119425765295aeab72d76faa6927d4f83985d328c26f20468d6cc76",
+      "52979101-2767-405b-9274-665cf2f47fb2/link_lists.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "chroma.sqlite3": "21f39703715d971cd36412269fd8af03c3164816f1ac685452031f2e61830972"
+    },
+    "post_hashes": {
+      ".orphan_repair_disposable_clone.json": "0ecd4f5ee8e25224af958b290991c1aef93f8af9299bfd2b3fe33e1bc806d8b3",
+      "52979101-2767-405b-9274-665cf2f47fb2/data_level0.bin": "a888576697d4b350676dbee2ac509da60b846866550a54106e868a64306822fe",
+      "52979101-2767-405b-9274-665cf2f47fb2/header.bin": "2d6a98cd7a3365856f79a6820ca8ddb3c6b819f2f3eb7dc5a65ae6408fad2755",
+      "52979101-2767-405b-9274-665cf2f47fb2/length.bin": "fc19b1997119425765295aeab72d76faa6927d4f83985d328c26f20468d6cc76",
+      "52979101-2767-405b-9274-665cf2f47fb2/link_lists.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "chroma.sqlite3": "21f39703715d971cd36412269fd8af03c3164816f1ac685452031f2e61830972"
+    }
+  },
+  "no_double_rollback_proof": {
+    "case_id": "LC6-11-interruption-during-mutation",
+    "child_pid": null,
+    "child_exited": false,
+    "child_alive_after_wait": false,
+    "timed_out": false,
+    "snapshot_exists": true,
+    "rollback_owner": "executor",
+    "rollback_invoked": false,
+    "rollback_allowed": false,
+    "rollback_blocked_reason": "executor-owned restoration after controlled worker failure",
+    "rollback_result": null
+  },
+  "restored_synthetic_fixture_inventory": {
+    ".orphan_repair_disposable_clone.json": "0ecd4f5ee8e25224af958b290991c1aef93f8af9299bfd2b3fe33e1bc806d8b3",
+    "52979101-2767-405b-9274-665cf2f47fb2/data_level0.bin": "a888576697d4b350676dbee2ac509da60b846866550a54106e868a64306822fe",
+    "52979101-2767-405b-9274-665cf2f47fb2/header.bin": "2d6a98cd7a3365856f79a6820ca8ddb3c6b819f2f3eb7dc5a65ae6408fad2755",
+    "52979101-2767-405b-9274-665cf2f47fb2/length.bin": "fc19b1997119425765295aeab72d76faa6927d4f83985d328c26f20468d6cc76",
+    "52979101-2767-405b-9274-665cf2f47fb2/link_lists.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "chroma.sqlite3": "21f39703715d971cd36412269fd8af03c3164816f1ac685452031f2e61830972"
+  },
+  "production_before_after_hashes": {
+    "before": {
+      "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "embedded": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+        "exists": true,
+        "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      "chroma_sqlite3": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+        "exists": true,
+        "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      "opened_chroma": false,
+      "capture_mode": "read-only file hash"
+    },
+    "after": {
+      "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "embedded": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+        "exists": true,
+        "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      "chroma_sqlite3": {
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+        "exists": true,
+        "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      "opened_chroma": false,
+      "capture_mode": "read-only file hash"
+    },
+    "case_evidence": {
+      "before": {
+        "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "embedded": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+          "exists": true,
+          "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+        },
+        "chroma_sqlite3": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+          "exists": true,
+          "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+        },
+        "opened_chroma": false,
+        "capture_mode": "read-only file hash"
+      },
+      "after": {
+        "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "embedded": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+          "exists": true,
+          "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+        },
+        "chroma_sqlite3": {
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+          "exists": true,
+          "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+        },
+        "opened_chroma": false,
+        "capture_mode": "read-only file hash"
+      },
+      "match": true,
+      "opened_chroma": false,
+      "fail_closed_on_mismatch": false
+    }
+  },
+  "exact_tests_run": [
+    "python -m py_compile lc6_failure_injection.py orphan_repair_executor.py chroma_worker.py",
+    "real three-process synthetic chain: harness -> orphan_repair_executor.py interrupt-probe -> chroma_worker.py case11_interrupt_probe",
+    "checkpoint identity verification before signal",
+    "executor-owned recovery and no-double-rollback verification",
+    "production read-only hash capture before and after"
+  ],
+  "remaining_blockers": [],
+  "current_sha256sums_mismatches": [
+    {
+      "file": "chroma_worker.py",
+      "expected_sha256": "f788ceb722455d3a75b0305bb7d1b10fe6416171a328298b7c6a5497379e7d0c",
+      "actual_sha256": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513",
+      "status": "mismatch"
+    },
+    {
+      "file": "lc5_five_cycle_rehearsal.py",
+      "expected_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050",
+      "status": "mismatch"
+    },
+    {
+      "file": "lc6_case11_interruption_mechanism_preflight_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "49d07f8ebc1ece64b2dd6db21a580013a01e58789938dd520367b390e01345d5",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection.py",
+      "expected_sha256": null,
+      "actual_sha256": "6be27e0c923a83e1f0b64274dd8296aabcf4e0223bb62e20f1b7b9c3c1516594",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection_harness_validation_correction_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "b452bc2e7995857a347aa07e78b9991b882d6bd2852f3257169652b252e16d15",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "lc6_failure_injection_harness_validation_report.json",
+      "expected_sha256": null,
+      "actual_sha256": "0a4d0178fffb5da8d4a7e8e307c1cfec21f3b091cddb7675dea9914f039d57cc",
+      "status": "absent_from_sha256sums"
+    },
+    {
+      "file": "orphan_repair_common.py",
+      "expected_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef",
+      "status": "mismatch"
+    },
+    {
+      "file": "orphan_repair_executor.py",
+      "expected_sha256": "311672d01f22e72b910eab1addc76792f1d63a85fe3b3d9d90812c4728f96205",
+      "actual_sha256": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+      "status": "mismatch"
+    }
+  ],
+  "confirmation": {
+    "no_real_lc6_case_ran": true,
+    "no_real_production_action_ran": true,
+    "no_production_selection_changed": true,
+    "no_source_document_changed": true,
+    "synthetic_fixture_only": true,
+    "used_actual_lc4_baseline": false
+  },
+  "durable_evidence_dir": "/private/tmp/lc6_case11_real_chain_u9gbmc62/run_report/cases/LC6-11-interruption-during-mutation",
+  "durable_evidence_inventory": [
+    {
+      "relpath": "case11_interrupt_checkpoint.json",
+      "bytes": 1176,
+      "sha256": "dbb21815c6866e6670bbb14fd04964e3c6b9452c6857ee8b3ac53e231f142406"
+    },
+    {
+      "relpath": "case11_interrupt_executor_process.json",
+      "bytes": 3402,
+      "sha256": "3743bb644619a81c4a39380131990f3751e5ee9135a4a0eee17932d86c873ff3"
+    },
+    {
+      "relpath": "case11_interrupt_observed.json",
+      "bytes": 11978,
+      "sha256": "03cb2e6f1f6c86a8d35d924ccdcc25a0f7c626218f52fdd3765022f349029a05"
+    },
+    {
+      "relpath": "case11_interrupt_signal.json",
+      "bytes": 1143,
+      "sha256": "f5ee41956e614c778b03c458a5dd76ad2564d8bd31b0bb0dc9a5e92977bdb8dd"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1662,
+      "sha256": "5bc4b21a4c4fdb69c0dbae0399b0090c354924deb25ce058966a871752e6f3f7"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 21122,
+      "sha256": "51e89bb9d12305e74f5cef96075cc66863ce82c18e17af9e8e1c3386dd711dad"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2361,
+      "sha256": "a2ff98acf68dd8f72c447008cca9d35498e8e0c11e366ff5f0602ef2aaca890f"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4074,
+      "sha256": "b5dc0e2112ffc725e2b2108b95a9667db8fd715c3089960dbf9ac4e2eec73db4"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 87,
+      "sha256": "217d6c1a7f7d41358e8701e85ac90ff2d493ffe807c1c17c50026f47e0011322"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 96,
+      "sha256": "552f613b5d39bd7a1c1aec582f691400ca63e81d876ef09d7d56ee449af8e29a"
+    },
+    {
+      "relpath": "interrupt_probe_result.json",
+      "bytes": 3132,
+      "sha256": "661878f53e7dfdae2a85db6a93984265da5f8209ab19067a8652a3efeeb29041"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "hook_validation": {
+    "supported_hooks_expected": [
+      "failure_after_retirement",
+      "failure_before_first_mutation",
+      "failure_before_retirement",
+      "failure_during_alias_collapse",
+      "failure_halfway_through_deterministic",
+      "forced_doctor_failure",
+      "forced_retrieval_failure",
+      "interruption_during_execution"
+    ],
+    "checks": {
+      "failure_before_first_mutation": true,
+      "failure_halfway_through_deterministic": true,
+      "failure_during_alias_collapse": true,
+      "failure_before_retirement": true,
+      "failure_after_retirement": true,
+      "forced_doctor_failure": true,
+      "forced_retrieval_failure": true,
+      "interruption_during_execution": true
+    },
+    "all_supported_hooks_confirmed": true
+  }
+}

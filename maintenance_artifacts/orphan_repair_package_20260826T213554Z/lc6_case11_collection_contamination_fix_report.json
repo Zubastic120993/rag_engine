@@ -1,0 +1,177 @@
+{
+  "final_status": "LC6_CASE11_COLLECTION_FIX_PASS_READY_FOR_SINGLE_CASE_RETRY_APPROVAL",
+  "changed_file_hashes": {
+    "lc6_failure_injection.py": {
+      "before_sha256": "ab3e70bc256d7768c7c873a7089265e8e0195abd987d085728b1f1feeeb15bc0",
+      "after_sha256": "641296a51de5952879e16aad9464efe2ccdf8b31d94c7cae67b2f34dcb6bef94"
+    },
+    "orphan_repair_executor.py": {
+      "before_sha256": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+      "after_sha256": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945"
+    },
+    "chroma_worker.py": {
+      "before_sha256": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513",
+      "after_sha256": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584"
+    }
+  },
+  "approved_chunk_identity": {
+    "digest": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+    "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+    "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+    "tracker_collection": "maker-manuals",
+    "derived_collection": "maker-manuals",
+    "authorization_basis": "first bounded chunk ID from approved manifest deterministic affected set"
+  },
+  "exact_tests_run": [
+    "python -m py_compile lc6_failure_injection.py orphan_repair_executor.py chroma_worker.py",
+    "manifest-driven approved chunk resolution from atomic_orphan_repair_manifest.json",
+    "synthetic exact top-level CLI dispatch using one langchain collection and approved chunk ID only",
+    "single-collection precondition validation before mutation",
+    "checkpoint/signal/exit/recovery validation through exact dispatch path",
+    "post-recovery collection-set and metadata restoration validation",
+    "read-only production hash comparison before/after synthetic run"
+  ],
+  "synthetic_dispatch": {
+    "tmp_parent": "/private/tmp/lc6_case11_collection_fix_3fVVt0",
+    "command": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "--execute",
+      "--case-id",
+      "LC6-11-interruption-during-mutation",
+      "--test-baseline-dir",
+      "/private/tmp/lc6_case11_collection_fix_3fVVt0/synthetic_baseline",
+      "--test-package-dir",
+      "/private/tmp/lc6_case11_collection_fix_3fVVt0/synthetic_package",
+      "--tmp-parent",
+      "/private/tmp/lc6_case11_collection_fix_3fVVt0",
+      "--json"
+    ],
+    "dispatch_returned_successfully": true,
+    "exact_branch_used": {
+      "cli_case_id": "LC6-11-interruption-during-mutation",
+      "contract_case_id": "LC6-11-interruption-during-mutation",
+      "harness_mechanic": "harness_fixture:interruption_during_execution",
+      "executor_action": "interrupt-probe",
+      "worker_action_contains_case11_interrupt_probe": true,
+      "old_seed_test_collection_path_used": false
+    }
+  },
+  "collection_sets": {
+    "before": ["langchain"],
+    "during_checkpoint_collection": "langchain",
+    "after": ["langchain"],
+    "collection_set_unchanged": true,
+    "additional_test_collection_created": false,
+    "single_collection_required_and_verified": true
+  },
+  "checkpoint_and_recovery": {
+    "checkpoint_exists": true,
+    "checkpoint_source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+    "checkpoint_worker_pid": 54322,
+    "signal_exists": true,
+    "signal_target_pid": 54322,
+    "executor_pid": 54291,
+    "worker_returncode": 143,
+    "executor_returncode": 0,
+    "executor_recovery_performed": true,
+    "recovery_owner": "executor",
+    "no_double_rollback": true
+  },
+  "restoration_proof": {
+    "pre_post_file_hashes_match": true,
+    "selected_chunk_metadata_matches_original_after_recovery": true,
+    "selected_chunk_metadata_after_recovery": {
+      "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "collection": "maker-manuals",
+      "source": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+    },
+    "selected_chunk_original_metadata_at_checkpoint": {
+      "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "collection": "maker-manuals",
+      "source": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+    },
+    "synthetic_baseline_hashes_restored": true,
+    "wal_shm_absent_after_recovery": true,
+    "lingering_process_or_lock_found": false
+  },
+  "durable_evidence_inventory": {
+    "dir": "/private/tmp/lc6_case11_collection_fix_3fVVt0/run_report/cases/LC6-11-interruption-during-mutation",
+    "files": [
+      "case11_interrupt_checkpoint.json",
+      "case11_interrupt_executor_process.json",
+      "case11_interrupt_observed.json",
+      "case11_interrupt_signal.json",
+      "case_contract.json",
+      "case_report.json",
+      "clone_setup.json",
+      "evidence_inventory.json",
+      "evidence_persistence_verification.json",
+      "execution_log.jsonl",
+      "fixture_setup.json",
+      "interrupt_probe_result.json",
+      "production_hashes_after.json",
+      "production_hashes_before.json"
+    ],
+    "evidence_preserved": true
+  },
+  "production_hashes": {
+    "before": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "after": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "unchanged": true
+  },
+  "failed_real_case_preservation": {
+    "preserved_failed_case_root": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation",
+    "touched_in_this_fix": false
+  },
+  "remaining_blockers": [],
+  "current_sha256sums_mismatches": [
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    },
+    {
+      "path": "orphan_repair_common.py",
+      "listed_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef"
+    },
+    {
+      "path": "lc6_failure_injection.py",
+      "listed_sha256": null,
+      "actual_sha256": "641296a51de5952879e16aad9464efe2ccdf8b31d94c7cae67b2f34dcb6bef94"
+    },
+    {
+      "path": "orphan_repair_executor.py",
+      "listed_sha256": null,
+      "actual_sha256": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945"
+    },
+    {
+      "path": "chroma_worker.py",
+      "listed_sha256": null,
+      "actual_sha256": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584"
+    },
+    {
+      "path": "lc6_case11_collection_contamination_fix_report.json",
+      "listed_sha256": null,
+      "actual_sha256": "to be computed externally after write"
+    }
+  ],
+  "confirmation": {
+    "real_lc6_11_case_rerun": false,
+    "other_lc6_case_ran": false,
+    "production_opened_or_mutated": false,
+    "production_selection_changed": false,
+    "source_documents_changed": false,
+    "final_clean_cycle_run": false,
+    "sha256sums_regenerated": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "final_status": "LC6_CASE11_SINGLE_CASE_FAILURE_ERRATUM_RECORDED",
+  "failed_run_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_single_case_execution_report.json",
+  "failed_run_report_sha256": "206d9c1a2cf769853ffbd425737f77ee17116db7e2c314600f0ef647886461ab",
+  "preserved_failed_case_root": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation",
+  "preserved_failed_case_root_unchanged_in_this_fix": true,
+  "confirmed_defect": {
+    "location": "orphan_repair_executor.py::run_interrupt_probe()",
+    "old_behavior": "called seed_test_collection and created collection 'test' before running case11_interrupt_probe",
+    "observed_failure": "expected one collection, found ['test', 'langchain']"
+  },
+  "correction_summary": {
+    "seed_test_collection_removed_from_real_interrupt_probe_path": true,
+    "approved_manifest_chunk_selected_instead_of_synthetic_id": true,
+    "single-collection precondition_added": true,
+    "checkpoint now records selected chunk original metadata and existing collection identity": true,
+    "synthetic exact-dispatch validation rerun against one langchain collection only": true
+  },
+  "follow_on_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_collection_contamination_fix_report.json"
+}

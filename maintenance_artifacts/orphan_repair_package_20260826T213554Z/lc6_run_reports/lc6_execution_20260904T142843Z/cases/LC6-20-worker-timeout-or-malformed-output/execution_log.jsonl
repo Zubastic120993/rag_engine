@@ -1,0 +1,5 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-188288e0-82a9-4517-8c55-921069b79225"}
+{"event": "mutation_worker_ok", "worker_pid": 90762}
+{"event": "success_validated"}
+{"event": "lock_released"}

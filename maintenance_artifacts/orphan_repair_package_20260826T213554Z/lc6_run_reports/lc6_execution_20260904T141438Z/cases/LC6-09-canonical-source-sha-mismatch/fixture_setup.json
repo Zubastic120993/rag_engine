@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest",
+  "mutations": [
+    "manifest verified_live_sha256 forced invalid in disposable package copy"
+  ]
+}

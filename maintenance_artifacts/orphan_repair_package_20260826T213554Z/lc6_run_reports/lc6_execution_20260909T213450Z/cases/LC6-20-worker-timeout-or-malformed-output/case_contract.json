@@ -1,0 +1,30 @@
+{
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "authoritative_reference": "LC6 specification section 5 case 20",
+  "injected_failure_point": "worker timeout or malformed worker output",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_20_worker_timeout_or_malformed_output/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "timeout/malformed-output harness isolated to disposable scope",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py worker-timeout/malformed-json harness around chroma_worker.py or executor subprocess",
+  "expected_process_exit_result": "controlled failure on timeout or malformed JSON",
+  "expected_fail_closed_behavior": "parent treats missing/malformed output as failure and stops",
+  "expected_filesystem_state": "no unsafe deletion; if mutation had not started clone remains unchanged, otherwise rollback required after worker exit",
+  "expected_chroma_state": "no lingering open-process state; no Component not running allowed in acceptance",
+  "expected_tracker_state": "unchanged or restored baseline after rollback",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "if mutation started, rollback only after worker exit; otherwise refusal-only proof",
+  "expected_residual_state_report": "timeout/malformed-output evidence + worker exit codes",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "timeout_or_malformed_output.json",
+    "execution_log.jsonl",
+    "rollback_validation.json",
+    "worker_exit_codes.json"
+  ],
+  "cleanup_procedure": "delete validated disposable artifacts after evidence capture",
+  "post_cleanup_assertion": "no lingering worker; no unsafe deletion",
+  "production_is_not_a_target": true
+}

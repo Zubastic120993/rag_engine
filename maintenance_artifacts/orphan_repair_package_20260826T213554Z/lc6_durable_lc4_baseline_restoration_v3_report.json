@@ -1,0 +1,99 @@
+{
+  "final_status": "LC6_DURABLE_BASELINE_RESTORED_AND_VERIFIED",
+  "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "durable_baseline_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+  "reconciliation_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_durable_clone_lock_reconciliation_report.json",
+  "lock_removed": true,
+  "lock_contents_before_removal": {
+    "raw": "56221\n1788525066.4143958",
+    "pid": 56221,
+    "timestamp": 1788525066.4143958
+  },
+  "clone_after_lock_removal": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+    "inventory_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "marker_exists": false,
+    "marker_sha256": null,
+    "activity": {
+      "all_ps_matches": [],
+      "external_ps_matches": [],
+      "all_open_write_processes": [],
+      "external_open_write_processes": []
+    },
+    "problems": []
+  },
+  "marker": {
+    "clone_id": "lc4-durable-lc4_restored_baseline_20260904T123103Z",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T12:42:54Z",
+    "purpose": "VERIFIED_DISPOSABLE_BASELINE",
+    "status": "VERIFIED_DISPOSABLE_BASELINE",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "source_core_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "expected_chunk_count": 125291,
+    "expected_orphan_count": 55,
+    "disposable": true,
+    "unpromoted": true,
+    "target_generation": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+    "durable_baseline_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+    "production_selection_prohibited": true,
+    "notes": "Durable disposable governed test baseline only. Must never be used as production or active-generation selection target."
+  },
+  "marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+  "clone_after_marker": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+    "inventory_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "marker_exists": true,
+    "marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+    "activity": {
+      "all_ps_matches": [],
+      "external_ps_matches": [],
+      "all_open_write_processes": [],
+      "external_open_write_processes": []
+    },
+    "problems": []
+  },
+  "production_unchanged_artifact": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_production_unchanged_after_durable_baseline_restoration_v3.json",
+  "failed_clone_preserved": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation",
+  "blockers": []
+}

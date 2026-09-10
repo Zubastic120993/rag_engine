@@ -1,0 +1,22 @@
+{
+  "report_name": "lc6_case20_injection_fix_report",
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "status": "FIX_APPLIED_VALIDATION_PASS",
+  "start_time_utc": "2026-09-09T21:28:08Z",
+  "corrected_source_hashes": {
+    "lc6_failure_injection.py": "be1bce7e6e7a0fcffff835ec093cd8a63e69755190b30b67c7caee84b2ddbc3b",
+    "orphan_repair_executor.py": "6ac35f7efdd35ab373a55cb733c3d757ca3eed5ef526571a4288b3952028891e",
+    "chroma_worker.py": "845d5a653593fc002b5ce4c845f74f3254b8a05430f474020ec7c2aa42850225",
+    "orphan_repair_common.py": "174c1aed126bf961b16797444c7146163b3bf7a38a37bdca342e8dc5e7208e16"
+  },
+  "diagnosis_report_sha256": "a44c70d1d8a5935c6fbb66157fe1b1a734fbae52a7d2569e155f5774e99c4c30",
+  "minimal_correction_summary": [
+    "LC6-20 fixture now passes inject=lc6_case20_malformed_worker_output with a case-bound run_id.",
+    "Executor forwards case_id/run_id and a worker request containing clone_path, state_dir, and expected_worker_action.",
+    "worker_json passes identity arguments to chroma_worker only when the LC6-20 request key is present.",
+    "chroma_worker emits deterministic malformed stdout only after exact case/run/path/action/disposable checks pass.",
+    "Executor catches WorkerError, restores its own snapshot, and returns APPLY_REJECTED."
+  ],
+  "ordinary_production_execution_exposure": "No production path or normal apply path can trigger the hook without the LC6-20 request key, exact case_id, run_id, clone_path, action, state_dir, and disposable marker.",
+  "validation_status": "PASS"
+}

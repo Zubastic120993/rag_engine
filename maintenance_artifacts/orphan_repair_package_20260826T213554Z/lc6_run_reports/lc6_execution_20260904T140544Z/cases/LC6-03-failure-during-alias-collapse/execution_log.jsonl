@@ -1,0 +1,3 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-03-failure-during-alias-collapse-14a80dd7-ed6f-4590-b58e-df085e66fafd"}
+{"event": "lock_released"}

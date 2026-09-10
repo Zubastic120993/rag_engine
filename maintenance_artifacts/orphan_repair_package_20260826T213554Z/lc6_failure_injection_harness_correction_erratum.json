@@ -1,0 +1,14 @@
+{
+  "status": "erratum",
+  "subject": "LC6 correction-report hash metadata",
+  "affected_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection_harness_validation_correction_report.json",
+  "affected_section": "current_sha256sums_mismatches",
+  "stale_internal_value_recorded_in_report": "b6c592243879be481be60014e1d3678a979ea9cd9bd4f8f6020900f3db1c270e",
+  "current_external_sha256_after_write": "b452bc2e7995857a347aa07e78b9991b882d6bd2852f3257169652b252e16d15",
+  "harness_file_current_external_sha256": "7c9f083fe3b54aa1e298ac0c8ea818639307e186d77884e112d6e68dc296f080",
+  "erratum_note": "A JSON report cannot reliably contain its own final whole-file SHA-256. The complete-file hash must be computed externally after the file write is finished.",
+  "no_actual_injection_ran": true,
+  "no_production_action_ran": true,
+  "production_chroma_not_opened": true,
+  "sha256sums_not_regenerated": true
+}

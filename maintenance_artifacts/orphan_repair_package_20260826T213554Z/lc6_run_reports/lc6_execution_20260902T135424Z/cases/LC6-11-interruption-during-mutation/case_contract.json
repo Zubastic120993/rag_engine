@@ -1,0 +1,32 @@
+{
+  "case_id": "LC6-11-interruption-during-mutation",
+  "authoritative_reference": "LC6 specification section 5 case 11",
+  "injected_failure_point": "interruption during mutation",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_11_interruption_during_mutation/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "valid marker/schema/checksum",
+    "rollback snapshot captured",
+    "planned worker PID capture",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py interruption harness terminating disposable worker only after mutation begins",
+  "expected_process_exit_result": "parent detects worker termination and records controlled failure",
+  "expected_fail_closed_behavior": "rollback begins only after all worker processes have exited",
+  "expected_filesystem_state": "post-rollback clone equals baseline inventory",
+  "expected_chroma_state": "no partial residual state after rollback",
+  "expected_tracker_state": "restored baseline tracker",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "wait for full worker exit, then restore snapshot and verify reopen",
+  "expected_residual_state_report": "interruption timing + PID + rollback sequencing evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "process_termination_log.json",
+    "execution_log.jsonl",
+    "rollback_validation.json",
+    "worker_exit_codes.json"
+  ],
+  "cleanup_procedure": "delete validated disposable artifacts after rollback proof",
+  "post_cleanup_assertion": "no lingering worker; production unchanged",
+  "production_is_not_a_target": true
+}

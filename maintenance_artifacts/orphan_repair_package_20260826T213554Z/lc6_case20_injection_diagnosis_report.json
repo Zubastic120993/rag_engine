@@ -1,0 +1,45 @@
+{
+  "report_name": "lc6_case20_injection_diagnosis_report",
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "status": "DIAGNOSIS_COMPLETE_BEFORE_EDIT",
+  "scope": "LC6-20 only",
+  "verified_current_inputs": {
+    "lc6_failure_injection.py": "285569d40ab0a3c9e952e0e3c5df828244db0142c705e7c0d5e42c2c7875a462",
+    "orphan_repair_executor.py": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945",
+    "chroma_worker.py": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584",
+    "failed_lc6_20_report": "161fcdd32a6d975526762772d672b1869d52a49ec39304bf86dda4179903f3a3",
+    "v4_aggregate": "6175a6d6b7b86dc392f733899f4925c09ca6bca675e2e578cd0de6555d373880"
+  },
+  "authoritative_contract": {
+    "expected_process_exit_result": "controlled failure on timeout or malformed JSON",
+    "expected_fail_closed_behavior": "parent treats missing/malformed output as failure and stops",
+    "expected_recovery_rollback_action": "if mutation started, rollback only after worker exit; otherwise refusal-only proof",
+    "evidence_files_to_capture": [
+      "case_report.json",
+      "timeout_or_malformed_output.json",
+      "execution_log.jsonl",
+      "rollback_validation.json",
+      "worker_exit_codes.json"
+    ]
+  },
+  "trace": {
+    "case_contract": "lc6_authoritative_failure_case_contract.json lines 585-612 define LC6-20 as worker timeout or malformed worker output and require controlled failure evidence.",
+    "cli_dispatch": "lc6_failure_injection.py main builds case_ids from --case-id and calls execute_case_sequence; no --all is required for LC6-20.",
+    "harness_mechanic": "MECHANIC_BY_CASE_ID maps LC6-20 to harness_fixture:worker_timeout_or_malformed_output.",
+    "fixture_setup": "setup_case_fixture prepares a disposable clone and records fixture['runner_mode']='malformed_output'.",
+    "executor_subprocess_call": "execute_fixture_case for LC6-20 calls executor_apply(runtime) without any inject argument or case-bound malformed-output context.",
+    "executor_worker_call": "orphan_repair_executor.py mutate_generation calls worker_json(gen_dir, 'apply_manifest_ops', {'operations': manifest['operations'], 'inject': inject}, timeout=900). Because inject is null, the worker executes normal apply_manifest_ops.",
+    "worker_output": "chroma_worker.py action_apply_manifest_ops returns normal valid JSON with status ok; main prints valid JSON.",
+    "json_parsing": "orphan_repair_common.worker_json receives valid JSON and returns payload; orphan_repair_executor.py then validates success and prints APPLY_OK.",
+    "rollback_and_evidence": "lc6_failure_injection.py detects expected_behavior_confirmed=false after APPLY_OK, preserves the clone, and performs harness rollback because a snapshot exists and the child exited. Evidence survives, but the contract-required timeout_or_malformed_output evidence is not produced by the real worker boundary."
+  },
+  "root_cause": "The LC6-20 fixture only sets runner_mode='malformed_output' in harness state. That value is never consumed by executor_apply, orphan_repair_executor.py, orphan_repair_common.worker_json, or chroma_worker.py. Therefore the real executor/worker path receives no malformed-output or timeout instruction and completes the ordinary apply path, producing APPLY_OK.",
+  "required_minimal_correction": "Add a case-bound, test-only malformed-worker-output injection that is passed from LC6-20 harness dispatch to orphan_repair_executor.py, then through orphan_repair_common.worker_json to chroma_worker.py with strict identity checks for case_id, run_id, disposable clone path, and expected worker action. The worker must emit deterministic malformed stdout only after the identity and disposable-clone guard match. The executor must observe the malformed stdout through the real worker_json JSON parser, return APPLY_REJECTED, and restore its snapshot. Ordinary production execution must remain inaccessible to this hook.",
+  "safety_boundary": {
+    "production_mutation_authorized": false,
+    "production_selection_change_authorized": false,
+    "final_clean_cycle_authorized": false,
+    "sha256sums_regeneration_authorized": false,
+    "source_document_modification_authorized": false
+  }
+}

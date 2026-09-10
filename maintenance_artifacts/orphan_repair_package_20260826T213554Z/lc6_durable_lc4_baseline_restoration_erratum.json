@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "supersedes_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_durable_lc4_baseline_restoration_report.json",
+  "reason": "The first durable-baseline restoration report treated the restoration process self-held ingest lock and self lockfile open-write handle as external blockers.",
+  "correction_rule": "A successfully acquired lock held by the restoration PID is expected during copy and must not be classified as an external lock holder or external open-write process.",
+  "restoration_pid": 56221,
+  "new_v2_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_durable_lc4_baseline_restoration_v2_report.json"
+}

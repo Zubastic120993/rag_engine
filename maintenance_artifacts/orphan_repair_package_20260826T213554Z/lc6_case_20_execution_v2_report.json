@@ -1,0 +1,224 @@
+{
+  "report_name": "lc6_case_20_execution_v2_report",
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "result": "PASS",
+  "final_status": "LC6_CASE20_PASS",
+  "started_utc": "2026-09-09T21:34:47Z",
+  "tmp_parent": "/private/tmp/lc6_case20_retry_visxn11o",
+  "external_baseline": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "command": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+    "--execute",
+    "--case-id",
+    "LC6-20-worker-timeout-or-malformed-output",
+    "--baseline-dir",
+    "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "--tmp-parent",
+    "/private/tmp/lc6_case20_retry_visxn11o",
+    "--json"
+  ],
+  "command_returncode": 0,
+  "stdout_path": "/private/tmp/lc6_case20_retry_visxn11o/lc6_case20_cli_output.json",
+  "stderr": "",
+  "no_all_flag_used": true,
+  "case_summary": {
+    "observed_status": "APPLY_REJECTED",
+    "evaluation": {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "expected_process_exit_result": "controlled failure on timeout or malformed JSON",
+      "observed_summary": "APPLY_REJECTED",
+      "expected_behavior_confirmed": true
+    },
+    "rollback": {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "child_pid": 54404,
+      "child_exited": true,
+      "child_alive_after_wait": false,
+      "timed_out": false,
+      "snapshot_exists": true,
+      "rollback_owner": "executor",
+      "rollback_invoked": false,
+      "rollback_allowed": false,
+      "rollback_blocked_reason": "executor-owned restoration after controlled worker failure",
+      "rollback_result": null
+    },
+    "cleanup": {
+      "callbacks": [],
+      "clone_preserved": false,
+      "case_root_removed": true,
+      "durable_evidence_survived_cleanup": true,
+      "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260909T213450Z/cases/LC6-20-worker-timeout-or-malformed-output",
+      "durable_evidence_verification": {
+        "required_files": [
+          "case_contract.json",
+          "case_report.json",
+          "evidence_inventory.json",
+          "production_hashes_before.json",
+          "production_hashes_after.json",
+          "fixture_setup.json",
+          "clone_setup.json",
+          "executor_apply_process.json",
+          "executor_apply_observed.json",
+          "worker_malformed_output_emitted.json",
+          "timeout_or_malformed_output.json",
+          "worker_exit_codes.json"
+        ],
+        "checks": [
+          {
+            "file": "case_contract.json",
+            "present": true
+          },
+          {
+            "file": "case_report.json",
+            "present": true
+          },
+          {
+            "file": "evidence_inventory.json",
+            "present": true
+          },
+          {
+            "file": "production_hashes_before.json",
+            "present": true
+          },
+          {
+            "file": "production_hashes_after.json",
+            "present": true
+          },
+          {
+            "file": "fixture_setup.json",
+            "present": true
+          },
+          {
+            "file": "clone_setup.json",
+            "present": true
+          },
+          {
+            "file": "executor_apply_process.json",
+            "present": true
+          },
+          {
+            "file": "executor_apply_observed.json",
+            "present": true
+          },
+          {
+            "file": "worker_malformed_output_emitted.json",
+            "present": true
+          },
+          {
+            "file": "timeout_or_malformed_output.json",
+            "present": true
+          },
+          {
+            "file": "worker_exit_codes.json",
+            "present": true
+          }
+        ],
+        "missing": [],
+        "ok": true
+      }
+    }
+  },
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260909T213450Z/cases/LC6-20-worker-timeout-or-malformed-output",
+  "timeout_or_malformed_output": {
+    "case_id": "LC6-20-worker-timeout-or-malformed-output",
+    "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402",
+    "expected_worker_action": "apply_manifest_ops",
+    "observed_status": "APPLY_REJECTED",
+    "malformed_output_observed": true,
+    "success_cannot_be_returned": true,
+    "executor_worker_boundary_exercised": true,
+    "worker_state_dir": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/work/lc6_case20_malformed_worker_output",
+    "worker_state_payload": {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402",
+      "clone_path": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/clone",
+      "worker_pid": 55171,
+      "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "worker_action": "apply_manifest_ops",
+      "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-17a5896e-d69f-4269-b12b-52a709125589",
+      "opened_chroma": false,
+      "malformed_output_emitted": true
+    }
+  },
+  "worker_malformed_output_evidence": {
+    "case_id": "LC6-20-worker-timeout-or-malformed-output",
+    "run_id": "LC6-20-worker-timeout-or-malformed-output-dbfedb16e402",
+    "clone_path": "/private/tmp/lc6_case20_retry_visxn11o/case_20_worker_timeout_or_malformed_output/clone",
+    "worker_pid": 55171,
+    "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+    "worker_action": "apply_manifest_ops",
+    "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-17a5896e-d69f-4269-b12b-52a709125589",
+    "opened_chroma": false,
+    "malformed_output_emitted": true
+  },
+  "apply_failure_summary": {
+    "status": "APPLY_REJECTED",
+    "inject": "lc6_case20_malformed_worker_output",
+    "error_type": "WorkerError",
+    "error": "worker apply_manifest_ops malformed JSON stdout: Expecting property name enclosed in double quotes: line 1 column 2 (char 1): {lc6_case20_malformed_worker_output:"
+  },
+  "baseline_state_before": {
+    "chunks": 125291,
+    "orphan_paths": 55,
+    "collections": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal": false,
+    "shm": false,
+    "lock": false,
+    "file_count": 20,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+  },
+  "post_clone_exists": false,
+  "post_clone_state": null,
+  "restored_core_hashes_from_apply_failure": true,
+  "production_before": {
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "production_after": {
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "lingering_processes": [],
+  "checks": {
+    "no_all_flag_used": true,
+    "only_lc6_20_selected": true,
+    "cli_returncode_zero": true,
+    "expected_malformed_rejection": true,
+    "never_apply_ok": true,
+    "recovery_owner_executor_no_double_rollback": true,
+    "durable_evidence_survived": true,
+    "disposable_restored_or_cleaned_after_restoration": true,
+    "baseline_inventory_verified_125291_55_langchain": true,
+    "no_lock_wal_shm_remaining": true,
+    "no_lingering_process": true,
+    "production_hashes_unchanged": true,
+    "production_selection_unchanged": true,
+    "failed_report_not_overwritten": true
+  },
+  "raw_execution_summary_file": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260909T213450Z/execution_summary.json",
+  "prior_failed_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_20_execution_report.json",
+  "prior_failed_report_sha256": "161fcdd32a6d975526762772d672b1869d52a49ec39304bf86dda4179903f3a3",
+  "final_clean_cycle_run": false,
+  "package_sealed": false,
+  "sha256sums_regenerated": false,
+  "production_modified": false,
+  "production_selection_modified": false,
+  "source_documents_modified": false
+}

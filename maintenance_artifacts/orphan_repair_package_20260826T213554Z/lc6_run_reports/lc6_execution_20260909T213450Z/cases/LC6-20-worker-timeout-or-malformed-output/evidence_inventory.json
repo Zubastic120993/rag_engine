@@ -1,0 +1,92 @@
+{
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260909T213450Z/cases/LC6-20-worker-timeout-or-malformed-output",
+  "files": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2922,
+      "sha256": "76cfee86af2bab5d87c324f5b760ce133cfe0a29e964f0d5a9a8046c06aa32b7"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1791,
+      "sha256": "fa69dbb8a4230880874e82fb124f0875344ac43626fa312429e80d79c8268386"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 26493,
+      "sha256": "f50f3fab957780f7ba97fcf03486ec657b09cbb5a331df6c5c86aeb3f9cce229"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1200,
+      "sha256": "e7eb7cc66e74a9590af1791397c1a924a0988c0346929926c967d7d4c079573f"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 3097,
+      "sha256": "6fcd7f6cb1aed28d6863c93face3f813b1153f173b9326f32540fffecdd32fbe"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 5230,
+      "sha256": "c2c4dc77191059f626df5d5905579bc7e299803380ae5335afd586704cfbf202"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 189,
+      "sha256": "e8ec8a154d766507957971c647c458beeb28af862f46dc5bda4400162fa0ccfb"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 10350,
+      "sha256": "14d6258fa49462dbc99b99a9ec06ec8dccfe670a195aca70d925e8defd2d3d7d"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 7135,
+      "sha256": "08e623bc27917691bba94183e8e5acb6502322558b7379dd87ed27d13c7a2b57"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 412,
+      "sha256": "7076137efc8b7ff939548bbc86dc60874876e8edcc2ac3b8f6f6a83e8f2fa98b"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 267,
+      "sha256": "5b55beae79658e3d54e0916bdf6312ad2523f7f6ace30a166a8db016b0f876dc"
+    },
+    {
+      "relpath": "lc6_case20_worker_request.json",
+      "bytes": 427,
+      "sha256": "d93b6f9f46a263ef4e9018aa5320da1a06043f1a21aa0b6ecf0ea0f926caac6c"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "timeout_or_malformed_output.json",
+      "bytes": 1152,
+      "sha256": "69efaab07930efea4bf94a4d61ee2dbffe33a0a055f391dcc4380d5a3115b63a"
+    },
+    {
+      "relpath": "worker_exit_codes.json",
+      "bytes": 8270,
+      "sha256": "8a2bf560e766bc2139335b6d9df9da22a2a8fc92c61ecb2ea69164c974eb0042"
+    },
+    {
+      "relpath": "worker_malformed_output_emitted.json",
+      "bytes": 617,
+      "sha256": "57015f9c4c7a73c82ad7d3fee0c78a6d3b57dd3a7c29f27a99770a4e2abc31a3"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "clone_path": "/private/tmp/lc6_case_08_i7ivvg02/case_08_stale_tracker_store_baseline_hash/clone",
+  "work_path": "/private/tmp/lc6_case_08_i7ivvg02/case_08_stale_tracker_store_baseline_hash/work",
+  "baseline_clone_source": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker": {
+    "clone_id": "lc6-LC6-08-stale-tracker-store-baseline-hash-657d8a4d-ab70-480f-bc06-e5aa4963603d",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T14:14:32Z",
+    "purpose": "LC6_LC6-08-stale-tracker-store-baseline-hash",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "target_generation": "/private/tmp/lc6_case_08_i7ivvg02/case_08_stale_tracker_store_baseline_hash/clone",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "validated_clone_id": "lc6-LC6-08-stale-tracker-store-baseline-hash-657d8a4d-ab70-480f-bc06-e5aa4963603d"
+}

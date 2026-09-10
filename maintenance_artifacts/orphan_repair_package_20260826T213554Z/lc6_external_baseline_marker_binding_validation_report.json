@@ -1,0 +1,688 @@
+{
+  "final_status": "LC6_EXTERNAL_BASELINE_MARKER_BINDING_FIX_VALIDATED",
+  "fix_report_sha256": "122b9c86969af5e071cf1f721d9b675f4b5fb2594fa2d752aa1f8d3f5dc78e49",
+  "erratum_sha256": "474ada2d586ea64ee7b57da99db8088b786ed94264f91031f965612908047198",
+  "harness_before_sha256": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33",
+  "harness_after_sha256": "285569d40ab0a3c9e952e0e3c5df828244db0142c705e7c0d5e42c2c7875a462",
+  "compile": {
+    "cmd": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "-m",
+      "py_compile",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "help": {
+    "cmd": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "--help"
+    ],
+    "rc": 0,
+    "stdout": "usage: lc6_failure_injection.py [-h] [--contract-file CONTRACT_FILE]\n                                [--case-id CASE_ID] [--all] [--execute]\n                                [--json] [--validate-harness]\n                                [--validate-case11-preflight]\n                                [--report-file REPORT_FILE]\n                                [--tmp-parent TMP_PARENT]\n                                [--baseline-dir BASELINE_DIR]\n                                [--test-baseline-dir TEST_BASELINE_DIR]\n                                [--test-package-dir TEST_PACKAGE_DIR]\n\nLC6 failure-injection harness\n\noptions:\n  -h, --help            show this help message and exit\n  --contract-file CONTRACT_FILE\n  --case-id CASE_ID\n  --all\n  --execute\n  --json\n  --validate-harness    run non-mutating harness validations and write\n                        validation report\n  --validate-case11-preflight\n                        run non-mutating LC6-11 interruption mechanism\n                        preflight validation and write report\n  --report-file REPORT_FILE\n  --tmp-parent TMP_PARENT\n  --baseline-dir BASELINE_DIR\n  --test-baseline-dir TEST_BASELINE_DIR\n  --test-package-dir TEST_PACKAGE_DIR\n",
+    "stderr": ""
+  },
+  "positive_dry_run": {
+    "cmd": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+      "--case-id",
+      "LC6-01-failure-before-first-mutation",
+      "--baseline-dir",
+      "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "--json"
+    ],
+    "rc": 0,
+    "stdout": "{\n  \"status\": \"ok\",\n  \"contract_summary\": {\n    \"case_count\": 20,\n    \"case_ids\": [\n      \"LC6-01-failure-before-first-mutation\",\n      \"LC6-02-failure-midway-deterministic-repoints\",\n      \"LC6-03-failure-during-alias-collapse\",\n      \"LC6-04-failure-immediately-before-c1210-retirement\",\n      \"LC6-05-failure-immediately-after-c1210-retirement\",\n      \"LC6-06-forced-doctor-failure\",\n      \"LC6-07-forced-retrieval-acceptance-failure\",\n      \"LC6-08-stale-tracker-store-baseline-hash\",\n      \"LC6-09-canonical-source-sha-mismatch\",\n      \"LC6-10-candidate-lock-contention\",\n      \"LC6-11-interruption-during-mutation\",\n      \"LC6-12-direct-active-production-target\",\n      \"LC6-13-legacy-rag-db-target\",\n      \"LC6-14-generations-root-target\",\n      \"LC6-15-ce-library-root-target\",\n      \"LC6-16-rerun-against-already-repaired-clone\",\n      \"LC6-17-invalid-or-missing-disposable-marker\",\n      \"LC6-18-malformed-or-checksum-invalid-manifest\",\n      \"LC6-19-unexpected-wal-shm-state\",\n      \"LC6-20-worker-timeout-or-malformed-output\"\n    ],\n    \"schema_checks\": [\n      {\n        \"case_id\": \"LC6-01-failure-before-first-mutation\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-02-failure-midway-deterministic-repoints\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-03-failure-during-alias-collapse\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-04-failure-immediately-before-c1210-retirement\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-05-failure-immediately-after-c1210-retirement\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-06-forced-doctor-failure\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-07-forced-retrieval-acceptance-failure\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-08-stale-tracker-store-baseline-hash\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-09-canonical-source-sha-mismatch\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-10-candidate-lock-contention\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-11-interruption-during-mutation\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-12-direct-active-production-target\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-13-legacy-rag-db-target\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-14-generations-root-target\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-15-ce-library-root-target\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-16-rerun-against-already-repaired-clone\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-17-invalid-or-missing-disposable-marker\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-18-malformed-or-checksum-invalid-manifest\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-19-unexpected-wal-shm-state\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      },\n      {\n        \"case_id\": \"LC6-20-worker-timeout-or-malformed-output\",\n        \"schema_ok\": true,\n        \"missing_keys\": [],\n        \"has_preconditions\": true,\n        \"has_expected_result\": true,\n        \"has_evidence_outputs\": true,\n        \"has_cleanup_policy\": true,\n        \"has_stop_condition\": true\n      }\n    ],\n    \"duplicates\": [],\n    \"missing_mechanics\": []\n  },\n  \"execution_guard\": {\n    \"ok\": true,\n    \"reason\": \"dry-run mode; no case execution permitted\"\n  },\n  \"hook_validation\": {\n    \"supported_hooks_expected\": [\n      \"failure_after_retirement\",\n      \"failure_before_first_mutation\",\n      \"failure_before_retirement\",\n      \"failure_during_alias_collapse\",\n      \"failure_halfway_through_deterministic\",\n      \"forced_doctor_failure\",\n      \"forced_retrieval_failure\",\n      \"interruption_during_execution\"\n    ],\n    \"checks\": {\n      \"failure_before_first_mutation\": true,\n      \"failure_halfway_through_deterministic\": true,\n      \"failure_during_alias_collapse\": true,\n      \"failure_before_retirement\": true,\n      \"failure_after_retirement\": true,\n      \"forced_doctor_failure\": true,\n      \"forced_retrieval_failure\": true,\n      \"interruption_during_execution\": true\n    },\n    \"all_supported_hooks_confirmed\": true\n  },\n  \"forbidden_target_refusal_probes\": [\n    {\n      \"target\": \"/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604\",\n      \"status\": \"refused\",\n      \"opened_chroma\": false,\n      \"reason\": \"refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604\",\n      \"ok\": true\n    },\n    {\n      \"target\": \"/Users/vladymyrzub/CE_Library/.rag_db\",\n      \"status\": \"refused\",\n      \"opened_chroma\": false,\n      \"reason\": \"refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db\",\n      \"ok\": true\n    },\n    {\n      \"target\": \"/Users/vladymyrzub/CE_Library/.rag_db_generations\",\n      \"status\": \"refused\",\n      \"opened_chroma\": false,\n      \"reason\": \"refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations\",\n      \"ok\": true\n    },\n    {\n      \"target\": \"/Users/vladymyrzub/CE_Library\",\n      \"status\": \"refused\",\n      \"opened_chroma\": false,\n      \"reason\": \"refusing CE_Library root: /Users/vladymyrzub/CE_Library\",\n      \"ok\": true\n    }\n  ],\n  \"parent_escape_guards\": {\n    \"parent\": \"/private/tmp/lc6_harness_validate_nvn37bf6\",\n    \"inside_allowed\": true,\n    \"outside_escape_blocked\": true,\n    \"outside_escape_reason\": \"path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_nvn37bf6\",\n    \"protected_target_checks\": [\n      {\n        \"target\": \"/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604\",\n        \"blocked\": true\n      },\n      {\n        \"target\": \"/Users/vladymyrzub/CE_Library/.rag_db\",\n        \"blocked\": true\n      },\n      {\n        \"target\": \"/Users/vladymyrzub/CE_Library/.rag_db_generations\",\n        \"blocked\": true\n      },\n      {\n        \"target\": \"/Users/vladymyrzub/CE_Library\",\n        \"blocked\": true\n      }\n    ],\n    \"all_protected_targets_blocked\": true\n  },\n  \"failed_case_preservation_logic\": {\n    \"failed_case_id\": \"LC6-05-failure-immediately-after-c1210-retirement\",\n    \"started_before_stop\": [\n      \"LC6-01-failure-before-first-mutation\",\n      \"LC6-02-failure-midway-deterministic-repoints\",\n      \"LC6-03-failure-during-alias-collapse\",\n      \"LC6-04-failure-immediately-before-c1210-retirement\",\n      \"LC6-05-failure-immediately-after-c1210-retirement\"\n    ],\n    \"not_started_after_failure\": [\n      \"LC6-06-forced-doctor-failure\",\n      \"LC6-07-forced-retrieval-acceptance-failure\",\n      \"LC6-08-stale-tracker-store-baseline-hash\",\n      \"LC6-09-canonical-source-sha-mismatch\",\n      \"LC6-10-candidate-lock-contention\",\n      \"LC6-11-interruption-during-mutation\",\n      \"LC6-12-direct-active-production-target\",\n      \"LC6-13-legacy-rag-db-target\",\n      \"LC6-14-generations-root-target\",\n      \"LC6-15-ce-library-root-target\",\n      \"LC6-16-rerun-against-already-repaired-clone\",\n      \"LC6-17-invalid-or-missing-disposable-marker\",\n      \"LC6-18-malformed-or-checksum-invalid-manifest\",\n      \"LC6-19-unexpected-wal-shm-state\",\n      \"LC6-20-worker-timeout-or-malformed-output\"\n    ],\n    \"preserved_failed_case\": [\n      {\n        \"case_id\": \"LC6-05-failure-immediately-after-c1210-retirement\",\n        \"preserved_for_diagnosis\": true\n      }\n    ],\n    \"ok\": true\n  },\n  \"baseline_revalidation\": {\n    \"baseline_path\": \"/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z\",\n    \"marker_sha256\": \"e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1\",\n    \"source_inventory_schema\": \"inventory-row-v1\",\n    \"row_count\": 19,\n    \"computed_checksum\": \"b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a\",\n    \"expected_checksum\": \"b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a\",\n    \"embedded_json_sha256\": \"c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33\",\n    \"expected_embedded_json_sha256\": \"c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33\",\n    \"chroma_sqlite3_sha256\": \"71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6\",\n    \"expected_chroma_sqlite3_sha256\": \"71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6\",\n    \"chunk_count\": 125291,\n    \"orphan_count\": 55,\n    \"expected_orphan_count\": 55,\n    \"collection_names\": [\n      \"langchain\"\n    ],\n    \"collection_count\": 1,\n    \"wal_shm_clear\": true\n  },\n  \"test_override_baseline_validation\": null,\n  \"dry_run\": {\n    \"mode\": \"dry-run\",\n    \"selected_case_ids\": [\n      \"LC6-01-failure-before-first-mutation\"\n    ],\n    \"count\": 1,\n    \"actual_case_execution_performed\": false,\n    \"no_case_execution_performed\": true\n  },\n  \"mechanical_case_matrix\": [\n    {\n      \"case_id\": \"LC6-01-failure-before-first-mutation\",\n      \"mechanic\": \"executor_inject:failure_before_first_mutation\"\n    },\n    {\n      \"case_id\": \"LC6-02-failure-midway-deterministic-repoints\",\n      \"mechanic\": \"executor_inject:failure_halfway_through_deterministic\"\n    },\n    {\n      \"case_id\": \"LC6-03-failure-during-alias-collapse\",\n      \"mechanic\": \"executor_inject:failure_during_alias_collapse\"\n    },\n    {\n      \"case_id\": \"LC6-04-failure-immediately-before-c1210-retirement\",\n      \"mechanic\": \"executor_inject:failure_before_retirement\"\n    },\n    {\n      \"case_id\": \"LC6-05-failure-immediately-after-c1210-retirement\",\n      \"mechanic\": \"executor_inject:failure_after_retirement\"\n    },\n    {\n      \"case_id\": \"LC6-06-forced-doctor-failure\",\n      \"mechanic\": \"executor_inject:forced_doctor_failure\"\n    },\n    {\n      \"case_id\": \"LC6-07-forced-retrieval-acceptance-failure\",\n      \"mechanic\": \"executor_inject:forced_retrieval_failure\"\n    },\n    {\n      \"case_id\": \"LC6-08-stale-tracker-store-baseline-hash\",\n      \"mechanic\": \"harness_fixture:stale_tracker_store_baseline_hash\"\n    },\n    {\n      \"case_id\": \"LC6-09-canonical-source-sha-mismatch\",\n      \"mechanic\": \"harness_fixture:canonical_source_sha_mismatch_disposable_manifest\"\n    },\n    {\n      \"case_id\": \"LC6-10-candidate-lock-contention\",\n      \"mechanic\": \"harness_fixture:candidate_lock_contention\"\n    },\n    {\n      \"case_id\": \"LC6-11-interruption-during-mutation\",\n      \"mechanic\": \"harness_fixture:interruption_during_execution\"\n    },\n    {\n      \"case_id\": \"LC6-12-direct-active-production-target\",\n      \"mechanic\": \"refusal_only:active_production_target\"\n    },\n    {\n      \"case_id\": \"LC6-13-legacy-rag-db-target\",\n      \"mechanic\": \"refusal_only:legacy_rag_db_target\"\n    },\n    {\n      \"case_id\": \"LC6-14-generations-root-target\",\n      \"mechanic\": \"refusal_only:generations_root_target\"\n    },\n    {\n      \"case_id\": \"LC6-15-ce-library-root-target\",\n      \"mechanic\": \"refusal_only:ce_library_root_target\"\n    },\n    {\n      \"case_id\": \"LC6-16-rerun-against-already-repaired-clone\",\n      \"mechanic\": \"harness_fixture:dirty_clone_rerun_refusal\"\n    },\n    {\n      \"case_id\": \"LC6-17-invalid-or-missing-disposable-marker\",\n      \"mechanic\": \"harness_fixture:invalid_or_missing_marker_refusal\"\n    },\n    {\n      \"case_id\": \"LC6-18-malformed-or-checksum-invalid-manifest\",\n      \"mechanic\": \"harness_fixture:invalid_manifest_refusal\"\n    },\n    {\n      \"case_id\": \"LC6-19-unexpected-wal-shm-state\",\n      \"mechanic\": \"harness_fixture:wal_shm_precondition_refusal\"\n    },\n    {\n      \"case_id\": \"LC6-20-worker-timeout-or-malformed-output\",\n      \"mechanic\": \"harness_fixture:worker_timeout_or_malformed_output\"\n    }\n  ],\n  \"execution_metadata\": {\n    \"mode\": \"dry-run\",\n    \"validate_harness\": false,\n    \"actual_case_execution_performed\": false,\n    \"no_failure_injection_case_ran\": true,\n    \"no_production_action_occurred\": true,\n    \"production_chroma_not_opened\": true,\n    \"final_clean_cycle_not_run\": true,\n    \"sha256sums_not_regenerated\": true\n  }\n}\n",
+    "stderr": ""
+  },
+  "positive_dry_run_json": {
+    "status": "ok",
+    "contract_summary": {
+      "case_count": 20,
+      "case_ids": [
+        "LC6-01-failure-before-first-mutation",
+        "LC6-02-failure-midway-deterministic-repoints",
+        "LC6-03-failure-during-alias-collapse",
+        "LC6-04-failure-immediately-before-c1210-retirement",
+        "LC6-05-failure-immediately-after-c1210-retirement",
+        "LC6-06-forced-doctor-failure",
+        "LC6-07-forced-retrieval-acceptance-failure",
+        "LC6-08-stale-tracker-store-baseline-hash",
+        "LC6-09-canonical-source-sha-mismatch",
+        "LC6-10-candidate-lock-contention",
+        "LC6-11-interruption-during-mutation",
+        "LC6-12-direct-active-production-target",
+        "LC6-13-legacy-rag-db-target",
+        "LC6-14-generations-root-target",
+        "LC6-15-ce-library-root-target",
+        "LC6-16-rerun-against-already-repaired-clone",
+        "LC6-17-invalid-or-missing-disposable-marker",
+        "LC6-18-malformed-or-checksum-invalid-manifest",
+        "LC6-19-unexpected-wal-shm-state",
+        "LC6-20-worker-timeout-or-malformed-output"
+      ],
+      "schema_checks": [
+        {
+          "case_id": "LC6-01-failure-before-first-mutation",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-02-failure-midway-deterministic-repoints",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-03-failure-during-alias-collapse",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-06-forced-doctor-failure",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-09-canonical-source-sha-mismatch",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-10-candidate-lock-contention",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-11-interruption-during-mutation",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-12-direct-active-production-target",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-13-legacy-rag-db-target",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-14-generations-root-target",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-15-ce-library-root-target",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-16-rerun-against-already-repaired-clone",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-19-unexpected-wal-shm-state",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        },
+        {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "schema_ok": true,
+          "missing_keys": [],
+          "has_preconditions": true,
+          "has_expected_result": true,
+          "has_evidence_outputs": true,
+          "has_cleanup_policy": true,
+          "has_stop_condition": true
+        }
+      ],
+      "duplicates": [],
+      "missing_mechanics": []
+    },
+    "execution_guard": {
+      "ok": true,
+      "reason": "dry-run mode; no case execution permitted"
+    },
+    "hook_validation": {
+      "supported_hooks_expected": [
+        "failure_after_retirement",
+        "failure_before_first_mutation",
+        "failure_before_retirement",
+        "failure_during_alias_collapse",
+        "failure_halfway_through_deterministic",
+        "forced_doctor_failure",
+        "forced_retrieval_failure",
+        "interruption_during_execution"
+      ],
+      "checks": {
+        "failure_before_first_mutation": true,
+        "failure_halfway_through_deterministic": true,
+        "failure_during_alias_collapse": true,
+        "failure_before_retirement": true,
+        "failure_after_retirement": true,
+        "forced_doctor_failure": true,
+        "forced_retrieval_failure": true,
+        "interruption_during_execution": true
+      },
+      "all_supported_hooks_confirmed": true
+    },
+    "forbidden_target_refusal_probes": [
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "ok": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library",
+        "status": "refused",
+        "opened_chroma": false,
+        "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+        "ok": true
+      }
+    ],
+    "parent_escape_guards": {
+      "parent": "/private/tmp/lc6_harness_validate_nvn37bf6",
+      "inside_allowed": true,
+      "outside_escape_blocked": true,
+      "outside_escape_reason": "path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_nvn37bf6",
+      "protected_target_checks": [
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+          "blocked": true
+        },
+        {
+          "target": "/Users/vladymyrzub/CE_Library",
+          "blocked": true
+        }
+      ],
+      "all_protected_targets_blocked": true
+    },
+    "failed_case_preservation_logic": {
+      "failed_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "started_before_stop": [
+        "LC6-01-failure-before-first-mutation",
+        "LC6-02-failure-midway-deterministic-repoints",
+        "LC6-03-failure-during-alias-collapse",
+        "LC6-04-failure-immediately-before-c1210-retirement",
+        "LC6-05-failure-immediately-after-c1210-retirement"
+      ],
+      "not_started_after_failure": [
+        "LC6-06-forced-doctor-failure",
+        "LC6-07-forced-retrieval-acceptance-failure",
+        "LC6-08-stale-tracker-store-baseline-hash",
+        "LC6-09-canonical-source-sha-mismatch",
+        "LC6-10-candidate-lock-contention",
+        "LC6-11-interruption-during-mutation",
+        "LC6-12-direct-active-production-target",
+        "LC6-13-legacy-rag-db-target",
+        "LC6-14-generations-root-target",
+        "LC6-15-ce-library-root-target",
+        "LC6-16-rerun-against-already-repaired-clone",
+        "LC6-17-invalid-or-missing-disposable-marker",
+        "LC6-18-malformed-or-checksum-invalid-manifest",
+        "LC6-19-unexpected-wal-shm-state",
+        "LC6-20-worker-timeout-or-malformed-output"
+      ],
+      "preserved_failed_case": [
+        {
+          "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+          "preserved_for_diagnosis": true
+        }
+      ],
+      "ok": true
+    },
+    "baseline_revalidation": {
+      "baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "source_inventory_schema": "inventory-row-v1",
+      "row_count": 19,
+      "computed_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "expected_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "expected_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "chunk_count": 125291,
+      "orphan_count": 55,
+      "expected_orphan_count": 55,
+      "collection_names": [
+        "langchain"
+      ],
+      "collection_count": 1,
+      "wal_shm_clear": true
+    },
+    "test_override_baseline_validation": null,
+    "dry_run": {
+      "mode": "dry-run",
+      "selected_case_ids": [
+        "LC6-01-failure-before-first-mutation"
+      ],
+      "count": 1,
+      "actual_case_execution_performed": false,
+      "no_case_execution_performed": true
+    },
+    "mechanical_case_matrix": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "mechanic": "executor_inject:failure_before_first_mutation"
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "mechanic": "executor_inject:failure_halfway_through_deterministic"
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "mechanic": "executor_inject:failure_during_alias_collapse"
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "mechanic": "executor_inject:failure_before_retirement"
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "mechanic": "executor_inject:failure_after_retirement"
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "mechanic": "executor_inject:forced_doctor_failure"
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "mechanic": "executor_inject:forced_retrieval_failure"
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "mechanic": "harness_fixture:stale_tracker_store_baseline_hash"
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest"
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "mechanic": "harness_fixture:candidate_lock_contention"
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "mechanic": "harness_fixture:interruption_during_execution"
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "mechanic": "refusal_only:active_production_target"
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "mechanic": "refusal_only:legacy_rag_db_target"
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "mechanic": "refusal_only:generations_root_target"
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "mechanic": "refusal_only:ce_library_root_target"
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "mechanic": "harness_fixture:dirty_clone_rerun_refusal"
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "mechanic": "harness_fixture:invalid_or_missing_marker_refusal"
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "mechanic": "harness_fixture:invalid_manifest_refusal"
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "mechanic": "harness_fixture:wal_shm_precondition_refusal"
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "mechanic": "harness_fixture:worker_timeout_or_malformed_output"
+      }
+    ],
+    "execution_metadata": {
+      "mode": "dry-run",
+      "validate_harness": false,
+      "actual_case_execution_performed": false,
+      "no_failure_injection_case_ran": true,
+      "no_production_action_occurred": true,
+      "production_chroma_not_opened": true,
+      "final_clean_cycle_not_run": true,
+      "sha256sums_not_regenerated": true
+    }
+  },
+  "negative_validations": {
+    "old_marker_fixture_path": "/private/tmp/lc6_marker_validation_mcnl6vdt/old_marker_baseline",
+    "old_marker_fixture_sha256": "7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9",
+    "old_marker": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/private/tmp/lc6_marker_validation_mcnl6vdt/old_marker_baseline",
+        "--json"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2655, in <module>\n    main()\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2573, in main\n    baseline_summary = build_runtime_baseline_summary(args, test_baseline, test_package_dir, bound_baseline)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2541, in build_runtime_baseline_summary\n    summary = baseline_revalidation_summary(bound_baseline, RESTORED_BASELINE_MARKER_SHA)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 348, in baseline_revalidation_summary\n    raise HarnessRefusal(f'baseline marker sha mismatch: {marker_sha} != {expected_marker_sha}')\nHarnessRefusal: baseline marker sha mismatch: 7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9 != e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1\n"
+    },
+    "tampered_marker_fixture_path": "/private/tmp/lc6_marker_validation_mcnl6vdt/tampered_marker_baseline",
+    "tampered_marker_sha256": "a8828050174f873a8f82b7356033375336ffd06e286c4ee36a0419a691aa4a84",
+    "tampered_marker": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/private/tmp/lc6_marker_validation_mcnl6vdt/tampered_marker_baseline",
+        "--json"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2655, in <module>\n    main()\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2573, in main\n    baseline_summary = build_runtime_baseline_summary(args, test_baseline, test_package_dir, bound_baseline)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 2541, in build_runtime_baseline_summary\n    summary = baseline_revalidation_summary(bound_baseline, RESTORED_BASELINE_MARKER_SHA)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py\", line 348, in baseline_revalidation_summary\n    raise HarnessRefusal(f'baseline marker sha mismatch: {marker_sha} != {expected_marker_sha}')\nHarnessRefusal: baseline marker sha mismatch: a8828050174f873a8f82b7356033375336ffd06e286c4ee36a0419a691aa4a84 != e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1\n"
+    },
+    "missing_marker_fixture_path": "/private/tmp/lc6_marker_validation_mcnl6vdt/missing_marker_baseline",
+    "missing_marker": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/private/tmp/lc6_marker_validation_mcnl6vdt/missing_marker_baseline",
+        "--json"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "baseline-dir is missing a disposable marker\n"
+    },
+    "ce_library_baseline": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+        "--json"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "baseline-dir must not be inside CE_Library\n"
+    },
+    "production_path": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "--json"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "baseline-dir resolves to a forbidden path\n"
+    },
+    "mixed_overrides": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "--test-baseline-dir",
+        "/tmp/x",
+        "--test-package-dir",
+        "/tmp/y",
+        "--json"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "--baseline-dir is mutually exclusive with --test-baseline-dir/--test-package-dir\n"
+    }
+  },
+  "external_baseline_revalidation": {
+    "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "lock_exists": false,
+    "wal_exists": false,
+    "shm_exists": false,
+    "marker_exists": true,
+    "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+    "ps_matches": [],
+    "open_write_processes": []
+  },
+  "production_before": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "active_generation_selection": {
+      "persist_dir_resolved": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "matches_source": true
+    }
+  },
+  "production_after": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "active_generation_selection": {
+      "persist_dir_resolved": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "matches_source": true
+    }
+  },
+  "checks": {
+    "compile_rc_zero": true,
+    "help_rc_zero": true,
+    "positive_dry_run_rc_zero": true,
+    "positive_bound_external_path": true,
+    "reject_old_marker_hash": true,
+    "reject_tampered_marker": true,
+    "reject_missing_marker": true,
+    "reject_ce_library_baseline": true,
+    "reject_production_path": true,
+    "reject_mixed_overrides": true,
+    "baseline_row_count": true,
+    "baseline_checksum": true,
+    "baseline_embedded_sha": true,
+    "baseline_chroma_sha": true,
+    "baseline_chunks": true,
+    "baseline_orphans": true,
+    "baseline_single_collection": true,
+    "baseline_no_lock": true,
+    "baseline_no_wal": true,
+    "baseline_no_shm": true,
+    "baseline_no_worker": true,
+    "baseline_marker_sha_matches": true,
+    "production_embedded_unchanged": true,
+    "production_chroma_unchanged": true,
+    "production_inventory_unchanged": true,
+    "production_active_selection_unchanged": true
+  },
+  "blockers": []
+}

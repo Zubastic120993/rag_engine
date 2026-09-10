@@ -1,0 +1,137 @@
+{
+  "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_04_v4j_y725/case_04_failure_immediately_before_c1210_retirement/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_04_v4j_y725/case_04_failure_immediately_before_c1210_retirement/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T140723Z/cases/LC6-04-failure-immediately-before-c1210-retirement",
+  "durable_inventory": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 3038,
+      "sha256": "44371b031a533a342bf132bf6ab60785d851638872595af44e582e1f2d49e88b"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1612,
+      "sha256": "b5d8f879eb5b8278b627d619d677c28eabee42458799cdec4fccee4599ad0047"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 14107,
+      "sha256": "0027e0eb99dcd554c090b2892144fbd9d3990998f538c1269e1c424fe7a9fd10"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1239,
+      "sha256": "9e07902a36abaa2d658ae70a0aa1f2b13df9221221b8c5284cbcc52074585750"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1524,
+      "sha256": "ecd47d6e181dec94b62cfcc616d02bbb2330dc7bfd9ccc641222be1de05afc34"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 198,
+      "sha256": "e41a65dd77b7e5a556b231f03ea280311ea0071028e0bad9161fa9add2917a67"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 10574,
+      "sha256": "62d6a5462bbf665b35944a795abe1a811065f3e81d57d1f6c1b18f9f0d5be403"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 7255,
+      "sha256": "657cc7ade1e5c8e9e4e1e9776796938435ee4c12b8be685e20771e128f57398c"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 279,
+      "sha256": "b34c6b520ab8703afeea8862d9fb6c218621a1bbafc863825c84769e8c3ed09f"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 121,
+      "sha256": "1a048d6cbbc859933dca2928e5da57195d5366cfc4ca688f2a1db9b715cdb429"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "apply_failure.json",
+      "execution_log.jsonl",
+      "executor_input.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_failure.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

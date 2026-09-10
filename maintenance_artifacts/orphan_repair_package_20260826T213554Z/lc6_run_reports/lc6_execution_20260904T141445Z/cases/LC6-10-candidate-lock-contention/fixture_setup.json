@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:candidate_lock_contention",
+  "mutations": [
+    "candidate lock acquired on disposable clone"
+  ]
+}

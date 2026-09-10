@@ -1,0 +1,882 @@
+{
+  "status": "LC5_PASS",
+  "lc5_parent": "/private/tmp/lc5_4d774do9",
+  "baseline_validation": {
+    "baseline_path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+    "marker": {
+      "clone_id": "lc4-raggen_lc4_baseline_20260827T183948Z",
+      "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "creation_time_utc": "2026-08-27T18:39:48Z",
+      "purpose": "LC4_BASELINE_FOR_LC5",
+      "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "source_core_hashes": {
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      "expected_chunk_count": 125291,
+      "expected_orphan_count": 55,
+      "package_manifest_checksum": "3dabe40c9522ca497373205a937d659e91341a3faa1edfecb0864b84a2718f04",
+      "status": "VERIFIED_DISPOSABLE_BASELINE",
+      "disposable": true,
+      "unpromoted": true,
+      "target_generation": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z"
+    },
+    "marker_sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38",
+    "source_inventory_checksum": "0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9",
+    "full_inventory_checksum": "948393f0c30435f1b22c51d9f7f8b80e4e82de36eb2895a480dc0b954c3578e8",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "total_chunks": 125291,
+    "orphan_count": 55,
+    "doctor_cmd": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/rag-engine",
+        "doctor",
+        "--json"
+      ],
+      "pid": 42325,
+      "returncode": 1,
+      "stdout": "{\"status\":\"FAIL\",\"checks\":[{\"name\":\"library_root_exists\",\"ok\":true,\"detail\":\"/Users/vladymyrzub/CE_Library\"},{\"name\":\"db_path_exists\",\"ok\":true,\"detail\":\"/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z\"},{\"name\":\"scopes_yaml_loads\",\"ok\":true,\"detail\":\"/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml\"},{\"name\":\"alias_registry_valid\",\"ok\":true,\"detail\":\"no duplicate/collision aliases\"},{\"name\":\"scope_prefixes_indexed\",\"ok\":true,\"detail\":\"sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (501 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (810 docs); rules:99_Rules/ ok (5 docs)\"},{\"name\":\"openai_sdk_available\",\"ok\":true,\"detail\":\"informational=True (unused by ask path)\"},{\"name\":\"openai_api_key_present\",\"ok\":true,\"detail\":\"OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)\"},{\"name\":\"openai_generation_ready\",\"ok\":true,\"detail\":\"unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna\"},{\"name\":\"ollama_embedding_reachable\",\"ok\":true,\"detail\":\"12 models\"},{\"name\":\"embed_model_available\",\"ok\":true,\"detail\":\"mxbai-embed-large\"},{\"name\":\"index_fingerprint\",\"ok\":true,\"detail\":\"Index fingerprint matches live config\"},{\"name\":\"embedding_fp_v1\",\"ok\":true,\"detail\":\"PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract\"},{\"name\":\"chroma_open\",\"ok\":true,\"detail\":\"collections=['langchain']\"},{\"name\":\"cross_process_persistence\",\"ok\":true,\"detail\":\"probe written in a separate process was read back correctly\"},{\"name\":\"tracker_readable\",\"ok\":true,\"detail\":\"/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z/embedded.json\"},{\"name\":\"no_hermes_library_paths\",\"ok\":true,\"detail\":\"count=0\"},{\"name\":\"no_legacy_rules_rag_db_paths\",\"ok\":true,\"detail\":\"count=0\"},{\"name\":\"sample_source_exists\",\"ok\":true,\"detail\":\"/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/CL00008-2023.pdf\"},{\"name\":\"orphan_sources\",\"ok\":false,\"detail\":\"missing_files=55 of 1842 tracker paths\"},{\"name\":\"coverage_gap\",\"ok\":true,\"detail\":\"unindexed_files=129 scanned=1916\"},{\"name\":\"invalid_pdf\",\"ok\":true,\"detail\":\"invalid_pdf_files=0\"},{\"name\":\"git_no_corpus\",\"ok\":true,\"detail\":\"bad_files=[]\"}],\"fingerprint\":{\"status\":\"MATCH\",\"match\":true,\"diffs\":[],\"llm_model_differs\":false,\"stored\":{\"embed_model\":\"mxbai-embed-large\",\"chunk_size\":800,\"chunk_overlap\":100,\"normalization\":\"nfkc\",\"llm_model\":\"gpt-5.6-luna\"},\"live\":{\"embed_model\":\"mxbai-embed-large\",\"llm_model\":\"gpt-5.6-luna\",\"chunk_size\":800,\"chunk_overlap\":100,\"normalization\":\"nfkc\"},\"message\":\"Index fingerprint matches live config\"},\"embedding_fp_v1\":{\"ok\":true,\"severity\":\"PASS\",\"state\":\"KNOWN_COMPATIBLE\",\"detail\":\"stored index fingerprint matches runtime contract\",\"compatibility\":{\"state\":\"KNOWN_COMPATIBLE\",\"reason\":\"stored index fingerprint matches runtime contract\",\"runtime_index_fingerprint\":\"7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328\",\"stored_index_fingerprint\":\"7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328\",\"runtime_embedding_fingerprint\":\"ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559\",\"stored_embedding_fingerprint\":\"ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559\",\"runtime_corpus_fingerprint\":\"6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66\",\"stored_corpus_fingerprint\":\"6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66\",\"vector_count\":125291,\"authority_source\":\"sidecar_v1\",\"ingest_allowed\":true,\"retrieval_allowed\":true,\"retrieval_degraded\":false,\"evidence\":{}}},\"library_root\":\"/Users/vladymyrzub/CE_Library\",\"db_path\":\"/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z\",\"scopes\":[\"me-c\",\"sms\",\"wiki\",\"maker-manuals\",\"regulatory\",\"inspection\",\"vessels\",\"career\",\"rules\",\"other\"],\"aliases\":{\"sms_library\":\"sms\",\"ce_wiki\":\"wiki\",\"wiki_library\":\"wiki\",\"manual_library\":\"maker-manuals\",\"maker_manual\":\"maker-manuals\",\"imo_library\":\"regulatory\",\"statutory\":\"regulatory\",\"sire_library\":\"inspection\",\"manual_library_gaschem_europe\":\"vessels\",\"manual_library_gaschem_africa\":\"vessels\"}}\n",
+      "stderr": "",
+      "duration_s": 2.849,
+      "timed_out": false,
+      "json": {
+        "status": "FAIL",
+        "checks": [
+          {
+            "name": "library_root_exists",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/CE_Library"
+          },
+          {
+            "name": "db_path_exists",
+            "ok": true,
+            "detail": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z"
+          },
+          {
+            "name": "scopes_yaml_loads",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml"
+          },
+          {
+            "name": "alias_registry_valid",
+            "ok": true,
+            "detail": "no duplicate/collision aliases"
+          },
+          {
+            "name": "scope_prefixes_indexed",
+            "ok": true,
+            "detail": "sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (501 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (810 docs); rules:99_Rules/ ok (5 docs)"
+          },
+          {
+            "name": "openai_sdk_available",
+            "ok": true,
+            "detail": "informational=True (unused by ask path)"
+          },
+          {
+            "name": "openai_api_key_present",
+            "ok": true,
+            "detail": "OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)"
+          },
+          {
+            "name": "openai_generation_ready",
+            "ok": true,
+            "detail": "unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna"
+          },
+          {
+            "name": "ollama_embedding_reachable",
+            "ok": true,
+            "detail": "12 models"
+          },
+          {
+            "name": "embed_model_available",
+            "ok": true,
+            "detail": "mxbai-embed-large"
+          },
+          {
+            "name": "index_fingerprint",
+            "ok": true,
+            "detail": "Index fingerprint matches live config"
+          },
+          {
+            "name": "embedding_fp_v1",
+            "ok": true,
+            "detail": "PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract"
+          },
+          {
+            "name": "chroma_open",
+            "ok": true,
+            "detail": "collections=['langchain']"
+          },
+          {
+            "name": "cross_process_persistence",
+            "ok": true,
+            "detail": "probe written in a separate process was read back correctly"
+          },
+          {
+            "name": "tracker_readable",
+            "ok": true,
+            "detail": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z/embedded.json"
+          },
+          {
+            "name": "no_hermes_library_paths",
+            "ok": true,
+            "detail": "count=0"
+          },
+          {
+            "name": "no_legacy_rules_rag_db_paths",
+            "ok": true,
+            "detail": "count=0"
+          },
+          {
+            "name": "sample_source_exists",
+            "ok": true,
+            "detail": "/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/CL00008-2023.pdf"
+          },
+          {
+            "name": "orphan_sources",
+            "ok": false,
+            "detail": "missing_files=55 of 1842 tracker paths"
+          },
+          {
+            "name": "coverage_gap",
+            "ok": true,
+            "detail": "unindexed_files=129 scanned=1916"
+          },
+          {
+            "name": "invalid_pdf",
+            "ok": true,
+            "detail": "invalid_pdf_files=0"
+          },
+          {
+            "name": "git_no_corpus",
+            "ok": true,
+            "detail": "bad_files=[]"
+          }
+        ],
+        "fingerprint": {
+          "status": "MATCH",
+          "match": true,
+          "diffs": [],
+          "llm_model_differs": false,
+          "stored": {
+            "embed_model": "mxbai-embed-large",
+            "chunk_size": 800,
+            "chunk_overlap": 100,
+            "normalization": "nfkc",
+            "llm_model": "gpt-5.6-luna"
+          },
+          "live": {
+            "embed_model": "mxbai-embed-large",
+            "llm_model": "gpt-5.6-luna",
+            "chunk_size": 800,
+            "chunk_overlap": 100,
+            "normalization": "nfkc"
+          },
+          "message": "Index fingerprint matches live config"
+        },
+        "embedding_fp_v1": {
+          "ok": true,
+          "severity": "PASS",
+          "state": "KNOWN_COMPATIBLE",
+          "detail": "stored index fingerprint matches runtime contract",
+          "compatibility": {
+            "state": "KNOWN_COMPATIBLE",
+            "reason": "stored index fingerprint matches runtime contract",
+            "runtime_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "stored_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "runtime_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+            "stored_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+            "runtime_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+            "stored_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+            "vector_count": 125291,
+            "authority_source": "sidecar_v1",
+            "ingest_allowed": true,
+            "retrieval_allowed": true,
+            "retrieval_degraded": false,
+            "evidence": {}
+          }
+        },
+        "library_root": "/Users/vladymyrzub/CE_Library",
+        "db_path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+        "scopes": [
+          "me-c",
+          "sms",
+          "wiki",
+          "maker-manuals",
+          "regulatory",
+          "inspection",
+          "vessels",
+          "career",
+          "rules",
+          "other"
+        ],
+        "aliases": {
+          "sms_library": "sms",
+          "ce_wiki": "wiki",
+          "wiki_library": "wiki",
+          "manual_library": "maker-manuals",
+          "maker_manual": "maker-manuals",
+          "imo_library": "regulatory",
+          "statutory": "regulatory",
+          "sire_library": "inspection",
+          "manual_library_gaschem_europe": "vessels",
+          "manual_library_gaschem_africa": "vessels"
+        }
+      }
+    },
+    "open_readonly_cmd": {
+      "cmd": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+        "inspect",
+        "--gen-dir",
+        "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+        "--request-file",
+        "/private/tmp/lc5_req_kd2rrm_e/inspect.json"
+      ],
+      "pid": 42331,
+      "returncode": 0,
+      "stdout": "{\"status\": \"ok\", \"action\": \"inspect\", \"opened_chroma\": true, \"collection_name\": \"langchain\", \"payload\": {}, \"worker_pid\": 42331, \"generation\": \"/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z\", \"marker_clone_id\": \"lc4-raggen_lc4_baseline_20260827T183948Z\"}\n",
+      "stderr": "",
+      "duration_s": 1.308,
+      "timed_out": false,
+      "json": {
+        "status": "ok",
+        "action": "inspect",
+        "opened_chroma": true,
+        "collection_name": "langchain",
+        "payload": {},
+        "worker_pid": 42331,
+        "generation": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+        "marker_clone_id": "lc4-raggen_lc4_baseline_20260827T183948Z"
+      }
+    },
+    "wal_shm": {
+      "wal": false,
+      "shm": false,
+      "clear": true
+    },
+    "full_inventory": {
+      "root": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+      "file_count": 20,
+      "total_bytes": 1312452087,
+      "rows": [
+        {
+          "path": ".orphan_repair_disposable_clone.json",
+          "bytes": 922,
+          "sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "bytes": 529500000,
+          "sha256": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "bytes": 100,
+          "sha256": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "bytes": 7856559,
+          "sha256": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "bytes": 500000,
+          "sha256": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "bytes": 1077252,
+          "sha256": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a"
+        },
+        {
+          "path": "ask_events.jsonl",
+          "bytes": 49796,
+          "sha256": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+          "bytes": 7428,
+          "sha256": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+          "bytes": 6695138,
+          "sha256": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+          "bytes": 55048,
+          "sha256": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+          "bytes": 6698619,
+          "sha256": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+          "bytes": 32786,
+          "sha256": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b"
+        },
+        {
+          "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+          "bytes": 6727252,
+          "sha256": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d"
+        },
+        {
+          "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+          "bytes": 13162,
+          "sha256": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d"
+        },
+        {
+          "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+          "bytes": 6729127,
+          "sha256": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc"
+        },
+        {
+          "path": "certified_generation_checkpoint.json",
+          "bytes": 875,
+          "sha256": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362"
+        },
+        {
+          "path": "chroma.sqlite3",
+          "bytes": 739770368,
+          "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+        },
+        {
+          "path": "embedded.json",
+          "bytes": 6735834,
+          "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+        },
+        {
+          "path": "index_embedding_fingerprint_v1.json",
+          "bytes": 1563,
+          "sha256": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996"
+        },
+        {
+          "path": "index_fingerprint.json",
+          "bytes": 258,
+          "sha256": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+        }
+      ],
+      "checksum": "948393f0c30435f1b22c51d9f7f8b80e4e82de36eb2895a480dc0b954c3578e8"
+    }
+  },
+  "cycle_results": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "cycle_id": "lc5-cycle-01-24cff5389cc7"
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "cycle_id": "lc5-cycle-02-d5222a915cad"
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "cycle_id": "lc5-cycle-03-d192fa3e6963"
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "cycle_id": "lc5-cycle-04-9118a36822cb"
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "cycle_id": "lc5-cycle-05-1a6b3f070520"
+    }
+  ],
+  "apply_summary": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "a6b4d50c3a1da7fb4eb48cf29be5d0dcdcb442be85891931fe532c0226120eb9"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "1a688a21cd187e33a7edeeaa332d3ab1d2dd70616357e6c197495e54b3d58097"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "f6b5d16c9bf70a8b53bcefdc4569a857ebe00aefef1a6010afd8c47b2bfff7fd"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "019e2543aab07493fe429932a0f704ec506f05ad31b3c8f4b5d234eec86da1cd"
+        }
+      ]
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "63fb5c07c74a065bf18071a0f55fa2dfb2f32990be95e4e57469395b73a0fafc"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "0ed4fe7e164256a5a5ae6e1b18884e7a922a278aca1d20423eca9734db81419e"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "22b0ed83212eb09321fc6db9cab8234303ec435517fee44afd19079b74067a17"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "e02e1192b2dacfbdd95dd692d5cc6686a7c18a9ead4f3bdfd9fcf33b9539af80"
+        }
+      ]
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "9611c347190d7102a0d288c8838fc9e8bacd103256394016efc6edd37e38c93c"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "821c5009b619e2c9a61bacc77d4ab6caa49fde65b326d3e447f9273a2e57b107"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "04ef1e29c34227a7b88ba71cca0a2e7fedbcb13f67c25e01ffdc0668d4b8ea3b"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "4404f561799d3100e1a23f89d203808d3584b10e56ca0bcc2d16848d65fb2661"
+        }
+      ]
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "ef7babf649296e9c79b74817097ce22f2f9bbde15b07193334dddbd00ae607d3"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "374c866f44f684a78073e072a9a04b7126874017d75a6d0e0cd2bd8a77042589"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "f6b5d16c9bf70a8b53bcefdc4569a857ebe00aefef1a6010afd8c47b2bfff7fd"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "0a613be60194e0739a2c1e8fdc4bbbd3ae6e313843fa59e1c129c539eb3b0964"
+        }
+      ]
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "chunks_after_apply": 125289,
+      "orphans_after_apply": 0,
+      "collection_deltas": {
+        "me_c_before": 30037,
+        "me_c_after": 30481,
+        "maker_manuals_before": 36893,
+        "maker_manuals_after": 36447,
+        "me_c_delta": 444,
+        "maker_manuals_delta": -446,
+        "total_chunk_delta": -2
+      },
+      "physical_changes_recorded_by_executor": [
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+          "before": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+          "after": "c835f8d9dcefbf19f044628997f591749b46389965f25187fae27bd0efe5ace4"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+          "before": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+          "after": "0bbedb3dbc88993e5f9c67e65064b053c8453dad6fda947a19d43a292d9d6987"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+          "before": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+          "after": "3d1ea6058c9bdc3f14203f9123f4f210009baaa09f61bd300da658668156e5fe"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+          "before": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+          "after": "acd53d8805b9016db1b54597b838e9571402f679e270134097b9b8184b905591"
+        },
+        {
+          "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+          "before": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+          "after": "237713815689bdb566728d59a3089232723fc55063da7319f028d241d5901b71"
+        }
+      ]
+    }
+  ],
+  "rollback_summary": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    }
+  ],
+  "retrieval_summary": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 42567,
+      "reopen_after_rollback_pid": 42594
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 42839,
+      "reopen_after_rollback_pid": 42867
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 43146,
+      "reopen_after_rollback_pid": 43178
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 43481,
+      "reopen_after_rollback_pid": 43510
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "controls": [
+        {
+          "name": "me_lgip_renamed_paper",
+          "expected": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+          "ok": true
+        },
+        {
+          "name": "retired_c1210_absent",
+          "expected": "no_coverage",
+          "ok": true
+        },
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "reopen_after_apply_pid": 43871,
+      "reopen_after_rollback_pid": 43900
+    }
+  ],
+  "cleanup_summary": [
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_01_47a72be500",
+      "deleted": true,
+      "kind": "cycle_dir"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_01_47a72be500_work/rollback_snapshot",
+      "deleted": true,
+      "kind": "rollback_snapshot"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_02_ff3d5ea89d",
+      "deleted": true,
+      "kind": "cycle_dir"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_02_ff3d5ea89d_work/rollback_snapshot",
+      "deleted": true,
+      "kind": "rollback_snapshot"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_03_6daae5a581",
+      "deleted": true,
+      "kind": "cycle_dir"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_03_6daae5a581_work/rollback_snapshot",
+      "deleted": true,
+      "kind": "rollback_snapshot"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_04_699ff0e541",
+      "deleted": true,
+      "kind": "cycle_dir"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_04_699ff0e541_work/rollback_snapshot",
+      "deleted": true,
+      "kind": "rollback_snapshot"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_05_43d81cf93d",
+      "deleted": true,
+      "kind": "cycle_dir"
+    },
+    {
+      "path": "/private/tmp/lc5_4d774do9/cycle_05_43d81cf93d_work/rollback_snapshot",
+      "deleted": true,
+      "kind": "rollback_snapshot"
+    }
+  ],
+  "production_report": {
+    "status": "production_unchanged_after_lc5",
+    "active_generation_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "total_chunks": 125291,
+    "active_generation_selection": {
+      "mechanism": "task-designated production generation path remained unchanged; subprocess env overrides were cycle-local only",
+      "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "unchanged": true
+    }
+  },
+  "blocker": null
+}

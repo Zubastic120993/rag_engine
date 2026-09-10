@@ -1,0 +1,777 @@
+{
+  "status": "ok",
+  "contract_summary": {
+    "case_count": 20,
+    "case_ids": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement",
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "schema_checks": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      }
+    ],
+    "duplicates": [],
+    "missing_mechanics": []
+  },
+  "execution_guard": {
+    "ok": true,
+    "reason": "execution flag semantics valid"
+  },
+  "hook_validation": {
+    "supported_hooks_expected": [
+      "failure_after_retirement",
+      "failure_before_first_mutation",
+      "failure_before_retirement",
+      "failure_during_alias_collapse",
+      "failure_halfway_through_deterministic",
+      "forced_doctor_failure",
+      "forced_retrieval_failure",
+      "interruption_during_execution"
+    ],
+    "checks": {
+      "failure_before_first_mutation": true,
+      "failure_halfway_through_deterministic": true,
+      "failure_during_alias_collapse": true,
+      "failure_before_retirement": true,
+      "failure_after_retirement": true,
+      "forced_doctor_failure": true,
+      "forced_retrieval_failure": true,
+      "interruption_during_execution": true
+    },
+    "all_supported_hooks_confirmed": true
+  },
+  "forbidden_target_refusal_probes": [
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+      "ok": true
+    }
+  ],
+  "parent_escape_guards": {
+    "parent": "/private/tmp/lc6_harness_validate_91soas4c",
+    "inside_allowed": true,
+    "outside_escape_blocked": true,
+    "outside_escape_reason": "path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_91soas4c",
+    "protected_target_checks": [
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library",
+        "blocked": true
+      }
+    ],
+    "all_protected_targets_blocked": true
+  },
+  "failed_case_preservation_logic": {
+    "failed_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+    "started_before_stop": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement"
+    ],
+    "not_started_after_failure": [
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "preserved_failed_case": [
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "preserved_for_diagnosis": true
+      }
+    ],
+    "ok": true
+  },
+  "baseline_revalidation": {
+    "baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+    "source_inventory_schema": "inventory-row-v1",
+    "row_count": 19,
+    "computed_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "expected_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "expected_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "expected_orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_shm_clear": true
+  },
+  "test_override_baseline_validation": null,
+  "dry_run": {
+    "mode": "dry-run",
+    "selected_case_ids": [
+      "LC6-13-legacy-rag-db-target"
+    ],
+    "count": 1,
+    "actual_case_execution_performed": false,
+    "no_case_execution_performed": true
+  },
+  "mechanical_case_matrix": [
+    {
+      "case_id": "LC6-01-failure-before-first-mutation",
+      "mechanic": "executor_inject:failure_before_first_mutation"
+    },
+    {
+      "case_id": "LC6-02-failure-midway-deterministic-repoints",
+      "mechanic": "executor_inject:failure_halfway_through_deterministic"
+    },
+    {
+      "case_id": "LC6-03-failure-during-alias-collapse",
+      "mechanic": "executor_inject:failure_during_alias_collapse"
+    },
+    {
+      "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+      "mechanic": "executor_inject:failure_before_retirement"
+    },
+    {
+      "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "mechanic": "executor_inject:failure_after_retirement"
+    },
+    {
+      "case_id": "LC6-06-forced-doctor-failure",
+      "mechanic": "executor_inject:forced_doctor_failure"
+    },
+    {
+      "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+      "mechanic": "executor_inject:forced_retrieval_failure"
+    },
+    {
+      "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+      "mechanic": "harness_fixture:stale_tracker_store_baseline_hash"
+    },
+    {
+      "case_id": "LC6-09-canonical-source-sha-mismatch",
+      "mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest"
+    },
+    {
+      "case_id": "LC6-10-candidate-lock-contention",
+      "mechanic": "harness_fixture:candidate_lock_contention"
+    },
+    {
+      "case_id": "LC6-11-interruption-during-mutation",
+      "mechanic": "harness_fixture:interruption_during_execution"
+    },
+    {
+      "case_id": "LC6-12-direct-active-production-target",
+      "mechanic": "refusal_only:active_production_target"
+    },
+    {
+      "case_id": "LC6-13-legacy-rag-db-target",
+      "mechanic": "refusal_only:legacy_rag_db_target"
+    },
+    {
+      "case_id": "LC6-14-generations-root-target",
+      "mechanic": "refusal_only:generations_root_target"
+    },
+    {
+      "case_id": "LC6-15-ce-library-root-target",
+      "mechanic": "refusal_only:ce_library_root_target"
+    },
+    {
+      "case_id": "LC6-16-rerun-against-already-repaired-clone",
+      "mechanic": "harness_fixture:dirty_clone_rerun_refusal"
+    },
+    {
+      "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+      "mechanic": "harness_fixture:invalid_or_missing_marker_refusal"
+    },
+    {
+      "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+      "mechanic": "harness_fixture:invalid_manifest_refusal"
+    },
+    {
+      "case_id": "LC6-19-unexpected-wal-shm-state",
+      "mechanic": "harness_fixture:wal_shm_precondition_refusal"
+    },
+    {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "mechanic": "harness_fixture:worker_timeout_or_malformed_output"
+    }
+  ],
+  "execution_metadata": {
+    "mode": "execute",
+    "validate_harness": false,
+    "actual_case_execution_performed": true,
+    "no_failure_injection_case_ran": false,
+    "no_production_action_occurred": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  },
+  "execution_plan": {
+    "started_case_ids": [
+      "LC6-13-legacy-rag-db-target"
+    ],
+    "stopped_on_case_id": null,
+    "not_started_case_ids": [],
+    "preserved_failed_clone": null,
+    "stop_on_first_unexpected_result_honored": true,
+    "results": [
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "mechanic": "refusal_only:legacy_rag_db_target",
+        "dispatch_identity_chain": {
+          "cli_selected_case_id": "LC6-13-legacy-rag-db-target",
+          "contract_case_id": "LC6-13-legacy-rag-db-target",
+          "harness_mechanic": "refusal_only:legacy_rag_db_target",
+          "executor_action": null,
+          "worker_action": null,
+          "checkpoint_source": null,
+          "worker_pid": null,
+          "disposable_clone": "/private/tmp/lc6_case_13_oe0052c1/case_13_legacy_rag_db_target/clone",
+          "run_id": null
+        },
+        "execution_metadata": {
+          "mode": "execute",
+          "validate_harness": false,
+          "actual_case_execution_performed": false,
+          "no_failure_injection_case_ran": true,
+          "no_production_action_occurred": true,
+          "production_chroma_not_opened": true,
+          "final_clean_cycle_not_run": true,
+          "sha256sums_not_regenerated": true
+        },
+        "observed": {
+          "status": "CONTROLLED_REFUSAL_CONFIRMED",
+          "probe": {
+            "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+            "status": "refused",
+            "opened_chroma": false,
+            "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+            "ok": true
+          },
+          "opened_chroma": false,
+          "production_action": false
+        },
+        "evaluation": {
+          "case_id": "LC6-13-legacy-rag-db-target",
+          "expected_process_exit_result": "refused exit code before Chroma open",
+          "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+          "expected_behavior_confirmed": true
+        },
+        "rollback": {
+          "case_id": "LC6-13-legacy-rag-db-target",
+          "child_pid": null,
+          "child_exited": false,
+          "child_alive_after_wait": false,
+          "timed_out": false,
+          "snapshot_exists": false,
+          "rollback_owner": "none",
+          "rollback_invoked": false,
+          "rollback_allowed": false,
+          "rollback_blocked_reason": null,
+          "rollback_result": null
+        },
+        "production_hash_evidence": {
+          "before": {
+            "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+            "embedded": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+              "exists": true,
+              "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+            },
+            "chroma_sqlite3": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+              "exists": true,
+              "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+            },
+            "opened_chroma": false,
+            "capture_mode": "read-only file hash"
+          },
+          "after": {
+            "generation_root": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+            "embedded": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+              "exists": true,
+              "sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+            },
+            "chroma_sqlite3": {
+              "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+              "exists": true,
+              "sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+            },
+            "opened_chroma": false,
+            "capture_mode": "read-only file hash"
+          },
+          "match": true,
+          "opened_chroma": false,
+          "fail_closed_on_mismatch": false
+        },
+        "cleanup": {
+          "callbacks": [],
+          "clone_preserved": false,
+          "case_root_removed": true,
+          "durable_evidence_survived_cleanup": true,
+          "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142608Z/cases/LC6-13-legacy-rag-db-target",
+          "durable_evidence_verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        },
+        "no_production_action": true,
+        "evidence_persistence": {
+          "case_id": "LC6-13-legacy-rag-db-target",
+          "written_before_cleanup": true,
+          "local_case_report": "/private/tmp/lc6_case_13_oe0052c1/case_13_legacy_rag_db_target/work/evidence/case_report.json",
+          "local_evidence_inventory": "/private/tmp/lc6_case_13_oe0052c1/case_13_legacy_rag_db_target/work/evidence/evidence_inventory.json",
+          "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142608Z/cases/LC6-13-legacy-rag-db-target",
+          "durable_inventory": [
+            {
+              "relpath": "case_contract.json",
+              "bytes": 1157,
+              "sha256": "38999180f44f989029b5861f956eb876e13184bccf3f96a1073b59114c12444b"
+            },
+            {
+              "relpath": "case_report.json",
+              "bytes": 3505,
+              "sha256": "6965a4b0acee1c13e97e556c41124050d82ce304d24e9b55d7b13adab1ca19d0"
+            },
+            {
+              "relpath": "evidence_inventory.json",
+              "bytes": 992,
+              "sha256": "aeec6e28d1d7252eccdbfd294a21b562132b9fb33fb2aac4abe42590ac9ce932"
+            },
+            {
+              "relpath": "production_hashes_after.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "production_hashes_before.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "refusal_result.json",
+              "bytes": 328,
+              "sha256": "bd22f566deac85277054dbac781f5e0592f8841621205b5bf87b680a3b36341b"
+            }
+          ],
+          "verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        },
+        "durable_evidence": {
+          "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142608Z/cases/LC6-13-legacy-rag-db-target",
+          "inventory": [
+            {
+              "relpath": "case_contract.json",
+              "bytes": 1157,
+              "sha256": "38999180f44f989029b5861f956eb876e13184bccf3f96a1073b59114c12444b"
+            },
+            {
+              "relpath": "case_report.json",
+              "bytes": 7246,
+              "sha256": "cf53dbe932051a0c82144cc13b076f69588451b3cd52c82c6148b65c837e4f8b"
+            },
+            {
+              "relpath": "evidence_inventory.json",
+              "bytes": 1444,
+              "sha256": "69840dcfb68f1c72fb48b870345def41212e96db641cc7bbd2a92c050bac97ae"
+            },
+            {
+              "relpath": "evidence_persistence_verification.json",
+              "bytes": 2337,
+              "sha256": "ad5ef30a29f3b22a8743c1238235772b156a8a824f0937000725431e1d432d4e"
+            },
+            {
+              "relpath": "production_hashes_after.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "production_hashes_before.json",
+              "bytes": 663,
+              "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+            },
+            {
+              "relpath": "refusal_result.json",
+              "bytes": 328,
+              "sha256": "bd22f566deac85277054dbac781f5e0592f8841621205b5bf87b680a3b36341b"
+            }
+          ],
+          "verification": {
+            "required_files": [
+              "case_contract.json",
+              "case_report.json",
+              "evidence_inventory.json",
+              "production_hashes_before.json",
+              "production_hashes_after.json",
+              "refusal_result.json"
+            ],
+            "checks": [
+              {
+                "file": "case_contract.json",
+                "present": true
+              },
+              {
+                "file": "case_report.json",
+                "present": true
+              },
+              {
+                "file": "evidence_inventory.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_before.json",
+                "present": true
+              },
+              {
+                "file": "production_hashes_after.json",
+                "present": true
+              },
+              {
+                "file": "refusal_result.json",
+                "present": true
+              }
+            ],
+            "missing": [],
+            "ok": true
+          }
+        }
+      }
+    ]
+  },
+  "baseline_binding": {
+    "baseline_dir": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+  }
+}

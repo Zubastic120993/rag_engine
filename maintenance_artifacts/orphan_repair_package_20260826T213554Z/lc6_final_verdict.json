@@ -1,0 +1,865 @@
+{
+  "report_name": "lc6_final_verdict",
+  "created_utc": "2026-09-10T05:48:43Z",
+  "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+  "final_verdict": "LC6_PASS_READY_FOR_GOVERNED_OPERATIONAL_HANDOFF",
+  "pre_seal_checks": {
+    "prerequisite_hashes_match": true,
+    "all_20_cases_present": true,
+    "all_20_cases_pass": true,
+    "per_case_report_hashes_match": true,
+    "final_clean_cycle_verified": true,
+    "forward_errata_present_where_required": true,
+    "superseded_failed_reports_classified": true,
+    "package_regular_file_inventory_stable_before_writes": true,
+    "no_unsafe_package_entries": true,
+    "current_production_consistent_with_accepted_evidence": true,
+    "no_lingering_worker_executor_current": true
+  },
+  "blockers": [],
+  "prerequisite_hashes": {
+    "lc6_case11_single_case_retry_v2_report.json": {
+      "expected_sha256": "ceeb577659cc22bbce1fa10cb667d0611956b715d5778589593df7c5ad5e2b3d",
+      "actual_sha256": "ceeb577659cc22bbce1fa10cb667d0611956b715d5778589593df7c5ad5e2b3d",
+      "match": true
+    },
+    "lc6_remaining_19_cases_execution_v5_report.json": {
+      "expected_sha256": "b2097381ac885aaede5af67a2c5ae10637bf900862f5ad22880365014b4355b6",
+      "actual_sha256": "b2097381ac885aaede5af67a2c5ae10637bf900862f5ad22880365014b4355b6",
+      "match": true
+    },
+    "lc6_final_clean_cycle_v2_report.json": {
+      "expected_sha256": "4a7b3be4e1103cd16efdfd2438b016cbf9eb31ca125e272cb1b80e86ec4d2549",
+      "actual_sha256": "4a7b3be4e1103cd16efdfd2438b016cbf9eb31ca125e272cb1b80e86ec4d2549",
+      "match": true
+    },
+    "lc6_production_unchanged_after_final_clean_cycle_v2.json": {
+      "expected_sha256": "1c133e21a14c680a2f2df66a9bd90925ab6fb029611ea7a1eba5cac29266c1ba",
+      "actual_sha256": "1c133e21a14c680a2f2df66a9bd90925ab6fb029611ea7a1eba5cac29266c1ba",
+      "match": true
+    },
+    "lc6_final_clean_cycle_production_comparison_erratum.json": {
+      "expected_sha256": "85e8d987e2739b8a7fb891f25f8b716ef74dce2b5c995e6287de2bc5d3b8211b",
+      "actual_sha256": "85e8d987e2739b8a7fb891f25f8b716ef74dce2b5c995e6287de2bc5d3b8211b",
+      "match": true
+    }
+  },
+  "case_results": [
+    {
+      "case_id": "LC6-11-interruption-during-mutation",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_single_case_retry_v2_report.json",
+      "sha256": "ceeb577659cc22bbce1fa10cb667d0611956b715d5778589593df7c5ad5e2b3d",
+      "source_type": "dedicated_pass_report"
+    },
+    {
+      "case_id": "LC6-01-failure-before-first-mutation",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_01_execution_report.json",
+      "expected_sha256": "cfa7accefb4257281a26bf7cfb683afe76d87b191c86d16a2ba34626c1837f76",
+      "actual_sha256": "cfa7accefb4257281a26bf7cfb683afe76d87b191c86d16a2ba34626c1837f76",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-02-failure-midway-deterministic-repoints",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_02_execution_report.json",
+      "expected_sha256": "43d71722e0ef40eaf833fda3f3289932372919f6bc2fcb446f78019451d1b9c9",
+      "actual_sha256": "43d71722e0ef40eaf833fda3f3289932372919f6bc2fcb446f78019451d1b9c9",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-03-failure-during-alias-collapse",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_03_execution_report.json",
+      "expected_sha256": "689cf7189c3528ec2cec8ae8547a1e3b2afad1b9eee136752cce395e4553cc2c",
+      "actual_sha256": "689cf7189c3528ec2cec8ae8547a1e3b2afad1b9eee136752cce395e4553cc2c",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_04_execution_report.json",
+      "expected_sha256": "efa84fe3b54b2b471d1329827d6ef8fe157853b220a8062cf015a5676b691aee",
+      "actual_sha256": "efa84fe3b54b2b471d1329827d6ef8fe157853b220a8062cf015a5676b691aee",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_05_execution_report.json",
+      "expected_sha256": "9d20c1c1aed56badb297ab2c8168cc81f45add154a2d4e651f450446215c9623",
+      "actual_sha256": "9d20c1c1aed56badb297ab2c8168cc81f45add154a2d4e651f450446215c9623",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-06-forced-doctor-failure",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_06_execution_report.json",
+      "expected_sha256": "b81ac4df91a9be511eadc469bae98c460919ad7faa472c064d96bd206ce04963",
+      "actual_sha256": "b81ac4df91a9be511eadc469bae98c460919ad7faa472c064d96bd206ce04963",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_07_execution_report.json",
+      "expected_sha256": "755d471fc0860f67c482e2576f1344cc87d17422ca5628d86ca9a4d97a4a49ef",
+      "actual_sha256": "755d471fc0860f67c482e2576f1344cc87d17422ca5628d86ca9a4d97a4a49ef",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_08_execution_report.json",
+      "expected_sha256": "ca18a0ddf6f9a6545ebc1125509926ba2c4d234231237279eb9dff80cb0aa14c",
+      "actual_sha256": "ca18a0ddf6f9a6545ebc1125509926ba2c4d234231237279eb9dff80cb0aa14c",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-09-canonical-source-sha-mismatch",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_09_execution_report.json",
+      "expected_sha256": "c1a1ea050280ccb7f9c8029633e58f96858f0fae3d1e4a1db52fdae74603db94",
+      "actual_sha256": "c1a1ea050280ccb7f9c8029633e58f96858f0fae3d1e4a1db52fdae74603db94",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-10-candidate-lock-contention",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_10_execution_report.json",
+      "expected_sha256": "7cbad189c18548e8eae94e5fbb9a262e3d45894a96a79fb3e85a72347430a84a",
+      "actual_sha256": "7cbad189c18548e8eae94e5fbb9a262e3d45894a96a79fb3e85a72347430a84a",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-12-direct-active-production-target",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_12_execution_report.json",
+      "expected_sha256": "7dd0b7d7bbe6e9b5dec922f346afe6d40ca48251c87edbaa82a759e19f8a190f",
+      "actual_sha256": "7dd0b7d7bbe6e9b5dec922f346afe6d40ca48251c87edbaa82a759e19f8a190f",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-13-legacy-rag-db-target",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_13_execution_report.json",
+      "expected_sha256": "5d8dd8cd6543688c1905e8e9ef4fdb793f0279d0b98f598a500721fe980080bd",
+      "actual_sha256": "5d8dd8cd6543688c1905e8e9ef4fdb793f0279d0b98f598a500721fe980080bd",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-14-generations-root-target",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_14_execution_report.json",
+      "expected_sha256": "3ab3db493de29e28f82d294923c79f5dd1854ed4f00d4c83d999b4157647349c",
+      "actual_sha256": "3ab3db493de29e28f82d294923c79f5dd1854ed4f00d4c83d999b4157647349c",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-15-ce-library-root-target",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_15_execution_report.json",
+      "expected_sha256": "1d02b7281a6380bf7e8bc703d983f277f93cd11aa3cf86ecb4043968e39a1bd7",
+      "actual_sha256": "1d02b7281a6380bf7e8bc703d983f277f93cd11aa3cf86ecb4043968e39a1bd7",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-16-rerun-against-already-repaired-clone",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_16_execution_report.json",
+      "expected_sha256": "edad31e4f6684985b8f36d29e9cb2b60d102afc5a3666fcae4ffc14342f8c9b4",
+      "actual_sha256": "edad31e4f6684985b8f36d29e9cb2b60d102afc5a3666fcae4ffc14342f8c9b4",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_17_execution_report.json",
+      "expected_sha256": "d257e6a56f6e56c9c18345842f51598d6ec8d50b053a54c44a14bd4eedca1331",
+      "actual_sha256": "d257e6a56f6e56c9c18345842f51598d6ec8d50b053a54c44a14bd4eedca1331",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_18_execution_report.json",
+      "expected_sha256": "1a8c1522b4bdad8f3f456870513b2e35118b868f8e950553f84054dcc4cdc7fe",
+      "actual_sha256": "1a8c1522b4bdad8f3f456870513b2e35118b868f8e950553f84054dcc4cdc7fe",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-19-unexpected-wal-shm-state",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_19_execution_report.json",
+      "expected_sha256": "e36c68d450e1d7cfc557bd68c14fd985a787c3b68b7b70e9caf63c5d2efad47e",
+      "actual_sha256": "e36c68d450e1d7cfc557bd68c14fd985a787c3b68b7b70e9caf63c5d2efad47e",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    },
+    {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "result": "PASS",
+      "source": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case_20_execution_v2_report.json",
+      "expected_sha256": "ef9961139fd5536a221e8b9777c804b40f6a1bc55768e9af77dc8e5b2fc7a13e",
+      "actual_sha256": "ef9961139fd5536a221e8b9777c804b40f6a1bc55768e9af77dc8e5b2fc7a13e",
+      "sha256_match": true,
+      "source_type": "v5_aggregate_referenced_per_case_report"
+    }
+  ],
+  "final_clean_cycle_checks": {
+    "final_v2_status_pass_ready": true,
+    "normal_apply_returned_apply_ok": true,
+    "no_injection_used": true,
+    "final_chunk_count_125289": true,
+    "orphan_count_0": true,
+    "collection_langchain": true,
+    "retrieval_controls_passed": true,
+    "no_lock_wal_shm_lingering": true,
+    "production_and_selection_unchanged": true
+  },
+  "production_current_readonly_snapshot": {
+    "production_library": "/Users/vladymyrzub/CE_Library",
+    "active_generation_constant": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation_exists": true,
+    "legacy_rag_db_exists": true,
+    "legacy_rag_db_is_symlink": false,
+    "legacy_rag_db_realpath": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "rag_state_exists": true,
+    "rag_state_sha256": null,
+    "canonical_hashes": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      ".rag_state": null,
+      "active_generation": null
+    },
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false
+  },
+  "current_production_consistency_with_accepted_evidence": {
+    "embedded_json_equal": true,
+    "chroma_sqlite3_equal": true,
+    "rag_state_equal": true,
+    "active_generation_constant_equal": true,
+    "legacy_rag_db_realpath_equal": true,
+    "wal_shm_lock_equal_clear": true
+  },
+  "superseded_or_failed_historical_artifacts": [
+    {
+      "artifact": "lc6_case_20_execution_report.json",
+      "classification": "historical_failed_evidence",
+      "replacement_or_erratum": "lc6_case_20_execution_v2_report.json"
+    },
+    {
+      "artifact": "lc6_remaining_19_cases_execution_v4_report.json",
+      "classification": "superseded_aggregate",
+      "replacement_or_erratum": "lc6_remaining_19_cases_execution_v5_report.json"
+    },
+    {
+      "artifact": "lc6_final_clean_cycle_report.json",
+      "classification": "historical_report_with_schema-comparison defect",
+      "replacement_or_erratum": "lc6_final_clean_cycle_v2_report.json and lc6_final_clean_cycle_production_comparison_erratum.json"
+    },
+    {
+      "artifact": "lc6_production_unchanged_after_final_clean_cycle.json",
+      "classification": "historical_report_with_hash-map-key mismatch",
+      "replacement_or_erratum": "lc6_production_unchanged_after_final_clean_cycle_v2.json"
+    }
+  ],
+  "forward_errata_or_corrections": {
+    "lc6_case20_injection_diagnosis_report": true,
+    "lc6_case20_injection_fix_report": true,
+    "lc6_case20_injection_validation_report": true,
+    "lc6_final_clean_cycle_production_comparison_erratum": true
+  },
+  "known_non_regression_controls_or_accepted_limitations": {
+    "retrieval_controls": [
+      {
+        "control": {
+          "name": "me_lgip_renamed_paper",
+          "scope": "maker-manuals",
+          "query": "Show the source document for service experience for Everllence B&W ME-LGIP engines",
+          "expected_top_path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf"
+        },
+        "result": {
+          "status": "ok",
+          "gate": "ok",
+          "best_distance": 0.48067352175712585,
+          "score_floor": 0.38,
+          "resolved_scope": "maker-manuals",
+          "pairs": [
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+              "source_hash": "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 0,
+              "chunk_id": "chunk:972b887312cb93a508554a406824db09",
+              "distance": 0.545644223690033,
+              "text_head": "Photo courtesy of: ADNOC L&S\nService experience \nfor Everllence B&W \nME-LGIP engines\nThis paper describes the service experience gained\nfrom G50-, S60- and G60-LGIP engine types.\nEverllence B&W \ntwo-stroke \nmarine engines"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0284-00.pdf",
+              "source_hash": "eb6268aa5364f78abd9d3d05c00922f24c01a807ca0ce4e227c7967b88f8edcb",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 0,
+              "chunk_id": "chunk:a27cd1fd32a8abc64ed67fe518246b81",
+              "distance": 0.6452817916870117,
+              "text_head": "Service experience \nfor Everllence B&W \nME-GI two-stroke \nengines\nThis paper describes the service experience gained \nfrom G60-, G70-, G80-, and G95-GI engine types.\nEverllence B&W \ntwo-stroke \nmarine engines\nPhoto courtesy of: Hapag Lloyd "
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/WOODWARD  UG-25+GOVERNOR 26579 Rev G.pdf",
+              "source_hash": "2270d43bd9cb72c61948f07247900a3f621c64c66982271d22bcb5e56ef46e02",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 67,
+              "chunk_id": "chunk:d7be853e7887c97ddea07dd64300cd04",
+              "distance": 0.6896100044250488,
+              "text_head": "Customer \n Engine Type \n Application Type \n Notes \n \n \nFigure 6-2. Configuration File Example"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0282-00.pdf",
+              "source_hash": "2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 19,
+              "chunk_id": "chunk:0233678df937e69fbf120e3426a9b232",
+              "distance": 0.6541599631309509,
+              "text_head": "Service experience for Everllence B&W ME-LGIM engines\n20\nBOV  blow-off valve\nDLC  diamond-like carbon\nFBIVM  fuel booster injection valve methanol\nFEM  finite element method\nGI  gas injection\nGIE  gas injection ethane \nIMO  International Ma"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0282-00.pdf",
+              "source_hash": "2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 0,
+              "chunk_id": "chunk:8a8b96bac6e83b73bbb4ed3d3d6dd5fb",
+              "distance": 0.6552817225456238,
+              "text_head": "Photo courtesy of: A.P. Møller – Mærsk\nEverllence B&W \ntwo-stroke \nmarine engines\nService experience \nfor Everllence B&W \nME-LGIM engines\nThis paper describes the service experience gained \nfrom both G50- and G95-LGIM engine types."
+            }
+          ],
+          "diagnostics": {
+            "score_floor": 0.38,
+            "best_raw_distance": 0.48067352175712585,
+            "raw_count": 400,
+            "post_admissibility_count": 400,
+            "post_scope_count": 159,
+            "post_rerank_count": 159,
+            "post_dedupe_count": 126,
+            "final_retained_count": 0,
+            "final_confidence_passed": false,
+            "gate": null,
+            "explicit_document_mentions": [],
+            "index_fingerprint_state": "KNOWN_COMPATIBLE",
+            "index_fingerprint_degraded": false,
+            "index_fingerprint_reason": "stored index fingerprint matches runtime contract",
+            "index_fingerprint_runtime": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_stored": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_vector_count": 125289
+          },
+          "sources": [
+            {
+              "path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+              "collection": "maker-manuals",
+              "distance": 0.545644223690033,
+              "authority_rank": 3,
+              "machine_transcribed": false,
+              "page": 1,
+              "page_index": 0,
+              "document_id": "docrev:96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+              "source_hash": "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+              "chunk_id": "chunk:972b887312cb93a508554a406824db09",
+              "subject_id": "subj:pending:96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+              "subject_status": "pending",
+              "alias_count": 1,
+              "aliases": [
+                "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf"
+              ]
+            },
+            {
+              "path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0284-00.pdf",
+              "collection": "maker-manuals",
+              "distance": 0.6452817916870117,
+              "authority_rank": 3,
+              "machine_transcribed": false,
+              "page": 1,
+              "page_index": 0,
+              "document_id": "docrev:eb6268aa5364f78abd9d3d05c00922f24c01a807ca0ce4e227c7967b88f8edcb",
+              "source_hash": "eb6268aa5364f78abd9d3d05c00922f24c01a807ca0ce4e227c7967b88f8edcb",
+              "chunk_id": "chunk:a27cd1fd32a8abc64ed67fe518246b81",
+              "subject_id": "subj:pending:eb6268aa5364f78abd9d3d05c00922f24c01a807ca0ce4e227c7967b88f8edcb",
+              "subject_status": "pending",
+              "alias_count": 1,
+              "aliases": [
+                "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0284-00.pdf"
+              ]
+            },
+            {
+              "path": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/WOODWARD  UG-25+GOVERNOR 26579 Rev G.pdf",
+              "collection": "maker-manuals",
+              "distance": 0.6896100044250488,
+              "authority_rank": 3,
+              "machine_transcribed": false,
+              "page": 68,
+              "page_index": 67,
+              "document_id": "docrev:2270d43bd9cb72c61948f07247900a3f621c64c66982271d22bcb5e56ef46e02",
+              "source_hash": "2270d43bd9cb72c61948f07247900a3f621c64c66982271d22bcb5e56ef46e02",
+              "chunk_id": "chunk:d7be853e7887c97ddea07dd64300cd04",
+              "subject_id": "subj:pending:2270d43bd9cb72c61948f07247900a3f621c64c66982271d22bcb5e56ef46e02",
+              "subject_status": "pending",
+              "alias_count": 1,
+              "aliases": [
+                "00_Career/03_Engine_Knowledge/Yanmar_6EY22/WOODWARD  UG-25+GOVERNOR 26579 Rev G.pdf"
+              ]
+            },
+            {
+              "path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0282-00.pdf",
+              "collection": "maker-manuals",
+              "distance": 0.6541599631309509,
+              "authority_rank": 3,
+              "machine_transcribed": false,
+              "page": 20,
+              "page_index": 19,
+              "document_id": "docrev:2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "source_hash": "2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "chunk_id": "chunk:0233678df937e69fbf120e3426a9b232",
+              "subject_id": "subj:pending:2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "subject_status": "pending",
+              "alias_count": 1,
+              "aliases": [
+                "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0282-00.pdf"
+              ]
+            },
+            {
+              "path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0282-00.pdf",
+              "collection": "maker-manuals",
+              "distance": 0.6552817225456238,
+              "authority_rank": 3,
+              "machine_transcribed": false,
+              "page": 1,
+              "page_index": 0,
+              "document_id": "docrev:2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "source_hash": "2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "chunk_id": "chunk:8a8b96bac6e83b73bbb4ed3d3d6dd5fb",
+              "subject_id": "subj:pending:2d822223d9435ab5eb33d679fd0560fadcab62246a4144983cad4849d0248400",
+              "subject_status": "pending",
+              "alias_count": 1,
+              "aliases": [
+                "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0282-00.pdf"
+              ]
+            }
+          ]
+        },
+        "ok": true
+      },
+      {
+        "control": {
+          "name": "retired_c1210_absent",
+          "scope": "maker-manuals",
+          "query": "C1210 ME Pre-Dual Fuel standard operation online timetable",
+          "expected_status": "no_coverage"
+        },
+        "result": {
+          "status": "no_coverage",
+          "gate": "final_confidence_failed",
+          "best_distance": 0.5515374541282654,
+          "score_floor": 0.38,
+          "resolved_scope": "maker-manuals",
+          "pairs": [
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/stx-engine__121075_siqemb-4VWhjxZ.pdf",
+              "source_hash": "9549c3d0286e9c9432faf4e11d9ddb03c811624277d99e7b71f479172bc1f2b1",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 113,
+              "chunk_id": "chunk:c266a9110ad2bdf66af5c109237231ed",
+              "distance": 0.5903449058532715,
+              "text_head": "114\nTier ll\nMAN B&W S60ME-C10.5\nDual Fuel Mode for GIE (Ethane)  L1 MEP: 21.0 bar\nMAN B&W S60ME-C10.5-GIE  \nL1 SFOC equivalent gas + pilot fuel (42,700 kJ/kg) [g/kWh]*  \nSFOC-optimised load range Tuning 50% 75% 100%\nHigh load - 167.5      1"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/stx-engine__121075_siqemb-4VWhjxZ.pdf",
+              "source_hash": "9549c3d0286e9c9432faf4e11d9ddb03c811624277d99e7b71f479172bc1f2b1",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 109,
+              "chunk_id": "chunk:38fbe01d2432e049de559737c724ff8f",
+              "distance": 0.5988724231719971,
+              "text_head": "110\nTier ll\nMAN B&W G60ME-C9.5\nDual Fuel Mode for GIE (Ethane)  L1 MEP: 21.0 bar\nMAN B&W G60ME-C9.5-GIE  \nL1 SFOC equivalent gas + pilot fuel (42,700 kJ/kg) [g/kWh]*  \nSFOC-optimised load range Tuning 50% 75% 100%\nHigh load - 168.5      168"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service Experience 2010.pdf",
+              "source_hash": "6bc74d9a5a97bcb02ce8b8315f643fef3623f1bb2fb5d23a64572ad1687d0116",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 1,
+              "chunk_id": "chunk:9cf8eb66ce4caabda73bfeeabb77dd0c",
+              "distance": 0.5810474157333374,
+              "text_head": "Contents\nIntroduction  ................................................................................................. 3\nService Experience Update  ........................................................................... 4\nME System .."
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service Experience 2012.pdf",
+              "source_hash": "dec65bc5598064469c7521477669fd8e0fe93218e744b00a3df56ed3b903c204",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 2,
+              "chunk_id": "chunk:b400c02e3427bd13c6decccabac3dbb1",
+              "distance": 0.5515374541282654,
+              "text_head": "Contents\nIntroduction.................................................................................................. 5\nQuality.of.ME.Electronics.(Hardware.and.Software)........................................ 5\nTime.Between.Overhaul.(TBO"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/stx-engine__121075_siqemb-4VWhjxZ.pdf",
+              "source_hash": "9549c3d0286e9c9432faf4e11d9ddb03c811624277d99e7b71f479172bc1f2b1",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 73,
+              "chunk_id": "chunk:0b1508ef0ec9cd3e9ac7b3535f87fa1f",
+              "distance": 0.6035977602005005,
+              "text_head": "74\nTier ll\nkW/cyl.\nr/min\nL2\nL1 1,720\n1,360 1,290\n1,020\n79 100\nL3\nL4\nMAN B&W G50ME-C9.6\nCyl. L1 kW Stroke: 2,500 mm\n5 8,600\n6 10,320\n7 12,040\n8 13,760\n9 15,480\nFuel Oil L1 MEP: 21.0 bar   \nMAN B&W G50ME-C9.6  \nL1 SFOC [g/kWh]  \nSFOC-optimise"
+            }
+          ],
+          "diagnostics": {
+            "score_floor": 0.38,
+            "best_raw_distance": 0.5515374541282654,
+            "raw_count": 400,
+            "post_admissibility_count": 400,
+            "post_scope_count": 236,
+            "post_rerank_count": 236,
+            "post_dedupe_count": 186,
+            "final_retained_count": 0,
+            "final_confidence_passed": false,
+            "gate": null,
+            "explicit_document_mentions": [],
+            "index_fingerprint_state": "KNOWN_COMPATIBLE",
+            "index_fingerprint_degraded": false,
+            "index_fingerprint_reason": "stored index fingerprint matches runtime contract",
+            "index_fingerprint_runtime": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_stored": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_vector_count": 125289
+          },
+          "sources": []
+        },
+        "ok": true
+      },
+      {
+        "control": {
+          "name": "lgip_forum_service_experience",
+          "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+          "intended_scope": "maker-manuals",
+          "original_query": "LGIP service experience owners forum December 2022"
+        },
+        "result": {
+          "status": "no_coverage",
+          "gate": "final_confidence_failed",
+          "best_distance": 0.4457084536552429,
+          "score_floor": 0.38,
+          "resolved_scope": "maker-manuals",
+          "pairs": [
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 166,
+              "chunk_id": "chunk:299c76122f8b93d65c328f18f30cd722",
+              "distance": 0.8057246804237366,
+              "text_head": "Dec.22.2022 \nH.Inoue R.Shimizu \n Dec.23.2022 \nS.Takemura \n Dec.23.2022 \nH.Sumikura \n Dec.23.2022"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 167,
+              "chunk_id": "chunk:e1d514e9e49dbd9f3b3911f737d0bcac",
+              "distance": 0.8057246804237366,
+              "text_head": "Dec.22.2022 \nH.Inoue R.Shimizu \n Dec.23.2022 \nS.Takemura \n Dec.23.2022 \nH.Sumikura \n Dec.23.2022"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf",
+              "source_hash": "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 3,
+              "chunk_id": "chunk:2bf944ac005fd16b2dbc8dded8c9de29",
+              "distance": 0.8177692890167236,
+              "text_head": "troduced for both newbuilding \norders and retrofit projects. To \ndate, all orders for LGIP en-\ngines have been for LPG car-\nriers. We expect this to remain \nthe main application for LGIP \nengines in the future. \nThe service experiences dis-"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0172_online-1.pdf",
+              "source_hash": "5332023b382baf091c3149703b3470fa15daf557036f29f9b967ff5fdeb5eba2",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 26,
+              "chunk_id": "chunk:42c0acdf888b9f55ed938393a572d33b",
+              "distance": 0.8821754455566406,
+              "text_head": "Institute for valuable contributions.\n[12]  DNV GL webinar – Decarbonising \nshipping\n[13]  Short term measures - GHG \nstrategy \nhttps://www.imo.org/en/\nMediaCentre/PressBriefings/\npages/36-ISWG-GHG-7.aspx\n[14]  GHG-INF.2/1/1, INFODocs on \nw"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 33,
+              "chunk_id": "chunk:738627b0d5c8bc2f18c3e3b0598224b1",
+              "distance": 0.8787686228752136,
+              "text_head": "T.Kajihara \n Dec.13.2021 \nT.Kajihara \n Dec.13.2021 \nY.Zenman \n Dec.14.2021 M.Kikuchi \n Dec.15.2021 \nೝ͢Δ͜ͱɻ \n5IFESBXJOHTIPXTUIFTZTUFN3FGFSUPFYUFSOBMWJFXGPSUIFBTTFNCMZEJSFDUJPO"
+            }
+          ],
+          "diagnostics": {
+            "score_floor": 0.38,
+            "best_raw_distance": 0.4457084536552429,
+            "raw_count": 400,
+            "post_admissibility_count": 400,
+            "post_scope_count": 163,
+            "post_rerank_count": 163,
+            "post_dedupe_count": 127,
+            "final_retained_count": 0,
+            "final_confidence_passed": false,
+            "gate": null,
+            "explicit_document_mentions": [],
+            "index_fingerprint_state": "KNOWN_COMPATIBLE",
+            "index_fingerprint_degraded": false,
+            "index_fingerprint_reason": "stored index fingerprint matches runtime contract",
+            "index_fingerprint_runtime": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_stored": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_vector_count": 125289
+          },
+          "sources": []
+        },
+        "ok": true
+      },
+      {
+        "control": {
+          "name": "me_gi_intro_march_2026",
+          "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf",
+          "intended_scope": "maker-manuals",
+          "original_query": "01 Introduction to ME-GI March 2026"
+        },
+        "result": {
+          "status": "no_coverage",
+          "gate": "final_confidence_failed",
+          "best_distance": 0.5950986742973328,
+          "score_floor": 0.38,
+          "resolved_scope": "maker-manuals",
+          "pairs": [
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 34,
+              "chunk_id": "chunk:a05174cbc8ec2e22e9154c26d08d2ab6",
+              "distance": 0.7547378540039062,
+              "text_head": "T.Kajihara \n Jan.05.2022 \nT.Kajihara \n Jan.05.2022 \nY.Zenman \n Jan.05.2022 M.Kikuchi \n Jan.07.2022 \nೝ͢Δ͜ͱɻ \n5IFESBXJOHTIPXTUIFTZTUFN3FGFSUPFYUFSOBMWJFXGPSUIFBTTFNCMZEJSFDUJPO"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 35,
+              "chunk_id": "chunk:5ced62a864ce79f302287f52e11517f0",
+              "distance": 0.7653364539146423,
+              "text_head": "M.Shinagawa \n Aug.29.2022 \nY.Zenman \n Aug.29.2022 M.Kikuchi \n Aug.29.2022"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 159,
+              "chunk_id": "chunk:6cbd27f4724d930678239c75d6b0eed3",
+              "distance": 0.782982587814331,
+              "text_head": "H.Inoue  Oct.07.2022 \nS.Takemura \n Oct.11.2022 \nM.Kikuchi \n Oct.11.2022"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 178,
+              "chunk_id": "chunk:3b927a103470ef06c65acf9c72adbc5d",
+              "distance": 0.7860158085823059,
+              "text_head": "T.Kajihara \n Aug.30.2021 Y.Zenman \n Aug.31.2021 \nM.Kikuchi \n Sep.01.2021"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+              "source_hash": "b4d58b7ddca2ea572a6edf4241b9ca4ecaa664a129c35f5187056464d756f0e5",
+              "collection": "maker-manuals",
+              "document_type": "drawing_set",
+              "authority_rank": 3,
+              "page": 54,
+              "chunk_id": "chunk:357d5870bd7ff9a02b4a23cd7c577354",
+              "distance": 0.7884443998336792,
+              "text_head": "T.Kajihara \n Sep.02.2021 \nY.Zenman \n Sep.03.2021 M.Kikuchi \n Sep.06.2021"
+            }
+          ],
+          "diagnostics": {
+            "score_floor": 0.38,
+            "best_raw_distance": 0.5950986742973328,
+            "raw_count": 400,
+            "post_admissibility_count": 400,
+            "post_scope_count": 134,
+            "post_rerank_count": 134,
+            "post_dedupe_count": 127,
+            "final_retained_count": 0,
+            "final_confidence_passed": false,
+            "gate": null,
+            "explicit_document_mentions": [],
+            "index_fingerprint_state": "KNOWN_COMPATIBLE",
+            "index_fingerprint_degraded": false,
+            "index_fingerprint_reason": "stored index fingerprint matches runtime contract",
+            "index_fingerprint_runtime": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_stored": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_vector_count": 125289
+          },
+          "sources": []
+        },
+        "ok": true
+      },
+      {
+        "control": {
+          "name": "sl2022_725",
+          "canonical_live_path": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+          "intended_scope": "maker-manuals",
+          "original_query": "SL2022-725"
+        },
+        "result": {
+          "status": "no_coverage",
+          "gate": "final_confidence_failed",
+          "best_distance": 0.596311628818512,
+          "score_floor": 0.38,
+          "resolved_scope": "maker-manuals",
+          "pairs": [
+            {
+              "source": "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10.pdf",
+              "source_hash": "492c48f636b43e05e287b6908f98265a4230ce9f2d07b5765270ded97255fd1b",
+              "collection": "maker-manuals",
+              "document_type": "operation_manual",
+              "authority_rank": 7,
+              "page": 283,
+              "chunk_id": "chunk:0bc2f1bf5d6c1f50d32f75075a6c5da9",
+              "distance": 0.596311628818512,
+              "text_head": "3001-000-50-006EY22(A)(L)WS\nN=Oo_9)xo)2)cfs)2.xe)®_9)Se_2)=)\n[os€>2=fo]asa4S=>_l\nYANMAR"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+              "source_hash": "dc86e8010b9749969c7f8917f44cec21d9d70a2bdda381b8b83c7ea2532d9d84",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 89,
+              "chunk_id": "chunk:b11a93e0e49b7f670bdd0b0fb75f7390",
+              "distance": 0.6693610548973083,
+              "text_head": "17. .7202 .7212 .7223 .7233 .7243 .7254 .7264 .7274 .7284 .7295 \n18. .7207 .7217 .7228 .7238 .7248 .7259 .7269 .7279 .7289 .7300 \n19. .7212 .7222 .7233 .7243 .7253 .7264 .7274 .7284 .7294 .7305 \n20. .7216 .7226 .7237 .7247 .7257 .7268 .7278"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+              "source_hash": "dc86e8010b9749969c7f8917f44cec21d9d70a2bdda381b8b83c7ea2532d9d84",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 86,
+              "chunk_id": "chunk:c606feb508120163127a8a12d03b9dd0",
+              "distance": 0.6707640886306763,
+              "text_head": "71. .7251 .7261 .7271 .7281 .7291 .7300 .7310 .7320 .7330 .7340 \n72. .7256 .7266 .7276 .7285 .7295 .7305 .7315 .7325 .7334 .7344 \n73. .7260 .7270 .7280 .7290 .7300 .7309 .7319 .7329 .7339 .7349 \n74. .7265 .7275 .7285 .7294 .7304 .7314 .7324"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+              "source_hash": "dc86e8010b9749969c7f8917f44cec21d9d70a2bdda381b8b83c7ea2532d9d84",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 88,
+              "chunk_id": "chunk:d59708a3c043c185e88397452515d5b0",
+              "distance": 0.682781994342804,
+              "text_head": "70. .7345 .7355 . 7365 .7375 .7385 .7394 .7404 .7414 .7424 .7434 \n71. .7350 .7360 . 7370 .7380 .7390 .7399 . 7409 . 7419 .7429 .7439 \n72. .7354 .7364 .7374 .7384 .7394 .7403 .7413 .7423 .7433 .7443 \n73. .7359 .7369 . 7379 .7388 .7398 . 7408"
+            },
+            {
+              "source": "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+              "source_hash": "dc86e8010b9749969c7f8917f44cec21d9d70a2bdda381b8b83c7ea2532d9d84",
+              "collection": "maker-manuals",
+              "document_type": "maker_manual",
+              "authority_rank": 3,
+              "page": 78,
+              "chunk_id": "chunk:22803c595e6c09556c86ae0971eaa416",
+              "distance": 0.684217095375061,
+              "text_head": "62. .6810 .6820 .6830 .6840 .6850 .6860 .6870 .6880 .6890 .6900 \n63. .6815 .6825 .6835 .6845 .6855 .6865 .6875 .6885 .6895 .6905 \n64. .6820 .6830 .6840 .6850 .6860 .6870 .6880 .6890 .6900 .6910 \n65. .6825 .6835 .6845 .6855 .6865 .6875 .6885"
+            }
+          ],
+          "diagnostics": {
+            "score_floor": 0.38,
+            "best_raw_distance": 0.596311628818512,
+            "raw_count": 400,
+            "post_admissibility_count": 400,
+            "post_scope_count": 345,
+            "post_rerank_count": 345,
+            "post_dedupe_count": 176,
+            "final_retained_count": 0,
+            "final_confidence_passed": false,
+            "gate": null,
+            "explicit_document_mentions": [],
+            "index_fingerprint_state": "KNOWN_COMPATIBLE",
+            "index_fingerprint_degraded": false,
+            "index_fingerprint_reason": "stored index fingerprint matches runtime contract",
+            "index_fingerprint_runtime": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_stored": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+            "index_fingerprint_vector_count": 125289
+          },
+          "sources": []
+        },
+        "ok": true
+      }
+    ],
+    "accepted_limitations": "Production repair was not performed; all mutation was on disposable clones. Historical/superseded artifacts retained as evidence."
+  },
+  "boundaries": {
+    "production_repair_performed": false,
+    "production_modified": false,
+    "production_selection_modified": false,
+    "source_documents_modified": false,
+    "certified_external_baseline_modified": false,
+    "lc6_case_executed_in_this_step": false,
+    "clean_cycle_rerun_in_this_step": false,
+    "commit_or_push": false
+  },
+  "rationale": "All 20 LC6 failure-injection cases have PASS evidence; final disposable clean cycle passed; production comparison normalized and unchanged; package inventory pre-audit stable; no unsafe package entries."
+}

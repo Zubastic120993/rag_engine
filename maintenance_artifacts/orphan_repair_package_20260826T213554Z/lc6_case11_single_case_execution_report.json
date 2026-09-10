@@ -1,0 +1,174 @@
+{
+  "final_status": "LC6_CASE11_SINGLE_CASE_FAIL_PRESERVED",
+  "exact_command": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+    "--execute",
+    "--case-id",
+    "LC6-11-interruption-during-mutation",
+    "--tmp-parent",
+    "/private/tmp/lc6_case11_exec_0DEXnr",
+    "--json"
+  ],
+  "verified_input_hashes": {
+    "lc6_case11_exact_dispatch_integration_v2_report.json": "527734e407f53d6813e97237829098995b8de046bfbe1c56610320e89330c2dd",
+    "lc6_case11_exact_dispatch_integration_erratum_v2.json": "2c76165b8718b79f89b790fb010076bae623680599ab321ae611b9dae5f98c49",
+    "lc6_failure_injection.py": "9d0c272e789c9e2f0e578114ebe2676465303d53747db41521735fb3edc3f42f",
+    "orphan_repair_executor.py": "fe8d9f718a9b3bece22702b98d0c5283476c59633c8d37acb4b428ed46ea0021",
+    "chroma_worker.py": "b050b52b1319ceb03f18d9f9e2622f8dac94ee954cf35d3af7526c53c3ddf513"
+  },
+  "baseline_revalidation": {
+    "inventory_schema": "inventory-row-v1",
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "wal_shm_clear": true
+  },
+  "production_hashes": {
+    "before": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "after": {
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+    },
+    "unchanged": true
+  },
+  "disposable_paths": {
+    "parent": "/private/tmp/lc6_case11_exec_0DEXnr",
+    "case_root": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation",
+    "clone": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/clone",
+    "work": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work",
+    "snapshot": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/generation_snapshot",
+    "evidence": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/evidence"
+  },
+  "target_safety_confirmation": {
+    "not_production": true,
+    "not_legacy_rag_db": true,
+    "not_generations_root": true,
+    "not_ce_library_root": true,
+    "not_lc4_baseline_path": true,
+    "fresh_disposable_parent_used": true,
+    "no_all_flag_used": true
+  },
+  "worker_and_executor_pids": {
+    "executor_pid": "not captured in available failure artifact",
+    "worker_pid": 39705
+  },
+  "checkpoint_and_signal_evidence": {
+    "checkpoint_expected_path": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/case11_real_chain/mutation_checkpoint.json",
+    "checkpoint_exists": false,
+    "signal_expected_path": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/case11_real_chain/signal_received.json",
+    "signal_exists": false,
+    "worker_command": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "case11_interrupt_probe",
+      "--gen-dir",
+      "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/clone",
+      "--request-file",
+      "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_uqn7gqk1/case11_interrupt_probe.json",
+      "--case-id",
+      "LC6-11-interruption-during-mutation",
+      "--run-id",
+      "LC6-11-interruption-during-mutation-063b97941ce0",
+      "--state-dir",
+      "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/case11_real_chain"
+    ],
+    "worker_returncode": 1,
+    "worker_stdout_json": {
+      "status": "error",
+      "opened_chroma": false,
+      "error_type": "RuntimeError",
+      "error": "expected one collection, found ['test', 'langchain']",
+      "generation": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/clone",
+      "worker_pid": 39705
+    }
+  },
+  "exit_ordering": {
+    "worker_completed": true,
+    "executor_completed": true,
+    "lingering_worker_or_executor_processes": false,
+    "checkpoint_phase_reached": false,
+    "reason": "worker failed before emitting mutation checkpoint because the disposable clone contained both 'test' and 'langchain' collections"
+  },
+  "recovery": {
+    "recovery_owner": "executor",
+    "executor_recovery_performed": true,
+    "double_rollback_detected": false,
+    "rollback_owner_result": "executor",
+    "recovery_log": {
+      "event": "restored_snapshot_after_interrupt_probe_failure",
+      "worker_returncode": 1
+    }
+  },
+  "disposable_state": {
+    "pre_hashes_recorded": true,
+    "post_hashes_recorded": true,
+    "pre_post_hashes_equal": true,
+    "pre_chunk_count": 125291,
+    "post_chunk_count": 125291,
+    "pre_orphan_count": 55,
+    "post_orphan_count": 55,
+    "wal_files_remaining": [],
+    "shm_files_remaining": [],
+    "wal_shm_clear_after_failure": true,
+    "restored_inventory_differs": false,
+    "note": "pre/post chunk and orphan counts are treated as unchanged because executor restored the snapshot and pre/post hash sets match"
+  },
+  "durable_evidence_inventory": {
+    "status": "not persisted to durable run_report directory before failure",
+    "preserved_work_evidence_files": [
+      "work/evidence/case_contract.json",
+      "work/evidence/clone_setup.json",
+      "work/evidence/fixture_setup.json",
+      "work/evidence/production_hashes_before.json",
+      "work/execution_log.jsonl",
+      "work/interrupt_probe_result.json"
+    ]
+  },
+  "cleanup_or_preservation": {
+    "clone_preserved": true,
+    "case_root_removed": false,
+    "preservation_reason": "user required preservation on unexpected status; execution stopped before checkpoint and signal evidence were created"
+  },
+  "blocker": {
+    "type": "real_chain_execution_failure_before_checkpoint",
+    "message": "expected one collection, found ['test', 'langchain']",
+    "effect": "checkpoint absent, signal not sent, exact LC6-11 governed interruption path did not reach the mutation-in-progress checkpoint"
+  },
+  "current_sha256sums_mismatches": [
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    },
+    {
+      "path": "orphan_repair_common.py",
+      "listed_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef"
+    },
+    {
+      "path": "lc6_failure_injection.py",
+      "listed_sha256": null,
+      "actual_sha256": "9d0c272e789c9e2f0e578114ebe2676465303d53747db41521735fb3edc3f42f"
+    },
+    {
+      "path": "lc6_case11_single_case_execution_report.json",
+      "listed_sha256": null,
+      "actual_sha256": "to be computed externally after write"
+    }
+  ],
+  "confirmation": {
+    "only_lc6_11_ran": true,
+    "no_other_lc6_case_ran": true,
+    "no_production_action_ran": true,
+    "no_production_selection_changed": true,
+    "no_source_document_changed": true,
+    "no_sha256sums_regeneration": true
+  }
+}

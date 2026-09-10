@@ -1,0 +1,95 @@
+{
+  "final_status": "LC6_STEP1_REVALIDATION_PASS_READY_FOR_FAILURE_INJECTION_PLANNING",
+  "orphan_repair_common_py_before_sha256": "e3c9fca0944d08ee3f13f06b95a6650d526ee35aa04403ee25778784d37386b0",
+  "orphan_repair_common_py_after_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef",
+  "schema_checks": [
+    {
+      "name": "missing_field_legacy_v1",
+      "passed": true,
+      "result": "inventory-row-v1",
+      "error": null
+    },
+    {
+      "name": "explicit_inventory_row_v1",
+      "passed": true,
+      "result": "inventory-row-v1",
+      "error": null
+    },
+    {
+      "name": "empty_string_rejected",
+      "passed": true,
+      "result": null,
+      "error_type": "TargetRefusal",
+      "error": "inventory row schema must be a non-empty string"
+    },
+    {
+      "name": "whitespace_only_rejected",
+      "passed": true,
+      "result": null,
+      "error_type": "TargetRefusal",
+      "error": "inventory row schema must be a non-empty string"
+    },
+    {
+      "name": "null_rejected",
+      "passed": true,
+      "result": null,
+      "error_type": "TargetRefusal",
+      "error": "invalid inventory row schema type: NoneType"
+    },
+    {
+      "name": "integer_rejected",
+      "passed": true,
+      "result": null,
+      "error_type": "TargetRefusal",
+      "error": "invalid inventory row schema type: int"
+    },
+    {
+      "name": "unknown_schema_rejected",
+      "passed": true,
+      "result": null,
+      "error_type": "TargetRefusal",
+      "error": "unsupported inventory row schema: inventory-row-v2"
+    }
+  ],
+  "baseline_validation_result": {
+    "passed": true,
+    "source_inventory_schema": "inventory-row-v1",
+    "row_count": 19,
+    "computed_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "marker_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "all_three_equal_expected": true
+  },
+  "baseline_hashes_counts": {
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "wal_exists": false,
+    "shm_exists": false,
+    "wal_shm_clear": true
+  },
+  "expected_baseline_values": {
+    "row_count": 19,
+    "checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55
+  },
+  "sha256sums_readonly_mismatches": [
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    },
+    {
+      "path": "orphan_repair_common.py",
+      "listed_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef"
+    }
+  ],
+  "confirmation_no_lc5_cycle_or_lc6_failure_injection_ran": true,
+  "lc6_may_proceed_beyond_step1": true,
+  "artifact_sha256": "907a43a468911e509b2864fe037bdd29e24cdf35a02e9625a184a3f1afca7738"
+}

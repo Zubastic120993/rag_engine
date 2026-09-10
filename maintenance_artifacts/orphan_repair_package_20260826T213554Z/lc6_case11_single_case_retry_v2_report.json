@@ -1,0 +1,524 @@
+{
+  "final_status": "LC6_CASE11_SINGLE_CASE_RETRY_PASS",
+  "verified_input_hashes": {
+    "binding_report_sha256": "f55d6d15c7439babaec641889c4e958b24c03399cac9fc4a0db07e2c6a8cce5c",
+    "harness_sha256": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33",
+    "executor_sha256": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945",
+    "worker_sha256": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584"
+  },
+  "baseline_evidence": {
+    "path": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+    "marker_exists": true,
+    "marker_sha256": "7da36b691a204f5c8b5181748b2a8dfe1ea7edd7d1a13ec36ff1cf3aeb761fb9",
+    "marker": {
+      "clone_id": "lc4-raggen_lc4_baseline_restored_20260901T153049Z",
+      "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "creation_time_utc": "2026-09-01T15:30:52Z",
+      "purpose": "VERIFIED_DISPOSABLE_BASELINE",
+      "status": "VERIFIED_DISPOSABLE_BASELINE",
+      "source_inventory_schema": "inventory-row-v1",
+      "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "source_core_hashes": {
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+      },
+      "expected_chunk_count": 125291,
+      "expected_orphan_count": 55,
+      "package_manifest_checksum": "3dabe40c9522ca497373205a937d659e91341a3faa1edfecb0864b84a2718f04",
+      "disposable": true,
+      "unpromoted": true,
+      "target_generation": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z"
+    },
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "worker_collection_summary": {
+      "status": "ok",
+      "action": "collection_summary",
+      "opened_chroma": true,
+      "collection_names": [
+        "langchain"
+      ],
+      "collection_count": 1,
+      "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "selected_chunk_exists": true,
+      "selected_chunk_metadata": {
+        "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+        "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+        "collection": "maker-manuals",
+        "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+        "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+        "machine_transcribed": false,
+        "page": 0,
+        "page_index": 0,
+        "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+      },
+      "worker_pid": 43660,
+      "generation": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+      "marker_clone_id": "lc4-raggen_lc4_baseline_restored_20260901T153049Z"
+    },
+    "active_processes": []
+  },
+  "approved_chunk_identity": {
+    "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+    "exists_in_single_collection": true,
+    "original_metadata": {
+      "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+      "collection": "maker-manuals",
+      "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+      "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+      "machine_transcribed": false,
+      "page": 0,
+      "page_index": 0,
+      "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+    }
+  },
+  "production_hashes_before": {
+    "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+  },
+  "current_sha256sums_mismatches": [
+    {
+      "path": "chroma_worker.py",
+      "listed_sha256": "f788ceb722455d3a75b0305bb7d1b10fe6416171a328298b7c6a5497379e7d0c",
+      "actual_sha256": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584"
+    },
+    {
+      "path": "lc5_five_cycle_rehearsal.py",
+      "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "actual_sha256": "86b8636611ef198481f5687fd4b59223d1a74146bc0f471feab99e0d477b8050"
+    },
+    {
+      "path": "orphan_repair_common.py",
+      "listed_sha256": "996e7666a8b467dfcf1717c66e5bc6394ee5ca4305ea4f1eb01e2aed2cff03cb",
+      "actual_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef"
+    },
+    {
+      "path": "orphan_repair_executor.py",
+      "listed_sha256": "311672d01f22e72b910eab1addc76792f1d63a85fe3b3d9d90812c4728f96205",
+      "actual_sha256": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945"
+    },
+    {
+      "path": "lc6_failure_injection.py",
+      "listed_sha256": null,
+      "actual_sha256": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33"
+    }
+  ],
+  "only_lc6_11_authorized": true,
+  "exact_command": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+    "--execute",
+    "--case-id",
+    "LC6-11-interruption-during-mutation",
+    "--baseline-dir",
+    "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+    "--tmp-parent",
+    "/private/tmp/lc6_case11_retry_v2__wyz0gin",
+    "--json"
+  ],
+  "disposable_parent": "/private/tmp/lc6_case11_retry_v2__wyz0gin",
+  "production_hashes_after": {
+    "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+  },
+  "disposable_paths": {
+    "parent": "/private/tmp/lc6_case11_retry_v2__wyz0gin",
+    "durable_evidence_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260902T135424Z/cases/LC6-11-interruption-during-mutation",
+    "clone_preserved": false,
+    "case_root_removed": true
+  },
+  "checkpoint_signal_exit_recovery_timeline": {
+    "checkpoint": {
+      "status": "MUTATION_IN_PROGRESS",
+      "checkpoint_name": "mutation_in_progress",
+      "case_id": "LC6-11-interruption-during-mutation",
+      "run_id": "LC6-11-interruption-during-mutation-8b34b54a111c",
+      "clone_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+      "worker_pid": 43685,
+      "collection_name": "langchain",
+      "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "original_metadata": {
+        "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+        "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+        "collection": "maker-manuals",
+        "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+        "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+        "machine_transcribed": false,
+        "page": 0,
+        "page_index": 0,
+        "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+      },
+      "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "worker_command": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-8b34b54a111c --state-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain",
+      "timestamp_monotonic": 2896887.538532333,
+      "opened_chroma": true
+    },
+    "signal_record": {
+      "verified_identity": {
+        "worker_pid": 43685,
+        "case_id": "LC6-11-interruption-during-mutation",
+        "run_id": "LC6-11-interruption-during-mutation-8b34b54a111c",
+        "clone_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+        "script_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+        "ps_command": "/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-8b34b54a111c --state-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain",
+        "checkpoint_name": "mutation_in_progress",
+        "checkpoint_status": "MUTATION_IN_PROGRESS"
+      },
+      "signal_sent": "SIGTERM",
+      "target_pid": 43685,
+      "target_clone_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone"
+    },
+    "signal_payload": {
+      "status": "SIGNAL_RECEIVED",
+      "signal": 15,
+      "case_id": "LC6-11-interruption-during-mutation",
+      "run_id": "LC6-11-interruption-during-mutation-8b34b54a111c",
+      "clone_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+      "worker_pid": 43685,
+      "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "worker_command": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py case11_interrupt_probe --gen-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone --request-file /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json --case-id LC6-11-interruption-during-mutation --run-id LC6-11-interruption-during-mutation-8b34b54a111c --state-dir /private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain",
+      "wait_completed": true,
+      "timestamp_monotonic": 2896887.564917791
+    },
+    "executor_process": {
+      "pid": 43674,
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"INTERRUPT_PROBE_RECOVERED\",\n  \"case_id\": \"LC6-11-interruption-during-mutation\",\n  \"run_id\": \"LC6-11-interruption-during-mutation-8b34b54a111c\",\n  \"approved_chunk\": {\n    \"digest\": \"00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\",\n    \"canonical_live_path\": \"00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf\",\n    \"tracker_collection\": \"maker-manuals\",\n    \"derived_collection\": \"maker-manuals\",\n    \"selected_chunk_id\": \"chunk:c23e35434fa601e610c7e1e72f4f83dc\",\n    \"authorization_basis\": \"first bounded chunk ID from approved manifest deterministic affected set\"\n  },\n  \"pre_collection_summary\": {\n    \"status\": \"ok\",\n    \"action\": \"collection_summary\",\n    \"opened_chroma\": true,\n    \"collection_names\": [\n      \"langchain\"\n    ],\n    \"collection_count\": 1,\n    \"selected_chunk_id\": \"chunk:c23e35434fa601e610c7e1e72f4f83dc\",\n    \"selected_chunk_exists\": true,\n    \"selected_chunk_metadata\": {\n      \"chunk_id\": \"chunk:c23e35434fa601e610c7e1e72f4f83dc\",\n      \"chunking_fingerprint\": \"1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467\",\n      \"collection\": \"maker-manuals\",\n      \"document_id\": \"docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\",\n      \"embedding_generation_id\": \"raggen:20260814T182037Z:698e0df44604\",\n      \"machine_transcribed\": false,\n      \"page\": 0,\n      \"page_index\": 0,\n      \"source\": \"00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf\",\n      \"source_hash\": \"00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\"\n    },\n    \"worker_pid\": 43676,\n    \"generation\": \"/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone\",\n    \"marker_clone_id\": \"lc6-LC6-11-interruption-during-mutation-9fdfa771-ce01-4110-8823-e0752a9bf139\"\n  },\n  \"worker_process\": {\n    \"cmd\": [\n      \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python\",\n      \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py\",\n      \"case11_interrupt_probe\",\n      \"--gen-dir\",\n      \"/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone\",\n      \"--request-file\",\n      \"/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json\",\n      \"--case-id\",\n      \"LC6-11-interruption-during-mutation\",\n      \"--run-id\",\n      \"LC6-11-interruption-during-mutation-8b34b54a111c\",\n      \"--state-dir\",\n      \"/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain\"\n    ],\n    \"returncode\": 143,\n    \"stdout\": \"\",\n    \"stderr\": \"\",\n    \"json_payload\": null,\n    \"json_parse_error\": \"empty stdout\",\n    \"request_file\": \"/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json\"\n  },\n  \"checkpoint_path\": \"/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain/mutation_checkpoint.json\",\n  \"checkpoint_exists\": true,\n  \"signal_path\": \"/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain/signal_received.json\",\n  \"signal_exists\": true,\n  \"executor_recovery_performed\": true,\n  \"rollback_owner\": \"executor\",\n  \"pre_hashes\": {\n    \".orphan_repair_disposable_clone.json\": \"d3020ee47d4a87c993407e3a207be669e791764e8b0f8613edb8fc99920a3427\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin\": \"556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/header.bin\": \"acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle\": \"6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/length.bin\": \"080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin\": \"bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a\",\n    \"ask_events.jsonl\": \"a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json\": \"dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json\": \"4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json\": \"774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json\": \"f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json\": \"8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json\": \"edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json\": \"f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json\": \"fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc\",\n    \"certified_generation_checkpoint.json\": \"5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362\",\n    \"chroma.sqlite3\": \"71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6\",\n    \"embedded.json\": \"c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33\",\n    \"index_embedding_fingerprint_v1.json\": \"763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996\",\n    \"index_fingerprint.json\": \"7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb\"\n  },\n  \"post_hashes\": {\n    \".orphan_repair_disposable_clone.json\": \"d3020ee47d4a87c993407e3a207be669e791764e8b0f8613edb8fc99920a3427\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin\": \"556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/header.bin\": \"acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle\": \"6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/length.bin\": \"080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin\": \"bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a\",\n    \"ask_events.jsonl\": \"a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json\": \"dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json\": \"4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json\": \"774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json\": \"f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json\": \"8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json\": \"edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json\": \"f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json\": \"fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc\",\n    \"certified_generation_checkpoint.json\": \"5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362\",\n    \"chroma.sqlite3\": \"71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6\",\n    \"embedded.json\": \"c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33\",\n    \"index_embedding_fingerprint_v1.json\": \"763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996\",\n    \"index_fingerprint.json\": \"7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb\"\n  },\n  \"post_collection_summary\": {\n    \"status\": \"ok\",\n    \"action\": \"collection_summary\",\n    \"opened_chroma\": true,\n    \"collection_names\": [\n      \"langchain\"\n    ],\n    \"collection_count\": 1,\n    \"selected_chunk_id\": \"chunk:c23e35434fa601e610c7e1e72f4f83dc\",\n    \"selected_chunk_exists\": true,\n    \"selected_chunk_metadata\": {\n      \"chunk_id\": \"chunk:c23e35434fa601e610c7e1e72f4f83dc\",\n      \"chunking_fingerprint\": \"1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467\",\n      \"collection\": \"maker-manuals\",\n      \"document_id\": \"docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\",\n      \"embedding_generation_id\": \"raggen:20260814T182037Z:698e0df44604\",\n      \"machine_transcribed\": false,\n      \"page\": 0,\n      \"page_index\": 0,\n      \"source\": \"00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf\",\n      \"source_hash\": \"00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\"\n    },\n    \"worker_pid\": 43691,\n    \"generation\": \"/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone\",\n    \"marker_clone_id\": \"lc6-LC6-11-interruption-during-mutation-9fdfa771-ce01-4110-8823-e0752a9bf139\"\n  },\n  \"selected_chunk_metadata_after_recovery\": {\n    \"chunk_id\": \"chunk:c23e35434fa601e610c7e1e72f4f83dc\",\n    \"chunking_fingerprint\": \"1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467\",\n    \"collection\": \"maker-manuals\",\n    \"document_id\": \"docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\",\n    \"embedding_generation_id\": \"raggen:20260814T182037Z:698e0df44604\",\n    \"machine_transcribed\": false,\n    \"page\": 0,\n    \"page_index\": 0,\n    \"source\": \"00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf\",\n    \"source_hash\": \"00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200\"\n  }\n}\n",
+      "stderr": "",
+      "exited": true
+    },
+    "executor_result": {
+      "status": "INTERRUPT_PROBE_RECOVERED",
+      "case_id": "LC6-11-interruption-during-mutation",
+      "run_id": "LC6-11-interruption-during-mutation-8b34b54a111c",
+      "approved_chunk": {
+        "digest": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+        "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "tracker_collection": "maker-manuals",
+        "derived_collection": "maker-manuals",
+        "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+        "authorization_basis": "first bounded chunk ID from approved manifest deterministic affected set"
+      },
+      "pre_collection_summary": {
+        "status": "ok",
+        "action": "collection_summary",
+        "opened_chroma": true,
+        "collection_names": [
+          "langchain"
+        ],
+        "collection_count": 1,
+        "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+        "selected_chunk_exists": true,
+        "selected_chunk_metadata": {
+          "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+          "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+          "collection": "maker-manuals",
+          "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+          "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+          "machine_transcribed": false,
+          "page": 0,
+          "page_index": 0,
+          "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+          "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+        },
+        "worker_pid": 43676,
+        "generation": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+        "marker_clone_id": "lc6-LC6-11-interruption-during-mutation-9fdfa771-ce01-4110-8823-e0752a9bf139"
+      },
+      "worker_process": {
+        "cmd": [
+          "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+          "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+          "case11_interrupt_probe",
+          "--gen-dir",
+          "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+          "--request-file",
+          "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json",
+          "--case-id",
+          "LC6-11-interruption-during-mutation",
+          "--run-id",
+          "LC6-11-interruption-during-mutation-8b34b54a111c",
+          "--state-dir",
+          "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain"
+        ],
+        "returncode": 143,
+        "stdout": "",
+        "stderr": "",
+        "json_payload": null,
+        "json_parse_error": "empty stdout",
+        "request_file": "/var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/orphan_repair_worker_req_l9p1yy8u/case11_interrupt_probe.json"
+      },
+      "checkpoint_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain/mutation_checkpoint.json",
+      "checkpoint_exists": true,
+      "signal_path": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/work/case11_real_chain/signal_received.json",
+      "signal_exists": true,
+      "executor_recovery_performed": true,
+      "rollback_owner": "executor",
+      "pre_hashes": {
+        ".orphan_repair_disposable_clone.json": "d3020ee47d4a87c993407e3a207be669e791764e8b0f8613edb8fc99920a3427",
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+        "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+        "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      },
+      "post_hashes": {
+        ".orphan_repair_disposable_clone.json": "d3020ee47d4a87c993407e3a207be669e791764e8b0f8613edb8fc99920a3427",
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+        "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+        "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      },
+      "post_collection_summary": {
+        "status": "ok",
+        "action": "collection_summary",
+        "opened_chroma": true,
+        "collection_names": [
+          "langchain"
+        ],
+        "collection_count": 1,
+        "selected_chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+        "selected_chunk_exists": true,
+        "selected_chunk_metadata": {
+          "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+          "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+          "collection": "maker-manuals",
+          "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+          "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+          "machine_transcribed": false,
+          "page": 0,
+          "page_index": 0,
+          "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+          "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+        },
+        "worker_pid": 43691,
+        "generation": "/private/tmp/lc6_case11_retry_v2__wyz0gin/case_11_interruption_during_mutation/clone",
+        "marker_clone_id": "lc6-LC6-11-interruption-during-mutation-9fdfa771-ce01-4110-8823-e0752a9bf139"
+      },
+      "selected_chunk_metadata_after_recovery": {
+        "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+        "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+        "collection": "maker-manuals",
+        "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+        "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+        "machine_transcribed": false,
+        "page": 0,
+        "page_index": 0,
+        "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+        "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+      }
+    },
+    "rollback": {
+      "case_id": "LC6-11-interruption-during-mutation",
+      "child_pid": null,
+      "child_exited": false,
+      "child_alive_after_wait": false,
+      "timed_out": false,
+      "snapshot_exists": true,
+      "rollback_owner": "executor",
+      "rollback_invoked": false,
+      "rollback_allowed": false,
+      "rollback_blocked_reason": "executor-owned restoration after controlled worker failure",
+      "rollback_result": null
+    }
+  },
+  "restoration_evidence": {
+    "pre_hashes": {
+      ".orphan_repair_disposable_clone.json": "d3020ee47d4a87c993407e3a207be669e791764e8b0f8613edb8fc99920a3427",
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "post_hashes": {
+      ".orphan_repair_disposable_clone.json": "d3020ee47d4a87c993407e3a207be669e791764e8b0f8613edb8fc99920a3427",
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "selected_chunk_metadata_before": {
+      "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+      "collection": "maker-manuals",
+      "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+      "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+      "machine_transcribed": false,
+      "page": 0,
+      "page_index": 0,
+      "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+    },
+    "selected_chunk_metadata_after": {
+      "chunk_id": "chunk:c23e35434fa601e610c7e1e72f4f83dc",
+      "chunking_fingerprint": "1505a8af2214482f37fb850ab59d034632645b0a1fe1edda5e1fe95912494467",
+      "collection": "maker-manuals",
+      "document_id": "docrev:00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+      "embedding_generation_id": "raggen:20260814T182037Z:698e0df44604",
+      "machine_transcribed": false,
+      "page": 0,
+      "page_index": 0,
+      "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "source_hash": "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200"
+    },
+    "collection_names_before": [
+      "langchain"
+    ],
+    "collection_names_after": [
+      "langchain"
+    ],
+    "chunk_count_restored": 125291,
+    "orphan_count_restored": 55
+  },
+  "durable_evidence_inventory": [
+    {
+      "relpath": "case11_interrupt_checkpoint.json",
+      "bytes": 1910,
+      "sha256": "e4aee133a72582977f89c0f3bd320c454e28314d6be599a8c622372546ff95ce"
+    },
+    {
+      "relpath": "case11_interrupt_executor_process.json",
+      "bytes": 11018,
+      "sha256": "1692a25ccdec654c93c761f18cd2510b1d7670e785644e4ff6db9491cc20e2e8"
+    },
+    {
+      "relpath": "case11_interrupt_observed.json",
+      "bytes": 27678,
+      "sha256": "f5a4efc945b50349de33bb6fb52305ab1c2f50034c14e4e8f833faaabc7751e6"
+    },
+    {
+      "relpath": "case11_interrupt_signal.json",
+      "bytes": 1119,
+      "sha256": "9280d5bfd3ebff5d20df23ed5691517ffa3c7feffa05c6f1fb6cadd171f43879"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1662,
+      "sha256": "5bc4b21a4c4fdb69c0dbae0399b0090c354924deb25ce058966a871752e6f3f7"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 38874,
+      "sha256": "485ee214fca4303bdc814b43d37d9cd880605b0b15c7f89b10ca86058314cccd"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1180,
+      "sha256": "daa93e55a43a0a3dbc398c994a3c8de8fb759e1455b8d94aa2fe25ed82474184"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2618,
+      "sha256": "7cf3c2908c0ddc042c15ca33b2769eb18af248c06ee9cc472c00baf7986b83e5"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4418,
+      "sha256": "be560bb50299682dfe350bb5bed06eed330d198e13bda6b69dfc8c29c7c9bf12"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 87,
+      "sha256": "217d6c1a7f7d41358e8701e85ac90ff2d493ffe807c1c17c50026f47e0011322"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 190,
+      "sha256": "4eae8a0a14b76dd7ad9cf81bd4a453871b4556897f85d0ed665e03a5d7611a32"
+    },
+    {
+      "relpath": "interrupt_probe_result.json",
+      "bytes": 10334,
+      "sha256": "dd6a5d6a9407a66b771239c7a1a8f5fecc5187b8c67b4555a22910fc0689d51b"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "confirmation": {
+    "only_lc6_11_ran": true,
+    "no_other_case_ran": true,
+    "no_all_flag_used": true,
+    "production_hashes_unchanged": true
+  }
+}

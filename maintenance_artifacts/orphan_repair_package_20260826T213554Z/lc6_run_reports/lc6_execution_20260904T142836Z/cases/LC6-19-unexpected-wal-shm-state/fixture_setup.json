@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:wal_shm_precondition_refusal",
+  "mutations": [
+    "dummy WAL/SHM created in disposable clone"
+  ]
+}

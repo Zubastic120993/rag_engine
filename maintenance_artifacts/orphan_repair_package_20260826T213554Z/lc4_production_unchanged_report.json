@@ -1,0 +1,15 @@
+{
+  "status": "production_unchanged_after_lc4",
+  "active_generation_selection": {
+    "mechanism": "rag_engine persist_dir() with explicit task-set RAG_DB_PATH during lock/copy; default fallback is library_root/.rag_db",
+    "requested_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "resolved_persist_dir": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "matches_requested_generation": true
+  },
+  "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+  "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+  "total_chunks": 125291,
+  "matches_expected": true,
+  "expected_orphan_count_reference": 55,
+  "no_production_mutation_performed": true
+}

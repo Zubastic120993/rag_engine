@@ -1,0 +1,264 @@
+{
+  "report_name": "lc6_case20_injection_validation_report",
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "status": "PASS",
+  "synthetic_parent": "/private/tmp/lc6_case20_validation_hxdxxho5",
+  "synthetic_baseline": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+  "synthetic_package": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_package",
+  "cli_command": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+    "--execute",
+    "--case-id",
+    "LC6-20-worker-timeout-or-malformed-output",
+    "--test-baseline-dir",
+    "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+    "--test-package-dir",
+    "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_package",
+    "--tmp-parent",
+    "/private/tmp/lc6_case20_validation_hxdxxho5",
+    "--json"
+  ],
+  "cli_returncode": 0,
+  "durable_case_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/run_report/cases/LC6-20-worker-timeout-or-malformed-output",
+  "case_observed_status": "APPLY_REJECTED",
+  "case_evaluation": {
+    "case_id": "LC6-20-worker-timeout-or-malformed-output",
+    "expected_process_exit_result": "controlled failure on timeout or malformed JSON",
+    "observed_summary": "APPLY_REJECTED",
+    "expected_behavior_confirmed": true
+  },
+  "rollback": {
+    "case_id": "LC6-20-worker-timeout-or-malformed-output",
+    "child_pid": 48685,
+    "child_exited": true,
+    "child_alive_after_wait": false,
+    "timed_out": false,
+    "snapshot_exists": true,
+    "rollback_owner": "executor",
+    "rollback_invoked": false,
+    "rollback_allowed": false,
+    "rollback_blocked_reason": "executor-owned restoration after controlled worker failure",
+    "rollback_result": null
+  },
+  "timeout_or_malformed_output": {
+    "case_id": "LC6-20-worker-timeout-or-malformed-output",
+    "run_id": "LC6-20-worker-timeout-or-malformed-output-f21c0a954ddf",
+    "expected_worker_action": "apply_manifest_ops",
+    "observed_status": "APPLY_REJECTED",
+    "malformed_output_observed": true,
+    "success_cannot_be_returned": true,
+    "executor_worker_boundary_exercised": true,
+    "worker_state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/case_20_worker_timeout_or_malformed_output/work/lc6_case20_malformed_worker_output",
+    "worker_state_payload": {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "run_id": "LC6-20-worker-timeout-or-malformed-output-f21c0a954ddf",
+      "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/case_20_worker_timeout_or_malformed_output/clone",
+      "worker_pid": 49966,
+      "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+      "worker_action": "apply_manifest_ops",
+      "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-111c4090-d257-41b0-96f2-32aa049927f7",
+      "opened_chroma": false,
+      "malformed_output_emitted": true
+    }
+  },
+  "worker_malformed_output_evidence": {
+    "case_id": "LC6-20-worker-timeout-or-malformed-output",
+    "run_id": "LC6-20-worker-timeout-or-malformed-output-f21c0a954ddf",
+    "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/case_20_worker_timeout_or_malformed_output/clone",
+    "worker_pid": 49966,
+    "worker_script": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/chroma_worker.py",
+    "worker_action": "apply_manifest_ops",
+    "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-111c4090-d257-41b0-96f2-32aa049927f7",
+    "opened_chroma": false,
+    "malformed_output_emitted": true
+  },
+  "apply_failure": {
+    "status": "APPLY_REJECTED",
+    "inject": "lc6_case20_malformed_worker_output",
+    "error_type": "WorkerError",
+    "error": "worker apply_manifest_ops malformed JSON stdout: Expecting property name enclosed in double quotes: line 1 column 2 (char 1): {lc6_case20_malformed_worker_output:"
+  },
+  "negative_tests": {
+    "tests": [
+      {
+        "name": "wrong_identity",
+        "action": "apply_manifest_ops",
+        "ctx": {
+          "case_id": "LC6-99-wrong",
+          "run_id": "negative-run",
+          "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/negative_state/good",
+          "expected_worker_action": "apply_manifest_ops"
+        },
+        "returncode": 1,
+        "stdout": "{\"status\": \"error\", \"opened_chroma\": false, \"error_type\": \"RuntimeError\", \"error\": \"LC6-20 malformed-output injection refused: case_id mismatch\", \"generation\": \"/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy\", \"worker_pid\": 49975}\n",
+        "stderr": "",
+        "payload": {
+          "status": "error",
+          "opened_chroma": false,
+          "error_type": "RuntimeError",
+          "error": "LC6-20 malformed-output injection refused: case_id mismatch",
+          "generation": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "worker_pid": 49975
+        },
+        "rejected": true
+      },
+      {
+        "name": "wrong_path",
+        "action": "apply_manifest_ops",
+        "ctx": {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "run_id": "negative-run",
+          "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/wrong_clone",
+          "state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/negative_state/good",
+          "expected_worker_action": "apply_manifest_ops"
+        },
+        "returncode": 1,
+        "stdout": "{\"status\": \"error\", \"opened_chroma\": false, \"error_type\": \"RuntimeError\", \"error\": \"LC6-20 malformed-output injection refused: clone_path mismatch\", \"generation\": \"/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy\", \"worker_pid\": 49976}\n",
+        "stderr": "",
+        "payload": {
+          "status": "error",
+          "opened_chroma": false,
+          "error_type": "RuntimeError",
+          "error": "LC6-20 malformed-output injection refused: clone_path mismatch",
+          "generation": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "worker_pid": 49976
+        },
+        "rejected": true
+      },
+      {
+        "name": "wrong_expected_action",
+        "action": "apply_manifest_ops",
+        "ctx": {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "run_id": "negative-run",
+          "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/negative_state/good",
+          "expected_worker_action": "inspect"
+        },
+        "returncode": 1,
+        "stdout": "{\"status\": \"error\", \"opened_chroma\": false, \"error_type\": \"RuntimeError\", \"error\": \"LC6-20 malformed-output injection refused: expected worker action mismatch\", \"generation\": \"/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy\", \"worker_pid\": 49978}\n",
+        "stderr": "",
+        "payload": {
+          "status": "error",
+          "opened_chroma": false,
+          "error_type": "RuntimeError",
+          "error": "LC6-20 malformed-output injection refused: expected worker action mismatch",
+          "generation": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "worker_pid": 49978
+        },
+        "rejected": true
+      },
+      {
+        "name": "wrong_worker_action",
+        "action": "inspect",
+        "ctx": {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "run_id": "negative-run",
+          "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/negative_state/good",
+          "expected_worker_action": "apply_manifest_ops"
+        },
+        "returncode": 1,
+        "stdout": "{\"status\": \"error\", \"opened_chroma\": false, \"error_type\": \"RuntimeError\", \"error\": \"LC6-20 malformed-output injection refused: worker action mismatch\", \"generation\": \"/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy\", \"worker_pid\": 49982}\n",
+        "stderr": "",
+        "payload": {
+          "status": "error",
+          "opened_chroma": false,
+          "error_type": "RuntimeError",
+          "error": "LC6-20 malformed-output injection refused: worker action mismatch",
+          "generation": "/private/tmp/lc6_case20_validation_hxdxxho5/synthetic_baseline_copy",
+          "worker_pid": 49982
+        },
+        "rejected": true
+      },
+      {
+        "name": "non_disposable_target",
+        "action": "apply_manifest_ops",
+        "ctx": {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "run_id": "negative-run",
+          "clone_path": "/private/tmp/lc6_case20_validation_hxdxxho5/non_disposable",
+          "state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/negative_state/good",
+          "expected_worker_action": "apply_manifest_ops"
+        },
+        "returncode": 3,
+        "stdout": "{\"status\": \"refused\", \"opened_chroma\": false, \"reason\": \"missing disposable clone marker: /private/tmp/lc6_case20_validation_hxdxxho5/non_disposable/.orphan_repair_disposable_clone.json\", \"generation\": \"/private/tmp/lc6_case20_validation_hxdxxho5/non_disposable\", \"worker_pid\": 49983}\n",
+        "stderr": "",
+        "payload": {
+          "status": "refused",
+          "opened_chroma": false,
+          "reason": "missing disposable clone marker: /private/tmp/lc6_case20_validation_hxdxxho5/non_disposable/.orphan_repair_disposable_clone.json",
+          "generation": "/private/tmp/lc6_case20_validation_hxdxxho5/non_disposable",
+          "worker_pid": 49983
+        },
+        "rejected": true
+      },
+      {
+        "name": "production_target",
+        "action": "apply_manifest_ops",
+        "ctx": {
+          "case_id": "LC6-20-worker-timeout-or-malformed-output",
+          "run_id": "negative-run",
+          "clone_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "state_dir": "/private/tmp/lc6_case20_validation_hxdxxho5/negative_state/good",
+          "expected_worker_action": "apply_manifest_ops"
+        },
+        "returncode": 3,
+        "stdout": "{\"status\": \"refused\", \"opened_chroma\": false, \"reason\": \"refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604\", \"generation\": \"/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604\", \"worker_pid\": 49984}\n",
+        "stderr": "",
+        "payload": {
+          "status": "refused",
+          "opened_chroma": false,
+          "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "worker_pid": 49984
+        },
+        "rejected": true
+      }
+    ],
+    "all_rejected": true
+  },
+  "restored_synthetic_baseline_state": {
+    "chunks": 125291,
+    "collections": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "orphan_paths": 55,
+    "wal": false,
+    "shm": false,
+    "lock": false
+  },
+  "production_hashes_before": {
+    "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+  },
+  "production_hashes_after": {
+    "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+  },
+  "lingering_processes": [],
+  "validation_checks": {
+    "exact_top_level_dispatch_lc6_20_only": true,
+    "real_executor_worker_boundary_exercised": true,
+    "malformed_json_emitted_and_detected": true,
+    "worker_exits_cleanly_after_malformed_output": true,
+    "apply_rejected_never_apply_ok": true,
+    "identity_binding_correct": true,
+    "state_dir_and_marker_bound": true,
+    "negative_identity_path_action_target_tests_reject": true,
+    "worker_evidence_opened_chroma_false": true,
+    "rollback_owner_contract": true,
+    "no_double_rollback": true,
+    "disposable_fixture_restored": true,
+    "no_lock_wal_shm": true,
+    "no_lingering_process": true,
+    "production_hashes_unchanged": true,
+    "durable_failure_evidence_survives": true
+  },
+  "final_clean_cycle_run": false,
+  "sha256sums_regenerated": false,
+  "production_modified": false
+}

@@ -1,0 +1,51 @@
+{
+  "status": "LC5_PASS",
+  "cycles": [
+    {
+      "cycle_number": 1,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 2,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 3,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 4,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    },
+    {
+      "cycle_number": 5,
+      "status": "PASS",
+      "chunks_after_rollback": 125291,
+      "orphans_after_rollback": 55,
+      "physical_equal_to_pre_mutation": true,
+      "logical_equivalence_basis": "exact inventory equality"
+    }
+  ],
+  "expected_after_rollback": {
+    "chunks": 125291,
+    "orphan_paths": 55,
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6"
+  }
+}

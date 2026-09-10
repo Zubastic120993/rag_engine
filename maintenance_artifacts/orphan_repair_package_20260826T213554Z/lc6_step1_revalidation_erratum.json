@@ -1,0 +1,29 @@
+{
+  "final_status": "LC6_STEP1_ERRATUM_RECORDED",
+  "subject_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_step1_revalidation_report.json",
+  "subject_report_complete_file_sha256": "6802b5a962be657e304661ba144755985a9dcfc590070020309ca5dbca91fc74",
+  "hash_corrections": {
+    "orphan_repair_common.py_actual_final_sha256": "d2bb25b6d4331cf81247dd4fec8467786cdee094725e67e5f7c8b5a95bbba5ef",
+    "previously_reported_orphan_repair_common.py_sha256_invalid": "3d869d7153e7f9b81e9ac9fc3597cc1d5d91460b0073c26a0c990c0bc26d2c43",
+    "instruction": "The invalid 3d869d7153e7… value must not be cited as the final orphan_repair_common.py SHA-256."
+  },
+  "internal_hash_field_audit": {
+    "field_name": "artifact_sha256",
+    "recorded_value": "907a43a468911e509b2864fe037bdd29e24cdf35a02e9625a184a3f1afca7738",
+    "verdict": "ambiguous_or_invalid_for_complete_file_sha256",
+    "reason": "The recorded internal artifact_sha256 does not match the externally computed complete-file SHA-256 of lc6_step1_revalidation_report.json, and its exact digest scope was not reconstructed and proven in this erratum task."
+  },
+  "step1_technical_validity_reconfirmed": {
+    "all_seven_schema_checks_passed": true,
+    "canonical_row_count": 19,
+    "computed_expected_marker_checksum_equal": true,
+    "checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "no_lc5_cycle_ran": true,
+    "no_lc6_failure_injection_ran": true
+  },
+  "supporting_references": [
+    "lc6_step1_revalidation_report.json",
+    "orphan_repair_common.py",
+    "SHA256SUMS"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "positive_controls": [
+    {
+      "name": "me_lgip_renamed_paper",
+      "scope": "maker-manuals",
+      "query": "Show the source document for service experience for Everllence B&W ME-LGIP engines",
+      "expected_top_path": "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/Service_Experience_Everllence_BW_ME-LGIP_Engines_5510-0283-00.pdf"
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "retired_c1210_absent",
+      "scope": "maker-manuals",
+      "query": "C1210 ME Pre-Dual Fuel standard operation online timetable",
+      "expected_status": "no_coverage"
+    }
+  ],
+  "no_regression_controls": [
+    {
+      "name": "lgip_forum_service_experience",
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_LGIP/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+      "intended_scope": "maker-manuals",
+      "original_query": "LGIP service experience owners forum December 2022"
+    },
+    {
+      "name": "me_gi_intro_march_2026",
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI/2026_03/01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf",
+      "intended_scope": "maker-manuals",
+      "original_query": "01 Introduction to ME-GI March 2026"
+    },
+    {
+      "name": "sl2022_725",
+      "canonical_live_path": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+      "intended_scope": "maker-manuals",
+      "original_query": "SL2022-725"
+    }
+  ]
+}

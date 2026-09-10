@@ -1,0 +1,91 @@
+{
+  "status": "LC6_NOT_READY_STALE_EVIDENCE",
+  "ready_for_new_lc6_tests": false,
+  "stop_reason": "Verified LC4 baseline clone content remains consistent by file hashes/bytes, but the inherited baseline source-inventory checksum evidence is inconsistent with the expected LC4 checksum and LC5 reused the inconsistent value.",
+  "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+  "verified_lc4_baseline_clone": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+  "expected_lc4_baseline_source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "observed_inherited_evidence": {
+    "lc3": {
+      "subprocess_lifecycle_refactor_report_status": "lc3_refactor_complete",
+      "smoke_overall_ok": true,
+      "refusal_overall_ok": true,
+      "chroma_lifecycle_audit": {
+        "private_shutdown_calls_in_active_paths": 0,
+        "parent_process_chroma_clients_in_executor": false,
+        "worker_subprocess_boundary": true,
+        "refused_targets_verified_all_ok": true
+      },
+      "lifecycle_ten_sequence_smoke_test": {
+        "sequence_count": 10,
+        "all_sequences_ok": true
+      }
+    },
+    "lc4": {
+      "lc4_snapshot_report_status": "LC4_PASS",
+      "lc4_production_unchanged_report_status": "LC4_PASS",
+      "lc4_snapshot_report_source_inventory_checksum_before": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "lc4_snapshot_report_source_inventory_checksum_after": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "lc4_snapshot_report_clone_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "baseline_marker_sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38",
+      "baseline_marker_status": "VERIFIED_DISPOSABLE_BASELINE",
+      "baseline_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "baseline_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "baseline_chunk_count": 125291,
+      "baseline_orphan_count": 55,
+      "current_readonly_probe_source_inventory_checksum": "0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9",
+      "current_readonly_probe_result": "checksum_mismatch_against_expected"
+    },
+    "lc5": {
+      "lc5_five_cycle_report_status": "LC5_PASS",
+      "cycle_count": 5,
+      "all_five_cycles_passed": true,
+      "apply_validation_all_passed": true,
+      "rollback_validation_all_passed": true,
+      "known_no_regression_controls": [
+        {
+          "name": "lgip_forum_service_experience",
+          "expected": "no_regression:no_coverage",
+          "result": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "me_gi_intro_march_2026",
+          "expected": "no_regression:no_coverage",
+          "result": "no_regression:no_coverage",
+          "ok": true
+        },
+        {
+          "name": "sl2022_725",
+          "expected": "no_regression:no_coverage",
+          "result": "no_regression:no_coverage",
+          "ok": true
+        }
+      ],
+      "note": "The three known retrieval misses remained baseline no_coverage controls only; they were not treated as positive retrieval success.",
+      "baseline_validation_source_inventory_checksum_recorded_inside_lc5_report": "0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9",
+      "lc5_five_cycle_rehearsal_py_current_sha256": "864272d7f020ad3c980aa9e102b1936ffbda600ecbaa890ff06abb492859001d",
+      "sha256sums_entry_for_lc5_five_cycle_rehearsal_py": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+      "lc5_five_cycle_report_current_sha256": "7d42e40f555478818e9d701bed1f85d0c781a1bf323f1ba167208b22333d7df5",
+      "sha256sums_entry_for_lc5_five_cycle_report": "7d42e40f555478818e9d701bed1f85d0c781a1bf323f1ba167208b22333d7df5"
+    }
+  },
+  "stale_evidence_analysis": {
+    "unexpected_difference": "The expected LC4 baseline source-inventory checksum is b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a, but the live read-only probe and the inherited LC5 baseline-validation block both report 0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9.",
+    "most_likely_cause_from_available_evidence": "The baseline file bytes and SHA-256 values still match the LC4 clone inventory, but the current inventory-row shape omits the historical 'type': 'file' field present in lc4_clone_inventory.json. That changes the inventory checksum payload even when file content is unchanged.",
+    "why_this_blocks_lc6": "LC6 step 1 required stale-evidence validation before any new failure-injection or sealing work. Because the inherited checksum evidence is internally inconsistent, LC6 cannot safely certify the inherited baseline without first reconciling the checksum method and regenerating governed baseline evidence."
+  },
+  "production_readonly_reference": {
+    "expected_active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "expected_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "expected_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "expected_chunks": 125291,
+    "expected_orphan_paths": 55
+  },
+  "lc6_execution_state": {
+    "stopped_before_new_failure_injection": true,
+    "stopped_before_package_sealing": true,
+    "stopped_before_production_runbook_finalization": true,
+    "stopped_before_new_sha256sums_generation": true
+  }
+}

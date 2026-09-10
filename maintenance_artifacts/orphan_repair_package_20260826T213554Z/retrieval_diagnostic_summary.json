@@ -1,0 +1,168 @@
+{
+  "cases": [
+    {
+      "name": "lgip_forum_service_experience",
+      "digest": "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296",
+      "query": "LGIP service experience owners forum December 2022",
+      "scope": "maker-manuals",
+      "baseline_status": "no_coverage",
+      "baseline_gate": "final_confidence_failed",
+      "repaired_status": "no_coverage",
+      "repaired_gate": "final_confidence_failed",
+      "baseline_best_distance": 0.4457084536552429,
+      "repaired_best_distance": 0.4457084536552429,
+      "chunk_count": 27,
+      "baseline_tracker_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "repaired_tracker_paths": [
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf"
+      ],
+      "baseline_tracker_collection": "maker-manuals",
+      "repaired_tracker_collection": "maker-manuals",
+      "baseline_first_chunk": {
+        "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+        "source_hash": "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296",
+        "collection": "maker-manuals",
+        "document_text_head": "LGIP Update\nNovember 2022\nPeter C Quaade\nTwo-Stroke Operation;  ME and Dual Fuel engine group\nMay 2019\nPeter C Quaade\nTwo-Stroke Operation; Dual Fuel Technology"
+      },
+      "repaired_first_chunk": {
+        "source": "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+        "source_hash": "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296",
+        "collection": "maker-manuals",
+        "document_text_head": "LGIP Update\nNovember 2022\nPeter C Quaade\nTwo-Stroke Operation;  ME and Dual Fuel engine group\nMay 2019\nPeter C Quaade\nTwo-Stroke Operation; Dual Fuel Technology"
+      },
+      "baseline_embedding_digest": "31a1de63707788e26b9d16b1abfdb505c3e43aa03fbfd148b42d3740903b288b",
+      "repaired_embedding_digest": "31a1de63707788e26b9d16b1abfdb505c3e43aa03fbfd148b42d3740903b288b",
+      "embedding_unchanged": true,
+      "baseline_direct_top_sources": [
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0172_online-1.pdf"
+      ],
+      "repaired_direct_top_sources": [
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/Service_Experience/5510-0283-00.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/MAN_Technical_Papers/5510-0172_online-1.pdf"
+      ],
+      "repair_introduced_failure": false,
+      "failure_existed_at_baseline": true,
+      "root_cause": "pre_existing_query_retrieval_failure_not_repair"
+    },
+    {
+      "name": "me_gi_intro_march_2026",
+      "digest": "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063",
+      "query": "01 Introduction to ME-GI March 2026",
+      "scope": "maker-manuals",
+      "baseline_status": "no_coverage",
+      "baseline_gate": "final_confidence_failed",
+      "repaired_status": "no_coverage",
+      "repaired_gate": "final_confidence_failed",
+      "baseline_best_distance": 0.5950986742973328,
+      "repaired_best_distance": 0.5950986742973328,
+      "chunk_count": 29,
+      "baseline_tracker_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf"
+      ],
+      "repaired_tracker_paths": [
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_01_Introduction/01 Introduction to ME-GI(Mar 2026).pdf"
+      ],
+      "baseline_tracker_collection": "maker-manuals",
+      "repaired_tracker_collection": "maker-manuals",
+      "baseline_first_chunk": {
+        "source": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "source_hash": "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063",
+        "collection": "maker-manuals",
+        "document_text_head": "Company policy\nPlease do not record the training session.\nWe appreciate your understanding!"
+      },
+      "repaired_first_chunk": {
+        "source": "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME_GI_Mar_2026_Course/01 Introduction to ME-GI(Mar 2026).pdf",
+        "source_hash": "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063",
+        "collection": "maker-manuals",
+        "document_text_head": "Company policy\nPlease do not record the training session.\nWe appreciate your understanding!"
+      },
+      "baseline_embedding_digest": "4e2341cee7dffc87646f71a070bf32a47d55c4690e219570bf6e94bfd3ecebd8",
+      "repaired_embedding_digest": "4e2341cee7dffc87646f71a070bf32a47d55c4690e219570bf6e94bfd3ecebd8",
+      "embedding_unchanged": true,
+      "baseline_direct_top_sources": [
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf"
+      ],
+      "repaired_direct_top_sources": [
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf",
+        "00_Career/03_Engine_Knowledge/Series_Drawings/Boiler_As_Built.pdf"
+      ],
+      "repair_introduced_failure": false,
+      "failure_existed_at_baseline": true,
+      "root_cause": "pre_existing_query_retrieval_failure_not_repair"
+    },
+    {
+      "name": "sl2022_725",
+      "digest": "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923",
+      "query": "SL2022-725",
+      "scope": "maker-manuals",
+      "baseline_status": "no_coverage",
+      "baseline_gate": "final_confidence_failed",
+      "repaired_status": "no_coverage",
+      "repaired_gate": "final_confidence_failed",
+      "baseline_best_distance": 0.596311628818512,
+      "repaired_best_distance": 0.596311628818512,
+      "chunk_count": 4,
+      "baseline_tracker_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf"
+      ],
+      "repaired_tracker_paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+        "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf"
+      ],
+      "baseline_tracker_collection": "maker-manuals",
+      "repaired_tracker_collection": "maker-manuals",
+      "baseline_first_chunk": {
+        "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+        "source_hash": "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923",
+        "collection": "maker-manuals",
+        "document_text_head": "Action code:  WHEN CONVENIENT\nHead office (& po. address)\nMAN Energy Solutions\nTeglholmsgade 41\n2450 Copenhagen SV\nDenmark\nPhone: +45 33 85 11 00\nFax: +45 33 85 10 30\ninfo-cph@man-es.com\nwww.man-es.com\nPrimeServ\nTeglholm"
+      },
+      "repaired_first_chunk": {
+        "source": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2022-725.pdf",
+        "source_hash": "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923",
+        "collection": "maker-manuals",
+        "document_text_head": "Action code:  WHEN CONVENIENT\nHead office (& po. address)\nMAN Energy Solutions\nTeglholmsgade 41\n2450 Copenhagen SV\nDenmark\nPhone: +45 33 85 11 00\nFax: +45 33 85 10 30\ninfo-cph@man-es.com\nwww.man-es.com\nPrimeServ\nTeglholm"
+      },
+      "baseline_embedding_digest": "bca703cb3ee86896ddca05f3bc2808d9d5c93eadce26667a629b11ed4747f5af",
+      "repaired_embedding_digest": "bca703cb3ee86896ddca05f3bc2808d9d5c93eadce26667a629b11ed4747f5af",
+      "embedding_unchanged": true,
+      "baseline_direct_top_sources": [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf"
+      ],
+      "repaired_direct_top_sources": [
+        "00_Career/03_Engine_Knowledge/Yanmar_6EY22/OPERATION MANUAL_6EY22(A)LWS(H.F.O.／MET)_0AE22-EN0100 May.2023-10.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf",
+        "00_Career/03_Engine_Knowledge/Operation/ASTM_Tables/NBS_Circular_C410_National_Standard_Petroleum_Oil_Tables.pdf"
+      ],
+      "repair_introduced_failure": false,
+      "failure_existed_at_baseline": true,
+      "root_cause": "pre_existing_query_retrieval_failure_not_repair"
+    }
+  ],
+  "repaired_apply_status": "APPLY_REJECTED"
+}

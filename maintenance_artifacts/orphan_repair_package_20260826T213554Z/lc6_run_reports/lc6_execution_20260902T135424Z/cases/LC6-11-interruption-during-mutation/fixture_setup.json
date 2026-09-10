@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:interruption_during_execution",
+  "mutations": [],
+  "interrupt_protocol": "real_executor_worker_checkpoint_chain",
+  "requires_pid_timing_evidence": false
+}

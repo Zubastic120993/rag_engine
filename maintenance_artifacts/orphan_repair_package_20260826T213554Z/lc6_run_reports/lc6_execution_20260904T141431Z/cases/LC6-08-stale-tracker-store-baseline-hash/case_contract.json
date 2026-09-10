@@ -1,0 +1,28 @@
+{
+  "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+  "authoritative_reference": "LC6 specification section 5 case 8",
+  "injected_failure_point": "stale tracker/store baseline hash",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_08_stale_tracker_store_hash/clone",
+  "preconditions": [
+    "fresh baseline clone",
+    "planned stale-hash fixture prepared inside disposable clone or disposable package copy only",
+    "production refusal probe pass"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py preflight/harness stale baseline mismatch check before mutation",
+  "expected_process_exit_result": "controlled refusal before mutation",
+  "expected_fail_closed_behavior": "no mutation starts because baseline hashes do not certify",
+  "expected_filesystem_state": "clone unchanged",
+  "expected_chroma_state": "baseline state untouched",
+  "expected_tracker_state": "baseline tracker untouched",
+  "expected_registry_state": "unchanged",
+  "expected_recovery_rollback_action": "none required beyond refusal verification",
+  "expected_residual_state_report": "stale-hash refusal evidence",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "preflight_refusal.json",
+    "inventory_proof.json"
+  ],
+  "cleanup_procedure": "delete validated disposable artifacts",
+  "post_cleanup_assertion": "no mutation files or workers remain",
+  "production_is_not_a_target": true
+}

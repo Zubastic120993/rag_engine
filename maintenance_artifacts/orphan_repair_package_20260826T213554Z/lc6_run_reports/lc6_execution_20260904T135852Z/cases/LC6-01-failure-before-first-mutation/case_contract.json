@@ -1,0 +1,32 @@
+{
+  "case_id": "LC6-01-failure-before-first-mutation",
+  "authoritative_reference": "LC6 specification section 5 case 1",
+  "injected_failure_point": "failure before first mutation",
+  "disposable_target_path": "/private/tmp/lc6_<run_id>/case_01_failure_before_first_mutation/clone",
+  "preconditions": [
+    "fresh copy of verified LC4 baseline",
+    "new valid LC6 disposable marker with inventory-row-v1 and checksum b189…",
+    "baseline validation pass",
+    "production refusal probe pass before Chroma open"
+  ],
+  "command_or_harness_entry_point": "future lc6_failure_injection.py -> orphan_repair_executor.py apply --inject failure_before_first_mutation",
+  "expected_process_exit_result": "APPLY_REJECTED / controlled failure before mutation",
+  "expected_fail_closed_behavior": "no mutation starts; clone remains baseline-equivalent",
+  "expected_filesystem_state": "clone inventory unchanged; no unsafe deletion; WAL/SHM absent",
+  "expected_chroma_state": "no logical mutation; baseline chunk/orphan state preserved",
+  "expected_tracker_state": "embedded.json unchanged",
+  "expected_registry_state": "not applicable / unchanged",
+  "expected_recovery_rollback_action": "no rollback required; only verify no mutation occurred",
+  "expected_residual_state_report": "case report + apply_failure evidence + inventory proof",
+  "evidence_files_to_capture": [
+    "case_report.json",
+    "apply_failure.json",
+    "execution_log.jsonl",
+    "pre_inventory.json",
+    "post_inventory.json",
+    "production_hashes_before_after.json"
+  ],
+  "cleanup_procedure": "delete validated disposable clone/work only after evidence capture",
+  "post_cleanup_assertion": "clone/work removed; production unchanged",
+  "production_is_not_a_target": true
+}

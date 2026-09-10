@@ -1,0 +1,72 @@
+{
+  "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T140857Z/cases/LC6-05-failure-immediately-after-c1210-retirement",
+  "files": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 3035,
+      "sha256": "949eb0fd99a16bb1279249ff37bbe2caa65cf44be070a77ba3f6e6612d693670"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1548,
+      "sha256": "d5eb99e9c0386889265be8dc13955c5e314cea1484ea9104d6d474cd30bc3042"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 23847,
+      "sha256": "5ec1c9c6c68d2ecfc69efdddb1f23d404c95e7a30b61ac61e8db6c857efd4362"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1233,
+      "sha256": "db76b66bd74358d2746892a054ae05319add943ffb2016f5bfba62788f838492"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2443,
+      "sha256": "f0518b14f3ad3898a7d0ff6c975250ad1fc86f3ecc36f57f947a0ee6316c2103"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4058,
+      "sha256": "c55737c94cf2412030999e52c7ed27b8163778c0eb0fbd5cc12fe4eeec504258"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 197,
+      "sha256": "829e8b917ca4ca11bb51450606dd2222e05227e7a7ee60d3a925d3baaa9a9b57"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 10563,
+      "sha256": "c5ddda19b9510a3ad8b9c9183bd78fed76545503d53c06cd50113f6638b75537"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 7247,
+      "sha256": "74a05b387b5dbbc9e9d3b47a7df9e15c30b4bc5a667e5683362002394f70f243"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 277,
+      "sha256": "54ca69c528e78ef60fb037847884141236ba4cf43b2cba6b6916668b355ef2a1"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 119,
+      "sha256": "b9c83efc5d47899953e6e7747ef05a3fc83cf0f6ace304e8b8b297ffca28a81c"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ]
+}

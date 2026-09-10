@@ -1,0 +1,147 @@
+{
+  "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_18_l5ku_43q/case_18_malformed_or_checksum_invalid_manifest/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142830Z/cases/LC6-18-malformed-or-checksum-invalid-manifest",
+  "durable_inventory": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2731,
+      "sha256": "af5b56fd3bb19567217e8cad26e3d9bb862af1a36a26d044c91f481feb9f2c4f"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1453,
+      "sha256": "9c81452b5a6b2c5c1bbc73ae463fabc1b13255962bf360236df4d1b65bba6d65"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 13050,
+      "sha256": "431403ccf28cf3f27e59af0146cb1e8e4b2145d53cafbd149c202143f7382ea2"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1209,
+      "sha256": "ba9840f40ec09794a9f9b33b98b99d54c9769b61b2c9b9aaee3c28baa8c70f3e"
+    },
+    {
+      "relpath": "disposable_package_copy.json",
+      "bytes": 277,
+      "sha256": "0f0f560f7471499f0cd21766d348c3d90293899fe0609910c2becaf5152f7f8a"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1678,
+      "sha256": "c0de7e55c9b5bd32582080092f98689b002d23bdca9704875047da9b72aa6442"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 54,
+      "sha256": "06abc439fc9885d796af087521765c3635d769b9c3874ffc70f80875c4b6cad3"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 9538,
+      "sha256": "7271d1f7e88ce9f689cd9d65e788b143b494f15e1caaf7ef1df219286fee6195"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6530,
+      "sha256": "efd11be8b16dcb5587812fbbcf23b5a7760051c28fefbc2dc7b8548f4968edbf"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 242,
+      "sha256": "e59f00bac4c183c90e664bbd28154cb91f95b4a6761bdb1d37ab30ded94cb434"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 150,
+      "sha256": "7d829b6d68e7d99c35ada3710d64fed718187fb851d843de9e655eb4e0644fe8"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "disposable_package_copy.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "apply_failure.json",
+      "execution_log.jsonl",
+      "executor_input.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "disposable_package_copy.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_failure.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

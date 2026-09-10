@@ -1,0 +1,42 @@
+{
+  "case_id": "LC6-15-ce-library-root-target",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142616Z/cases/LC6-15-ce-library-root-target",
+  "files": [
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1152,
+      "sha256": "95006420f10a7cef63d9c76831ce708185c545f04eb80d944e44f9818d34400c"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 9606,
+      "sha256": "168298d21a7c24d0aac34ebfb77af33bd3c3922b33d7067297ef780916da4386"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1448,
+      "sha256": "cebfdb91041de08fe7447b94becac82f359c30251a1cd98ed5e0a0905e55579f"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 2345,
+      "sha256": "1152f76841970840d3b7e09dc1b7fcae2deff52137cd00b6a6186753e71931f7"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "refusal_result.json",
+      "bytes": 308,
+      "sha256": "a4235aaa361c26e624ebfc6bf4208ed56aa49466ae253267cba7f666ed4b25de"
+    }
+  ]
+}

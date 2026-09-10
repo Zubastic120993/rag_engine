@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orphan-repair-manifest.schema.json",
+  "title": "Atomic Orphan Repair Manifest",
+  "type": "object",
+  "required": ["schema_version", "manifest_payload_sha256", "production", "counts", "operations"],
+  "properties": {
+    "schema_version": {"const": "orphan-repair-manifest-v2"},
+    "manifest_payload_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "production": {"type": "object"},
+    "counts": {"type": "object"},
+    "operations": {
+      "type": "array",
+      "minItems": 41,
+      "items": {
+        "type": "object",
+        "required": [
+          "op_type",
+          "digest",
+          "old_paths",
+          "tracker_collection",
+          "chunk_ids",
+          "expected_chunk_count",
+          "current_chunk_state"
+        ],
+        "properties": {
+          "op_type": {"enum": ["REPOINT_SINGLE", "COLLAPSE_ALIAS_SET", "RETIRE_UNRECOVERABLE"]},
+          "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "old_paths": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "canonical_live_path": {"type": ["string", "null"]},
+          "verified_live_sha256": {"type": ["string", "null"]},
+          "tracker_collection": {"type": ["string", "null"]},
+          "derived_collection": {"type": ["string", "null"]},
+          "chunk_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "expected_chunk_count": {"type": "integer", "minimum": 1},
+          "current_chunk_state": {"type": "object"}
+        }
+      }
+    }
+  }
+}

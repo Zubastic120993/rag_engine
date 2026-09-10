@@ -1,0 +1,87 @@
+{
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "written_before_cleanup": true,
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142843Z/cases/LC6-20-worker-timeout-or-malformed-output",
+  "files": [
+    {
+      "relpath": "apply_result.json",
+      "bytes": 53379,
+      "sha256": "9bdcb465993ed666812e90aa9329d6ec455c5273ae7a7e2af7d4fda4284bca0c"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1791,
+      "sha256": "fa69dbb8a4230880874e82fb124f0875344ac43626fa312429e80d79c8268386"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 222704,
+      "sha256": "d54130e452c4633e6cc01c7237f89d2452b553364c2bddd8954968b42e0a6fcb"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1185,
+      "sha256": "69a0818e33e23f6985c4bb915f4eeef7158141fcd971bfb9dfcc487afc1d5dd5"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 2910,
+      "sha256": "f125f26ce36e009c2e7b0545d5bf829949fd163b0e4ac9f020f8eea1c271f293"
+    },
+    {
+      "relpath": "evidence_persistence_verification.json",
+      "bytes": 4846,
+      "sha256": "5502258fd308fa8c287b73bdb0bba9392dae41379442ebce87bf6efdffa54549"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 273,
+      "sha256": "d4f95c66745dca9185528cef66bc7710425a06fbc6fd11567fa24008513380f2"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 171793,
+      "sha256": "636f47f1caac3bd57bc4ab010f623a5404508d501772898782cf3cc9cfd3d7ac"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 113839,
+      "sha256": "6c0ebe147af8309ef6e71ddd935f472de041d94f920a624893967858712368e5"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 247,
+      "sha256": "cba1fd721542b32ee9de9f5a49cd3d332fcb6460e6336a82588a0cb11c5640f3"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 126,
+      "sha256": "a05df21aa71732afb658c422680690f131fbf8e1ea0f92ccf5c3673cb81ba939"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "rollback_observed.json",
+      "bytes": 28835,
+      "sha256": "7d1363b4a0e318a849a790d4f1453179dfe51988ad2b8fb7d6e0cf21673b158b"
+    },
+    {
+      "relpath": "rollback_process.json",
+      "bytes": 19189,
+      "sha256": "d6f88a6b11f426f9c7a82114a09e2b48867debd9d0593ab10a5e7e043a15b92f"
+    },
+    {
+      "relpath": "rollback_result.json",
+      "bytes": 8648,
+      "sha256": "970e7ac06092a918cc321b713a86ebce38144d8407367daab2715401ff5d0664"
+    }
+  ]
+}

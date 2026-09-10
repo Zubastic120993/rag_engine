@@ -1,0 +1,12 @@
+{
+  "status": "CONTROLLED_REFUSAL_CONFIRMED",
+  "probe": {
+    "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+    "status": "refused",
+    "opened_chroma": false,
+    "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+    "ok": true
+  },
+  "opened_chroma": false,
+  "production_action": false
+}

@@ -1,0 +1,137 @@
+{
+  "case_id": "LC6-06-forced-doctor-failure",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_06_vqsdvet5/case_06_forced_doctor_failure/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_06_vqsdvet5/case_06_forced_doctor_failure/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T141044Z/cases/LC6-06-forced-doctor-failure",
+  "durable_inventory": [
+    {
+      "relpath": "apply_failure.json",
+      "bytes": 2659,
+      "sha256": "3df2a7172cf3907e3f069867aba979d2ac1bcf9c843951aa61f261f237dec939"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1478,
+      "sha256": "94d2cb462864f5dab850ed74ec1d86608f72c89257fedba97ff54e27fbf60942"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 12734,
+      "sha256": "446595725e384c579c53b2874e0b7b26eaa3ec915e9545842160b7e9259f2584"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1107,
+      "sha256": "ea3c0c7f0708ba6ff8a3742d0f77e85d686c5d229e5158c322a4b84c4855e297"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1479,
+      "sha256": "b0fc8d1e7a0058037d80a7a87b8cc8ae262096ad5aad72e47f8f5c7883c5d5be"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 274,
+      "sha256": "d6de7050091d64964a30e55cb5e78a9893924005b3f044caf5a7f86cebbc482c"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 9338,
+      "sha256": "a25ba0da4d398892fbc2071fe36298f151a423e6341e07a207958374f14b509f"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 6402,
+      "sha256": "466089901860c4c8fb77464b2f8baabd9b535003104a426fd54254167ee43516"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 253,
+      "sha256": "ab2ed3a112e5709690601474c42c100261495a7715bcfbdbaab3dbf0ea58c1f0"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 113,
+      "sha256": "ba1150c625afc72a9b377304aafe545f847f97c82b851743ae4872ea82c123c9"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "apply_failure.json",
+      "execution_log.jsonl",
+      "executor_input.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_failure.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

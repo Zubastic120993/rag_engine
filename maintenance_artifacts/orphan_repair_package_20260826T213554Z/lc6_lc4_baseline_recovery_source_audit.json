@@ -1,0 +1,158 @@
+{
+  "final_status": "LC4_NO_INTACT_SOURCE_RESTORATION_PLAN_REQUIRED",
+  "audit_scope": {
+    "stale_recorded_path_not_usable": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+    "rules_applied": [
+      "candidate must be validated from current files, not name or historical report only",
+      "previous failed LC6-11 clone cannot be accepted as replacement baseline",
+      "no production copy or baseline recreation executed in this audit"
+    ]
+  },
+  "historical_lc4_evidence_reviewed": {
+    "lc4_snapshot_report": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc4_snapshot_report.json",
+      "status": "LC4_PASS",
+      "final_disposable_clone_path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+      "expected_marker_sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38",
+      "expected_inventory_schema_fields": ["path", "type", "bytes", "sha256"],
+      "expected_inventory_rows": 19,
+      "expected_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "expected_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "expected_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "expected_chunks": 125291,
+      "expected_orphan_paths": 55,
+      "expected_wal_shm_clear": true,
+      "recorded_source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+    },
+    "lc4_production_unchanged_report": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc4_production_unchanged_report.json",
+      "status": "production_unchanged_after_lc4",
+      "embedded_json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "chroma_sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "total_chunks": 125291,
+      "expected_orphan_count_reference": 55
+    },
+    "lc4_clone_inventory": {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc4_clone_inventory.json",
+      "clone_path_recorded": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+      "inventory_root_recorded": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_tmp_20260827T183946Z",
+      "file_count": 19,
+      "checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a"
+    }
+  },
+  "candidate_paths_checked": [
+    {
+      "path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+      "source": "recorded LC4 final_disposable_clone_path",
+      "current_state": {
+        "directory_exists": true,
+        "visible_files_found": 0,
+        "marker_found": false
+      },
+      "verdict": "rejected",
+      "reason": "recorded path is stale; required disposable marker absent and no current files found"
+    },
+    {
+      "path": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/clone",
+      "source": "read-only temp search result",
+      "current_state": {
+        "marker_found": true,
+        "purpose": "LC6 case disposable clone, not LC4 baseline"
+      },
+      "verdict": "rejected",
+      "reason": "previous failed LC6-11 clone explicitly forbidden as replacement baseline"
+    },
+    {
+      "path": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/generation_snapshot",
+      "source": "read-only temp search result",
+      "current_state": {
+        "marker_found": true
+      },
+      "verdict": "rejected",
+      "reason": "snapshot from failed LC6-11 run; not an independently verified LC4 baseline source"
+    },
+    {
+      "path": "/private/tmp/lc6_case11_exact_dispatch_v2_qyAhe5/case_11_interruption_during_mutation/clone",
+      "source": "read-only temp search result",
+      "current_state": {
+        "marker_found": true
+      },
+      "verdict": "rejected",
+      "reason": "synthetic exact-dispatch test clone; not an LC4 baseline source"
+    },
+    {
+      "path": "/private/tmp/lc6_case11_real_chain_83kjwgdt/cases/case_11_interruption_during_mutation/clone",
+      "source": "read-only temp search result",
+      "current_state": {
+        "marker_found": true
+      },
+      "verdict": "rejected",
+      "reason": "synthetic real-chain integration clone; not an LC4 baseline source"
+    },
+    {
+      "path": "/private/tmp/lc6_case11_real_chain_83kjwgdt/cases/case_11_interruption_during_mutation/work/generation_snapshot",
+      "source": "read-only temp search result",
+      "current_state": {
+        "marker_found": true
+      },
+      "verdict": "rejected",
+      "reason": "synthetic integration snapshot; not an independently verified LC4 baseline source"
+    }
+  ],
+  "candidate_search_evidence": {
+    "search_root": "/private/tmp",
+    "matching_marker_files_found": [
+      "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/clone/.orphan_repair_disposable_clone.json",
+      "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation/work/generation_snapshot/.orphan_repair_disposable_clone.json",
+      "/private/tmp/lc6_case11_exact_dispatch_v2_qyAhe5/case_11_interruption_during_mutation/clone/.orphan_repair_disposable_clone.json",
+      "/private/tmp/lc6_case11_real_chain_83kjwgdt/cases/case_11_interruption_during_mutation/clone/.orphan_repair_disposable_clone.json",
+      "/private/tmp/lc6_case11_real_chain_83kjwgdt/cases/case_11_interruption_during_mutation/work/generation_snapshot/.orphan_repair_disposable_clone.json"
+    ],
+    "no_intact_lc4_baseline_marker_found_at_recorded_path": true
+  },
+  "required_acceptance_criteria_for_recovery_source": {
+    "marker_status": "VERIFIED_DISPOSABLE_BASELINE",
+    "schema": "inventory-row-v1",
+    "inventory_rows": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunks": 125291,
+    "orphan_paths": 55,
+    "single_collection": true,
+    "wal_shm_clear": true,
+    "no_active_worker": true
+  },
+  "audit_result": {
+    "intact_recovery_source_found": false,
+    "reason": "No currently accessible candidate satisfied the full independent LC4 baseline criteria. The recorded LC4 path is stale, and all other marker-bearing candidates are later LC6 synthetic or failed disposable clones/snapshots."
+  },
+  "safe_restoration_method_requiring_separate_approval": {
+    "status": "plan_only_not_executed",
+    "goal": "recreate a fresh verified LC4 baseline outside CE_Library under /private/tmp using the original governed LC4 method",
+    "source_of_truth": [
+      "lc4_snapshot_report.json",
+      "lc4_clone_inventory.json",
+      "lc4_production_unchanged_report.json"
+    ],
+    "required_steps": [
+      "1. Confirm production generation still matches the recorded LC4 hashes and counts read-only.",
+      "2. Acquire and release only the canonical production ingest.lock exactly as in LC4, with production remaining read-only except transient lock lifecycle.",
+      "3. Create one new disposable parent under /private/tmp, outside CE_Library.",
+      "4. Copy the production generation to a new disposable LC4 baseline clone path under that parent.",
+      "5. Build inventory rows using the canonical inventory-row-v1 shape: path, type, bytes, sha256.",
+      "6. Verify 19 rows, checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a, embedded.json hash c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33, chroma.sqlite3 hash 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6, 125291 chunks, 55 orphan paths, exactly one collection, WAL/SHM clear.",
+      "7. Create a new disposable marker declaring VERIFIED_DISPOSABLE_BASELINE, source_generation, inventory-row-v1, source_inventory_checksum, expected chunk/orphan counts, and disposable/unpromoted true.",
+      "8. Write additive LC4-restoration evidence only; do not overwrite historical LC4 artifacts."
+    ],
+    "approval_needed_before_execution": true,
+    "forbidden_without_new_approval": [
+      "copying production generation",
+      "creating a new marker",
+      "creating a new baseline directory",
+      "running any LC6 case"
+    ]
+  },
+  "production_not_touched_in_audit": true,
+  "source_documents_not_touched_in_audit": true
+}

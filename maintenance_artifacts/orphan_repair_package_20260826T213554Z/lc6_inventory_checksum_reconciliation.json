@@ -1,0 +1,293 @@
+{
+  "status": "LC6_RECONCILIATION_COMPLETE_READY_FOR_VALIDATION_FIX",
+  "verdict": "METHOD_SHAPE_DRIFT_ONLY",
+  "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+  "baseline_clone": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+  "historical_artifacts_treated_immutable": [
+    "lc4_clone_inventory.json",
+    "lc4_source_inventory.json",
+    "lc4_snapshot_report.json",
+    ".orphan_repair_disposable_clone.json"
+  ],
+  "schema_definitions": {
+    "lc4_historical_inventory_schema": {
+      "fields": [
+        "path",
+        "type",
+        "bytes",
+        "sha256"
+      ],
+      "source_artifacts": [
+        "lc4_clone_inventory.json",
+        "lc4_source_inventory.json"
+      ]
+    },
+    "lc5_current_runtime_inventory_schema": {
+      "fields": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "source_function": "inventory_rows"
+    }
+  },
+  "checksums": {
+    "lc4_historical_checksum_from_clone_rows_with_type": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "lc4_historical_checksum_from_source_rows_with_type": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "lc5_current_checksum_from_same_19_rows_without_type": "0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9",
+    "baseline_marker_historical_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "lc5_recorded_baseline_validation_checksum": "0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9"
+  },
+  "row_count": 19,
+  "per_row_equality_result": [
+    {
+      "row_index": 1,
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 2,
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 3,
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 4,
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 5,
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 6,
+      "path": "ask_events.jsonl",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 7,
+      "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 8,
+      "path": "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 9,
+      "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 10,
+      "path": "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 11,
+      "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 12,
+      "path": "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 13,
+      "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 14,
+      "path": "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 15,
+      "path": "certified_generation_checkpoint.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 16,
+      "path": "chroma.sqlite3",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 17,
+      "path": "embedded.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 18,
+      "path": "index_embedding_fingerprint_v1.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    },
+    {
+      "row_index": 19,
+      "path": "index_fingerprint.json",
+      "historical_type": "file",
+      "current_runtime_has_type": false,
+      "path_equal": true,
+      "bytes_equal": true,
+      "sha256_equal": true,
+      "path_bytes_sha256_equal_across_historical_normalized_live": true
+    }
+  ],
+  "all_rows_match_on_path_bytes_sha256": true,
+  "any_file_content_difference_exists": false,
+  "exact_producing_functions_and_references": {
+    "historical_artifact_rows": [
+      "lc4_clone_inventory.json:7-123",
+      "lc4_source_inventory.json:7-245"
+    ],
+    "current_runtime_row_producer": "orphan_repair_common.py:98-110 inventory_rows()",
+    "current_runtime_checksum_producer": "orphan_repair_common.py:109-110 inventory_checksum_from_rows()",
+    "lc5_runtime_wrapper": "lc5_five_cycle_rehearsal.py:137-146 inventory()",
+    "lc5_normalization_of_historical_rows": "lc5_five_cycle_rehearsal.py:216-219 lc4_expected_clone_rows()",
+    "lc5_baseline_validation": "lc5_five_cycle_rehearsal.py:222-236 validate_lc4_baseline_clone()"
+  },
+  "lc5_validation_gap_audit": {
+    "normalizes_lc4_rows_by_dropping_type": true,
+    "checks_marker_historical_checksum_separately": true,
+    "asserts_newly_computed_runtime_checksum_equals_historical_expected_checksum": false,
+    "records_runtime_checksum_0728_while_returning_lc5_pass": true,
+    "lc5_final_status": "LC5_PASS",
+    "evidence": {
+      "historical_expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "runtime_recorded_checksum": "0728d4f6a7d4a7a996ee66a0a1ef225afa42c7fd9428835a5a21131b187b27b9",
+      "marker_historical_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a"
+    }
+  },
+  "proposed_versioned_canonical_inventory_contract_not_implemented": {
+    "proposal_only": true,
+    "preferred_schema_version": "inventory-row-v1",
+    "canonical_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "required_rule": "Validators must compare checksum equality only within the same declared schema version."
+  },
+  "sha256sums_readonly_verification": {
+    "self_excluded": true,
+    "mismatches": [
+      {
+        "path": "lc5_five_cycle_rehearsal.py",
+        "listed_sha256": "7942e0f4e2cd8ad926481fc789e6425f88047c8ac15045552eb25184161f787b",
+        "actual_sha256": "864272d7f020ad3c980aa9e102b1936ffbda600ecbaa890ff06abb492859001d"
+      }
+    ]
+  },
+  "restart_requirements": {
+    "validation_changes_required": [
+      "Use one versioned canonical inventory row contract consistently across LC4/LC5/LC6.",
+      "In validate_lc4_baseline_clone(), assert the computed runtime checksum equals the expected historical checksum when both are declared under the same schema version.",
+      "Record schema version together with each inventory checksum in reports and disposable-clone markers.",
+      "Fail closed if row normalization changes checksum method without an explicit schema-version transition."
+    ],
+    "rerun_requirement": {
+      "baseline_validation_must_be_rerun": true,
+      "full_lc5_five_cycle_rehearsal_must_be_rerun": false,
+      "basis": "The inconsistency is method-shape drift only; path/bytes/sha256 content for all 19 files matches. If the fix is limited to validation/contract logic and does not change mutation behavior, rerun baseline validation only."
+    }
+  }
+}

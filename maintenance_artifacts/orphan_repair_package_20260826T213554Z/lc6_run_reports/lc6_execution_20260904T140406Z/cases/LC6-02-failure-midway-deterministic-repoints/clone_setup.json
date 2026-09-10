@@ -1,0 +1,18 @@
+{
+  "clone_path": "/private/tmp/lc6_case_02_mehlhgqg/case_02_failure_midway_deterministic_repoints/clone",
+  "work_path": "/private/tmp/lc6_case_02_mehlhgqg/case_02_failure_midway_deterministic_repoints/work",
+  "baseline_clone_source": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "marker": {
+    "clone_id": "lc6-LC6-02-failure-midway-deterministic-repoints-1e67b004-7a9b-41ed-9a41-6eb4b81f7722",
+    "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "creation_time_utc": "2026-09-04T14:04:07Z",
+    "purpose": "LC6_LC6-02-failure-midway-deterministic-repoints",
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "target_generation": "/private/tmp/lc6_case_02_mehlhgqg/case_02_failure_midway_deterministic_repoints/clone",
+    "disposable": true,
+    "unpromoted": true
+  },
+  "validated_clone_id": "lc6-LC6-02-failure-midway-deterministic-repoints-1e67b004-7a9b-41ed-9a41-6eb4b81f7722"
+}

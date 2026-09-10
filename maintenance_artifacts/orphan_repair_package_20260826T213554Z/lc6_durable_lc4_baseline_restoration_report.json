@@ -1,0 +1,80 @@
+{
+  "final_status": "LC6_DURABLE_BASELINE_RESTORATION_BLOCKED",
+  "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "new_baseline_parent": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines",
+  "new_baseline_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T121003Z",
+  "lock": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock",
+    "acquired_exclusive": true,
+    "released_after_copy": true
+  },
+  "source_before_lock": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "inventory_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": false,
+    "marker_exists": false,
+    "marker_sha256": null,
+    "active_processes": [],
+    "open_write_processes": []
+  },
+  "source_processes_before_lock": {
+    "ps_matches": [],
+    "open_write_processes": []
+  },
+  "source_after_lock": {
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "inventory_fields": [
+      "path",
+      "type",
+      "bytes",
+      "sha256"
+    ],
+    "row_count": 19,
+    "inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "chunk_count": 125291,
+    "orphan_count": 55,
+    "collection_names": [
+      "langchain"
+    ],
+    "collection_count": 1,
+    "wal_exists": false,
+    "shm_exists": false,
+    "lock_exists": true,
+    "marker_exists": false,
+    "marker_sha256": null,
+    "active_processes": [],
+    "open_write_processes": [
+      "Python  51678 vladymyrzub    3w   REG   1,18       24 150626001 /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock"
+    ]
+  },
+  "source_after_release": null,
+  "clone_before_marker": null,
+  "clone_after_marker": null,
+  "marker": null,
+  "marker_sha256": null,
+  "production_unchanged_artifact": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_production_unchanged_after_durable_baseline_restoration.json",
+  "failed_clone_preserved": "/private/tmp/lc6_case11_exec_0DEXnr/case_11_interruption_during_mutation",
+  "blockers": [
+    "source after lock: lock present",
+    "source after lock: open-write process present"
+  ]
+}

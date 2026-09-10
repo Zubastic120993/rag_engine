@@ -1,0 +1,6 @@
+{
+  "mechanic": "harness_fixture:stale_tracker_store_baseline_hash",
+  "mutations": [
+    "embedded.json newline added to force baseline hash mismatch"
+  ]
+}

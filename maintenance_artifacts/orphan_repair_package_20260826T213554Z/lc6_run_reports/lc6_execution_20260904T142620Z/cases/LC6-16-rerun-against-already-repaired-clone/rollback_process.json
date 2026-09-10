@@ -1,0 +1,234 @@
+{
+  "stage": "rollback",
+  "cmd": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/orphan_repair_executor.py",
+    "rollback",
+    "--gen-dir",
+    "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone",
+    "--work-dir",
+    "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/work"
+  ],
+  "pid": 90067,
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"ROLLBACK_OK\",\n  \"post_restore_hashes\": {\n    \".orphan_repair_disposable_clone.json\": \"47ae2b82089590ac25c98442df4c277f7ca16472a512ddc3628092e8f4139276\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin\": \"556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/header.bin\": \"acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle\": \"6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/length.bin\": \"080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34\",\n    \"abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin\": \"bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a\",\n    \"ask_events.jsonl\": \"a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json\": \"dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2\",\n    \"certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json\": \"4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json\": \"774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d\",\n    \"certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json\": \"f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json\": \"8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b\",\n    \"certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json\": \"edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json\": \"f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d\",\n    \"certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json\": \"fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc\",\n    \"certified_generation_checkpoint.json\": \"5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362\",\n    \"chroma.sqlite3\": \"71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6\",\n    \"embedded.json\": \"c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33\",\n    \"index_embedding_fingerprint_v1.json\": \"763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996\",\n    \"index_fingerprint.json\": \"7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb\"\n  },\n  \"post_restore_total_chunks\": 125291,\n  \"post_restore_doctor\": {\n    \"status\": \"FAIL\",\n    \"checks\": [\n      {\n        \"name\": \"library_root_exists\",\n        \"ok\": true,\n        \"detail\": \"/Users/vladymyrzub/CE_Library\"\n      },\n      {\n        \"name\": \"db_path_exists\",\n        \"ok\": true,\n        \"detail\": \"/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone\"\n      },\n      {\n        \"name\": \"scopes_yaml_loads\",\n        \"ok\": true,\n        \"detail\": \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml\"\n      },\n      {\n        \"name\": \"alias_registry_valid\",\n        \"ok\": true,\n        \"detail\": \"no duplicate/collision aliases\"\n      },\n      {\n        \"name\": \"scope_prefixes_indexed\",\n        \"ok\": true,\n        \"detail\": \"sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (501 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (810 docs); rules:99_Rules/ ok (5 docs)\"\n      },\n      {\n        \"name\": \"openai_sdk_available\",\n        \"ok\": true,\n        \"detail\": \"informational=True (unused by ask path)\"\n      },\n      {\n        \"name\": \"openai_api_key_present\",\n        \"ok\": true,\n        \"detail\": \"OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)\"\n      },\n      {\n        \"name\": \"openai_generation_ready\",\n        \"ok\": true,\n        \"detail\": \"unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna\"\n      },\n      {\n        \"name\": \"ollama_embedding_reachable\",\n        \"ok\": true,\n        \"detail\": \"12 models\"\n      },\n      {\n        \"name\": \"embed_model_available\",\n        \"ok\": true,\n        \"detail\": \"mxbai-embed-large\"\n      },\n      {\n        \"name\": \"index_fingerprint\",\n        \"ok\": true,\n        \"detail\": \"Index fingerprint matches live config\"\n      },\n      {\n        \"name\": \"embedding_fp_v1\",\n        \"ok\": true,\n        \"detail\": \"PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract\"\n      },\n      {\n        \"name\": \"chroma_open\",\n        \"ok\": true,\n        \"detail\": \"collections=['langchain']\"\n      },\n      {\n        \"name\": \"cross_process_persistence\",\n        \"ok\": true,\n        \"detail\": \"probe written in a separate process was read back correctly\"\n      },\n      {\n        \"name\": \"tracker_readable\",\n        \"ok\": true,\n        \"detail\": \"/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone/embedded.json\"\n      },\n      {\n        \"name\": \"no_hermes_library_paths\",\n        \"ok\": true,\n        \"detail\": \"count=0\"\n      },\n      {\n        \"name\": \"no_legacy_rules_rag_db_paths\",\n        \"ok\": true,\n        \"detail\": \"count=0\"\n      },\n      {\n        \"name\": \"sample_source_exists\",\n        \"ok\": true,\n        \"detail\": \"/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/CL00008-2023.pdf\"\n      },\n      {\n        \"name\": \"orphan_sources\",\n        \"ok\": false,\n        \"detail\": \"missing_files=55 of 1842 tracker paths\"\n      },\n      {\n        \"name\": \"coverage_gap\",\n        \"ok\": true,\n        \"detail\": \"unindexed_files=129 scanned=1916\"\n      },\n      {\n        \"name\": \"invalid_pdf\",\n        \"ok\": true,\n        \"detail\": \"invalid_pdf_files=0\"\n      },\n      {\n        \"name\": \"git_no_corpus\",\n        \"ok\": true,\n        \"detail\": \"bad_files=[]\"\n      }\n    ],\n    \"fingerprint\": {\n      \"status\": \"MATCH\",\n      \"match\": true,\n      \"diffs\": [],\n      \"llm_model_differs\": false,\n      \"stored\": {\n        \"embed_model\": \"mxbai-embed-large\",\n        \"chunk_size\": 800,\n        \"chunk_overlap\": 100,\n        \"normalization\": \"nfkc\",\n        \"llm_model\": \"gpt-5.6-luna\"\n      },\n      \"live\": {\n        \"embed_model\": \"mxbai-embed-large\",\n        \"llm_model\": \"gpt-5.6-luna\",\n        \"chunk_size\": 800,\n        \"chunk_overlap\": 100,\n        \"normalization\": \"nfkc\"\n      },\n      \"message\": \"Index fingerprint matches live config\"\n    },\n    \"embedding_fp_v1\": {\n      \"ok\": true,\n      \"severity\": \"PASS\",\n      \"state\": \"KNOWN_COMPATIBLE\",\n      \"detail\": \"stored index fingerprint matches runtime contract\",\n      \"compatibility\": {\n        \"state\": \"KNOWN_COMPATIBLE\",\n        \"reason\": \"stored index fingerprint matches runtime contract\",\n        \"runtime_index_fingerprint\": \"7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328\",\n        \"stored_index_fingerprint\": \"7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328\",\n        \"runtime_embedding_fingerprint\": \"ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559\",\n        \"stored_embedding_fingerprint\": \"ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559\",\n        \"runtime_corpus_fingerprint\": \"6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66\",\n        \"stored_corpus_fingerprint\": \"6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66\",\n        \"vector_count\": 125291,\n        \"authority_source\": \"sidecar_v1\",\n        \"ingest_allowed\": true,\n        \"retrieval_allowed\": true,\n        \"retrieval_degraded\": false,\n        \"evidence\": {}\n      }\n    },\n    \"library_root\": \"/Users/vladymyrzub/CE_Library\",\n    \"db_path\": \"/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone\",\n    \"scopes\": [\n      \"me-c\",\n      \"sms\",\n      \"wiki\",\n      \"maker-manuals\",\n      \"regulatory\",\n      \"inspection\",\n      \"vessels\",\n      \"career\",\n      \"rules\",\n      \"other\"\n    ],\n    \"aliases\": {\n      \"sms_library\": \"sms\",\n      \"ce_wiki\": \"wiki\",\n      \"wiki_library\": \"wiki\",\n      \"manual_library\": \"maker-manuals\",\n      \"maker_manual\": \"maker-manuals\",\n      \"imo_library\": \"regulatory\",\n      \"statutory\": \"regulatory\",\n      \"sire_library\": \"inspection\",\n      \"manual_library_gaschem_europe\": \"vessels\",\n      \"manual_library_gaschem_africa\": \"vessels\"\n    }\n  }\n}\n",
+  "stderr": "",
+  "timed_out": false,
+  "terminated": false,
+  "killed": false,
+  "timeout_message": null,
+  "duration_s": 4.539638,
+  "alive_after_wait": false,
+  "exited": true,
+  "json_payload": {
+    "status": "ROLLBACK_OK",
+    "post_restore_hashes": {
+      ".orphan_repair_disposable_clone.json": "47ae2b82089590ac25c98442df4c277f7ca16472a512ddc3628092e8f4139276",
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "post_restore_total_chunks": 125291,
+    "post_restore_doctor": {
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "library_root_exists",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library"
+        },
+        {
+          "name": "db_path_exists",
+          "ok": true,
+          "detail": "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone"
+        },
+        {
+          "name": "scopes_yaml_loads",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/rag_engine/scopes.yaml"
+        },
+        {
+          "name": "alias_registry_valid",
+          "ok": true,
+          "detail": "no duplicate/collision aliases"
+        },
+        {
+          "name": "scope_prefixes_indexed",
+          "ok": true,
+          "detail": "sms:10_Company/ ok (627 docs); wiki:90_CE_Wiki/ ok (96 docs); maker-manuals:00_Career/03_Engine_Knowledge/ ok (501 docs); maker-manuals:00_Career/07_SDS_Datasheets/ ok (158 docs); regulatory:00_Career/02_Statutory/ ok (111 docs); regulatory:00_Career/01_Class_Rules/ ok (33 docs); inspection:00_Career/02_Statutory/SIRE_OCIMF/ ok (2 docs); vessels:20_Vessels/ ok (304 docs); career:00_Career/ ok (810 docs); rules:99_Rules/ ok (5 docs)"
+        },
+        {
+          "name": "openai_sdk_available",
+          "ok": true,
+          "detail": "informational=True (unused by ask path)"
+        },
+        {
+          "name": "openai_api_key_present",
+          "ok": true,
+          "detail": "OPENAI_API_KEY absent (unused by ask path; Hermes owns generation)"
+        },
+        {
+          "name": "openai_generation_ready",
+          "ok": true,
+          "detail": "unused by ask path (ORCH_104); Hermes owns generation; archived module model=gpt-5.6-luna"
+        },
+        {
+          "name": "ollama_embedding_reachable",
+          "ok": true,
+          "detail": "12 models"
+        },
+        {
+          "name": "embed_model_available",
+          "ok": true,
+          "detail": "mxbai-embed-large"
+        },
+        {
+          "name": "index_fingerprint",
+          "ok": true,
+          "detail": "Index fingerprint matches live config"
+        },
+        {
+          "name": "embedding_fp_v1",
+          "ok": true,
+          "detail": "PASS/KNOWN_COMPATIBLE: stored index fingerprint matches runtime contract"
+        },
+        {
+          "name": "chroma_open",
+          "ok": true,
+          "detail": "collections=['langchain']"
+        },
+        {
+          "name": "cross_process_persistence",
+          "ok": true,
+          "detail": "probe written in a separate process was read back correctly"
+        },
+        {
+          "name": "tracker_readable",
+          "ok": true,
+          "detail": "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone/embedded.json"
+        },
+        {
+          "name": "no_hermes_library_paths",
+          "ok": true,
+          "detail": "count=0"
+        },
+        {
+          "name": "no_legacy_rules_rag_db_paths",
+          "ok": true,
+          "detail": "count=0"
+        },
+        {
+          "name": "sample_source_exists",
+          "ok": true,
+          "detail": "/Users/vladymyrzub/CE_Library/00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/CL00008-2023.pdf"
+        },
+        {
+          "name": "orphan_sources",
+          "ok": false,
+          "detail": "missing_files=55 of 1842 tracker paths"
+        },
+        {
+          "name": "coverage_gap",
+          "ok": true,
+          "detail": "unindexed_files=129 scanned=1916"
+        },
+        {
+          "name": "invalid_pdf",
+          "ok": true,
+          "detail": "invalid_pdf_files=0"
+        },
+        {
+          "name": "git_no_corpus",
+          "ok": true,
+          "detail": "bad_files=[]"
+        }
+      ],
+      "fingerprint": {
+        "status": "MATCH",
+        "match": true,
+        "diffs": [],
+        "llm_model_differs": false,
+        "stored": {
+          "embed_model": "mxbai-embed-large",
+          "chunk_size": 800,
+          "chunk_overlap": 100,
+          "normalization": "nfkc",
+          "llm_model": "gpt-5.6-luna"
+        },
+        "live": {
+          "embed_model": "mxbai-embed-large",
+          "llm_model": "gpt-5.6-luna",
+          "chunk_size": 800,
+          "chunk_overlap": 100,
+          "normalization": "nfkc"
+        },
+        "message": "Index fingerprint matches live config"
+      },
+      "embedding_fp_v1": {
+        "ok": true,
+        "severity": "PASS",
+        "state": "KNOWN_COMPATIBLE",
+        "detail": "stored index fingerprint matches runtime contract",
+        "compatibility": {
+          "state": "KNOWN_COMPATIBLE",
+          "reason": "stored index fingerprint matches runtime contract",
+          "runtime_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+          "stored_index_fingerprint": "7320fdbae090ccb8c79034ae947f19ed307117f78d8b97311c325447b0555328",
+          "runtime_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+          "stored_embedding_fingerprint": "ef6df13c2d62acbf6c95ab9223a12f52da0d23388b48de20df60ddfcf18a1559",
+          "runtime_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+          "stored_corpus_fingerprint": "6fa4cbda1b02412f94212415af93282dd0702f1e06f01630e557a245dcf5bf66",
+          "vector_count": 125291,
+          "authority_source": "sidecar_v1",
+          "ingest_allowed": true,
+          "retrieval_allowed": true,
+          "retrieval_degraded": false,
+          "evidence": {}
+        }
+      },
+      "library_root": "/Users/vladymyrzub/CE_Library",
+      "db_path": "/private/tmp/lc6_case_16_ed5j3slb/case_16_rerun_against_already_repaired_clone/clone",
+      "scopes": [
+        "me-c",
+        "sms",
+        "wiki",
+        "maker-manuals",
+        "regulatory",
+        "inspection",
+        "vessels",
+        "career",
+        "rules",
+        "other"
+      ],
+      "aliases": {
+        "sms_library": "sms",
+        "ce_wiki": "wiki",
+        "wiki_library": "wiki",
+        "manual_library": "maker-manuals",
+        "maker_manual": "maker-manuals",
+        "imo_library": "regulatory",
+        "statutory": "regulatory",
+        "sire_library": "inspection",
+        "manual_library_gaschem_europe": "vessels",
+        "manual_library_gaschem_africa": "vessels"
+      }
+    }
+  },
+  "json_parse_error": null
+}

@@ -1,0 +1,3 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-20-worker-timeout-or-malformed-output-17a5896e-d69f-4269-b12b-52a709125589"}
+{"event": "lock_released"}

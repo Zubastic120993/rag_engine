@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "existing_report_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_remaining_19_cases_execution_report.json",
+  "embedded_reported_sha256": "9570fdcaf30640ad88d4b8cbb548bbb9fec0fcbf7a0ad02c63c49f52a9f461af",
+  "expected_independently_observed_complete_file_sha256": "243d1024002dd5f0582b3f4b1979ae4521c121d663cf0f5d15ad527e06f9fa54",
+  "recomputed_complete_file_sha256_immediately_before_erratum": "243d1024002dd5f0582b3f4b1979ae4521c121d663cf0f5d15ad527e06f9fa54",
+  "note": "Forward erratum only. Original aggregate report not modified."
+}

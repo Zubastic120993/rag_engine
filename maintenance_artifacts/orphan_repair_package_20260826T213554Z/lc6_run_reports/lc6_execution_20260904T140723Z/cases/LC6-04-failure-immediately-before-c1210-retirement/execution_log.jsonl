@@ -1,0 +1,3 @@
+{"event": "lock_acquired"}
+{"event": "preconditions_ok", "marker_clone_id": "lc6-LC6-04-failure-immediately-before-c1210-retirement-351f7579-7e79-4c89-a12a-149f48783eb8"}
+{"event": "lock_released"}

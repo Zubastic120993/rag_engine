@@ -1,0 +1,804 @@
+{
+  "status": "ok",
+  "report_purpose": "LC6 harness-only validation; no failure injection and no production Chroma access",
+  "external_file_hashes": {
+    "lc6_authoritative_failure_case_contract.json": "cdba735133ef3f87f05db0ed29788087fdbb2994f087340e28c609e47b4bcc5e",
+    "lc6_failure_injection.py": "3a6684cf6b4a60cb02c15313a9b38f483b9e7c4e7156dd43dfc73b1b96be416a",
+    "lc6_failure_injection_plan.json": "fd5c99bf3fb68f3e4d85b08a4f3da787d537cbee2d16f8e45f945499bddb19a9"
+  },
+  "contract_summary": {
+    "case_count": 20,
+    "case_ids": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement",
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "schema_checks": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "schema_ok": true,
+        "missing_keys": [],
+        "has_preconditions": true,
+        "has_expected_result": true,
+        "has_evidence_outputs": true,
+        "has_cleanup_policy": true,
+        "has_stop_condition": true
+      }
+    ],
+    "duplicates": [],
+    "missing_mechanics": []
+  },
+  "hook_validation": {
+    "supported_hooks_expected": [
+      "failure_after_retirement",
+      "failure_before_first_mutation",
+      "failure_before_retirement",
+      "failure_during_alias_collapse",
+      "failure_halfway_through_deterministic",
+      "forced_doctor_failure",
+      "forced_retrieval_failure",
+      "interruption_during_execution"
+    ],
+    "checks": {
+      "failure_before_first_mutation": true,
+      "failure_halfway_through_deterministic": true,
+      "failure_during_alias_collapse": true,
+      "failure_before_retirement": true,
+      "failure_after_retirement": true,
+      "forced_doctor_failure": true,
+      "forced_retrieval_failure": true,
+      "interruption_during_execution": true
+    },
+    "all_supported_hooks_confirmed": true
+  },
+  "baseline_revalidation": {
+    "baseline_path": "/private/tmp/lc4_baseline_parent_bb2_a1u8/raggen_lc4_baseline_20260827T183948Z",
+    "marker_sha256": "ce064f98f23abc33f3b66ea7c4f0e327ee8bec1e01c9be6121fbb81604c00b38",
+    "source_inventory_schema": "inventory-row-v1",
+    "row_count": 19,
+    "computed_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "expected_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "expected_embedded_json_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+    "chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "expected_chroma_sqlite3_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "orphan_count": 55,
+    "expected_orphan_count": 55,
+    "wal_shm_clear": true
+  },
+  "containment_validation": {
+    "parent": "/private/tmp/lc6_harness_validate_udeqfn95",
+    "inside_allowed": true,
+    "outside_escape_blocked": true,
+    "outside_escape_reason": "path escapes harness parent: /private/tmp/outside_escape_target not under /private/tmp/lc6_harness_validate_udeqfn95",
+    "protected_target_checks": [
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+        "blocked": true
+      },
+      {
+        "target": "/Users/vladymyrzub/CE_Library",
+        "blocked": true
+      }
+    ],
+    "all_protected_targets_blocked": true
+  },
+  "refusal_guard_validation": [
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing active production generation: /Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing legacy live db root: /Users/vladymyrzub/CE_Library/.rag_db",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing generations root: /Users/vladymyrzub/CE_Library/.rag_db_generations",
+      "ok": true
+    },
+    {
+      "target": "/Users/vladymyrzub/CE_Library",
+      "status": "refused",
+      "opened_chroma": false,
+      "reason": "refusing CE_Library root: /Users/vladymyrzub/CE_Library",
+      "ok": true
+    }
+  ],
+  "dry_run_case_layout_validation": {
+    "ok": true,
+    "layouts": [
+      {
+        "case_id": "LC6-01-failure-before-first-mutation",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_01_failure_before_first_mutation/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_01_failure_before_first_mutation/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_01_failure_before_first_mutation/work/evidence"
+      },
+      {
+        "case_id": "LC6-02-failure-midway-deterministic-repoints",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_02_failure_midway_deterministic_repoints/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_02_failure_midway_deterministic_repoints/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_02_failure_midway_deterministic_repoints/work/evidence"
+      },
+      {
+        "case_id": "LC6-03-failure-during-alias-collapse",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_03_failure_during_alias_collapse/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_03_failure_during_alias_collapse/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_03_failure_during_alias_collapse/work/evidence"
+      },
+      {
+        "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_04_failure_immediately_before_c1210_retirement/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_04_failure_immediately_before_c1210_retirement/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_04_failure_immediately_before_c1210_retirement/work/evidence"
+      },
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_05_failure_immediately_after_c1210_retirement/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_05_failure_immediately_after_c1210_retirement/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_05_failure_immediately_after_c1210_retirement/work/evidence"
+      },
+      {
+        "case_id": "LC6-06-forced-doctor-failure",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_06_forced_doctor_failure/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_06_forced_doctor_failure/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_06_forced_doctor_failure/work/evidence"
+      },
+      {
+        "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_07_forced_retrieval_acceptance_failure/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_07_forced_retrieval_acceptance_failure/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_07_forced_retrieval_acceptance_failure/work/evidence"
+      },
+      {
+        "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_08_stale_tracker_store_baseline_hash/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_08_stale_tracker_store_baseline_hash/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_08_stale_tracker_store_baseline_hash/work/evidence"
+      },
+      {
+        "case_id": "LC6-09-canonical-source-sha-mismatch",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_09_canonical_source_sha_mismatch/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_09_canonical_source_sha_mismatch/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_09_canonical_source_sha_mismatch/work/evidence"
+      },
+      {
+        "case_id": "LC6-10-candidate-lock-contention",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_10_candidate_lock_contention/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_10_candidate_lock_contention/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_10_candidate_lock_contention/work/evidence"
+      },
+      {
+        "case_id": "LC6-11-interruption-during-mutation",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_11_interruption_during_mutation/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_11_interruption_during_mutation/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_11_interruption_during_mutation/work/evidence"
+      },
+      {
+        "case_id": "LC6-12-direct-active-production-target",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_12_direct_active_production_target/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_12_direct_active_production_target/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_12_direct_active_production_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-13-legacy-rag-db-target",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_13_legacy_rag_db_target/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_13_legacy_rag_db_target/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_13_legacy_rag_db_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-14-generations-root-target",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_14_generations_root_target/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_14_generations_root_target/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_14_generations_root_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-15-ce-library-root-target",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_15_ce_library_root_target/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_15_ce_library_root_target/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_15_ce_library_root_target/work/evidence"
+      },
+      {
+        "case_id": "LC6-16-rerun-against-already-repaired-clone",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_16_rerun_against_already_repaired_clone/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_16_rerun_against_already_repaired_clone/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_16_rerun_against_already_repaired_clone/work/evidence"
+      },
+      {
+        "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_17_invalid_or_missing_disposable_marker/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_17_invalid_or_missing_disposable_marker/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_17_invalid_or_missing_disposable_marker/work/evidence"
+      },
+      {
+        "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_18_malformed_or_checksum_invalid_manifest/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_18_malformed_or_checksum_invalid_manifest/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_18_malformed_or_checksum_invalid_manifest/work/evidence"
+      },
+      {
+        "case_id": "LC6-19-unexpected-wal-shm-state",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_19_unexpected_wal_shm_state/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_19_unexpected_wal_shm_state/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_19_unexpected_wal_shm_state/work/evidence"
+      },
+      {
+        "case_id": "LC6-20-worker-timeout-or-malformed-output",
+        "clone": "/private/tmp/lc6_layout__6gtozev/case_20_worker_timeout_or_malformed_output/clone",
+        "work": "/private/tmp/lc6_layout__6gtozev/case_20_worker_timeout_or_malformed_output/work",
+        "evidence": "/private/tmp/lc6_layout__6gtozev/case_20_worker_timeout_or_malformed_output/work/evidence"
+      }
+    ]
+  },
+  "failed_case_preservation_logic": {
+    "failed_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+    "started_before_stop": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement"
+    ],
+    "not_started_after_failure": [
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "preserved_failed_case": [
+      {
+        "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+        "preserved_for_diagnosis": true
+      }
+    ],
+    "ok": true
+  },
+  "mocked_orchestration_validation": {
+    "ok": true,
+    "sequence": {
+      "started_case_ids": [
+        "LC6-01-failure-before-first-mutation",
+        "LC6-02-failure-midway-deterministic-repoints",
+        "LC6-03-failure-during-alias-collapse",
+        "LC6-04-failure-immediately-before-c1210-retirement",
+        "LC6-05-failure-immediately-after-c1210-retirement"
+      ],
+      "stopped_on_case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "not_started_case_ids": [
+        "LC6-06-forced-doctor-failure",
+        "LC6-07-forced-retrieval-acceptance-failure",
+        "LC6-08-stale-tracker-store-baseline-hash",
+        "LC6-09-canonical-source-sha-mismatch",
+        "LC6-10-candidate-lock-contention",
+        "LC6-11-interruption-during-mutation",
+        "LC6-12-direct-active-production-target",
+        "LC6-13-legacy-rag-db-target",
+        "LC6-14-generations-root-target",
+        "LC6-15-ce-library-root-target",
+        "LC6-16-rerun-against-already-repaired-clone",
+        "LC6-17-invalid-or-missing-disposable-marker",
+        "LC6-18-malformed-or-checksum-invalid-manifest",
+        "LC6-19-unexpected-wal-shm-state",
+        "LC6-20-worker-timeout-or-malformed-output"
+      ],
+      "preserved_failed_clone": "/private/tmp/lc6_mock_orch_nr0l290y/case_05_failure_immediately_after_c1210_retirement/clone",
+      "stop_on_first_unexpected_result_honored": true,
+      "results": [
+        {
+          "case_id": "LC6-01-failure-before-first-mutation",
+          "mechanic": "executor_inject:failure_before_first_mutation",
+          "observed": {
+            "status": "CONTROLLED_REFUSAL_CONFIRMED"
+          },
+          "evaluation": {
+            "case_id": "LC6-01-failure-before-first-mutation",
+            "expected_process_exit_result": "APPLY_REJECTED / controlled failure before mutation",
+            "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+            "expected_behavior_confirmed": true
+          },
+          "rollback": null,
+          "cleanup": {
+            "callbacks": [],
+            "clone_preserved": false,
+            "case_root_removed": false
+          },
+          "no_production_action": true
+        },
+        {
+          "case_id": "LC6-02-failure-midway-deterministic-repoints",
+          "mechanic": "executor_inject:failure_halfway_through_deterministic",
+          "observed": {
+            "status": "CONTROLLED_REFUSAL_CONFIRMED"
+          },
+          "evaluation": {
+            "case_id": "LC6-02-failure-midway-deterministic-repoints",
+            "expected_process_exit_result": "APPLY_REJECTED after partial mutation attempt",
+            "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+            "expected_behavior_confirmed": true
+          },
+          "rollback": null,
+          "cleanup": {
+            "callbacks": [],
+            "clone_preserved": false,
+            "case_root_removed": false
+          },
+          "no_production_action": true
+        },
+        {
+          "case_id": "LC6-03-failure-during-alias-collapse",
+          "mechanic": "executor_inject:failure_during_alias_collapse",
+          "observed": {
+            "status": "CONTROLLED_REFUSAL_CONFIRMED"
+          },
+          "evaluation": {
+            "case_id": "LC6-03-failure-during-alias-collapse",
+            "expected_process_exit_result": "APPLY_REJECTED during alias collapse",
+            "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+            "expected_behavior_confirmed": true
+          },
+          "rollback": null,
+          "cleanup": {
+            "callbacks": [],
+            "clone_preserved": false,
+            "case_root_removed": false
+          },
+          "no_production_action": true
+        },
+        {
+          "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+          "mechanic": "executor_inject:failure_before_retirement",
+          "observed": {
+            "status": "CONTROLLED_REFUSAL_CONFIRMED"
+          },
+          "evaluation": {
+            "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+            "expected_process_exit_result": "APPLY_REJECTED before retirement delete",
+            "observed_summary": "CONTROLLED_REFUSAL_CONFIRMED",
+            "expected_behavior_confirmed": true
+          },
+          "rollback": null,
+          "cleanup": {
+            "callbacks": [],
+            "clone_preserved": false,
+            "case_root_removed": false
+          },
+          "no_production_action": true
+        },
+        {
+          "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+          "mechanic": "executor_inject:failure_after_retirement",
+          "observed": {
+            "status": "UNEXPECTED_RESULT"
+          },
+          "evaluation": {
+            "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+            "expected_process_exit_result": "APPLY_REJECTED after retirement mutation",
+            "observed_summary": "UNEXPECTED_RESULT",
+            "expected_behavior_confirmed": false
+          },
+          "rollback": null,
+          "cleanup": {
+            "callbacks": [],
+            "clone_preserved": true,
+            "case_root_removed": false
+          },
+          "no_production_action": true
+        }
+      ]
+    }
+  },
+  "implemented_vs_blocked_case_mechanics": [
+    {
+      "case_id": "LC6-01-failure-before-first-mutation",
+      "mechanic": "executor_inject:failure_before_first_mutation",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-02-failure-midway-deterministic-repoints",
+      "mechanic": "executor_inject:failure_halfway_through_deterministic",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-03-failure-during-alias-collapse",
+      "mechanic": "executor_inject:failure_during_alias_collapse",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+      "mechanic": "executor_inject:failure_before_retirement",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "mechanic": "executor_inject:failure_after_retirement",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-06-forced-doctor-failure",
+      "mechanic": "executor_inject:forced_doctor_failure",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+      "mechanic": "executor_inject:forced_retrieval_failure",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+      "mechanic": "harness_fixture:stale_tracker_store_baseline_hash",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-09-canonical-source-sha-mismatch",
+      "mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-10-candidate-lock-contention",
+      "mechanic": "harness_fixture:candidate_lock_contention",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-11-interruption-during-mutation",
+      "mechanic": "harness_fixture:interruption_during_execution",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-12-direct-active-production-target",
+      "mechanic": "refusal_only:active_production_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-13-legacy-rag-db-target",
+      "mechanic": "refusal_only:legacy_rag_db_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-14-generations-root-target",
+      "mechanic": "refusal_only:generations_root_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-15-ce-library-root-target",
+      "mechanic": "refusal_only:ce_library_root_target",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-16-rerun-against-already-repaired-clone",
+      "mechanic": "harness_fixture:dirty_clone_rerun_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+      "mechanic": "harness_fixture:invalid_or_missing_marker_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+      "mechanic": "harness_fixture:invalid_manifest_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-19-unexpected-wal-shm-state",
+      "mechanic": "harness_fixture:wal_shm_precondition_refusal",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    },
+    {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "mechanic": "harness_fixture:worker_timeout_or_malformed_output",
+      "implemented_in_harness": true,
+      "mechanically_executable_after_operator_approval": true,
+      "blocked_reason": null
+    }
+  ],
+  "execution_guard_dry_run": {
+    "ok": true,
+    "reason": "dry-run mode; no case execution permitted"
+  },
+  "dry_run_selection_all_cases": {
+    "mode": "dry-run",
+    "selected_case_ids": [
+      "LC6-01-failure-before-first-mutation",
+      "LC6-02-failure-midway-deterministic-repoints",
+      "LC6-03-failure-during-alias-collapse",
+      "LC6-04-failure-immediately-before-c1210-retirement",
+      "LC6-05-failure-immediately-after-c1210-retirement",
+      "LC6-06-forced-doctor-failure",
+      "LC6-07-forced-retrieval-acceptance-failure",
+      "LC6-08-stale-tracker-store-baseline-hash",
+      "LC6-09-canonical-source-sha-mismatch",
+      "LC6-10-candidate-lock-contention",
+      "LC6-11-interruption-during-mutation",
+      "LC6-12-direct-active-production-target",
+      "LC6-13-legacy-rag-db-target",
+      "LC6-14-generations-root-target",
+      "LC6-15-ce-library-root-target",
+      "LC6-16-rerun-against-already-repaired-clone",
+      "LC6-17-invalid-or-missing-disposable-marker",
+      "LC6-18-malformed-or-checksum-invalid-manifest",
+      "LC6-19-unexpected-wal-shm-state",
+      "LC6-20-worker-timeout-or-malformed-output"
+    ],
+    "count": 20,
+    "no_case_execution_performed": true
+  },
+  "explicit_non_execution_confirmation": {
+    "no_failure_injection_case_ran": true,
+    "no_production_action_occurred": true,
+    "production_chroma_not_opened": true,
+    "final_clean_cycle_not_run": true,
+    "sha256sums_not_regenerated": true
+  }
+}

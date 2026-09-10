@@ -1,0 +1,12 @@
+{
+  "final_status": "LC6_CASE11_PREFLIGHT_ERRATUM_RECORDED",
+  "superseded_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_interruption_mechanism_preflight_report.json",
+  "superseded_report_sha256": "49d07f8ebc1ece64b2dd6db21a580013a01e58789938dd520367b390e01345d5",
+  "v2_reference_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection_harness_validation_correction_v2_report.json",
+  "v2_reference_sha256": "b1290014584fad941af98be28c49596cb7abd2581ac90297a049f9002b0f2746",
+  "correction": "The earlier LC6-11 preflight authorization was provisional only. Until real executor-worker checkpoint integration passed, it must not be used alone to authorize single-case execution.",
+  "real_chain_integration_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_real_chain_integration_report.json",
+  "real_chain_integration_report_sha256": "baf9b09fc5c086a35d3d25dd07951d5a488dc16ef01f99885f0ef4e8588b3fb0",
+  "integration_outcome": "LC6_CASE11_REAL_CHAIN_INTEGRATION_PASS_READY_FOR_SINGLE_CASE_EXECUTION_APPROVAL",
+  "current_harness_sha256": "6be27e0c923a83e1f0b64274dd8296aabcf4e0223bb62e20f1b7b9c3c1516594"
+}

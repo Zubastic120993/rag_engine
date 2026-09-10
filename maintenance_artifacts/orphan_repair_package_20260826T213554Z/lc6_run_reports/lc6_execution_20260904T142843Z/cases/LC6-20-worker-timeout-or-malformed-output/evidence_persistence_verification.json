@@ -1,0 +1,167 @@
+{
+  "case_id": "LC6-20-worker-timeout-or-malformed-output",
+  "written_before_cleanup": true,
+  "local_case_report": "/private/tmp/lc6_case_20_ejf8p253/case_20_worker_timeout_or_malformed_output/work/evidence/case_report.json",
+  "local_evidence_inventory": "/private/tmp/lc6_case_20_ejf8p253/case_20_worker_timeout_or_malformed_output/work/evidence/evidence_inventory.json",
+  "durable_case_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_run_reports/lc6_execution_20260904T142843Z/cases/LC6-20-worker-timeout-or-malformed-output",
+  "durable_inventory": [
+    {
+      "relpath": "apply_result.json",
+      "bytes": 53379,
+      "sha256": "9bdcb465993ed666812e90aa9329d6ec455c5273ae7a7e2af7d4fda4284bca0c"
+    },
+    {
+      "relpath": "case_contract.json",
+      "bytes": 1791,
+      "sha256": "fa69dbb8a4230880874e82fb124f0875344ac43626fa312429e80d79c8268386"
+    },
+    {
+      "relpath": "case_report.json",
+      "bytes": 210157,
+      "sha256": "63f3153f984ab37a2052cbcea1f08732a023065c9cf85d12bb8a1da496b99387"
+    },
+    {
+      "relpath": "clone_setup.json",
+      "bytes": 1185,
+      "sha256": "69a0818e33e23f6985c4bb915f4eeef7158141fcd971bfb9dfcc487afc1d5dd5"
+    },
+    {
+      "relpath": "evidence_inventory.json",
+      "bytes": 1831,
+      "sha256": "2d819333d0585c4483b9dbc1b2ff32c4612e37531586f6d616c6e1066f0ca504"
+    },
+    {
+      "relpath": "execution_log.jsonl",
+      "bytes": 273,
+      "sha256": "d4f95c66745dca9185528cef66bc7710425a06fbc6fd11567fa24008513380f2"
+    },
+    {
+      "relpath": "executor_apply_observed.json",
+      "bytes": 171793,
+      "sha256": "636f47f1caac3bd57bc4ab010f623a5404508d501772898782cf3cc9cfd3d7ac"
+    },
+    {
+      "relpath": "executor_apply_process.json",
+      "bytes": 113839,
+      "sha256": "6c0ebe147af8309ef6e71ddd935f472de041d94f920a624893967858712368e5"
+    },
+    {
+      "relpath": "executor_input.json",
+      "bytes": 247,
+      "sha256": "cba1fd721542b32ee9de9f5a49cd3d332fcb6460e6336a82588a0cb11c5640f3"
+    },
+    {
+      "relpath": "fixture_setup.json",
+      "bytes": 126,
+      "sha256": "a05df21aa71732afb658c422680690f131fbf8e1ea0f92ccf5c3673cb81ba939"
+    },
+    {
+      "relpath": "production_hashes_after.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "production_hashes_before.json",
+      "bytes": 663,
+      "sha256": "7743a7b34d31ff87a3b56048af03f05e9823b7d04dc0eed343f297d33aef2341"
+    },
+    {
+      "relpath": "rollback_observed.json",
+      "bytes": 28835,
+      "sha256": "7d1363b4a0e318a849a790d4f1453179dfe51988ad2b8fb7d6e0cf21673b158b"
+    },
+    {
+      "relpath": "rollback_process.json",
+      "bytes": 19189,
+      "sha256": "d6f88a6b11f426f9c7a82114a09e2b48867debd9d0593ab10a5e7e043a15b92f"
+    },
+    {
+      "relpath": "rollback_result.json",
+      "bytes": 8648,
+      "sha256": "970e7ac06092a918cc321b713a86ebce38144d8407367daab2715401ff5d0664"
+    }
+  ],
+  "verification": {
+    "required_files": [
+      "case_contract.json",
+      "case_report.json",
+      "evidence_inventory.json",
+      "production_hashes_before.json",
+      "production_hashes_after.json",
+      "fixture_setup.json",
+      "clone_setup.json",
+      "executor_apply_process.json",
+      "executor_apply_observed.json",
+      "rollback_process.json",
+      "rollback_observed.json",
+      "apply_result.json",
+      "execution_log.jsonl",
+      "executor_input.json",
+      "rollback_result.json"
+    ],
+    "checks": [
+      {
+        "file": "case_contract.json",
+        "present": true
+      },
+      {
+        "file": "case_report.json",
+        "present": true
+      },
+      {
+        "file": "evidence_inventory.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_before.json",
+        "present": true
+      },
+      {
+        "file": "production_hashes_after.json",
+        "present": true
+      },
+      {
+        "file": "fixture_setup.json",
+        "present": true
+      },
+      {
+        "file": "clone_setup.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_process.json",
+        "present": true
+      },
+      {
+        "file": "executor_apply_observed.json",
+        "present": true
+      },
+      {
+        "file": "rollback_process.json",
+        "present": true
+      },
+      {
+        "file": "rollback_observed.json",
+        "present": true
+      },
+      {
+        "file": "apply_result.json",
+        "present": true
+      },
+      {
+        "file": "execution_log.jsonl",
+        "present": true
+      },
+      {
+        "file": "executor_input.json",
+        "present": true
+      },
+      {
+        "file": "rollback_result.json",
+        "present": true
+      }
+    ],
+    "missing": [],
+    "ok": true
+  }
+}

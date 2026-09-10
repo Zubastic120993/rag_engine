@@ -1,0 +1,5 @@
+{
+  "mechanic": "executor_inject:failure_halfway_through_deterministic",
+  "mutations": [],
+  "inject": "failure_halfway_through_deterministic"
+}

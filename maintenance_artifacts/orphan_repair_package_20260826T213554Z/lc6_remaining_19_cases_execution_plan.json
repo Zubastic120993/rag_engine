@@ -1,0 +1,1318 @@
+{
+  "final_status": "LC6_REMAINING_19_PLAN_READY_FOR_OPERATOR_APPROVAL",
+  "verified_reference": {
+    "case11_retry_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_case11_single_case_retry_v2_report.json",
+    "case11_retry_report_sha256": "ceeb577659cc22bbce1fa10cb667d0611956b715d5778589593df7c5ad5e2b3d",
+    "case11_retry_result": "LC6_CASE11_SINGLE_CASE_RETRY_PASS",
+    "binding_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_restored_baseline_binding_report.json",
+    "binding_report_sha256": "f55d6d15c7439babaec641889c4e958b24c03399cac9fc4a0db07e2c6a8cce5c",
+    "binding_result": "LC6_RESTORED_BASELINE_BINDING_PASS",
+    "restored_baseline": "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z"
+  },
+  "prerequisite_hashes": {
+    "lc6_failure_injection.py": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33",
+    "orphan_repair_executor.py": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945",
+    "chroma_worker.py": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584",
+    "expected": {
+      "binding_report_sha256": "f55d6d15c7439babaec641889c4e958b24c03399cac9fc4a0db07e2c6a8cce5c",
+      "case11_report_sha256": "ceeb577659cc22bbce1fa10cb667d0611956b715d5778589593df7c5ad5e2b3d",
+      "harness_sha256": "f1ed1d25d0273f3288b388eccf1d984605e9cbd90ebc195b1b36c76f27749a33",
+      "executor_sha256": "826a3e7cb8fbe65981776a4e7e66d857140cc0e49b7892b0ce11ff846370c945",
+      "worker_sha256": "c74a468ef060db6d226e10d71ee16bedd762b2d9d13478e2d99b8ffc4a8a1584"
+    }
+  },
+  "authoritative_contract_check": {
+    "contract_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_authoritative_failure_case_contract.json",
+    "contract_case_count": 20,
+    "contract_ordered_case_ids_count": 20,
+    "harness_mechanic_case_count": 20,
+    "contract_and_harness_case_ids_match": true,
+    "excluded_case_id": "LC6-11-interruption-during-mutation"
+  },
+  "sequential_execution_approval_assessment": {
+    "may_run_sequentially_under_one_future_approval": true,
+    "conditions": [
+      "Run strictly one case at a time in authoritative order or approved custom order; no parallel execution.",
+      "Allocate a new unique /private/tmp parent for every case.",
+      "Re-run restored-baseline prechecks before each case.",
+      "Capture production hashes read-only before and after each case.",
+      "Stop immediately on the first unexpected state and preserve that case root.",
+      "Do not use --all even if one approval covers the full remaining sequence."
+    ]
+  },
+  "stop_on_first_unexpected_state_rule": {
+    "enabled": true,
+    "unexpected_state_examples": [
+      "authoritative contract and current harness disagree on case IDs or mechanics",
+      "restored baseline path/hash/schema/counts/collection/WAL-SHM state drift",
+      "protected-target refusal case opens Chroma or mutates anything",
+      "mutation case leaves wrong chunk/orphan counts, extra collection, lock, WAL/SHM, or lingering process",
+      "rollback owner is not executor where executor-owned recovery is required",
+      "production before/after hashes differ"
+    ],
+    "required_action": "Mark the case as failed-preserved, keep the disposable case root, stop the sequence, and request operator review before any next case."
+  },
+  "ordered_case_ids": [
+    "LC6-01-failure-before-first-mutation",
+    "LC6-02-failure-midway-deterministic-repoints",
+    "LC6-03-failure-during-alias-collapse",
+    "LC6-04-failure-immediately-before-c1210-retirement",
+    "LC6-05-failure-immediately-after-c1210-retirement",
+    "LC6-06-forced-doctor-failure",
+    "LC6-07-forced-retrieval-acceptance-failure",
+    "LC6-08-stale-tracker-store-baseline-hash",
+    "LC6-09-canonical-source-sha-mismatch",
+    "LC6-10-candidate-lock-contention",
+    "LC6-12-direct-active-production-target",
+    "LC6-13-legacy-rag-db-target",
+    "LC6-14-generations-root-target",
+    "LC6-15-ce-library-root-target",
+    "LC6-16-rerun-against-already-repaired-clone",
+    "LC6-17-invalid-or-missing-disposable-marker",
+    "LC6-18-malformed-or-checksum-invalid-manifest",
+    "LC6-19-unexpected-wal-shm-state",
+    "LC6-20-worker-timeout-or-malformed-output"
+  ],
+  "cases": [
+    {
+      "case_id": "LC6-01-failure-before-first-mutation",
+      "failure_point": "before first mutation",
+      "current_harness_mechanic": "executor_inject:failure_before_first_mutation",
+      "expected_outcome": "controlled failure before mutation",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback required if no mutation begins",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "execution_log.jsonl",
+        "pre_inventory.json",
+        "post_inventory.json",
+        "production_hashes_before_after.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-01-failure-before-first-mutation",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_failure_before_first_mutation_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-02-failure-midway-deterministic-repoints",
+      "failure_point": "midway through deterministic repoints",
+      "current_harness_mechanic": "executor_inject:failure_halfway_through_deterministic",
+      "expected_outcome": "controlled failure after partial mutation",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "executor rollback required after worker exit",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "execution_log.jsonl",
+        "rollback_validation.json",
+        "production_hashes_before_after.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-02-failure-midway-deterministic-repoints",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_failure_midway_deterministic_repoints_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-03-failure-during-alias-collapse",
+      "failure_point": "during alias collapse",
+      "current_harness_mechanic": "executor_inject:failure_during_alias_collapse",
+      "expected_outcome": "controlled failure during alias collapse",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "executor rollback required after worker exit",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "execution_log.jsonl",
+        "rollback_validation.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-03-failure-during-alias-collapse",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_failure_during_alias_collapse_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-04-failure-immediately-before-c1210-retirement",
+      "failure_point": "immediately before C1210 retirement",
+      "current_harness_mechanic": "executor_inject:failure_before_retirement",
+      "expected_outcome": "controlled failure before retirement delete",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "executor rollback required if mutation started; otherwise prove exact baseline equivalence",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "retirement_validation.json",
+        "rollback_validation.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-04-failure-immediately-before-c1210-retirement",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_failure_immediately_before_c1210_retirement_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-05-failure-immediately-after-c1210-retirement",
+      "failure_point": "immediately after C1210 retirement",
+      "current_harness_mechanic": "executor_inject:failure_after_retirement",
+      "expected_outcome": "controlled failure after retirement mutation",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "executor rollback required after worker exit",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "rollback_validation.json",
+        "retirement_restore_validation.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-05-failure-immediately-after-c1210-retirement",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_failure_immediately_after_c1210_retirement_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-06-forced-doctor-failure",
+      "failure_point": "doctor validation gate",
+      "current_harness_mechanic": "executor_inject:forced_doctor_failure",
+      "expected_outcome": "controlled failure from doctor gate",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "executor rollback required after validation failure",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "execution_log.jsonl",
+        "rollback_validation.json",
+        "reopen_validation.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-06-forced-doctor-failure",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_forced_doctor_failure_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-07-forced-retrieval-acceptance-failure",
+      "failure_point": "retrieval acceptance gate",
+      "current_harness_mechanic": "executor_inject:forced_retrieval_failure",
+      "expected_outcome": "controlled failure from retrieval acceptance gate",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "executor rollback required after validation failure",
+      "required_evidence": [
+        "case_report.json",
+        "apply_failure.json",
+        "retrieval_validation.json",
+        "rollback_validation.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-07-forced-retrieval-acceptance-failure",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_forced_retrieval_acceptance_failure_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-08-stale-tracker-store-baseline-hash",
+      "failure_point": "stale tracker/store baseline hash precondition",
+      "current_harness_mechanic": "harness_fixture:stale_tracker_store_baseline_hash",
+      "expected_outcome": "precondition refusal before mutation",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone.",
+        "Any manifest/package mutation must occur only in a disposable package copy under the case tmp-parent; approved package files in the maintenance package remain unchanged."
+      ],
+      "expected_affected_stores": [
+        "disposable clone preflight fixtures only",
+        "disposable package copy only where case requires manifest/package mutation",
+        "no production store"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; no mutation starts",
+      "required_evidence": [
+        "case_report.json",
+        "preflight_refusal.json",
+        "inventory_proof.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-08-stale-tracker-store-baseline-hash",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_stale_tracker_store_baseline_hash_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-09-canonical-source-sha-mismatch",
+      "failure_point": "canonical-source SHA precondition",
+      "current_harness_mechanic": "harness_fixture:canonical_source_sha_mismatch_disposable_manifest",
+      "expected_outcome": "precondition refusal before mutation",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone.",
+        "Any manifest/package mutation must occur only in a disposable package copy under the case tmp-parent; approved package files in the maintenance package remain unchanged."
+      ],
+      "expected_affected_stores": [
+        "disposable clone preflight fixtures only",
+        "disposable package copy only where case requires manifest/package mutation",
+        "no production store"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; no mutation starts",
+      "required_evidence": [
+        "case_report.json",
+        "disposable_manifest.json",
+        "preflight_refusal.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-09-canonical-source-sha-mismatch",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_canonical_source_sha_mismatch_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-10-candidate-lock-contention",
+      "failure_point": "candidate lock acquisition",
+      "current_harness_mechanic": "harness_fixture:candidate_lock_contention",
+      "expected_outcome": "candidate lock refusal",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone.",
+        "Candidate lock contention must be case-local on the disposable clone only; production lock must remain untouched."
+      ],
+      "expected_affected_stores": [
+        "disposable clone preflight fixtures only",
+        "disposable package copy only where case requires manifest/package mutation",
+        "no production store"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; release case-local lock after evidence capture",
+      "required_evidence": [
+        "case_report.json",
+        "lock_refusal.json",
+        "execution_log.jsonl",
+        "inventory_proof.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-10-candidate-lock-contention",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_candidate_lock_contention_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-12-direct-active-production-target",
+      "failure_point": "direct active production target refusal",
+      "current_harness_mechanic": "refusal_only:active_production_target",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "fresh_disposable_clone_requirement": "No clone may be mutated; still require a fresh unique tmp-parent for refusal evidence and baseline proof. Refusal target itself must be blocked before Chroma open.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Even for refusal-only cases, capture the restored baseline proof first and allocate a fresh disposable tmp-parent for case-local evidence; do not mutate or copy the baseline itself during planning or preflight."
+      ],
+      "expected_affected_stores": [
+        "none; refusal must occur before Chroma open",
+        "read-only production hash capture only"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; refusal-only case",
+      "required_evidence": [
+        "case_report.json",
+        "refusal_result.json",
+        "production_hashes_before_after.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "opened_chroma_false_proof.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-12-direct-active-production-target",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_direct_active_production_target_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 4
+    },
+    {
+      "case_id": "LC6-13-legacy-rag-db-target",
+      "failure_point": "legacy .rag_db target refusal",
+      "current_harness_mechanic": "refusal_only:legacy_rag_db_target",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "fresh_disposable_clone_requirement": "No clone may be mutated; still require a fresh unique tmp-parent for refusal evidence and baseline proof. Refusal target itself must be blocked before Chroma open.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Even for refusal-only cases, capture the restored baseline proof first and allocate a fresh disposable tmp-parent for case-local evidence; do not mutate or copy the baseline itself during planning or preflight."
+      ],
+      "expected_affected_stores": [
+        "none; refusal must occur before Chroma open",
+        "read-only production hash capture only"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; refusal-only case",
+      "required_evidence": [
+        "case_report.json",
+        "refusal_result.json",
+        "production_hashes_before_after.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "opened_chroma_false_proof.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-13-legacy-rag-db-target",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_legacy_rag_db_target_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 4
+    },
+    {
+      "case_id": "LC6-14-generations-root-target",
+      "failure_point": ".rag_db_generations root refusal",
+      "current_harness_mechanic": "refusal_only:generations_root_target",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "fresh_disposable_clone_requirement": "No clone may be mutated; still require a fresh unique tmp-parent for refusal evidence and baseline proof. Refusal target itself must be blocked before Chroma open.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Even for refusal-only cases, capture the restored baseline proof first and allocate a fresh disposable tmp-parent for case-local evidence; do not mutate or copy the baseline itself during planning or preflight."
+      ],
+      "expected_affected_stores": [
+        "none; refusal must occur before Chroma open",
+        "read-only production hash capture only"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; refusal-only case",
+      "required_evidence": [
+        "case_report.json",
+        "refusal_result.json",
+        "production_hashes_before_after.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "opened_chroma_false_proof.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-14-generations-root-target",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_generations_root_target_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 4
+    },
+    {
+      "case_id": "LC6-15-ce-library-root-target",
+      "failure_point": "CE_Library root refusal",
+      "current_harness_mechanic": "refusal_only:ce_library_root_target",
+      "expected_outcome": "protected-target refusal before Chroma open",
+      "fresh_disposable_clone_requirement": "No clone may be mutated; still require a fresh unique tmp-parent for refusal evidence and baseline proof. Refusal target itself must be blocked before Chroma open.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Even for refusal-only cases, capture the restored baseline proof first and allocate a fresh disposable tmp-parent for case-local evidence; do not mutate or copy the baseline itself during planning or preflight."
+      ],
+      "expected_affected_stores": [
+        "none; refusal must occur before Chroma open",
+        "read-only production hash capture only"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; refusal-only case",
+      "required_evidence": [
+        "case_report.json",
+        "refusal_result.json",
+        "production_hashes_before_after.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "opened_chroma_false_proof.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-15-ce-library-root-target",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_ce_library_root_target_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 4
+    },
+    {
+      "case_id": "LC6-16-rerun-against-already-repaired-clone",
+      "failure_point": "second run against already repaired clone",
+      "current_harness_mechanic": "harness_fixture:dirty_clone_rerun_refusal",
+      "expected_outcome": "dirty-clone rerun refusal",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone.",
+        "Inside the same case-local disposable scope, prove first apply succeeds once, then run the second invocation only against that already-repaired disposable clone and require refusal."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "first apply must succeed inside disposable scope; second run must refuse with no second mutation",
+      "required_evidence": [
+        "case_report.json",
+        "first_apply_result.json",
+        "second_run_refusal.json",
+        "clone_state_inventory.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "first_apply_case_report.json",
+        "second_run_refusal.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-16-rerun-against-already-repaired-clone",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_rerun_against_already_repaired_clone_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    },
+    {
+      "case_id": "LC6-17-invalid-or-missing-disposable-marker",
+      "failure_point": "invalid or missing disposable marker",
+      "current_harness_mechanic": "harness_fixture:invalid_or_missing_marker_refusal",
+      "expected_outcome": "marker validation refusal before Chroma open",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone preflight fixtures only",
+        "disposable package copy only where case requires manifest/package mutation",
+        "no production store"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; refusal-only after fixture preparation",
+      "required_evidence": [
+        "case_report.json",
+        "refusal_result.json",
+        "marker_fixture.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json",
+        "opened_chroma_false_proof.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-17-invalid-or-missing-disposable-marker",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_invalid_or_missing_disposable_marker_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-18-malformed-or-checksum-invalid-manifest",
+      "failure_point": "malformed or checksum-invalid manifest",
+      "current_harness_mechanic": "harness_fixture:invalid_manifest_refusal",
+      "expected_outcome": "manifest validation refusal before mutation",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone.",
+        "Any manifest/package mutation must occur only in a disposable package copy under the case tmp-parent; approved package files in the maintenance package remain unchanged."
+      ],
+      "expected_affected_stores": [
+        "disposable clone preflight fixtures only",
+        "disposable package copy only where case requires manifest/package mutation",
+        "no production store"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; original package unchanged",
+      "required_evidence": [
+        "case_report.json",
+        "disposable_manifest.json",
+        "refusal_result.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-18-malformed-or-checksum-invalid-manifest",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_malformed_or_checksum_invalid_manifest_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-19-unexpected-wal-shm-state",
+      "failure_point": "unexpected WAL/SHM precondition",
+      "current_harness_mechanic": "harness_fixture:wal_shm_precondition_refusal",
+      "expected_outcome": "WAL/SHM precondition refusal",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone.",
+        "Seed WAL/SHM fixture only inside the fresh disposable clone after clone creation; never on the restored baseline."
+      ],
+      "expected_affected_stores": [
+        "disposable clone preflight fixtures only",
+        "disposable package copy only where case requires manifest/package mutation",
+        "no production store"
+      ],
+      "recovery_owner_and_rollback_expectation": "no rollback; remove disposable fixture only after evidence capture",
+      "required_evidence": [
+        "case_report.json",
+        "wal_shm_fixture_state.json",
+        "refusal_result.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-19-unexpected-wal-shm-state",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_unexpected_wal_shm_state_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 8
+    },
+    {
+      "case_id": "LC6-20-worker-timeout-or-malformed-output",
+      "failure_point": "worker timeout or malformed JSON/output",
+      "current_harness_mechanic": "harness_fixture:worker_timeout_or_malformed_output",
+      "expected_outcome": "controlled failure on timeout or malformed worker output",
+      "fresh_disposable_clone_requirement": "Fresh disposable clone required from restored baseline before execution.",
+      "pre_run_baseline_checks": [
+        "Verify restored baseline path exactly matches /private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z.",
+        "Verify disposable marker exists and status/purpose remain VERIFIED_DISPOSABLE_BASELINE.",
+        "Verify source_inventory_schema = inventory-row-v1.",
+        "Verify 19 inventory rows excluding .orphan_repair_disposable_clone.json and checksum b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a.",
+        "Verify embedded.json SHA c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33.",
+        "Verify chroma.sqlite3 SHA 71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6.",
+        "Verify chunk count 125291 and orphan path count 55.",
+        "Verify exactly one collection exists: langchain.",
+        "Verify no chroma.sqlite3-wal, no chroma.sqlite3-shm, no ingest.lock drift, and no active package worker using the baseline.",
+        "Create one new disposable clone from the restored baseline only after all baseline checks pass; never reuse an earlier failed or cleaned clone."
+      ],
+      "expected_affected_stores": [
+        "disposable clone chroma.sqlite3",
+        "disposable clone embedded.json",
+        "case-local evidence files under lc6_run_reports only"
+      ],
+      "recovery_owner_and_rollback_expectation": "rollback only if mutation had started and only after worker exit",
+      "required_evidence": [
+        "case_report.json",
+        "timeout_or_malformed_output.json",
+        "execution_log.jsonl",
+        "rollback_validation.json",
+        "worker_exit_codes.json",
+        "production_hashes_before.json",
+        "production_hashes_after.json"
+      ],
+      "post_run_checks": [
+        "Capture production embedded.json and chroma.sqlite3 SHA-256 read-only before and after; require exact equality.",
+        "Confirm fresh disposable clone inventory after case is either unchanged (precondition/refusal cases) or exactly restored to baseline inventory after executor recovery.",
+        "Confirm chunk count = 125291 and orphan paths = 55 after any rollback or refusal case using a clone.",
+        "Confirm collection set = [langchain] and count = 1; no test collection or extra collection permitted.",
+        "Confirm no chroma.sqlite3-wal, no chroma.sqlite3-shm, no residual ingest.lock, and no lingering worker/executor/doctor process against the disposable clone.",
+        "Preserve the failed case root immediately on any unexpected state; do not clean it up."
+      ],
+      "production_hashes_readonly_before_after": {
+        "generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "required_files": [
+          "embedded.json",
+          "chroma.sqlite3"
+        ],
+        "expected_equal_before_after": true
+      },
+      "failed_clone_preservation_rule": "On any unexpected refusal/failure/recovery mismatch, preserve the full case root and disposable clone/work/evidence exactly as left by the harness; do not delete, rename, or overwrite it.",
+      "exact_proposed_command": [
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+        "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/lc6_failure_injection.py",
+        "--execute",
+        "--case-id",
+        "LC6-20-worker-timeout-or-malformed-output",
+        "--baseline-dir",
+        "/private/tmp/lc4_restored_baseline_goxd66q0/raggen_lc4_baseline_restored_20260901T153049Z",
+        "--tmp-parent",
+        "/private/tmp/lc6_remaining_worker_timeout_or_malformed_output_<NEW_UNIQUE_TEMP_PARENT>",
+        "--json"
+      ],
+      "estimated_runtime_minutes": 12
+    }
+  ],
+  "global_requirements": {
+    "execute_now": false,
+    "no_all_flag": true,
+    "no_baseline_copy_or_mutation_during_planning": true,
+    "no_production_mutation": true,
+    "no_production_selection_change": true,
+    "no_source_document_modification": true,
+    "no_final_clean_cycle": true,
+    "no_package_sealing": true,
+    "no_sha256sums_regeneration": true,
+    "fail_closed_on_contract_harness_disagreement": true
+  },
+  "estimated_runtime": {
+    "per_case_minutes": {
+      "LC6-01-failure-before-first-mutation": 8,
+      "LC6-02-failure-midway-deterministic-repoints": 12,
+      "LC6-03-failure-during-alias-collapse": 12,
+      "LC6-04-failure-immediately-before-c1210-retirement": 12,
+      "LC6-05-failure-immediately-after-c1210-retirement": 12,
+      "LC6-06-forced-doctor-failure": 12,
+      "LC6-07-forced-retrieval-acceptance-failure": 12,
+      "LC6-08-stale-tracker-store-baseline-hash": 8,
+      "LC6-09-canonical-source-sha-mismatch": 8,
+      "LC6-10-candidate-lock-contention": 8,
+      "LC6-12-direct-active-production-target": 4,
+      "LC6-13-legacy-rag-db-target": 4,
+      "LC6-14-generations-root-target": 4,
+      "LC6-15-ce-library-root-target": 4,
+      "LC6-16-rerun-against-already-repaired-clone": 12,
+      "LC6-17-invalid-or-missing-disposable-marker": 8,
+      "LC6-18-malformed-or-checksum-invalid-manifest": 8,
+      "LC6-19-unexpected-wal-shm-state": 8,
+      "LC6-20-worker-timeout-or-malformed-output": 12
+    },
+    "total_estimated_minutes": 168,
+    "basis": "Planning estimate based on case class: refusal-only ~4 min, precondition clone/refusal ~8 min, mutation+rollback cases ~12 min."
+  },
+  "blockers": []
+}
