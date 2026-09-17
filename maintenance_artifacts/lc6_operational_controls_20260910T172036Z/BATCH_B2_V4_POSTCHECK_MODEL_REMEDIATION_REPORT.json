@@ -1,0 +1,102 @@
+{
+  "artifact": "batch_b2_v4_postcheck_model_remediation_report",
+  "authorized_retirement": {
+    "count_change": "125291 -> 125289",
+    "digest": "247b28a9ff07169473ddb7ac5f54dc61bfac046796bd7d0b36249fa36e166c90",
+    "vector_ids": [
+      "chunk:7cb9d07e312b2e6080aa112f5a165428",
+      "chunk:9c1743c71b1b7c2e9d9aea88d3fbc247"
+    ]
+  },
+  "boundary": {
+    ".venv_or_uvlock_modified": false,
+    "batch_b2_retried": false,
+    "commit_push_promote": false,
+    "copies_or_candidates_created": false,
+    "executor_invoked": false,
+    "locks_or_selection_changed": false,
+    "production_or_baseline_chroma_access": false,
+    "sealed_package_modified": false
+  },
+  "cache_cleanup": {
+    "outside_package_removed": false,
+    "remaining_package_local_cache_artifacts": [],
+    "removed": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/__pycache__/lc6_operational_controls.cpython-312.pyc",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/__pycache__/test_lc6_operational_controls.cpython-312.pyc",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/__pycache__"
+    ]
+  },
+  "compile_checks": [
+    {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py",
+      "status": "PASS"
+    },
+    {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py",
+      "status": "PASS"
+    }
+  ],
+  "complete_file_sha256": {
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_DIAGNOSIS_REPORT.json": "b4557350e91a6f0bdafeebe88e1471c9272e68ddfaafe8fe7e4ec52b9e319d5d",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_MODEL_ERRATUM.json": "da8a7a61881cd2a282ec7903c1adbf8677dad4c42078c6610c341877a04201c8",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/LC6_OPERATIONAL_CONTROLS_CONTRACT_V1.md": "5952efbe16e24e5395554f6e0a657abdf9303d23e74f635d1e26b6439d1e9a76",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNBOOK.md": "1ac661a3570d5ddc505d6966bd70cf373ef47b6dac08e21c8e4cd783d6ae4212",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py": "da77287b8d81ab5005596766b0d89e6ec4198125a2835eeaa4d0bf06855b04fb",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py": "db8ef73d667e35a0c7f2363193d1116a769d243a1ed3d8f16a0522e530484f24"
+  },
+  "created_utc": "2026-09-15T23:13:22Z",
+  "erratum_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_MODEL_ERRATUM.json",
+  "erratum_sha256": "da8a7a61881cd2a282ec7903c1adbf8677dad4c42078c6610c341877a04201c8",
+  "implemented_controls": [
+    "pre-mutation journal records ordered IDs, per-vector payload hash/dtype/dimensions, metadata by ID, manifest-affected tracker records, and content/store digests",
+    "postcheck removed IDs must exactly equal authorized retired set; added IDs refused; retained payload/dtype/dimension mismatch refused",
+    "retired IDs must be absent from vector and metadata evidence",
+    "manifest metadata/tracker transitions validated by digest, chunk ID, path, collection, and metadata key",
+    "changed files limited to chroma.sqlite3, embedded.json, named HNSW files, and validated marker/control artifacts",
+    "after-snapshot helper writes certified-baseline, production, and selection evidence in finally on success or failure"
+  ],
+  "prerequisite_diagnosis": {
+    "actual_sha256": "b4557350e91a6f0bdafeebe88e1471c9272e68ddfaafe8fe7e4ec52b9e319d5d",
+    "expected_sha256": "b4557350e91a6f0bdafeebe88e1471c9272e68ddfaafe8fe7e4ec52b9e319d5d",
+    "match": true,
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_DIAGNOSIS_REPORT.json"
+  },
+  "preservation": {
+    "failed_v4_tree": "/private/tmp/lc6_b2_v4_20260915T122801Z_916ad962",
+    "failed_v4_tree_exists": true,
+    "v4_reports_preserved_sha256": {
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_BASELINE_UNCHANGED_REPORT.json": "ea81b5f35561798de0790798148d9034e2ec5008c0a767f215e9880f1d53584f",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_EMBEDDING_INVARIANT_REPORT.json": "150f7dd360de7d27d96865f468acceda157846ea745fc30443f7e3939508b5aa",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_EXECUTION_REPORT.json": "72fdb4d96e27b2b2c315ea713f498c44af1c44d0854850cf74b60d3a4c4fde57",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_REPORT.json": "389d4a985ad0b7d42f72ab17a660f8863d563d961dd84afc9a60eea8284ee1c2",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_PRODUCTION_UNCHANGED_REPORT.json": "06b5b2755cb16c4c5ecd49b46b9748bb8c1721c199e1a314a1091ae86eab4ddd",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_SUMMARY_REPORT.json": "7f897809bd4f2751d3cfbf7bedb7f975a980c00815dd0f4d7b566a5544002638"
+    }
+  },
+  "status": "BATCH_B2_V4_POSTCHECK_MODEL_REMEDIATION_VALIDATED_STOP_BEFORE_BATCH_B2_RETRY",
+  "tests": {
+    "complete_suite": {
+      "command": "/usr/local/bin/python -m pytest /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py -q",
+      "deselected": 0,
+      "errors": 0,
+      "failed": 0,
+      "passed": 42,
+      "returncode": 0,
+      "skipped": 0,
+      "stderr_tail": "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pytest_asyncio/plugin.py:247: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+      "stdout_tail": "..........................................                               [100%]\n42 passed in 9.54s\n"
+    },
+    "targeted": {
+      "command": "/usr/local/bin/python -m pytest /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py -q -k b2v4 or wrong_source_hash_marker_and_embedding_float_change",
+      "deselected": 36,
+      "errors": 0,
+      "failed": 0,
+      "passed": 6,
+      "returncode": 0,
+      "skipped": 0,
+      "stderr_tail": "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pytest_asyncio/plugin.py:247: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+      "stdout_tail": "......                                                                   [100%]\n6 passed, 36 deselected in 3.81s\n"
+    }
+  }
+}

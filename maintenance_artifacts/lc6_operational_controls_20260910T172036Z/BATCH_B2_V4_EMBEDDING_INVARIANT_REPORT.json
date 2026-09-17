@@ -1,0 +1,10 @@
+{
+  "embedding_invariant": null,
+  "failure": {
+    "error": "candidate postcheck failed: unrelated_file_hash_change,embedding_row_count_changed,embedding_metadata_count_changed,tracker_metadata_changed,embedding_ordered_vector_ids_changed,embedding_vector_count_changed,embedding_per_vector_dimensions_changed,embedding_payload_digest_mismatch",
+    "error_type": "ControlRefusal",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 74, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 1045, in postcheck\n    return validate_candidate_post_mutation(candidate, journal, pre_state_journal, expected_orphans=expected_orphans, expected_embedding_digest=expected_embedding_digest, require_embedding_digest=require_embedding_digest)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 1002, in validate_candidate_post_mutation\n    raise ControlRefusal(f\"candidate postcheck failed: {','.join(failure_reasons) if failure_reasons else 'unknown'}\")\nlc6c.ControlRefusal: candidate postcheck failed: unrelated_file_hash_change,embedding_row_count_changed,embedding_metadata_count_changed,tracker_metadata_changed,embedding_ordered_vector_ids_changed,embedding_vector_count_changed,embedding_per_vector_dimensions_changed,embedding_payload_digest_mismatch\n"
+  },
+  "run_id": "lc6_b2_v4_20260915T122801Z_916ad962",
+  "status": "NOT_REACHED"
+}

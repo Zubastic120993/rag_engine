@@ -1,0 +1,15 @@
+{
+  "after": null,
+  "before": null,
+  "failure": {
+    "error": "runtime python dependency preflight failed for /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12: Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n  File \"/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1324, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'chromadb'",
+    "error_type": "ControlRefusal",
+    "stage": "orchestration",
+    "traceback": "Traceback (most recent call last):\n  File \"/private/tmp/lc6_b2_v2_orchestrator_15624.py\", line 82, in <module>\n    rt=c.runtime_preflight_for_batch_b2(RUNTIME, journal=preflight_journal, current_python=RUNTIME, authoritative_runtime=RUNTIME)\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 306, in runtime_preflight_for_batch_b2\n    report = validate_runtime_python(runtime_python, authoritative_runtime=authoritative_runtime, allow_separate=allow_separate)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 287, in validate_runtime_python\n    raise ControlRefusal(f\"runtime python dependency preflight failed for {rp}: {proc.stderr.strip() or proc.stdout.strip()}\")\nlc6c.ControlRefusal: runtime python dependency preflight failed for /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12: Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n  File \"/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1324, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'chromadb'\n"
+  },
+  "run_id": "lc6_b2_v2_20260914T191556Z_2a10ebf3",
+  "selection_after": null,
+  "selection_before": null,
+  "selection_comparison": null,
+  "status": "PRODUCTION_UNCHANGED_NOT_PROVEN"
+}

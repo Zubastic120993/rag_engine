@@ -1,0 +1,34 @@
+{
+  "commands": [
+    "python3 - <<'PY'  # Batch B1 prerequisite snapshot driver"
+  ],
+  "completed_utc": "2026-09-10T22:36:32Z",
+  "created_utc": "2026-09-10T22:36:31Z",
+  "exception": {
+    "message": "embedding payload digest unavailable: {'status': 'UNAVAILABLE', 'reason': 'embeddings table lacks embedding and/or embedding_id columns', 'columns': {'id': 'INTEGER', 'segment_id': 'TEXT', 'embedding_id': 'TEXT', 'seq_id': 'BLOB', 'created_at': 'TIMESTAMP'}}",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 53, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 337, in generation_report\n    raise ControlRefusal(f\"embedding payload digest unavailable: {out['embedding_payload_digest']}\")\nlc6_operational_controls.ControlRefusal: embedding payload digest unavailable: {'status': 'UNAVAILABLE', 'reason': 'embeddings table lacks embedding and/or embedding_id columns', 'columns': {'id': 'INTEGER', 'segment_id': 'TEXT', 'embedding_id': 'TEXT', 'seq_id': 'BLOB', 'created_at': 'TIMESTAMP'}}\n",
+    "type": "ControlRefusal"
+  },
+  "paths": {
+    "certified_baseline": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z",
+    "production": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "sealed": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z"
+  },
+  "schema": "batch-b1-prerequisite-report-v1",
+  "scope": "read-only prerequisite snapshots plus report write inside additive package only",
+  "sealed_reverification": {
+    "api": {
+      "manifest_entries": 464,
+      "package_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+      "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d"
+    },
+    "expected_sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "final_verdict": "LC6_PASS_READY_FOR_GOVERNED_OPERATIONAL_HANDOFF",
+    "manifest_bad": [],
+    "manifest_entries": 464,
+    "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "status": "PASS"
+  },
+  "status": "FAIL"
+}

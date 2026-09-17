@@ -1,0 +1,45 @@
+{
+  "artifact": "LC6_OPERATIONAL_CONTROLS_PACKAGE_SEALING_REPORT_V2",
+  "created_utc": "2026-09-16T00:01:36Z",
+  "status": "LC6_OPERATIONAL_CONTROLS_PACKAGE_RESEAL_PART_2A_RECORDED",
+  "package_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z",
+  "corrected_sealed_lc6_package_logic": {
+    "status_field": "SEALED_PACKAGE_OK",
+    "ok_field": true,
+    "interpretation": "original sealed LC6 package unchanged when SHA256SUMS hash and manifest verification pass"
+  },
+  "historical_sealing_report_preservation": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/LC6_OPERATIONAL_CONTROLS_PACKAGE_SEALING_REPORT.json",
+    "expected_sha256": "33eaa7ec4dda4537879fd334ecb9c63246e14da638c7255581576c9a1eab38db",
+    "actual_sha256": "33eaa7ec4dda4537879fd334ecb9c63246e14da638c7255581576c9a1eab38db",
+    "preserved_unchanged": true
+  },
+  "original_sealed_lc6_package": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+    "sha256sums_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/SHA256SUMS",
+    "expected_sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "actual_sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "verify_status": "SEALED_PACKAGE_OK",
+    "ok": true,
+    "unchanged": true,
+    "drift_found": false
+  },
+  "part_2a_scope": {
+    "forward_erratum_written": true,
+    "v2_sealing_report_written": true,
+    "additive_sha256sums_regenerated": false,
+    "stopped_before_sha256sums_regeneration": true
+  },
+  "boundary": {
+    "production_modified": false,
+    "baseline_modified": false,
+    "original_sealed_lc6_package_modified": false,
+    ".venv_modified": false,
+    "uv_lock_modified": false,
+    "selection_changed": false,
+    "backup_candidate_repair_created": false,
+    "repair_run": false,
+    "lock_acquired": false,
+    "commit_push_promote": false
+  }
+}

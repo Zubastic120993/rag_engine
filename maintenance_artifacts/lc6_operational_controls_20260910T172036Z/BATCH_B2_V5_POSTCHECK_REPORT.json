@@ -1,0 +1,679 @@
+{
+  "after_snapshots": {
+    "artifact": "batch_b2_after_snapshots_finally_v1",
+    "certified_baseline_after": {
+      "byte_size": 1312451165,
+      "certified_baseline_content_inventory": {
+        "content_byte_size": 1312451165,
+        "content_file_count": 19,
+        "content_file_hashes": {
+          "count": 2,
+          "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+        },
+        "content_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "marker_identity": {
+          "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+          "creation_time_utc": "2026-09-04T13:50:24Z",
+          "disposable": true,
+          "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+          "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+          "production_selection_prohibited": true,
+          "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+          "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+          "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+          "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+          "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+          "source_inventory_schema": "inventory-row-v1",
+          "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+          "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+          "unpromoted": true
+        },
+        "marker_path": ".orphan_repair_disposable_clone.json",
+        "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+        "schema": "inventory-row-v1"
+      },
+      "embedding_payload_digest": {
+        "provider": null,
+        "reason": "protected generation is not opened with Chroma during Batch B1",
+        "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+      },
+      "file_count": 19,
+      "file_hashes": {
+        "count": 2,
+        "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+      },
+      "inventory_schema": "inventory-row-v1",
+      "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+      "process_scan": {
+        "active_writers_or_ambiguous": [],
+        "matches": [],
+        "ps_exit": 0
+      },
+      "sqlite": {
+        "collection_names": [
+          "langchain"
+        ],
+        "collections_count": 1,
+        "embedding_fulltext_search_count": 125291,
+        "embedding_metadata_count": 1378201,
+        "embeddings_count": 125291,
+        "ok": true,
+        "tables": [
+          "collection_metadata",
+          "collections",
+          "databases",
+          "embedding_fulltext_search",
+          "embedding_fulltext_search_config",
+          "embedding_fulltext_search_content",
+          "embedding_fulltext_search_data",
+          "embedding_fulltext_search_docsize",
+          "embedding_fulltext_search_idx",
+          "embedding_metadata",
+          "embeddings",
+          "embeddings_queue",
+          "embeddings_queue_config",
+          "maintenance_log",
+          "max_seq_id",
+          "migrations",
+          "segment_metadata",
+          "segments",
+          "tenants"
+        ]
+      },
+      "tracker_orphans": {
+        "detail": "missing_files=55 of 1842 tracker paths",
+        "missing_files": 55,
+        "ok": true,
+        "tracker_entries": 1754,
+        "tracker_paths": 1842
+      },
+      "wal_shm_lock": {
+        "ingest_lock": false,
+        "shm": false,
+        "wal": false
+      }
+    },
+    "created_utc": "2026-09-15T23:25:14Z",
+    "postcheck_error": null,
+    "postcheck_result_status": "POSTCHECK_OK",
+    "production_after": {
+      "byte_size": 1312451165,
+      "embedding_payload_digest": {
+        "provider": null,
+        "reason": "protected generation is not opened with Chroma during Batch B1",
+        "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+      },
+      "file_count": 19,
+      "file_hashes": {
+        "count": 2,
+        "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+      },
+      "inventory_schema": "inventory-row-v1",
+      "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "process_scan": {
+        "active_writers_or_ambiguous": [],
+        "matches": [],
+        "ps_exit": 0
+      },
+      "sqlite": {
+        "collection_names": [
+          "langchain"
+        ],
+        "collections_count": 1,
+        "embedding_fulltext_search_count": 125291,
+        "embedding_metadata_count": 1378201,
+        "embeddings_count": 125291,
+        "ok": true,
+        "tables": [
+          "collection_metadata",
+          "collections",
+          "databases",
+          "embedding_fulltext_search",
+          "embedding_fulltext_search_config",
+          "embedding_fulltext_search_content",
+          "embedding_fulltext_search_data",
+          "embedding_fulltext_search_docsize",
+          "embedding_fulltext_search_idx",
+          "embedding_metadata",
+          "embeddings",
+          "embeddings_queue",
+          "embeddings_queue_config",
+          "maintenance_log",
+          "max_seq_id",
+          "migrations",
+          "segment_metadata",
+          "segments",
+          "tenants"
+        ]
+      },
+      "tracker_orphans": {
+        "detail": "missing_files=55 of 1842 tracker paths",
+        "missing_files": 55,
+        "ok": true,
+        "tracker_entries": 1754,
+        "tracker_paths": 1842
+      },
+      "wal_shm_lock": {
+        "ingest_lock": false,
+        "shm": false,
+        "wal": false
+      }
+    },
+    "schema": "lc6-operational-controls-v2",
+    "selection_after": {
+      "CE_LIBRARY_ROOT": null,
+      "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "extra_fields": {},
+      "mechanism": "RAG_DB_PATH environment override",
+      "schema": "selection-snapshot-v1"
+    }
+  },
+  "failure": null,
+  "postcheck": {
+    "allowed_changed_files": [
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "chroma.sqlite3",
+      "embedded.json"
+    ],
+    "artifact": "lc6_candidate_postcheck_journal_v2.json",
+    "candidate_marker": {
+      "candidate_control_artifacts": {
+        ".orphan_repair_disposable_clone.json": {
+          "identity": {
+            "clone_id": "lc6-candidate-cd07be12-fa68-4492-8539-15a51d55f272",
+            "creation_time_utc": "2026-09-15T23:20:31Z",
+            "disposable": true,
+            "purpose": "LC6 Batch B2 V5 disposable candidate",
+            "source_content_schema": "source-content-hash-v1",
+            "source_generation": "/private/tmp/lc6_b2_v5_20260916T011827Z_df75476d/restore_verified_copy_v5",
+            "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+            "source_inventory_schema": "inventory-row-v1",
+            "source_marker_artifacts": {
+              ".orphan_repair_disposable_clone.json": {
+                "identity": {
+                  "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+                  "creation_time_utc": "2026-09-04T13:50:24Z",
+                  "disposable": true,
+                  "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+                  "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+                  "production_selection_prohibited": true,
+                  "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+                  "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+                  "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+                  "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+                  "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+                  "source_inventory_schema": "inventory-row-v1",
+                  "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+                  "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+                  "unpromoted": true
+                },
+                "path": ".orphan_repair_disposable_clone.json",
+                "schema": null,
+                "sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+              }
+            },
+            "target_generation": "/private/tmp/lc6_b2_v5_20260916T011827Z_df75476d/candidate_v5",
+            "unpromoted": true
+          },
+          "path": ".orphan_repair_disposable_clone.json",
+          "schema": null,
+          "sha256": "2e655bfcc0cd74784fa264189618f85b70bd751f64427e773af08736017eb2c0"
+        }
+      },
+      "candidate_id": "lc6-candidate-cd07be12-fa68-4492-8539-15a51d55f272",
+      "created_utc": "2026-09-15T23:20:31Z",
+      "disposable": true,
+      "purpose": "LC6 Batch B2 V5 disposable candidate",
+      "schema": "lc6-disposable-candidate-marker-v1",
+      "source_content_hash": {
+        "content_file_count": 19,
+        "content_file_hashes": {
+          "count": 2,
+          "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+        },
+        "content_inventory_schema": "inventory-row-v1",
+        "content_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "excluded_control_artifacts": [
+          ".lc6_operational_candidate_v1.json",
+          ".orphan_repair_disposable_clone.json"
+        ],
+        "journal_location": "outside-candidate-tree",
+        "marker_artifacts": {
+          ".orphan_repair_disposable_clone.json": {
+            "identity": {
+              "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+              "creation_time_utc": "2026-09-04T13:50:24Z",
+              "disposable": true,
+              "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+              "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+              "production_selection_prohibited": true,
+              "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+              "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+              "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+              "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+              "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+              "source_inventory_schema": "inventory-row-v1",
+              "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+              "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+              "unpromoted": true
+            },
+            "path": ".orphan_repair_disposable_clone.json",
+            "schema": null,
+            "sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+          }
+        },
+        "schema": "source-content-hash-v1"
+      },
+      "source_content_schema": "source-content-hash-v1",
+      "source_embedding_payload_digest": {
+        "algorithm": "lc6-embedding-payload-digest-v2",
+        "canonical_byte_format_version": "lc6-embedding-payload-digest-v2",
+        "collection": "langchain",
+        "dimensions": [
+          1024
+        ],
+        "dtype": "float32-le",
+        "ordered_id_digest": "3c2c7162b4f495359acea772eb44071049b5b156578fc917ccc7c8a9d2431191",
+        "ordered_ids": {
+          "count": 2,
+          "sha256": "2f2779a94018f67502c07d322f4bc07328f18ca0640b7aaf5b4229c4d2585f15"
+        },
+        "ordered_vector_ids": {
+          "count": 2,
+          "sha256": "2f2779a94018f67502c07d322f4bc07328f18ca0640b7aaf5b4229c4d2585f15"
+        },
+        "ordering": "embedding_id",
+        "pagination": {
+          "expected_total": 125291,
+          "fetched": 125291,
+          "page_size": 1000,
+          "pages": {
+            "count": 126,
+            "head": [
+              {
+                "limit": 1000,
+                "offset": 0,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 1000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 2000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 3000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 4000,
+                "returned": 1000
+              }
+            ],
+            "sha256": "33b4f99d93f014c6f5e547e698fe9d90aef869e95b1f602906e76d4fd25d5b50",
+            "tail": [
+              {
+                "limit": 1000,
+                "offset": 121000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 122000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 123000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 124000,
+                "returned": 1000
+              },
+              {
+                "limit": 291,
+                "offset": 125000,
+                "returned": 291
+              }
+            ]
+          }
+        },
+        "per_vector_dimensions": {
+          "count": 2,
+          "sha256": "fa2c1b93f5a7224d45f8441be5fcae43d9e77255dfc221163f38042831a780c1"
+        },
+        "per_vector_dtype": {
+          "count": 2,
+          "sha256": "672b393feba56adf3bfd1169c0b4a43ccbf41f600086164813d1c5169de5acfc"
+        },
+        "per_vector_payload_sha256": {
+          "count": 2,
+          "sha256": "5c2a5c38adb6fd90067dbd1334b85a41d670f5135134381ed199f8f0b8654f6a"
+        },
+        "provider": {
+          "chromadb_version": "0.5.23",
+          "collection_names": [
+            "langchain"
+          ],
+          "provider": "chromadb.PersistentClient"
+        },
+        "row_count": 125291,
+        "sha256": "801f1f9193d39e830e12b1a5126231f7f01252caee51d9db7d43b694765c3787",
+        "status": "OK",
+        "vector_count": 125291
+      },
+      "source_file_hashes": {
+        "count": 2,
+        "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+      },
+      "source_generation": "/private/tmp/lc6_b2_v5_20260916T011827Z_df75476d/restore_verified_copy_v5",
+      "source_inventory_schema": "inventory-row-v1",
+      "source_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "target_generation": "/private/tmp/lc6_b2_v5_20260916T011827Z_df75476d/candidate_v5",
+      "unpromoted": true
+    },
+    "candidate_report": {
+      "byte_size": 1354825564,
+      "embedding_payload_digest": {
+        "algorithm": "lc6-embedding-payload-digest-v2",
+        "canonical_byte_format_version": "lc6-embedding-payload-digest-v2",
+        "collection": "langchain",
+        "dimensions": [
+          1024
+        ],
+        "dtype": "float32-le",
+        "ordered_id_digest": "1e1ef38b146013fb1444034a07d130f7c6e83cedbdd8a0ac1775272d773e20ce",
+        "ordered_ids": {
+          "count": 2,
+          "sha256": "172e0cdad406ad0f7d277185ef386c287dc90791392d971827903f8258c5067b"
+        },
+        "ordered_vector_ids": {
+          "count": 2,
+          "sha256": "172e0cdad406ad0f7d277185ef386c287dc90791392d971827903f8258c5067b"
+        },
+        "ordering": "embedding_id",
+        "pagination": {
+          "expected_total": 125289,
+          "fetched": 125289,
+          "page_size": 1000,
+          "pages": {
+            "count": 126,
+            "head": [
+              {
+                "limit": 1000,
+                "offset": 0,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 1000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 2000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 3000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 4000,
+                "returned": 1000
+              }
+            ],
+            "sha256": "3abf13dc622f1b71ac373e9ddbb246ba31df89d453602cdf2bc20cbc11be9209",
+            "tail": [
+              {
+                "limit": 1000,
+                "offset": 121000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 122000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 123000,
+                "returned": 1000
+              },
+              {
+                "limit": 1000,
+                "offset": 124000,
+                "returned": 1000
+              },
+              {
+                "limit": 289,
+                "offset": 125000,
+                "returned": 289
+              }
+            ]
+          }
+        },
+        "per_vector_dimensions": {
+          "count": 2,
+          "sha256": "75c2f37064e5f50564b379407888dbd68c004588693f9fec5dd75c8874f3b2cb"
+        },
+        "per_vector_dtype": {
+          "count": 2,
+          "sha256": "4b3db7649ef6fa10cbf805a5bbcafc769be490d4495cd9f9d802a0601fb97869"
+        },
+        "per_vector_payload_sha256": {
+          "count": 2,
+          "sha256": "0ef64a9abc168a81b3f383f985edd0de304e4dc7f4b21dbc1c8355c0c6011d6f"
+        },
+        "provider": {
+          "chromadb_version": "0.5.23",
+          "collection_names": [
+            "langchain"
+          ],
+          "provider": "chromadb.PersistentClient"
+        },
+        "row_count": 125289,
+        "sha256": "3a02c114a1f571ef2bf41734c7dce6f9a9baac2fc17d120e3cbc66de2c989627",
+        "status": "OK",
+        "vector_count": 125289
+      },
+      "file_count": 21,
+      "file_hashes": {
+        "count": 2,
+        "sha256": "efbda4fb8bbb11ceba0f117f99b200813754021dc2c6a29def70422e01410366"
+      },
+      "inventory_schema": "inventory-row-v1",
+      "inventory_sha256": "a88228f6a14c0cd3e3f8b62d091ac7c9ff5e5cc5343835b29c865d24ec5cfdca",
+      "path": "/private/tmp/lc6_b2_v5_20260916T011827Z_df75476d/candidate_v5",
+      "process_scan": {
+        "active_writers_or_ambiguous": [],
+        "matches": [],
+        "ps_exit": 0
+      },
+      "sqlite": {
+        "collection_names": [
+          "langchain"
+        ],
+        "collections_count": 1,
+        "embedding_fulltext_search_count": 125289,
+        "embedding_metadata_count": 1378179,
+        "embeddings_count": 125289,
+        "ok": true,
+        "tables": [
+          "collection_metadata",
+          "collections",
+          "databases",
+          "embedding_fulltext_search",
+          "embedding_fulltext_search_config",
+          "embedding_fulltext_search_content",
+          "embedding_fulltext_search_data",
+          "embedding_fulltext_search_docsize",
+          "embedding_fulltext_search_idx",
+          "embedding_metadata",
+          "embeddings",
+          "embeddings_queue",
+          "embeddings_queue_config",
+          "maintenance_log",
+          "max_seq_id",
+          "migrations",
+          "segment_metadata",
+          "segments",
+          "tenants"
+        ]
+      },
+      "tracker_orphans": {
+        "detail": "missing_files=0 of 1825 tracker paths",
+        "missing_files": 0,
+        "ok": true,
+        "tracker_entries": 1753,
+        "tracker_paths": 1825
+      },
+      "wal_shm_lock": {
+        "ingest_lock": false,
+        "shm": false,
+        "wal": false
+      }
+    },
+    "changed_files": [
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "chroma.sqlite3",
+      "embedded.json"
+    ],
+    "created_utc": "2026-09-15T23:25:13Z",
+    "expected_embedding_digest": "801f1f9193d39e830e12b1a5126231f7f01252caee51d9db7d43b694765c3787",
+    "expected_orphans": 0,
+    "failure_reasons": [],
+    "manifest_transition_check": {
+      "affected_digests": [
+        "00093e267688140751cb99b52302afdfdc6cd07d5616f9b3f53e4a3a11505200",
+        "044c6f541f2ad7c39babc9b8ac0fab586218bb54d8ade76afe7a051184dc1923",
+        "10ace6f031047be484e9a506cd28174a2911dff957491d6151f14985f2b328e1",
+        "156980d1b3684ec23b1621d5bb6f3ba3a7074410e0b8f4fcf8fb3192228a48bc",
+        "16cc643de70a8cf9e887d8491387b06118b029f62c66b1d4471f585073a9c063",
+        "1e63c0448e057fb98c72a3665cfdc772c84a0ff423a2a4d62b01c40379f0d1b2",
+        "247b28a9ff07169473ddb7ac5f54dc61bfac046796bd7d0b36249fa36e166c90",
+        "25929d50fa6dcedc9cd2a11286e089d151b5116f3e2d19703c5278c63b2cd8e9",
+        "26d5116818bb540e2f9fc4efeaa6285c74d81ae4e3a551eaf8ee1e0add4677c5",
+        "26fca070c5f7d95934699b5698daadd2d79479f556324607aa1e61d2181905ed",
+        "292c5d13a14140240605035c26b8cb0fd59a9fd5e1a94bf37fe82c41d6454dc3",
+        "2d2496dc156e15e73f347ee4ac3bd5a98d7c9ed1125fd425097a0ea1387e3883",
+        "2d8afa78fd652b4852011cd6d2610b7bb7edc17e88bf20d7bb754b67b275b296",
+        "3020dde3bbb0b0ff0f08300e79def28b9730ee977af1e24c3a13ae02aeb2bc08",
+        "3c58c62e9000f6b2be18e79307ad5835faa7700c752986c8ab0bb0847851ca72",
+        "40a5315a3d097d694c3c3f4a26cb6fa003465842edf53b89765fd8d635111e5c",
+        "43fd674632d3a642825fee80c55520eb5e35a8d097a3b2173a15867091b8cc93",
+        "4b5bffd53adde0ddda10f541fd536675ef9d258b3cac80fa0281acaf6f1325a5",
+        "5044e7909131aad396bca034b6f7adfc52d6221d847524deb1c48543285744b5",
+        "55d269e5d389155596f896ee1c26a392e26e6fa233b3249a63fea5c28bbe1a26",
+        "56996f6eb3cc6c9db8c1a67d84396b68ac42ac5733c9a50dae3a851caf9c1115",
+        "58e5eef05d8369b3790902b2102ced84d0d95ed0976a5cc43cbab3ff5f16f52e",
+        "5ac85fb7b2789cbdff09b15d65e08aa94914d4da6be65c8887439ad62b658637",
+        "5b6500b9998f9036acde7449b469d731dc950cafff921921d6cd7e670c1ae80f",
+        "6a87b1a3c28a58a4ce3ae45838756d525c16073ea4887f7f4879cd9ae7993ddc",
+        "7666b3fadf041872674ecd6bff0730cabaa7a6257e044dceec39efe220b8b476",
+        "79ade07aa01cf109ac2a0564b377f2a8a9961b634e0ec460089bfe935c5c8b1d",
+        "83453e225b9a15e893cf1496b4e4a93723bcdb2700336cd21d43ff90a1c7ec17",
+        "8f4478b15150ecd3b89ba481950cbe2a54889522beb51892e87182fe5663026f",
+        "95bce93dc438f9180cb73d0642134814822a32a5c0a04b103ba8ce253b96322b",
+        "96c238eb28e8ce1b80a72aa3cab55207a7246ceeb280b8e6702b66dddb8acd88",
+        "9e2dac5c56dd17528bc4d16bde2edb29dabb1fec28d30c124e0111e6c69d0e23",
+        "9f300a51b476295a679e829e614a365104ea536747338db86211e4753980f610",
+        "aa49d2f3c3a54d56919eb32faf318fd523869ac99c48594abbdad63b63cdc2f3",
+        "ac73d03de3f51a0a674eb315e91c6e491fc1cf0c3ea21f888fade0abdfc5dad8",
+        "b12430a0fdbf70ded957e781e0a796d984c0dc96020aa4fc054775459ff751e7",
+        "bb5aa7964c64195039a19a41edb5144aa7503420918c3b4c9461e9df205d5b1b",
+        "bcca261b8303f7342c55e094d6196c329c017fbee139e629b058ab1d1bf47e62",
+        "d98374a6e1e696bfcfb80dd72b0655c7f6296dc15e9fb07d100a209b2065154c",
+        "e369ae3120e2aea1844a544691b19e04050aa584a2ca12425dc77d635f2e5106",
+        "f3a6cbd39e5ab99a3fb357bea6b09ba16c837f67fed1e9469f38212812d53b49"
+      ],
+      "affected_ids": {
+        "count": 1221,
+        "head": [
+          "chunk:0041c33f15bee164ebafb971284f1d53",
+          "chunk:007a6479714df964a834579294eee2cf",
+          "chunk:00840b94fb5d2e8f4f8724b749a3ba97",
+          "chunk:00a8a41c591e42a3953901d2f0977249",
+          "chunk:00cf81c10dae9cc7120142fad9008bc1"
+        ],
+        "sha256": "cdff3c63f482585cd36534de010a13d02c33f5e83fb7088c03f38cc626717487",
+        "tail": [
+          "chunk:ff78f6b73125f8460e8035c53892b9aa",
+          "chunk:ff78fc058919fc922aa159ab4fd14854",
+          "chunk:ffccac4f3a0365718db1766109eeb834",
+          "chunk:ffd2887fa5395b3971c5920e2bc1d1ab",
+          "chunk:fff115c252729146b3f741f0cff91460"
+        ]
+      },
+      "metadata_failures": [],
+      "tracker_failures": [],
+      "unaffected_metadata_changes": [],
+      "unaffected_tracker_changes": []
+    },
+    "pre_state_journal": "/private/tmp/lc6_b2_v5_20260916T011827Z_df75476d/journals/candidate_pre_mutation_v5.json",
+    "schema": "lc6-operational-controls-v2",
+    "set_aware_vector_comparison": {
+      "added_ids": [],
+      "authorized_retired_digest": "247b28a9ff07169473ddb7ac5f54dc61bfac046796bd7d0b36249fa36e166c90",
+      "authorized_retired_ids": [
+        "chunk:7cb9d07e312b2e6080aa112f5a165428",
+        "chunk:9c1743c71b1b7c2e9d9aea88d3fbc247"
+      ],
+      "expected_count_change": "125291 -> 125289",
+      "post_count": 125289,
+      "pre_count": 125291,
+      "removed_ids": [
+        "chunk:7cb9d07e312b2e6080aa112f5a165428",
+        "chunk:9c1743c71b1b7c2e9d9aea88d3fbc247"
+      ],
+      "retained_count": 125289,
+      "retained_dimension_mismatches": [],
+      "retained_dtype_mismatches": [],
+      "retained_payload_mismatches": [],
+      "retired_metadata_present": []
+    },
+    "status": "POSTCHECK_OK"
+  },
+  "required_evidence": {
+    "after_snapshots_written": true,
+    "baseline_unchanged": true,
+    "chunks_125291_to_125289": true,
+    "collection_langchain": true,
+    "exact_manifest_tracker_metadata_transitions": true,
+    "exact_two_authorized_vectors_removed": true,
+    "expected_changed_files_only": true,
+    "no_added_vectors": true,
+    "no_wal_shm_lock": true,
+    "orphans_55_to_0": true,
+    "postcheck_ok": true,
+    "production_unchanged": true,
+    "retained_dimensions_unchanged": true,
+    "retained_dtype_unchanged": true,
+    "retained_payloads_unchanged": true,
+    "sealed_executor_success": true,
+    "selection_unchanged": true
+  },
+  "run_id": "lc6_b2_v5_20260916T011827Z_df75476d",
+  "status": "POSTCHECK_OK"
+}

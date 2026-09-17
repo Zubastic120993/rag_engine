@@ -1,0 +1,82 @@
+{
+  "after": null,
+  "before": {
+    "byte_size": 1312451165,
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "count": 2,
+      "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "failure": {
+    "error": "candidate postcheck failed: unrelated_file_hash_change,embedding_row_count_changed,embedding_metadata_count_changed,tracker_metadata_changed,embedding_ordered_vector_ids_changed,embedding_vector_count_changed,embedding_per_vector_dimensions_changed,embedding_payload_digest_mismatch",
+    "error_type": "ControlRefusal",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 74, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 1045, in postcheck\n    return validate_candidate_post_mutation(candidate, journal, pre_state_journal, expected_orphans=expected_orphans, expected_embedding_digest=expected_embedding_digest, require_embedding_digest=require_embedding_digest)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 1002, in validate_candidate_post_mutation\n    raise ControlRefusal(f\"candidate postcheck failed: {','.join(failure_reasons) if failure_reasons else 'unknown'}\")\nlc6c.ControlRefusal: candidate postcheck failed: unrelated_file_hash_change,embedding_row_count_changed,embedding_metadata_count_changed,tracker_metadata_changed,embedding_ordered_vector_ids_changed,embedding_vector_count_changed,embedding_per_vector_dimensions_changed,embedding_payload_digest_mismatch\n"
+  },
+  "run_id": "lc6_b2_v4_20260915T122801Z_916ad962",
+  "selection_after": null,
+  "selection_before": {
+    "CE_LIBRARY_ROOT": null,
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "mechanism": "RAG_DB_PATH environment override"
+  },
+  "selection_comparison": null,
+  "status": "PRODUCTION_UNCHANGED_NOT_PROVEN"
+}

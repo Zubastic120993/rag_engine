@@ -1,0 +1,120 @@
+{
+  "after": null,
+  "before": {
+    "byte_size": 1312451165,
+    "certified_baseline_content_inventory": {
+      "content_byte_size": 1312451165,
+      "content_file_count": 19,
+      "content_file_hashes": {
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+        "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+        "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      },
+      "content_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "marker_identity": {
+        "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+        "creation_time_utc": "2026-09-04T13:50:24Z",
+        "disposable": true,
+        "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+        "production_selection_prohibited": true,
+        "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+        "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+        "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "source_inventory_schema": "inventory-row-v1",
+        "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "unpromoted": true
+      },
+      "marker_path": ".orphan_repair_disposable_clone.json",
+      "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "schema": "inventory-row-v1"
+    },
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "count": 2,
+      "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "failure": {
+    "error": "candidate marker source hashes do not match current unrepaired candidate",
+    "error_type": "ControlRefusal",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 66, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 869, in validate_candidate_pre_mutation\n    marker = validate_candidate_marker(candidate)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 862, in validate_candidate_marker\n    raise ControlRefusal(\"candidate marker source hashes do not match current unrepaired candidate\")\nlc6c.ControlRefusal: candidate marker source hashes do not match current unrepaired candidate\n"
+  },
+  "run_id": "lc6_b2_v3_20260915T082836Z_a8b8beb8",
+  "status": "BASELINE_UNCHANGED_NOT_PROVEN"
+}

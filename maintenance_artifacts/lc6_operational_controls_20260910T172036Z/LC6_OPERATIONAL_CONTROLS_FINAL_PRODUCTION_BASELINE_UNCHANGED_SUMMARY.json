@@ -1,0 +1,103 @@
+{
+  "artifact": "LC6_OPERATIONAL_CONTROLS_FINAL_PRODUCTION_BASELINE_UNCHANGED_SUMMARY",
+  "cache_cleanup": {
+    "remaining_package_local_cache_artifacts": [],
+    "removed_package_local": [
+      "__pycache__/lc6_operational_controls.cpython-312.pyc",
+      "__pycache__/test_lc6_operational_controls.cpython-312.pyc",
+      "__pycache__"
+    ]
+  },
+  "certified_baseline": {
+    "file_count": 19,
+    "file_hashes_sha256": "ee07d25946827f87b69a7bd8ac5767c5791e9f3144229a307f4deeb26680d65e",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z"
+  },
+  "compile_checks": [
+    {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py",
+      "status": "PASS"
+    },
+    {
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-09-15T23:32:40Z",
+  "package_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z",
+  "prerequisite_v5_reports": {
+    "BATCH_B2_V5_BASELINE_UNCHANGED_REPORT.json": {
+      "actual_sha256": "645f093dadfc8c7ace01ede48c76635c8c84649ca3af41bc3a8e3a5675c71062",
+      "expected_sha256": "645f093dadfc8c7ace01ede48c76635c8c84649ca3af41bc3a8e3a5675c71062",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V5_BASELINE_UNCHANGED_REPORT.json"
+    },
+    "BATCH_B2_V5_EMBEDDING_INVARIANT_REPORT.json": {
+      "actual_sha256": "5246ad70324f5f4cdcf57df3349ab037301404373aa66f02ff9381ddc7b18d45",
+      "expected_sha256": "5246ad70324f5f4cdcf57df3349ab037301404373aa66f02ff9381ddc7b18d45",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V5_EMBEDDING_INVARIANT_REPORT.json"
+    },
+    "BATCH_B2_V5_EXECUTION_REPORT.json": {
+      "actual_sha256": "e591ff4453e28554440da269e8e241e095b2dab6a0440d76ca8b3619a65ed908",
+      "expected_sha256": "e591ff4453e28554440da269e8e241e095b2dab6a0440d76ca8b3619a65ed908",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V5_EXECUTION_REPORT.json"
+    },
+    "BATCH_B2_V5_POSTCHECK_REPORT.json": {
+      "actual_sha256": "6c90d27dee019e97ac2cbb2104ab682bbfbd3178f013f300d4167f26038df98f",
+      "expected_sha256": "6c90d27dee019e97ac2cbb2104ab682bbfbd3178f013f300d4167f26038df98f",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V5_POSTCHECK_REPORT.json"
+    },
+    "BATCH_B2_V5_PRODUCTION_UNCHANGED_REPORT.json": {
+      "actual_sha256": "626ee3158c27e64e3885b18f65ce13c974ba2f5fb08c920b6d4510b7f3eabb58",
+      "expected_sha256": "626ee3158c27e64e3885b18f65ce13c974ba2f5fb08c920b6d4510b7f3eabb58",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V5_PRODUCTION_UNCHANGED_REPORT.json"
+    },
+    "BATCH_B2_V5_SUMMARY_REPORT.json": {
+      "actual_sha256": "998d76797fe0bffba89ad54c382820df79404c1464355958d15434ab46015ca8",
+      "expected_sha256": "998d76797fe0bffba89ad54c382820df79404c1464355958d15434ab46015ca8",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V5_SUMMARY_REPORT.json"
+    }
+  },
+  "production": {
+    "file_count": 19,
+    "file_hashes_sha256": "ee07d25946827f87b69a7bd8ac5767c5791e9f3144229a307f4deeb26680d65e",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+  },
+  "sealed_lc6_package": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+    "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "unchanged": false,
+    "verify_status": null
+  },
+  "selection": {
+    "CE_LIBRARY_ROOT": null,
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "extra_fields": {},
+    "mechanism": "RAG_DB_PATH environment override",
+    "schema": "selection-snapshot-v1"
+  },
+  "status": "PRODUCTION_AND_BASELINE_UNCHANGED_READ_ONLY_CONFIRMED",
+  "test_suite": {
+    "command": "/usr/local/bin/python -m pytest /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py -q",
+    "errors": 0,
+    "failed": 0,
+    "passed": 42,
+    "returncode": 0,
+    "skipped": 0,
+    "stderr_tail": "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pytest_asyncio/plugin.py:247: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+    "stdout_tail": "..........................................                               [100%]\n42 passed in 9.66s\n"
+  },
+  "venv_uvlock_exclusion": {
+    ".venv_outside_package": true,
+    "uv_lock_outside_package": true,
+    "will_not_list_or_stage": true
+  }
+}

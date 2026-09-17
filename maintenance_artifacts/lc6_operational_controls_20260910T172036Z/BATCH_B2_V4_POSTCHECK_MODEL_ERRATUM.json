@@ -1,0 +1,28 @@
+{
+  "artifact": "batch_b2_v4_postcheck_model_erratum",
+  "boundary": {
+    "batch_b2_retried": false,
+    "failed_tree_modified": false,
+    "implementation_tests_docs_updated": true,
+    "v4_reports_modified": false
+  },
+  "correction": "Implemented set-aware pre-evidence persistence, exact authorized-retirement binding, retained-vector payload/dtype/dimension comparison, exact manifest metadata/tracker transition validation, explicit expected changed-file allow-list, and finally-stage baseline/production/selection after-snapshot helper.",
+  "created_utc": "2026-09-15T23:13:22Z",
+  "finding": "V4 postcheck failed because the previous model compared aggregate post-mutation state against pre-mutation state and did not persist sufficient retained-vector, metadata, tracker, and after-snapshot evidence for the authorized two-vector retirement.",
+  "prerequisite_diagnosis": {
+    "actual_sha256": "b4557350e91a6f0bdafeebe88e1471c9272e68ddfaafe8fe7e4ec52b9e319d5d",
+    "expected_sha256": "b4557350e91a6f0bdafeebe88e1471c9272e68ddfaafe8fe7e4ec52b9e319d5d",
+    "match": true,
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_DIAGNOSIS_REPORT.json"
+  },
+  "preserved_v4_tree": "/private/tmp/lc6_b2_v4_20260915T122801Z_916ad962",
+  "status": "FORWARD_ERRATUM_RECORDED",
+  "v4_reports_preserved_sha256": {
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_BASELINE_UNCHANGED_REPORT.json": "ea81b5f35561798de0790798148d9034e2ec5008c0a767f215e9880f1d53584f",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_EMBEDDING_INVARIANT_REPORT.json": "150f7dd360de7d27d96865f468acceda157846ea745fc30443f7e3939508b5aa",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_EXECUTION_REPORT.json": "72fdb4d96e27b2b2c315ea713f498c44af1c44d0854850cf74b60d3a4c4fde57",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_REPORT.json": "389d4a985ad0b7d42f72ab17a660f8863d563d961dd84afc9a60eea8284ee1c2",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_PRODUCTION_UNCHANGED_REPORT.json": "06b5b2755cb16c4c5ecd49b46b9748bb8c1721c199e1a314a1091ae86eab4ddd",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_SUMMARY_REPORT.json": "7f897809bd4f2751d3cfbf7bedb7f975a980c00815dd0f4d7b566a5544002638"
+  }
+}

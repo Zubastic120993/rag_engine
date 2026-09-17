@@ -1,0 +1,106 @@
+{
+  "after_file_count": 19,
+  "after_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "after_key_hashes": {
+    "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+  },
+  "after_marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+  "after_orphans": {
+    "detail": "missing_files=55 of 1842 tracker paths",
+    "missing_files": 55,
+    "ok": true,
+    "tracker_entries": 1754,
+    "tracker_paths": 1842
+  },
+  "after_sqlite_counts": {
+    "collection_names": [
+      "langchain"
+    ],
+    "collections_count": 1,
+    "embedding_metadata_count": 1378201,
+    "embeddings_count": 125291,
+    "tables": [
+      "collection_metadata",
+      "collections",
+      "databases",
+      "embedding_fulltext_search",
+      "embedding_fulltext_search_config",
+      "embedding_fulltext_search_content",
+      "embedding_fulltext_search_data",
+      "embedding_fulltext_search_docsize",
+      "embedding_fulltext_search_idx",
+      "embedding_metadata",
+      "embeddings",
+      "embeddings_queue",
+      "embeddings_queue_config",
+      "maintenance_log",
+      "max_seq_id",
+      "migrations",
+      "segment_metadata",
+      "segments",
+      "tenants"
+    ]
+  },
+  "before_file_count": 19,
+  "before_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+  "before_key_hashes": {
+    "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+    "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+  },
+  "before_marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+  "before_orphans": {
+    "detail": "missing_files=55 of 1842 tracker paths",
+    "missing_files": 55,
+    "ok": true,
+    "tracker_entries": 1754,
+    "tracker_paths": 1842
+  },
+  "before_sqlite_counts": {
+    "collection_names": [
+      "langchain"
+    ],
+    "collections_columns": [
+      "id",
+      "name",
+      "dimension",
+      "database_id",
+      "config_json_str"
+    ],
+    "collections_count": 1,
+    "collections_rows": [
+      {
+        "id": "f50cd294-df98-495f-ba6f-0d670a9648a0",
+        "name": "langchain"
+      }
+    ],
+    "embedding_metadata_count": 1378201,
+    "embeddings_count": 125291,
+    "tables": [
+      "collection_metadata",
+      "collections",
+      "databases",
+      "embedding_fulltext_search",
+      "embedding_fulltext_search_config",
+      "embedding_fulltext_search_content",
+      "embedding_fulltext_search_data",
+      "embedding_fulltext_search_docsize",
+      "embedding_fulltext_search_idx",
+      "embedding_metadata",
+      "embeddings",
+      "embeddings_queue",
+      "embeddings_queue_config",
+      "maintenance_log",
+      "max_seq_id",
+      "migrations",
+      "segment_metadata",
+      "segments",
+      "tenants"
+    ]
+  },
+  "comparison_basis": "BATCH_B1_PREREQUISITE_V3_REPORT before identity vs current read-only identity after B2 failure",
+  "created_utc": "2026-09-10T23:10:21Z",
+  "schema": "batch-b2-baseline-unchanged-report-v1",
+  "status": "PASS",
+  "unchanged": true
+}

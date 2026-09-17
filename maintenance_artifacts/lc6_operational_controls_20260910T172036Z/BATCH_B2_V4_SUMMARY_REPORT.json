@@ -1,0 +1,248 @@
+{
+  "baseline_before": {
+    "byte_size": 1312451165,
+    "certified_baseline_content_inventory": {
+      "content_byte_size": 1312451165,
+      "content_file_count": 19,
+      "content_file_hashes": {
+        "count": 2,
+        "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+      },
+      "content_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "marker_identity": {
+        "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+        "creation_time_utc": "2026-09-04T13:50:24Z",
+        "disposable": true,
+        "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+        "production_selection_prohibited": true,
+        "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+        "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+        "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "source_inventory_schema": "inventory-row-v1",
+        "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "unpromoted": true
+      },
+      "marker_path": ".orphan_repair_disposable_clone.json",
+      "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "schema": "inventory-row-v1"
+    },
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "count": 2,
+      "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "boundaries": {
+    "baseline_modified": false,
+    "batch_b2_v4_once": true,
+    "exact_lexical_runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "production_modified": false,
+    "sealed_package_modified": false
+  },
+  "completed_utc": "2026-09-15T12:34:24Z",
+  "failed_tree_preserved": "/private/tmp/lc6_b2_v4_20260915T122801Z_916ad962",
+  "failure": {
+    "error": "candidate postcheck failed: unrelated_file_hash_change,embedding_row_count_changed,embedding_metadata_count_changed,tracker_metadata_changed,embedding_ordered_vector_ids_changed,embedding_vector_count_changed,embedding_per_vector_dimensions_changed,embedding_payload_digest_mismatch",
+    "error_type": "ControlRefusal",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 74, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 1045, in postcheck\n    return validate_candidate_post_mutation(candidate, journal, pre_state_journal, expected_orphans=expected_orphans, expected_embedding_digest=expected_embedding_digest, require_embedding_digest=require_embedding_digest)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 1002, in validate_candidate_post_mutation\n    raise ControlRefusal(f\"candidate postcheck failed: {','.join(failure_reasons) if failure_reasons else 'unknown'}\")\nlc6c.ControlRefusal: candidate postcheck failed: unrelated_file_hash_change,embedding_row_count_changed,embedding_metadata_count_changed,tracker_metadata_changed,embedding_ordered_vector_ids_changed,embedding_vector_count_changed,embedding_per_vector_dimensions_changed,embedding_payload_digest_mismatch\n"
+  },
+  "prerequisites": {
+    "b1_v3": {
+      "actual_sha256": "bc6047a9a7934bbf006d90db143139622239e9b498a49c8c4b4bf8f19c70ad3d",
+      "expected_sha256": "bc6047a9a7934bbf006d90db143139622239e9b498a49c8c4b4bf8f19c70ad3d",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B1_PREREQUISITE_V3_REPORT.json"
+    },
+    "runtime_validation": {
+      "actual_sha256": "4bfc71ce07a977d6f74d33070e61b61719b05d4c26169c81e8141806f480df29",
+      "expected_sha256": "4bfc71ce07a977d6f74d33070e61b61719b05d4c26169c81e8141806f480df29",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNTIME_LAUNCHER_REMEDIATION_VALIDATION_REPORT.json"
+    },
+    "source_content_remediation": {
+      "actual_sha256": "6457d79a302d5c5a003711c0b532a5e134a229bd539ae6e95d90d0322014ff04",
+      "expected_sha256": "6457d79a302d5c5a003711c0b532a5e134a229bd539ae6e95d90d0322014ff04",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/SOURCE_CONTENT_BOUNDARY_REMEDIATION_REPORT.json"
+    }
+  },
+  "previous_failed_trees": [
+    {
+      "exists": true,
+      "path": "/private/tmp/lc6_b2_5810_1789081719"
+    },
+    {
+      "exists": true,
+      "path": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8"
+    }
+  ],
+  "production_before": {
+    "byte_size": 1312451165,
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "count": 2,
+      "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "production_selection_before": {
+    "CE_LIBRARY_ROOT": null,
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "mechanism": "RAG_DB_PATH environment override"
+  },
+  "reports": {
+    "baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_BASELINE_UNCHANGED_REPORT.json",
+    "embedding": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_EMBEDDING_INVARIANT_REPORT.json",
+    "execution": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_EXECUTION_REPORT.json",
+    "postcheck": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_POSTCHECK_REPORT.json",
+    "production": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_PRODUCTION_UNCHANGED_REPORT.json",
+    "summary": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V4_SUMMARY_REPORT.json"
+  },
+  "run_id": "lc6_b2_v4_20260915T122801Z_916ad962",
+  "runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "runtime_preflight": {
+    "allow_separate_runtime": false,
+    "artifact": "batch_b2_runtime_preflight",
+    "authoritative_runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "base_prefix": "/Library/Frameworks/Python.framework/Versions/3.12",
+    "created_utc": "2026-09-15T10:28:02Z",
+    "executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "is_virtual_environment": true,
+    "launcher_realpath": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+    "modules": {
+      "chromadb": "0.5.23"
+    },
+    "prefix": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv",
+    "requested_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "requested_lexical_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "status": "RUNTIME_PREFLIGHT_OK",
+    "symlink_real_executable_target": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+    "sys_base_prefix": "/Library/Frameworks/Python.framework/Versions/3.12",
+    "sys_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "sys_prefix": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv",
+    "version": "3.12.6 (v3.12.6:a4a2d2b0d85, Sep  6 2024, 16:08:03) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "schema": "batch-b2-v4-summary-v1",
+  "sealed_before": {
+    "manifest_entries": 464,
+    "package_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+    "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d"
+  },
+  "status": "BATCH_B2_FAIL_PRESERVED"
+}

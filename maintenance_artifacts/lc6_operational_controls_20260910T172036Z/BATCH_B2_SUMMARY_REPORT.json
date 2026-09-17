@@ -1,0 +1,28 @@
+{
+  "baseline_unchanged_status": "PASS",
+  "boundary": {},
+  "completed_reports_utc": "2026-09-10T23:10:21Z",
+  "completed_utc": "2026-09-10T23:08:43Z",
+  "created_utc": "2026-09-10T23:08:37Z",
+  "exception_type": "ModuleNotFoundError",
+  "failed_disposable_tree": "/private/tmp/lc6_b2_5810_1789081719",
+  "failure_reason": "No module named 'chromadb'",
+  "production_unchanged_status": "FAIL",
+  "report_files": {
+    "BATCH_B2_BASELINE_UNCHANGED_REPORT.json": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_BASELINE_UNCHANGED_REPORT.json",
+    "BATCH_B2_EMBEDDING_INVARIANT_REPORT.json": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_EMBEDDING_INVARIANT_REPORT.json",
+    "BATCH_B2_EXECUTION_REPORT.json": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_EXECUTION_REPORT.json",
+    "BATCH_B2_POSTCHECK_REPORT.json": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_POSTCHECK_REPORT.json",
+    "BATCH_B2_PRODUCTION_UNCHANGED_REPORT.json": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_PRODUCTION_UNCHANGED_REPORT.json"
+  },
+  "reports": {
+    "baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_BASELINE_UNCHANGED_REPORT.json",
+    "embedding": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_EMBEDDING_INVARIANT_REPORT.json",
+    "execution": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_EXECUTION_REPORT.json",
+    "postcheck": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_POSTCHECK_REPORT.json",
+    "production": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_PRODUCTION_UNCHANGED_REPORT.json"
+  },
+  "schema": "batch-b2-summary-v1",
+  "status": "BATCH_B2_FAIL_PRESERVED",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 135, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 524, in generation_report\n    embedding_digest = embedding_payload_digest(gen)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 326, in embedding_payload_digest\n    collection, provider_meta = _collection_from_chroma_public_api(gen, expected_collection)\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 302, in _collection_from_chroma_public_api\n    import chromadb\nModuleNotFoundError: No module named 'chromadb'\n"
+}

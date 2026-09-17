@@ -1,0 +1,166 @@
+{
+  "certified_baseline_snapshot": {
+    "byte_size": 1312452372,
+    "canonical_inventory_schema": "inventory-row-v1",
+    "canonical_inventory_sha256": "50ed478313e33ab23c399811121590000d65d2dddd5c78597313b32a6210f0ca",
+    "embedding_payload_digest": {
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "failed_checks": [
+      "active_process_match"
+    ],
+    "file_count": 20,
+    "file_hashes": {
+      ".orphan_repair_disposable_clone.json": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "key_hashes": {
+      ".orphan_repair_disposable_clone.json": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+    },
+    "marker": {
+      "identity": {
+        "candidate_id": null,
+        "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+        "disposable": true,
+        "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "source_inventory_sha256": null,
+        "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "unpromoted": true
+      },
+      "marker_name": ".orphan_repair_disposable_clone.json",
+      "payload": {
+        "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+        "creation_time_utc": "2026-09-04T13:50:24Z",
+        "disposable": true,
+        "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+        "production_selection_prohibited": true,
+        "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+        "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+        "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "source_inventory_schema": "inventory-row-v1",
+        "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "unpromoted": true
+      },
+      "sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1"
+    },
+    "process_scan": {
+      "matches": [
+        {
+          "command": "/bin/bash -c source /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-c68c552c7645.sh >/dev/null 2>&1 || true\\012export AI_AGENT=\"${AI_AGENT:-hermes-agent}\" HERMES_AGENT=\"${HERMES_AGENT:-true}\"\\012export GIT_PAGER=\"${GIT_PAGER:-cat}\" PAGER=\"${PAGER:-cat}\"\\012builtin cd -- /Users/vladymyrzub/CE_Library/Tools/rag_engine || exit 126\\012eval 'set -euo pipefail\\012PKG=\"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z\"\\012export PYTHONDONTWRITEBYTECODE=1\\012export CE_LIBRARY_ROOT=\"/Users/vladymyrzub/CE_Library\"\\012python3 - <<'\\''PY'\\''\\012from __future__ import annotations\\012import hashlib, json, os, shutil, sqlite3, subprocess, sys, time, traceback\\012from pathlib import Path\\012\\012PKG = Path('\\''/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z'\\'')\\012SEALED = Path('\\''/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z'\\'')\\012BASELINE = Path('\\''/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z'\\'')\\012PROD = Path('\\''/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604'\\'')\\012LIB = Path('\\''/Users/vladymyrzub/CE_Library'\\'')\\012REPORT = PKG / '\\''BATCH_B1_PREREQUISITE_V2_REPORT.json'\\''\\012HIST_B1 = PKG / '\\''BATCH_B1_PREREQUISITE_REPORT.json'\\''\\012REMED = PKG / '\\''BATCH_B1_EMBEDDING_PROVIDER_REMEDIATION_REPORT.md'\\''\\012EXPECTED_HIST = '\\''5bb53735d62fdcca70a7f316820837191daaf26ef24a31b50a617b8ce72d6167'\\''\\012EXPECTED_REMED = '\\''c2847dff82627b47950b838b8750e393b74c6a98036947f61ccd8632c0206a45'\\''\\012sys.path.insert(0, str(PKG))\\012import lc6_operational_controls as c\\012\\012def sha_file(p: Path) -> str:\\012    h=hashlib.sha256()\\012    with p.open('\\''rb'\\'') as f:\\012        for b in iter(lambda:f.read(1024*1024), b'\\'''\\''):\\012            h.update(b)\\012    return h.hexdigest()\\012\\012def write_report(payload):\\012    REPORT.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding='\\''utf-8'\\'')\\012\\012def fail(payload, reason):\\012    payload['\\''status'\\'']='\\''FAIL'\\''\\012    payload['\\''failure_reason'\\'']=reason\\012    payload['\\''completed_utc'\\'']=time.strftime('\\''%Y-%m-%dT%H:%M:%SZ'\\'', time.gmtime())\\012    write_report(payload)\\012    print(json.dumps({'\\''status'\\'':'\\''FAIL'\\'','\\''reason'\\'':reason,'\\''report'\\'':str(REPORT),'\\''report_sha256'\\'':sha_file(REPORT)}, indent=2, sort_keys=True))\\012    raise SystemExit(1)\\012\\012def read_sqlite_counts(gen: Path):\\012    db=gen/'\\''chroma.sqlite3'\\''\\012    if not db.is_file():\\012        raise RuntimeError(f'\\''chroma.sqlite3 missing: {db}'\\'')\\012    conn=sqlite3.connect(f'\\''file:{db}?mode=ro'\\'', uri=True)\\012    try:\\012        tables=sorted(r[0] for r in conn.execute(\"select name from sqlite_master where type='\\''table'\\''\").fetchall())\\012        out={'\\''tables'\\'':tables}\\012        for t in ('\\''embeddings'\\'','\\''embedding_metadata'\\'','\\''collections'\\'','\\''segments'\\'','\\''databases'\\''):\\012            if t in tables:\\012                out[f'\\''{t}_count'\\'']=int(conn.execute(f'\\''select count(*) from {t}'\\'').fetchone()[0])\\012        if '\\''collections'\\'' in tables:\\012            cols=[r[1] for r in conn.execute('\\''pragma table_info(collections)'\\'').fetchall()]\\012            out['\\''collections_columns'\\'']=cols\\012            if '\\''name'\\'' in cols:\\012                out['\\''collection_names'\\'']=sorted(str(r[0]) for r in conn.execute('\\''select name from collections'\\'').fetchall())\\012        return out\\012    finally:\\012        conn.close()\\012\\012def key_hashes(gen: Path):\\012    keys={}\\012    for name in ('\\''embedded.json'\\'','\\''chroma.sqlite3'\\'', c.SEALED_DISPOSABLE_MARKER, c.CANDIDATE_MARKER):\\012        p=gen/name\\012        if p.is_file():\\012            keys[name]=sha_file(p)\\012    return keys\\012\\012def marker_info(gen: Path):\\012    for name in (c.SEALED_DISPOSABLE_MARKER, c.CANDIDATE_MARKER, '\\''.orphan_repair_disposable_clone.json'\\''):\\012        p=gen/name\\012        if p.is_file():\\012            payload=json.loads(p.read_text(encoding='\\''utf-8'\\''))\\012            return {'\\''marker_name'\\'':name,'\\''sha256'\\'':sha_file(p),'\\''payload'\\'':payload,'\\''identity'\\'':{k:payload.get(k) for k in ('\\''clone_id'\\'','\\''candidate_id'\\'','\\''source_generation'\\'','\\''target_generation'\\'','\\''source_inventory_checksum'\\'','\\''source_inventory_sha256'\\'','\\''disposable'\\'','\\''unpromoted'\\'')}}\\012    return None\\012\\012def external_suspicious(snapshot):\\012    return [m for m in snapshot.get('\\''process_scan'\\'',{}).get('\\''matches'\\'',[]) if m.get('\\''role'\\'')=='\\''external_match'\\'' and m.get('\\''suspicious_writer_token'\\'')]\\012\\012report={'\\''schema'\\'':'\\''batch-b1-prerequisite-v2-report-v1'\\'','\\''status'\\'':'\\''STARTED'\\'','\\''created_utc'\\'':time.strftime('\\''%Y-%m-%dT%H:%M:%SZ'\\'', time.gmtime()),'\\''scope'\\'':'\\''Batch B1 prerequisites only; no copies/candidates/executor/Chroma on production or certified baseline'\\'','\\''paths'\\'':{'\\''package'\\'':str(PKG),'\\''sealed'\\'':str(SEALED),'\\''certified_baseline'\\'':str(BASELINE),'\\''production'\\'':str(PROD)}}\\012try:\\012    hist_hash=sha_file(HIST_B1)\\012    remed_hash=sha_file(REMED)\\012    report['\\''prerequisite_hashes'\\'']={'\\''historical_failed_b1_report'\\'':hist_hash,'\\''expected_historical_failed_b1_report'\\'':EXPECTED_HIST,'\\''embedding_provider_remediation_report'\\'':remed_hash,'\\''expected_embedding_provider_remediation_report'\\'':EXPECTED_REMED}\\012    if hist_hash != EXPECTED_HIST:\\012        fail(report,'\\''historical failed B1 report hash mismatch'\\'')\\012    if remed_hash != EXPECTED_REMED:\\012        fail(report,'\\''embedding-provider remediation report hash mismatch'\\'')\\012\\012    # sealed full verification\\012    sealed_api=c.verify_sealed_package(SEALED)\\012    sums_hash=sha_file(SEALED/'\\''SHA256SUMS'\\'')\\012    manifest_lines=[ln for ln in (SEALED/'\\''SHA256SUMS'\\'').read_text(encoding='\\''utf-8'\\'').splitlines() if ln.strip()]\\012    bad=[]\\012    for ln in manifest_lines:\\012        digest, rel=ln.split(maxsplit=1); rel=rel.lstrip('\\''*'\\'')\\012        p=SEALED/rel\\012        if not p.is_file() or sha_file(p)!=digest:\\012            bad.append(rel)\\012    sealed_regular_files=sum(1 for p in SEALED.rglob('\\''*'\\'') if p.is_file())\\012    final_verdict=json.loads((SEALED/'\\''lc6_final_verdict.json'\\'').read_text(encoding='\\''utf-8'\\'')).get('\\''final_verdict'\\'')\\012    report['\\''sealed_reverification'\\'']={'\\''status'\\'':'\\''PASS'\\'' if sums_hash==c.SEALED_SHA256SUMS_HASH and not bad and final_verdict=='\\''LC6_PASS_READY_FOR_GOVERNED_OPERATIONAL_HANDOFF'\\'' else '\\''FAIL'\\'','\\''api'\\'':sealed_api,'\\''sha256sums_sha256'\\'':sums_hash,'\\''expected_sha256sums_sha256'\\'':c.SEALED_SHA256SUMS_HASH,'\\''manifest_entries'\\'':len(manifest_lines),'\\''regular_files'\\'':sealed_regular_files,'\\''manifest_bad'\\'':bad,'\\''final_verdict'\\'':final_verdict}\\012    if report['\\''sealed_reverification'\\'']['\\''status'\\'']!='\\''PASS'\\'':\\012        fail(report,'\\''sealed package reverification failed'\\'')\\012\\012    # baseline no Chroma: require deferred digest\\012    baseline_snapshot=c.generation_report(BASELINE, LIB, include_process=True, require_embedding_digest=False)\\012    baseline_snapshot['\\''sqlite'\\'']=read_sqlite_counts(BASELINE)\\012    baseline_snapshot['\\''embedding_payload_digest'\\'']={'\\''status'\\'':'\\''DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY'\\''}\\012    baseline_marker=marker_info(BASELINE)\\012    report['\\''certified_baseline_snapshot'\\'']={'\\''status'\\'':'\\''PENDING'\\'','\\''marker'\\'':baseline_marker,'\\''canonical_inventory_schema'\\'':baseline_snapshot['\\''inventory_schema'\\''],'\\''canonical_inventory_sha256'\\'':baseline_snapshot['\\''inventory_sha256'\\''],'\\''file_count'\\'':baseline_snapshot['\\''file_count'\\''],'\\''byte_size'\\'':baseline_snapshot['\\''byte_size'\\''],'\\''file_hashes'\\'':baseline_snapshot['\\''file_hashes'\\''],'\\''key_hashes'\\'':key_hashes(BASELINE),'\\''sqlite'\\'':baseline_snapshot['\\''sqlite'\\''],'\\''tracker_orphans'\\'':baseline_snapshot['\\''tracker_orphans'\\''],'\\''wal_shm_lock'\\'':baseline_snapshot['\\''wal_shm_lock'\\''],'\\''process_scan'\\'':baseline_snapshot.get('\\''process_scan'\\''),'\\''embedding_payload_digest'\\'':baseline_snapshot['\\''embedding_payload_digest'\\'']}\\012    baseline_fail=[]\\012    if baseline_marker is None: baseline_fail.append('\\''marker_missing'\\'')\\012    if baseline_snapshot['\\''sqlite'\\''].get('\\''embeddings_count'\\'') is None: baseline_fail.append('\\''embedding_count_missing'\\'')\\012    if baseline_snapshot['\\''tracker_orphans'\\''].get('\\''missing_files'\\'') != 55: baseline_fail.append('\\''orphan_count_not_55'\\'')\\012    if any(baseline_snapshot['\\''wal_shm_lock'\\''].values()): baseline_fail.append('\\''wal_shm_lock_present'\\'')\\012    if external_suspicious(baseline_snapshot): baseline_fail.append('\\''active_process_match'\\'')\\012    if baseline_snapshot['\\''embedding_payload_digest'\\''].get('\\''status'\\'') != '\\''DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY'\\'': baseline_fail.append('\\''embedding_not_deferred'\\'')\\012    report['\\''certified_baseline_snapshot'\\'']['\\''status'\\'']='\\''PASS'\\'' if not baseline_fail else '\\''FAIL'\\''\\012    report['\\''certified_baseline_snapshot'\\'']['\\''failed_checks'\\'']=baseline_fail\\012    if baseline_fail:\\012        fail(report, f'\\''certified baseline prerequisite failed: {baseline_fail}'\\'')\\012\\012    # production no Chroma: defer digest\\012    selection=os.environ.get('\\''RAG_DB_PATH'\\'')\\012    selection_mechanism='\\''RAG_DB_PATH environment override'\\'' if selection else '\\''default CE_LIBRARY_ROOT/.rag_db'\\''\\012    production_snapshot=c.generation_report(PROD, LIB, include_process=True, require_embedding_digest=False)\\012    production_snapshot['\\''sqlite'\\'']=read_sqlite_counts(PROD)\\012    production_snapshot['\\''embedding_payload_digest'\\'']={'\\''status'\\'':'\\''DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY'\\''}\\012    report['\\''production_snapshot'\\'']={'\\''status'\\'':'\\''PENDING'\\'','\\''active_path'\\'':str(PROD),'\\''selection_RAG_DB_PATH'\\'':selection,'\\''selection_mechanism'\\'':selection_mechanism,'\\''canonical_inventory_schema'\\'':production_snapshot['\\''inventory_schema'\\''],'\\''canonical_inventory_sha256'\\'':production_snapshot['\\''inventory_sha256'\\''],'\\''file_count'\\'':production_snapshot['\\''file_count'\\''],'\\''byte_size'\\'':production_snapshot['\\''byte_size'\\''],'\\''key_hashes'\\'':key_hashes(PROD),'\\''sqlite'\\'':production_snapshot['\\''sqlite'\\''],'\\''tracker_orphans'\\'':production_snapshot['\\''tracker_orphans'\\''],'\\''wal_shm_lock'\\'':production_snapshot['\\''wal_shm_lock'\\''],'\\''process_scan'\\'':production_snapshot.get('\\''process_scan'\\''),'\\''embedding_payload_digest'\\'':production_snapshot['\\''embedding_payload_digest'\\'']}\\012    prod_fail=[]\\012    if production_snapshot['\\''tracker_orphans'\\''].get('\\''missing_files'\\'') != 55: prod_fail.append('\\''authoritative_orphan_count_not_55'\\'')\\012    if any(production_snapshot['\\''wal_shm_lock'\\''].values()): prod_fail.append('\\''wal_shm_lock_present'\\'')\\012    if external_suspicious(production_snapshot): prod_fail.append('\\''active_process_match'\\'')\\012    if production_snapshot['\\''sqlite'\\''].get('\\''collection_names'\\'') != ['\\''langchain'\\'']: prod_fail.append('\\''collection_not_langchain'\\'')\\012    report['\\''production_snapshot'\\'']['\\''status'\\'']='\\''PASS'\\'' if not prod_fail else '\\''FAIL'\\''\\012    report['\\''production_snapshot'\\'']['\\''failed_checks'\\'']=prod_fail\\012    if prod_fail:\\012        fail(report, f'\\''production prerequisite failed: {prod_fail}'\\'')\\012\\012    # compare production with accepted LC6 baseline from sealed package\\012    lc6_baseline=json.loads((SEALED/'\\''production_baseline.json'\\'').read_text(encoding='\\''utf-8'\\''))\\012    accepted_chunks=int(lc6_baseline.get('\\''actual_total_chunk_count_sqlite'\\''))\\012    report['\\''accepted_lc6_baseline_comparison'\\'']={'\\''status'\\'':'\\''PASS'\\'' if production_snapshot['\\''sqlite'\\''].get('\\''embeddings_count'\\'')==accepted_chunks and production_snapshot['\\''tracker_orphans'\\''].get('\\''missing_files'\\'')==55 else '\\''FAIL'\\'','\\''accepted_total_chunk_count_sqlite'\\'':accepted_chunks,'\\''current_total_chunk_count_sqlite'\\'':production_snapshot['\\''sqlite'\\''].get('\\''embeddings_count'\\''),'\\''current_orphan_count'\\'':production_snapshot['\\''tracker_orphans'\\''].get('\\''missing_files'\\''),'\\''required_orphan_count'\\'':55}\\012    if report['\\''accepted_lc6_baseline_comparison'\\'']['\\''status'\\'']!='\\''PASS'\\'':\\012        fail(report,'\\''production differs from accepted LC6 baseline requirements'\\'')\\012\\012    usage=shutil.disk_usage('\\''/private/tmp'\\'')\\012    largest=max(baseline_snapshot['\\''byte_size'\\''], production_snapshot['\\''byte_size'\\''])\\012    required=largest*4 + 1024*1024*1024\\012    report['\\''private_tmp_capacity'\\'']={'\\''status'\\'':'\\''PASS'\\'' if usage.free>=required else '\\''FAIL'\\'','\\''total_bytes'\\'':usage.total,'\\''used_bytes'\\'':usage.used,'\\''free_bytes'\\'':usage.free,'\\''basis_largest_generation_bytes'\\'':largest,'\\''conservative_required_bytes'\\'':required,'\\''safety_margin_bytes'\\'':usage.free-required}\\012    if report['\\''private_tmp_capacity'\\'']['\\''status'\\'']!='\\''PASS'\\'':\\012        fail(report,'\\''insufficient /private/tmp capacity'\\'')\\012\\012    # compile state without writing pyc\\012    compile_results={}\\012    for rel in ('\\''lc6_operational_controls.py'\\'','\\''test_lc6_operational_controls.py'\\''):\\012        src=(PKG/rel).read_text(encoding='\\''utf-8'\\'')\\012        compile(src, str(PKG/rel), '\\''exec'\\'')\\012        compile_results[rel]='\\''PASS'\\''\\012    pytest_cmd=[sys.executable,'\\''-m'\\'','\\''pytest'\\'',str(PKG/'\\''test_lc6_operational_controls.py'\\''),'\\''-q'\\'']\\012    env=os.environ.copy(); env['\\''PYTHONDONTWRITEBYTECODE'\\'']='\\''1'\\''\\012    pytest_proc=subprocess.run(pytest_cmd,capture_output=True,text=True,timeout=180,check=False,env=env,cwd='\\''/Users/vladymyrzub/CE_Library/Tools/rag_engine'\\'')\\012    pytest_pass='\\''22 passed'\\'' in pytest_proc.stdout and pytest_proc.returncode==0\\012    remaining_cache=[str(p.relative_to(PKG)) for p in PKG.rglob('\\''*'\\'') if p.name=='\\''__pycache__'\\'' or p.suffix=='\\''.pyc'\\'']\\012    report['\\''additive_package_validation_state'\\'']={'\\''status'\\'':'\\''PASS'\\'' if pytest_pass and not remaining_cache else '\\''FAIL'\\'','\\''compile'\\'':compile_results,'\\''pytest_command'\\'':'\\'' '\\''.join(pytest_cmd),'\\''pytest_exit_code'\\'':pytest_proc.returncode,'\\''pytest_stdout'\\'':pytest_proc.stdout,'\\''pytest_stderr'\\'':pytest_proc.stderr,'\\''expected_pytest_summary'\\'':'\\''22 passed'\\'','\\''pytest_pass_evidence'\\'':pytest_pass,'\\''remaining_package_caches'\\'':remaining_cache}\\012    if report['\\''additive_package_validation_state'\\'']['\\''status'\\'']!='\\''PASS'\\'':\\012        fail(report,'\\''additive package validation/cache prerequisite failed'\\'')\\012\\012    report['\\''status'\\'']='\\''BATCH_B1_PASS_READY_FOR_BATCH_B2'\\''\\012    report['\\''completed_utc'\\'']=time.strftime('\\''%Y-%m-%dT%H:%M:%SZ'\\'', time.gmtime())\\012    write_report(report)\\012    result={'\\''status'\\'':report['\\''status'\\''],'\\''report'\\'':str(REPORT),'\\''report_sha256'\\'':sha_file(REPORT),'\\''sealed_status'\\'':report['\\''sealed_reverification'\\'']['\\''status'\\''],'\\''baseline_status'\\'':report['\\''certified_baseline_snapshot'\\'']['\\''status'\\''],'\\''production_status'\\'':report['\\''production_snapshot'\\'']['\\''status'\\''],'\\''capacity_status'\\'':report['\\''private_tmp_capacity'\\'']['\\''status'\\''],'\\''additive_package_status'\\'':report['\\''additive_package_validation_state'\\'']['\\''status'\\''],'\\''pytest_exit_code'\\'':pytest_proc.returncode,'\\''pytest_summary'\\'':'\\''22 passed'\\'','\\''remaining_package_caches'\\'':remaining_cache}\\012    print(json.dumps(result,indent=2,sort_keys=True))\\012except SystemExit:\\012    raise\\012except Exception as exc:\\012    report['\\''exception'\\'']={'\\''type'\\'':type(exc).__name__,'\\''message'\\'':str(exc),'\\''traceback'\\'':traceback.format_exc()}\\012    fail(report, f'\\''unexpected exception: {type(exc).__name__}: {exc}'\\'')\\012PY'\\012__hermes_ec=$?\\012umask 077\\012__hermes_snap_tmp=$(mktemp /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-c68c552c7645.sh.tmp.XXXXXXXXXX) && { { ( unset ${!HERMES_SESSION_*} ${!HERMES_CRON_AUTO_DELIVER_*} ${!HERMES_BROWSER_CONTROL_*} AI_AGENT HERMES_AGENT HERMES_UI_SESSION_ID 2>/dev/null; export -p; ) || true; } > \"$__hermes_snap_tmp\" && mv -f \"$__hermes_snap_tmp\" /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-c68c552c7645.sh; } 2>/dev/null || rm -f \"$__hermes_snap_tmp\" 2>/dev/null || true\\012printf '\\n__HERMES_CWD_c68c552c7645__%s__HERMES_CWD_c68c552c7645__\\n' \"$(pwd -P)\"\\012exit $__hermes_ec",
+          "pid": 91534,
+          "role": "external_match",
+          "suspicious_writer_token": true
+        }
+      ],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_columns": [
+        "id",
+        "name",
+        "dimension",
+        "database_id",
+        "config_json_str"
+      ],
+      "collections_count": 1,
+      "databases_count": 1,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "segments_count": 2,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "status": "FAIL",
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "completed_utc": "2026-09-10T22:47:36Z",
+  "created_utc": "2026-09-10T22:47:35Z",
+  "failure_reason": "certified baseline prerequisite failed: ['active_process_match']",
+  "paths": {
+    "certified_baseline": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z",
+    "production": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "sealed": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z"
+  },
+  "prerequisite_hashes": {
+    "embedding_provider_remediation_report": "c2847dff82627b47950b838b8750e393b74c6a98036947f61ccd8632c0206a45",
+    "expected_embedding_provider_remediation_report": "c2847dff82627b47950b838b8750e393b74c6a98036947f61ccd8632c0206a45",
+    "expected_historical_failed_b1_report": "5bb53735d62fdcca70a7f316820837191daaf26ef24a31b50a617b8ce72d6167",
+    "historical_failed_b1_report": "5bb53735d62fdcca70a7f316820837191daaf26ef24a31b50a617b8ce72d6167"
+  },
+  "schema": "batch-b1-prerequisite-v2-report-v1",
+  "scope": "Batch B1 prerequisites only; no copies/candidates/executor/Chroma on production or certified baseline",
+  "sealed_reverification": {
+    "api": {
+      "manifest_entries": 464,
+      "package_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+      "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d"
+    },
+    "expected_sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "final_verdict": "LC6_PASS_READY_FOR_GOVERNED_OPERATIONAL_HANDOFF",
+    "manifest_bad": [],
+    "manifest_entries": 464,
+    "regular_files": 465,
+    "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "status": "PASS"
+  },
+  "status": "FAIL"
+}

@@ -1,0 +1,7 @@
+{
+  "created_utc": "2026-09-10T23:10:21Z",
+  "failure_reason": "No module named 'chromadb'",
+  "reason": "Pre-repair disposable Chroma public API embedding digest failed before candidate creation/repair",
+  "schema": "batch-b2-embedding-invariant-report-v1",
+  "status": "NOT_REACHED"
+}

@@ -1,0 +1,30 @@
+{
+  "after_selection": {
+    "CE_LIBRARY_ROOT": "/Users/vladymyrzub/CE_Library",
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "mechanism": "RAG_DB_PATH environment override"
+  },
+  "after_selection_without_derived_active_generation": {
+    "CE_LIBRARY_ROOT": "/Users/vladymyrzub/CE_Library",
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "mechanism": "RAG_DB_PATH environment override"
+  },
+  "before_selection": {
+    "CE_LIBRARY_ROOT": "/Users/vladymyrzub/CE_Library",
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "mechanism": "RAG_DB_PATH environment override"
+  },
+  "created_utc": "2026-09-13T10:32:43Z",
+  "inventory_match": true,
+  "key_hashes_match": true,
+  "no_recapture_used": true,
+  "orphan_count_match_55": true,
+  "reason": "Original FAIL was caused by selection schema representation mismatch: after_selection included derived active_generation while before_selection did not. Same-run hashes, key hashes, orphan count, and normalized selection are unchanged.",
+  "same_run_only": true,
+  "schema": "batch-b2-production-unchanged-erratum-v1",
+  "selection_match_normalized": true,
+  "source_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_PRODUCTION_UNCHANGED_REPORT.json",
+  "source_report_sha256": "40e5048a0488648a1aad0005c2961dd1b3d2a118d3c616e89b1415c87bb07b58",
+  "status": "PASS_REPRESENTATION_ERRATUM"
+}

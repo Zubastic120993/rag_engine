@@ -1,0 +1,27 @@
+{
+  "artifact": "batch_b2_v3_source_content_boundary_erratum",
+  "boundary": {
+    "batch_b2_retried": false,
+    "commit_push_promote": false,
+    "executor_invoked": false,
+    "failed_tree_modified": false,
+    "production_or_baseline_chroma_access": false,
+    "sealed_package_modified": false
+  },
+  "correction": "Introduced source-content-hash-v1; source content excludes only .orphan_repair_disposable_clone.json and .lc6_operational_candidate_v1.json, records marker artifacts separately, and uses the same comparison function for candidate creation and pre/post validation.",
+  "created_utc": "2026-09-15T07:42:41Z",
+  "diagnosis": {
+    "actual_sha256": "b2b783f61dd35f96bd1fe553eee93e88d1bc2152daa745e72c71e26b628cdcb6",
+    "expected_sha256": "b2b783f61dd35f96bd1fe553eee93e88d1bc2152daa745e72c71e26b628cdcb6",
+    "match": true,
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V3_CANDIDATE_MARKER_HASH_MISMATCH_DIAGNOSIS.json"
+  },
+  "preserved_v3_summary": {
+    "actual_sha256": "b49a6dd1bc7d7426c2fd1cc72861731574a6cf102b7cbd9ed4f8eda400c92fc0",
+    "expected_sha256": "b49a6dd1bc7d7426c2fd1cc72861731574a6cf102b7cbd9ed4f8eda400c92fc0",
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V3_SUMMARY_REPORT.json",
+    "unchanged": true
+  },
+  "root_cause": "V3 candidate marker stored source_file_hashes including .orphan_repair_disposable_clone.json while pre-mutation validation compared candidate source content after marker/control exclusion.",
+  "status": "FORWARD_ERRATUM_RECORDED"
+}

@@ -1,0 +1,41 @@
+{
+  "artifact": "LC6_OPERATIONAL_CONTROLS_SEALING_STATUS_ERRATUM_V2",
+  "created_utc": "2026-09-16T00:01:36Z",
+  "status": "FORWARD_ERRATUM_RECORDED",
+  "package_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z",
+  "historical_sealing_report": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/LC6_OPERATIONAL_CONTROLS_PACKAGE_SEALING_REPORT.json",
+    "expected_sha256": "33eaa7ec4dda4537879fd334ecb9c63246e14da638c7255581576c9a1eab38db",
+    "actual_sha256": "33eaa7ec4dda4537879fd334ecb9c63246e14da638c7255581576c9a1eab38db",
+    "preserved_unchanged": true,
+    "original_false_field": "sealed_lc6_package.unchanged",
+    "original_false_value": false,
+    "original_verify_status": null
+  },
+  "original_sealed_lc6_package": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+    "sha256sums_path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z/SHA256SUMS",
+    "expected_sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "actual_sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "hash_match": true,
+    "package_drift_found": false
+  },
+  "diagnosis": {
+    "classification": "REPORT_LOGIC_DEFECT_NOT_PACKAGE_DRIFT",
+    "defect": "The historical sealing result reported sealed_lc6_package.unchanged=false because the sealing-status calculation expected status/ok fields from verify_sealed_package, but the function returned only package_dir, sha256sums_sha256, and manifest_entries at that time.",
+    "evidence": "The original LC6 package SHA256SUMS complete-file SHA-256 matched b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d in the historical report and in the independent Part 2A recheck.",
+    "conclusion": "The false field was report logic only. No original sealed LC6 package drift occurred.",
+    "corrected_logic": "A verified original sealed LC6 package is represented as status=SEALED_PACKAGE_OK and ok=true after SHA256SUMS and manifest verification."
+  },
+  "boundary": {
+    "historical_sealing_report_edited": false,
+    "production_modified": false,
+    "baseline_modified": false,
+    "original_sealed_lc6_package_modified": false,
+    ".venv_modified": false,
+    "uv_lock_modified": false,
+    "selection_changed": false,
+    "commit_push_promote": false,
+    "stops_before_additive_sha256sums_regeneration": true
+  }
+}

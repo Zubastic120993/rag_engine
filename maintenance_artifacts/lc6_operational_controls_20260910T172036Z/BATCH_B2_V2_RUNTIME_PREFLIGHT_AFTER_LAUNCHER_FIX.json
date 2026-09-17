@@ -1,0 +1,22 @@
+{
+  "base_prefix": "/Library/Frameworks/Python.framework/Versions/3.12",
+  "executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "is_virtual_environment": true,
+  "modules": {
+    "chromadb": "0.5.23"
+  },
+  "prefix": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv",
+  "symlink_real_executable_target": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+  "version": "3.12.6 (v3.12.6:a4a2d2b0d85, Sep  6 2024, 16:08:03) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "status": "RUNTIME_PREFLIGHT_OK",
+  "requested_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "requested_lexical_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "launcher_realpath": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+  "authoritative_runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "sys_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "sys_prefix": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv",
+  "sys_base_prefix": "/Library/Frameworks/Python.framework/Versions/3.12",
+  "artifact": "batch_b2_runtime_preflight",
+  "created_utc": "2026-09-14T17:37:04Z",
+  "allow_separate_runtime": false
+}

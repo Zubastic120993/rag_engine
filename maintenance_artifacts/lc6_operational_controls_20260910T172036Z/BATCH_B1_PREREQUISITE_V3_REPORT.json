@@ -1,0 +1,397 @@
+{
+  "baseline_production_comparison": {
+    "collection_match": true,
+    "inventory_match": true,
+    "key_hashes_match": true,
+    "orphan_count_match_55": true
+  },
+  "certified_baseline": {
+    "byte_size": 1312451165,
+    "certified_baseline_content_inventory": {
+      "content_byte_size": 1312451165,
+      "content_file_count": 19,
+      "content_file_hashes": {
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+        "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+        "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+      },
+      "content_inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "marker_identity": {
+        "clone_id": "lc4-external-lc4_restored_baseline_20260904T135023Z",
+        "creation_time_utc": "2026-09-04T13:50:24Z",
+        "disposable": true,
+        "external_durable_baseline_path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "notes": "External disposable governed test baseline only. Must never be used as production or active-generation selection target.",
+        "production_selection_prohibited": true,
+        "purpose": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "source_certified_baseline": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/disposable_baselines/lc4_restored_baseline_20260904T123103Z",
+        "source_certified_marker_sha256": "6bd79a0cfd300b0ed04a962bf8113e7735265448ac9e9e1948ebd5ed6453537b",
+        "source_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+        "source_inventory_checksum": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+        "source_inventory_schema": "inventory-row-v1",
+        "status": "VERIFIED_EXTERNAL_DISPOSABLE_BASELINE",
+        "target_generation": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+        "unpromoted": true
+      },
+      "marker_path": ".orphan_repair_disposable_clone.json",
+      "marker_sha256": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+      "schema": "inventory-row-v1"
+    },
+    "collection_metadata_readonly_sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_columns": [
+        "id",
+        "name",
+        "dimension",
+        "database_id",
+        "config_json_str"
+      ],
+      "collections_count": 1,
+      "collections_rows": [
+        {
+          "id": "f50cd294-df98-495f-ba6f-0d670a9648a0",
+          "name": "langchain"
+        }
+      ],
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "key_file_hashes": {
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+    },
+    "path": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "completed_utc": "2026-09-10T23:02:58Z",
+  "created_utc": "2026-09-10T23:02:51Z",
+  "expected": {
+    "baseline_marker": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+    "historical_b1_v2_report": "a4c8cb96b5c2c83d0f5e1e3f330b9dd1a8fbb790f278869f4ad0722e38701731",
+    "inventory": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "orphan_count": 55,
+    "sealed_sha256sums": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "v2_correction_report": "f0444d1cb46cb5ea4e43447fde33f264982968738a9a998cae1f7d128933ac42"
+  },
+  "paths": {
+    "certified_baseline": "/Users/vladymyrzub/LC6_Disposable_Baselines/lc4_restored_baseline_20260904T135023Z",
+    "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z",
+    "production": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "sealed": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z"
+  },
+  "prerequisite_evidence": {
+    "historical_b1_v2_report": "a4c8cb96b5c2c83d0f5e1e3f330b9dd1a8fbb790f278869f4ad0722e38701731",
+    "v2_correction_report": "f0444d1cb46cb5ea4e43447fde33f264982968738a9a998cae1f7d128933ac42"
+  },
+  "private_tmp_capacity": {
+    "baseline_bytes": 1312452372,
+    "free_bytes": 493689020416,
+    "production_bytes": 1312451165,
+    "required_bytes": 5796561516,
+    "safety_margin_bytes": 487892458900,
+    "sealed_bytes": 46753235,
+    "status": "PASS"
+  },
+  "production_snapshot": {
+    "byte_size": 1312451165,
+    "collection_metadata_readonly_sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_columns": [
+        "id",
+        "name",
+        "dimension",
+        "database_id",
+        "config_json_str"
+      ],
+      "collections_count": 1,
+      "collections_rows": [
+        {
+          "id": "f50cd294-df98-495f-ba6f-0d670a9648a0",
+          "name": "langchain"
+        }
+      ],
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "ask_events.jsonl": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json": "dd2a49e8072a0eb6c8c08ac78fbae2d0b386f036290afa1586b51a768d9e35f2",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json": "4cff7cf301f589141869a4c4c0e8bbfdee1d358e47e844ac946a9e82fbd74363",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json": "774e9a6a27003c67f34748a4566afbb8667f896330e70d0723693a02e88f710d",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json": "f178d608dcf53f7afc5968359d8d0d861eb7e2a360ec87329457b3e8add00771",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json": "8a9abfc5645aef660a59cf306984d40a43f2bf7423f7f22c9f80c32d992e861b",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json": "edca7834c97c7c009de91f12d18c1f197714b8996e9edfe92649c3d5b6b6a31d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json": "f21253e5bb0928c851668a940404f6789d384d013a28593f896cc764ed35dd9d",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json": "fe176ee3b62a6991ef85b9895ec4dd73df409ede74f8d1196890d80457ade3fc",
+      "certified_generation_checkpoint.json": "5e7b4c7e490eeb7d7eb384adbd6a227db93eda337d810565575100e83ab44362",
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "index_embedding_fingerprint_v1.json": "763d69c655a52ed29e6cab9cad86ec60afdae3a9ad23ed087b6f0095b3f55996",
+      "index_fingerprint.json": "7b2918743243ce57e4f2cd0c36d3d55326ac4086ce6fa5f9923a7ff7937e20fb"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "key_file_hashes": {
+      "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+    },
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [
+        {
+          "activity": "self_or_wrapper",
+          "ambiguous": false,
+          "command": "/bin/bash -c source /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-600bfb2e6cd0.sh >/dev/null 2>&1 || true\\012export AI_AGENT=\"${AI_AGENT:-hermes-agent}\" HERMES_AGENT=\"${HERMES_AGENT:-true}\"\\012export GIT_PAGER=\"${GIT_PAGER:-cat}\" PAGER=\"${PAGER:-cat}\"\\012builtin cd -- /Users/vladymyrzub/CE_Library/Tools/rag_engine || exit 126\\012eval 'set -euo pipefail\\012PKG=\"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z\"\\012export PYTHONDONTWRITEBYTECODE=1\\012export CE_LIBRARY_ROOT=\"/Users/vladymyrzub/CE_Library\"\\012export RAG_DB_PATH=\"/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604\"\\012python - <<'\\''PY'\\''\\012import hashlib, json, os, py_compile, shutil, sqlite3, subprocess, sys, time, traceback\\012from pathlib import Path\\012pkg = Path('\\''/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z'\\'')\\012sys.path.insert(0, str(pkg))\\012import lc6_operational_controls as c\\012\\012EXPECTED = {\\012    '\\''historical_b1_v2_report'\\'': '\\''a4c8cb96b5c2c83d0f5e1e3f330b9dd1a8fbb790f278869f4ad0722e38701731'\\'',\\012    '\\''v2_correction_report'\\'': '\\''f0444d1cb46cb5ea4e43447fde33f264982968738a9a998cae1f7d128933ac42'\\'',\\012    '\\''sealed_sha256sums'\\'': '\\''b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d'\\'',\\012    '\\''baseline_marker'\\'': '\\''e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1'\\'',\\012    '\\''inventory'\\'': '\\''b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a'\\'',\\012    '\\''orphan_count'\\'': 55,\\012}\\012production = Path(os.environ['\\''RAG_DB_PATH'\\'']).resolve()\\012baseline = c.CERTIFIED_EXTERNAL_BASELINE.resolve()\\012sealed = c.SEALED_PACKAGE.resolve()\\012report_path = pkg/'\\''BATCH_B1_PREREQUISITE_V3_REPORT.json'\\''\\012\\012def sha(p: Path) -> str:\\012    h=hashlib.sha256()\\012    with open(p,'\\''rb'\\'') as f:\\012        for b in iter(lambda:f.read(1024*1024), b'\\'''\\''):\\012            h.update(b)\\012    return h.hexdigest()\\012\\012def fail(report, reason):\\012    report['\\''status'\\''] = '\\''FAIL'\\''\\012    report['\\''failure_reason'\\''] = reason\\012    report['\\''completed_utc'\\''] = time.strftime('\\''%Y-%m-%dT%H:%M:%SZ'\\'', time.gmtime())\\012    report_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding='\\''utf-8'\\'')\\012    raise SystemExit(reason)\\012\\012def sqlite_collection_metadata(gen: Path):\\012    db = gen/'\\''chroma.sqlite3'\\''\\012    conn = sqlite3.connect(f'\\''file:{db}?mode=ro'\\'', uri=True)\\012    try:\\012        tables = sorted(r[0] for r in conn.execute(\"select name from sqlite_master where type='\\''table'\\''\").fetchall())\\012        out = {'\\''tables'\\'': tables}\\012        for table in ('\\''collections'\\'','\\''embeddings'\\'','\\''embedding_metadata'\\''):\\012            if table in tables:\\012                out[f'\\''{table}_count'\\''] = int(conn.execute(f'\\''select count(*) from {table}'\\'').fetchone()[0])\\012        if '\\''collections'\\'' in tables:\\012            cols = [r[1] for r in conn.execute('\\''pragma table_info(collections)'\\'').fetchall()]\\012            out['\\''collections_columns'\\''] = cols\\012            if '\\''name'\\'' in cols:\\012                out['\\''collection_names'\\''] = sorted(str(r[0]) for r in conn.execute('\\''select name from collections'\\'').fetchall())\\012            if '\\''id'\\'' in cols and '\\''name'\\'' in cols:\\012                out['\\''collections_rows'\\''] = [dict(id=str(r[0]), name=str(r[1])) for r in conn.execute('\\''select id,name from collections order by name'\\'').fetchall()]\\012        return out\\012    finally:\\012        conn.close()\\012\\012report = {\\012    '\\''schema'\\'': '\\''batch-b1-prerequisite-v3-report-v1'\\'',\\012    '\\''created_utc'\\'': time.strftime('\\''%Y-%m-%dT%H:%M:%SZ'\\'', time.gmtime()),\\012    '\\''scope'\\'': '\\''Batch B1 prerequisites only after V2 corrections; no copies/candidates/executor/Chroma on production or certified baseline'\\'',\\012    '\\''paths'\\'': {'\\''package'\\'': str(pkg), '\\''sealed'\\'': str(sealed), '\\''certified_baseline'\\'': str(baseline), '\\''production'\\'': str(production)},\\012    '\\''expected'\\'': EXPECTED,\\012    '\\''status'\\'': '\\''IN_PROGRESS'\\'',\\012}\\012try:\\012    # prerequisite evidence\\012    prereq = {\\012        '\\''historical_b1_v2_report'\\'': sha(pkg/'\\''BATCH_B1_PREREQUISITE_V2_REPORT.json'\\''),\\012        '\\''v2_correction_report'\\'': sha(pkg/'\\''BATCH_B1_V2_PREREQUISITE_CORRECTION_REPORT.md'\\''),\\012    }\\012    report['\\''prerequisite_evidence'\\''] = prereq\\012    for k, expected in [('\\''historical_b1_v2_report'\\'', EXPECTED['\\''historical_b1_v2_report'\\'']), ('\\''v2_correction_report'\\'', EXPECTED['\\''v2_correction_report'\\''])]:\\012        if prereq[k] != expected:\\012            fail(report, f'\\''prerequisite hash mismatch: {k} {prereq[k]}'\\'')\\012\\012    # sealed package\\012    sealed_api = c.verify_sealed_package(sealed)\\012    sums = sealed/'\\''SHA256SUMS'\\''\\012    manifest_bad=[]; entries=0\\012    for line in sums.read_text(encoding='\\''utf-8'\\'').splitlines():\\012        if not line.strip():\\012            continue\\012        entries += 1\\012        digest, rel = line.split(maxsplit=1)\\012        rel = rel.lstrip('\\''*'\\'')\\012        p = sealed/rel\\012        if not p.is_file() or sha(p) != digest:\\012            manifest_bad.append(rel)\\012    regular_files = sum(1 for p in sealed.rglob('\\''*'\\'') if p.is_file())\\012    final_verdict = json.loads((sealed/'\\''lc6_final_verdict.json'\\'').read_text(encoding='\\''utf-8'\\'')).get('\\''final_verdict'\\'')\\012    report['\\''sealed_reverification'\\''] = {'\\''status'\\'':'\\''PASS'\\'','\\''api'\\'': sealed_api, '\\''sha256sums_sha256'\\'': sha(sums), '\\''manifest_entries'\\'': entries, '\\''manifest_bad'\\'': manifest_bad, '\\''regular_files'\\'': regular_files, '\\''final_verdict'\\'': final_verdict}\\012    if report['\\''sealed_reverification'\\'']['\\''sha256sums_sha256'\\''] != EXPECTED['\\''sealed_sha256sums'\\''] or manifest_bad or final_verdict != '\\''LC6_PASS_READY_FOR_GOVERNED_OPERATIONAL_HANDOFF'\\'':\\012        fail(report, '\\''sealed package reverification failed'\\'')\\012\\012    # certified baseline without Chroma\\012    baseline_report = c.generation_report(baseline, include_process=True, require_embedding_digest=False)\\012    content = baseline_report['\\''certified_baseline_content_inventory'\\'']\\012    baseline_report['\\''collection_metadata_readonly_sqlite'\\''] = sqlite_collection_metadata(baseline)\\012    baseline_report['\\''key_file_hashes'\\''] = {k: baseline_report['\\''file_hashes'\\''].get(k) for k in ('\\''chroma.sqlite3'\\'','\\''embedded.json'\\'')}\\012    report['\\''certified_baseline'\\''] = baseline_report\\012    if content['\\''marker_sha256'\\''] != EXPECTED['\\''baseline_marker'\\'']:\\012        fail(report, f'\\''baseline marker SHA mismatch: {content[\"marker_sha256\"]}'\\'')\\012    if content['\\''content_file_count'\\''] != 19:\\012        fail(report, f'\\''baseline content row count mismatch: {content[\"content_file_count\"]}'\\'')\\012    if content['\\''content_inventory_sha256'\\''] != EXPECTED['\\''inventory'\\'']:\\012        fail(report, f'\\''baseline content inventory mismatch: {content[\"content_inventory_sha256\"]}'\\'')\\012    if baseline_report['\\''tracker_orphans'\\''].get('\\''missing_files'\\'') != EXPECTED['\\''orphan_count'\\'']:\\012        fail(report, f'\\''baseline orphan count mismatch: {baseline_report[\"tracker_orphans\"].get(\"missing_files\")}'\\'')\\012    if baseline_report['\\''embedding_payload_digest'\\''].get('\\''status'\\'') != '\\''DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY'\\'':\\012        fail(report, '\\''baseline embedding digest not deferred'\\'')\\012    if any(baseline_report['\\''wal_shm_lock'\\''].values()):\\012        fail(report, '\\''baseline WAL/SHM/lock residue'\\'')\\012    if baseline_report['\\''process_scan'\\''].get('\\''active_writers_or_ambiguous'\\''):\\012        fail(report, '\\''baseline active writer/ambiguous process detected'\\'')\\012    if baseline_report['\\''collection_metadata_readonly_sqlite'\\''].get('\\''collection_names'\\'') != ['\\''langchain'\\'']:\\012        fail(report, f'\\''baseline collection mismatch: {baseline_report[\"collection_metadata_readonly_sqlite\"].get(\"collection_names\")}'\\'')\\012\\012    # production without Chroma\\012    prod_report = c.generation_report(production, include_process=True, require_embedding_digest=False)\\012    prod_report['\\''collection_metadata_readonly_sqlite'\\''] = sqlite_collection_metadata(production)\\012    prod_report['\\''key_file_hashes'\\''] = {k: prod_report['\\''file_hashes'\\''].get(k) for k in ('\\''chroma.sqlite3'\\'','\\''embedded.json'\\'')}\\012    prod_report['\\''selection'\\''] = {'\\''RAG_DB_PATH'\\'': os.environ.get('\\''RAG_DB_PATH'\\''), '\\''CE_LIBRARY_ROOT'\\'': os.environ.get('\\''CE_LIBRARY_ROOT'\\''), '\\''mechanism'\\'': '\\''RAG_DB_PATH environment override'\\'' if os.environ.get('\\''RAG_DB_PATH'\\'') else '\\''default .rag_db'\\''}\\012    report['\\''production_snapshot'\\''] = prod_report\\012    if prod_report['\\''inventory_sha256'\\''] != EXPECTED['\\''inventory'\\'']:\\012        fail(report, f'\\''production inventory mismatch: {prod_report[\"inventory_sha256\"]}'\\'')\\012    if prod_report['\\''tracker_orphans'\\''].get('\\''missing_files'\\'') != EXPECTED['\\''orphan_count'\\'']:\\012        fail(report, f'\\''production orphan count mismatch: {prod_report[\"tracker_orphans\"].get(\"missing_files\")}'\\'')\\012    if prod_report['\\''embedding_payload_digest'\\''].get('\\''status'\\'') != '\\''DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY'\\'':\\012        fail(report, '\\''production embedding digest not deferred'\\'')\\012    if any(prod_report['\\''wal_shm_lock'\\''].values()):\\012        fail(report, '\\''production WAL/SHM/lock residue'\\'')\\012    if prod_report['\\''process_scan'\\''].get('\\''active_writers_or_ambiguous'\\''):\\012        fail(report, '\\''production active writer/ambiguous process detected'\\'')\\012    if prod_report['\\''collection_metadata_readonly_sqlite'\\''].get('\\''collection_names'\\'') != ['\\''langchain'\\'']:\\012        fail(report, f'\\''production collection mismatch: {prod_report[\"collection_metadata_readonly_sqlite\"].get(\"collection_names\")}'\\'')\\012    report['\\''baseline_production_comparison'\\''] = {\\012        '\\''inventory_match'\\'': content['\\''content_inventory_sha256'\\''] == prod_report['\\''inventory_sha256'\\''] == EXPECTED['\\''inventory'\\''],\\012        '\\''orphan_count_match_55'\\'': baseline_report['\\''tracker_orphans'\\''].get('\\''missing_files'\\'') == prod_report['\\''tracker_orphans'\\''].get('\\''missing_files'\\'') == EXPECTED['\\''orphan_count'\\''],\\012        '\\''collection_match'\\'': baseline_report['\\''collection_metadata_readonly_sqlite'\\''].get('\\''collection_names'\\'') == prod_report['\\''collection_metadata_readonly_sqlite'\\''].get('\\''collection_names'\\''),\\012        '\\''key_hashes_match'\\'': baseline_report['\\''key_file_hashes'\\''] == prod_report['\\''key_file_hashes'\\''],\\012    }\\012    if not all(report['\\''baseline_production_comparison'\\''].values()):\\012        fail(report, '\\''baseline/production comparison failed'\\'')\\012\\012    # /private/tmp capacity\\012    sealed_size = sum(p.stat().st_size for p in sealed.rglob('\\''*'\\'') if p.is_file())\\012    baseline_size = sum(p.stat().st_size for p in baseline.rglob('\\''*'\\'') if p.is_file())\\012    production_size = sum(p.stat().st_size for p in production.rglob('\\''*'\\'') if p.is_file())\\012    tmp_usage = shutil.disk_usage('\\''/private/tmp'\\'')\\012    required = baseline_size*3 + production_size + sealed_size + 500_000_000\\012    capacity = {'\\''free_bytes'\\'': tmp_usage.free, '\\''baseline_bytes'\\'': baseline_size, '\\''production_bytes'\\'': production_size, '\\''sealed_bytes'\\'': sealed_size, '\\''required_bytes'\\'': required, '\\''safety_margin_bytes'\\'': tmp_usage.free-required, '\\''status'\\'': '\\''PASS'\\'' if tmp_usage.free >= required else '\\''FAIL'\\''}\\012    report['\\''private_tmp_capacity'\\''] = capacity\\012    if capacity['\\''status'\\''] != '\\''PASS'\\'':\\012        fail(report, '\\''insufficient /private/tmp capacity'\\'')\\012\\012    # compile/tests/hygiene no package pycache retained\\012    compile_results=[]\\012    tmp_compile = Path('\\''/private/tmp'\\'')/f'\\''lc6_b1v3_compile_{os.getpid()}'\\''\\012    tmp_compile.mkdir(parents=True, exist_ok=True)\\012    for src in [pkg/'\\''lc6_operational_controls.py'\\'', pkg/'\\''test_lc6_operational_controls.py'\\'']:\\012        cfile = tmp_compile/(src.name + '\\''.pyc'\\'')\\012        py_compile.compile(str(src), cfile=str(cfile), doraise=True)\\012        compile_results.append({'\\''path'\\'': str(src), '\\''cfile'\\'': str(cfile), '\\''status'\\'': '\\''PASS'\\''})\\012    pytest_cmd = [sys.executable, '\\''-m'\\'', '\\''pytest'\\'', str(pkg/'\\''test_lc6_operational_controls.py'\\''), '\\''-q'\\'', '\\''-p'\\'', '\\''no:cacheprovider'\\'']\\012    env = dict(os.environ); env['\\''PYTHONDONTWRITEBYTECODE'\\'']='\\''1'\\''\\012    pytest_proc = subprocess.run(pytest_cmd, text=True, capture_output=True, check=False, env=env, cwd=str(pkg))\\012    stdout = pytest_proc.stdout + pytest_proc.stderr\\012    test_summary = {'\\''command'\\'': '\\'' '\\''.join(pytest_cmd), '\\''returncode'\\'': pytest_proc.returncode, '\\''stdout_tail'\\'': stdout[-4000:], '\\''passed'\\'': None, '\\''failed'\\'': None, '\\''errors'\\'': None, '\\''skipped'\\'': None}\\012    import re\\012    m = re.search(r'\\''(\\d+) passed(?:, (\\d+) skipped)?'\\'', stdout)\\012    if m and pytest_proc.returncode == 0:\\012        test_summary.update({'\\''passed'\\'': int(m.group(1)), '\\''failed'\\'':0, '\\''errors'\\'':0, '\\''skipped'\\'': int(m.group(2) or 0)})\\012    else:\\012        mf = re.search(r'\\''(\\d+) failed'\\'', stdout); me = re.search(r'\\''(\\d+) error'\\'', stdout); mp = re.search(r'\\''(\\d+) passed'\\'', stdout); ms = re.search(r'\\''(\\d+) skipped'\\'', stdout)\\012        test_summary.update({'\\''passed'\\'': int(mp.group(1)) if mp else 0, '\\''failed'\\'': int(mf.group(1)) if mf else None, '\\''errors'\\'': int(me.group(1)) if me else None, '\\''skipped'\\'': int(ms.group(1)) if ms else 0})\\012    # cleanup package-local caches only if any generated\\012    removed=[]\\012    for p in sorted(pkg.rglob('\\''*.pyc'\\'')):\\012        p.unlink(); removed.append(str(p.relative_to(pkg)))\\012    for p in sorted([x for x in pkg.rglob('\\''__pycache__'\\'') if x.is_dir()], reverse=True):\\012        try:\\012            p.rmdir(); removed.append(str(p.relative_to(pkg)) + '\\''/'\\'')\\012        except OSError:\\012            pass\\012    remaining = [str(p.relative_to(pkg)) for p in pkg.rglob('\\''*'\\'') if p.name == '\\''__pycache__'\\'' or p.suffix == '\\''.pyc'\\'']\\012    report['\\''validation'\\''] = {'\\''compile'\\'': compile_results, '\\''complete_suite'\\'': test_summary, '\\''cache_cleanup'\\'': {'\\''removed'\\'': removed, '\\''remaining'\\'': remaining, '\\''outside_package_removed'\\'': False}}\\012    if test_summary.get('\\''passed'\\'') != 26 or test_summary.get('\\''failed'\\'') != 0 or test_summary.get('\\''errors'\\'') != 0 or test_summary.get('\\''skipped'\\'') != 0 or pytest_proc.returncode != 0:\\012        fail(report, '\\''complete suite did not return 26/0/0/0'\\'')\\012    if remaining:\\012        fail(report, f'\\''package artifact hygiene failed: {remaining}'\\'')\\012\\012    report['\\''status'\\''] = '\\''BATCH_B1_PASS_READY_FOR_BATCH_B2'\\''\\012    report['\\''completed_utc'\\''] = time.strftime('\\''%Y-%m-%dT%H:%M:%SZ'\\'', time.gmtime())\\012    report_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding='\\''utf-8'\\'')\\012    report['\\''report_sha256'\\''] = sha(report_path)\\012    # rewrite once to include report sha of prior content not self-referential? avoid self hash field in file.\\012    print(json.dumps({'\\''status'\\'': report['\\''status'\\''], '\\''report_path'\\'': str(report_path), '\\''report_sha256'\\'': sha(report_path), '\\''suite'\\'': test_summary, '\\''capacity'\\'': capacity, '\\''baseline_orphans'\\'': baseline_report['\\''tracker_orphans'\\''], '\\''production_orphans'\\'': prod_report['\\''tracker_orphans'\\'']}, indent=2, sort_keys=True))\\012except SystemExit:\\012    raise\\012except Exception as exc:\\012    report['\\''exception'\\''] = {'\\''type'\\'': type(exc).__name__, '\\''message'\\'': str(exc), '\\''traceback'\\'': traceback.format_exc()}\\012    fail(report, f'\\''unexpected exception: {type(exc).__name__}: {exc}'\\'')\\012PY'\\012__hermes_ec=$?\\012umask 077\\012__hermes_snap_tmp=$(mktemp /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-600bfb2e6cd0.sh.tmp.XXXXXXXXXX) && { { ( unset ${!HERMES_SESSION_*} ${!HERMES_CRON_AUTO_DELIVER_*} ${!HERMES_BROWSER_CONTROL_*} AI_AGENT HERMES_AGENT HERMES_UI_SESSION_ID 2>/dev/null; export -p; ) || true; } > \"$__hermes_snap_tmp\" && mv -f \"$__hermes_snap_tmp\" /var/folders/wj/_2gg9jj940x9sg71crz8796r0000gn/T/hermes-snap-600bfb2e6cd0.sh; } 2>/dev/null || rm -f \"$__hermes_snap_tmp\" 2>/dev/null || true\\012printf '\\n__HERMES_CWD_600bfb2e6cd0__%s__HERMES_CWD_600bfb2e6cd0__\\n' \"$(pwd -P)\"\\012exit $__hermes_ec",
+          "pid": 4120,
+          "reason": "excluded by PID identity",
+          "role": "self_or_wrapper",
+          "write_fds": [],
+          "writer": false
+        }
+      ],
+      "ps_exit": 0
+    },
+    "selection": {
+      "CE_LIBRARY_ROOT": "/Users/vladymyrzub/CE_Library",
+      "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "mechanism": "RAG_DB_PATH environment override"
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "schema": "batch-b1-prerequisite-v3-report-v1",
+  "scope": "Batch B1 prerequisites only after V2 corrections; no copies/candidates/executor/Chroma on production or certified baseline",
+  "sealed_reverification": {
+    "api": {
+      "manifest_entries": 464,
+      "package_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+      "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d"
+    },
+    "final_verdict": "LC6_PASS_READY_FOR_GOVERNED_OPERATIONAL_HANDOFF",
+    "manifest_bad": [],
+    "manifest_entries": 464,
+    "regular_files": 465,
+    "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d",
+    "status": "PASS"
+  },
+  "status": "BATCH_B1_PASS_READY_FOR_BATCH_B2",
+  "validation": {
+    "cache_cleanup": {
+      "outside_package_removed": false,
+      "remaining": [],
+      "removed": []
+    },
+    "compile": [
+      {
+        "cfile": "/private/tmp/lc6_b1v3_compile_4121/lc6_operational_controls.py.pyc",
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py",
+        "status": "PASS"
+      },
+      {
+        "cfile": "/private/tmp/lc6_b1v3_compile_4121/test_lc6_operational_controls.py.pyc",
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py",
+        "status": "PASS"
+      }
+    ],
+    "complete_suite": {
+      "command": "/usr/local/bin/python -m pytest /Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py -q -p no:cacheprovider",
+      "errors": 0,
+      "failed": 0,
+      "passed": 26,
+      "returncode": 0,
+      "skipped": 0,
+      "stdout_tail": "..........................                                               [100%]\n26 passed in 3.79s\n/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pytest_asyncio/plugin.py:247: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n"
+    }
+  }
+}

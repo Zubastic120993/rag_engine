@@ -1,0 +1,7 @@
+{
+  "created_utc": "2026-09-10T23:10:21Z",
+  "reason": "Batch B2 stopped before candidate repair/postcheck due missing chromadb module in execution interpreter",
+  "schema": "batch-b2-postcheck-report-v1",
+  "sealed_executor_invoked": false,
+  "status": "NOT_REACHED"
+}

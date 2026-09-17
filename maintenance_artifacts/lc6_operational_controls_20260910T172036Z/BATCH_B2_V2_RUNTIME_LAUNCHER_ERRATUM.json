@@ -1,0 +1,27 @@
+{
+  "artifact": "batch_b2_v2_runtime_launcher_erratum",
+  "boundary": {
+    "copies_or_candidates_created": false,
+    "dependencies_installed_or_removed": false,
+    "dotvenv_or_uvlock_modified": false,
+    "locks_or_selection_changed": false,
+    "production_or_baseline_chroma_access": false,
+    "seal_commit_push_promote": false,
+    "sealed_executor_invoked": false,
+    "uv_run": false
+  },
+  "correction": "runtime execution path is now treated as the exact lexical absolute venv launcher path; realpath, sys.executable, sys.prefix, sys.base_prefix, virtual-environment status, Python version, and dependency versions are recorded separately",
+  "created_utc": "2026-09-14T17:40:36Z",
+  "defect": "runtime launcher path was dereferenced with Path.resolve()/realpath before subprocess execution, causing venv/bin/python to be replaced by the base framework interpreter path and lose virtual-environment package context",
+  "preserved_failed_v2_summary": {
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V2_SUMMARY_REPORT.json",
+    "sha256": "e8794d64e44b95e2bf2a6f6b8c4310544760cb924dc83a2c39857cb48fc90111",
+    "unchanged": true
+  },
+  "status": "FORWARD_ERRATUM_RECORDED",
+  "validation": {
+    "batch_b2_retried": false,
+    "dotvenv_refusal": "REFUSED_AS_EXPECTED: forbidden runtime python /Users/vladymyrzub/CE_Library/Tools/rag_engine/.venv/bin/python",
+    "real_authoritative_preflight": "RUNTIME_PREFLIGHT_OK from prior approved step; chromadb 0.5.23; sys.prefix rag_engine/venv; sys.base_prefix framework Python"
+  }
+}

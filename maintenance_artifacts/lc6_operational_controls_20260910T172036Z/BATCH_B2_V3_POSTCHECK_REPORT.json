@@ -1,0 +1,11 @@
+{
+  "failure": {
+    "error": "candidate marker source hashes do not match current unrepaired candidate",
+    "error_type": "ControlRefusal",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 66, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 869, in validate_candidate_pre_mutation\n    marker = validate_candidate_marker(candidate)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 862, in validate_candidate_marker\n    raise ControlRefusal(\"candidate marker source hashes do not match current unrepaired candidate\")\nlc6c.ControlRefusal: candidate marker source hashes do not match current unrepaired candidate\n"
+  },
+  "postcheck": null,
+  "required_evidence": null,
+  "run_id": "lc6_b2_v3_20260915T082836Z_a8b8beb8",
+  "status": "NOT_REACHED"
+}

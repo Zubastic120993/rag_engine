@@ -1,0 +1,175 @@
+{
+  "after": {
+    "byte_size": 1312451165,
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "count": 2,
+      "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "before": {
+    "byte_size": 1312451165,
+    "embedding_payload_digest": {
+      "provider": null,
+      "reason": "protected generation is not opened with Chroma during Batch B1",
+      "status": "DEFERRED_TO_BATCH_B2_DISPOSABLE_COPY"
+    },
+    "file_count": 19,
+    "file_hashes": {
+      "count": 2,
+      "sha256": "32ff53111811c8b184d25788b3ecd4986fc4ce50f49563fdb844e234e34c1883"
+    },
+    "inventory_schema": "inventory-row-v1",
+    "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+    "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "process_scan": {
+      "active_writers_or_ambiguous": [],
+      "matches": [],
+      "ps_exit": 0
+    },
+    "sqlite": {
+      "collection_names": [
+        "langchain"
+      ],
+      "collections_count": 1,
+      "embedding_fulltext_search_count": 125291,
+      "embedding_metadata_count": 1378201,
+      "embeddings_count": 125291,
+      "ok": true,
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker_orphans": {
+      "detail": "missing_files=55 of 1842 tracker paths",
+      "missing_files": 55,
+      "ok": true,
+      "tracker_entries": 1754,
+      "tracker_paths": 1842
+    },
+    "wal_shm_lock": {
+      "ingest_lock": false,
+      "shm": false,
+      "wal": false
+    }
+  },
+  "failure": null,
+  "run_id": "lc6_b2_v5_20260916T011827Z_df75476d",
+  "selection_after": {
+    "CE_LIBRARY_ROOT": null,
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "extra_fields": {},
+    "mechanism": "RAG_DB_PATH environment override",
+    "schema": "selection-snapshot-v1"
+  },
+  "selection_before": {
+    "CE_LIBRARY_ROOT": null,
+    "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "extra_fields": {},
+    "mechanism": "RAG_DB_PATH environment override",
+    "schema": "selection-snapshot-v1"
+  },
+  "selection_comparison": {
+    "after_normalized": {
+      "CE_LIBRARY_ROOT": null,
+      "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "extra_fields": {
+        "extra_fields": {},
+        "schema": "selection-snapshot-v1"
+      },
+      "mechanism": "RAG_DB_PATH environment override",
+      "schema": "selection-snapshot-v1"
+    },
+    "before_normalized": {
+      "CE_LIBRARY_ROOT": null,
+      "RAG_DB_PATH": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "active_generation": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "extra_fields": {
+        "extra_fields": {},
+        "schema": "selection-snapshot-v1"
+      },
+      "mechanism": "RAG_DB_PATH environment override",
+      "schema": "selection-snapshot-v1"
+    },
+    "match": true,
+    "schema": "selection-comparison-v1"
+  },
+  "status": "PRODUCTION_UNCHANGED_PASS"
+}

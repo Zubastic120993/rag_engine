@@ -1,0 +1,96 @@
+{
+  "boundaries": {
+    "baseline_modified": false,
+    "batch_b2_retry": "once",
+    "previous_failed_tree": "/private/tmp/lc6_b2_5810_1789081719",
+    "production_modified": false,
+    "runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "sealed_package_modified": false
+  },
+  "completed_utc": "2026-09-14T17:15:56Z",
+  "failed_tree_preserved": null,
+  "failure": {
+    "error": "runtime python dependency preflight failed for /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12: Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n  File \"/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1324, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'chromadb'",
+    "error_type": "ControlRefusal",
+    "stage": "orchestration",
+    "traceback": "Traceback (most recent call last):\n  File \"/private/tmp/lc6_b2_v2_orchestrator_15624.py\", line 82, in <module>\n    rt=c.runtime_preflight_for_batch_b2(RUNTIME, journal=preflight_journal, current_python=RUNTIME, authoritative_runtime=RUNTIME)\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 306, in runtime_preflight_for_batch_b2\n    report = validate_runtime_python(runtime_python, authoritative_runtime=authoritative_runtime, allow_separate=allow_separate)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 287, in validate_runtime_python\n    raise ControlRefusal(f\"runtime python dependency preflight failed for {rp}: {proc.stderr.strip() or proc.stdout.strip()}\")\nlc6c.ControlRefusal: runtime python dependency preflight failed for /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12: Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n  File \"/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1324, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'chromadb'\n"
+  },
+  "prerequisites": {
+    "b1_v3": {
+      "actual_sha256": "bc6047a9a7934bbf006d90db143139622239e9b498a49c8c4b4bf8f19c70ad3d",
+      "expected_sha256": "bc6047a9a7934bbf006d90db143139622239e9b498a49c8c4b4bf8f19c70ad3d",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B1_PREREQUISITE_V3_REPORT.json"
+    },
+    "runtime_provenance": {
+      "actual_sha256": "db75d3cf50c99687bc93ec30feda8d34fcdd0cd94fc8f9129db0b8eb4cf5d8a7",
+      "expected_sha256": "db75d3cf50c99687bc93ec30feda8d34fcdd0cd94fc8f9129db0b8eb4cf5d8a7",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNTIME_PROVENANCE_AUDIT_PART2_REPORT.json"
+    },
+    "runtime_remediation": {
+      "actual_sha256": "a0cf3cc1d617ff8ef9c4909640d737a6573761a502611e68deef33fb3d7147a2",
+      "expected_sha256": "a0cf3cc1d617ff8ef9c4909640d737a6573761a502611e68deef33fb3d7147a2",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNTIME_BINDING_REMEDIATION_PART2_REPORT.json"
+    }
+  },
+  "preserved_previous_evidence": {
+    "previous_failed_tree_exists": true,
+    "previous_reports": {
+      "BATCH_B2_BASELINE_UNCHANGED_REPORT.json": {
+        "actual_sha256": "da5382e97102083995024bb356fb346cc117f8fc481d96a89002aa7385548f6d",
+        "expected_sha256": "da5382e97102083995024bb356fb346cc117f8fc481d96a89002aa7385548f6d",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_BASELINE_UNCHANGED_REPORT.json"
+      },
+      "BATCH_B2_EMBEDDING_INVARIANT_REPORT.json": {
+        "actual_sha256": "58a609ddd683e25dfebaf2896cafc85aa4483d5eae56cd3709ea6064c45f5cc1",
+        "expected_sha256": "58a609ddd683e25dfebaf2896cafc85aa4483d5eae56cd3709ea6064c45f5cc1",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_EMBEDDING_INVARIANT_REPORT.json"
+      },
+      "BATCH_B2_ENVIRONMENT_REMEDIATION_ERRATUM.md": {
+        "actual_sha256": "5baab7d4ba2a79342580eb32d6402ab2e4549c8f601b177cbdd5c806ca2d0197",
+        "expected_sha256": "5baab7d4ba2a79342580eb32d6402ab2e4549c8f601b177cbdd5c806ca2d0197",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_ENVIRONMENT_REMEDIATION_ERRATUM.md"
+      },
+      "BATCH_B2_EXECUTION_REPORT.json": {
+        "actual_sha256": "251608eb2db02531dd8eecc872a13682b451ad6c69aaad0097468060974e3558",
+        "expected_sha256": "251608eb2db02531dd8eecc872a13682b451ad6c69aaad0097468060974e3558",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_EXECUTION_REPORT.json"
+      },
+      "BATCH_B2_POSTCHECK_REPORT.json": {
+        "actual_sha256": "522661dbcfcef7d960c2f333a2f7b3b0957cd7c90b304803abd33cfa9971e8e0",
+        "expected_sha256": "522661dbcfcef7d960c2f333a2f7b3b0957cd7c90b304803abd33cfa9971e8e0",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_POSTCHECK_REPORT.json"
+      },
+      "BATCH_B2_PRODUCTION_UNCHANGED_ERRATUM.json": {
+        "actual_sha256": "f02521aafca6700fa7b4a14d680d361f7d6211dbbbb99c8d6fbb4e9a576e7499",
+        "expected_sha256": "f02521aafca6700fa7b4a14d680d361f7d6211dbbbb99c8d6fbb4e9a576e7499",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_PRODUCTION_UNCHANGED_ERRATUM.json"
+      },
+      "BATCH_B2_PRODUCTION_UNCHANGED_REPORT.json": {
+        "actual_sha256": "40e5048a0488648a1aad0005c2961dd1b3d2a118d3c616e89b1415c87bb07b58",
+        "expected_sha256": "40e5048a0488648a1aad0005c2961dd1b3d2a118d3c616e89b1415c87bb07b58",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_PRODUCTION_UNCHANGED_REPORT.json"
+      },
+      "BATCH_B2_SUMMARY_REPORT.json": {
+        "actual_sha256": "3fdf2c3a32f11a865c3c04669c04cf2cbc3b79a431f769b204e59222fa1c0e4f",
+        "expected_sha256": "3fdf2c3a32f11a865c3c04669c04cf2cbc3b79a431f769b204e59222fa1c0e4f",
+        "match": true,
+        "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_SUMMARY_REPORT.json"
+      }
+    }
+  },
+  "root": "/private/tmp/lc6_b2_v2_20260914T191556Z_2a10ebf3",
+  "run_id": "lc6_b2_v2_20260914T191556Z_2a10ebf3",
+  "schema": "batch-b2-v2-summary-v1",
+  "status": "BATCH_B2_FAIL_PRESERVED",
+  "steps": {}
+}

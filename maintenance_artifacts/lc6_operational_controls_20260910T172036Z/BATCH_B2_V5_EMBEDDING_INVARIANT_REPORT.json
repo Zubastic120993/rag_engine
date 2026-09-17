@@ -1,0 +1,25 @@
+{
+  "failure": null,
+  "run_id": "lc6_b2_v5_20260916T011827Z_df75476d",
+  "set_aware_vector_comparison": {
+    "added_ids": [],
+    "authorized_retired_digest": "247b28a9ff07169473ddb7ac5f54dc61bfac046796bd7d0b36249fa36e166c90",
+    "authorized_retired_ids": [
+      "chunk:7cb9d07e312b2e6080aa112f5a165428",
+      "chunk:9c1743c71b1b7c2e9d9aea88d3fbc247"
+    ],
+    "expected_count_change": "125291 -> 125289",
+    "post_count": 125289,
+    "pre_count": 125291,
+    "removed_ids": [
+      "chunk:7cb9d07e312b2e6080aa112f5a165428",
+      "chunk:9c1743c71b1b7c2e9d9aea88d3fbc247"
+    ],
+    "retained_count": 125289,
+    "retained_dimension_mismatches": [],
+    "retained_dtype_mismatches": [],
+    "retained_payload_mismatches": [],
+    "retired_metadata_present": []
+  },
+  "status": "EMBEDDING_INVARIANT_PASS"
+}

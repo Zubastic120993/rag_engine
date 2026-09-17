@@ -1,0 +1,51 @@
+{
+  "artifact": "runtime_binding_remediation_part2",
+  "audit_report_sha256": "db75d3cf50c99687bc93ec30feda8d34fcdd0cd94fc8f9129db0b8eb4cf5d8a7",
+  "authoritative_runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "boundary": {
+    "batch_b2_retried": false,
+    "copies_or_candidates_created": false,
+    "dependencies_installed_or_removed": false,
+    "executor_invoked": false,
+    "locks_or_selection_changed": false,
+    "production_or_baseline_chroma_access": false,
+    "seal_commit_push_promote": false,
+    "uv_run": false
+  },
+  "cache_cleanup": {
+    "remaining_package_local_cache_artifacts": [],
+    "removed": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/__pycache__"
+    ]
+  },
+  "cleanup_items_separate_step": [
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/.venv",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/uv.lock"
+  ],
+  "compile_check": {
+    "compiled": [
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py",
+      "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py"
+    ],
+    "status": "PASS"
+  },
+  "complete_file_sha256": {
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/LC6_OPERATIONAL_CONTROLS_CONTRACT_V1.md": "44e14726a6a0d289895ba25767577618da7fd9a18d9ba40b3d2891f5bcca0384",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNBOOK.md": "8377a5641732ae067e9b690d7506dbd84121825c4a35da386f6a97b83ff06406",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNTIME_PROVENANCE_AUDIT_PART2_REPORT.json": "db75d3cf50c99687bc93ec30feda8d34fcdd0cd94fc8f9129db0b8eb4cf5d8a7",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py": "1341ae1a021bf7981ae79559a246d8a036678aa938f7c4c7081085a398974f76",
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/test_lc6_operational_controls.py": "7aedd781cc5c95609d73392f58618981c72d86e396afed194e9343ebbedfc345"
+  },
+  "forbidden_runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/.venv/bin/python",
+  "implementation_summary": [
+    "Default runtime set to authoritative venv/bin/python.",
+    ".venv/bin/python refused as unauthorized/uncommitted uv run side-effect runtime.",
+    "Any runtime differing from sealed LC6 authoritative runtime is refused unless allow_separate is used under a separately versioned contract/test path.",
+    "Runtime preflight records requested executable, actual executable, Python version, dependency versions, and authoritative runtime before copy/candidate creation."
+  ],
+  "status": "RUNTIME_BINDING_REMEDIATION_VALIDATED_STOP_BEFORE_BATCH_B2_RETRY",
+  "tests": {
+    "complete_suite": "32 passed, 0 failed, 0 errors, 0 skipped in 4.45s",
+    "targeted": "5 passed, 27 deselected in 1.52s"
+  }
+}

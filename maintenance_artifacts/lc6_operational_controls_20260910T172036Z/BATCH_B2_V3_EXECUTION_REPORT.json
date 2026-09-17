@@ -1,0 +1,65 @@
+{
+  "backup": null,
+  "candidate_create": null,
+  "failed_tree_preserved": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8",
+  "failure": {
+    "error": "candidate marker source hashes do not match current unrepaired candidate",
+    "error_type": "ControlRefusal",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 66, in <module>\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 869, in validate_candidate_pre_mutation\n    marker = validate_candidate_marker(candidate)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/lc6_operational_controls.py\", line 862, in validate_candidate_marker\n    raise ControlRefusal(\"candidate marker source hashes do not match current unrepaired candidate\")\nlc6c.ControlRefusal: candidate marker source hashes do not match current unrepaired candidate\n"
+  },
+  "pre_mutation": null,
+  "prerequisites": {
+    "b1_v3": {
+      "actual_sha256": "bc6047a9a7934bbf006d90db143139622239e9b498a49c8c4b4bf8f19c70ad3d",
+      "expected_sha256": "bc6047a9a7934bbf006d90db143139622239e9b498a49c8c4b4bf8f19c70ad3d",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B1_PREREQUISITE_V3_REPORT.json"
+    },
+    "runtime_launcher_erratum": {
+      "actual_sha256": "a741a5ffe459f0c41bb33ffe8618f3997c0fcf26823dbe6c65b791ac8e4319c6",
+      "expected_sha256": "a741a5ffe459f0c41bb33ffe8618f3997c0fcf26823dbe6c65b791ac8e4319c6",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V2_RUNTIME_LAUNCHER_ERRATUM.json"
+    },
+    "runtime_launcher_validation": {
+      "actual_sha256": "4bfc71ce07a977d6f74d33070e61b61719b05d4c26169c81e8141806f480df29",
+      "expected_sha256": "4bfc71ce07a977d6f74d33070e61b61719b05d4c26169c81e8141806f480df29",
+      "match": true,
+      "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/RUNTIME_LAUNCHER_REMEDIATION_VALIDATION_REPORT.json"
+    }
+  },
+  "restore": null,
+  "root": null,
+  "run_id": "lc6_b2_v3_20260915T082836Z_a8b8beb8",
+  "runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+  "runtime_preflight": {
+    "allow_separate_runtime": false,
+    "artifact": "batch_b2_runtime_preflight",
+    "authoritative_runtime": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "base_prefix": "/Library/Frameworks/Python.framework/Versions/3.12",
+    "created_utc": "2026-09-15T06:28:36Z",
+    "executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "is_virtual_environment": true,
+    "launcher_realpath": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+    "modules": {
+      "chromadb": "0.5.23"
+    },
+    "prefix": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv",
+    "requested_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "requested_lexical_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "status": "RUNTIME_PREFLIGHT_OK",
+    "symlink_real_executable_target": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+    "sys_base_prefix": "/Library/Frameworks/Python.framework/Versions/3.12",
+    "sys_executable": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv/bin/python",
+    "sys_prefix": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/venv",
+    "version": "3.12.6 (v3.12.6:a4a2d2b0d85, Sep  6 2024, 16:08:03) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "schema": "batch-b2-v3-summary-v1",
+  "sealed_before": {
+    "manifest_entries": 464,
+    "package_dir": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/orphan_repair_package_20260826T213554Z",
+    "sha256sums_sha256": "b9307864fc2dd9eed6778d6028fc95ca8c19f1576d5e5dacee1a772d24e5cd5d"
+  },
+  "sealed_executor": null,
+  "status": "BATCH_B2_FAIL_PRESERVED"
+}

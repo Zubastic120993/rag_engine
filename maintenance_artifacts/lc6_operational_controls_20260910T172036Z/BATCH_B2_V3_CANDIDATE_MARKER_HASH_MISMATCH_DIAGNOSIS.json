@@ -1,0 +1,505 @@
+{
+  "artifact": "batch_b2_v3_candidate_marker_hash_mismatch_diagnosis",
+  "candidate_marker_summary": {
+    "candidate_id": "lc6-candidate-e02ff7b4-5514-4edc-8ad8-fd95de83fda0",
+    "schema": "lc6-disposable-candidate-marker-v1",
+    "source_generation": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/restore_verified_copy_v3",
+    "source_hash_count": 20,
+    "source_inventory_schema": "inventory-row-v1",
+    "source_inventory_sha256": "50ed478313e33ab23c399811121590000d65d2dddd5c78597313b32a6210f0ca",
+    "target_generation": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/candidate_v3"
+  },
+  "cause_classification": "COPY_OR_INVENTORY_DRIFT_NEEDS_REMEDIATION",
+  "comparison_exact_validate_candidate_marker_hash_view": {
+    "actual_only": [],
+    "counts": {
+      "actual": 19,
+      "actual_only": 0,
+      "differing_hash": 0,
+      "expected": 20,
+      "expected_only": 1,
+      "identical": 19
+    },
+    "differing_hash": [],
+    "expected_only": [
+      ".orphan_repair_disposable_clone.json"
+    ],
+    "identical_entries": [
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "ask_events.jsonl",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+      "certified_generation_checkpoint.json",
+      "chroma.sqlite3",
+      "embedded.json",
+      "index_embedding_fingerprint_v1.json",
+      "index_fingerprint.json"
+    ]
+  },
+  "comparison_with_marker_files_included_for_diagnosis": {
+    "actual_only": [
+      ".lc6_operational_candidate_v1.json"
+    ],
+    "counts": {
+      "actual": 21,
+      "actual_only": 1,
+      "differing_hash": 1,
+      "expected": 20,
+      "expected_only": 0,
+      "identical": 19
+    },
+    "differing_hash": [
+      {
+        "actual": "17e523c611afae90cba6d93f9f33a2cb49b05c787d2223bbbdeca9e8a0348f3e",
+        "expected": "e148d9b83bbcff31d24f85ad461387457efc994138ff62003aafc2733284d2f1",
+        "path": ".orphan_repair_disposable_clone.json"
+      }
+    ],
+    "expected_only": [],
+    "identical_entries": [
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+      "ask_events.jsonl",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+      "certified_generation_checkpoint.json",
+      "chroma.sqlite3",
+      "embedded.json",
+      "index_embedding_fingerprint_v1.json",
+      "index_fingerprint.json"
+    ]
+  },
+  "complete_file_sha256": {
+    "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V3_CANDIDATE_MARKER_HASH_MISMATCH_DIAGNOSIS.json": "fd3423e49010994dba1603d188bbaf714974161db519165170876f79ad1d1fad"
+  },
+  "constraints_observed": {
+    "modified_failed_tree": false,
+    "opened_chroma": false,
+    "patched_code_or_tests": false,
+    "production_or_baseline_modified": false,
+    "retried_batch_b2": false,
+    "sealed_package_modified": false
+  },
+  "contract_conclusion": "candidate marker files and operational journals are provenance/control artifacts and must be outside immutable source-content hash set; current validate_candidate_marker explicitly pops candidate marker and sealed disposable marker before source hash comparison, while journals live outside candidate directory under failed tree journals/.",
+  "created_utc": "2026-09-15T07:36:45Z",
+  "file_line_evidence": {
+    "candidate_create_marker_creation_lines_797_805": [
+      {
+        "line": 797,
+        "text": "            \"exception_message\": str(exc) if exc else None,"
+      },
+      {
+        "line": 798,
+        "text": "            \"residual_state\": dest.exists(),"
+      },
+      {
+        "line": 799,
+        "text": "            \"residual_destination_state\": residual_destination_state(),"
+      },
+      {
+        "line": 800,
+        "text": "            \"failed_artifact_preserved\": str(dest) if dest.exists() else None,"
+      },
+      {
+        "line": 801,
+        "text": "            \"recovery_owner\": \"operator\","
+      },
+      {
+        "line": 802,
+        "text": "            \"required_recovery_action\": \"review the preserved failed candidate directory and remove it manually only after evidence is no longer required\","
+      },
+      {
+        "line": 803,
+        "text": "            \"partial_candidate_reported\": dest.exists(),"
+      },
+      {
+        "line": 804,
+        "text": "            \"double_rollback_prevented\": True,"
+      },
+      {
+        "line": 805,
+        "text": "            \"rollback_attempted\": False,"
+      }
+    ],
+    "generation_report_hash_creation_lines_609_617": [
+      {
+        "line": 609,
+        "text": "        pid_s, _, cmd = line.strip().partition(\" \")"
+      },
+      {
+        "line": 610,
+        "text": "        try:"
+      },
+      {
+        "line": 611,
+        "text": "            pid = int(pid_s)"
+      },
+      {
+        "line": 612,
+        "text": "        except ValueError:"
+      },
+      {
+        "line": 613,
+        "text": "            pid = None"
+      },
+      {
+        "line": 614,
+        "text": "        protected_pid = bool(pid is not None and pid in protected_pids)"
+      },
+      {
+        "line": 615,
+        "text": "        classification = _process_activity_classification(cmd, fd_map.get(pid or -1, []), protected_pid=protected_pid)"
+      },
+      {
+        "line": 616,
+        "text": "        role = \"self_or_wrapper\" if protected_pid else \"external_match\""
+      },
+      {
+        "line": 617,
+        "text": "        matches.append({\"pid\": pid, \"role\": role, \"command\": cmd, **classification})"
+      }
+    ],
+    "restore_verify_lines_714_739": [
+      {
+        "line": 714,
+        "text": "    if inject == \"after_mutation\":"
+      },
+      {
+        "line": 715,
+        "text": "        payload.update({\"status\": \"BACKUP_REJECTED\", \"lock\": lock_info, \"failed_artifact_preserved\": str(dest), \"residual_state\": True, \"recovery_owner\": \"operator_review\"})"
+      },
+      {
+        "line": 716,
+        "text": "        _update_boundary_journal(journal, payload)"
+      },
+      {
+        "line": 717,
+        "text": "        raise ControlRefusal(\"injected backup failure after mutation\")"
+      },
+      {
+        "line": 718,
+        "text": "    after_src = generation_report(source, require_embedding_digest=True)"
+      },
+      {
+        "line": 719,
+        "text": "    copied = generation_report(dest, require_embedding_digest=True)"
+      },
+      {
+        "line": 720,
+        "text": "    expected = {k: v for k, v in before[\"file_hashes\"].items() if k not in TRANSIENT_GENERATION_FILES}"
+      },
+      {
+        "line": 721,
+        "text": "    if before[\"file_hashes\"] != after_src[\"file_hashes\"]:"
+      },
+      {
+        "line": 722,
+        "text": "        raise ControlRefusal(\"source changed during backup\")"
+      },
+      {
+        "line": 723,
+        "text": "    if expected != copied[\"file_hashes\"]:"
+      },
+      {
+        "line": 724,
+        "text": "        raise ControlRefusal(\"backup inventory/hash mismatch\")"
+      },
+      {
+        "line": 725,
+        "text": "    if before[\"embedding_payload_digest\"] != copied[\"embedding_payload_digest\"]:"
+      },
+      {
+        "line": 726,
+        "text": "        raise ControlRefusal(\"backup embedding payload digest mismatch\")"
+      },
+      {
+        "line": 727,
+        "text": "    payload.update({\"status\": \"BACKUP_OK\", \"updated_utc\": utc_now(), \"destination\": copied, \"lock\": lock_info, \"recovery_owner\": \"none\", \"residual_state\": False})"
+      },
+      {
+        "line": 728,
+        "text": "    _update_boundary_journal(journal, payload)"
+      },
+      {
+        "line": 729,
+        "text": "    return payload"
+      },
+      {
+        "line": 730,
+        "text": ""
+      },
+      {
+        "line": 731,
+        "text": ""
+      },
+      {
+        "line": 732,
+        "text": "def restore_verify(backup: Path, restore_target: Path, journal: Path, *, inject: str | None = None) -> dict[str, Any]:"
+      },
+      {
+        "line": 733,
+        "text": "    backup = resolved(backup); restore_target = resolved(restore_target); journal = resolved(journal)"
+      },
+      {
+        "line": 734,
+        "text": "    assert_not_forbidden_destination(restore_target)"
+      },
+      {
+        "line": 735,
+        "text": "    assert_mutation_path_under_private_tmp(restore_target)"
+      },
+      {
+        "line": 736,
+        "text": "    if not backup.is_dir():"
+      },
+      {
+        "line": 737,
+        "text": "        raise ControlRefusal(f\"backup missing: {backup}\")"
+      },
+      {
+        "line": 738,
+        "text": "    src = generation_report(backup, require_embedding_digest=True)"
+      },
+      {
+        "line": 739,
+        "text": "    payload = {\"schema\": SCHEMA, \"artifact\": RESTORE_JOURNAL, \"status\": \"RESTORE_STARTED\", \"created_utc\": utc_now(), \"backup\": src, \"restore_target_path\": str(restore_target)}"
+      }
+    ],
+    "validate_candidate_marker_lines_839_844": [
+      {
+        "line": 839,
+        "text": ""
+      },
+      {
+        "line": 840,
+        "text": "def validate_candidate_marker(gen: Path) -> dict[str, Any]:"
+      },
+      {
+        "line": 841,
+        "text": "    gen = resolved(gen)"
+      },
+      {
+        "line": 842,
+        "text": "    if gen == active_generation() or gen == library_root() / \".rag_db\" or gen == generations_root() or gen == CERTIFIED_EXTERNAL_BASELINE:"
+      },
+      {
+        "line": 843,
+        "text": "        raise ControlRefusal(f\"forbidden candidate target: {gen}\")"
+      },
+      {
+        "line": 844,
+        "text": "    mpath = gen / CANDIDATE_MARKER"
+      }
+    ],
+    "validate_candidate_pre_mutation_lines_848_861": [
+      {
+        "line": 848,
+        "text": "    required = {\"schema\", \"candidate_id\", \"created_utc\", \"source_generation\", \"target_generation\", \"purpose\", \"source_inventory_schema\", \"source_inventory_sha256\", \"source_file_hashes\", \"source_embedding_payload_digest\", \"disposable\", \"unpromoted\"}"
+      },
+      {
+        "line": 849,
+        "text": "    missing = sorted(required - set(marker))"
+      },
+      {
+        "line": 850,
+        "text": "    if missing:"
+      },
+      {
+        "line": 851,
+        "text": "        raise ControlRefusal(f\"candidate marker missing fields: {missing}\")"
+      },
+      {
+        "line": 852,
+        "text": "    validate_inventory_schema(marker.get(\"source_inventory_schema\"))"
+      },
+      {
+        "line": 853,
+        "text": "    if marker[\"schema\"] != \"lc6-disposable-candidate-marker-v1\" or not marker[\"disposable\"] or not marker[\"unpromoted\"]:"
+      },
+      {
+        "line": 854,
+        "text": "        raise ControlRefusal(\"invalid candidate marker safety fields\")"
+      },
+      {
+        "line": 855,
+        "text": "    if resolved(marker[\"target_generation\"]) != gen:"
+      },
+      {
+        "line": 856,
+        "text": "        raise ControlRefusal(\"candidate marker target_generation mismatch\")"
+      },
+      {
+        "line": 857,
+        "text": "    current = generation_report(gen, require_embedding_digest=True)"
+      },
+      {
+        "line": 858,
+        "text": "    marker_hashes = dict(marker[\"source_file_hashes\"])"
+      },
+      {
+        "line": 859,
+        "text": "    for transient in [CANDIDATE_MARKER, SEALED_DISPOSABLE_MARKER]:"
+      },
+      {
+        "line": 860,
+        "text": "        current[\"file_hashes\"].pop(transient, None)"
+      },
+      {
+        "line": 861,
+        "text": "    if marker_hashes != current[\"file_hashes\"] and current[\"tracker_orphans\"].get(\"missing_files\") != 0:"
+      }
+    ]
+  },
+  "journals_read": {
+    "backup": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/journals/backup_from_certified_baseline_v3.json",
+    "candidate_create": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/journals/candidate_create_v3.json",
+    "restore": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/journals/restore_verify_v3.json",
+    "runtime_preflight": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/journals/runtime_preflight_v3.json"
+  },
+  "marker_paths": {
+    "candidate_marker": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/candidate_v3/.lc6_operational_candidate_v1.json",
+    "sealed_disposable_marker": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8/candidate_v3/.orphan_repair_disposable_clone.json"
+  },
+  "minimal_correction_required": "Patch candidate marker lifecycle to store/compare one declared source-content schema and fail with explicit path diff before Chroma/pre-mutation validation.",
+  "preserved_inputs": {
+    "failed_v3_tree": "/private/tmp/lc6_b2_v3_20260915T082836Z_a8b8beb8",
+    "failed_v3_tree_exists": true,
+    "v3_summary_actual_sha256": "b49a6dd1bc7d7426c2fd1cc72861731574a6cf102b7cbd9ed4f8eda400c92fc0",
+    "v3_summary_expected_sha256": "b49a6dd1bc7d7426c2fd1cc72861731574a6cf102b7cbd9ed4f8eda400c92fc0",
+    "v3_summary_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V3_SUMMARY_REPORT.json",
+    "v3_summary_unchanged": true
+  },
+  "root_cause_verdict": "candidate current hash set differs from restored source despite restore matching marker source hashes",
+  "stage_comparisons": {
+    "backup_vs_restore_hashes": {
+      "actual_only": [],
+      "counts": {
+        "actual": 20,
+        "actual_only": 0,
+        "differing_hash": 0,
+        "expected": 20,
+        "expected_only": 0,
+        "identical": 20
+      },
+      "differing_hash": [],
+      "expected_only": [],
+      "identical_entries": [
+        ".orphan_repair_disposable_clone.json",
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+        "ask_events.jsonl",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+        "certified_generation_checkpoint.json",
+        "chroma.sqlite3",
+        "embedded.json",
+        "index_embedding_fingerprint_v1.json",
+        "index_fingerprint.json"
+      ]
+    },
+    "marker_expected_vs_restore_hashes": {
+      "actual_only": [],
+      "counts": {
+        "actual": 20,
+        "actual_only": 0,
+        "differing_hash": 0,
+        "expected": 20,
+        "expected_only": 0,
+        "identical": 20
+      },
+      "differing_hash": [],
+      "expected_only": [],
+      "identical_entries": [
+        ".orphan_repair_disposable_clone.json",
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+        "ask_events.jsonl",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+        "certified_generation_checkpoint.json",
+        "chroma.sqlite3",
+        "embedded.json",
+        "index_embedding_fingerprint_v1.json",
+        "index_fingerprint.json"
+      ]
+    },
+    "restore_vs_candidate_after_marker_exclusion": {
+      "actual_only": [],
+      "counts": {
+        "actual": 19,
+        "actual_only": 0,
+        "differing_hash": 0,
+        "expected": 20,
+        "expected_only": 1,
+        "identical": 19
+      },
+      "differing_hash": [],
+      "expected_only": [
+        ".orphan_repair_disposable_clone.json"
+      ],
+      "identical_entries": [
+        "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/header.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle",
+        "abda5535-6e53-4124-b725-55046ffb0347/length.bin",
+        "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin",
+        "ask_events.jsonl",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+        "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+        "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+        "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+        "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+        "certified_generation_checkpoint.json",
+        "chroma.sqlite3",
+        "embedded.json",
+        "index_embedding_fingerprint_v1.json",
+        "index_fingerprint.json"
+      ]
+    }
+  },
+  "status": "DIAGNOSIS_COMPLETE_NO_PATCH_NO_RETRY",
+  "transient_files_present_in_candidate": [
+    ".lc6_operational_candidate_v1.json",
+    ".orphan_repair_disposable_clone.json"
+  ]
+}
