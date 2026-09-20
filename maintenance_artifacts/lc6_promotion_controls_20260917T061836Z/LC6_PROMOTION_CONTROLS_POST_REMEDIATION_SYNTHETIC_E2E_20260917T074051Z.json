@@ -1,0 +1,81 @@
+{
+  "after": {
+    "env": {
+      "gid": 20,
+      "inode": 132168998,
+      "mode": 384,
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "rag_db_path_lines": [
+        {
+          "line": 483,
+          "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+        }
+      ],
+      "size": 23930,
+      "uid": 501
+    },
+    "production": {
+      "active_selection": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "hermes_processes": [
+        "700     1 Sun Sep 13 22:09:24 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes",
+        "1285   700 Sun Sep 13 22:09:27 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serve --host 127.0.0.1 --port 0"
+      ],
+      "inventory_schema": "inventory-row-v1",
+      "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "key_file_hashes": {
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      "lock_exists": false,
+      "row_count": 19
+    }
+  },
+  "before": {
+    "env": {
+      "gid": 20,
+      "inode": 132168998,
+      "mode": 384,
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "rag_db_path_lines": [
+        {
+          "line": 483,
+          "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+        }
+      ],
+      "size": 23930,
+      "uid": 501
+    },
+    "production": {
+      "active_selection": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "hermes_processes": [
+        "700     1 Sun Sep 13 22:09:24 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes",
+        "1285   700 Sun Sep 13 22:09:27 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serve --host 127.0.0.1 --port 0"
+      ],
+      "inventory_schema": "inventory-row-v1",
+      "inventory_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "key_file_hashes": {
+        "chroma.sqlite3": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "embedded.json": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33"
+      },
+      "lock_exists": false,
+      "row_count": 19
+    }
+  },
+  "boundaries": {
+    "hermes_restarted": false,
+    "production_lock_acquired": false,
+    "production_modified": false,
+    "promotion_executed": false,
+    "real_env_modified": false
+  },
+  "error": "FileNotFoundError(2, 'No such file or directory')",
+  "historical_prior_status": "BLOCKED_BY_RUNTIME_CONSENT",
+  "schema": "lc6-promotion-post-remediation-synthetic-e2e-v1",
+  "synthetic_fixture": {
+    "path": "/private/tmp/lc6_post_remediation_e2e_20260917T074051Z_2090rm_3",
+    "removed_after_report": true
+  },
+  "verdict": "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_FAIL_PRESERVED"
+}

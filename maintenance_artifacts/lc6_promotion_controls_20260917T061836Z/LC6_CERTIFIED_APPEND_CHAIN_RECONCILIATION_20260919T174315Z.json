@@ -1,0 +1,762 @@
+{
+  "active_selection": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "after": {
+    "env": {
+      "gid": 20,
+      "inode": 132168998,
+      "mode": 384,
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "rag_db_path_lines": [
+        {
+          "line": 483,
+          "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+        }
+      ],
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747",
+      "size": 23930,
+      "uid": 501
+    },
+    "key_hashes": {
+      ".rag_state": null,
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "d6a0ae349ea23dda78b99d944ae512bf3817577c64f9208ea00d0b60c1ed275a",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "22aa9915ed2380a03f3f6786a031c974c78833dac4e99070008297f5896f0811",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "4fb91415042862b594768072dd9f4b95fd0264fb62b1d7caa2a154a114d9f1f6",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "357d536f807cc4ca42846b06db39794c64e7b72af56b42b2ded747b6280a27bd",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "9595f9d13d2406e127709641fb9817ff5f9afd0df62b9f9c30e8b04479655129",
+      "ask_events.jsonl": "c0502df5bf40b25f2d2d290800709d815b2c4e64f27b94a6f103470efd872503",
+      "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+    },
+    "locks": [
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3-wal"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3-shm"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.ingest.lock"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/write.lock"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.rag_state"
+      }
+    ],
+    "processes": {
+      "hermes": [
+        "83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes",
+        "84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serve --host 127.0.0.1 --port 0"
+      ],
+      "writer_candidates": []
+    }
+  },
+  "before": {
+    "env": {
+      "gid": 20,
+      "inode": 132168998,
+      "mode": 384,
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "rag_db_path_lines": [
+        {
+          "line": 483,
+          "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+        }
+      ],
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747",
+      "size": 23930,
+      "uid": 501
+    },
+    "key_hashes": {
+      ".rag_state": null,
+      "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin": "d6a0ae349ea23dda78b99d944ae512bf3817577c64f9208ea00d0b60c1ed275a",
+      "abda5535-6e53-4124-b725-55046ffb0347/header.bin": "22aa9915ed2380a03f3f6786a031c974c78833dac4e99070008297f5896f0811",
+      "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle": "4fb91415042862b594768072dd9f4b95fd0264fb62b1d7caa2a154a114d9f1f6",
+      "abda5535-6e53-4124-b725-55046ffb0347/length.bin": "357d536f807cc4ca42846b06db39794c64e7b72af56b42b2ded747b6280a27bd",
+      "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin": "9595f9d13d2406e127709641fb9817ff5f9afd0df62b9f9c30e8b04479655129",
+      "ask_events.jsonl": "c0502df5bf40b25f2d2d290800709d815b2c4e64f27b94a6f103470efd872503",
+      "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+    },
+    "locks": [
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3-wal"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3-shm"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.ingest.lock"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/write.lock"
+      },
+      {
+        "bytes": null,
+        "exists": false,
+        "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.rag_state"
+      }
+    ],
+    "processes": {
+      "hermes": [
+        "83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes",
+        "84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serve --host 127.0.0.1 --port 0"
+      ],
+      "writer_candidates": []
+    }
+  },
+  "boundaries": {
+    "chroma_opened": false,
+    "env_modified": false,
+    "journals_modified": false,
+    "lock_acquired": false,
+    "production_modified": false,
+    "promotion_or_seal_stage_commit_push": false,
+    "synthetic_e2e_rerun": false
+  },
+  "chain": {
+    "continuous": false,
+    "final_expected_tracker_matches_current_embedded_json": false,
+    "gaps": [
+      {
+        "after_previous_operation": "capp:20260918T112744Z:c417a48e7405",
+        "before_operation": "capp:20260918T113351Z:d3a515b5db76",
+        "reason": "tracker backup does not match expected tracker after previous operation"
+      },
+      {
+        "operation": "capp:20260918T113351Z:d3a515b5db76",
+        "reason": "journal state is 'ROLLED_BACK'; error=ResponseError: Post \"http://127.0.0.1:56582/tokenize\": EOF"
+      },
+      {
+        "after_previous_operation": "capp:20260918T113502Z:f94dd6a5faff",
+        "before_operation": "capp:20260918T113515Z:1a8a14a2ef54",
+        "reason": "tracker backup does not match expected tracker after previous operation"
+      },
+      {
+        "after_previous_operation": "capp:20260918T113515Z:1a8a14a2ef54",
+        "before_operation": "capp:20260918T113852Z:44214fa4690c",
+        "reason": "tracker backup does not match expected tracker after previous operation"
+      },
+      {
+        "after_previous_operation": "capp:20260918T113852Z:44214fa4690c",
+        "before_operation": "capp:20260918T115050Z:434562e53a6b",
+        "reason": "tracker backup does not match expected tracker after previous operation"
+      },
+      {
+        "after_operation": "capp:20260918T115050Z:434562e53a6b",
+        "reason": "expected tracker after journal chain does not match current embedded.json"
+      }
+    ]
+  },
+  "changed_accepted_files": [
+    {
+      "accepted_sha256": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 533447952,
+      "current_sha256": "d6a0ae349ea23dda78b99d944ae512bf3817577c64f9208ea00d0b60c1ed275a",
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin"
+    },
+    {
+      "accepted_sha256": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 100,
+      "current_sha256": "22aa9915ed2380a03f3f6786a031c974c78833dac4e99070008297f5896f0811",
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin"
+    },
+    {
+      "accepted_sha256": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 7918080,
+      "current_sha256": "4fb91415042862b594768072dd9f4b95fd0264fb62b1d7caa2a154a114d9f1f6",
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle"
+    },
+    {
+      "accepted_sha256": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 503728,
+      "current_sha256": "357d536f807cc4ca42846b06db39794c64e7b72af56b42b2ded747b6280a27bd",
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin"
+    },
+    {
+      "accepted_sha256": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 1085264,
+      "current_sha256": "9595f9d13d2406e127709641fb9817ff5f9afd0df62b9f9c30e8b04479655129",
+      "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin"
+    },
+    {
+      "accepted_sha256": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 51283,
+      "current_sha256": "c0502df5bf40b25f2d2d290800709d815b2c4e64f27b94a6f103470efd872503",
+      "path": "ask_events.jsonl"
+    },
+    {
+      "accepted_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 746881024,
+      "current_sha256": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "path": "chroma.sqlite3"
+    },
+    {
+      "accepted_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "attribution": "attributable to certified append activity if and only if journal chain complete; current chain has gaps due failed operation/final tracker mismatch",
+      "current_bytes": 6776026,
+      "current_sha256": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970",
+      "path": "embedded.json"
+    }
+  ],
+  "inventory_boundary": {
+    "current_provenance_pair_count": 6,
+    "operational_provenance": "treat certified_append_journal/** as separate provenance evidence with its own manifest/hash set, not silently excluded",
+    "source_database_content": "exclude certified_append_journal/** from source DB content inventory; include chroma.sqlite3, embedded.json, ask_events.jsonl, index fingerprints, generation checkpoint, and Chroma segment files"
+  },
+  "journals": [
+    {
+      "backup_corresponds_to_journal_path": true,
+      "backup_exists": true,
+      "backup_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T112744Z:c417a48e7405.tracker.bak.json",
+      "backup_sha256": "62200066d9ba6430d2b47738e7cd2457356bef992c744900e7eb6f168bc3c668",
+      "backup_summary": {
+        "chunk_ids": 125291,
+        "document_ids": 1754,
+        "entries": 1754,
+        "path_list_sample": [
+          "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+          "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bunker_compendium_IACS_rec_151.pdf"
+        ],
+        "paths": 1842
+      },
+      "chain_expected_pre_backup_match": null,
+      "commit_model": "RECOVERABLE_MULTI_STORE_COMMIT",
+      "completion_status": "complete",
+      "document_ids": [
+        "docrev:68d5532c85cb8824b952aa14aabcc59a093b183235b356366fcb35de27820956",
+        "docrev:1b2cbfdea22e9cbb7b2adfb91fcc1c8015835f129d755712513ecba4927190ac",
+        "docrev:7c0a934b83b2058d58839c3c8c65d88a31437300518cbd2c8501267b3f1f8f32"
+      ],
+      "error": null,
+      "evidence_reference": "journal + tracker_snapshot backup + verification fields",
+      "expected_tracker_changes": {
+        "planned_chunks": 21,
+        "planned_documents": 3,
+        "registry_aliases": 3,
+        "registry_document_ids": 3
+      },
+      "governing_command_tool": "certified append journal (exact invoking CLI/command not recorded in journal)",
+      "journal_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T112744Z:c417a48e7405.json",
+      "journal_sha256": "561c09f707c12f6612f582b4f30d4f388e8c471c35e56af540cac91a36e167fa",
+      "manifest_sha256": "61ebaddeb96cca3b88be881fc9a2a26636434631a180b28f2c83ed7c3f777761",
+      "operation_id": "capp:20260918T112744Z:c417a48e7405",
+      "recorded_changes": {
+        "chroma_ids_written": 21,
+        "findings_count": 0,
+        "verification_ok": true,
+        "verification_p0": 0,
+        "verification_p1": 0
+      },
+      "rollback_recovery_state": "none recorded; backup available",
+      "source_documents": [
+        "00_Career/02_Statutory/Port_State_Guidance/EU/eur186992_legal_context_note.pdf",
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2026-787.pdf",
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2026-788.pdf"
+      ],
+      "source_hashes": [
+        "68d5532c85cb8824b952aa14aabcc59a093b183235b356366fcb35de27820956",
+        "1b2cbfdea22e9cbb7b2adfb91fcc1c8015835f129d755712513ecba4927190ac",
+        "7c0a934b83b2058d58839c3c8c65d88a31437300518cbd2c8501267b3f1f8f32"
+      ],
+      "state": "SUCCESS",
+      "timestamp": "20260918T112744Z"
+    },
+    {
+      "backup_corresponds_to_journal_path": true,
+      "backup_exists": true,
+      "backup_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113351Z:d3a515b5db76.tracker.bak.json",
+      "backup_sha256": "e6640c175f901058b25126907b77027ac1e88421ab5c511f06a7ad29e0a5f8ab",
+      "backup_summary": {
+        "chunk_ids": 125312,
+        "document_ids": 1757,
+        "entries": 1757,
+        "path_list_sample": [
+          "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+          "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bunker_compendium_IACS_rec_151.pdf"
+        ],
+        "paths": 1845
+      },
+      "chain_expected_pre_backup_match": false,
+      "commit_model": "RECOVERABLE_MULTI_STORE_COMMIT",
+      "completion_status": "incomplete_or_failed",
+      "document_ids": [
+        "docrev:1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8",
+        "docrev:72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656"
+      ],
+      "error": "ResponseError: Post \"http://127.0.0.1:56582/tokenize\": EOF",
+      "evidence_reference": "journal + tracker_snapshot backup + verification fields",
+      "expected_tracker_changes": {
+        "planned_chunks": 684,
+        "planned_documents": 2,
+        "registry_aliases": 0,
+        "registry_document_ids": 0
+      },
+      "governing_command_tool": "certified append journal (exact invoking CLI/command not recorded in journal)",
+      "journal_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113351Z:d3a515b5db76.json",
+      "journal_sha256": "aadf80fed0b0c230709b70115963ff38b6ef52002572398df61b4e42c6d83384",
+      "manifest_sha256": "046ba72bdb804b050113e50b82f4cc9e27611548a88c5a9d10f7fb568fa74154",
+      "operation_id": "capp:20260918T113351Z:d3a515b5db76",
+      "recorded_changes": {
+        "chroma_ids_written": 0,
+        "findings_count": null,
+        "verification_ok": null,
+        "verification_p0": null,
+        "verification_p1": null
+      },
+      "rollback_recovery_state": "none recorded; backup available",
+      "source_documents": [
+        "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf",
+        "00_Career/01_Class_Rules/Lloyds_Register/LR0100_CCS_Retrofit_Report.pdf"
+      ],
+      "source_hashes": [
+        "1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8",
+        "72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656"
+      ],
+      "state": "ROLLED_BACK",
+      "timestamp": "20260918T113351Z"
+    },
+    {
+      "backup_corresponds_to_journal_path": true,
+      "backup_exists": true,
+      "backup_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113502Z:f94dd6a5faff.tracker.bak.json",
+      "backup_sha256": "e6640c175f901058b25126907b77027ac1e88421ab5c511f06a7ad29e0a5f8ab",
+      "backup_summary": {
+        "chunk_ids": 125312,
+        "document_ids": 1757,
+        "entries": 1757,
+        "path_list_sample": [
+          "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+          "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bunker_compendium_IACS_rec_151.pdf"
+        ],
+        "paths": 1845
+      },
+      "chain_expected_pre_backup_match": true,
+      "commit_model": "RECOVERABLE_MULTI_STORE_COMMIT",
+      "completion_status": "complete",
+      "document_ids": [
+        "docrev:72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656"
+      ],
+      "error": null,
+      "evidence_reference": "journal + tracker_snapshot backup + verification fields",
+      "expected_tracker_changes": {
+        "planned_chunks": 274,
+        "planned_documents": 1,
+        "registry_aliases": 1,
+        "registry_document_ids": 1
+      },
+      "governing_command_tool": "certified append journal (exact invoking CLI/command not recorded in journal)",
+      "journal_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113502Z:f94dd6a5faff.json",
+      "journal_sha256": "5290157ecec5fd0e12496d450743f1db7d28db4254c693d5a1a41b686c7b486e",
+      "manifest_sha256": "1e4af1e25833a818662f07c40e9ce6e63e25328538c66b7b821c8131ac285d27",
+      "operation_id": "capp:20260918T113502Z:f94dd6a5faff",
+      "recorded_changes": {
+        "chroma_ids_written": 274,
+        "findings_count": 0,
+        "verification_ok": true,
+        "verification_p0": 0,
+        "verification_p1": 0
+      },
+      "rollback_recovery_state": "none recorded; backup available",
+      "source_documents": [
+        "00_Career/01_Class_Rules/Lloyds_Register/LR0100_CCS_Retrofit_Report.pdf"
+      ],
+      "source_hashes": [
+        "72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656"
+      ],
+      "state": "SUCCESS",
+      "timestamp": "20260918T113502Z"
+    },
+    {
+      "backup_corresponds_to_journal_path": true,
+      "backup_exists": true,
+      "backup_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113515Z:1a8a14a2ef54.tracker.bak.json",
+      "backup_sha256": "6cf9a01d34102e1663b8eb850ba03a875183500f42794347d068f87f05a75208",
+      "backup_summary": {
+        "chunk_ids": 125586,
+        "document_ids": 1758,
+        "entries": 1758,
+        "path_list_sample": [
+          "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+          "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bunker_compendium_IACS_rec_151.pdf"
+        ],
+        "paths": 1846
+      },
+      "chain_expected_pre_backup_match": false,
+      "commit_model": "RECOVERABLE_MULTI_STORE_COMMIT",
+      "completion_status": "complete",
+      "document_ids": [
+        "docrev:1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8"
+      ],
+      "error": null,
+      "evidence_reference": "journal + tracker_snapshot backup + verification fields",
+      "expected_tracker_changes": {
+        "planned_chunks": 410,
+        "planned_documents": 1,
+        "registry_aliases": 1,
+        "registry_document_ids": 1
+      },
+      "governing_command_tool": "certified append journal (exact invoking CLI/command not recorded in journal)",
+      "journal_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113515Z:1a8a14a2ef54.json",
+      "journal_sha256": "2c0adef474cc54e1bd899a712f2d7467f0eec5770707807d751042e5956e777f",
+      "manifest_sha256": "e4f3cb09de83abcb4c206b0459295009cb78301f8d107bfc26ab5a335035d7d9",
+      "operation_id": "capp:20260918T113515Z:1a8a14a2ef54",
+      "recorded_changes": {
+        "chroma_ids_written": 410,
+        "findings_count": 0,
+        "verification_ok": true,
+        "verification_p0": 0,
+        "verification_p1": 0
+      },
+      "rollback_recovery_state": "none recorded; backup available",
+      "source_documents": [
+        "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf"
+      ],
+      "source_hashes": [
+        "1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8"
+      ],
+      "state": "SUCCESS",
+      "timestamp": "20260918T113515Z"
+    },
+    {
+      "backup_corresponds_to_journal_path": true,
+      "backup_exists": true,
+      "backup_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113852Z:44214fa4690c.tracker.bak.json",
+      "backup_sha256": "f6277cd7c0e6b76f068075fc1f650250b555c1c387b962b2dee3fe7dd187b9ef",
+      "backup_summary": {
+        "chunk_ids": 125996,
+        "document_ids": 1759,
+        "entries": 1759,
+        "path_list_sample": [
+          "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+          "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf"
+        ],
+        "paths": 1847
+      },
+      "chain_expected_pre_backup_match": false,
+      "commit_model": "RECOVERABLE_MULTI_STORE_COMMIT",
+      "completion_status": "complete",
+      "document_ids": [
+        "docrev:ebbc5cc8fbb9ac8d5425c83eb00fac5e552a12378f7bc046e2ea3279da66eb3e"
+      ],
+      "error": null,
+      "evidence_reference": "journal + tracker_snapshot backup + verification fields",
+      "expected_tracker_changes": {
+        "planned_chunks": 15,
+        "planned_documents": 1,
+        "registry_aliases": 1,
+        "registry_document_ids": 1
+      },
+      "governing_command_tool": "certified append journal (exact invoking CLI/command not recorded in journal)",
+      "journal_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T113852Z:44214fa4690c.json",
+      "journal_sha256": "9b1ca70421f0bafc7c82c8565ecafaa4172042f5a5ed7471d641a747e2cd20cf",
+      "manifest_sha256": "9a9eecd83826f9dbc4dd295505ce368ef81fc484672cf6f88b91c938a9bdcd26",
+      "operation_id": "capp:20260918T113852Z:44214fa4690c",
+      "recorded_changes": {
+        "chroma_ids_written": 15,
+        "findings_count": 0,
+        "verification_ok": true,
+        "verification_p0": 0,
+        "verification_p1": 0
+      },
+      "rollback_recovery_state": "none recorded; backup available",
+      "source_documents": [
+        "00_Career/02_Statutory/IMO_Resolutions/MEPC.39883.pdf"
+      ],
+      "source_hashes": [
+        "ebbc5cc8fbb9ac8d5425c83eb00fac5e552a12378f7bc046e2ea3279da66eb3e"
+      ],
+      "state": "SUCCESS",
+      "timestamp": "20260918T113852Z"
+    },
+    {
+      "backup_corresponds_to_journal_path": true,
+      "backup_exists": true,
+      "backup_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T115050Z:434562e53a6b.tracker.bak.json",
+      "backup_sha256": "b885ad4ae802d8208d767172c177926bde549bf195ea91e0e92fbd6c526443ab",
+      "backup_summary": {
+        "chunk_ids": 126011,
+        "document_ids": 1760,
+        "entries": 1760,
+        "path_list_sample": [
+          "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+          "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+          "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+          "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+          "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf"
+        ],
+        "paths": 1848
+      },
+      "chain_expected_pre_backup_match": false,
+      "commit_model": "RECOVERABLE_MULTI_STORE_COMMIT",
+      "completion_status": "complete",
+      "document_ids": [
+        "docrev:89d12f28a5a14eb4807b0f9662cfe572de606d1addd6d2cf6054fc2f12e773af"
+      ],
+      "error": null,
+      "evidence_reference": "journal + tracker_snapshot backup + verification fields",
+      "expected_tracker_changes": {
+        "planned_chunks": 65,
+        "planned_documents": 1,
+        "registry_aliases": 1,
+        "registry_document_ids": 1
+      },
+      "governing_command_tool": "certified append journal (exact invoking CLI/command not recorded in journal)",
+      "journal_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/certified_append_journal/capp:20260918T115050Z:434562e53a6b.json",
+      "journal_sha256": "6fe0e84ac5cd068b9985e660e647de1537762f50df3f5c64ba274a5a462e3d4e",
+      "manifest_sha256": "83e34dc612985b58fc34a8c16ccc27f260c311b657cc52aa21676b5fe74dd483",
+      "operation_id": "capp:20260918T115050Z:434562e53a6b",
+      "recorded_changes": {
+        "chroma_ids_written": 65,
+        "findings_count": 0,
+        "verification_ok": true,
+        "verification_p0": 0,
+        "verification_p1": 0
+      },
+      "rollback_recovery_state": "none recorded; backup available",
+      "source_documents": [
+        "00_Career/01_Class_Rules/Lloyds_Register/LR0108_FOBAS_Update_H1_2026_.pdf"
+      ],
+      "source_hashes": [
+        "89d12f28a5a14eb4807b0f9662cfe572de606d1addd6d2cf6054fc2f12e773af"
+      ],
+      "state": "SUCCESS",
+      "timestamp": "20260918T115050Z"
+    }
+  ],
+  "next_action": "investigate an incomplete append",
+  "prerequisite": {
+    "expected_sha256": "6b0a5283218510f6a9bd38527e663f15b9d03c28f1f2c39f6192f0b4b85d3854",
+    "observed_sha256": "6b0a5283218510f6a9bd38527e663f15b9d03c28f1f2c39f6192f0b4b85d3854",
+    "ok": true,
+    "report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_promotion_controls_20260917T061836Z/LC6_PROMOTION_CONTROLS_PRODUCTION_INVENTORY_MISMATCH_DIAGNOSIS_20260919T173958Z.json"
+  },
+  "protected_evidence_unchanged": true,
+  "schema": "lc6-certified-append-chain-reconciliation-v1",
+  "semantics": {
+    "orphan_algorithm": "set difference between embedded.json tracker chunk_ids and SQLite embeddings IDs using read-only sqlite3 immutable connection; Chroma not opened",
+    "orphan_counts": {
+      "sqlite_minus_tracker": 0,
+      "tracker_minus_sqlite": 0
+    },
+    "orphan_samples": {
+      "sqlite_minus_tracker": [],
+      "tracker_minus_sqlite": []
+    },
+    "sqlite": {
+      "collections": [
+        "langchain"
+      ],
+      "counts": {
+        "collections": 1,
+        "embedding_fulltext_search": 126076,
+        "embedding_metadata": 1386836,
+        "embeddings": 126076
+      },
+      "embedding_id_column": "embedding_id",
+      "tables": [
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ]
+    },
+    "tracker": {
+      "chunk_ids": 126076,
+      "entries": 1761,
+      "paths": 1849,
+      "paths_sample": [
+        "00_Career/01_Class_Rules/DNV/Class_news_10_2026_IMO_approves_International_Gas_Code_2028_amendments.pdf",
+        "00_Career/01_Class_Rules/DNV/DNV_ETO_Hydrogen Forecast_2026_final1.pdf",
+        "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf",
+        "00_Career/01_Class_Rules/DNV/DNV_Maritime_Forecast_to_2050_2025_report.pdf",
+        "00_Career/01_Class_Rules/DNV/DNV_Webinar_EEXI_CII_Calc_7July2021.pdf",
+        "00_Career/01_Class_Rules/DNV/DNV_White_paper_Maritime_nuclear_propulsion_2025_web.pdf",
+        "00_Career/01_Class_Rules/DNV/Maritime Forecast to 2050.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/IACS RECOMMENDATION 87.pdf.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/IACS-Double-Hull-Oil-Tankers-Guidelines-for-Surveys.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/IACS-rec74rev2.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/Insulating Mat \u2013 Electrical Insulating Mat _ Insulation Mats _ Insulating Rubber Mat _ Insulated Rubber Mat _ Insulating Mat for Electrical Purpose Insulating Mat as per IS 15652.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/Polish Register Machinery, Boilers and Pressure Vessels.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/Rec36 _Rev.2 Aug 2011_CLN.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/Rec74 Rev.1 May 2008 UL.PDF",
+        "00_Career/01_Class_Rules/IACS_and_Other/Rules for the classification of ships, Pt. 17, Fire protection, Amendments 1, 07_2022.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/UI_SC275_Rev1_TR_ENG.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/UR-Z21-TR_EN.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/UR_M67_Rev2.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/UR_Z7.2_Rev8_TR_EN.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/bts_whitepaper_protectionofmachineryspacesbylocalapplicationofwatermist.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/bunker_compendium_IACS_rec_151.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/iacs-ism-audits-rec_41_pdf189.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/iacs_adopted_201607-12e 2.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/ui_sc201_rev.1_corr.1_may_2022ul.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/ui_sc30_rev.3_mar_2023ul.pdf",
+        "00_Career/01_Class_Rules/IACS_and_Other/ur_z10.4_rev.17_may_2022ul.pdf",
+        "00_Career/01_Class_Rules/Industry_Papers/Ammonia fuel in shipping.pdf",
+        "00_Career/01_Class_Rules/Industry_Papers/Energy-efficiency measures and technologies.pdf",
+        "00_Career/01_Class_Rules/Industry_Papers/Methane_in_Shipping__LNG-fuelled_ships_and_the_switch_to_low-GHG_methane.pdf",
+        "00_Career/01_Class_Rules/Industry_Papers/Methanol fuel in shipping.pdf"
+      ]
+    }
+  },
+  "timestamp_utc": "20260919T174315Z",
+  "verdict": "LC6_CERTIFIED_APPEND_CHAIN_INCOMPLETE_INVESTIGATION_REQUIRED"
+}

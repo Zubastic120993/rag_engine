@@ -1,0 +1,166 @@
+{
+  "artifact_count_before_sealing_report_and_sha256sums": 24,
+  "artifacts_before_sealing_report_and_sha256sums": [
+    {
+      "bytes": 42760,
+      "path": "LC6_CERTIFIED_APPEND_CHAIN_RECONCILIATION_20260919T174315Z.json",
+      "sha256": "3e2b5cbe3e3dd01b390323fbcee84303e84f9fd86cce3600bf31b3bfde9ca087",
+      "type": "file"
+    },
+    {
+      "bytes": 178643,
+      "path": "LC6_CURRENT_55_ORPHAN_IDENTITY_RECONCILIATION_20260919T180213Z.json",
+      "sha256": "47dd595b0ed68bc7ac45b363a837cfe9f04b711e7d965d655020ef5e77630f5c",
+      "type": "file"
+    },
+    {
+      "bytes": 67217,
+      "path": "LC6_CURRENT_STATE_CERTIFICATION_ASSESSMENT_20260919T175624Z.json",
+      "sha256": "d51b90912a692e71adf52e07f48f4ad3220cc7b92ff3f91aa1e9a23b7e6b57e6",
+      "type": "file"
+    },
+    {
+      "bytes": 27449,
+      "path": "LC6_CURRENT_STATE_CERTIFICATION_ASSESSMENT_20260919T175751Z.json",
+      "sha256": "cff0b68b6cb5e01eef080e818cabc19366c32a7a2aee62a1401abba5231f4e47",
+      "type": "file"
+    },
+    {
+      "bytes": 84605,
+      "path": "LC6_FAILED_APPEND_AND_TRACKER_GAP_FORENSIC_REPORT_20260919T174556Z.json",
+      "sha256": "438abf23dfae38d12b8765a3cf3a53740d16174168532c27fa564bfb11af06dc",
+      "type": "file"
+    },
+    {
+      "bytes": 1420,
+      "path": "LC6_PROMOTION_CONTROLS_FINAL_VALIDATION_SUMMARY_20260920T074902Z.md",
+      "sha256": "aa963653133fdb0173855eee1ef3ad3c5c0666f2b5ddb01ab9036febd3ce365b",
+      "type": "file"
+    },
+    {
+      "bytes": 658,
+      "path": "LC6_PROMOTION_CONTROLS_FINAL_VERDICT_20260920T074902Z.md",
+      "sha256": "75be1dda00dc640592747eafeb49cb7dfbb47ac4ecd2703725c5342442d79e8e",
+      "type": "file"
+    },
+    {
+      "bytes": 4397,
+      "path": "LC6_PROMOTION_CONTROLS_POST_PATH_REMEDIATION_SYNTHETIC_E2E_20260919T173506Z.json",
+      "sha256": "d70c633c25b936ffdedb8cbdf9aa4b52d683845b6d508725f84e3332f73576eb",
+      "type": "file"
+    },
+    {
+      "bytes": 3225,
+      "path": "LC6_PROMOTION_CONTROLS_POST_REMEDIATION_SYNTHETIC_E2E_20260917T074051Z.json",
+      "sha256": "0fdbb8e2ad8bbfe8220b994e6f03a5238125f25da65589d5e346ad796b7c8017",
+      "type": "file"
+    },
+    {
+      "bytes": 16363,
+      "path": "LC6_PROMOTION_CONTROLS_PRODUCTION_INVENTORY_MISMATCH_DIAGNOSIS_20260919T173958Z.json",
+      "sha256": "6b0a5283218510f6a9bd38527e663f15b9d03c28f1f2c39f6192f0b4b85d3854",
+      "type": "file"
+    },
+    {
+      "bytes": 2445,
+      "path": "LC6_PROMOTION_CONTROLS_REMEDIATION_ERRATUM.md",
+      "sha256": "23d75eebc558348578fe2e073daafe170d733a96e30b2e2e6b80be78181c4441",
+      "type": "file"
+    },
+    {
+      "bytes": 3227,
+      "path": "LC6_PROMOTION_CONTROLS_REMEDIATION_VALIDATION_REPORT.md",
+      "sha256": "6ae91c611a02db4b22e9f878d813382bb91e73869466940b3c30d48ee1615b8a",
+      "type": "file"
+    },
+    {
+      "bytes": 9298,
+      "path": "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_FAILURE_DIAGNOSIS_20260917T074051Z.md",
+      "sha256": "2ded6661ea0558b3a3f85cf110d2dbd6d1008babc2d20deddb746dacbdbd21a6",
+      "type": "file"
+    },
+    {
+      "bytes": 1972,
+      "path": "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_PATH_REMEDIATION_ERRATUM_20260919T173112Z.md",
+      "sha256": "287ada3fde783c5ade289525c7a5e03e5c20c75f1034b7d953744532c3617aec",
+      "type": "file"
+    },
+    {
+      "bytes": 2830,
+      "path": "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_PATH_REMEDIATION_VALIDATION_REPORT_20260919T173112Z.md",
+      "sha256": "6becb7a0ffdf3e7b3d261cedbce36286e1ab2b5faaf3ee173523fee345bda25b",
+      "type": "file"
+    },
+    {
+      "bytes": 31425,
+      "path": "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_VERSIONED_BASELINE_20260919T230239Z.json",
+      "sha256": "61f3d9b96814d64fb58d54aec7ac6dca985ea4006c8f70ab6e8ca04bd594a531",
+      "type": "file"
+    },
+    {
+      "bytes": 1615,
+      "path": "LC6_PROMOTION_CONTROLS_VERSIONED_BASELINE_BINDING_ERRATUM_20260919T224242Z.md",
+      "sha256": "7969cdd5a8305bf8ff282f98102f47b8fcce7b60bfd092d100651a87fac4bf0c",
+      "type": "file"
+    },
+    {
+      "bytes": 2604,
+      "path": "LC6_PROMOTION_CONTROLS_VERSIONED_BASELINE_BINDING_VALIDATION_REPORT_20260919T224242Z.md",
+      "sha256": "0d0d07ebe26a7f66ebb6a939740a91b4bcbcb7f83b413391e71e6179eecd38da",
+      "type": "file"
+    },
+    {
+      "bytes": 197321,
+      "path": "LC6_VERSIONED_EVOLVED_PRE_REPAIR_BASELINE_CERTIFICATION_20260919T185258Z.json",
+      "sha256": "09b69ba17c559e0ee535f4b724ed7482a71578608e7699f2eff260e21ef86b70",
+      "type": "file"
+    },
+    {
+      "bytes": 5810,
+      "path": "LC6_VERSIONED_EVOLVED_PRE_REPAIR_BASELINE_PRODUCTION_UNCHANGED_20260919T185258Z.json",
+      "sha256": "11aab5550a773c4dd57d0c9565060b649390ac0ac35260b70dbd2ec239232c8e",
+      "type": "file"
+    },
+    {
+      "bytes": 625,
+      "path": "SYNTHETIC_E2E_SWITCH_RESTART_VERIFY_ROLLBACK_REPORT.json",
+      "sha256": "11bb1da0fe8231bb0a36bbeec05ebb235c90432bd62316c483c9216b1b49eeed",
+      "type": "file"
+    },
+    {
+      "bytes": 30414,
+      "path": "promotion_controls.py",
+      "sha256": "293df14d3e8918c8875aa56165b3ae492cb106094659b616959e2cb1db598caf",
+      "type": "file"
+    },
+    {
+      "bytes": 2684,
+      "path": "synthetic_e2e_driver.py",
+      "sha256": "352f3c707eea44e63c80ca4b4e8d352667947038956f06a8a9f12aec5ab335cd",
+      "type": "file"
+    },
+    {
+      "bytes": 27028,
+      "path": "test_promotion_controls.py",
+      "sha256": "ea1a512b2555a93c81ae8199dcf8e9232efe38c4de1952305cd91186cf606182",
+      "type": "file"
+    }
+  ],
+  "created_utc": "2026-09-20T07:49:02Z",
+  "final_verdict": "LC6_PROMOTION_CONTROLS_PACKAGE_SEALED_READY_FOR_GOVERNED_HANDOFF",
+  "package": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_promotion_controls_20260917T061836Z",
+  "schema": "lc6-promotion-controls-authoritative-artifact-index-v1",
+  "scope_distinction": {
+    "baseline_certification_reference": "LC6_VERSIONED_EVOLVED_PRE_REPAIR_BASELINE_CERTIFICATION_20260919T185258Z.json",
+    "final_verdict": "LC6_PROMOTION_CONTROLS_PACKAGE_SEALED_READY_FOR_GOVERNED_HANDOFF",
+    "historical_disclosure": [
+      "old append continuity chain is incomplete",
+      "rolled-back append is not retrospectively proven clean",
+      "evolved baseline is independent current-state certification, not repair of historical evidence"
+    ],
+    "real_candidate_creation_repair": "separately governed; not performed",
+    "real_env_switch_restart": "separately governed; not performed",
+    "real_promotion": "not occurred",
+    "synthetic_promotion_controls": "validated"
+  }
+}

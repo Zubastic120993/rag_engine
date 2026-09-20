@@ -1,0 +1,16 @@
+{
+  "fake_restart_inherited_expected_rag_db_path": true,
+  "fake_restart_new_pid": 1002,
+  "fake_restart_old_pid": 1001,
+  "fixture_root": "/private/tmp/lc6_promotion_e2e_9vfu39g_",
+  "measured_synthetic_interruption_ms": 0,
+  "persist_dir_env_probe_stdout": "/private/tmp/lc6_promotion_e2e_9vfu39g_/CE_Library/.rag_db_generations/raggen_new_e2e",
+  "production_modified": false,
+  "real_env_modified": false,
+  "rollback_byte_for_byte_restored": true,
+  "rollback_state": "ROLLED_BACK",
+  "schema": "lc6-promotion-synthetic-e2e-report-v1",
+  "status": "PASS",
+  "switch_state": "COMMITTED",
+  "total_synthetic_e2e_ms": 22
+}

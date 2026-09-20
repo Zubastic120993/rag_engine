@@ -1,0 +1,103 @@
+{
+  "after": null,
+  "before": {
+    "env": {
+      "gid": 20,
+      "inode": 132168998,
+      "mode": 384,
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "rag_db_path_lines": [
+        {
+          "line": 483,
+          "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+        }
+      ],
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747",
+      "size": 23930,
+      "uid": 501
+    },
+    "production": {
+      "active_selection": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+      "expected_row_count": 19,
+      "expected_sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a",
+      "hermes_processes": [
+        "83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes",
+        "84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serve --host 127.0.0.1 --port 0"
+      ],
+      "key_file_hashes": {
+        "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+        "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+      },
+      "lock_state": [
+        {
+          "exists": false,
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.promotion.lock"
+        },
+        {
+          "exists": false,
+          "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/.promotion.lock"
+        },
+        {
+          "exists": false,
+          "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/.promotion.lock"
+        }
+      ],
+      "row_count": 31,
+      "schema": "inventory-row-v1",
+      "sha256": "3a1173d935be2097656e46af3877cab4fdabf514380e02ea7c2a0d027904e995"
+    }
+  },
+  "boundaries": {
+    "hermes_restarted": false,
+    "production_lock_acquired": false,
+    "production_modified": false,
+    "promotion_executed": false,
+    "real_env_modified": false,
+    "sealed_or_staged_or_committed_or_pushed": false
+  },
+  "evidence_handling": {
+    "failed_fixture_preservation_required": false,
+    "historical_reports_overwritten": false
+  },
+  "operation": "verify-canonical-production-inventory",
+  "prerequisite_hashes": {
+    "expected": {
+      "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_PATH_REMEDIATION_VALIDATION_REPORT_20260919T173112Z.md": "6becb7a0ffdf3e7b3d261cedbce36286e1ab2b5faaf3ee173523fee345bda25b",
+      "promotion_controls.py": "f14a9915b0367439b96b81bfa817df440d1f19229d988fb019377bf2c733a5a5",
+      "synthetic_e2e_driver.py": "352f3c707eea44e63c80ca4b4e8d352667947038956f06a8a9f12aec5ab335cd",
+      "test_promotion_controls.py": "3809af01b5b278ccf212df7afd61ed81788d02ad3186880bf82ad9ccd6aa2cff"
+    },
+    "observed": {
+      "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_PATH_REMEDIATION_VALIDATION_REPORT_20260919T173112Z.md": "6becb7a0ffdf3e7b3d261cedbce36286e1ab2b5faaf3ee173523fee345bda25b",
+      "promotion_controls.py": "f14a9915b0367439b96b81bfa817df440d1f19229d988fb019377bf2c733a5a5",
+      "synthetic_e2e_driver.py": "352f3c707eea44e63c80ca4b4e8d352667947038956f06a8a9f12aec5ab335cd",
+      "test_promotion_controls.py": "3809af01b5b278ccf212df7afd61ed81788d02ad3186880bf82ad9ccd6aa2cff"
+    },
+    "ok": {
+      "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_PATH_REMEDIATION_VALIDATION_REPORT_20260919T173112Z.md": true,
+      "promotion_controls.py": true,
+      "synthetic_e2e_driver.py": true,
+      "test_promotion_controls.py": true
+    }
+  },
+  "schema": "lc6-promotion-post-path-remediation-synthetic-e2e-v1",
+  "stage": "pre-execution-production-evidence",
+  "synthetic_execution": {
+    "interruption_duration_ms": null,
+    "reason": "stopped before synthetic fixture creation on first unexpected precondition state",
+    "started": false
+  },
+  "synthetic_fixture": {
+    "created": false,
+    "path": null,
+    "preserved": false,
+    "removed_after_report": false
+  },
+  "target_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+  "timestamp_utc": "20260919T173506Z",
+  "unexpected_state": [
+    "production canonical inventory precondition mismatch"
+  ],
+  "verdict": "LC6_PROMOTION_CONTROLS_SYNTHETIC_E2E_FAIL_PRESERVED"
+}

@@ -1,0 +1,84 @@
+{
+  "created_utc": "2026-09-19T18:52:58Z",
+  "equality": {
+    "env_sha256": true,
+    "hermes_pids": true,
+    "key_hashes": true,
+    "locks": true,
+    "rag_db_path": true
+  },
+  "no_actions_performed": [
+    "no production copy",
+    "no disposable baseline/candidate",
+    "no Chroma client open",
+    "no lock acquired",
+    "no .hermes/.env edit",
+    "no Hermes restart",
+    "no code patch",
+    "no E2E rerun",
+    "no seal/stage/commit/push"
+  ],
+  "production_unchanged": true,
+  "protected_state_after": {
+    "env": {
+      "bytes": 23930,
+      "mode": "0o600",
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747"
+    },
+    "hermes_pids": "46132 84092 Sat Sep 19 19:33:39 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n49954 84092 Sat Sep 19 19:41:43 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n59627 84092 Sat Sep 19 20:00:40 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes\n83701 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83702 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83714 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper (Renderer).app/Contents/MacOS/Hermes Helper (Renderer)\n83732 83689 Fri Sep 18 13:14:12 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python",
+    "key_hashes": {
+      "ask_events.jsonl": "58c758a3cb71fd42fa6e3d30483c253c89644832195faa25a00cf34b3a268aa2",
+      "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+    },
+    "locks": {
+      ".ingest.lock": false,
+      ".rag_state": false,
+      "chroma.sqlite3-shm": false,
+      "chroma.sqlite3-wal": false,
+      "ingest.lock": false,
+      "write.lock": false
+    },
+    "production_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "rag_db_path": {
+      "line": 483,
+      "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+    },
+    "writer_candidates": ""
+  },
+  "protected_state_before": {
+    "env": {
+      "bytes": 23930,
+      "mode": "0o600",
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747"
+    },
+    "hermes_pids": "46132 84092 Sat Sep 19 19:33:39 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n49954 84092 Sat Sep 19 19:41:43 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n59627 84092 Sat Sep 19 20:00:40 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes\n83701 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83702 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83714 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper (Renderer).app/Contents/MacOS/Hermes Helper (Renderer)\n83732 83689 Fri Sep 18 13:14:12 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python",
+    "key_hashes": {
+      "ask_events.jsonl": "58c758a3cb71fd42fa6e3d30483c253c89644832195faa25a00cf34b3a268aa2",
+      "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+    },
+    "locks": {
+      ".ingest.lock": false,
+      ".rag_state": false,
+      "chroma.sqlite3-shm": false,
+      "chroma.sqlite3-wal": false,
+      "ingest.lock": false,
+      "write.lock": false
+    },
+    "production_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "rag_db_path": {
+      "line": 483,
+      "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+    },
+    "writer_candidates": ""
+  },
+  "related_certification_artifact": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_promotion_controls_20260917T061836Z/LC6_VERSIONED_EVOLVED_PRE_REPAIR_BASELINE_CERTIFICATION_20260919T185258Z.json",
+  "related_certification_sha256": "09b69ba17c559e0ee535f4b724ed7482a71578608e7699f2eff260e21ef86b70",
+  "schema": "lc6-production-unchanged-report-v1",
+  "scope": "read-only protected production state evidence; report creation only inside promotion-controls package"
+}

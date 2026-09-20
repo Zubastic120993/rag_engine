@@ -1,0 +1,542 @@
+{
+  "certification_assessment": {
+    "basis": "source-document existence evidence is incomplete",
+    "current_production_independently_certifiable_despite_historical_gap": false,
+    "not_relying_on_aggregate_counts_alone": true
+  },
+  "code_paths": {
+    "chunk_ids": "append.py:416-423 prepare_certified_chunks() and stable_identity/ids.py:106-121 chunk_id()",
+    "document_id": "append.py:397 document_id_from_source_hash(entry[sha256])",
+    "journal_planned_fields": "append.py:501-523 journal planned fields omit ingested_at and may omit exact collection/extraction values",
+    "tracker_entry": "tracker.py:22-38 tracker_entry(), ingested_at populated from datetime.now(timezone.utc).isoformat()"
+  },
+  "created_utc": "2026-09-19T17:57:51Z",
+  "current_state_validation": {
+    "active_writer_candidates": "",
+    "collections": [
+      "langchain"
+    ],
+    "duplicate_chunk_id_count": 0,
+    "one_langchain_collection": true,
+    "source_hash_mismatch_count": 0,
+    "source_missing_count": 55,
+    "source_missing_sample": [
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/2_Cylinder Condition_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2022-725.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/SL2020-705.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day4_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/C1210 ME Pre-Dual Fuel standard operation online timetable.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 5.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/4_Triton ECS issues_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/2. HPS.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/3_LGIP service experience_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/7_Marine Installation_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/Day5a_E.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/5_Design Large bore_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/9_Long Term Service Agreements_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/MAN_Academy/ME Pre-dual fuel std. operation Online timetable 1.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/8_Retrofit_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 2/6_Design Hydraulics_LGIP Owners Forum_Dec 2022.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/Day 1/Service letters and other supporting files/2245-0100-0005.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/5a.Day 5a.pdf",
+      "00_Career/03_Engine_Knowledge/Training/Kurs/1.Day 1.pdf"
+    ],
+    "sqlite_embedding_fulltext_search": 126076,
+    "sqlite_embedding_id_column_used": true,
+    "sqlite_embedding_metadata": 1386836,
+    "sqlite_embeddings": 126076,
+    "sqlite_minus_tracker_count": 0,
+    "tracker_chunk_ids": 126076,
+    "tracker_entries": 1761,
+    "tracker_minus_sqlite_count": 0,
+    "tracker_paths": 1849,
+    "wal_shm_lock_state": {
+      ".ingest.lock": false,
+      ".rag_state": false,
+      "chroma.sqlite3-shm": false,
+      "chroma.sqlite3-wal": false,
+      "ingest.lock": false,
+      "write.lock": false
+    }
+  },
+  "field_level_diffs_for_seven_changed_common_tracker_records": [
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "regulatory",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:27:46.718423+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T112744Z:c417a48e7405",
+      "paths": [
+        "00_Career/02_Statutory/Port_State_Guidance/EU/eur186992_legal_context_note.pdf"
+      ],
+      "source_hash": "68d5532c85cb8824b952aa14aabcc59a093b183235b356366fcb35de27820956"
+    },
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "maker-manuals",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:27:46.718436+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T112744Z:c417a48e7405",
+      "paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2026-787.pdf"
+      ],
+      "source_hash": "1b2cbfdea22e9cbb7b2adfb91fcc1c8015835f129d755712513ecba4927190ac"
+    },
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "maker-manuals",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:27:46.718439+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T112744Z:c417a48e7405",
+      "paths": [
+        "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2026-788.pdf"
+      ],
+      "source_hash": "7c0a934b83b2058d58839c3c8c65d88a31437300518cbd2c8501267b3f1f8f32"
+    },
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "regulatory",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:35:10.494057+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T113502Z:f94dd6a5faff",
+      "paths": [
+        "00_Career/01_Class_Rules/Lloyds_Register/LR0100_CCS_Retrofit_Report.pdf"
+      ],
+      "source_hash": "72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656"
+    },
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "regulatory",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:35:34.101376+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T113515Z:1a8a14a2ef54",
+      "paths": [
+        "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf"
+      ],
+      "source_hash": "1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8"
+    },
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "regulatory",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:38:53.482728+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T113852Z:44214fa4690c",
+      "paths": [
+        "00_Career/02_Statutory/IMO_Resolutions/MEPC.39883.pdf"
+      ],
+      "source_hash": "ebbc5cc8fbb9ac8d5425c83eb00fac5e552a12378f7bc046e2ea3279da66eb3e"
+    },
+    {
+      "field_diffs": [
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "regulatory",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "collection"
+        },
+        {
+          "classification": "expected certified-append output, journal omitted value",
+          "code_path": "append.py:421-424 prepared collection/extraction; tracker.py:22-38 tracker_entry()",
+          "current_value": "ok",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "unknown_from_journal",
+          "field": "extraction"
+        },
+        {
+          "classification": "deterministic runtime metadata",
+          "code_path": "tracker.py:22-38 tracker_entry() datetime.now(timezone.utc).isoformat()",
+          "current_value": "2026-09-18T11:50:52.809037+00:00",
+          "current_value_class": "str",
+          "expected_evidence_class": "str",
+          "expected_or_reconstructed_value": "not_recorded_in_journal",
+          "field": "ingested_at"
+        }
+      ],
+      "governing_operation": "capp:20260918T115050Z:434562e53a6b",
+      "paths": [
+        "00_Career/01_Class_Rules/Lloyds_Register/LR0108_FOBAS_Update_H1_2026_.pdf"
+      ],
+      "source_hash": "89d12f28a5a14eb4807b0f9662cfe572de606d1addd6d2cf6054fc2f12e773af"
+    }
+  ],
+  "historical_conclusion_preserved": {
+    "historical_evidence_rewritten_as_pass": false,
+    "old_append_chain_remains_incomplete": true,
+    "rolled_back_append_not_retrospectively_proven_clean": true
+  },
+  "prerequisite": {
+    "actual_sha256": "438abf23dfae38d12b8765a3cf3a53740d16174168532c27fa564bfb11af06dc",
+    "expected_sha256": "438abf23dfae38d12b8765a3cf3a53740d16174168532c27fa564bfb11af06dc",
+    "forensic_report": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_promotion_controls_20260917T061836Z/LC6_FAILED_APPEND_AND_TRACKER_GAP_FORENSIC_REPORT_20260919T174556Z.json",
+    "verified": true
+  },
+  "prospective_baseline_boundary": {
+    "certified_append_journal_provenance_inventory": {
+      "description": "certified_append_journal/** journals and tracker backups, provenance evidence only",
+      "file_count": 20
+    },
+    "selection_and_process_evidence": {
+      "description": ".hermes/.env RAG_DB_PATH selection, key hashes, Hermes PID identity, lock/WAL/SHM state captured separately and not source DB content"
+    },
+    "source_database_content_inventory": {
+      "description": "all active generation files excluding certified_append_journal/** and transient WAL/SHM/lock files",
+      "file_count": 11
+    }
+  },
+  "protected_state_after": {
+    "env": {
+      "bytes": 23930,
+      "mode": "0o600",
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747"
+    },
+    "hermes_pids": "46132 84092 Sat Sep 19 19:33:39 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n49954 84092 Sat Sep 19 19:41:43 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes\n83701 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83702 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83714 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper (Renderer).app/Contents/MacOS/Hermes Helper (Renderer)\n83732 83689 Fri Sep 18 13:14:12 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python",
+    "key_hashes": {
+      "ask_events.jsonl": "58c758a3cb71fd42fa6e3d30483c253c89644832195faa25a00cf34b3a268aa2",
+      "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+    },
+    "locks": {
+      ".ingest.lock": false,
+      ".rag_state": false,
+      "chroma.sqlite3-shm": false,
+      "chroma.sqlite3-wal": false,
+      "ingest.lock": false,
+      "write.lock": false
+    },
+    "production_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "rag_db_path": {
+      "line": 483,
+      "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+    },
+    "writer_candidates": ""
+  },
+  "protected_state_before": {
+    "env": {
+      "bytes": 23930,
+      "mode": "0o600",
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747"
+    },
+    "hermes_pids": "46132 84092 Sat Sep 19 19:33:39 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n49954 84092 Sat Sep 19 19:41:43 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python\n83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes\n83701 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83702 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n83714 83689 Fri Sep 18 13:14:11 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper (Renderer).app/Contents/MacOS/Hermes Helper (Renderer)\n83732 83689 Fri Sep 18 13:14:12 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/Frameworks/Hermes Helper.app/Contents/MacOS/Hermes Helper\n84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python",
+    "key_hashes": {
+      "ask_events.jsonl": "3c364e1012e4bc0966aa056c9073bc199d14d22258cfecf5b2d512420a2b7a30",
+      "chroma.sqlite3": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "embedded.json": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970"
+    },
+    "locks": {
+      ".ingest.lock": false,
+      ".rag_state": false,
+      "chroma.sqlite3-shm": false,
+      "chroma.sqlite3-wal": false,
+      "ingest.lock": false,
+      "write.lock": false
+    },
+    "production_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "rag_db_path": {
+      "line": 483,
+      "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+    },
+    "writer_candidates": ""
+  },
+  "protected_state_unchanged": {
+    "env_sha256": true,
+    "hermes_pids": true,
+    "key_hashes": false,
+    "locks": true,
+    "rag_db_path": true
+  },
+  "provenance_inventory_sha256": "22058002f0d92cc619d4a3595e0830b1b6b9215c786774f704bfb935d21e64a0",
+  "rolled_back_append_document_validation": [
+    {
+      "durable_ids_absent": false,
+      "governing_successful_operation_if_present": "capp:20260918T113515Z:1a8a14a2ef54",
+      "planned_chunk_count": 410,
+      "relative_path": "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf",
+      "source_hash": "1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8",
+      "sqlite_planned_ids_present_count": 410,
+      "tracker_planned_ids_present_count": 410,
+      "tracker_record_present": true
+    },
+    {
+      "durable_ids_absent": false,
+      "governing_successful_operation_if_present": "capp:20260918T113502Z:f94dd6a5faff",
+      "planned_chunk_count": 274,
+      "relative_path": "00_Career/01_Class_Rules/Lloyds_Register/LR0100_CCS_Retrofit_Report.pdf",
+      "source_hash": "72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656",
+      "sqlite_planned_ids_present_count": 274,
+      "tracker_planned_ids_present_count": 274,
+      "tracker_record_present": true
+    }
+  ],
+  "schema": "lc6-current-state-certification-assessment-v2",
+  "source_inventory_sha256": "09cc6910bc29923760ce24a9c42bd15edf2dafa85bf42107a20b090d8baab93e",
+  "successful_append_validation": [
+    {
+      "items": [
+        {
+          "document_id": "docrev:68d5532c85cb8824b952aa14aabcc59a093b183235b356366fcb35de27820956",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/02_Statutory/Port_State_Guidance/EU/eur186992_legal_context_note.pdf",
+          "source_hash": "68d5532c85cb8824b952aa14aabcc59a093b183235b356366fcb35de27820956",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        },
+        {
+          "document_id": "docrev:1b2cbfdea22e9cbb7b2adfb91fcc1c8015835f129d755712513ecba4927190ac",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2026-787.pdf",
+          "source_hash": "1b2cbfdea22e9cbb7b2adfb91fcc1c8015835f129d755712513ecba4927190ac",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        },
+        {
+          "document_id": "docrev:7c0a934b83b2058d58839c3c8c65d88a31437300518cbd2c8501267b3f1f8f32",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/03_Engine_Knowledge/Service_Letters_MAN_Archive/sl2026-788.pdf",
+          "source_hash": "7c0a934b83b2058d58839c3c8c65d88a31437300518cbd2c8501267b3f1f8f32",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        }
+      ],
+      "operation_id": "capp:20260918T112744Z:c417a48e7405",
+      "state": "SUCCESS"
+    },
+    {
+      "items": [
+        {
+          "document_id": "docrev:72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/01_Class_Rules/Lloyds_Register/LR0100_CCS_Retrofit_Report.pdf",
+          "source_hash": "72b8e3e7812b39e813b652ebdd95a04f026c3e39ae064405a42e434874088656",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        }
+      ],
+      "operation_id": "capp:20260918T113502Z:f94dd6a5faff",
+      "state": "SUCCESS"
+    },
+    {
+      "items": [
+        {
+          "document_id": "docrev:1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/01_Class_Rules/DNV/DNV_Maritime Forecast to 2050_2026-edition_full report.pdf",
+          "source_hash": "1df1cb3e0835548faa5c927379db044dbcfca6f151afc9cb283a3889fea0a0d8",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        }
+      ],
+      "operation_id": "capp:20260918T113515Z:1a8a14a2ef54",
+      "state": "SUCCESS"
+    },
+    {
+      "items": [
+        {
+          "document_id": "docrev:ebbc5cc8fbb9ac8d5425c83eb00fac5e552a12378f7bc046e2ea3279da66eb3e",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/02_Statutory/IMO_Resolutions/MEPC.39883.pdf",
+          "source_hash": "ebbc5cc8fbb9ac8d5425c83eb00fac5e552a12378f7bc046e2ea3279da66eb3e",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        }
+      ],
+      "operation_id": "capp:20260918T113852Z:44214fa4690c",
+      "state": "SUCCESS"
+    },
+    {
+      "items": [
+        {
+          "document_id": "docrev:89d12f28a5a14eb4807b0f9662cfe572de606d1addd6d2cf6054fc2f12e773af",
+          "missing_chunk_ids": [],
+          "path_present_in_tracker": true,
+          "relative_path": "00_Career/01_Class_Rules/Lloyds_Register/LR0108_FOBAS_Update_H1_2026_.pdf",
+          "source_hash": "89d12f28a5a14eb4807b0f9662cfe572de606d1addd6d2cf6054fc2f12e773af",
+          "sqlite_missing_expected_ids": [],
+          "tracker_present": true,
+          "unexpected_current_chunk_ids_for_source": [],
+          "unexpected_sqlite_ids_attributed_to_operation": []
+        }
+      ],
+      "operation_id": "capp:20260918T115050Z:434562e53a6b",
+      "state": "SUCCESS"
+    }
+  ],
+  "supersedes_erroneous_local_assessment_if_present": "LC6_CURRENT_STATE_CERTIFICATION_ASSESSMENT_20260919T175624Z.json used SQLite integer id instead of embeddings.embedding_id; preserved unchanged but not relied upon",
+  "verdict": "LC6_CURRENT_STATE_CERTIFICATION_REQUIRES_ADDITIONAL_SOURCE_EVIDENCE"
+}

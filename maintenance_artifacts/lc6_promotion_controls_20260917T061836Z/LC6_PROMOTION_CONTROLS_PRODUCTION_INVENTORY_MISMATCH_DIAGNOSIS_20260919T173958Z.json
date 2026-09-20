@@ -1,0 +1,327 @@
+{
+  "accepted_canonical_inventory_source": {
+    "byte_size": 1312451165,
+    "field": "baseline_before.certified_baseline_content_inventory.content_file_hashes",
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_operational_controls_20260910T172036Z/BATCH_B2_V3_SUMMARY_REPORT.json",
+    "row_count": 19,
+    "schema": "inventory-row-v1",
+    "sha256": "b189d622935faf6a0aa14830a80fa73af85c49f2d965bb83cdfb23acdb4f992a"
+  },
+  "active_processes": {
+    "active_writer_candidates": [],
+    "hermes": [
+      "83689     1 Fri Sep 18 13:14:09 2026     /Users/vladymyrzub/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.app/Contents/MacOS/Hermes",
+      "84092 83689 Fri Sep 18 13:14:14 2026     /Users/vladymyrzub/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serve --host 127.0.0.1 --port 0"
+    ]
+  },
+  "additional_12_classification": [
+    {
+      "bytes": 4548,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T112744Z:c417a48e7405.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "561c09f707c12f6612f582b4f30d4f388e8c471c35e56af540cac91a36e167fa"
+    },
+    {
+      "bytes": 6735475,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T112744Z:c417a48e7405.tracker.bak.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "62200066d9ba6430d2b47738e7cd2457356bef992c744900e7eb6f168bc3c668"
+    },
+    {
+      "bytes": 35595,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113351Z:d3a515b5db76.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "aadf80fed0b0c230709b70115963ff38b6ef52002572398df61b4e42c6d83384"
+    },
+    {
+      "bytes": 6737722,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113351Z:d3a515b5db76.tracker.bak.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "e6640c175f901058b25126907b77027ac1e88421ab5c511f06a7ad29e0a5f8ab"
+    },
+    {
+      "bytes": 27586,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113502Z:f94dd6a5faff.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "5290157ecec5fd0e12496d450743f1db7d28db4254c693d5a1a41b686c7b486e"
+    },
+    {
+      "bytes": 6737722,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113502Z:f94dd6a5faff.tracker.bak.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "e6640c175f901058b25126907b77027ac1e88421ab5c511f06a7ad29e0a5f8ab"
+    },
+    {
+      "bytes": 40674,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113515Z:1a8a14a2ef54.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "2c0adef474cc54e1bd899a712f2d7467f0eec5770707807d751042e5956e777f"
+    },
+    {
+      "bytes": 6751282,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113515Z:1a8a14a2ef54.tracker.bak.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "6cf9a01d34102e1663b8eb850ba03a875183500f42794347d068f87f05a75208"
+    },
+    {
+      "bytes": 2686,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113852Z:44214fa4690c.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "9b1ca70421f0bafc7c82c8565ecafaa4172042f5a5ed7471d641a747e2cd20cf"
+    },
+    {
+      "bytes": 6771386,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T113852Z:44214fa4690c.tracker.bak.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "f6277cd7c0e6b76f068075fc1f650250b555c1c387b962b2dee3fe7dd187b9ef"
+    },
+    {
+      "bytes": 7526,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T115050Z:434562e53a6b.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "6fe0e84ac5cd068b9985e660e647de1537762f50df3f5c64ba274a5a462e3d4e"
+    },
+    {
+      "bytes": 6772496,
+      "classification": "control/report artifact",
+      "path": "certified_append_journal/capp:20260918T115050Z:434562e53a6b.tracker.bak.json",
+      "reason": "post-accepted certified append journal/control file under certified_append_journal; not WAL/SHM/lock and not a Chroma structural segment",
+      "sha256": "b885ad4ae802d8208d767172c177926bde549bf195ea91e0e92fbd6c526443ab"
+    }
+  ],
+  "boundaries": {
+    "chroma_opened": false,
+    "files_modified": false,
+    "historical_reports_overwritten": false,
+    "production_lock_acquired": false,
+    "promotion_executed": false,
+    "synthetic_e2e_rerun": false
+  },
+  "byte_size_comparison": {
+    "accepted_total_bytes": 1312451165,
+    "current_bytes_for_accepted_19_paths": 1323624713,
+    "current_bytes_for_added_12_paths": 40624698,
+    "current_total_bytes_all_31_rows": 1364249411
+  },
+  "cause_assessment": {
+    "conclusion": [
+      "active generation is the same historical production path, not a different active generation",
+      "12-row count increase is explained by recursive traversal including post-accepted certified_append_journal control/report artifacts",
+      "accepted key/core hashes no longer all match current production; this is real production content change since accepted evidence, not only inventory filtering",
+      "no WAL/SHM/ingest lock transient file explains the 12 added rows",
+      "no active writer candidate was found in read-only process scan"
+    ],
+    "different_active_generation": false,
+    "inventory_exclusions_changing": "probable contributing factor for 12 added rows: accepted evidence used content_file_hashes/source-content view; latest precondition used recursive full traversal",
+    "real_production_changes": true,
+    "recursive_traversal_including_previously_excluded_files": true,
+    "transient_runtime_artifacts": false
+  },
+  "comparison": {
+    "added_count": 12,
+    "added_paths": [
+      "certified_append_journal/capp:20260918T112744Z:c417a48e7405.json",
+      "certified_append_journal/capp:20260918T112744Z:c417a48e7405.tracker.bak.json",
+      "certified_append_journal/capp:20260918T113351Z:d3a515b5db76.json",
+      "certified_append_journal/capp:20260918T113351Z:d3a515b5db76.tracker.bak.json",
+      "certified_append_journal/capp:20260918T113502Z:f94dd6a5faff.json",
+      "certified_append_journal/capp:20260918T113502Z:f94dd6a5faff.tracker.bak.json",
+      "certified_append_journal/capp:20260918T113515Z:1a8a14a2ef54.json",
+      "certified_append_journal/capp:20260918T113515Z:1a8a14a2ef54.tracker.bak.json",
+      "certified_append_journal/capp:20260918T113852Z:44214fa4690c.json",
+      "certified_append_journal/capp:20260918T113852Z:44214fa4690c.tracker.bak.json",
+      "certified_append_journal/capp:20260918T115050Z:434562e53a6b.json",
+      "certified_append_journal/capp:20260918T115050Z:434562e53a6b.tracker.bak.json"
+    ],
+    "changed_hash_count": 8,
+    "changed_hashes": [
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "556f890277cb12b80664415d3e8f07b05a545992e37934333af40787bddc378e",
+        "observed_bytes": 533447952,
+        "observed_sha256": "d6a0ae349ea23dda78b99d944ae512bf3817577c64f9208ea00d0b60c1ed275a",
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/data_level0.bin"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "acbd88fd98f3e160c9692281dd7a97b954e302af2eb76206cdabfe5454bac416",
+        "observed_bytes": 100,
+        "observed_sha256": "22aa9915ed2380a03f3f6786a031c974c78833dac4e99070008297f5896f0811",
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/header.bin"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "6aba00def51f2c3c26e0b5d5fd11edc8109a148297f140da49d396427ccbea2b",
+        "observed_bytes": 7918080,
+        "observed_sha256": "4fb91415042862b594768072dd9f4b95fd0264fb62b1d7caa2a154a114d9f1f6",
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/index_metadata.pickle"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "080e081d53022a686802b4ed4f12a8d771e3303e9683f6e2bbb5d278f727fb34",
+        "observed_bytes": 503728,
+        "observed_sha256": "357d536f807cc4ca42846b06db39794c64e7b72af56b42b2ded747b6280a27bd",
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/length.bin"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "bdef5d398e885aefa162ed1c74f591f62cb10d1006999f3106d7691dd63db30a",
+        "observed_bytes": 1085264,
+        "observed_sha256": "9595f9d13d2406e127709641fb9817ff5f9afd0df62b9f9c30e8b04479655129",
+        "path": "abda5535-6e53-4124-b725-55046ffb0347/link_lists.bin"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "a70b08f98967aeb0cdccdcef7a2dc33b162692b35500cd50b925315ac3fcf314",
+        "observed_bytes": 51283,
+        "observed_sha256": "c0502df5bf40b25f2d2d290800709d815b2c4e64f27b94a6f103470efd872503",
+        "path": "ask_events.jsonl"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+        "observed_bytes": 746881024,
+        "observed_sha256": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+        "path": "chroma.sqlite3"
+      },
+      {
+        "accepted_bytes": "not recorded in accepted evidence",
+        "accepted_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+        "observed_bytes": 6776026,
+        "observed_sha256": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970",
+        "path": "embedded.json"
+      }
+    ],
+    "changed_sizes_types": [],
+    "identical_count": 11,
+    "identical_paths": [
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.json",
+      "certified_append_journal/capp:20260815T145900Z:fd4db50b4ed6.tracker.bak.json",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.json",
+      "certified_append_journal/capp:20260815T161203Z:27acbe36f4bb.tracker.bak.json",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.json",
+      "certified_append_journal/capp:20260815T161933Z:ac85f1a805c5.tracker.bak.json",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.json",
+      "certified_append_journal/capp:20260821T184315Z:030bec18fb3a.tracker.bak.json",
+      "certified_generation_checkpoint.json",
+      "index_embedding_fingerprint_v1.json",
+      "index_fingerprint.json"
+    ],
+    "missing_count": 0,
+    "missing_paths": [],
+    "size_type_limitation": "accepted source records per-path hashes and total byte size, not per-path byte sizes; observed changed-hash files list observed bytes only"
+  },
+  "current_inventory": {
+    "byte_size": 1364249411,
+    "row_count": 31,
+    "schema": "inventory-row-v1",
+    "sha256": "3a1173d935be2097656e46af3877cab4fdabf514380e02ea7c2a0d027904e995"
+  },
+  "key_file_comparison": {
+    ".rag_state": {
+      "accepted_sha256": null,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.rag_state",
+      "present": false
+    },
+    "chroma.sqlite3": {
+      "accepted_sha256": "71ad868ad404fd8a489c9b57213e37be291a4461753f0ec0ffa288476a1451f6",
+      "bytes": 746881024,
+      "hash_matches_accepted": false,
+      "mode": "0o644",
+      "mtime_ns": 1789732252768361611,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3",
+      "present": true,
+      "sha256": "5f2dd2b0448659dead599c449edded0e74f9bc018e982119326bdccdefbbfb15",
+      "type": "file"
+    },
+    "embedded.json": {
+      "accepted_sha256": "c51c8816585dce66449be2828e4bf0b9e06cba16a5189d8ea2634e3d6ed8af33",
+      "bytes": 6776026,
+      "hash_matches_accepted": false,
+      "mode": "0o644",
+      "mtime_ns": 1789732252852016219,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/embedded.json",
+      "present": true,
+      "sha256": "a3371b3abc2a28763fa4d9de40520968e52ba34eb67b598d8fdef5d969eff970",
+      "type": "file"
+    }
+  },
+  "schema": "lc6-promotion-production-inventory-mismatch-diagnosis-v1",
+  "selection": {
+    "active_production_path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604",
+    "env_evidence": {
+      "gid": 20,
+      "inode": 132168998,
+      "mode": "0o600",
+      "mtime_ns": 1786745747382838475,
+      "path": "/Users/vladymyrzub/.hermes/.env",
+      "rag_db_path_lines": [
+        {
+          "line": 483,
+          "value": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604"
+        }
+      ],
+      "sha256": "e4fc7f7a0e978cac273eb3b1f833177945eeaf416f36f4b700ea83f9fff40747",
+      "size": 23930,
+      "uid": 501
+    },
+    "mechanism": "persistent RAG_DB_PATH assignment in /Users/vladymyrzub/.hermes/.env"
+  },
+  "timestamp_utc": "20260919T173958Z",
+  "verdict": "LC6_PROMOTION_CONTROLS_PRODUCTION_INVENTORY_MISMATCH_DIAGNOSIS_COMPLETE_NO_PATCH",
+  "verified_failed_precondition_report": {
+    "expected_sha256": "d70c633c25b936ffdedb8cbdf9aa4b52d683845b6d508725f84e3332f73576eb",
+    "observed_sha256": "d70c633c25b936ffdedb8cbdf9aa4b52d683845b6d508725f84e3332f73576eb",
+    "ok": true,
+    "path": "/Users/vladymyrzub/CE_Library/Tools/rag_engine/maintenance_artifacts/lc6_promotion_controls_20260917T061836Z/LC6_PROMOTION_CONTROLS_POST_PATH_REMEDIATION_SYNTHETIC_E2E_20260919T173506Z.json"
+  },
+  "wal_shm_ingest_lock": [
+    {
+      "bytes": null,
+      "exists": false,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3-wal",
+      "type": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/chroma.sqlite3-shm",
+      "type": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/ingest.lock",
+      "type": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.ingest.lock",
+      "type": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/write.lock",
+      "type": null
+    },
+    {
+      "bytes": null,
+      "exists": false,
+      "path": "/Users/vladymyrzub/CE_Library/.rag_db_generations/raggen_20260814T182037Z_698e0df44604/.rag_state",
+      "type": null
+    }
+  ]
+}
